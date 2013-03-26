@@ -59,4 +59,13 @@ angular.module('knowledge.services', ['ngResource'])
         method: 'GET'
     )
   )
+  .factory('EntityStep', ($resource) ->
+    EntityStep = $resource('/tracker/api/studies/:study/:role/:identity/step/:step', {},
+      query: 
+        method: 'GET'
+    )
+    EntityStep.prototype.getField = (x) ->
+      this.data.values[x]
+    EntityStep
+  )
   

@@ -7,7 +7,57 @@
         return elm.text(version);
       };
     }
-  ]).directive('heliReference', function() {
+  ]).directive('heliStepField', function($compile) {
+    var result;
+    return result = {
+      restrict: "A",
+      replace: true,
+      transclude: true,
+      scope: 'isolate',
+      locals: {
+        "fieldKey": 'bind',
+        "fieldValue": 'bind'
+      },
+      template: '<div class="controls">' + '</div>',
+      link: function(scope, iElement, iAttrs, controller) {
+        return scope.$watch('fieldValue', function(newValue, oldValue) {
+          var body, linkFn, template;
+          if (newValue) {
+            switch (newValue.controlType) {
+              case "text":
+                body = '<input type="text" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">';
+                template = angular.element(body);
+                linkFn = $compile(template);
+                return iElement.append(linkFn(scope));
+              case "select":
+                body = '<select><option ng-repeat="value in fieldValue.range">{{value}}</option></select>';
+                template = angular.element(body);
+                linkFn = $compile(template);
+                return iElement.append(linkFn(scope));
+              case "date":
+                body = '<input type="text" class="datepicker" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">';
+                template = angular.element(body);
+                linkFn = $compile(template);
+                iElement.append(linkFn(scope));
+                return jQuery(iElement.find(".datepicker")).datepicker({
+                  "autoclose": true
+                });
+              default:
+                return console.log("Unknown control type", newValue);
+            }
+          }
+        });
+      }
+    };
+  }).directive('heliWorkflows', function() {
+    var result;
+    return result = {
+      restrict: "A",
+      replace: true,
+      transclude: true,
+      template: '<ul class="dropdown-menu">' + '<li ng-repeat="step in entity.data.availableSteps">' + '<a href="{{step.url}}">{{step.label}}</a>' + '</li>' + '</ul>'
+    };
+  }).directive('heliReference', function() {
     var result;
     return result = {
       restrict: "A",

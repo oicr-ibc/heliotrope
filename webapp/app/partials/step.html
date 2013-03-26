@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="span3" id="sidebar"></div>
+  <div class="span9">
+
+    <div id="page-header">
+      <div class="page-header">
+        <h1>
+          {{entity.data.step.label}} <small><a href="{{entity.data.url}}">{{entity.data.identity}}</a> <a href="{{entity.data.study.url}}">{{entity.data.study.name}}</a></small>
+        </h1>
+      </div>
+    </div>
+
+
+    <form class="form-horizontal">
+      <div class="control-group" ng-repeat="(fieldKey, fieldValue) in entity.data.step.fields">
+        <label class="control-label" for="{{fieldKey}}">{{fieldValue.label}}</label>
+        <div class="controls" heli-step-field field-key="fieldKey" fieldValue="fieldValue"></div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

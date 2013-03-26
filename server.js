@@ -34,11 +34,9 @@ try {
 module.exports.config = config;
 
 app.configure(function(){
-    app.use(express.bodyParser());
-    app.use(express.static(process.cwd() + '/webapp'));
-    app.use(express.logger());
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'jade');
+  app.use(express.bodyParser());
+  app.use(express.static(process.cwd() + '/webapp'));
+  app.use(express.logger());
 
   if (config.accessControl){
     var accesscontrol = require('./lib/accesscontrol');

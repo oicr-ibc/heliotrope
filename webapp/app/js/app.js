@@ -27,6 +27,10 @@
         templateUrl: 'app/partials/entity.html',
         controller: "EntityController"
       });
+      $routeProvider.when("/studies/:study/:role/:identity/step/:step", {
+        templateUrl: 'app/partials/step.html',
+        controller: "EntityStepController"
+      });
       return $routeProvider.otherwise({
         redirectTo: "/view1"
       });

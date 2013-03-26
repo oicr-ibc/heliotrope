@@ -81,6 +81,17 @@
         method: 'GET'
       }
     });
+  }).factory('EntityStep', function($resource) {
+    var EntityStep;
+    EntityStep = $resource('/tracker/api/studies/:study/:role/:identity/step/:step', {}, {
+      query: {
+        method: 'GET'
+      }
+    });
+    EntityStep.prototype.getField = function(x) {
+      return this.data.values[x];
+    };
+    return EntityStep;
   });
 
 }).call(this);

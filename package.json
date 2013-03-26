@@ -1,0 +1,13 @@
+{
+  "name": "heliotrope",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "2.5.x",
+    "locale": "0.0.8",
+    "mongodb": "1.2.13"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.2.x"
+  }
+}

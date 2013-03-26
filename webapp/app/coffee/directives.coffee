@@ -7,6 +7,54 @@ angular
       elm.text(version)
   ])
   
+  .directive('heliStepField', ($compile) ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: true
+      scope: 'isolate'
+      locals: { "fieldKey": 'bind', "fieldValue": 'bind' }
+      template: '<div class="controls">' +
+                '</div>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$watch 'fieldValue', (newValue, oldValue) -> 
+          if newValue
+            switch newValue.controlType
+              when "text"
+                body = '<input type="text" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">'
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append linkFn(scope)
+              when "select"
+                body = '<select><option ng-repeat="value in fieldValue.range">{{value}}</option></select>'
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append linkFn(scope)
+              when "date"
+                body = '<input type="text" class="datepicker" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">'
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append linkFn(scope)
+                jQuery(iElement.find(".datepicker")).datepicker({"autoclose": true})
+              else
+                console.log "Unknown control type", newValue
+  )
+  
+  # Used to generate a dropdown menu of the available workflows. These can then be
+  # used to direct to a form on selection. 
+  
+  .directive('heliWorkflows', () ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: true
+      template: '<ul class="dropdown-menu">' +
+                '<li ng-repeat="step in entity.data.availableSteps">' +
+                '<a href="{{step.url}}">{{step.label}}</a>' +
+                '</li>' +
+                '</ul>'
+  )
+  
   .directive('heliReference', () ->
     result = 
       restrict: "A"
@@ -27,11 +75,11 @@ angular
       replace: true
       link: (scope, iElement, iAttrs, controller) ->
         scope.$watch 'entity', (newValue, oldValue) -> 
-       	  field = newValue.getField(iAttrs.name)
-       	  if (field) 
-       	    jQuery(iElement).text(field.displayValue)
-       	  else
-       	  	jQuery(iElement).text("N/A");
+          field = newValue.getField(iAttrs.name)
+          if (field) 
+            jQuery(iElement).text(field.displayValue)
+          else
+            jQuery(iElement).text("N/A");
   )
   
   # The tab directive can use the scope to find out some views, and then use those views to 

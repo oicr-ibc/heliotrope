@@ -10,6 +10,8 @@
       gene: $routeParams.gene
     }, function(gene) {
       return $scope.description = gene.data.sections.description.data;
+    }, function(error) {
+      return console.log(error);
     });
   };
 
@@ -18,13 +20,17 @@
       variant: $routeParams.variant
     }, function(variant) {
       return $scope.ordered = variant.getOrderedPositions();
+    }, function(error) {
+      return console.log(error);
     });
   };
 
   this.StudyController = function($scope, $routeParams, $timeout, Study) {
     return $scope.study = Study.get({
       study: $routeParams.study
-    }, function(study) {});
+    }, function(study) {}, function(error) {
+      return console.log(error);
+    });
   };
 
   this.EntityController = function($scope, $routeParams, $timeout, Entity) {
@@ -32,7 +38,20 @@
       study: $routeParams.study,
       role: $routeParams.role,
       identity: $routeParams.identity
-    }, function(entity) {});
+    }, function(entity) {}, function(error) {
+      return console.log(error);
+    });
+  };
+
+  this.EntityStepController = function($scope, $routeParams, $timeout, EntityStep) {
+    return $scope.entity = EntityStep.get({
+      study: $routeParams.study,
+      role: $routeParams.role,
+      identity: $routeParams.identity,
+      step: $routeParams.step
+    }, function(entityStep) {}, function(error) {
+      return console.log(error);
+    });
   };
 
 }).call(this);
