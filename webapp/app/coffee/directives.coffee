@@ -35,7 +35,12 @@ angular
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
-                jQuery(iElement.find(".datepicker")).datepicker({"autoclose": true})
+                jQuery(iElement.find(".datepicker")).datepicker({autoclose: true})
+              when "checkbox"
+                body = '<input type="checkbox" id="{{fieldKey}}">'
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append linkFn(scope)
               else
                 console.log "Unknown control type", newValue
   )
