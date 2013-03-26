@@ -40,8 +40,13 @@
                 linkFn = $compile(template);
                 iElement.append(linkFn(scope));
                 return jQuery(iElement.find(".datepicker")).datepicker({
-                  "autoclose": true
+                  autoclose: true
                 });
+              case "checkbox":
+                body = '<input type="checkbox" id="{{fieldKey}}">';
+                template = angular.element(body);
+                linkFn = $compile(template);
+                return iElement.append(linkFn(scope));
               default:
                 return console.log("Unknown control type", newValue);
             }
