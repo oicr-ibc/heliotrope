@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="span3" id="sidebar"></div>
+  <div class="span9">
+
+    <div id="page-header">
+      <div class="page-header">
+        <h1>
+          {{entity.data.steps[0].fields[0].identity}} <small><a href="{{entity.data.study.url}}">{{entity.data.study.name}}</a></small>
+        </h1>
+      </div>
+    </div>
+
+    <div id="data">
+      <div heli-dynatab></div>
+    </div>
+
+    <form class="form-horizontal" style="padding-top: 1em">
+      <div class="control-group">
+        <label class="control-label" for="apply-workflow">Apply workflow</label>
+        <div class="controls">
+          
+          <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown">Choose workflow <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Enrolment and consent</a></li>
+              <li><a href="#">Biopsy</a></li>
+              <li><a href="#">Clinical history</a></li>
+              <li><a href="#">Pathology</a></li>
+              <li class="disabled"><a>Expert panel decision</a></li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </form>
+    
+  </div>
+</div>

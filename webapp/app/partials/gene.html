@@ -1,0 +1,181 @@
+<div class="row">
+  <div class="span3" id="sidebar">
+  </div>
+  
+  <div class="span9">
+
+    <div id="page-header">
+      <div class="page-header">
+        <h1>
+          {{gene.data.name}} <small>Gene</small>
+        </h1>
+      </div>
+    </div>
+    <div id="page-body">
+
+      <div id="summary">
+        <div class="row-fluid" id="summary-view">
+          <div class="tab-content">
+            <div class="tab-pane active" id="subjects-table-tab">
+              <div class="row-fluid">
+                <h3 class="pull-left" id="overview">Overview</h3>
+              </div>
+              <div id="subjects-table">
+                <dl>
+                  <dt>Full name</dt>
+                  <dd>{{description.fullName}}</dd>
+                  <dt>Synonyms</dt>
+                  <dd>
+                    <ul class="inline">
+                      <li ng-repeat="synonym in description.synonyms">{{synonym}}</li>
+                    </ul>
+                  </dd>
+                  <dt>Summary</dt>
+                  <dd>{{description.summary}}</dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="mutations" ng-show="gene.data.sections.mutations">
+        <div class="row-fluid" id="mutations-view">
+          <div class="tab-content">
+            <div class="tab-pane active" id="mutations">
+              <div class="row-fluid">
+                <h3 class="pull-left" id="mutations">Common mutations</h3>
+              </div>
+              <div id="mutations-list" class="section-end">
+                <ul class="inline">
+                  <li ng-repeat="mutation in gene.data.sections.mutations.data"><a href="/variants/{{mutation._id}}">{{mutation.name}}</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="domains">
+        <div class="row-fluid">
+          <div class="tab-content">
+            <div class="tab-pane active" id="domain-tab">
+              <div class="row-fluid">
+                <h3 class="pull-left" id="domain-header">Gene structure</h3>
+              </div>
+              <div heli-structure-distribution></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="gene_census_info" ng-show="gene.data.sections.gene_census_data">
+        <div class="row-fluid" id="cancer-gene-census-view">
+          <div class="tab-content">
+            <div class="tab-pane active" id="census-data-tab">
+              <div class="row-fluid">
+                <h3 class="pull-left" id="gene_census_data">Cancer gene census information</h3>
+              </div>
+              <div id="cancer-gene-census-table">
+                <dl>
+                  <dt>Full name</dt>
+                  <dd>{{gene.data.sections.gene_census_data.data.name}}</dd>
+                  <dt>Chromosomal band</dt>
+                  <dd>{{gene.data.sections.gene_census_data.data.chromosome_band}}</dd>
+                  <dt>Germline</dt>
+                  <dd ng-show="gene.data.sections.gene_census_data.data.germline">Yes</dd>
+                  <dd ng-show="! gene.data.sections.gene_census_data.data.germline">No</dd>
+                  <dt>Somatic</dt>
+                  <dd ng-show="gene.data.sections.gene_census_data.data.somatic">Yes</dd>
+                  <dd ng-show="! gene.data.sections.gene_census_data.data.somatic">No</dd>
+                  <dt>Tissue types</dt>
+                  <dd>
+                    <ul class="inline">
+                      <li
+                        ng-repeat="type in gene.data.sections.gene_census_data.data.tissue_types">{{type}}</li>
+                    </ul>
+                  </dd>
+                  <dt>Mutation types</dt>
+                  <dd>
+                    <ul class="inline">
+                      <li
+                        ng-repeat="type in gene.data.sections.gene_census_data.data.mutation_types">{{type}}</li>
+                    </ul>
+                  </dd>
+                  <dt>Somatic tumour types</dt>
+                  <dd>
+                    <ul class="inline">
+                      <li
+                        ng-repeat="type in gene.data.sections.gene_census_data.data.tumour_types_somatic">{{type}}</li>
+                    </ul>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="frequencies">
+        <div class="row-fluid">
+          <div class="tab-content">
+            <div class="tab-pane active" id="frequencies-table-tab">
+              <div class="row-fluid">
+                <h3 class="pull-left" id="frequencies-header">Mutation frequencies</h3>
+              </div>
+              <div id="frequencies-table">
+                <div heli-frequencies></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="genomics">
+        <div class="row-fluid" id="genomics-view">
+          <div class="tab-content">
+            <div class="tab-pane active" id="genomics-tab">
+              <div class="row-fluid">
+                <h3 class="pull-left" id="genomics">Genomics</h3>
+              </div>
+              <div id="genomics-table">
+                <dl>
+                  <dt>Chromosome</dt>
+                  <dd>{{gene.data.sections.location.data.chromosome}}</dd>
+                  <dt>Genomic coordinates</dt>
+                  <dd>{{gene.data.sections.location.data.chromosome}}:{{gene.data.sections.location.data.txStart}}-{{gene.data.sections.location.data.txEnd}}</dd>
+                  <dt>Ensembl gene</dt>
+                  <dd>
+                    <a href="http://www.ensembl.org/id/{{gene.data.id}}"
+                      rel="external">{{gene.data.id}}</a>
+                  </dd>
+                  <dt>Ensembl transcript</dt>
+                  <dd>
+                    <a href="http://www.ensembl.org/id/{{gene.data.sections.transcripts.data.canonicalTranscriptId}}"
+                      rel="external">{{gene.data.sections.transcripts.data.canonicalTranscriptId}}</a>
+                  </dd>
+                  <dt>RefSeq identifiers</dt>
+                  <dd>
+                    <ul class="inline">
+                      <li ng-repeat="refseq in gene.data.sections.transcripts.data.records[0].refSeqId">
+                        <a href="http://www.ncbi.nlm.nih.gov/nuccore/{{refseq}}" rel="external">{{refseq}}</a>
+                      </li>
+                    </ul>
+                  </dd>
+                  <dt>Gene size</dt>
+                  <dd>{{gene.data.sections.transcripts.data.records[0].lengthAminoAcid}} (aa),
+                      {{gene.data.sections.transcripts.data.records[0].lengthDNA}} (bp)</dd>
+                  <dt>Number of exons</dt>
+                  <dd>{{gene.data.sections.transcripts.data.records[0].numberOfExons}}</dd>
+                </dl>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

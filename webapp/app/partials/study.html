@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="span3" id="sidebar"></div>
+  <div class="span9">
+
+    <div class="page-header">
+      <h1>{{study.data.name}} <small>Study</small></h1>
+    </div>
+
+    <div id="data">
+    <h3>Participants</h3>
+    <table class="table table-striped table-condensed">
+      <tbody>
+        <tr ng-repeat="e in study.data.entities | filter: {role: 'participants'}">
+          <td><a href="/studies/{{study.data.name}}/{{e.role}}/{{e.steps[0].fields[0].identity}}">{{e.steps[0].fields[0].identity}}</a></td>
+        </tr> 
+      </tbody>
+    </table>
+    </div>
+
+    <h3>Samples</h3>
+    <table class="table table-striped table-condensed">
+      <tbody>
+        <tr ng-repeat="e in study.data.entities | filter: {role: 'samples'}">
+          <td><a href="/studies/{{study.data.name}}/{{e.role}}/{{e.steps[0].fields[0].identity}}">{{e.steps[0].fields[0].identity}}</a></td>
+        </tr> 
+      </tbody>
+    </table>
+    </div>
+
+  </div>
+</div>

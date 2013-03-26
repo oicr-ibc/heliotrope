@@ -1,0 +1,492 @@
+/**
+ * Copyright (C) 2009-2011 the original author or authors.
+ * See the notice.md file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+body {
+  padding-top: 40px;
+}
+
+section {
+  padding-top: 2em;
+  margin-bottom: 1em;
+}
+
+small {
+  font-size:90%;
+  color: #BFBFBF;
+}
+
+.hide {
+  display: none;
+}
+.template {
+  display: none;
+}
+
+.icon {
+  line-height: 0;
+  margin: 0;
+  padding: 2px;
+}
+.center {
+  text-align: center;
+}
+.center * {
+  text-align: center;
+}
+
+.accordion * {
+  background: transparent url(../img/e-arrow-20x20.png) center left no-repeat;
+  padding: 0 0 0 25px;
+}
+
+.accordion-opened * {
+  background: transparent url(../img/se-arrow-20x20.png) center left no-repeat;
+  padding: 0 0 0 25px;
+}
+
+div.nav_buttons {
+  clear:both;
+}
+div.nav_buttons li div.summary {
+  padding:0; margin:0;
+}
+.nowrap {
+  white-space:nowrap;
+}
+.green-circle {
+  display: inline-block;
+  width:1em;
+  height:1em;
+  margin: 0 1em 0 0em;
+  vertical-align:middle;
+
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  border-radius: 1em;
+
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00dc00), color-stop(25%, #00dc00), to(green));
+  background-image: -webkit-linear-gradient(#00dc00,  #00dc00) 25%, green);
+  background-image: -moz-linear-gradient(top, #00dc00 25%, green);
+  background-image: -ms-linear-gradient(#00dc00,  #00dc00) 25%, green);
+  background-image: -o-linear-gradient(#00dc00,  #00dc00) 25%, green);
+  background-image: linear-gradient(#00dc00,  #00dc00) 25%, green);
+}
+
+.red-circle {
+  display: inline-block;
+  width:1em;
+  height:1em;
+  margin: 0 1em 0 0em;
+  vertical-align:middle;
+
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  border-radius: 1em;
+
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(red), color-stop(25%, #red), to(#990000));
+  background-image: -webkit-linear-gradient(top, red 25%, #990000);
+  background-image: -moz-linear-gradient(top, red 25%, #990000);
+  background-image: -ms-linear-gradient(top, red 25%, #990000);
+  background-image: -o-linear-gradient(top, red 25%, #990000);
+  background-image: linear-gradient(top, red 25%, #990000);
+}
+
+div.nav_buttons li {
+  padding:0; margin:0;
+  display: block;
+  padding: 1em;
+}
+
+div.nav_buttons ul {
+  padding:0; margin:0;
+  padding-left: .5em;
+  margin-top:1em;
+}
+div.nav_buttons + a.add img {
+  padding: 1em;
+}
+
+#osgi_details_container {
+  padding:2em;
+  overflow:scroll;
+}
+
+.borderless, table.borderless tbody tr td {
+  border: none;
+}
+
+.block.right {
+  float:right;
+}
+
+.hover_area .hover_hide {
+  visibility:hidden;
+}
+.hover_area:hover .hover_hide {
+  visibility:hidden
+}
+
+tr td div.hovered  {
+  visibility:hidden;
+}
+
+tr:hover td div.hovered  {
+  visibility: visible;
+}
+
+.hover {
+  visibility:hidden
+}
+hovered:hover {
+  visibility: visible;
+}
+
+div.legend table {
+  padding:5px;
+  width:auto;
+  background: white;
+}
+div.legend table td {
+  border:none;
+  padding:0;
+}
+
+div.edit-list ul {
+  margin: 0 0 .5em 0;
+}
+div.edit-list li {
+  display: block;
+  border:0;
+  padding: .5em;
+  border-bottom: 1px solid #ccc;
+}
+div.edit-list ul li a.delete {
+  float:right;
+  visibility:hidden
+}
+div.edit-list ul li:hover a.delete {
+  visibility: visible;
+}
+pre.log {
+  background:white;
+  border:none;
+  padding:0;
+  margin:0;
+  white-space:nowrap;
+}
+
+div.dataTables_scrollHeadInner table {
+  margin:0px;
+  border-bottom: none;
+}
+div.dataTables_scrollBody table {
+  border-top: none;
+}
+
+input[type="checkbox"] {
+  margin-right: .5em;
+}
+
+input#add {
+    width: 95%;
+}
+
+input.wide {display:block; width:100%;padding:0;border-width:0}
+
+a#add {
+    vertical-align: middle;
+    padding-left: 5px;
+}
+
+ul.simple {
+  padding:0;
+  margin:0;
+}
+ul.simple li {
+  display: block;
+  color:inherit;
+}
+
+table tbody tr.selected td {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #0064cd;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
+  background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
+  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -o-linear-gradient(top, #049cdb, #0064cd);
+  background-image: linear-gradient(top, #049cdb, #0064cd);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#049cdb', endColorstr='#0064cd', GradientType=0);
+  border-color: #0064cd #0064cd #003f81;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+div.button-tray {
+  display:inline-block;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  -webkit-border-radius: .2em;
+  -moz-border-radius: .2em;
+  border-radius: .2em;  
+  line-height:0;
+  padding:.2em;
+}
+
+dl {
+  padding: 0.5em;
+}
+dt {
+  float: left;
+  clear: left;
+  width: 170px;
+  text-align: right;
+  font-weight: bold;
+}
+dt:after {
+  content: ":";
+}
+dd {
+  margin: 0 0 0 190px;
+  padding: 0 0 0.5em 0;
+}
+
+ul.inline { 
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+}
+ul.inline li { 
+  display: inline; 
+}
+ul.inline li:after { 
+  content: ", "; 
+} 
+ul.inline li:last-child:after {
+  content: "";
+}
+.inline-list .inline-item:after {
+  content: ", "; 
+}
+.inline-list .inline-item:last-child:after {
+  content: ""; 
+}
+.section-end {
+  margin-bottom: 20px;
+}
+
+/* Sidenav for Heliotrope
+-------------------------------------------------- */
+
+.heliotrope-sidenav {
+  width: 180px;
+  margin: 20px 0 0 0;
+  padding: 0;
+  background-color: #fff;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+     -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+          box-shadow: 0 1px 4px rgba(0,0,0,.065);
+}
+.heliotrope-sidenav > li > a {
+  display: block;
+  *width: 170px;
+  margin: 0 0 -1px;
+  padding: 8px 14px;
+  border: 1px solid #e5e5e5;
+}
+.heliotrope-sidenav > li:first-child > a {
+  -webkit-border-radius: 6px 6px 0 0;
+     -moz-border-radius: 6px 6px 0 0;
+          border-radius: 6px 6px 0 0;
+}
+.heliotrope-sidenav > li:last-child > a {
+  -webkit-border-radius: 0 0 6px 6px;
+     -moz-border-radius: 0 0 6px 6px;
+          border-radius: 0 0 6px 6px;
+}
+.heliotrope-sidenav > .active > a {
+  position: relative;
+  z-index: 2;
+  padding: 9px 15px;
+  border: 0;
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+     -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+          box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+}
+/* Chevrons */
+.heliotrope-sidenav .icon-chevron-right {
+  float: right;
+  margin-top: 2px;
+  margin-right: -6px;
+  opacity: .25;
+}
+.heliotrope-sidenav > li > a:hover {
+  background-color: #f5f5f5;
+}
+.heliotrope-sidenav a:hover .icon-chevron-right {
+  opacity: .5;
+}
+.heliotrope-sidenav .active .icon-chevron-right,
+.heliotrope-sidenav .active a:hover .icon-chevron-right {
+  background-image: url(../img/glyphicons-halflings-white.png);
+  opacity: 1;
+}
+.heliotrope-sidenav.affix {
+  top: 40px;
+}
+.heliotrope-sidenav.affix-bottom {
+  position: absolute;
+  top: auto;
+  bottom: 270px;
+}
+
+table .header {
+  cursor: pointer;
+}
+table .header:after {
+  content: "";
+  float: right;
+  margin-top: 7px;
+  border-width: 0 4px 4px;
+  border-style: solid;
+  border-color: #000000 transparent;
+  visibility: hidden;
+}
+table .headerSortUp, table .headerSortDown {
+  background-color: #f7f7f9;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+table .header:hover:after {
+  visibility: visible;
+}
+table .headerSortDown:after, table .headerSortDown:hover:after {
+  visibility: visible;
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+}
+table .headerSortUp:after {
+  border-bottom: none;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000000;
+  visibility: visible;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+}
+
+div.dataTables_length {
+  float: left;
+}
+div.dataTables_filter {
+  float: right;
+  text-align: right;
+}
+div.dataTables_info {
+  clear: both;
+  float: left;
+}
+
+div.dataTables_length select {
+  width: 75px;
+}
+
+div.dataTables_paginate {
+  width: 400px;
+  float: right;
+  margin: 0;
+}
+
+div.dataTables_paginate ul {
+  float: right;
+}
+
+table.dataTable {
+  margin: 1em 0;
+  clear: both;
+}
+
+table.dataTable th:active {
+  outline: none;
+}
+
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+.chart rect {
+  fill: #aaa;
+  stroke: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+a[rel="external"], a.external {
+    white-space: nowrap;
+    padding-right: 12px;
+    background: url(../img/external-link-ltr-icon.png) no-repeat 100% 50%;
+    zoom: 1;
+}
+
+/*
+This section defines rules that affect how the page is displayed for printing. Some components, such
+as navigation elements, are best hidden from printing. 
+*/
+@media print {
+    body {
+        font-size: 9pt;
+    }
+    #heliotrope-sidebar {
+        display: none;
+    }
+    #header-container ul.nav {
+        display: none;
+    }
+    div.no-print {
+        display: none;
+    }
+}
+
+#frequencies-table {
+	margin-bottom: 2.0cm;
+}

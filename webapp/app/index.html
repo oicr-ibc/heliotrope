@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" ng-app="heliotrope">
+<head>
+<base href="/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heliotrope</title>
+<link rel="stylesheet" type="text/css" href="app/css/bootstrap.css"></link>
+<link rel="stylesheet" type="text/css"
+  href="app/css/bootstrap-responsive.css"></link>
+<link rel="stylesheet" type="text/css" href="app/css/app.css" />
+
+</head>
+<body>
+
+  <header>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Heliotrope</a>
+          <ul class="nav">
+            <li><a href="/studies/GPS">gps</a></li>
+            <li><a href="/genes">genes</a></li>
+            <li>
+              <form id="search" class="navbar-search go-to" action="#"
+                method="get">
+                <input type="text" name="q" class="search-query"
+                  placeholder="Search">
+              </form>
+            </li>
+            <li class="dropdown pull-right"><a href="#"
+              class="dropdown-toggle" data-toggle="dropdown">
+                Account <b class="caret"></b>
+            </a>
+              <ul class="dropdown-menu">...</ul></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container outer-container" id="page-container"  ng-view>
+  </div>
+
+<script src="app/vendor/jquery-1.9.1.js"></script>
+<script src="app/vendor/bootstrap-2.2.2.js"></script>
+<script src="app/vendor/jquery.dataTables.js"></script>
+<script src="app/vendor/jquery.dataTables.bootstrap.js"></script>
+
+<script src="app/lib/angular/angular.js"></script>
+<script src="app/lib/angular/angular-resource.js"></script>
+
+<!-- Allows for coffeescript compiling on the fly.                                    -->
+<!-- Not recommended for production use. See http://coffeescript.org/#scripts.        -->
+<script src="app/vendor/coffee-script-1.4.0.js"></script>
+<script src="app/vendor/number-format-1.5.4.js"></script>
+<script src="app/vendor/d3.v3.js"></script>
+
+<script src="app/js/services.js"></script>
+<script src="app/js/controllers.js"></script>
+<script src="app/js/filters.js"></script>
+<script src="app/js/directives.js"></script>
+<script src="app/js/app.js"></script>
+
+</body>
+</html>
