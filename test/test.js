@@ -69,13 +69,12 @@ db.steps.insert({
   "name" : "enrolment",
   "label" : {
     "default" : "Enrolment",
-    "fr" : "Enr��lement"
   },
   "fields" : {
     "enrolmentDate" : {
       "controlType" : "date",
       "type" : "Date",
-      "label" : { "default" : "Enrolment date", "fr" : "Date de enr��lement" }
+      "label" : { "default" : "Enrolment date" }
     }
   }
 });
