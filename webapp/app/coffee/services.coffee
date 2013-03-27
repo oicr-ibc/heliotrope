@@ -50,7 +50,7 @@ angular.module('knowledge.services', ['ngResource'])
         method: 'GET'
     )
     Entity.prototype.getField = (x) ->
-    	this.data.values[x]
+      this.data.values[x]
     Entity
   )
   .factory('Views', ($resource) ->
@@ -67,5 +67,12 @@ angular.module('knowledge.services', ['ngResource'])
     EntityStep.prototype.getField = (x) ->
       this.data.values[x]
     EntityStep
+  )
+  .factory('Entities', ($resource) ->
+    Entities = $resource('/tracker/api/studies/:study/:role', {},
+      query: 
+        method: 'GET'
+    )
+    Entities
   )
   

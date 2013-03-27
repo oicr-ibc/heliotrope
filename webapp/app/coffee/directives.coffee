@@ -7,17 +7,17 @@ angular
       elm.text(version)
   ])
   
-  .directive('heliStepField', ($compile) ->
+  .directive('heliStepField', ($compile, Entities) ->
     result = 
       restrict: "A"
       replace: true
       transclude: true
-      scope: 'isolate'
+      scope: true
       locals: { "fieldKey": 'bind', "fieldValue": 'bind' }
       template: '<div class="controls">' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'fieldValue', (newValue, oldValue) -> 
+        scope.$watch 'fieldValue', (newValue, oldValue) ->
           if newValue
             switch newValue.controlType
               when "text"
@@ -41,6 +41,24 @@ angular
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
+              when "chooser"
+                body = '<input type="text" class="chooser" id="{{fieldKey}}" autocomplete="off"></input>'
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append linkFn(scope)
+                jQuery(iElement.find(".chooser")).typeahead(
+                  source: (query, callback) =>
+                    entity = scope.$eval('entity')
+                    studyName = entity.data.study.name
+                    role = newValue.entity
+                    entities = Entities.get({study: studyName, role: role, q: "^"+query}, () ->
+                      callback(entry.identity for entry in entities.data)
+                      # Must return false to avoid double callback weirdness
+                      false
+                    )
+                  matcher: (item) ->
+                    true
+                )
               else
                 console.log "Unknown control type", newValue
   )

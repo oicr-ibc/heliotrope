@@ -92,6 +92,14 @@
       return this.data.values[x];
     };
     return EntityStep;
+  }).factory('Entities', function($resource) {
+    var Entities;
+    Entities = $resource('/tracker/api/studies/:study/:role', {}, {
+      query: {
+        method: 'GET'
+      }
+    });
+    return Entities;
   });
 
 }).call(this);

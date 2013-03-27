@@ -7,13 +7,13 @@
         return elm.text(version);
       };
     }
-  ]).directive('heliStepField', function($compile) {
+  ]).directive('heliStepField', function($compile, Entities) {
     var result;
     return result = {
       restrict: "A",
       replace: true,
       transclude: true,
-      scope: 'isolate',
+      scope: true,
       locals: {
         "fieldKey": 'bind',
         "fieldValue": 'bind'
@@ -21,7 +21,8 @@
       template: '<div class="controls">' + '</div>',
       link: function(scope, iElement, iAttrs, controller) {
         return scope.$watch('fieldValue', function(newValue, oldValue) {
-          var body, linkFn, template;
+          var body, linkFn, template,
+            _this = this;
           if (newValue) {
             switch (newValue.controlType) {
               case "text":
@@ -47,6 +48,40 @@
                 template = angular.element(body);
                 linkFn = $compile(template);
                 return iElement.append(linkFn(scope));
+              case "chooser":
+                body = '<input type="text" class="chooser" id="{{fieldKey}}" autocomplete="off"></input>';
+                template = angular.element(body);
+                linkFn = $compile(template);
+                iElement.append(linkFn(scope));
+                return jQuery(iElement.find(".chooser")).typeahead({
+                  source: function(query, callback) {
+                    var entities, entity, role, studyName;
+                    entity = scope.$eval('entity');
+                    studyName = entity.data.study.name;
+                    role = newValue.entity;
+                    return entities = Entities.get({
+                      study: studyName,
+                      role: role,
+                      q: "^" + query
+                    }, function() {
+                      var entry;
+                      callback((function() {
+                        var _i, _len, _ref, _results;
+                        _ref = entities.data;
+                        _results = [];
+                        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                          entry = _ref[_i];
+                          _results.push(entry.identity);
+                        }
+                        return _results;
+                      })());
+                      return false;
+                    });
+                  },
+                  matcher: function(item) {
+                    return true;
+                  }
+                });
               default:
                 return console.log("Unknown control type", newValue);
             }
