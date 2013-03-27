@@ -59,6 +59,8 @@ angular
                   matcher: (item) ->
                     true
                 )
+                # See: https://github.com/twitter/bootstrap/issues/4018 for Chrome issue workaround
+                jQuery(document).on('mousedown', 'ul.typeahead', (e) -> e.preventDefault())
               else
                 console.log "Unknown control type", newValue
   )

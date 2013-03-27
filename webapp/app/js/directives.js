@@ -53,7 +53,7 @@
                 template = angular.element(body);
                 linkFn = $compile(template);
                 iElement.append(linkFn(scope));
-                return jQuery(iElement.find(".chooser")).typeahead({
+                jQuery(iElement.find(".chooser")).typeahead({
                   source: function(query, callback) {
                     var entities, entity, role, studyName;
                     entity = scope.$eval('entity');
@@ -81,6 +81,9 @@
                   matcher: function(item) {
                     return true;
                   }
+                });
+                return jQuery(document).on('mousedown', 'ul.typeahead', function(e) {
+                  return e.preventDefault();
                 });
               default:
                 return console.log("Unknown control type", newValue);
