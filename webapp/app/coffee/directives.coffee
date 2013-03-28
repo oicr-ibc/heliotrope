@@ -35,7 +35,11 @@ angular
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
-                jQuery(iElement.find(".datepicker")).datepicker({autoclose: true})
+                datepicker = jQuery(iElement.find(".datepicker"))
+                datepicker.datepicker({autoclose: true})
+                datepicker.change (e) =>
+                  scope.fieldValue.value = datepicker.val();
+                  scope.$apply()
               when "checkbox"
                 body = '<input type="checkbox" ng-model="fieldValue.value" id="{{fieldKey}}">'
                 template = angular.element(body)
@@ -57,13 +61,14 @@ angular
                       # Must return false to avoid double callback weirdness
                       false
                     )
-                  matcher: (item) ->
-                    true
                 )
                 # See: https://github.com/twitter/bootstrap/issues/4018 for Chrome issue workaround
                 jQuery(document).on('mousedown', 'ul.typeahead', (e) -> 
                   e.preventDefault()
                 )
+                chooser.change (e) =>
+                	scope.fieldValue.value = chooser.val();
+                	scope.$apply()
               else
                 console.log "Unknown control type", newValue
   )
