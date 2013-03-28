@@ -21,32 +21,33 @@ angular
           if newValue
             switch newValue.controlType
               when "text"
-                body = '<input type="text" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">'
+                body = '<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">'
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
               when "select"
-                body = '<select><option ng-repeat="value in fieldValue.range">{{value}}</option></select>'
+                body = '<select ng-model="fieldValue.value"><option ng-repeat="value in fieldValue.range">{{value}}</option></select>'
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
               when "date"
-                body = '<input type="text" class="datepicker" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">'
+                body = '<input type="text" class="datepicker" ng-model="fieldValue.value" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">'
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
                 jQuery(iElement.find(".datepicker")).datepicker({autoclose: true})
               when "checkbox"
-                body = '<input type="checkbox" id="{{fieldKey}}">'
+                body = '<input type="checkbox" ng-model="fieldValue.value" id="{{fieldKey}}">'
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
               when "chooser"
-                body = '<input type="text" class="chooser" id="{{fieldKey}}" autocomplete="off"></input>'
+                body = '<input type="text" class="chooser" ng-model="fieldValue.value" id="{{fieldKey}}" autocomplete="off"></input>'
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
-                jQuery(iElement.find(".chooser")).typeahead(
+                chooser = jQuery(iElement.find(".chooser"))
+                chooser.typeahead(
                   source: (query, callback) =>
                     entity = scope.$eval('entity')
                     studyName = entity.data.study.name
@@ -60,7 +61,9 @@ angular
                     true
                 )
                 # See: https://github.com/twitter/bootstrap/issues/4018 for Chrome issue workaround
-                jQuery(document).on('mousedown', 'ul.typeahead', (e) -> e.preventDefault())
+                jQuery(document).on('mousedown', 'ul.typeahead', (e) -> 
+                  e.preventDefault()
+                )
               else
                 console.log "Unknown control type", newValue
   )

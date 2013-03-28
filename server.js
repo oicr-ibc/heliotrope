@@ -23,7 +23,7 @@ var config = { "db": {
   'debug': true
 };
 
-var app = module.exports.app = express.createServer();
+var app = module.exports.app = express();
 
 try {
   config = JSON.parse(fs.readFileSync(process.cwd()+"/config.json"));

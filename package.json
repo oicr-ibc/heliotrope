@@ -2,8 +2,7 @@
   "name": "heliotrope",
   "version": "0.0.1",
   "dependencies": {
-    "express": "2.5.x",
-    "locale": "0.0.8",
+    "express": "3.1.x",
     "mongodb": "1.2.13"
   },
   "engines": {
