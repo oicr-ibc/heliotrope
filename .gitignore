@@ -1,3 +1,4 @@
+/webapp/app/js/
 /node_modules
 /.*
 !/.gitignore
