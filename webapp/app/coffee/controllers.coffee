@@ -7,7 +7,7 @@
 #MyCtrl2.$inject = []
 
 @HomeController = ($scope, $routeParams, $timeout, GeneFrequencies) ->
-	$scope.gene = GeneFrequencies.get({}, 
+  $scope.gene = GeneFrequencies.get({}, 
     (frequencies) ->
   )
 
@@ -51,7 +51,15 @@
   $scope.entity = EntityStep.get(
     {study: $routeParams.study, role: $routeParams.role, identity: $routeParams.identity, step: $routeParams.step}, 
     (entityStep) ->
-    	
+      
     (error) ->
-    	console.log error
+      console.log error
   )
+  $scope.update = (entity) =>
+    entity.$save(
+      {study: $routeParams.study, role: $routeParams.role, identity: $routeParams.identity, step: $routeParams.step}, 
+      (entityStep) ->
+      	 console.log entityStep
+      (error) ->
+        console.log error
+    )
