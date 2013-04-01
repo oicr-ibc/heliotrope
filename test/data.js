@@ -13,7 +13,6 @@ db.views.drop();
 
 db.createCollection("studies");
 db.createCollection("entities");
-db.createCollection("users");
 db.createCollection("views");
 
 db.studies.insert({
@@ -42,10 +41,12 @@ function get_step_id(study_id, ownerType, name) {
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "participants",
-  "name" : "Create",
-  "appliesTo" : {
-    "type" : "participants"
+  "ownerType" : "Global",
+  "name" : "CreateParticipant",
+  "stepOptions" : {
+    "method" : "CreateEntity",
+    "role" : "participants",
+    "identityField" : "identifier"
   },
   "label" : { "default" : "Create participant" },
   "fields" : {
@@ -129,18 +130,13 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "participants",
-  "name" : "addSample",
-  "label" : { "default" : "Add sample" },
-  "actions" : [{
-    "handler" : "AddEntity",
-    "arguments" : {"entityType" : "samples"}
-  }]
-});
-
-db.steps.insert({
-  "studyId" : study_id,
-  "ownerType" : "samples",
-  "name" : "Create",
+  "stepOptions" : {
+    "method" : "CreateEntity",
+    "role" : "samples",
+    "identityField": "identifier",
+    "parentField": "participantEntityRef"
+  },
+  "name" : "CreateSample",
   "label" : { "default" : "Create sample" },
   "fields" : {
     "identifier" : {
@@ -203,8 +199,13 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "observations",
-  "name" : "Create",
+  "ownerType" : "samples",
+  "name" : "CreateObservation",
+  "stepOptions" : {
+    "method" : "CreateEntity",
+    "role" : "observations",
+    "parentField": "sampleEntityRef"
+  },
   "label" : { "default" : "Create observation" },
   "fields" : {
     "sampleEntityRef" : {
@@ -330,7 +331,7 @@ db.entities.insert({
   "identity" : "TST-001",
   "steps" : [{
     "id" : "511d220dea2a8c2f1e2c1fef",
-    "stepRef" : get_step_id(study_id, "participants", "Create"),
+    "stepRef" : get_step_id(study_id, "Global", "CreateParticipant"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
       "key" : "identifier", 
@@ -378,7 +379,7 @@ db.entities.insert({
   "identity" : "TST001BIOXPAR1",
   "steps" : [{
     "id" : "511d3842ea2a8c2f1e2c1ff4",
-    "stepRef" : get_step_id(study_id, "samples", "Create"),
+    "stepRef" : get_step_id(study_id, "participants", "CreateSample"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
       "key" : "identifier",
@@ -397,7 +398,7 @@ db.entities.insert({
   "identity" : "TST001BIOXPAR2",
   "steps" : [{
     "id" : "511d3842ea2a8c2f1e2c1ff4",
-    "stepRef" : get_step_id(study_id, "samples", "Create"),
+    "stepRef" : get_step_id(study_id, "participants", "CreateSample"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
       "key" : "identifier",
@@ -428,7 +429,7 @@ db.entities.insert({
   "label" : "KRAS p.G12D",
   "steps" : [{
     "id" : "511d3f90ea2a8c2f1e2c1ffe",
-    "stepRef" : get_step_id(study_id, "observations", "Create"),
+    "stepRef" : get_step_id(study_id, "samples", "CreateObservation"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields": [{
       "key" : "sampleEntityRef", 
