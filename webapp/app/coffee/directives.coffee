@@ -31,14 +31,15 @@ angular
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
               when "date"
-                body = '<input type="text" class="datepicker" ng-model="fieldValue.value" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">'
+                body = '<input type="text" class="datepicker" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">'
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
                 datepicker = jQuery(iElement.find(".datepicker"))
-                datepicker.datepicker({autoclose: true})
+                datepicker.datepicker({autoclose: true, format: "yyyy-mm-dd"})
+                datepicker.datepicker('update', scope.fieldValue.value)
                 datepicker.change (e) =>
-                  scope.fieldValue.value = datepicker.val();
+                  scope.fieldValue.value = new Date(datepicker.val()).toISOString();
                   scope.$apply()
               when "checkbox"
                 body = '<input type="checkbox" ng-model="fieldValue.value" id="{{fieldKey}}">'
@@ -250,7 +251,7 @@ angular
             leftMargin = 20
             rightMargin = 10
             availableWidth = chartWidth - leftMargin - rightMargin
-            w = availableWidth / data.length
+            w = availableWidth / data.length        #/ -- to shut up the IDE stupidity
             h = 100
             x = d3.scale.linear().domain([0, 200]).range([leftMargin, availableWidth + leftMargin])
             y = d3.scale.linear().domain([0, maximumValue]).rangeRound([0, h])
