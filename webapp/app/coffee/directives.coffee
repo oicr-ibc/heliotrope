@@ -37,7 +37,7 @@ angular
                 iElement.append linkFn(scope)
                 datepicker = jQuery(iElement.find(".datepicker"))
                 datepicker.datepicker({autoclose: true, format: "yyyy-mm-dd"})
-                datepicker.datepicker('update', scope.fieldValue.value)
+                datepicker.datepicker('update', new Date(scope.fieldValue.value))
                 datepicker.change (e) =>
                   scope.fieldValue.value = new Date(datepicker.val()).toISOString();
                   scope.$apply()

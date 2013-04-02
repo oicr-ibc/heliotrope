@@ -69,3 +69,47 @@ exports.testGetEntity = function(beforeExit, assert) {
   });
 };
 
+exports.testGetEntityStep = function(beforeExit, assert) {
+  withDB(function(db, err, result) {
+    db.close();
+    
+    var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "consent"}};
+    tracker.getEntityStep(request, function(db, err, result) {
+      db.close();
+      assert.equal("TST-001", result.data.identity);
+      assert.equal("/studies/GPS/participants/TST-001", result.data.url);
+      assert.equal("consent", result.data.step.name);
+      assert.equal("Consent", result.data.step.label);
+      assert.equal("date", result.data.step.fields.consentDate.controlType);
+      assert.equal("Date", result.data.step.fields.consentDate.type);
+      assert.equal("Consent date", result.data.step.fields.consentDate.label);
+      assert.equal("2012-11-13T18:45:00.000Z", result.data.step.fields.consentDate.value);
+    });
+  });
+};
+
+// This test handles the case of writing a step which already exists. The new 
+// values should be both stored and returned in the new body. 
+exports.testPostEntityStepExists = function(beforeExit, assert) {
+  withDB(function(db, err, result) {
+    db.close();
+    
+    var request = {
+      "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "consent"},
+      "body": {"data": {"step": {"fields": {"consentDate": {"value": "2013-04-17T00:00:00.000Z"}}}}}
+    }
+    
+    tracker.postEntityStep(request, function(db, err, result) {
+      db.close();
+      assert.equal("TST-001", result.data.identity);
+      assert.equal("/studies/GPS/participants/TST-001", result.data.url);
+      assert.equal("consent", result.data.step.name);
+      assert.equal("Consent", result.data.step.label);
+      assert.equal("date", result.data.step.fields.consentDate.controlType);
+      assert.equal("Date", result.data.step.fields.consentDate.type);
+      assert.equal("Consent date", result.data.step.fields.consentDate.label);
+      assert.equal("2013-04-17T00:00:00.000Z", result.data.step.fields.consentDate.value);
+    });
+  });
+};
+

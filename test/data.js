@@ -20,6 +20,31 @@ db.studies.insert({
   "name": "GPS",
 });
 
+// Helper method for compatibility: see: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date/toISOString
+// This allows us to use toISOString() method calls within this, even when deploying to MongoDB's shell, which doesn't (yet) support
+// it.
+if (!Date.prototype.toISOString) {
+    (function() {
+        function pad(number) {
+            var r = String(number);
+            if (r.length === 1) {
+                r = '0' + r;
+            }
+            return r;
+        }
+        Date.prototype.toISOString = function() {
+            return this.getUTCFullYear()
+                + '-' + pad( this.getUTCMonth() + 1 )
+                + '-' + pad( this.getUTCDate() )
+                + 'T' + pad( this.getUTCHours() )
+                + ':' + pad( this.getUTCMinutes() )
+                + ':' + pad( this.getUTCSeconds() )
+                + '.' + String( (this.getUTCMilliseconds()/1000).toFixed(3) ).slice( 2, 5 )
+                + 'Z';
+        };
+    }());
+}
+
 // Helper function to create an object with dynamic keys, since the usual object
 // literal formal doesn't allow that. 
 function obj() {
@@ -123,6 +148,20 @@ db.steps.insert({
       "controlType" : "date",
       "type" : "Date",
       "label" : { "default" : "Pathology date" }
+    }
+  }
+});
+
+db.steps.insert({
+  "studyId" : study_id,
+  "ownerType" : "participants",
+  "name" : "expertPanel",
+  "label" : { "default" : "Expert panel date" },
+  "fields" : {
+    "consentDate" : {
+      "controlType" : "date",
+      "type" : "Date",
+      "label" : { "default" : "Expert panel date" }
     }
   }
 });
@@ -330,7 +369,7 @@ db.entities.insert({
   "role" : "participants",
   "identity" : "TST-001",
   "steps" : [{
-    "id" : "511d220dea2a8c2f1e2c1fef",
+    "id" : ObjectId("511d220dea2a8c2f1e2c1fef"),
     "stepRef" : get_step_id(study_id, "Global", "CreateParticipant"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
@@ -338,36 +377,36 @@ db.entities.insert({
       "identity" : "TST-001"
     }]
   }, {
-    "id" : "511d2252ea2a8c2f1e2c1ff0",
+    "id" : ObjectId("511d2252ea2a8c2f1e2c1ff0"),
     "stepRef" : get_step_id(study_id, "participants", "enrolment"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
       "key" : "enrolmentDate",
-      "value" : new Date(2012, 10, 12, 11, 45)
+      "value" : (new Date(2012, 10, 12, 11, 45)).toISOString()
     }]
   }, {
-    "id" : "511d2295ea2a8c2f1e2c1ff1",
+    "id" : ObjectId("511d2295ea2a8c2f1e2c1ff1"),
     "stepRef" : get_step_id(study_id, "participants", "consent"),
     "stepDate" : new Date(2012, 10, 13, 13, 45),
     "fields" : [{
       "key" : "consentDate",
-      "value" : new Date(2012, 10, 13, 13, 45)
+      "value" : (new Date(2012, 10, 13, 13, 45)).toISOString()
     }]
   }, {
-    "id" : "511d2295ea2a8c2f1e2c1ff2",
+    "id" : ObjectId("511d2295ea2a8c2f1e2c1ff2"),
     "stepRef" : get_step_id(study_id, "participants", "biopsy"),
     "stepDate" : new Date(2012, 10, 14, 9, 12),
     "fields" : [{
       "key" : "biopsyDate",
-      "value" : new Date(2012, 10, 14, 9, 12)
+      "value" : (new Date(2012, 10, 14, 9, 12)).toISOString()
     }]
   }, {
-    "id" : "511d389aea2a8c2f1e2c1ff7",
+    "id" : ObjectId("511d389aea2a8c2f1e2c1ff7"),
     "stepRef" : get_step_id(study_id, "participants", "pathology"),
     "stepDate" : new Date(2012, 10, 17, 12, 19),
     "fields" : [{
       "key" : "pathologyDate",
-      "value" : new Date(2012, 10, 17, 12, 19)
+      "value" : (new Date(2012, 10, 17, 12, 19)).toISOString()
     }]
   }]
 });
@@ -378,7 +417,7 @@ db.entities.insert({
   "role" : "samples",
   "identity" : "TST001BIOXPAR1",
   "steps" : [{
-    "id" : "511d3842ea2a8c2f1e2c1ff4",
+    "id" : ObjectId("511d3842ea2a8c2f1e2c1ff4"),
     "stepRef" : get_step_id(study_id, "participants", "CreateSample"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
@@ -397,7 +436,7 @@ db.entities.insert({
   "role" : "samples",
   "identity" : "TST001BIOXPAR2",
   "steps" : [{
-    "id" : "511d3842ea2a8c2f1e2c1ff4",
+    "id" : ObjectId("511d3842ea2a8c2f1e2c1ff4"),
     "stepRef" : get_step_id(study_id, "participants", "CreateSample"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
@@ -428,7 +467,7 @@ db.entities.insert({
   "role" : "observations",
   "label" : "KRAS p.G12D",
   "steps" : [{
-    "id" : "511d3f90ea2a8c2f1e2c1ffe",
+    "id" : ObjectId("511d3f90ea2a8c2f1e2c1ffe"),
     "stepRef" : get_step_id(study_id, "samples", "CreateObservation"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields": [{
