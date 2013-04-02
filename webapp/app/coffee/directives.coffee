@@ -7,6 +7,22 @@ angular
       elm.text(version)
   ])
   
+  # This is used to embed an alert, or a set of alerts. The alerts are supposed to be 
+  # passed as a parameter somehow, so we can get to them. They will normally be 
+  # injected into the response. 
+  .directive('heliAlert', () ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: true
+      scope: 'isolate'
+      locals: { alert: 'bind' }
+      template: '<div class="alert alert-{{alert.level | lowercase}} ">' +
+                '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                '<strong>{{alert.level | uppercase}}!</strong> {{alert.body}}' +
+                '</div>'
+  )
+  
   .directive('heliStepField', ($compile, Entities) ->
     result = 
       restrict: "A"
@@ -27,6 +43,11 @@ angular
                 iElement.append linkFn(scope)
               when "select"
                 body = '<select ng-model="fieldValue.value"><option ng-repeat="value in fieldValue.range">{{value}}</option></select>'
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append linkFn(scope)
+              when "integer"
+                body = '<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">'
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
@@ -111,7 +132,11 @@ angular
         scope.$watch 'entity', (newValue, oldValue) -> 
           field = newValue.getField(iAttrs.name)
           if (field) 
-            jQuery(iElement).text(field.displayValue)
+            switch field.type
+              when "Date"
+                jQuery(iElement).text(new Date(field.value).toLocaleDateString())
+              else 
+                jQuery(iElement).text(field.displayValue)
           else
             jQuery(iElement).text("N/A");
   )

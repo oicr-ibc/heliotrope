@@ -17,6 +17,8 @@
         </h1>
       </div>
     </div>
+    
+    <div ng-repeat="alert in entity.data.alerts"><div heli-alert alert="{{alert}}"></div></div>
 
     <div id="data">
       <div heli-dynatab></div>

@@ -9,6 +9,8 @@
         </h1>
       </div>
     </div>
+    
+    <div ng-repeat="alert in entity.data.alerts"><div heli-alert alert="{{alert}}"></div></div>
 
     <form class="form-horizontal">
       <div class="control-group" ng-repeat="(fieldKey, fieldValue) in entity.data.step.fields">
