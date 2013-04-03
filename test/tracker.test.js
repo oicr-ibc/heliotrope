@@ -75,6 +75,7 @@ exports.testGetEntityStep = function(beforeExit, assert) {
     
     var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "consent"}};
     tracker.getEntityStep(request, function(db, err, result) {
+    debugger;
       db.close();
       assert.equal("TST-001", result.data.identity);
       assert.equal("/studies/GPS/participants/TST-001", result.data.url);
@@ -83,7 +84,21 @@ exports.testGetEntityStep = function(beforeExit, assert) {
       assert.equal("date", result.data.step.fields.consentDate.controlType);
       assert.equal("Date", result.data.step.fields.consentDate.type);
       assert.equal("Consent date", result.data.step.fields.consentDate.label);
-      assert.equal("2012-11-13T18:45:00.000Z", result.data.step.fields.consentDate.value);
+      assert.equal("2012-11-13T18:45:00.000", result.data.step.fields.consentDate.value);
+    });
+  });
+};
+
+exports.testGetEntityStepSample = function(beforeExit, assert) {
+  withDB(function(db, err, result) {
+    db.close();
+    
+    var request = {params: {study: "GPS", role: "samples", identity: "TST001BIOXPAR1", step: "assessSample"}};
+    tracker.getEntityStep(request, function(db, err, result) {
+      db.close();
+      assert.equal("TST001BIOXPAR1", result.data.identity);
+      assert.equal("/studies/GPS/samples/TST001BIOXPAR1", result.data.url);
+      assert.equal("assessSample", result.data.step.name);
     });
   });
 };
@@ -96,10 +111,12 @@ exports.testPostEntityStepExists = function(beforeExit, assert) {
     
     var request = {
       "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "consent"},
-      "body": {"data": {"step": {"fields": {"consentDate": {"value": "2013-04-17T00:00:00.000Z"}}}}}
+      "body": {"data": {"step": {"fields": {"consentDate": {"value": "2013-04-17T00:00:00.000"}}}}}
     }
     
+    debugger;
     tracker.postEntityStep(request, function(db, err, result) {
+      debugger;
       db.close();
       assert.equal("TST-001", result.data.identity);
       assert.equal("/studies/GPS/participants/TST-001", result.data.url);
@@ -108,7 +125,19 @@ exports.testPostEntityStepExists = function(beforeExit, assert) {
       assert.equal("date", result.data.step.fields.consentDate.controlType);
       assert.equal("Date", result.data.step.fields.consentDate.type);
       assert.equal("Consent date", result.data.step.fields.consentDate.label);
-      assert.equal("2013-04-17T00:00:00.000Z", result.data.step.fields.consentDate.value);
+      assert.equal("2013-04-17T00:00:00.000", result.data.step.fields.consentDate.value);
+    });
+  });
+};
+
+exports.testViewsSamples = function(beforeExit, assert) {
+  withDB(function(db, err, result) {
+    db.close();
+    
+    var request = {params: {study: "GPS", role: "samples"}};
+    tracker.getViews(request, function(db, err, result) {
+      db.close();
+      console.error("Result", result);
     });
   });
 };

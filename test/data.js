@@ -47,7 +47,8 @@ if (!Date.prototype.toISOString) {
 
 // Trims a final Z off of the end of an ISO time string, this converting to a floating time rather than
 // a UTC time. Floating times are used almost exclusively in Heliotrope for values. For actual timestamps,
-// UTC is preferred as it is unambiguous. 
+// UTC is preferred as it is unambiguous. This isn't actually a very clean way to do this, but it will
+// do as a convention. 
 
 function toFloatingISOString(date) {
   var string = date.toISOString();
@@ -174,12 +175,17 @@ db.steps.insert({
   "ownerType" : "participants",
   "appliesTo" : "participants",
   "name" : "expertPanel",
-  "label" : { "default" : "Expert panel date" },
+  "label" : { "default" : "Expert panel" },
   "fields" : {
     "expertPanelDate" : {
       "controlType" : "date",
       "type" : "Date",
       "label" : { "default" : "Expert panel date" }
+    },
+    "expertPanelDecision" : {
+      "controlType" : "textarea",
+      "type" : "String",
+      "label" : { "default" : "Expert panel decision" }
     }
   }
 });
@@ -369,6 +375,22 @@ db.views.insert({
 "  <tbody>" +
 "</table>"
 });
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "summary",
+  "role" : "samples",
+  "label" : { "default" : "Summary" },
+  "weight" : 0,
+  "body" : 
+"<dl>" +
+"  <dt>Requires collection</dt>" +
+"  <dd><span heli-field name='requiresCollection'></span></dd>" +
+"  <dt>DNA quality</dt>" +
+"  <dd><span heli-field name='dnaQuality'></span></dd>" +
+"</dl>"
+});
+
 
 // Locates a step within a case, and ensures uniqueness
 db.entities.ensureIndex({"studyId": 1, "steps.id": 1});

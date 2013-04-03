@@ -41,12 +41,22 @@ angular
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
+              when "textarea"
+                body = '<textarea id="{{fieldKey}}" rows="4" style="width: 30em" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}"></textarea>'
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append linkFn(scope)
               when "select"
                 body = '<select ng-model="fieldValue.value"><option ng-repeat="value in fieldValue.range">{{value}}</option></select>'
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
               when "integer"
+                body = '<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">'
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append linkFn(scope)
+              when "float"
                 body = '<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">'
                 template = angular.element(body)
                 linkFn = $compile(template)
