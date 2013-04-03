@@ -58,9 +58,13 @@ angular
                 iElement.append linkFn(scope)
                 datepicker = jQuery(iElement.find(".datepicker"))
                 datepicker.datepicker({autoclose: true, format: "yyyy-mm-dd"})
-                datepicker.datepicker('update', new Date(scope.fieldValue.value))
+                if scope.fieldValue.value
+                  datepicker.datepicker('update', new Date(scope.fieldValue.value))
                 datepicker.change (e) =>
-                  scope.fieldValue.value = new Date(datepicker.val()).toISOString();
+                  timeString = (new Date(datepicker.val())).toISOString()
+                  if timeString.slice(-1) == "Z"
+                    timeString = timeString.slice(0, -1)
+                  scope.fieldValue.value = timeString
                   scope.$apply()
               when "checkbox"
                 body = '<input type="checkbox" ng-model="fieldValue.value" id="{{fieldKey}}">'
@@ -131,10 +135,11 @@ angular
       link: (scope, iElement, iAttrs, controller) ->
         scope.$watch 'entity', (newValue, oldValue) -> 
           field = newValue.getField(iAttrs.name)
-          if (field) 
+          if (field && field.value) 
             switch field.type
               when "Date"
-                jQuery(iElement).text(new Date(field.value).toLocaleDateString())
+                dateString = new XDate(field.value, true).toUTCString("d/MMM/yyyy")
+                jQuery(iElement).text(dateString)
               else 
                 jQuery(iElement).text(field.displayValue)
           else

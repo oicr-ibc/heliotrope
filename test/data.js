@@ -45,6 +45,19 @@ if (!Date.prototype.toISOString) {
     }());
 }
 
+// Trims a final Z off of the end of an ISO time string, this converting to a floating time rather than
+// a UTC time. Floating times are used almost exclusively in Heliotrope for values. For actual timestamps,
+// UTC is preferred as it is unambiguous. 
+
+function toFloatingISOString(date) {
+  var string = date.toISOString();
+  if (string.endsWith("Z")) {
+    return string.slice(0, -1);
+  } else {
+    return string;
+  }
+}
+
 // Helper function to create an object with dynamic keys, since the usual object
 // literal formal doesn't allow that. 
 function obj() {
@@ -67,10 +80,10 @@ function get_step_id(study_id, ownerType, name) {
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "Global",
+  "appliesTo" : "participants",
   "name" : "CreateParticipant",
   "stepOptions" : {
     "method" : "CreateEntity",
-    "role" : "participants",
     "identityField" : "identifier"
   },
   "label" : { "default" : "Create participant" },
@@ -92,6 +105,7 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "participants",
+  "appliesTo" : "participants",
   "name" : "enrolment",
   "label" : {
     "default" : "Enrolment",
@@ -108,6 +122,7 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "participants",
+  "appliesTo" : "participants",
   "name" : "consent",
   "label" : { "default" : "Consent" },
   "fields" : {
@@ -122,6 +137,7 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "participants",
+  "appliesTo" : "participants",
   "name" : "biopsy",
   "label" : { "default" : "Biopsy" },
   "fields" : {
@@ -141,6 +157,7 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "participants",
+  "appliesTo" : "participants",
   "name" : "pathology",
   "label" : { "default" : "Pathology" },
   "fields" : {
@@ -155,10 +172,11 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "participants",
+  "appliesTo" : "participants",
   "name" : "expertPanel",
   "label" : { "default" : "Expert panel date" },
   "fields" : {
-    "consentDate" : {
+    "expertPanelDate" : {
       "controlType" : "date",
       "type" : "Date",
       "label" : { "default" : "Expert panel date" }
@@ -169,9 +187,9 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "participants",
+  "appliesTo" : "samples",
   "stepOptions" : {
     "method" : "CreateEntity",
-    "role" : "samples",
     "identityField": "identifier",
     "parentField": "participantEntityRef"
   },
@@ -212,6 +230,7 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "samples",
+  "appliesTo" : "samples",
   "name" : "assessSample",
   "label" : { "default" : "Record sample quality" },
   "fields" : {
@@ -232,6 +251,7 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "samples",
+  "appliesTo" : "samples",
   "name" : "markAsCollected",
   "label" : { "default" : "Mark as collected" }
 });
@@ -239,10 +259,10 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "samples",
+  "appliesTo" : "observations",
   "name" : "CreateObservation",
   "stepOptions" : {
     "method" : "CreateEntity",
-    "role" : "observations",
     "parentField": "sampleEntityRef"
   },
   "label" : { "default" : "Create observation" },
@@ -382,7 +402,7 @@ db.entities.insert({
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
       "key" : "enrolmentDate",
-      "value" : (new Date(2012, 10, 12, 11, 45)).toISOString()
+      "value" : toFloatingISOString(new Date(2012, 10, 12, 11, 45))
     }]
   }, {
     "id" : ObjectId("511d2295ea2a8c2f1e2c1ff1"),
@@ -390,7 +410,7 @@ db.entities.insert({
     "stepDate" : new Date(2012, 10, 13, 13, 45),
     "fields" : [{
       "key" : "consentDate",
-      "value" : (new Date(2012, 10, 13, 13, 45)).toISOString()
+      "value" : toFloatingISOString(new Date(2012, 10, 13, 13, 45))
     }]
   }, {
     "id" : ObjectId("511d2295ea2a8c2f1e2c1ff2"),
@@ -398,7 +418,7 @@ db.entities.insert({
     "stepDate" : new Date(2012, 10, 14, 9, 12),
     "fields" : [{
       "key" : "biopsyDate",
-      "value" : (new Date(2012, 10, 14, 9, 12)).toISOString()
+      "value" : toFloatingISOString(new Date(2012, 10, 14, 9, 12))
     }]
   }, {
     "id" : ObjectId("511d389aea2a8c2f1e2c1ff7"),
@@ -406,7 +426,7 @@ db.entities.insert({
     "stepDate" : new Date(2012, 10, 17, 12, 19),
     "fields" : [{
       "key" : "pathologyDate",
-      "value" : (new Date(2012, 10, 17, 12, 19)).toISOString()
+      "value" : toFloatingISOString(new Date(2012, 10, 17, 12, 19))
     }]
   }]
 });

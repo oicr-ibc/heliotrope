@@ -59,7 +59,7 @@
     entity.$save(
       {study: $routeParams.study, role: $routeParams.role, identity: $routeParams.identity, step: $routeParams.step}, 
       (entityStep) ->
-      	 console.log entityStep
+      	
       (error) ->
         console.log error
     )
