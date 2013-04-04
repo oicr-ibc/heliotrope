@@ -92,12 +92,14 @@ db.steps.insert({
     "identifier" : {
       "controlType" : "text",
       "type" : "String",
+      "required" : true,
       "label" : { "default" : "Identifier" }
     },
     "institution" : {
       "controlType" : "select",
       "type" : "String",
       "range" : ["PMH/UHN", "London", "Ottawa", "Thunder Bay"],
+      "required" : true,
       "label" : { "default" : "Institution" }
     },
   }
@@ -115,6 +117,7 @@ db.steps.insert({
     "enrolmentDate" : {
       "controlType" : "date",
       "type" : "Date",
+      "required" : true,
       "label" : { "default" : "Enrolment date" }
     }
   }
@@ -130,6 +133,7 @@ db.steps.insert({
     "consentDate" : {
       "controlType" : "date",
       "type" : "Date",
+      "required" : true,
       "label" : { "default" : "Consent date" }
     }
   }
@@ -145,11 +149,13 @@ db.steps.insert({
     "biopsyDate" : {
       "controlType" : "date",
       "type" : "Date",
+      "required" : true,
       "label" : { "default" : "Biopsy date" }
     },
     "biopsyCores" : {
       "controlType" : "integer",
       "type" : "Integer",
+      "required" : true,
       "label" : { "default" : "Number of cores" }
     }
   }
@@ -165,6 +171,7 @@ db.steps.insert({
     "pathologyDate" : {
       "controlType" : "date",
       "type" : "Date",
+      "required" : true,
       "label" : { "default" : "Pathology date" }
     }
   }
@@ -180,11 +187,14 @@ db.steps.insert({
     "expertPanelDate" : {
       "controlType" : "date",
       "type" : "Date",
+      "required" : true,
       "label" : { "default" : "Expert panel date" }
     },
     "expertPanelDecision" : {
       "controlType" : "textarea",
+      "controlArguments" : { "html" : true },
       "type" : "String",
+      "required" : true,
       "label" : { "default" : "Expert panel decision" }
     }
   }
@@ -205,18 +215,21 @@ db.steps.insert({
     "identifier" : {
       "controlType" : "text",
       "type" : "String",
+      "required" : true,
       "label" : { "default" : "Barcode" }
     },
     "participantEntityRef" : {
       "controlType" : "chooser",
       "entity" : "participants",
       "type" : "Reference",
+      "required" : true,
       "label" : { "default" : "Participant" }
     },
     "type" : {
       "controlType" : "select",
       "type" : "String",
       "range" : ["FFPE", "Frozen", "Blood", "Fluid", "FNA"],
+      "required" : true,
       "label" : { "default" : "Type" }
     },
     "site" : {
@@ -228,6 +241,8 @@ db.steps.insert({
     "requiresCollection" : {
       "controlType" : "checkbox",
       "type" : "Boolean",
+      "default" : true,
+      "required" : true,
       "label" : { "default" : "Requires collection" }
     }
   }
@@ -277,11 +292,13 @@ db.steps.insert({
       "controlType" : "chooser",
       "type" : "Reference",
       "entity" : "samples",
+      "required" : true,
       "label" : { "default" : "Sample" }
     },
     "mutation" : {
       "controlType" : "text",
       "type" : "String",
+      "required" : true,
       "label" : { "default" : "Mutation" }
     }
   }

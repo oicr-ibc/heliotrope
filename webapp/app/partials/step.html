@@ -5,7 +5,7 @@
     <div id="page-header">
       <div class="page-header">
         <h1>
-          {{entity.data.step.label}}<small> / <a href="{{entity.data.url}}">{{entity.data.identity}}</a> / <a href="{{entity.data.study.url}}">{{entity.data.study.name}}</a></small>
+          {{entity.data.step.label}}<small> / <span ng-show="entity.data.identity"> <a href="{{entity.data.url}}">{{entity.data.identity}}</a> /</span> <a href="{{entity.data.study.url}}">{{entity.data.study.name}}</a></small>
         </h1>
       </div>
     </div>
@@ -14,7 +14,7 @@
 
     <form class="form-horizontal">
       <div class="control-group" ng-repeat="(fieldKey, fieldValue) in entity.data.step.fields">
-        <label class="control-label" for="{{fieldKey}}">{{fieldValue.label}}</label>
+        <label class="control-label" for="{{fieldKey}}">{{fieldValue.label}}<span ng-show="fieldValue.required">*</span></label>
         <div class="controls" heli-step-field field-key="fieldKey" fieldValue="fieldValue"></div>
       </div>
 
@@ -24,6 +24,6 @@
         </div>
       </div>
     </form>
-    <!-- <pre>form = {{entity.data.step | json}}</pre> -->
+    <pre>form = {{entity.data.step | json}}</pre>
   </div>
 </div>
