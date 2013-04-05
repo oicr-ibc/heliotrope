@@ -42,10 +42,13 @@ angular
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
               when "textarea"
-                body = '<textarea id="{{fieldKey}}" rows="4" style="width: 30em" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}"></textarea>'
+                body = '<textarea class="texteditor" id="{{fieldKey}}" rows="4" style="width: 30em" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}"></textarea>'
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
+#                if (newValue.controlArguments && newValue.controlArguments.html)
+#                  htmlEditor = jQuery(iElement.find(".texteditor"))
+#                  htmlEditor.wysihtml5()
               when "select"
                 body = '<select ng-model="fieldValue.value"><option ng-repeat="value in fieldValue.range">{{value}}</option></select>'
                 template = angular.element(body)

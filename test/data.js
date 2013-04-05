@@ -70,18 +70,18 @@ function obj() {
 }
 
 db.studies.ensureIndex({name:1},{unique:true});
-db.steps.ensureIndex({studyId:1,ownerType:1,name:1},{unique:true});
+db.steps.ensureIndex({studyId:1,appliesTo:1,name:1},{unique:true});
 
 study_id = db.studies.find({"name" : "GPS"}).next()._id;
 
-function get_step_id(study_id, ownerType, name) {
-  return db.steps.find({"studyId" : study_id, "ownerType" : ownerType, "name" : name}).next()._id;
+function get_step_id(study_id, appliesTo, name) {
+  return db.steps.find({"studyId" : study_id, "appliesTo" : appliesTo, "name" : name}).next()._id;
 }
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "Global",
   "appliesTo" : "participants",
+  "weight" : 0,
   "name" : "participant",
   "stepOptions" : {
     "method" : "CreateEntity"
@@ -108,7 +108,7 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "participants",
+  "weight" : 10,
   "appliesTo" : "participants",
   "name" : "enrolment",
   "label" : {
@@ -126,8 +126,8 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "participants",
   "appliesTo" : "participants",
+  "weight" : 20,
   "name" : "consent",
   "label" : { "default" : "Consent" },
   "fields" : {
@@ -142,8 +142,8 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "participants",
   "appliesTo" : "participants",
+  "weight" : 30,
   "name" : "biopsy",
   "label" : { "default" : "Biopsy" },
   "fields" : {
@@ -164,8 +164,8 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "participants",
   "appliesTo" : "participants",
+  "weight" : 40,
   "name" : "pathology",
   "label" : { "default" : "Pathology" },
   "fields" : {
@@ -180,8 +180,8 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "participants",
   "appliesTo" : "participants",
+  "weight" : 100,
   "name" : "expertPanel",
   "label" : { "default" : "Expert panel" },
   "fields" : {
@@ -203,13 +203,13 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "participants",
   "appliesTo" : "samples",
+  "weight" : 0,
   "stepOptions" : {
     "method" : "CreateEntity",
     "parentField": "participantEntityRef"
   },
-  "name" : "CreateSample",
+  "name" : "sample",
   "label" : { "default" : "Create sample" },
   "fields" : {
     "identifier" : {
@@ -251,8 +251,8 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "samples",
   "appliesTo" : "samples",
+  "weight" : 10,
   "name" : "assessSample",
   "label" : { "default" : "Record sample quality" },
   "fields" : {
@@ -272,17 +272,17 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "samples",
   "appliesTo" : "samples",
+  "weight" : 20,
   "name" : "markAsCollected",
   "label" : { "default" : "Mark as collected" }
 });
 
 db.steps.insert({
   "studyId" : study_id,
-  "ownerType" : "samples",
   "appliesTo" : "observations",
-  "name" : "CreateObservation",
+  "weight" : 0,
+  "name" : "observation",
   "stepOptions" : {
     "method" : "CreateEntity",
     "parentField": "sampleEntityRef"
@@ -430,7 +430,7 @@ db.entities.insert({
   "identity" : "TST-001",
   "steps" : [{
     "id" : ObjectId("511d220dea2a8c2f1e2c1fef"),
-    "stepRef" : get_step_id(study_id, "Global", "participant"),
+    "stepRef" : get_step_id(study_id, "participants", "participant"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
       "key" : "identifier", 
@@ -478,7 +478,7 @@ db.entities.insert({
   "identity" : "TST001BIOXPAR1",
   "steps" : [{
     "id" : ObjectId("511d3842ea2a8c2f1e2c1ff4"),
-    "stepRef" : get_step_id(study_id, "participants", "CreateSample"),
+    "stepRef" : get_step_id(study_id, "samples", "sample"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
       "key" : "identifier",
@@ -497,7 +497,7 @@ db.entities.insert({
   "identity" : "TST001BIOXPAR2",
   "steps" : [{
     "id" : ObjectId("511d3842ea2a8c2f1e2c1ff4"),
-    "stepRef" : get_step_id(study_id, "participants", "CreateSample"),
+    "stepRef" : get_step_id(study_id, "samples", "sample"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
       "key" : "identifier",
@@ -528,7 +528,7 @@ db.entities.insert({
   "label" : "KRAS p.G12D",
   "steps" : [{
     "id" : ObjectId("511d3f90ea2a8c2f1e2c1ffe"),
-    "stepRef" : get_step_id(study_id, "samples", "CreateObservation"),
+    "stepRef" : get_step_id(study_id, "observations", "observation"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields": [{
       "key" : "sampleEntityRef", 
