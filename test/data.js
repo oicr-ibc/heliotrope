@@ -82,17 +82,18 @@ db.steps.insert({
   "studyId" : study_id,
   "ownerType" : "Global",
   "appliesTo" : "participants",
-  "name" : "CreateParticipant",
+  "name" : "participant",
   "stepOptions" : {
-    "method" : "CreateEntity",
-    "identityField" : "identifier"
+    "method" : "CreateEntity"
   },
   "label" : { "default" : "Create participant" },
+  "editLabel" : { "default" : "Update participant" },
   "fields" : {
     "identifier" : {
       "controlType" : "text",
       "type" : "String",
       "required" : true,
+      "identity" : true,
       "label" : { "default" : "Identifier" }
     },
     "institution" : {
@@ -206,7 +207,6 @@ db.steps.insert({
   "appliesTo" : "samples",
   "stepOptions" : {
     "method" : "CreateEntity",
-    "identityField": "identifier",
     "parentField": "participantEntityRef"
   },
   "name" : "CreateSample",
@@ -216,6 +216,7 @@ db.steps.insert({
       "controlType" : "text",
       "type" : "String",
       "required" : true,
+      "identity" : true,
       "label" : { "default" : "Barcode" }
     },
     "participantEntityRef" : {
@@ -429,7 +430,7 @@ db.entities.insert({
   "identity" : "TST-001",
   "steps" : [{
     "id" : ObjectId("511d220dea2a8c2f1e2c1fef"),
-    "stepRef" : get_step_id(study_id, "Global", "CreateParticipant"),
+    "stepRef" : get_step_id(study_id, "Global", "participant"),
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "fields" : [{
       "key" : "identifier", 
