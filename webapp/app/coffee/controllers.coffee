@@ -47,7 +47,7 @@
       console.log error
   )
 
-@EntityStepController = ($scope, $routeParams, $timeout, EntityStep) ->
+@EntityStepController = ($scope, $routeParams, $timeout, $location, EntityStep) ->
   $scope.entity = EntityStep.get(
     {study: $routeParams.study, role: $routeParams.role, identity: $routeParams.identity, step: $routeParams.step}, 
     (entityStep) ->
@@ -58,8 +58,8 @@
   $scope.update = (entity) =>
     entity.$save(
       {study: $routeParams.study, role: $routeParams.role, identity: $routeParams.identity, step: $routeParams.step}, 
-      (entityStep) ->
-      	
+      (entityStep, responseHeaders) =>
+        $location.path(entityStep.data.url).replace()
       (error) ->
         console.log error
     )
