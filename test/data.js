@@ -203,6 +203,15 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
+  "appliesTo" : "participants",
+  "name" : "addSample",
+  "label" : { "default" : "Add sample" },
+  "weight" : 400,
+  "url" : "{{study.url}}/samples/id;new/step/sample?participantEntityRef={{identity}}"
+})
+
+db.steps.insert({
+  "studyId" : study_id,
   "appliesTo" : "samples",
   "weight" : 0,
   "stepOptions" : {
@@ -224,6 +233,7 @@ db.steps.insert({
       "entity" : "participants",
       "type" : "Reference",
       "required" : true,
+      "readonly" : true,
       "label" : { "default" : "Participant" }
     },
     "type" : {

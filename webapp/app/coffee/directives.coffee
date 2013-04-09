@@ -87,6 +87,8 @@ angular
               when "chooser"
                 body = '<input type="text" class="chooser" ng-model="fieldValue.value" id="{{fieldKey}}" autocomplete="off"></input>'
                 template = angular.element(body)
+                if newValue.readonly
+                  template.prop('readOnly', true)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
                 chooser = jQuery(iElement.find(".chooser"))
