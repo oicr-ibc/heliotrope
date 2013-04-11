@@ -161,66 +161,58 @@ angular
             jQuery(iElement).text("N/A");
   )
   
-  # The tab directive can use the scope to find out some views, and then use those views to 
-  # select how to display. This really needs to be souped up into some uber control which
-  # can manage display and everything.
-  
-  .directive('heliTab', () ->
-    result = 
-      restrict: "A"
-      replace: true
-      transclude: true
-      template: '<ul class="nav nav-tabs">' +
-                '<li class="active"><a href="#tab1" data-toggle="tab">Summary</a></li>' +
-                '<li><a href="#tab2" data-toggle="tab">Enrolment</a></li>' +
-                '<li><a href="#tab3" data-toggle="tab">Samples</a></li>' +
-                '<li><a href="#tab4" data-toggle="tab">Clinical history</a></li>' +
-                '<li><a href="#tab5" data-toggle="tab">Results</a></li>' +
-                '<li><a href="#tab6" data-toggle="tab">Reports</a></li>' +
-                '<li><a href="#tab7" data-toggle="tab">Panel decision</a></li>' +
-                '<li><a href="#tab8" data-toggle="tab">Log</a></li>' +
-                '</ul>'
-      link: (scope, iElement, iAttrs, controller) ->
-        jQuery(iElement).find("a").click (e) ->
-          e.preventDefault()
-          e.stopPropagation()
-          jQuery(this).tab('show')
-  )
-  
   # Dynamic tabs directive, which means we get the views for this entity type from the server.
   # All this happens automatically, and allows us to do all sorts of weird stuff in the server
   # end. 
-  .directive('heliDynatab', ($compile, Views) ->
+  .directive('heliSummary', ($compile, Views) ->
     result = 
       restrict: "A"
       replace: true
       transclude: true
-      template: '<div class="tabbable tabs-left"><ul class="nav nav-tabs"></ul><div class="tab-content"></div></div>'
+      template: '<div class="summary"></div>'
       link: (scope, iElement, iAttrs, controller) ->
         scope.$watch 'entity.data', (newValue, oldValue) -> 
           if newValue
             role = newValue.role
             name = newValue.study.name
             element = jQuery(iElement)
-            menuElement = element.find(".nav")
-            contentElement = element.find(".tab-content")
+            navElement = jQuery("#sidebar .nav-list")
             views = Views.get({study: name, role: role}, () ->
-              active = "active"
               
               # Insert the views from the server data, one at a time, picking the first to be active
               for view in views.data
-                link = jQuery('<li class="' + active + '"><a href="#' + view.name + '" data-toggle="tab">' + view.label.default + '</a></li>')
-                link.appendTo(menuElement)
-                link.find("a").click (e) ->
-                  e.preventDefault()
-                  e.stopPropagation()
-                  jQuery(this).tab('show')
-                body = '<div class="tab-pane ' + active + '" id="' + view.name + '">' + view.body  + '</div>'
+                body = '<div class="summary-section">' + view.body  + '</div>'
                 active = ""
                 template = angular.element(body)
                 linkFn = $compile(template)
-                contentElement.append linkFn(scope)
+                iElement.append "<h3 id='" + view.name + "'>" + view.label.default + "</h3>"
+                iElement.append linkFn(scope)
+                result = navElement.append "<li><a class='nav-section' href='#" + view.name + "'>" + view.label.default + "</a></li>"
+              navElement.find("a.nav-section").click (e) ->
+                e.preventDefault()
+                e.stopPropagation()
+                target = e.currentTarget.getAttribute('href')
+                offset = jQuery(target).offset().top - 150
+                jQuery("body").animate({scrollTop: offset},'slow');
             )
+  )
+  
+  .directive('heliChooseStep', () ->
+    result =
+      restrict: "A"
+      replace: true
+      transclude: true
+      template: '<form>' +
+                '<div class="control-group">' +
+                '<label class="control-label" for="apply-workflow">Apply step</label>' +
+                '<div class="controls">' +
+                '<div class="btn-group">' +
+                '<a class="btn dropdown-toggle" data-toggle="dropdown">Choose step <b class="caret"></b></a>' +
+                '<div heli-workflows></div>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</form>'
   )
   
   # Add the directive for the data tables for frequencies. This could be parameterised, but encapsulates all the

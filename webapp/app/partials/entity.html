@@ -5,8 +5,16 @@
         <li class="nav-header">Study</li>
         <li><a href="{{entity.data.study.url}}">{{entity.data.study.name}}</a></li>
         <li><a href="{{entity.data.study.url}}/participants/id;new/step/participant">Create new participant</a></li>
+        <li class="divider"></li>
       </ul>
     </div>
+
+    <div class="well" style="max-width: 240px; padding: 8px 0em; margin-top: 2em">
+      <div style="margin: 1em">
+      <div heli-choose-step></div>
+      </div>
+    </div>
+
   </div>
   <div class="span9">
 
@@ -21,22 +29,10 @@
     <div ng-repeat="alert in entity.data.alerts"><div heli-alert alert="{{alert}}"></div></div>
 
     <div id="data">
-      <div heli-dynatab></div>
+      <div heli-summary></div>
     </div>
-
-    <form class="form-horizontal" style="padding-top: 1em">
-      <div class="control-group">
-        <label class="control-label" for="apply-workflow">Apply workflow</label>
-        <div class="controls">
-          
-          <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown">Choose workflow <b class="caret"></b></a>
-            <div heli-workflows></div>
-          </div>
-          
-        </div>
-      </div>
-    </form>
+    
+    
     
   </div>
 </div>

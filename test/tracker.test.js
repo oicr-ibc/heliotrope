@@ -337,7 +337,7 @@ describe('POST /studies/GPS/samples/id;new/step/sample', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
-        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST001BIOXPAR3", "identity" : true}}}}}
+        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST001BIOXPAR3"}}}}}
       }
       
       tracker.postEntityStep(request, function(db, err, result) {
@@ -356,13 +356,18 @@ describe('POST /studies/GPS/samples/id;new/step/sample', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
-        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST001BIOXPAR3", "identity" : true}}}}}
+        "body": {"data": {"step": {"fields": {
+          "identifier": {"value": "TST001BIOXPAR3"}, 
+          "type" : {"value" : "FFPE"},
+          "requiresCollection" : {"value" : "false"},
+          "participantEntityRef" : {"value" : "TST-001"}
+        }}}}
       }
       tracker.postEntityStep(request, function(db, err, result) {
         db.close();
         
-        should.exist(err);
-        err.err.should.match(/missing fields/);
+        should.not.exist(err);
+        result.should.equal("/studies/GPS/samples/TST001BIOXPAR3/step/sample");
         done();
       });
     });

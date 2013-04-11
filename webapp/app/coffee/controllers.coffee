@@ -12,8 +12,7 @@
   )
 
 @GeneController = ($scope, $routeParams, $timeout, Gene) ->
-  $scope.gene = Gene.get(
-    {gene: $routeParams.gene}, 
+  $scope.gene = Gene.get($routeParams
     (gene) ->
       $scope.description = gene.data.sections.description.data
     (error) ->
@@ -21,8 +20,7 @@
   )
 
 @VariantController = ($scope, $routeParams, $timeout, Variant) ->
-  $scope.variant = Variant.get(
-    {variant: $routeParams.variant}
+  $scope.variant = Variant.get($routeParams
     (variant) ->
       $scope.ordered = variant.getOrderedPositions()
     (error) ->
@@ -30,8 +28,7 @@
   )
 
 @StudyController = ($scope, $routeParams, $timeout, Study) ->
-  $scope.study = Study.get(
-    {study: $routeParams.study}, 
+  $scope.study = Study.get($routeParams
     (study) ->
 
     (error) ->
@@ -39,8 +36,7 @@
   )
 
 @EntityController = ($scope, $routeParams, $timeout, Entity) ->
-  $scope.entity = Entity.get(
-    {study: $routeParams.study, role: $routeParams.role, identity: $routeParams.identity}, 
+  $scope.entity = Entity.get($routeParams
     (entity) ->
 
     (error) ->
@@ -48,8 +44,8 @@
   )
 
 @EntityStepController = ($scope, $routeParams, $timeout, $location, EntityStep) ->
-  $scope.entity = EntityStep.get(
-    {study: $routeParams.study, role: $routeParams.role, identity: $routeParams.identity, step: $routeParams.step}, 
+  console.log "@EntityStepController", $routeParams
+  $scope.entity = EntityStep.get($routeParams
     (entityStep) ->
       
     (error) ->
