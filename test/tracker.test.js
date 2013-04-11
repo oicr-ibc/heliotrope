@@ -1,7 +1,8 @@
 var fs = require('fs'),
     mongo = require("mongodb"),
     MongoClient = mongo.MongoClient,
-    tracker = require("../lib/tracker");
+    tracker = require("../lib/tracker"),
+    should = require('should');
 
 function withDB(callback) {
   fs.readFile('test/data.js', function (err, data) {
@@ -15,213 +16,356 @@ function withDB(callback) {
   });
 }
 
-exports.testGetStudy = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {params: {study: "GPS"}};
-    tracker.getStudy(request, function(db, err, result) {
+describe('GET /studies/GPS', function() {
+  it('should retrieve a study', function(done){
+    withDB(function(db, err, result) {
       db.close();
-      assert.isNull(err);
-      assert.equal("GPS", result.data.name);
-      assert.equal("/studies/GPS", result.data.url);
+      
+      var request = {params: {study: "GPS"}};
+      tracker.getStudy(request, function(db, err, result) {
+        db.close();
+        
+        should.not.exist(err);
+        result.data.name.should.equal("GPS");
+        result.data.url.should.equal("/studies/GPS");
+        done();
+      });
     });
   });
-};
+});
 
-exports.testGetEntitiesParticipants = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {params: {study: "GPS", role: "participants"}};
-    tracker.getEntities(request, function(db, err, result) {
+describe('GET /studies/GPS/participants', function() {
+  it('should retrieve a list of participants', function(done){
+    withDB(function(db, err, result) {
       db.close();
-      assert.isNull(err);
-      assert.equal(1, result.data.length);
-      assert.equal("TST-001", result.data[0].identity);
+    
+      var request = {params: {study: "GPS", role: "participants"}};
+      tracker.getEntities(request, function(db, err, result) {
+        db.close();
+        
+        should.not.exist(err);
+        result.data.length.should.equal(1);
+        result.data[0].identity.should.equal("TST-001");
+        done();
+      });
     });
   });
-};
+});
 
-exports.testGetEntitiesSamples = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {params: {study: "GPS", role: "samples"}};
-    tracker.getEntities(request, function(db, err, result) {
+describe('GET /studies/GPS/samples', function() {
+  it('should retrieve a list of samples', function(done){
+    withDB(function(db, err, result) {
       db.close();
-      assert.isNull(err);
-      assert.equal(2, result.data.length);
-      assert.equal("TST001BIOXPAR1", result.data[0].identity);
-      assert.equal("TST001BIOXPAR2", result.data[1].identity);
+      
+      var request = {params: {study: "GPS", role: "samples"}};
+      tracker.getEntities(request, function(db, err, result) {
+        db.close();
+        
+        should.not.exist(err);
+        result.data.length.should.equal(2);
+        result.data[0].identity.should.equal("TST001BIOXPAR1");
+        result.data[1].identity.should.equal("TST001BIOXPAR2");
+        done()
+      });
     });
   });
-};
+});
 
-exports.testGetEntity = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}};
-    tracker.getEntity(request, function(db, err, result) {
+describe('GET /studies/GPS/participants/TST-001', function() {
+  it('should retrieve a single identified participant', function(done){
+    withDB(function(db, err, result) {
       db.close();
-      assert.isNull(err);
-      assert.equal("TST-001", result.data.identity);
-      assert.equal("/studies/GPS/participants/TST-001", result.data.url);
-      assert.equal("participants", result.data.role);
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}};
+      tracker.getEntity(request, function(db, err, result) {
+        db.close();
+        
+        should.not.exist(err);
+        result.data.identity.should.equal("TST-001");
+        result.data.url.should.equal("/studies/GPS/participants/TST-001");
+        result.data.role.should.equal("participants");
+        done();
+      });
     });
   });
-};
+});
 
-exports.testGetEntityStep = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "consent"}};
-    tracker.getEntityStep(request, function(db, err, result) {
-    debugger;
-      db.close();
-      assert.isNull(err);
-      assert.equal("TST-001", result.data.identity);
-      assert.equal("/studies/GPS/participants/TST-001", result.data.url);
-      assert.equal("consent", result.data.step.name);
-      assert.equal("Consent", result.data.step.label);
-      assert.equal("date", result.data.step.fields.consentDate.controlType);
-      assert.equal("Date", result.data.step.fields.consentDate.type);
-      assert.equal("Consent date", result.data.step.fields.consentDate.label);
-      assert.equal("2012-11-13T18:45:00.000", result.data.step.fields.consentDate.value);
-    });
-  });
-};
 
-exports.testGetEntityStepSample = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {params: {study: "GPS", role: "samples", identity: "TST001BIOXPAR1", step: "assessSample"}};
-    tracker.getEntityStep(request, function(db, err, result) {
+describe('GET /studies/GPS/participants/TST-001/step/consent', function() {
+  it('should retrieve a single identified step', function(done){
+    withDB(function(db, err, result) {
       db.close();
-      assert.isNull(err);
-      assert.equal("TST001BIOXPAR1", result.data.identity);
-      assert.equal("/studies/GPS/samples/TST001BIOXPAR1", result.data.url);
-      assert.equal("assessSample", result.data.step.name);
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "consent"}};
+      tracker.getEntityStep(request, function(db, err, result) {
+      debugger;
+        db.close();
+        
+        
+        result.data.identity.should.equal("TST-001");
+        result.data.url.should.equal("/studies/GPS/participants/TST-001");
+        result.data.step.name.should.equal("consent");
+        result.data.step.label.should.equal("Consent");
+        result.data.step.fields.consentDate.controlType.should.equal("date");
+        result.data.step.fields.consentDate.type.should.equal("Date");
+        result.data.step.fields.consentDate.label.should.equal("Consent date");
+        result.data.step.fields.consentDate.value.should.equal("2012-11-13T18:45:00.000");
+        done();
+      });
     });
   });
-};
+});
 
-// This test handles the case of writing a step which already exists. The new 
-// values should be both stored and returned in the new body. 
-exports.testPostEntityStepExists = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {
-      "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "consent"},
-      "body": {"data": {"step": {"fields": {"consentDate": {"value": "2013-04-17T00:00:00.000"}}}}}
-    }
-    
-    tracker.postEntityStep(request, function(db, err, result) {
+describe('GET /studies/GPS/samples/TST001BIOXPAR1/step/assessSample', function() {
+  it('should retrieve a single identified step', function(done){
+    withDB(function(db, err, result) {
       db.close();
-      assert.isNull(err);
-      assert.equal("/studies/GPS/participants/TST-001/step/consent", result);
+      
+      var request = {params: {study: "GPS", role: "samples", identity: "TST001BIOXPAR1", step: "assessSample"}};
+      tracker.getEntityStep(request, function(db, err, result) {
+        db.close();
+        
+        should.not.exist(err);
+        result.data.identity.should.equal("TST001BIOXPAR1");
+        result.data.url.should.equal("/studies/GPS/samples/TST001BIOXPAR1");
+        result.data.step.name.should.equal("assessSample");
+        done();
+      });
     });
   });
-};
+});
 
-// This test handles the case of writing an entity which doesn't yet exist. 
-exports.testPostEntityStepNewEntity = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {
-      "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
-      "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-002"}, "institution" : {"value" : "London"}}}}}
-    }
-    
-    tracker.postEntityStep(request, function(db, err, result) {
-      db.close();
-      assert.isNull(err);
-      assert.equal("/studies/GPS/participants/TST-002/step/participant", result);
+describe('findStepUpdater', function() {
+  
+  it('should build an simple updater', function(done){
+    withDB(function(db, err, result) {
+      
+      var step = {
+          name: 'participant',
+          stepOptions: { method: 'CreateEntity' },
+          fields: { 
+            identifier: { 
+              type: 'String',
+              required: true,
+              identity: true },
+            institution:  { 
+              type: 'String',
+              range: ["London", "Hamilton", "Europa"],
+              required: true }}};
+      var fields = { identifier: { value: 'TST-002' }, institution: { value: 'London' } };
+      
+      tracker.findStepUpdater(db, step, fields, {}, {"$set" : {"steps.$.fields" : []}}, function(db, err, updater) {
+        db.close();
+        updater["$set"]["steps.$.fields"][0]["identity"].should.equal("TST-002");
+        updater["$set"]["steps.$.fields"][0]["key"].should.equal("identifier");
+        updater["$set"]["steps.$.fields"][1]["value"].should.equal("London");
+        updater["$set"]["steps.$.fields"][1]["key"].should.equal("institution");
+        done();
+      });
     });
   });
-};
+  
+  it('should report a missing field', function(done){
+    withDB(function(db, err, result) {
+      
+      var step = {
+          name: 'participant',
+          stepOptions: { method: 'CreateEntity' },
+          fields: { 
+            identifier: { 
+              type: 'String',
+              required: true,
+              identity: true },
+            institution:  { 
+              type: 'String',
+              range: ["London", "Hamilton", "Europa"],
+              required: true }}};
+      var fields = { identifier: { value: 'TST-002' } };
+      
+      tracker.findStepUpdater(db, step, fields, {}, {"$set" : {"steps.$.fields" : []}}, function(db, err, updater) {
+        db.close();
+        
+        should.exist(err);
+        should.ok(err.hasOwnProperty("missingFields"), "err should set missingFields");
+        err["missingFields"].should.eql(["institution"]);
+        updater["$set"]["steps.$.fields"][0]["identity"].should.equal("TST-002");
+        updater["$set"]["steps.$.fields"][0]["key"].should.equal("identifier");
+        done();
+      });
+    });
+  });
+  
+  it('should build an updater for a reference', function(done){
+    withDB(function(db, err, result) {
+      
+      var step = {
+          name: 'sample',
+          stepOptions: { method: 'CreateEntity' },
+          fields: { 
+            identifier: { 
+              type: 'String',
+              required: true,
+              identity: true },
+            participantEntityRef:  { 
+              type: 'Reference',
+              entity : "participants",
+              required: true }}};
+      var fields = { identifier: { value: 'TST001BIOXPAR3' }, participantEntityRef: { value : "TST-001" } };
+      
+      tracker.findStepUpdater(db, step, fields, {}, {"$set" : {"steps.$.fields" : []}}, function(db, err, updater) {
+        db.close();
+        
+        should.not.exist(err);
+        updater["$set"]["steps.$.fields"][0]["identity"].should.equal("TST001BIOXPAR3");
+        updater["$set"]["steps.$.fields"][0]["key"].should.equal("identifier");
+        updater["$set"]["steps.$.fields"][1]["key"].should.equal("participantEntityRef");
+        should.ok(updater["$set"]["steps.$.fields"][1].hasOwnProperty("ref"));
+        updater["$set"]["steps.$.fields"][1]["ref"]._bsontype.should.equal("ObjectID");
+        done();
+      });
+    });  
+  });
+});
 
-// This test handles the case of writing an entity which doesn't yet exist, but which
-// should fail because a step field is missing and required.
-exports.testPostEntityStepNewEntityMissingInstitution = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {
-      "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
-      "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-002"}}}}}
-    }
-    
-    tracker.postEntityStep(request, function(db, err, result) {
+describe('POST /studies/GPS/participants/TST-001/step/consent', function() {
+  it('should write a date field successfully', function(done){
+    withDB(function(db, err, result) {
       db.close();
-      assert.isNotNull(err);
-      assert.match(err.err, /missing fields/);
-      assert.match(err.err, /institution/);
+      
+      var request = {
+        "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "consent"},
+        "body": {"data": {"step": {"fields": {"consentDate": {"value": "2013-04-17T00:00:00.000"}}}}}
+      }
+      
+      tracker.postEntityStep(request, function(db, err, result) {
+        db.close();
+        
+        should.not.exist(err);
+        result.should.equal("/studies/GPS/participants/TST-001/step/consent");
+        done();
+      });
     });
   });
-};
+});
 
-// This test handles the case of writing an entity which doesn't yet exist. At this
-// stage, this just tests the service. The client needs to actually handle this 
-// and respond sensibly. 
-exports.testPostEntityStepNewEntityFail = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {
-      "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
-      "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-001"}, "institution" : {"value" : "London"}}}}}
-    }
-    
-    tracker.postEntityStep(request, function(db, err, result) {
-      db.close();
-      assert.isNotNull(err);
-      assert.equal(11000, err.code);
-      assert.match(err.err, /duplicate key error/);
-    });
-  });
-};
 
-// Now we should test editing a sample step.
-exports.testPostEntitySampleStep = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {
-      "params": {"study": "GPS", "role": "samples", "identity": "TST001BIOXPAR1", "step": "assessSample"},
-      "body": {"data": {"step": {"fields": {"dnaConcentration": {"value": "100"}, "dnaQuality" : {"value" : "Moderate"}}}}}
-    }
-    
-    tracker.postEntityStep(request, function(db, err, result) {
+describe('POST /studies/GPS/participants/TST-001/step/participant', function() {
+  it('should write an identifier field successfully', function(done){
+    withDB(function(db, err, result) {
       db.close();
-      assert.isNull(err);
-      assert.equal("/studies/GPS/samples/TST001BIOXPAR1/step/assessSample", result);
+      
+      var request = {
+        "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
+        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-002"}, "institution" : {"value" : "London"}}}}}
+      }
+      
+      tracker.postEntityStep(request, function(db, err, result) {
+        db.close();
+        
+        should.not.exist(err);
+        result.should.equal("/studies/GPS/participants/TST-002/step/participant");
+        done();
+      });
     });
   });
-};
 
-// Test of creating a new sample entity. This should actually fail, as we should
-// be missing the reference to the participant, which is stipulated by the
-// participantEntityRef field link. 
-exports.testPostEntitySampleNewEntity = function(beforeExit, assert) {
-  withDB(function(db, err, result) {
-    db.close();
-    
-    var request = {
-      "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
-      "body": {"data": {"step": {"fields": {"identifier": {"value": "TST001BIOXPAR3", "identity" : true}}}}}
-    }
-    
-    tracker.postEntityStep(request, function(db, err, result) {
+  it('should report a missing field appropriately', function(done){
+    withDB(function(db, err, result) {
       db.close();
-      assert.isNotNull(err);
-      assert.match(err.err, /missing fields/);
+      
+      var request = {
+        "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
+        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-002"}}}}}
+      }
+      
+      tracker.postEntityStep(request, function(db, err, result) {
+        db.close();
+        
+        should.exist(err);
+        err.err.should.match(/missing fields/);
+        err.err.should.match(/institution/);
+        done();
+      });
     });
   });
-};
+
+  it('should report a duplicate key appropriately', function(done){
+    withDB(function(db, err, result) {
+      db.close();
+      
+      var request = {
+        "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
+        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-001"}, "institution" : {"value" : "London"}}}}}
+      }
+      
+      tracker.postEntityStep(request, function(db, err, result) {
+        db.close();
+        
+        should.exist(err);
+        err.code.should.equal(11000);
+        err.err.should.match(/duplicate key error/);
+        done();
+      });
+    });
+  });
+});
+
+describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/assessSample', function() {
+  it('should update a sample appropriately', function(done){
+    withDB(function(db, err, result) {
+      db.close();
+      
+      var request = {
+        "params": {"study": "GPS", "role": "samples", "identity": "TST001BIOXPAR1", "step": "assessSample"},
+        "body": {"data": {"step": {"fields": {"dnaConcentration": {"value": "100"}, "dnaQuality" : {"value" : "Moderate"}}}}}
+      }
+      
+      tracker.postEntityStep(request, function(db, err, result) {
+        db.close();
+        should.not.exist(err);
+        result.should.equal("/studies/GPS/samples/TST001BIOXPAR1/step/assessSample");
+        done();
+      });
+    });
+  });
+});
+
+describe('POST /studies/GPS/samples/id;new/step/sample', function() {
+  it('should report a missing field appropriately', function(done){
+    withDB(function(db, err, result) {
+      db.close();
+      
+      var request = {
+        "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
+        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST001BIOXPAR3", "identity" : true}}}}}
+      }
+      
+      tracker.postEntityStep(request, function(db, err, result) {
+        db.close();
+        
+        should.exist(err);
+        err.err.should.match(/missing fields/);
+        done();
+      });
+    });
+  });
+
+  it('should create a new sample correctly', function(done){
+    withDB(function(db, err, result) {
+      db.close();
+      
+      var request = {
+        "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
+        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST001BIOXPAR3", "identity" : true}}}}}
+      }
+      tracker.postEntityStep(request, function(db, err, result) {
+        db.close();
+        
+        should.exist(err);
+        err.err.should.match(/missing fields/);
+        done();
+      });
+    });
+  });
+});
 
