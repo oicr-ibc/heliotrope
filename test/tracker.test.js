@@ -5,7 +5,7 @@ var fs = require('fs'),
     should = require('should');
 
 function withDB(callback) {
-  fs.readFile('test/data.js', function (err, data) {
+  fs.readFile('test/data.jsinit', function (err, data) {
     if (err) throw err;
     MongoClient.connect("mongodb://localhost:27017/tracker", function(err, db) {
       db.eval(data.toString(), [], 
