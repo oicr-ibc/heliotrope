@@ -184,6 +184,106 @@ describe('GET /studies/GPS/samples/TST001BIOXPAR1/step/assessSample', function()
   });
 });
 
+describe('annotateEntity', function() {
+  it('should handle an empty query list', function(done){
+    withDB(function(db, err, result) {
+      var object = {};
+      
+      tracker.annotateEntity(db, object, [], function(o) {
+        db.close();
+        
+        object.hasOwnProperty('count').should.be.false;
+        done();
+      });
+    });
+  });
+
+  it('should be able to add a basic query', function(done){
+    withDB(function(db, err, result) {
+      var object = {};
+      
+      var query = {
+        collection : "entities",
+        query : {"role" : "participants"},
+        fields : {},
+        callback : function(object, results, next) {
+          object["values"] = results;
+          return next();
+        }
+      };
+      tracker.annotateEntity(db, object, [query], function(o) {
+        db.close();
+        
+        object.hasOwnProperty('values').should.be.true;
+        object.values.length.should.equal(1);
+        object.values[0].identity.should.equal("TST-001");
+        done();
+      });
+    });
+  });
+
+  it('should be able to add a counting query', function(done){
+    withDB(function(db, err, result) {
+      var object = {};
+      
+      var query = {
+        collection : "entities",
+        query : {"role" : "samples"},
+        fields : {},
+        cursor : function(c, callback) { 
+          return c.count(callback);
+        },
+        callback : function(object, results, next) {
+          object["values"] = results;
+          return next();
+        }
+      };
+      tracker.annotateEntity(db, object, [query], function(o) {
+        db.close();
+        
+        object.hasOwnProperty('values').should.be.true;
+        object.values.should.equal(2);
+        done();
+      });
+    });
+  });
+
+  it('should be able to handle multiple queries', function(done){
+    withDB(function(db, err, result) {
+      var object = {};
+      
+      var query1 = {
+        collection : "entities",
+        query : {"role" : "samples"},
+        fields : {},
+        callback : function(object, results, next) {
+          object["samples"] = results;
+          return next();
+        }
+      };
+      var query2 = {
+        collection : "entities",
+        query : {"role" : "observations"},
+        fields : {},
+        callback : function(object, results, next) {
+          object["observations"] = results;
+          return next();
+        }
+      };
+      tracker.annotateEntity(db, object, [query1, query2], function(o) {
+        db.close();
+        
+        object.hasOwnProperty('samples').should.be.true;
+        object.samples.length.should.equal(2);
+        object.hasOwnProperty('observations').should.be.true;
+        object.observations[0].label.should.equal("KRAS p.G12D");
+        done();
+      });
+    });
+  });
+
+})
+
 describe('findStepUpdater', function() {
   
   it('should build an simple updater', function(done){
