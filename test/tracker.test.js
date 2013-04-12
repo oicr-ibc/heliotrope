@@ -71,6 +71,25 @@ describe('GET /studies/GPS/samples', function() {
   });
 });
 
+describe('GET /studies/GPS/observations', function() {
+  it('should retrieve a list of observations', function(done){
+    withDB(function(db, err, result) {
+      db.close();
+      
+      var request = {params: {study: "GPS", role: "observations"}};
+      tracker.getEntities(request, function(db, err, result) {
+        db.close();
+        
+        should.not.exist(err);
+        result.data.length.should.equal(1);
+        result.data[0].label.should.equal("KRAS p.G12D");
+        done()
+      });
+    });
+  });
+});
+
+
 describe('GET /studies/GPS/participants/TST-001', function() {
   it('should retrieve a single identified participant', function(done){
     withDB(function(db, err, result) {
@@ -129,6 +148,7 @@ describe('GET /studies/GPS/samples/TST001BIOXPAR1', function() {
         result.data.url.should.equal("/studies/GPS/samples/TST001BIOXPAR1");
         result.data.role.should.equal("samples");
         
+        // Check we get related objects. This is especially useful for linking.
         should.exist(result.data.related);
         should.exist(result.data.related.participants);
         should.exist(result.data.related.observations);
