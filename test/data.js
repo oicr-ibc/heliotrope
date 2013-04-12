@@ -400,7 +400,7 @@ db.views.insert({
 "    <tr ng-repeat='observation in entity.data.related.observations'>" + 
 "      <td><a href='{{observation.url}}'>{{observation.label}}</a>" +
 "    </tr>" +
-"  <tbody>" +
+"  </tbody>" +
 "</table>"
 });
 
@@ -417,6 +417,23 @@ db.views.insert({
 "  <dt>DNA quality</dt>" +
 "  <dd><span heli-field name='dnaQuality'></span></dd>" +
 "</dl>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "participants",
+  "role" : "samples",
+  "label" : { "default" : "Participant" },
+  "weight" : 100,
+  "body" : 
+"<table>" +
+"  <thead></thead>" +
+"  <tbody>" +
+"    <tr ng-repeat='participant in entity.data.related.participants'>" + 
+"      <td><a href='{{participant.url}}'>{{participant.identity}}</a>" +
+"    </tr>" +
+"  </tbody>" +
+"</table>"
 });
 
 

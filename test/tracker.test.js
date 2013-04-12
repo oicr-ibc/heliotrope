@@ -90,7 +90,6 @@ describe('GET /studies/GPS/participants/TST-001', function() {
   });
 });
 
-
 describe('GET /studies/GPS/participants/TST-001/step/consent', function() {
   it('should retrieve a single identified step', function(done){
     withDB(function(db, err, result) {
@@ -110,6 +109,36 @@ describe('GET /studies/GPS/participants/TST-001/step/consent', function() {
         result.data.step.fields.consentDate.type.should.equal("Date");
         result.data.step.fields.consentDate.label.should.equal("Consent date");
         result.data.step.fields.consentDate.value.should.equal("2012-11-13T18:45:00.000");
+        done();
+      });
+    });
+  });
+});
+
+describe('GET /studies/GPS/samples/TST001BIOXPAR1', function() {
+  it('should retrieve a single identified sample', function(done){
+    withDB(function(db, err, result) {
+      db.close();
+      
+      var request = {params: {study: "GPS", role: "samples", identity: "TST001BIOXPAR1"}};
+      tracker.getEntity(request, function(db, err, result) {
+        db.close();
+        
+        should.not.exist(err);
+        result.data.identity.should.equal("TST001BIOXPAR1");
+        result.data.url.should.equal("/studies/GPS/samples/TST001BIOXPAR1");
+        result.data.role.should.equal("samples");
+        
+        should.exist(result.data.related);
+        should.exist(result.data.related.participants);
+        should.exist(result.data.related.observations);
+        result.data.related.participants.length.should.equal(1);
+        result.data.related.participants[0].role.should.equal("participants");
+        result.data.related.participants[0].identity.should.equal("TST-001");
+        result.data.related.observations.length.should.equal(1);
+        result.data.related.observations[0].role.should.equal("observations");
+        result.data.related.observations[0].label.should.equal("KRAS p.G12D");
+        
         done();
       });
     });
