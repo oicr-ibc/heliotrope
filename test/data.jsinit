@@ -320,6 +320,49 @@ db.views.ensureIndex({"studyId": 1, "role" : 1, "name": 1}, {"unique" : true});
 db.views.insert({
   "studyId" : study_id,
   "name" : "summary",
+  "role" : "studies",
+  "label" : { "default" : "Summary" },
+  "weight" : 0,
+  "body" : 
+"<dl>" +
+"  <dt>Number of participants</dt>" +
+"  <dd>{{study.data.counts.participants}}</dd>" +
+"  <dt>Number of samples</dt>" +
+"  <dd>{{study.data.counts.samples}}</dd>" +
+"  <dt>Observed mutations</dt>" +
+"  <dd>{{study.data.counts.observations}}</dd>" +
+"</dl>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "participants",
+  "role" : "studies",
+  "label" : { "default" : "Participants" },
+  "weight" : 100,
+  "body" : 
+"<dl>" +
+"  <dt>Requires collection</dt>" +
+"  <dd>Foo</dd>" +
+"</dl>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "samples",
+  "role" : "studies",
+  "label" : { "default" : "Samples" },
+  "weight" : 200,
+  "body" : 
+"<dl>" +
+"  <dt>Requires collection</dt>" +
+"  <dd>Foo</dd>" +
+"</dl>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "summary",
   "role" : "participants",
   "label" : { "default" : "Summary" },
   "weight" : 0,

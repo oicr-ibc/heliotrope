@@ -21,7 +21,9 @@
     <div id="page-header">
       <div class="page-header">
         <h1>
-          {{entity.data.identity}}<small> / <a href="{{entity.data.study.url}}">{{entity.data.study.name}}</a></small>
+          <span ng-show="entity.data.identity">{{entity.data.identity}}</span>
+          <span ng-hide="entity.data.identity">{{entity.data.label}}</span>
+          <small> / <a href="{{entity.data.study.url}}">{{entity.data.study.name}}</a></small>
         </h1>
       </div>
     </div>
@@ -31,8 +33,6 @@
     <div id="data">
       <div heli-summary></div>
     </div>
-    
-    
     
   </div>
 </div>

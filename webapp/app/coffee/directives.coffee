@@ -197,6 +197,38 @@ angular
             )
   )
   
+  .directive('heliStudySummary', ($compile, Views) ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: true
+      template: '<div class="summary"></div>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$watch 'study.data', (newValue, oldValue) -> 
+          if newValue
+            name = newValue.name
+            element = jQuery(iElement)
+            navElement = jQuery("#sidebar .nav-list")
+            views = Views.get({study: name, role: "studies"}, () ->
+              
+              # Insert the views from the server data, one at a time, picking the first to be active
+              for view in views.data
+                body = '<div class="summary-section">' + view.body  + '</div>'
+                active = ""
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append "<h3 id='" + view.name + "'>" + view.label.default + "</h3>"
+                iElement.append linkFn(scope)
+                result = navElement.append "<li><a class='nav-section' href='#" + view.name + "'>" + view.label.default + "</a></li>"
+              navElement.find("a.nav-section").click (e) ->
+                e.preventDefault()
+                e.stopPropagation()
+                target = e.currentTarget.getAttribute('href')
+                offset = jQuery(target).offset().top - 150
+                jQuery("body").animate({scrollTop: offset},'slow');
+            )
+  )
+  
   .directive('heliChooseStep', () ->
     result =
       restrict: "A"
