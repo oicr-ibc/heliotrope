@@ -72,10 +72,10 @@ function obj() {
 db.studies.ensureIndex({name:1},{unique:true});
 db.steps.ensureIndex({studyId:1,appliesTo:1,name:1},{unique:true});
 
-study_id = db.studies.find({"name" : "GPS"}).next()._id;
+var study_id = ObjectId(db.studies.find({"name" : "GPS"}).next()._id.str);
 
 function get_step_id(study_id, appliesTo, name) {
-  return db.steps.find({"studyId" : study_id, "appliesTo" : appliesTo, "name" : name}).next()._id;
+  return ObjectId(db.steps.find({"studyId" : study_id, "appliesTo" : appliesTo, "name" : name}).next()._id.str);
 }
 
 db.steps.insert({
@@ -83,6 +83,7 @@ db.steps.insert({
   "appliesTo" : "participants",
   "weight" : 0,
   "name" : "participant",
+  "showSummary" : false,
   "stepOptions" : {
     "method" : "CreateEntity"
   },
@@ -111,6 +112,7 @@ db.steps.insert({
   "weight" : 10,
   "appliesTo" : "participants",
   "name" : "enrolment",
+  "showSummary" : true,
   "label" : {
     "default" : "Enrolment",
   },
@@ -129,6 +131,7 @@ db.steps.insert({
   "appliesTo" : "participants",
   "weight" : 20,
   "name" : "consent",
+  "showSummary" : true,
   "label" : { "default" : "Consent" },
   "fields" : {
     "consentDate" : {
@@ -145,6 +148,7 @@ db.steps.insert({
   "appliesTo" : "participants",
   "weight" : 30,
   "name" : "biopsy",
+  "showSummary" : true,
   "label" : { "default" : "Biopsy" },
   "fields" : {
     "biopsyDate" : {
@@ -167,6 +171,7 @@ db.steps.insert({
   "appliesTo" : "participants",
   "weight" : 40,
   "name" : "pathology",
+  "showSummary" : true,
   "label" : { "default" : "Pathology" },
   "fields" : {
     "pathologyDate" : {
@@ -183,6 +188,7 @@ db.steps.insert({
   "appliesTo" : "participants",
   "weight" : 100,
   "name" : "expertPanel",
+  "showSummary" : true,
   "label" : { "default" : "Expert panel" },
   "fields" : {
     "expertPanelDate" : {
@@ -205,6 +211,7 @@ db.steps.insert({
   "studyId" : study_id,
   "appliesTo" : "participants",
   "name" : "addSample",
+  "showSummary" : false,
   "label" : { "default" : "Add sample" },
   "weight" : 400,
   "url" : "{{study.url}}/samples/id;new/step/sample?participantEntityRef={{identity}}"
@@ -219,6 +226,7 @@ db.steps.insert({
     "parentField": "participantEntityRef"
   },
   "name" : "sample",
+  "showSummary" : false,
   "label" : { "default" : "Create sample" },
   "fields" : {
     "identifier" : {
@@ -264,6 +272,7 @@ db.steps.insert({
   "appliesTo" : "samples",
   "weight" : 10,
   "name" : "assessSample",
+  "showSummary" : true,
   "label" : { "default" : "Record sample quality" },
   "fields" : {
     "dnaConcentration" : {
@@ -285,6 +294,7 @@ db.steps.insert({
   "appliesTo" : "samples",
   "weight" : 20,
   "name" : "markAsCollected",
+  "showSummary" : true,
   "label" : { "default" : "Mark as collected" }
 });
 
@@ -293,6 +303,7 @@ db.steps.insert({
   "appliesTo" : "observations",
   "weight" : 0,
   "name" : "observation",
+  "showSummary" : false,
   "stepOptions" : {
     "method" : "CreateEntity",
     "parentField": "sampleEntityRef"
@@ -341,10 +352,9 @@ db.views.insert({
   "label" : { "default" : "Participants" },
   "weight" : 100,
   "body" : 
-"<dl>" +
-"  <dt>Requires collection</dt>" +
-"  <dd>Foo</dd>" +
-"</dl>"
+"<div heli-study-entities role='participants' label='Participants'>" +
+"</div>" + 
+"<br>"
 });
 
 db.views.insert({
@@ -354,10 +364,9 @@ db.views.insert({
   "label" : { "default" : "Samples" },
   "weight" : 200,
   "body" : 
-"<dl>" +
-"  <dt>Requires collection</dt>" +
-"  <dd>Foo</dd>" +
-"</dl>"
+"<div heli-study-entities role='samples' label='Samples'>" +
+"</div>" + 
+"<br>"
 });
 
 db.views.insert({

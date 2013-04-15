@@ -286,6 +286,58 @@ angular
     result
   )
   
+  .directive('heliStudyEntities', (Study) ->
+    result = 
+      restrict: "A"
+      replace: true
+      template: '<table class="table table-bordered table-striped table-condensed">' +
+                '<thead>' +
+                '<tr>' +
+                '<th class="step-headers">XXXX</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody class="step-body">' +
+                '</tbody>' + 
+                '</table>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$watch 'study', (newValue, oldValue) -> 
+          if newValue
+            role = iAttrs.role
+            label = iAttrs.label
+            header = iElement.find(".step-headers")
+            body = iElement.find(".step-body")
+            header.text(label)
+            stepTable = {}
+            stepIndex = 1
+            for step in newValue.data.steps[role]
+              if step.showSummary
+                stepTable[step._id] = stepIndex++
+                newHeader = jQuery("<th>" + step.label + "</th>")
+                header.after newHeader
+                header = newHeader
+            query = Study.get({study: newValue.data.name, q: 'getEntities', role: role}, () ->
+              
+              for record in query.data
+                row = ("" for i in [1..stepIndex])
+                row[0] = "<a href='" + record.url + " '>" + record.identity + "</a>"
+                for recordStep in record.steps
+                  index = stepTable[recordStep.stepRef]
+                  row[index] = '<i class="icon-ok"></i>' if index
+                row = ("<td>" + rowData + "</td>" for rowData in row).join("")
+                jQuery("<tr>" + row + "</tr>").appendTo(body)
+              
+              
+#              jQuery(iElement).dataTable(
+#                sPaginationType: "bootstrap"
+#                bPaginate: false
+#                aaData: query.data
+#                aoColumns: [
+#                  { "sTitle": "Participant", "mData" : "identity" }
+#                ]
+#              )
+            )
+  )
+  
   # Add the directive for the genome frequencies data, which has an optional marker
   # included for a current location. This depends on d3, and is therefore requiring an
   # svg enabled browser.
