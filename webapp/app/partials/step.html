@@ -1,7 +1,7 @@
 <div class="row">
   <div class="span3" id="sidebar"></div>
   <div class="span9">
-
+  
     <div id="page-header">
       <div class="page-header">
         <h1>
@@ -10,6 +10,8 @@
       </div>
     </div>
     
+    <div heli-error-alert field="error.data.error.err"></div>
+
     <div ng-repeat="alert in entity.data.alerts"><div heli-alert alert="{{alert}}"></div></div>
 
     <form class="form-horizontal">

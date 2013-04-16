@@ -139,6 +139,24 @@ angular
       template: '<a href="http://www.ncbi.nlm.nih.gov/pubmed/{{reference.id}}" rel="external">{{reference.type}}:{{reference.id}}</a>'
   )
   
+  .directive('heliErrorAlert', ($compile) ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: true
+      scope: false
+      link: (scope, iElement, iAttrs, controller) ->
+        errorField = iAttrs.field
+        console.log "Field 1", errorField
+        scope.$watch errorField, (newValue, oldValue) -> 
+          if newValue
+            console.log "Field 2", newValue
+            html = '<div class="alert alert-error">' +
+                   '<button type="button" class="close" data-dismiss="alert">&times;</button>' + 
+                   '<strong>Error.</strong> ' + newValue + '</div>'
+            jQuery(iElement).html(html)
+  )
+  
   # Directive to implement a field access - primarily intended for use within templates
   # defined on the server. The field value is located from the entity, and then the
   # display value inserted, if it exists. 

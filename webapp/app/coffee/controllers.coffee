@@ -58,4 +58,5 @@
         $location.path(entityStep.data.url).replace()
       (error) ->
         console.log error
+        $scope.error = error
     )
