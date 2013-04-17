@@ -64,6 +64,69 @@ angular
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
+              when "file"
+                body = '<div>' +
+                       '<input type="file" class="control" id="{{fieldKey}}" style="display: none">' + 
+                       '<div class="input-append">' +
+                       '<input id="{{fieldKey}}-text" class="input-large file-display" type="text">' +
+                       '<a class="btn">Browse</a>' +
+                       '</div>'
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append linkFn(scope)
+                iElement.find(".btn").click (e) ->
+                  iElement.find(".control").click()
+                iElement.find(".control").change (e) ->
+                  iElement.find(".file-display").val jQuery(this).val()
+                form = iElement.parents("form")
+                
+                # File-containing forms are a little different. We actually want to 
+                # push the files somehow through the service. The step can then take these
+                # values and handle the data. The question is: how to incorporate the 
+                # file data into the final submission process for the step, and still
+                # push to the same URL. That should really involve capturing the form
+                # submission process. 
+                #
+                # We actually want to stop (defer) the regular form submission process
+                # for these cases. That involves removing the current click handler for
+                # the submit button. 
+                
+                form.fileupload
+                  dataType: 'json'
+                  url: scope.entity.data.serviceUrl + "/files"
+                  
+                  add: (e, data) =>
+                    scope.$apply (s) =>
+                      fileCount = data.files.length
+                      files = (data.files[i] for i in [0..fileCount])
+                      scope.files = files
+                      scope.progressVisible = false
+                      scope.$broadcast('fileadded', {files: fileCount})
+                      scope.toUpload = true
+                      
+                      form.find(".submit").off('click')
+                      
+                      form.find(".submit").on('click', (e) =>
+                        e.preventDefault()
+                        e.stopPropagation()
+                        data.submit()
+                        false
+                      )
+                  done: (e, data) =>
+                    # We should get a response here, and if we do, and if we get some files back, we
+                    # can then add them into the control data and re-initiate the form submission. This
+                    # will then put the file identifiers into the form value. Sorted. 
+                    identifiers = data.result.error["files"]
+                    scope.fieldValue.value = identifiers
+                    scope.$apply()
+                    
+                    # And now, hey presto, let's submit the form for real now. Of course, we do this using
+                    # Angular rather than naive stuff
+                    scope.update(scope.entity)
+                    
+                  progress: (e, data) =>
+                  progressall: (e, data) =>
+                  
               when "date"
                 body = '<input type="text" class="datepicker" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">'
                 template = angular.element(body)
@@ -147,10 +210,8 @@ angular
       scope: false
       link: (scope, iElement, iAttrs, controller) ->
         errorField = iAttrs.field
-        console.log "Field 1", errorField
         scope.$watch errorField, (newValue, oldValue) -> 
           if newValue
-            console.log "Field 2", newValue
             html = '<div class="alert alert-error">' +
                    '<button type="button" class="close" data-dismiss="alert">&times;</button>' + 
                    '<strong>Error.</strong> ' + newValue + '</div>'
@@ -245,6 +306,24 @@ angular
                 offset = jQuery(target).offset().top - 150
                 jQuery("body").animate({scrollTop: offset},'slow');
             )
+  )
+  
+  .directive('heliStepForm', () ->
+    result =
+      restrict: 'A',
+      replace: true,
+      transclude: true,
+      template: '<div>' +
+                '<form class="form-horizontal">' +
+                '<div class="body" ng-transclude></div>' +
+                '<div class="control-group">' +
+                '<div class="controls">' +
+                '<button type="submit" class="btn btn-primary submit" ng-click="update(entity)">Save</button>' +
+                '</div>' +
+                '</div>' +
+                '</form>' +
+                '<pre>form = {{entity.data.step | json}}</pre>' +
+                '</div>'
   )
   
   .directive('heliChooseStep', () ->

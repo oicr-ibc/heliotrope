@@ -47,16 +47,18 @@
   console.log "@EntityStepController", $routeParams
   $scope.entity = EntityStep.get($routeParams
     (entityStep) ->
-      
+      console.log "Got entity step", entityStep, this
     (error) ->
       console.log error
   )
+  
+  # This is where the step data is pushed back to the service. 
   $scope.update = (entity) =>
     entity.$save(
       {study: $routeParams.study, role: $routeParams.role, identity: $routeParams.identity, step: $routeParams.step}, 
       (entityStep, responseHeaders) =>
         $location.path(entityStep.data.url).replace()
       (error) ->
-        console.log error
+        console.log "Error from $save", error
         $scope.error = error
     )

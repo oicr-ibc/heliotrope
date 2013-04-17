@@ -210,6 +210,23 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "appliesTo" : "participants",
+  "weight" : 300,
+  "name" : "genomics",
+  "showSummary" : false,
+  "label" : { "default" : "Genomics" },
+  "fields" : {
+    "file" : {
+      "controlType" : "file",
+      "type" : "File",
+      "required" : true,
+      "label" : { "default" : "File" }
+    }
+  }
+});
+
+db.steps.insert({
+  "studyId" : study_id,
+  "appliesTo" : "participants",
   "name" : "addSample",
   "showSummary" : false,
   "label" : { "default" : "Add sample" },

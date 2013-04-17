@@ -34,7 +34,11 @@ try {
 module.exports.config = config;
 
 app.configure(function(){
-  app.use(express.bodyParser());
+  app.use(express.bodyParser({
+    keepExtensions: true,
+    limit: 10000000, // 10M limit
+    defer: true  
+  }));
   app.use(express.static(process.cwd() + '/webapp'));
   app.use(express.logger());
 
