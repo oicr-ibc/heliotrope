@@ -62,3 +62,18 @@
         console.log "Error from $save", error
         $scope.error = error
     )
+    
+@SearchFormController = ($scope, $routeParams, $timeout, $location, Search) ->
+  console.log "@SearchFormController", $routeParams, $scope
+  $scope.q = '';
+  $scope.submit = () ->
+    $location.path("search")
+    $location.search("q", $scope.q)
+
+@SearchController = ($scope, $routeParams, $timeout, Search) ->
+  $scope.search = Search.get($routeParams
+    (entity) ->
+      console.log "@SearchController", $routeParams, $scope
+    (error) ->
+      console.log error
+  )

@@ -14,6 +14,12 @@ angular.module('knowledge.services', ['ngResource'])
         method: 'GET'
     )
   )
+  .factory('Search', ($resource) ->
+    $resource('/knowledge/api/search', {},
+      query: 
+        method: 'GET'
+    )
+  )
   .factory('Variant', ($resource) ->
     Variant = $resource('/knowledge/api/variants/:variant', {},
       query: 

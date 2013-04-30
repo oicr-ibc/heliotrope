@@ -9,7 +9,8 @@
 
 var fs = require("fs"),
     util = require('util'),
-    express = require('express');
+    express = require('express')
+    polyfill = require('./lib/polyfill');
 
 var config = { "db": {
   'port': 27017,

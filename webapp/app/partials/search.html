@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="span12">
+
+    <div id="page-header">
+      <div class="page-header">
+        <h1>Search results</h1>
+      </div>
+    </div>
+    
+    <ul class="search">
+      <li ng-repeat="hit in search.data.results">
+        <a ng-href="{{hit.url}}">{{hit.type | capitalize}}: {{hit.label}}</a>
+      </li>
+    </ul>
+    
+  </div>
+</div>
