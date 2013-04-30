@@ -364,7 +364,7 @@ angular
                 '</tbody>' + 
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'gene.data.sections.frequencies.data.tumour', (newValue, oldValue) -> 
+        scope.$watch 'entity.data.sections.frequencies.data.tumour', (newValue, oldValue) -> 
           if (newValue)
             renderPercent = (x) -> 
               formatter = new NumberFormat(x.frequency * 100.0)
@@ -437,7 +437,10 @@ angular
   
   # Add the directive for the genome frequencies data, which has an optional marker
   # included for a current location. This depends on d3, and is therefore requiring an
-  # svg enabled browser.
+  # svg enabled browser. 
+  #
+  # Note that a variant is a bit different, and we ought to handle it accordingly.
+  # Genes can be displayed immediately. 
   
   .directive('heliStructureDistribution', () ->
     result = 
@@ -447,7 +450,7 @@ angular
       scope: false
       template: '<div class="diagram"></div>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'gene.data', (newValue, oldValue) -> 
+        scope.$watch 'entity.data', (newValue, oldValue) -> 
           if (newValue)
             
             display = jQuery(iElement)
@@ -540,17 +543,19 @@ angular
               .enter()
               .append("g")
               .attr("class", "domain")
-              
+              .attr("rel", "tooltip")
+              .attr("title", textDomainFunction)
+               
             domainGroups.append("rect")
               .attr("x", xOffsetDomainFunction)
               .attr("y", yOffsetDomainFunction)
               .attr("width", widthDomainFunction)
               .attr("height", heightDomainFunction)
-              .attr("rel", "tooltip")
-              .attr("title", textDomainFunction)
               .style("fill", colorDomainFunction)
               
-            display.find("g.domain rect").tooltip({container: "body"})
+            domainElements = jQuery(display).find("g.domain")
+            console.log "domainElements", domainElements
+            domainElements.tooltip({container: "body", placement: "right"})
             # console.debug display.find("g.domain rect")
   )
   

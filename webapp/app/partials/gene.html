@@ -7,7 +7,7 @@
     <div id="page-header">
       <div class="page-header">
         <h1>
-          {{gene.data.name}}<small> / Gene</small>
+          {{entity.data.name}}<small> / Gene</small>
         </h1>
       </div>
     </div>
@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <div id="mutations" ng-show="gene.data.sections.mutations">
+      <div id="mutations" ng-show="entity.data.sections.mutations">
         <div class="row-fluid" id="mutations-view">
           <div class="tab-content">
             <div class="tab-pane active" id="mutations">
@@ -48,7 +48,7 @@
               </div>
               <div id="mutations-list" class="section-end">
                 <ul class="inline">
-                  <li ng-repeat="mutation in gene.data.sections.mutations.data"><a href="/variants/{{mutation._id}}">{{mutation.name}}</a></li>
+                  <li ng-repeat="mutation in entity.data.sections.mutations.data"><a href="/variants/{{mutation._id}}">{{mutation.name}}</a></li>
                 </ul>
               </div>
             </div>
@@ -69,7 +69,7 @@
         </div>
       </div>
 
-      <div id="gene_census_info" ng-show="gene.data.sections.gene_census_data">
+      <div id="gene_census_info" ng-show="entity.data.sections.gene_census_data">
         <div class="row-fluid" id="cancer-gene-census-view">
           <div class="tab-content">
             <div class="tab-pane active" id="census-data-tab">
@@ -79,34 +79,34 @@
               <div id="cancer-gene-census-table">
                 <dl>
                   <dt>Full name</dt>
-                  <dd>{{gene.data.sections.gene_census_data.data.name}}</dd>
+                  <dd>{{entity.data.sections.gene_census_data.data.name}}</dd>
                   <dt>Chromosomal band</dt>
-                  <dd>{{gene.data.sections.gene_census_data.data.chromosome_band}}</dd>
+                  <dd>{{entity.data.sections.gene_census_data.data.chromosome_band}}</dd>
                   <dt>Germline</dt>
-                  <dd ng-show="gene.data.sections.gene_census_data.data.germline">Yes</dd>
-                  <dd ng-show="! gene.data.sections.gene_census_data.data.germline">No</dd>
+                  <dd ng-show="entity.data.sections.gene_census_data.data.germline">Yes</dd>
+                  <dd ng-show="! entity.data.sections.gene_census_data.data.germline">No</dd>
                   <dt>Somatic</dt>
-                  <dd ng-show="gene.data.sections.gene_census_data.data.somatic">Yes</dd>
-                  <dd ng-show="! gene.data.sections.gene_census_data.data.somatic">No</dd>
+                  <dd ng-show="entity.data.sections.gene_census_data.data.somatic">Yes</dd>
+                  <dd ng-show="! entity.data.sections.gene_census_data.data.somatic">No</dd>
                   <dt>Tissue types</dt>
                   <dd>
                     <ul class="inline">
                       <li
-                        ng-repeat="type in gene.data.sections.gene_census_data.data.tissue_types">{{type}}</li>
+                        ng-repeat="type in entity.data.sections.gene_census_data.data.tissue_types">{{type}}</li>
                     </ul>
                   </dd>
                   <dt>Mutation types</dt>
                   <dd>
                     <ul class="inline">
                       <li
-                        ng-repeat="type in gene.data.sections.gene_census_data.data.mutation_types">{{type}}</li>
+                        ng-repeat="type in entity.data.sections.gene_census_data.data.mutation_types">{{type}}</li>
                     </ul>
                   </dd>
                   <dt>Somatic tumour types</dt>
                   <dd>
                     <ul class="inline">
                       <li
-                        ng-repeat="type in gene.data.sections.gene_census_data.data.tumour_types_somatic">{{type}}</li>
+                        ng-repeat="type in entity.data.sections.gene_census_data.data.tumour_types_somatic">{{type}}</li>
                     </ul>
                   </dd>
                 </dl>
@@ -141,32 +141,32 @@
               <div id="genomics-table">
                 <dl>
                   <dt>Chromosome</dt>
-                  <dd>{{gene.data.sections.location.data.chromosome}}</dd>
+                  <dd>{{entity.data.sections.location.data.chromosome}}</dd>
                   <dt>Genomic coordinates</dt>
-                  <dd>{{gene.data.sections.location.data.chromosome}}:{{gene.data.sections.location.data.txStart}}-{{gene.data.sections.location.data.txEnd}}</dd>
+                  <dd>{{entity.data.sections.location.data.chromosome}}:{{entity.data.sections.location.data.txStart}}-{{entity.data.sections.location.data.txEnd}}</dd>
                   <dt>Ensembl gene</dt>
                   <dd>
-                    <a href="http://www.ensembl.org/id/{{gene.data.id}}"
-                      rel="external">{{gene.data.id}}</a>
+                    <a href="http://www.ensembl.org/id/{{entity.data.id}}"
+                      rel="external">{{entity.data.id}}</a>
                   </dd>
                   <dt>Ensembl transcript</dt>
                   <dd>
-                    <a href="http://www.ensembl.org/id/{{gene.data.sections.transcripts.data.canonicalTranscriptId}}"
-                      rel="external">{{gene.data.sections.transcripts.data.canonicalTranscriptId}}</a>
+                    <a href="http://www.ensembl.org/id/{{entity.data.sections.transcripts.data.canonicalTranscriptId}}"
+                      rel="external">{{entity.data.sections.transcripts.data.canonicalTranscriptId}}</a>
                   </dd>
                   <dt>RefSeq identifiers</dt>
                   <dd>
                     <ul class="inline">
-                      <li ng-repeat="refseq in gene.data.sections.transcripts.data.records[0].refSeqId">
+                      <li ng-repeat="refseq in entity.data.sections.transcripts.data.records[0].refSeqId">
                         <a href="http://www.ncbi.nlm.nih.gov/nuccore/{{refseq}}" rel="external">{{refseq}}</a>
                       </li>
                     </ul>
                   </dd>
                   <dt>Gene size</dt>
-                  <dd>{{gene.data.sections.transcripts.data.records[0].lengthAminoAcid}} (aa),
-                      {{gene.data.sections.transcripts.data.records[0].lengthDNA}} (bp)</dd>
+                  <dd>{{entity.data.sections.transcripts.data.records[0].lengthAminoAcid}} (aa),
+                      {{entity.data.sections.transcripts.data.records[0].lengthDNA}} (bp)</dd>
                   <dt>Number of exons</dt>
-                  <dd>{{gene.data.sections.transcripts.data.records[0].numberOfExons}}</dd>
+                  <dd>{{entity.data.sections.transcripts.data.records[0].numberOfExons}}</dd>
                 </dl>
               </div>
 

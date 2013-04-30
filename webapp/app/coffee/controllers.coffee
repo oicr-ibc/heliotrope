@@ -12,17 +12,17 @@
   )
 
 @GeneController = ($scope, $routeParams, $timeout, Gene) ->
-  $scope.gene = Gene.get($routeParams
-    (gene) ->
-      $scope.description = gene.data.sections.description.data
+  $scope.entity = Gene.get($routeParams
+    (entity) ->
+      $scope.description = entity.data.sections.description.data
     (error) ->
       console.log error
   )
 
 @VariantController = ($scope, $routeParams, $timeout, Variant) ->
-  $scope.variant = Variant.get($routeParams
-    (variant) ->
-      $scope.ordered = variant.getOrderedPositions()
+  $scope.entity = Variant.get($routeParams
+    (entity) ->
+      $scope.ordered = entity.getOrderedPositions()
     (error) ->
       console.log error
   )
