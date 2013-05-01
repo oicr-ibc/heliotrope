@@ -26,9 +26,9 @@
                   <dd>{{description.fullName}}</dd>
                   <dt>Synonyms</dt>
                   <dd>
-                    <ul class="inline">
-                      <li ng-repeat="synonym in description.synonyms">{{synonym}}</li>
-                    </ul>
+                    <span class="inline-list">
+                      <span class="inline-item" ng-repeat="synonym in description.synonyms">{{synonym}}</span>
+                    </span>
                   </dd>
                   <dt>Summary</dt>
                   <dd>{{description.summary}}</dd>
@@ -47,9 +47,9 @@
                 <h3 class="pull-left" id="mutations">Common mutations</h3>
               </div>
               <div id="mutations-list" class="section-end">
-                <ul class="inline">
-                  <li ng-repeat="mutation in entity.data.sections.mutations.data"><a href="/variants/{{mutation._id}}">{{mutation.name}}</a></li>
-                </ul>
+                <span class="inline-list">
+                  <span class="inline-item" ng-repeat="mutation in entity.data.sections.mutations.data"><a href="/variants/{{mutation._id}}">{{mutation.name}}</a></span>
+                </span>
               </div>
             </div>
           </div>
@@ -90,24 +90,24 @@
                   <dd ng-show="! entity.data.sections.gene_census_data.data.somatic">No</dd>
                   <dt>Tissue types</dt>
                   <dd>
-                    <ul class="inline">
-                      <li
-                        ng-repeat="type in entity.data.sections.gene_census_data.data.tissue_types">{{type}}</li>
-                    </ul>
+                    <span class="inline-list">
+                      <span class="inline-item"
+                        ng-repeat="type in entity.data.sections.gene_census_data.data.tissue_types">{{type}}</span>
+                    </span>
                   </dd>
                   <dt>Mutation types</dt>
                   <dd>
-                    <ul class="inline">
-                      <li
-                        ng-repeat="type in entity.data.sections.gene_census_data.data.mutation_types">{{type}}</li>
-                    </ul>
+                    <span class="inline-list">
+                      <span class="inline-item"
+                        ng-repeat="type in entity.data.sections.gene_census_data.data.mutation_types">{{type}}</span>
+                    </span>
                   </dd>
                   <dt>Somatic tumour types</dt>
                   <dd>
-                    <ul class="inline">
-                      <li
-                        ng-repeat="type in entity.data.sections.gene_census_data.data.tumour_types_somatic">{{type}}</li>
-                    </ul>
+                    <span class="inline-list">
+                      <span class="inline-item"
+                        ng-repeat="type in entity.data.sections.gene_census_data.data.tumour_types_somatic">{{type}}</span>
+                    </span>
                   </dd>
                 </dl>
               </div>
@@ -156,11 +156,11 @@
                   </dd>
                   <dt>RefSeq identifiers</dt>
                   <dd>
-                    <ul class="inline">
-                      <li ng-repeat="refseq in entity.data.sections.transcripts.data.records[0].refSeqId">
+                    <span class="inline-list">
+                      <span class="inline-item" ng-repeat="refseq in entity.data.sections.transcripts.data.records[0].refSeqId">
                         <a href="http://www.ncbi.nlm.nih.gov/nuccore/{{refseq}}" rel="external">{{refseq}}</a>
-                      </li>
-                    </ul>
+                      </span>
+                    </span>
                   </dd>
                   <dt>Gene size</dt>
                   <dd>{{entity.data.sections.transcripts.data.records[0].lengthAminoAcid}} (aa),
