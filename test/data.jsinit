@@ -317,6 +317,26 @@ db.steps.insert({
 
 db.steps.insert({
   "studyId" : study_id,
+  "appliesTo" : "samples",
+  "weight" : 10,
+  "name" : "recordResults",
+  "showSummary" : true,
+  "label" : { "default" : "Record results" },
+  "plugin" : {
+    "module" : "vcf",
+    "method" : "handleVcf"
+  },
+  "fields" : {
+    "dataFile" : {
+      "controlType" : "file",
+      "type" : "File",
+      "label" : { "default" : "Data file" }
+    }
+  }
+});
+
+db.steps.insert({
+  "studyId" : study_id,
   "appliesTo" : "observations",
   "weight" : 0,
   "name" : "observation",
