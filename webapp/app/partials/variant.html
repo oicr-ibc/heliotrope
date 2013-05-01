@@ -143,6 +143,27 @@
         </div>
       </div>
       
+      <div id="drugs">
+        <div class="row-fluid" id="drugs-view">
+          <div class="tab-content">
+            <div class="tab-pane active" id="drugs-tab">
+              <div class="row-fluid">
+                <h3 class="pull-left" id="drugs-header">Drugs</h3>
+              </div>
+              <div class="row-fluid" ng-show="entity.data.sections.clinical">
+                <div ng-repeat="agent in entity.data.sections.clinical.data.agents">
+                  <div class="well well-small">
+                    <dl style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
+                      <dt>{{agent.sensitivity | keywordToString}}</dt>
+                      <dd>{{agent.name}}</dd>
+                     </dl>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div id="genomics">
         <div class="row-fluid" id="genomics-view">
         <div class="tab-content">

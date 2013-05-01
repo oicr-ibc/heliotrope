@@ -21,3 +21,8 @@ angular
     (input) ->
       return input.substring(0, 1).toUpperCase() + input.substring(1)
   )
+  .filter('keywordToString', () ->
+    (input) ->
+      value = input.substring(0, 1).toUpperCase() + input.substring(1)
+      return value.replace(/_/g, " ").replace(/,\b/g, ", ")
+  )
