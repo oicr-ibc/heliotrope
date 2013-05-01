@@ -88,31 +88,60 @@
       </div>
       
       <div id="clinical-action">
-      <div class="row-fluid" id="clinical-action-view">
-        <div class="tab-content">
-          <div class="tab-pane active" id="clinical-action-tab">
-            <div class="row-fluid">
-              <h3 class="pull-left" id="clinical-action-header">Clinical summary</h3>
-            </div>
-            
-            <div class="row-fluid" ng-show="entity.data.sections.clinical">
-                <p>This mutation is: <b>{{entity.data.sections.clinical.data.action.type}}</b></p>
-                <p ng-show="entity.data.sections.clinical.action.comment">{{entity.data.sections.clinical.action.comment}}</p>
-                <p>Sources: 
-                <span class="inline-list"">
-                <span class="inline-item" ng-repeat="reference in entity.data.sections.clinical.data.action.reference">
-                <span heli-reference reference="reference"></span> 
-                </span>
-                </span>
-                </p>
+        <div class="row-fluid" id="clinical-action-view">
+          <div class="tab-content">
+            <div class="tab-pane active" id="clinical-action-tab">
+              <div class="row-fluid">
+                <h3 class="pull-left" id="clinical-action-header">Clinical summary</h3>
+              </div>
+              
+              <div class="row-fluid" ng-show="entity.data.sections.clinical">
+                  <p>This mutation is: <b>{{entity.data.sections.clinical.data.action.type}}</b></p>
+                  <p ng-show="entity.data.sections.clinical.action.comment">{{entity.data.sections.clinical.action.comment}}</p>
+                  <p>Sources: 
+                  <span class="inline-list"">
+                  <span class="inline-item" ng-repeat="reference in entity.data.sections.clinical.data.action.reference">
+                  <span heli-reference reference="reference"></span> 
+                  </span>
+                  </span>
+                  </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
-      </div>
 
-      <div id="clinical-significance"></div>
+      <div id="clinical-significance">
+        <div class="row-fluid" id="clinical-significance-view">
+          <div class="tab-content">
+            <div class="tab-pane active" id="clinical-significance-tab">
+              <div class="row-fluid">
+                <h3 class="pull-left" id="clinical-significance-header">Clinical significance</h3>
+              </div>
+              <div class="row-fluid" ng-show="entity.data.sections.clinical">
+                <div ng-repeat="(key, value) in classifiedSignifance | orderBy:predicate:+key">
+                  <h4>{{key | capitalize}}</h4>
+                  <div ng-repeat="significance in classifiedSignifance[key] | orderBy:predicate:+levelOfEvidence">
+                    <div class="well well-small">
+                    
+                    <p>The clinical significance of this mutation has been assessed by <b>{{significance.studyType}}</b> clinical trials.</p>
+                    <p>{{significance.comment}}</p>
+                    <p>Sources:
+                      <span class="inline-list"">
+                      <span class="inline-item" ng-repeat="reference in significance.reference">
+                      <span heli-reference reference="reference"></span> 
+                      </span>
+                      </span>
+                    
+                      Level of evidence: {{significance.levelOfEvidence}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div id="genomics">
         <div class="row-fluid" id="genomics-view">

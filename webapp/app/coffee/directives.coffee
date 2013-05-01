@@ -551,7 +551,6 @@ angular
               .style("fill", colorDomainFunction)
               
             domainElements = jQuery(display).find("g.domain")
-            console.log "domainElements", domainElements
             domainElements.tooltip({container: "body", placement: "right"})
             # console.debug display.find("g.domain rect")
   )

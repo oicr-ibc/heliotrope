@@ -23,6 +23,15 @@
   $scope.entity = Variant.get($routeParams
     (entity) ->
       $scope.ordered = entity.getOrderedPositions()
+      clinical = entity.data.sections.clinical
+      if clinical
+        # Build a significance type list in the scope we can use to repeat and filter
+        # the data accordingly.
+        types = {}
+        types[sig.tumourType] = [] for sig in clinical.data.significance
+        types[sig.tumourType].push(sig) for sig in clinical.data.significance
+        $scope.classifiedSignifance = types
+        console.log "Scope", $scope
     (error) ->
       console.log error
   )
@@ -64,7 +73,6 @@
     )
     
 @SearchFormController = ($scope, $routeParams, $timeout, $location, Search) ->
-  console.log "@SearchFormController", $routeParams, $scope
   $scope.q = '';
   $scope.submit = () ->
     $location.path("search")
