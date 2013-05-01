@@ -502,26 +502,23 @@ angular
               .attr("transform", "translate(0," + (h - 0.5) + ")")
               .call(xAxis)
              
-            variantData = undefined
-            
+            variantData = newValue.sections.positions
             if variantData
-              variantPositionData = variantData.get("data")["sections"]["positions"]
-              if variantPositionData
-                codon = variantPositionData.data[0].codon
-                if codon
-                  codon = codon.replace(/(?:-\d+)$/, "")
-                  chart.append("line")
-                    .attr("x1", xCodon(codon))
-                    .attr("x2", xCodon(codon))
-                    .attr("y1", h - 0.5)
-                    .attr("y2", h - 20 + 0.5)
-                    .attr("stroke", "#000")
-                    .attr("stroke-width", 2)
-                  chart.append("circle")
-                    .attr("cx", xCodon(codon))
-                    .attr("cy", h - 20 + 0.5)
-                    .attr("r", 7)
-                    .attr("fill", "#c55")
+              codon = variantData.data[0].codon
+              if codon
+                codon = codon.replace(/(?:-\d+)$/, "")
+                chart.append("line")
+                  .attr("x1", xCodon(codon))
+                  .attr("x2", xCodon(codon))
+                  .attr("y1", h - 0.5)
+                  .attr("y2", h - 20 + 0.5)
+                  .attr("stroke", "#000")
+                  .attr("stroke-width", 2)
+                chart.append("circle")
+                  .attr("cx", xCodon(codon))
+                  .attr("cy", h - 20 + 0.5)
+                  .attr("r", 7)
+                  .attr("fill", "#c55")
       
             domains = (element for element in transcript.domains when element.gffSource is "Pfam")
       #      console.debug 'transcript', transcript
