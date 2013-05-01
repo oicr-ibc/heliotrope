@@ -276,6 +276,36 @@ angular
             )
   )
   
+  .directive('heliSection', () ->
+      priority: 1
+      restrict: "A"
+      replace: true
+      transclude: true
+      scope: { title: '@title', id: '@bodyId' }
+      template: '<div class="row-fluid">' +
+                '<div class="tab-content">' +
+                '<div class="tab-pane active">' +
+                '<div class="row-fluid">' + 
+                '<h3 class="pull-left" id="{{id}}">{{title}}</h3>' +
+                '</div>' +
+                '<div class="body" ng-transclude></div>' +
+                '</div' +
+                '</div>'
+      link: (scope, iElement, iAttrs, controller) ->
+        navElement = jQuery("#sidebar .nav-list")
+        id = iAttrs["bodyId"]
+        title = iAttrs["title"]
+        newElement = jQuery("<li><a class='nav-section' href='#" + id + "'>" + title + "</a></li>")
+        newElement.appendTo(navElement)
+        newElement.click (e) ->
+          e.preventDefault()
+          e.stopPropagation()
+          target = e.currentTarget.firstChild.getAttribute('href')
+          offset = jQuery(target).offset().top - 150
+          jQuery("body").animate({scrollTop: offset}, 'slow')
+          true
+  )
+  
   .directive('heliStudySummary', ($compile, Views) ->
     result = 
       restrict: "A"
