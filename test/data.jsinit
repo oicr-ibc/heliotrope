@@ -11,8 +11,12 @@ db.entities.drop();
 db.steps.drop();
 db.views.drop();
 
+db.fs.files.drop();
+db.fs.chunks.drop();
+
 db.createCollection("studies");
 db.createCollection("entities");
+db.createCollection("steps");
 db.createCollection("views");
 
 db.studies.insert({
@@ -347,6 +351,13 @@ db.steps.insert({
   },
   "label" : { "default" : "Create observation" },
   "fields" : {
+    "participantEntityRef" : {
+      "controlType" : "chooser",
+      "type" : "Reference",
+      "entity" : "participants",
+      "required" : true,
+      "label" : { "default" : "Participant" }
+    },
     "sampleEntityRef" : {
       "controlType" : "chooser",
       "type" : "Reference",
@@ -354,11 +365,53 @@ db.steps.insert({
       "required" : true,
       "label" : { "default" : "Sample" }
     },
-    "mutation" : {
+    "genomicPosition" : {
       "controlType" : "text",
       "type" : "String",
       "required" : true,
-      "label" : { "default" : "Mutation" }
+      "label" : { "default" : "Genomic position" }
+    },
+    "genomicChange" : {
+      "controlType" : "text",
+      "type" : "String",
+      "required" : true,
+      "label" : { "default" : "Genomic change" }
+    },
+    "geneName" : {
+      "controlType" : "text",
+      "type" : "String",
+      "required" : true,
+      "label" : { "default" : "Gene" }
+    },
+    "geneId" : {
+      "controlType" : "text",
+      "type" : "String",
+      "required" : true,
+      "label" : { "default" : "Gene ID" }
+    },
+    "transcriptId" : {
+      "controlType" : "text",
+      "type" : "String",
+      "required" : true,
+      "label" : { "default" : "Transcript ID" }
+    },
+    "aminoAcidMutation" : {
+      "controlType" : "text",
+      "type" : "String",
+      "required" : false,
+      "label" : { "default" : "Protein mutation" }
+    },
+    "dnaMutation" : {
+      "controlType" : "text",
+      "type" : "String",
+      "required" : true,
+      "label" : { "default" : "DNA mutation" }
+    },
+    "depth" : {
+      "controlType" : "text",
+      "type" : "String",
+      "required" : true,
+      "label" : { "default" : "Depth" }      
     }
   }
 });
@@ -531,7 +584,7 @@ db.entities.ensureIndex({"studyId": 1, "steps.id": 1});
 // Locates steps by type within a case
 db.entities.ensureIndex({"studyId": 1, "steps.stepRef": 1});
 // Enforce identity uniqueness within a study - handy for search, too
-db.entities.ensureIndex({"studyId": 1, "role" : 1, "identity": 1}, {"unique" : true, "sparse": true});
+db.entities.ensureIndex({"studyId": 1, "role" : 1, "identity": 1}, {"unique" : true});
 // To quickly find related entities
 db.entities.ensureIndex({"steps.fields.ref": 1});
 
@@ -642,6 +695,7 @@ db.entities.insert({
   "lastModified" : new Date(2012, 10, 12, 11, 45),
   "role" : "observations",
   "label" : "KRAS p.G12D",
+  "identity" : ObjectId().str,
   "steps" : [{
     "id" : ObjectId("511d3f90ea2a8c2f1e2c1ffe"),
     "stepRef" : get_step_id(study_id, "observations", "observation"),
