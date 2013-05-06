@@ -19,11 +19,6 @@ db.createCollection("entities");
 db.createCollection("steps");
 db.createCollection("views");
 
-db.studies.insert({
-  "version": 1,
-  "name": "GPS",
-});
-
 // Helper method for compatibility: see: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date/toISOString
 // This allows us to use toISOString() method calls within this, even when deploying to MongoDB's shell, which doesn't (yet) support
 // it.
@@ -72,6 +67,11 @@ function obj() {
   }
   return result;
 }
+
+db.studies.insert({
+  "version": 1,
+  "name": "GPS",
+});
 
 db.studies.ensureIndex({name:1},{unique:true});
 db.steps.ensureIndex({studyId:1,appliesTo:1,name:1},{unique:true});
@@ -351,6 +351,12 @@ db.steps.insert({
   },
   "label" : { "default" : "Create observation" },
   "fields" : {
+    "label" : {
+      "controlType" : "hidden",
+      "type" : "String",
+      "name" : true,
+      "label" : { "default" : "Name" }
+    },
     "participantEntityRef" : {
       "controlType" : "chooser",
       "type" : "Reference",
@@ -540,7 +546,7 @@ db.views.insert({
 "  <thead></thead>" +
 "  <tbody>" +
 "    <tr ng-repeat='observation in entity.data.related.observations'>" + 
-"      <td><a href='{{observation.url}}'>{{observation.label}}</a>" +
+"      <td><a href='{{observation.url}}'>{{observation.name}}</a>" +
 "    </tr>" +
 "  </tbody>" +
 "</table>"
@@ -694,7 +700,7 @@ db.entities.insert({
   "studyId" : study_id,
   "lastModified" : new Date(2012, 10, 12, 11, 45),
   "role" : "observations",
-  "label" : "KRAS p.G12D",
+  "name" : "KRAS p.G12D",
   "identity" : ObjectId().str,
   "steps" : [{
     "id" : ObjectId("511d3f90ea2a8c2f1e2c1ffe"),

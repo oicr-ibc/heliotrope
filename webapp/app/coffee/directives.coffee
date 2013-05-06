@@ -36,6 +36,11 @@ angular
         scope.$watch 'fieldValue', (newValue, oldValue) ->
           if newValue
             switch newValue.controlType
+              when "hidden"
+                body = '<input type="hidden" id="{{fieldKey}}" ng-model="fieldValue.value">'
+                template = angular.element(body)
+                linkFn = $compile(template)
+                iElement.append linkFn(scope)
               when "text"
                 body = '<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">'
                 template = angular.element(body)
