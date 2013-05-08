@@ -17,6 +17,11 @@ angular
   	  	              input.type + ":" + input.id + 
   	  	              """</a>"""
   )
+  .filter('field', () ->
+     (input) -> 
+       console.debug "Filtered field", input
+       return input.toString()
+  )
   .filter('capitalize', () ->
     (input) ->
       return input.substring(0, 1).toUpperCase() + input.substring(1)

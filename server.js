@@ -35,6 +35,10 @@ try {
 module.exports.config = config;
 
 app.configure(function(){
+  app.locals.pretty = true;
+  app.set('view engine', 'jade');
+  app.set('views', __dirname + '/views');
+  
   app.use(express.bodyParser({
     keepExtensions: true,
     limit: 10000000, // 10M limit
@@ -48,6 +52,14 @@ app.configure(function(){
     app.use(accesscontrol.handle);
   } 
 });
+
+// app.configure('development', function(){
+//   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+// });
+
+// app.configure('production', function(){
+//   app.use(express.errorHandler());
+// });
 
 require('./lib/main');
 

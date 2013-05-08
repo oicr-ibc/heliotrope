@@ -207,6 +207,26 @@ angular
       template: '<a href="http://www.ncbi.nlm.nih.gov/pubmed/{{reference.id}}" rel="external">{{reference.type}}:{{reference.id}}</a>'
   )
   
+  .directive('heliEnsemblGene', () ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: true
+      scope: 'isolate'
+      locals: { id: 'bind' }
+      template: '<a href="http://useast.ensembl.org/Homo_sapiens/Gene/Summary?g={{id}}" rel="external">{{id}}</a>'
+  )
+  
+  .directive('heliEnsemblTranscript', () ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: true
+      scope: 'isolate'
+      locals: { id: 'bind' }
+      template: '<a href="http://useast.ensembl.org/Homo_sapiens/Transcript/Summary?t={{id}}" rel="external">{{id}}</a>'
+  )
+  
   .directive('heliErrorAlert', ($compile) ->
     result = 
       restrict: "A"
@@ -234,6 +254,7 @@ angular
       link: (scope, iElement, iAttrs, controller) ->
         scope.$watch 'entity', (newValue, oldValue) -> 
           field = newValue.getField(iAttrs.name)
+          console.log("Field", field, field.value);
           if (field && field.value) 
             switch field.type
               when "Date"

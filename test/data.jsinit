@@ -249,6 +249,7 @@ db.steps.insert({
   "name" : "sample",
   "showSummary" : false,
   "label" : { "default" : "Create sample" },
+  "editLabel" : { "default" : "Update sample" },
   "fields" : {
     "identifier" : {
       "controlType" : "text",
@@ -350,6 +351,7 @@ db.steps.insert({
     "parentField": "sampleEntityRef"
   },
   "label" : { "default" : "Create observation" },
+  "editLabel" : { "default" : "Update observation" },
   "fields" : {
     "label" : {
       "controlType" : "hidden",
@@ -584,6 +586,29 @@ db.views.insert({
 "</table>"
 });
 
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "summary",
+  "role" : "observations",
+  "label" : { "default" : "Summary" },
+  "weight" : 0,
+  "body" : 
+"<dl>" +
+"  <dt>Gene name</dt>" +
+"  <dd>{{entity.data.values.geneName | field}}<span heli-field name='geneName'></span></dd>" +
+"  <dt>Ensembl gene id</dt>" +
+"  <dd><span heli-field name='geneId'></span></dd>" +
+"  <dt>Ensembl transcript id</dt>" +
+"  <dd><span heli-field name='transcriptId'></span></dd>" +
+"  <dt>Amino acid mutation</dt>" +
+"  <dd><span heli-field name='aminoAcidMutation'></span></dd>" +
+"  <dt>DNA mutation</dt>" +
+"  <dd><span heli-field name='dnaMutation'></span></dd>" +
+"  <dt>Depth</dt>" +
+"  <dd><span heli-field name='depth'></span></dd>" +
+"</dl>"
+});
+
 
 // Locates a step within a case, and ensures uniqueness
 db.entities.ensureIndex({"studyId": 1, "steps.id": 1});
@@ -713,8 +738,14 @@ db.entities.insert({
       "key" : "participantEntityRef", 
       "ref" : get_entity_id(study_id, "participants", "TST-001")
     }, {
-      "key" : "variant", 
-      "value" : "KRAS p.G12D"
+      "key" : "aminoAcidMutation", 
+      "value" : "p.G12D"
+    }, {
+      "key" : "geneName", 
+      "value" : "KRAS"      
+    }, {
+      "key" : "label", 
+      "value" : "KRAS p.G12D"      
     }]
   }]
 });
