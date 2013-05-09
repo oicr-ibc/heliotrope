@@ -6,19 +6,29 @@ mixin references(references)
     a(href="http://www.ncbi.nlm.nih.gov/pubmed/" + reference.id)
       | #{reference.type}:#{reference.id}
 
-html
+html(xmlns="http://www.w3.org/1999/xhtml")
   head
     title Mutation Report for #{data.mutation} (#{data.shortMutation}) in #{data.gene}
   body
-    h2 Frequency of G12A mutation in KRAS in the top tumour types
+    h2 Frequency of #{data.mutation} mutation in #{data.gene} in the top tumour types
+
+    - var frequencies = data.sections.frequencies.data.tumour
+    - var frequencyValues = {}
+    - frequencies.forEach(function(frequency) { frequencyValues[frequency.tumourTypesRefx.name] = frequency.frequency; })
+    - var sortedTypes = Object.keys(frequencyValues).sort(function(a, b) { return frequencyValues[b] - frequencyValues[a]; })
 
     table
       thead
         tr
-          th Tumour
-          th Frequency
-          th Samples
+          th(width="300") Tumour
+          th(width="60") Frequency
+          th(width="100") Samples
       tbody
+        each frequency, i in frequencies
+          tr
+            td #{frequency.tumourTypesRefx.name}
+            td #{(frequency.frequency * 100).toFixed(2)}%
+            td (#{frequency.affected}/#{frequency.total} samples)
 
     hr
 
@@ -27,8 +37,9 @@ html
     - var action = data.sections.clinical.data.action
 
     p 
-      | The functional consequence of this mutation is:
+      | The functional consequence of this mutation is: 
       b #{action.type}
+      | . 
       | Reference (PMID): 
       +references(action.reference)
 
@@ -40,22 +51,24 @@ html
     - var sigTypes = {}
     - significances.forEach(function(s) { sigTypes[s["tumourType"]] = []; });
     - significances.forEach(function(s) { sigTypes[s["tumourType"]].push(s); });
-    each sigType, i in Object.keys(sigTypes).sort()
-      h3 #{sigType}
-      each significance, j in sigTypes[sigType]
-        p
-          i
-            | In this tumour type, the clinical significance of this mutation has been examined by
-            | #{significance.studyType}
-            | clinical trials
-        p
-          | Comment: 
-          | #{significance.comment}
-        p
-          | Reference (PMID): 
-          +references(significance.reference)
-          | Evidence: 
-          | #{significance.levelOfEvidence}
+    each sigType, i in sortedTypes
+      if sigTypes[sigType]
+        h3 #{sigType} - #{(frequencyValues[sigType] * 100).toFixed(2)}%
+        each significance, j in sigTypes[sigType]
+          p
+            em
+              | In this tumour type, the clinical significance of this mutation has been examined by
+              | #{significance.studyType}
+              | clinical trials
+          p
+            | Comment: 
+            | #{significance.comment}
+          p
+            | Reference (PMID): 
+            +references(significance.reference)
+            | . 
+            | Evidence: 
+            | #{significance.levelOfEvidence}
 
     hr
 
