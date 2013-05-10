@@ -18,9 +18,12 @@ angular
   	  	              """</a>"""
   )
   .filter('field', () ->
-     (input) -> 
-       console.debug "Filtered field", input
-       return input.toString()
+     (field) -> 
+       switch field.type
+         when "Date"
+           new XDate(field.value, true).toUTCString("d/MMM/yyyy")
+         else 
+           field.displayValue
   )
   .filter('capitalize', () ->
     (input) ->

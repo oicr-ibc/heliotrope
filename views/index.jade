@@ -45,6 +45,12 @@ html(xmlns="http://www.w3.org/1999/xhtml")
 
     hr
 
+    h2 #{data.genesRefx._body.name} - #{data.genesRefx._body.sections.description.data.fullName}
+
+    p #{data.genesRefx._body.sections.description.data.summary}
+
+    hr
+
     h2 Clinical and Preclinical Studies
 
     - var significances = data.sections.clinical.data.significance

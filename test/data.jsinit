@@ -266,6 +266,13 @@ db.steps.insert({
       "readonly" : true,
       "label" : { "default" : "Participant" }
     },
+    "source" : {
+      "controlType" : "select",
+      "type" : "String",
+      "range" : ["Biopsy", "Archival", "Control"],
+      "required" : true,
+      "label" : { "default" : "Source" }
+    },
     "type" : {
       "controlType" : "select",
       "type" : "String",
@@ -588,6 +595,23 @@ db.views.insert({
 
 db.views.insert({
   "studyId" : study_id,
+  "name" : "observations",
+  "role" : "samples",
+  "label" : { "default" : "Observations" },
+  "weight" : 400,
+  "body" : 
+"<table>" +
+"  <thead></thead>" +
+"  <tbody>" +
+"    <tr ng-repeat='observation in entity.data.related.observations | orderBy:name'>" + 
+"      <td><a href='{{observation.url}}'>{{observation.name}}</a>" +
+"    </tr>" +
+"  </tbody>" +
+"</table>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
   "name" : "summary",
   "role" : "observations",
   "label" : { "default" : "Summary" },
@@ -595,20 +619,33 @@ db.views.insert({
   "body" : 
 "<dl>" +
 "  <dt>Gene name</dt>" +
-"  <dd>{{entity.data.values.geneName | field}}<span heli-field name='geneName'></span></dd>" +
+"  <dd>{{entity.data.values.geneName | field}}</dd>" +
 "  <dt>Ensembl gene id</dt>" +
-"  <dd><span heli-field name='geneId'></span></dd>" +
+"  <dd><a href='http://useast.ensembl.org/Homo_sapiens/Gene/Summary?g={{entity.data.values.geneId | field}}' rel='external'>{{entity.data.values.geneId | field}}</a></dd>" +
 "  <dt>Ensembl transcript id</dt>" +
-"  <dd><span heli-field name='transcriptId'></span></dd>" +
+"  <dd><a href='http://useast.ensembl.org/Homo_sapiens/Transcript/Summary?t={{entity.data.values.geneId | field}}' rel='external'>{{entity.data.values.transcriptId | field}}</a></dd>" +
 "  <dt>Amino acid mutation</dt>" +
-"  <dd><span heli-field name='aminoAcidMutation'></span></dd>" +
+"  <dd>{{entity.data.values.aminoAcidMutation | field}}</dd>" +
 "  <dt>DNA mutation</dt>" +
-"  <dd><span heli-field name='dnaMutation'></span></dd>" +
+"  <dd>{{entity.data.values.dnaMutation | field}}</dd>" +
 "  <dt>Depth</dt>" +
-"  <dd><span heli-field name='depth'></span></dd>" +
+"  <dd>{{entity.data.values.depth | field}}</dd>" +
 "</dl>"
 });
 
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "reports",
+  "role" : "observations",
+  "label" : { "default" : "Reports" },
+  "weight" : 100,
+  "body" : 
+"<div>" +
+"  <form>" +
+"    <button class='btn btn-primary' type='button'>Download report</button>" +
+"  </form>" +
+"</div>"
+});
 
 // Locates a step within a case, and ensures uniqueness
 db.entities.ensureIndex({"studyId": 1, "steps.id": 1});
@@ -686,6 +723,12 @@ db.entities.insert({
     }, {
       "key" : "participantEntityRef",
       "ref" : get_entity_id(study_id, "participants", "TST-001")
+    }, {
+      "key" : "source",
+      "value" : "Biopsy"
+    }, {
+      "key" : "type",
+      "value" : "FFPE"
     }]
   }]
 });
@@ -705,6 +748,12 @@ db.entities.insert({
     }, {
       "key" : "participantEntityRef",
       "ref" : get_entity_id(study_id, "participants", "TST-001")
+    }, {
+      "key" : "source",
+      "value" : "Biopsy"
+    }, {
+      "key" : "type",
+      "value" : "FFPE"
     }]
   }]
 });
