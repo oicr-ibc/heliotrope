@@ -3,6 +3,11 @@ angular
     'heliotrope.filters'
     'heliotrope.services'
     'heliotrope.directives'
+    'heliotrope.directives.charts'
+    'heliotrope.directives.forms'
+    'heliotrope.directives.tables'
+    'heliotrope.directives.workflows'
+    'heliotrope.directives.navigation'
     'knowledge.services'
   ])
   .config(['$routeProvider', 

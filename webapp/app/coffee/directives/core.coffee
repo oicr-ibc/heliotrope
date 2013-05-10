@@ -70,28 +70,6 @@ angular
             jQuery(iElement).html(html)
   )
   
-  # Directive to implement a field access - primarily intended for use within templates
-  # defined on the server. The field value is located from the entity, and then the
-  # display value inserted, if it exists. 
-  
-  .directive('heliField', () ->
-    result = 
-      restrict: "A"
-      replace: true
-      link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'entity', (newValue, oldValue) -> 
-          field = newValue.getField(iAttrs.name)
-          if (field && field.value) 
-            switch field.type
-              when "Date"
-                dateString = new XDate(field.value, true).toUTCString("d/MMM/yyyy")
-                jQuery(iElement).text(dateString)
-              else 
-                jQuery(iElement).text(field.displayValue)
-          else
-            jQuery(iElement).text("N/A");
-  )
-  
   # Dynamic tabs directive, which means we get the views for this entity type from the server.
   # All this happens automatically, and allows us to do all sorts of weird stuff in the server
   # end. 

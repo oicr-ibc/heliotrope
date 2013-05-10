@@ -483,19 +483,19 @@ db.views.insert({
   "body" : 
 "<dl>" +
 "  <dt>Registered</dt>" +
-"  <dd><span heli-field name='enrolmentDate'></span></dd>" +
+"  <dd>{{entity.data.values.enrolmentDate | field}}</dd>" +
 "  <dt>Consent</dt>" +
-"  <dd><span heli-field name='consentDate'></span></dd>" +
+"  <dd>{{entity.data.values.consentDate | field}}</dd>" +
 "  <dt>Biopsy</dt>" +
-"  <dd><span heli-field name='biopsyDate'></span></dd>" +
+"  <dd>{{entity.data.values.biopsyDate | field}}</dd>" +
 "  <dt>Pathology</dt>" +
-"  <dd><span heli-field name='pathologyDate'></span></dd>" +
+"  <dd>{{entity.data.values.pathologyDate | field}}</dd>" +
 "  <dt>Clinical lab</dt>" +
-"  <dd><span heli-field name='clinicalLaboratoryDate'></span></dd>" +
+"  <dd>{{entity.data.values.clinicalLaboratoryDate | field}}</dd>" +
 "  <dt>Research lab</dt>" +
-"  <dd><span heli-field name='researchLaboratoryDate'></span></dd>" +
+"  <dd>{{entity.data.values.researchLaboratoryDate | field}}</dd>" +
 "  <dt>Expert panel</dt>" +
-"  <dd><span heli-field name='expertPanelDate'></span></dd>" +
+"  <dd>{{entity.data.values.expertPanelDate | field}}</dd>" +
 "</dl>"
 });
 
@@ -508,9 +508,9 @@ db.views.insert({
   "body" : 
 "<dl>" +
 "  <dt>Registered</dt>" +
-"  <dd><span heli-field name='enrolmentDate'></span></dd>" +
+"  <dd>{{entity.data.values.enrolmentDate | field}}</dd>" +
 "  <dt>Consent</dt>" +
-"  <dd><span heli-field name='consentDate'></span></dd>" +
+"  <dd>{{entity.data.values.consentDate | field}}</dd>" +
 "</dl>"
 });
 
@@ -539,8 +539,8 @@ db.views.insert({
   "weight" : 300,
   "body" : 
 "<div>" +
-"<span heli-field name='clinicalHistory'></span>" +
-"<p><b>Last updated:</b> <span heli-field name='clinicalHistoryUpdated'></span></p>" +
+"{{entity.data.values.clinicalHistory | field}}" +
+"<p><b>Last updated:</b> {{entity.data.values.clinicalHistoryUpdated | field}}</p>" +
 "</div>"
 });
 
@@ -551,13 +551,7 @@ db.views.insert({
   "label" : { "default" : "Observations" },
   "weight" : 400,
   "body" : 
-"<table>" +
-"  <thead></thead>" +
-"  <tbody>" +
-"    <tr ng-repeat='observation in entity.data.related.observations'>" + 
-"      <td><a href='{{observation.url}}'>{{observation.name}}</a>" +
-"    </tr>" +
-"  </tbody>" +
+"<table heli-observations>" +
 "</table>"
 });
 
@@ -570,9 +564,9 @@ db.views.insert({
   "body" : 
 "<dl>" +
 "  <dt>Requires collection</dt>" +
-"  <dd><span heli-field name='requiresCollection'></span></dd>" +
+"  <dd>{{entity.data.values.requiresCollection | field}}</dd>" +
 "  <dt>DNA quality</dt>" +
-"  <dd><span heli-field name='dnaQuality'></span></dd>" +
+"  <dd>{{entity.data.values.dnaQuality | field}}</dd>" +
 "</dl>"
 });
 
@@ -600,13 +594,7 @@ db.views.insert({
   "label" : { "default" : "Observations" },
   "weight" : 400,
   "body" : 
-"<table>" +
-"  <thead></thead>" +
-"  <tbody>" +
-"    <tr ng-repeat='observation in entity.data.related.observations | orderBy:name'>" + 
-"      <td><a href='{{observation.url}}'>{{observation.name}}</a>" +
-"    </tr>" +
-"  </tbody>" +
+"<table heli-observations>" +
 "</table>"
 });
 
@@ -774,7 +762,7 @@ db.entities.insert({
   "studyId" : study_id,
   "lastModified" : new Date(2012, 10, 12, 11, 45),
   "role" : "observations",
-  "name" : "KRAS p.G12D",
+  "name" : "KRAS p.Gly12Asp",
   "identity" : ObjectId().str,
   "steps" : [{
     "id" : ObjectId("511d3f90ea2a8c2f1e2c1ffe"),
@@ -788,13 +776,13 @@ db.entities.insert({
       "ref" : get_entity_id(study_id, "participants", "TST-001")
     }, {
       "key" : "aminoAcidMutation", 
-      "value" : "p.G12D"
+      "value" : "p.Gly12Asp"
     }, {
       "key" : "geneName", 
       "value" : "KRAS"      
     }, {
       "key" : "label", 
-      "value" : "KRAS p.G12D"      
+      "value" : "KRAS p.Gly12Asp"      
     }]
   }]
 });

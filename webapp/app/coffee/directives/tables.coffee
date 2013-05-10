@@ -83,3 +83,43 @@ angular
             )
     result
   )
+
+  # Add the directive for the data tables for frequencies. This could be parameterised, but encapsulates all the
+  # primary logic for the frequencies table. 
+  
+  .directive('heliObservations', () ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: false
+      scope: false
+      template: '<table class="table table-bordered table-striped table-condensed">' +
+                '<thead>' +
+                '<tr>' +
+                '<th>Mutation</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>' +
+                '</tbody>' + 
+                '</table>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$watch 'entity.data.related.observations', (newValue, oldValue) -> 
+          if (newValue)
+            jQuery(iElement).dataTable(
+              sPaginationType: "bootstrap"
+              bPaginate: true
+              bLengthChange: false
+              iDisplayLength: 5
+              aaData: newValue
+              aoColumns: [
+                { "sTitle": "Mutation", "sClass": "span4", "mData": (data, type, val) ->
+                  if type == undefined
+                    data
+                  else
+                    "<a href='" + data.url + "'>" + data.name + "</b>"
+                }
+              ]
+              aaSorting: [[ 1, "asc" ]]
+            )
+    result
+  )

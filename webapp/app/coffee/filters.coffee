@@ -19,11 +19,19 @@ angular
   )
   .filter('field', () ->
      (field) -> 
-       switch field.type
-         when "Date"
-           new XDate(field.value, true).toUTCString("d/MMM/yyyy")
-         else 
-           field.displayValue
+       if field
+         switch field.type
+           when "Boolean"
+             field.displayValue || "N/A"
+           when "Date"
+             if field.value
+               new XDate(field.value, true).toUTCString("d/MMM/yyyy")
+             else
+               "N/A"
+           else 
+             if field.displayValue != undefined then field.displayValue else "N/A"
+       else
+         "N/A"
   )
   .filter('capitalize', () ->
     (input) ->
