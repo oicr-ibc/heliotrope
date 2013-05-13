@@ -1,0 +1,71 @@
+// This file is loaded when running the Scala test suite. Really, we should use a test database
+// containing a minimal set of objects which we can use to test out the service. 
+
+userObjectId = "swatt";
+
+db.users.drop();
+db.createCollection("users");
+db.users.insert({ "name" : userObjectId});
+
+db.studies.drop();
+db.createCollection("studies");
+
+db.fs.files.drop();
+db.fs.chunks.drop();
+
+// Helper method for compatibility: see: https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date/toISOString
+// This allows us to use toISOString() method calls within this, even when deploying to MongoDB's shell, which doesn't (yet) support
+// it.
+if (!Date.prototype.toISOString) {
+    (function() {
+        function pad(number) {
+            var r = String(number);
+            if (r.length === 1) {
+                r = '0' + r;
+            }
+            return r;
+        }
+        Date.prototype.toISOString = function() {
+            return this.getUTCFullYear()
+                + '-' + pad( this.getUTCMonth() + 1 )
+                + '-' + pad( this.getUTCDate() )
+                + 'T' + pad( this.getUTCHours() )
+                + ':' + pad( this.getUTCMinutes() )
+                + ':' + pad( this.getUTCSeconds() )
+                + '.' + String( (this.getUTCMilliseconds()/1000).toFixed(3) ).slice( 2, 5 )
+                + 'Z';
+        };
+    }());
+}
+
+// Trims a final Z off of the end of an ISO time string, this converting to a floating time rather than
+// a UTC time. Floating times are used almost exclusively in Heliotrope for values. For actual timestamps,
+// UTC is preferred as it is unambiguous. This isn't actually a very clean way to do this, but it will
+// do as a convention. 
+
+function toFloatingISOString(date) {
+  var string = date.toISOString();
+  if (string.endsWith("Z")) {
+    return string.slice(0, -1);
+  } else {
+    return string;
+  }
+}
+
+// Helper function to create an object with dynamic keys, since the usual object
+// literal formal doesn't allow that. 
+function obj() {
+  var result = {};
+  for (var i = 0; i < arguments.length; i += 2) {
+    result[arguments[i]] = arguments[i+1];
+  }
+  return result;
+}
+
+db.studies.insert({
+  "version": 1,
+  "name": "GPS",
+});
+
+db.studies.ensureIndex({name:1},{unique:true});
+
