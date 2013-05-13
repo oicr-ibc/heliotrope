@@ -25,7 +25,7 @@ function getFileContents(files, contents, callback) {
 }
 
 function withDB(database, callback) {
-	glob(__dirname + "/" + database + "*.jsinit", {}, function (err, files) {
+	glob(__dirname + "/data/" + database + "*.jsinit", {}, function (err, files) {
 		if (err) throw err;
 		getFileContents(files, [], function(err, data) {
 			if (err) throw err;
