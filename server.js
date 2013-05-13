@@ -38,6 +38,7 @@ app.configure(function(){
   app.locals.pretty = true;
   app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
+  app.use(express.logger('dev'));
   
   app.use(express.bodyParser({
     keepExtensions: true,
@@ -45,12 +46,15 @@ app.configure(function(){
     defer: true  
   }));
   app.use(express.static(process.cwd() + '/webapp'));
-  app.use(express.logger());
 
   if (config.accessControl){
     var accesscontrol = require('./lib/accesscontrol');
     app.use(accesscontrol.handle);
   } 
+});
+
+app.configure('development', function(){
+  app.use(express.errorHandler());
 });
 
 // app.configure('development', function(){
@@ -65,4 +69,5 @@ require('./lib/main');
 
 if(!process.argv[2] || !process.argv[2].indexOf("expresso")) {
   app.listen(config.server.port, config.server.address);
+  console.log("Express server listening on port " + config.server.port);
 }
