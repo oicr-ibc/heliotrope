@@ -1,0 +1,208 @@
+db.views.drop();
+db.createCollection("views");
+
+var study_id = ObjectId(db.studies.find({"name" : "GPS"}).next()._id.str);
+
+db.views.ensureIndex({"studyId": 1, "role" : 1, "name": 1}, {"unique" : true});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "summary",
+  "role" : "studies",
+  "label" : { "default" : "Summary" },
+  "weight" : 0,
+  "body" : 
+"<dl>" +
+"  <dt>Number of participants</dt>" +
+"  <dd>{{study.data.counts.participants}}</dd>" +
+"  <dt>Number of samples</dt>" +
+"  <dd>{{study.data.counts.samples}}</dd>" +
+"  <dt>Observed mutations</dt>" +
+"  <dd>{{study.data.counts.observations}}</dd>" +
+"</dl>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "participants",
+  "role" : "studies",
+  "label" : { "default" : "Participants" },
+  "weight" : 100,
+  "body" : 
+"<div heli-study-entities role='participants' label='Participants'>" +
+"</div>" + 
+"<br>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "samples",
+  "role" : "studies",
+  "label" : { "default" : "Samples" },
+  "weight" : 200,
+  "body" : 
+"<div heli-study-entities role='samples' label='Samples'>" +
+"</div>" + 
+"<br>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "summary",
+  "role" : "participants",
+  "label" : { "default" : "Summary" },
+  "weight" : 0,
+  "body" : 
+"<dl>" +
+"  <dt>Registered</dt>" +
+"  <dd>{{entity.data.values.enrolmentDate | field}}</dd>" +
+"  <dt>Consent</dt>" +
+"  <dd>{{entity.data.values.consentDate | field}}</dd>" +
+"  <dt>Biopsy</dt>" +
+"  <dd>{{entity.data.values.biopsyDate | field}}</dd>" +
+"  <dt>Pathology</dt>" +
+"  <dd>{{entity.data.values.pathologyDate | field}}</dd>" +
+"  <dt>Clinical lab</dt>" +
+"  <dd>{{entity.data.values.clinicalLaboratoryDate | field}}</dd>" +
+"  <dt>Research lab</dt>" +
+"  <dd>{{entity.data.values.researchLaboratoryDate | field}}</dd>" +
+"  <dt>Expert panel</dt>" +
+"  <dd>{{entity.data.values.expertPanelDate | field}}</dd>" +
+"</dl>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "enrolment",
+  "role" : "participants",
+  "label" : { "default" : "Enrolment" },
+  "weight" : 100,
+  "body" : 
+"<dl>" +
+"  <dt>Registered</dt>" +
+"  <dd>{{entity.data.values.enrolmentDate | field}}</dd>" +
+"  <dt>Consent</dt>" +
+"  <dd>{{entity.data.values.consentDate | field}}</dd>" +
+"</dl>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "samples",
+  "role" : "participants",
+  "label" : { "default" : "Samples" },
+  "weight" : 200,
+  "body" : 
+"<table>" +
+"  <thead></thead>" +
+"  <tbody>" +
+"    <tr ng-repeat='sample in entity.data.related.samples'>" + 
+"      <td><a href='{{sample.url}}'>{{sample.identity}}</a>" +
+"    </tr>" +
+"  <tbody>" +
+"</table>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "history",
+  "role" : "participants",
+  "label" : { "default" : "Clinical history" },
+  "weight" : 300,
+  "body" : 
+"<div>" +
+"{{entity.data.values.clinicalHistory | field}}" +
+"<p><b>Last updated:</b> {{entity.data.values.clinicalHistoryUpdated | field}}</p>" +
+"</div>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "observations",
+  "role" : "participants",
+  "label" : { "default" : "Observations" },
+  "weight" : 400,
+  "body" : 
+"<table heli-observations>" +
+"</table>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "summary",
+  "role" : "samples",
+  "label" : { "default" : "Summary" },
+  "weight" : 0,
+  "body" : 
+"<dl>" +
+"  <dt>Requires collection</dt>" +
+"  <dd>{{entity.data.values.requiresCollection | field}}</dd>" +
+"  <dt>DNA quality</dt>" +
+"  <dd>{{entity.data.values.dnaQuality | field}}</dd>" +
+"</dl>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "participants",
+  "role" : "samples",
+  "label" : { "default" : "Participant" },
+  "weight" : 100,
+  "body" : 
+"<table>" +
+"  <thead></thead>" +
+"  <tbody>" +
+"    <tr ng-repeat='participant in entity.data.related.participants'>" + 
+"      <td><a href='{{participant.url}}'>{{participant.identity}}</a>" +
+"    </tr>" +
+"  </tbody>" +
+"</table>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "observations",
+  "role" : "samples",
+  "label" : { "default" : "Observations" },
+  "weight" : 400,
+  "body" : 
+"<table heli-observations>" +
+"</table>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "summary",
+  "role" : "observations",
+  "label" : { "default" : "Summary" },
+  "weight" : 0,
+  "body" : 
+"<dl>" +
+"  <dt>Gene name</dt>" +
+"  <dd>{{entity.data.values.geneName | field}}</dd>" +
+"  <dt>Ensembl gene id</dt>" +
+"  <dd><a href='http://useast.ensembl.org/Homo_sapiens/Gene/Summary?g={{entity.data.values.geneId | field}}' rel='external'>{{entity.data.values.geneId | field}}</a></dd>" +
+"  <dt>Ensembl transcript id</dt>" +
+"  <dd><a href='http://useast.ensembl.org/Homo_sapiens/Transcript/Summary?t={{entity.data.values.geneId | field}}' rel='external'>{{entity.data.values.transcriptId | field}}</a></dd>" +
+"  <dt>Amino acid mutation</dt>" +
+"  <dd>{{entity.data.values.aminoAcidMutation | field}}</dd>" +
+"  <dt>DNA mutation</dt>" +
+"  <dd>{{entity.data.values.dnaMutation | field}}</dd>" +
+"  <dt>Depth</dt>" +
+"  <dd>{{entity.data.values.depth | field}}</dd>" +
+"</dl>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "reports",
+  "role" : "observations",
+  "label" : { "default" : "Reports" },
+  "weight" : 100,
+  "body" : 
+"<div>" +
+"  <form>" +
+"    <button class='btn btn-primary' type='button'>Download report</button>" +
+"  </form>" +
+"</div>"
+});

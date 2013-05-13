@@ -1,0 +1,157 @@
+// This file is loaded when running the test suite. Really, we should use a test database
+// containing a minimal set of objects which we can use to test out the service. 
+
+db.entities.drop();
+db.createCollection("users");
+
+// Locates a step within a case, and ensures uniqueness
+db.entities.ensureIndex({"studyId": 1, "steps.id": 1});
+// Locates steps by type within a case
+db.entities.ensureIndex({"studyId": 1, "steps.stepRef": 1});
+// Enforce identity uniqueness within a study - handy for search, too
+db.entities.ensureIndex({"studyId": 1, "role" : 1, "identity": 1}, {"unique" : true});
+// To quickly find related entities
+db.entities.ensureIndex({"steps.fields.ref": 1});
+
+function get_entity_id(study_id, role, identifier) {
+  return db.entities.find({"studyId" : study_id, "role" : role, "identity" : identifier}, {"_id" : 1}).next()._id;
+}
+
+db.entities.insert({
+  "studyId" : study_id,
+  "lastModified" : new Date(2012, 10, 12, 11, 45),
+  "role" : "participants",
+  "identity" : "TST-001",
+  "steps" : [{
+    "id" : ObjectId("511d220dea2a8c2f1e2c1fef"),
+    "stepRef" : get_step_id(study_id, "participants", "participant"),
+    "stepDate" : new Date(2012, 10, 12, 11, 45),
+    "fields" : [{
+      "key" : "identifier", 
+      "identity" : "TST-001"
+    }]
+  }, {
+    "id" : ObjectId("511d2252ea2a8c2f1e2c1ff0"),
+    "stepRef" : get_step_id(study_id, "participants", "enrolment"),
+    "stepDate" : new Date(2012, 10, 12, 11, 45),
+    "fields" : [{
+      "key" : "enrolmentDate",
+      "value" : toFloatingISOString(new Date(2012, 10, 12, 11, 45))
+    }]
+  }, {
+    "id" : ObjectId("511d2295ea2a8c2f1e2c1ff1"),
+    "stepRef" : get_step_id(study_id, "participants", "consent"),
+    "stepDate" : new Date(2012, 10, 13, 13, 45),
+    "fields" : [{
+      "key" : "consentDate",
+      "value" : toFloatingISOString(new Date(2012, 10, 13, 13, 45))
+    }]
+  }, {
+    "id" : ObjectId("511d2295ea2a8c2f1e2c1ff2"),
+    "stepRef" : get_step_id(study_id, "participants", "biopsy"),
+    "stepDate" : new Date(2012, 10, 14, 9, 12),
+    "fields" : [{
+      "key" : "biopsyDate",
+      "value" : toFloatingISOString(new Date(2012, 10, 14, 9, 12))
+    }]
+  }, {
+    "id" : ObjectId("511d389aea2a8c2f1e2c1ff7"),
+    "stepRef" : get_step_id(study_id, "participants", "pathology"),
+    "stepDate" : new Date(2012, 10, 17, 12, 19),
+    "fields" : [{
+      "key" : "pathologyDate",
+      "value" : toFloatingISOString(new Date(2012, 10, 17, 12, 19))
+    }]
+  }]
+});
+
+db.entities.insert({
+  "studyId" : study_id,
+  "lastModified" : new Date(2012, 10, 12, 11, 45),
+  "role" : "samples",
+  "identity" : "TST001BIOXPAR1",
+  "steps" : [{
+    "id" : ObjectId("511d3842ea2a8c2f1e2c1ff4"),
+    "stepRef" : get_step_id(study_id, "samples", "sample"),
+    "stepDate" : new Date(2012, 10, 12, 11, 45),
+    "fields" : [{
+      "key" : "identifier",
+      "identity" : "TST001BIOXPAR1"
+    }, {
+      "key" : "participantEntityRef",
+      "ref" : get_entity_id(study_id, "participants", "TST-001")
+    }, {
+      "key" : "source",
+      "value" : "Biopsy"
+    }, {
+      "key" : "type",
+      "value" : "FFPE"
+    }]
+  }]
+});
+
+db.entities.insert({
+  "studyId" : study_id,
+  "lastModified" : new Date(2012, 10, 12, 11, 45),
+  "role" : "samples",
+  "identity" : "TST001BIOXPAR2",
+  "steps" : [{
+    "id" : ObjectId("511d3842ea2a8c2f1e2c1ff4"),
+    "stepRef" : get_step_id(study_id, "samples", "sample"),
+    "stepDate" : new Date(2012, 10, 12, 11, 45),
+    "fields" : [{
+      "key" : "identifier",
+      "identity" : "TST001BIOXPAR2"
+    }, {
+      "key" : "participantEntityRef",
+      "ref" : get_entity_id(study_id, "participants", "TST-001")
+    }, {
+      "key" : "source",
+      "value" : "Biopsy"
+    }, {
+      "key" : "type",
+      "value" : "FFPE"
+    }]
+  }]
+});
+
+// The uniqueness (identity) of an observation is different. We don't
+// always have one. In this case, therefore, we need to model out a
+// way of handling the reference to the observation and its related
+// data. There is possibly a very good case for denormalization here, 
+// with an identity top-level field which we can use to enforce
+// uniqueness, independent of an identity field value. The identity
+// field value is still useful, as it provides a hook for setting the
+// top-level field. 
+//
+// The label field offers an alternative to an identity for presentation
+// purposes, but isn't enforced as unique. 
+
+db.entities.insert({
+  "studyId" : study_id,
+  "lastModified" : new Date(2012, 10, 12, 11, 45),
+  "role" : "observations",
+  "name" : "KRAS p.Gly12Asp",
+  "identity" : ObjectId().str,
+  "steps" : [{
+    "id" : ObjectId("511d3f90ea2a8c2f1e2c1ffe"),
+    "stepRef" : get_step_id(study_id, "observations", "observation"),
+    "stepDate" : new Date(2012, 10, 12, 11, 45),
+    "fields": [{
+      "key" : "sampleEntityRef", 
+      "ref" : get_entity_id(study_id, "samples", "TST001BIOXPAR1")
+    }, {
+      "key" : "participantEntityRef", 
+      "ref" : get_entity_id(study_id, "participants", "TST-001")
+    }, {
+      "key" : "aminoAcidMutation", 
+      "value" : "p.Gly12Asp"
+    }, {
+      "key" : "geneName", 
+      "value" : "KRAS"      
+    }, {
+      "key" : "label", 
+      "value" : "KRAS p.Gly12Asp"      
+    }]
+  }]
+});

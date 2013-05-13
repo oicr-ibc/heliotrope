@@ -1,0 +1,55 @@
+// Test JavaScript code. Use this to initialize the database before each test, and get a database
+// connection you can use. 
+//
+// In an ideal world, we would script this imaginatively. In this world, we grab a bunch of 
+// JS files, turn them into a concatenated string, and throw it into eval. We can't use load
+// as it doesn't exist server-side. 
+
+var fs = require('fs'),
+    mongo = require("mongodb"),
+    MongoClient = mongo.MongoClient,
+    glob = require("glob");
+
+function getFileContents(files, contents, callback) {
+	if (files.length == 0) {
+		return callback(undefined, contents);
+	}
+	fs.readFile(files.shift(), function (err, data) {
+		if (err) {
+			callback(err, null);
+		} else {
+			contents.push(data);
+			return getFileContents(files, contents, callback);
+		}
+	});
+}
+
+function withDB(database, callback) {
+	glob(__dirname + "/" + database + "*.jsinit", {}, function (err, files) {
+		if (err) throw err;
+		getFileContents(files, [], function(err, data) {
+			if (err) throw err;
+			MongoClient.connect("mongodb://localhost:27017/" + database, function(err, db) {
+	      db.eval(data.join("\n"), [], 
+	        function(err, result) {
+	          callback(db, err, result);
+	      });
+	    });
+		});
+	});
+}
+
+module.exports.withDB = withDB;
+
+function withStudy(db, name, callback) {
+	db.collection("studies", function(err, studies) {
+		if (err) { return callback(err, null); };
+		studies.find({name: name}).limit(1).toArray(function(err, docs) {
+			if (err) { return callback(err, null); };
+			if (docs.length == 0) { return callback({err: "Can't find study: " + name}); };
+			callback(err, docs[0]);
+		});
+	})
+}
+
+module.exports.withStudy = withStudy;
