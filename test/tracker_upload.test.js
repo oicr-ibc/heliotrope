@@ -20,14 +20,19 @@ function getFile(filename) {
   result.path = filename;
   result.size = stats.size;
   result.name = path.basename(filename);
+  result.type = 'application/octet-stream';
+  result.lastModifiedDate = new Date();
+  return result;
 }
 
 describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/recordResults/files', function() {
   it('should process a VCF file', function(done){
 
+    this.timeout(5000);
+
     initialize.withDB("tracker", function(db, err, result) {
       
-      var request = {params: {study: "GPS"}};
+      var request = {params: {study: "GPS", step: "recordResults", identity: "TST001BIOXPAR1", role: "samples"}};
       var form = new Gently;
       var endHandler;
       var response;
@@ -40,19 +45,24 @@ describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/recordResults/files', fu
 
       setTimeout(function(){
         should.exist(endHandler); 
-        console.log("In timeout");
-        request.files = {};
-        var file = {};
-        request.files.files = [file];
+        var file = getFile(__dirname + '/resources/test_snps_out.vcf');
+        request.files = {files: [file]};
         endHandler();
-        should.not.exist(err);
-        done();
-      }, 1000);
+      }, 500);
 
       tracker.postEntityStepFiles(null, db, request, function(db, err, result) {
         db.close();
-        console.log("XXX", err, result);
-        response = {err: err, result: result};
+        should.not.exist(err);
+        should.exist(result);
+
+        // At this stage, we ought to be able to find a good number of observations.
+        db.collection("entities", function(err, entities) {
+          entities.find({role: "observations"}).count(function(err, count) {
+            should.not.exist(err);
+            count.should.equal(17);
+            done();
+          })
+        });
       });
     });
   });
