@@ -38,14 +38,14 @@ app.configure(function(){
   app.locals.pretty = true;
   app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
-  app.use(express.logger('dev'));
   
   app.use(express.bodyParser({
     keepExtensions: true,
     limit: 10000000, // 10M limit
     defer: true  
   }));
-  app.use(express.static(process.cwd() + '/webapp'));
+  app.use(express.static(process.cwd() + '/webapp', { maxAge: 1000 * 60 * 60 * 24 }));
+  app.use(express.logger('dev'));
 
   if (config.accessControl){
     var accesscontrol = require('./lib/accesscontrol');

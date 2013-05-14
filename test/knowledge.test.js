@@ -46,7 +46,7 @@ describe('GET /queries/frequencies', function() {
       var request = {params: {query: "frequencies"}};
       knowledge.executeQuery(null, db, request, function(db, err, result) {
         db.close();
-        
+
         should.not.exist(err);
         result.data[0].name.should.equal('TTN');
         result.data[1].name.should.equal('JAK2');
