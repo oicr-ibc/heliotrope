@@ -1,7 +1,0 @@
-// This file is loaded when running the test suite. Really, we should use a test database
-// containing a minimal set of objects which we can use to test out the service. 
-
-load("test/load.base.jsinit");
-load("test/load.steps.jsinit");
-load("test/load.views.jsinit");
-load("test/load.entities.jsinit");
