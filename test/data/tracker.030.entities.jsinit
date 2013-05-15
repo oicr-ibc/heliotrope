@@ -152,6 +152,12 @@ db.entities.insert({
     }, {
       "key" : "label", 
       "value" : "KRAS p.Gly12Asp"      
+    }, {
+      "key" : "geneId",
+      "value" : "ENSG00000133703"
+    }, {
+      "key" : "transcriptId",
+      "value" : "ENST00000256078"
     }]
   }]
 });
