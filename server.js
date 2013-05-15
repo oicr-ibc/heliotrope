@@ -1,37 +1,36 @@
-/* 
-    server.js
-    mongodb-rest
-
-    Created by Tom de Grunt on 2010-10-03.
-    Copyright (c) 2010 Tom de Grunt.
-    This file is part of mongodb-rest.
-*/ 
+// Heliotrope
 
 var fs = require("fs"),
     util = require('util'),
     express = require('express')
-    polyfill = require('./lib/polyfill');
+    polyfill = require('./lib/polyfill'),
+    url = require("url"),
+    nconf = require('nconf');
 
-var config = { "db": {
-  'port': 27017,
-  'host': "localhost"
-  },
-  'server': {
-    'port': 3000,
-    'address': "0.0.0.0"
-  },
+var configFile = process.cwd()+"/config.json";
+console.log("Configuring from: " + configFile);
+
+nconf
+  .use('memory')
+  .argv()
+  .env()
+  .file({ file: configFile });
+
+nconf.defaults({
+  'db:port': 27017,
+  'db:host': 'localhost',
+  'server:port': 3000,
+  'server:address': "0.0.0.0",
   'flavor': "regular",
-  'debug': true
-};
+  'debug': true,
+  'knowledgeUriBase': '/knowledge/api',
+  'trackerUriBase': '/tracker/api',
+  'knowledgeUrl': 'http://localhost:3000/knowledge/api'
+})
 
 var app = module.exports.app = express();
 
-try {
-  config = JSON.parse(fs.readFileSync(process.cwd()+"/config.json"));
-} catch(e) {
-  // ignore
-}
-
+var config = nconf.get();
 module.exports.config = config;
 
 app.configure(function(){
@@ -47,7 +46,7 @@ app.configure(function(){
   app.use(express.static(process.cwd() + '/webapp', { maxAge: 1000 * 60 * 60 * 24 }));
   app.use(express.logger('dev'));
 
-  if (config.accessControl){
+  if (config['accessControl']) {
     var accesscontrol = require('./lib/accesscontrol');
     app.use(accesscontrol.handle);
   } 
@@ -70,6 +69,6 @@ require('./lib/knowledgeService');
 require('./lib/coreService');
 
 if(!process.argv[2] || !process.argv[2].indexOf("expresso")) {
-  app.listen(config.server.port, config.server.address);
-  console.log("Express server listening on port " + config.server.port);
+  app.listen(config['server']['port'], config['server']['address']);
+  console.log("Express server listening on port " + config['server']['port']);
 }
