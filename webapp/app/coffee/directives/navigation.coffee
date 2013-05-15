@@ -17,7 +17,7 @@ angular
                 '</li>' +
                 '</ul>'
   )
-  
+
   .directive('heliSection', () ->
       priority: 1
       restrict: "A"

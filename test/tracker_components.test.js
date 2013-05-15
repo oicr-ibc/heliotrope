@@ -3,7 +3,7 @@ require.extensions['.testjs'] = require.extensions['.js'];
 var fs = require('fs'),
     mongo = require("mongodb"),
     MongoClient = mongo.MongoClient,
-    tracker = require("../lib/tracker"),
+    tracker = require("../lib/trackerImplementation"),
     should = require('should'),
     initialize = require('./initialize');
 

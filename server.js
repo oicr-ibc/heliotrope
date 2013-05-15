@@ -65,7 +65,9 @@ app.configure('development', function(){
 //   app.use(express.errorHandler());
 // });
 
-require('./lib/main');
+require('./lib/trackerService');
+require('./lib/knowledgeService');
+require('./lib/coreService');
 
 if(!process.argv[2] || !process.argv[2].indexOf("expresso")) {
   app.listen(config.server.port, config.server.address);

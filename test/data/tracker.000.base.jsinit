@@ -65,6 +65,14 @@ function obj() {
 db.studies.insert({
   "version": 1,
   "name": "GPS",
+  "roles" : {
+    "observations" : {
+      "readEntity" : {
+        "module" : "integration",
+        "method" : "addKnowledgeFields"
+      }
+    }
+  }
 });
 
 db.studies.ensureIndex({name:1},{unique:true});
