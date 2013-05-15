@@ -14,10 +14,13 @@ describe('GET /genes/KRAS', function() {
       var request = {params: {gene: "KRAS"}};
       knowledge.getGene(null, db, request, function(db, err, result) {
         db.close();
-        
+
         should.not.exist(err);
         result.data.name.should.equal("KRAS");
         result.data.url.should.equal("/genes/KRAS");
+        
+        result.data.sections.mutations.data[0].name.should.equal('p.Gly12Asp')
+        result.data.sections.mutations.data[0].url.should.equal('/variants/KRAS%20p.G12D')
         done();
       });
     });
@@ -56,3 +59,24 @@ describe('GET /queries/frequencies', function() {
     });
   });
 });
+
+describe('GET /variants/KRAS+p.G12D', function() {
+  it('should retrieve a variant', function(done){
+    initialize.withDB("heliotrope", function(db, err) {
+      
+      var request = {params: {id: "KRAS p.G12D"}};
+      knowledge.getVariant(null, db, request, function(db, err, result) {
+        db.close();
+        
+        should.not.exist(err);
+        result.data.gene.should.equal("KRAS");
+        result.data.name.should.equal("KRAS p.Gly12Asp");
+        result.data.geneId.should.equal("ENSG00000133703");
+        result.data.url.should.equal('/variants/KRAS%20p.G12D');
+        done();
+      });
+    });
+  });
+});
+
+
