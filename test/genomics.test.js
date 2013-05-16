@@ -20,6 +20,11 @@ describe('convertNamesToCodes', function() {
   	genomics.convertNamesToCodes('p.G12D').should.equal("p.G12D");
   	done();
   });
+
+  it('should convert p.Arg97Glyfs*16 to p.R97Gfs*16', function(done){
+    genomics.convertNamesToCodes('p.Arg97Glyfs*16').should.equal("p.R97Gfs*16");
+    done();
+  });
 });
 
 describe('invertSequence', function() {

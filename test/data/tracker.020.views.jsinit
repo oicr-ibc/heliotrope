@@ -190,6 +190,8 @@ db.views.insert({
 "  <dd>{{entity.data.values.dnaMutation | field}}</dd>" +
 "  <dt>Depth</dt>" +
 "  <dd>{{entity.data.values.depth | field}}</dd>" +
+"  <dt>Open in knowledge base</dt>" +
+"  <dd heli-knowledge-base-search term='entity.data.values.geneName.value + &quot;+&quot; + entity.data.values.aminoAcidMutation.value' entity='entity'>Not available</dd>" +
 "</dl>"
 });
 

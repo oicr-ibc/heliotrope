@@ -18,6 +18,32 @@ angular
                 '</ul>'
   )
 
+  .directive('heliKnowledgeBaseSearch', ($http) ->
+    result = 
+      restrict: "A"
+      scope: { term: '&', entity: '&entity' }
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$watch "term", (newTerm) ->
+          term = newTerm()
+          if term
+            scope.$watch "entity", (newEntity) ->
+              entity = newEntity()
+              if entity
+
+                serviceUrl = entity.data.config.knowledgeServiceUrl + "/variants/" + term
+                frontUrl = entity.data.config.knowledgeUrl + "/variants/" + term
+
+                $http(
+                  method: 'GET'
+                  url: serviceUrl
+                ).success((data, status, headers, config) ->
+                  jQuery(iElement).html("<a href='" + frontUrl + "'>" + frontUrl + "</a>")
+                ).error((data, status, headers, config) ->
+                  jQuery(iElement).html("<span class='warn'>Not found in knowledge base</span>")
+                )
+                  
+  )
+
   .directive('heliSection', () ->
       priority: 1
       restrict: "A"

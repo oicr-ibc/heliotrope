@@ -23,9 +23,10 @@ nconf.defaults({
   'server:address': "0.0.0.0",
   'flavor': "regular",
   'debug': true,
-  'knowledgeUriBase': '/knowledge/api',
-  'trackerUriBase': '/tracker/api',
-  'knowledgeUrl': 'http://localhost:3000/knowledge/api'
+  'heliotrope:knowledgeUriBase': '/knowledge/api',
+  'heliotrope:trackerUriBase': '/tracker/api',
+  'heliotrope:knowledgeServiceUrl': 'http://localhost:3000/knowledge/api',
+  'heliotrope:knowledgeUrl': 'http://localhost:3000'
 })
 
 var app = module.exports.app = express();

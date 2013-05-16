@@ -327,6 +327,10 @@ describe('POST /studies/GPS/samples/id;new/step/sample', function() {
     });
   });
 
+  // Locating an observation is a little harder, as we don't always have a good name 
+  // or identity for them. The simplest and easiest way is to do a quick search and 
+  // handle this. We could, of course, really use a stable URL. 
+
   // it('should create a new sample correctly', function(done){
   //   initialize.withDB("tracker", function(db, err, result) {
       

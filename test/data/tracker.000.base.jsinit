@@ -65,12 +65,9 @@ function obj() {
 db.studies.insert({
   "version": 1,
   "name": "GPS",
-  "roles" : {
+  "notes" : {
     "observations" : {
-      "readEntity" : {
-        "module" : "integration",
-        "method" : "addKnowledgeFields"
-      }
+      "ownerField" : "participantEntityRef"
     }
   }
 });
