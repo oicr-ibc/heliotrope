@@ -33,9 +33,9 @@ describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/recordResults/files', fu
     initialize.withDB("tracker", function(db, err, result) {
       
       var request = {params: {study: "GPS", step: "recordResults", identity: "TST001BIOXPAR1", role: "samples"}};
+      var response = {};
       var form = new Gently;
       var endHandler;
-      var response;
       form.expect(form, 'on', null, function(type, handler) {
         if (type == 'end') {
           endHandler = handler;
@@ -50,7 +50,7 @@ describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/recordResults/files', fu
         endHandler();
       }, 500);
 
-      tracker.postEntityStepFiles(null, db, request, function(db, err, result) {
+      tracker.postEntityStepFiles(null, db, request, response, function(db, err, result) {
         db.close();
         should.not.exist(err);
         should.exist(result);

@@ -13,12 +13,15 @@ describe('GET /studies/GPS', function() {
       db.close();
       
       var request = {params: {study: "GPS"}};
-      tracker.getStudy(null, db, request, function(db, err, result) {
+      var response = {locals: {passthrough: "value"}};
+      tracker.getStudy(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.not.exist(err);
         result.data.name.should.equal("GPS");
         result.data.url.should.equal("/studies/GPS");
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -31,12 +34,15 @@ describe('GET /studies/GPS/participants', function() {
       db.close();
     
       var request = {params: {study: "GPS", role: "participants"}};
-      tracker.getEntities(null, db, request, function(db, err, result) {
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntities(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.not.exist(err);
         result.data.length.should.equal(1);
         result.data[0].identity.should.equal("TST-001");
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -49,13 +55,16 @@ describe('GET /studies/GPS/samples', function() {
       db.close();
       
       var request = {params: {study: "GPS", role: "samples"}};
-      tracker.getEntities(null, db, request, function(db, err, result) {
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntities(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.not.exist(err);
         result.data.length.should.equal(2);
         result.data[0].identity.should.equal("TST001BIOXPAR1");
         result.data[1].identity.should.equal("TST001BIOXPAR2");
+
+        res.locals.passthrough.should.equal("value");
         done()
       });
     });
@@ -67,12 +76,15 @@ describe('GET /studies/GPS/observations', function() {
     initialize.withDB("tracker", function(db, err, result) {
       
       var request = {params: {study: "GPS", role: "observations"}};
-      tracker.getEntities(null, db, request, function(db, err, result) {
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntities(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.not.exist(err);
         result.data.length.should.equal(1);
         result.data[0].name.should.equal("KRAS p.Gly12Asp");
+
+        res.locals.passthrough.should.equal("value");
         done()
       });
     });
@@ -85,13 +97,16 @@ describe('GET /studies/GPS/participants/TST-001', function() {
     initialize.withDB("tracker", function(db, err, result) {
       
       var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}};
-      tracker.getEntity(null, db, request, function(db, err, result) {
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntity(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.not.exist(err);
         result.data.identity.should.equal("TST-001");
         result.data.url.should.equal("/studies/GPS/participants/TST-001");
         result.data.role.should.equal("participants");
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -103,7 +118,8 @@ describe('GET /studies/GPS/participants/TST-001/step/consent', function() {
     initialize.withDB("tracker", function(db, err, result) {
       
       var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "consent"}};
-      tracker.getEntityStep(null, db, request, function(db, err, result) {
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         result.data.identity.should.equal("TST-001");
@@ -114,6 +130,8 @@ describe('GET /studies/GPS/participants/TST-001/step/consent', function() {
         result.data.step.fields.consentDate.type.should.equal("Date");
         result.data.step.fields.consentDate.label.should.equal("Consent date");
         result.data.step.fields.consentDate.value.should.equal("2012-11-13T18:45:00.000");
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -125,7 +143,8 @@ describe('GET /studies/GPS/samples/TST001BIOXPAR1', function() {
     initialize.withDB("tracker", function(db, err, result) {
       
       var request = {params: {study: "GPS", role: "samples", identity: "TST001BIOXPAR1"}};
-      tracker.getEntity(null, db, request, function(db, err, result) {
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntity(null, db, request, response, function(db, err, result, res) {
         db.close();
 
         should.not.exist(err);
@@ -145,6 +164,7 @@ describe('GET /studies/GPS/samples/TST001BIOXPAR1', function() {
         result.data.related.observations[0].role.should.equal("observations");
         result.data.related.observations[0].name.should.equal("KRAS p.Gly12Asp");
         
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -156,13 +176,16 @@ describe('GET /studies/GPS/samples/TST001BIOXPAR1/step/assessSample', function()
     initialize.withDB("tracker", function(db, err, result) {
       
       var request = {params: {study: "GPS", role: "samples", identity: "TST001BIOXPAR1", step: "assessSample"}};
-      tracker.getEntityStep(null, db, request, function(db, err, result) {
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.not.exist(err);
         result.data.identity.should.equal("TST001BIOXPAR1");
         result.data.url.should.equal("/studies/GPS/samples/TST001BIOXPAR1");
         result.data.step.name.should.equal("assessSample");
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -176,13 +199,16 @@ describe('POST /studies/GPS/participants/TST-001/step/consent', function() {
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "consent"},
         "body": {"data": {"step": {"fields": {"consentDate": {"value": "2013-04-17T00:00:00.000"}}}}}
-      }
+      };
+      var response = {locals: {passthrough: "value"}};
       
-      tracker.postEntityStep(null, db, request, function(db, err, result) {
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.not.exist(err);
         result.should.equal("/studies/GPS/participants/TST-001/step/consent");
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -197,13 +223,16 @@ describe('POST /studies/GPS/participants/TST-001/step/participant', function() {
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
         "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-002"}, "institution" : {"value" : "London"}}}}}
-      }
+      };
+      var response = {locals: {passthrough: "value"}};
       
-      tracker.postEntityStep(null, db, request, function(db, err, result) {
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.not.exist(err);
         result.should.equal("/studies/GPS/participants/TST-002/step/participant");
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -215,14 +244,17 @@ describe('POST /studies/GPS/participants/TST-001/step/participant', function() {
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
         "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-002"}}}}}
-      }
+      };
+      var response = {locals: {passthrough: "value"}};
       
-      tracker.postEntityStep(null, db, request, function(db, err, result) {
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.exist(err);
         err.err.should.match(/missing fields/);
         err.err.should.match(/institution/);
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -234,14 +266,17 @@ describe('POST /studies/GPS/participants/TST-001/step/participant', function() {
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
         "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-001"}, "institution" : {"value" : "London"}}}}}
-      }
+      };
+      var response = {locals: {passthrough: "value"}};
       
-      tracker.postEntityStep(null, db, request, function(db, err, result) {
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.exist(err);
         err.code.should.equal(11000);
         err.err.should.match(/duplicate key error/);
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -255,12 +290,15 @@ describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/assessSample', function(
       var request = {
         "params": {"study": "GPS", "role": "samples", "identity": "TST001BIOXPAR1", "step": "assessSample"},
         "body": {"data": {"step": {"fields": {"dnaConcentration": {"value": "100"}, "dnaQuality" : {"value" : "Moderate"}}}}}
-      }
+      };
+      var response = {locals: {passthrough: "value"}};
       
-      tracker.postEntityStep(null, db, request, function(db, err, result) {
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
         should.not.exist(err);
         result.should.equal("/studies/GPS/samples/TST001BIOXPAR1/step/assessSample");
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
@@ -274,13 +312,16 @@ describe('POST /studies/GPS/samples/id;new/step/sample', function() {
       var request = {
         "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
         "body": {"data": {"step": {"fields": {"identifier": {"value": "TST001BIOXPAR3"}}}}}
-      }
+      };
+      var response = {locals: {passthrough: "value"}};
       
-      tracker.postEntityStep(null, db, request, function(db, err, result) {
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.exist(err);
         err.err.should.match(/missing fields/);
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });
