@@ -81,27 +81,30 @@ angular
                   url: scope.entity.data.serviceUrl + "/files"
                   
                   add: (e, data) =>
-                    scope.$apply (s) =>
-                      fileCount = data.files.length
-                      files = (data.files[i] for i in [0..fileCount])
-                      scope.files = files
-                      scope.progressVisible = false
-                      scope.$broadcast('fileadded', {files: fileCount})
-                      scope.toUpload = true
-                      
-                      form.find(".submit").off('click')
-                      
-                      form.find(".submit").on('click', (e) =>
-                        e.preventDefault()
-                        e.stopPropagation()
-                        data.submit()
-                        false
-                      )
+                    fileCount = data.files.length
+                    files = (data.files[i] for i in [0..fileCount])
+                    scope.files = files
+                    scope.progressVisible = false
+                    scope.toUpload = true
+                    scope.$digest()
+                    scope.$broadcast('fileadded', {files: fileCount})
+                    
+                    form.find(".submit").off('click')
+                    
+                    form.find(".submit").on('click', (e) =>
+                      e.preventDefault()
+                      e.stopPropagation()
+                      data.submit()
+                      false
+                    )
                   done: (e, data) =>
                     # We should get a response here, and if we do, and if we get some files back, we
                     # can then add them into the control data and re-initiate the form submission. This
                     # will then put the file identifiers into the form value. Sorted. 
-                    identifiers = data.result.error["files"]
+
+                    console.log "Done", data, scope
+
+                    identifiers = data.result["files"]
                     scope.fieldValue.value = identifiers
                     scope.$apply()
                     

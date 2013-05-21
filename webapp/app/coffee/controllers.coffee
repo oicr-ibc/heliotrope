@@ -47,10 +47,9 @@
   )
 
 @EntityStepController = ($scope, $routeParams, $timeout, $location, EntityStep) ->
-  console.log "@EntityStepController", $routeParams
   $scope.entity = EntityStep.get($routeParams
     (entityStep) ->
-      console.log "Got entity step", entityStep, this
+      
     (error) ->
       console.log error
   )
