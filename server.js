@@ -6,7 +6,8 @@ var fs = require("fs"),
     polyfill = require('./lib/polyfill'),
     url = require("url"),
     nconf = require('nconf'),
-    MongoStore = require('connect-mongo')(express);
+    MongoStore = require('connect-mongo')(express)
+    LdapAuth = require("./lib/ldapauth");
 
 var configFile = process.cwd()+"/config.json";
 console.log("Configuring from: " + configFile);
@@ -30,10 +31,8 @@ nconf.defaults({
   'heliotrope:knowledgeServiceUrl': 'http://localhost:3000/knowledge/api',
   'heliotrope:knowledgeUrl': 'http://localhost:3000',
   'ldap:url': "ldap://ldap.oicr.on.ca/",
-  'ldap:adminDn': "uid=myadminusername,ou=users,o=example.com",
-  'ldap:adminPassword': "mypassword",
   'ldap:searchBase': "dc=oicr,dc=on,dc=ca",
-  'ldap:searchFilter': "(memberUid={{username}})",
+  'ldap:searchFilter': "(uid={{username}})",
   'cookieSecret': 'keyboard cat'
 })
 
@@ -41,6 +40,13 @@ var app = module.exports.app = express();
 
 var config = nconf.get();
 module.exports.config = config;
+
+var ldap = new LdapAuth({
+  url: config.ldap.url,
+  searchBase: config.ldap.searchBase,
+  searchFilter: config.ldap.searchFilter,
+  cache: true
+});
 
 app.configure(function(){
   app.locals.pretty = true;
@@ -64,6 +70,15 @@ app.configure(function(){
       port: config["db"]["port"],
       auto_reconnect: true
     })
+  }));
+
+  app.use(express.basicAuth(function (username, password, callback) {
+    ldap.authenticate(username, password, function (err, user) {
+      if (err) {
+        console.log("LDAP auth error: %s", err);
+      }
+      callback(err, user)
+    });
   }));
 });
 
