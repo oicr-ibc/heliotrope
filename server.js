@@ -5,7 +5,8 @@ var fs = require("fs"),
     express = require('express')
     polyfill = require('./lib/polyfill'),
     url = require("url"),
-    nconf = require('nconf');
+    nconf = require('nconf'),
+    MongoStore = require('connect-mongo')(express);
 
 var configFile = process.cwd()+"/config.json";
 console.log("Configuring from: " + configFile);
@@ -19,6 +20,7 @@ nconf
 nconf.defaults({
   'db:port': 27017,
   'db:host': 'localhost',
+  'db:session:name': 'session',
   'server:port': 3000,
   'server:address': "0.0.0.0",
   'flavor': "regular",
@@ -26,7 +28,13 @@ nconf.defaults({
   'heliotrope:knowledgeUriBase': '/knowledge/api',
   'heliotrope:trackerUriBase': '/tracker/api',
   'heliotrope:knowledgeServiceUrl': 'http://localhost:3000/knowledge/api',
-  'heliotrope:knowledgeUrl': 'http://localhost:3000'
+  'heliotrope:knowledgeUrl': 'http://localhost:3000',
+  'ldap:url': "ldap://ldap.oicr.on.ca/",
+  'ldap:adminDn': "uid=myadminusername,ou=users,o=example.com",
+  'ldap:adminPassword': "mypassword",
+  'ldap:searchBase': "dc=oicr,dc=on,dc=ca",
+  'ldap:searchFilter': "(memberUid={{username}})",
+  'cookieSecret': 'keyboard cat'
 })
 
 var app = module.exports.app = express();
@@ -47,10 +55,16 @@ app.configure(function(){
   app.use(express.static(process.cwd() + '/webapp', { maxAge: 1000 * 60 * 60 * 24 }));
   app.use(express.logger('dev'));
 
-  if (config['accessControl']) {
-    var accesscontrol = require('./lib/accesscontrol');
-    app.use(accesscontrol.handle);
-  } 
+  app.use(express.cookieParser());
+  app.use(express.session({
+    secret: config["cookieSecret"],
+    store: new MongoStore({
+      db: config["db"]["session"]["name"],
+      host: config["db"]["host"],
+      port: config["db"]["port"],
+      auto_reconnect: true
+    })
+  }));
 });
 
 app.configure('development', function(){
