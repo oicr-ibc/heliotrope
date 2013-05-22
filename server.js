@@ -26,6 +26,7 @@ nconf.defaults({
   'server:address': "0.0.0.0",
   'flavor': "regular",
   'debug': true,
+  'authenticate': false, 
   'heliotrope:knowledgeUriBase': '/knowledge/api',
   'heliotrope:trackerUriBase': '/tracker/api',
   'heliotrope:knowledgeServiceUrl': 'http://localhost:3000/knowledge/api',
@@ -72,14 +73,17 @@ app.configure(function(){
     })
   }));
 
-  app.use(express.basicAuth(function (username, password, callback) {
-    ldap.authenticate(username, password, function (err, user) {
-      if (err) {
-        console.log("LDAP auth error: %s", err);
-      }
-      callback(err, user)
-    });
-  }));
+  if (config["authenticate"]) {
+    app.use(express.basicAuth(function (username, password, callback) {
+      ldap.authenticate(username, password, function (err, user) {
+        if (err) {
+          console.log("LDAP auth error: %s", err);
+        }
+        callback(err, user)
+      });
+    }));
+  }
+
 });
 
 app.configure('development', function(){

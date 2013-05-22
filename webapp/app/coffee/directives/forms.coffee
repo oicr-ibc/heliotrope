@@ -3,6 +3,22 @@
 angular
   .module('heliotrope.directives.forms', [])
 
+  .directive('heliFormButton', () ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: true
+      template: '<a class="btn btn-primary"><span ng-transclude></span></a>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$watch 'entity', (newValue, oldValue) ->
+          if newValue
+            iElement.on 'click', (e) ->
+              url = newValue.data.config.knowledgeServiceUrl + newValue.data.url + "/report?type=pdf"
+              location.href = url
+              e.stopPropagation()
+              e.preventDefault()
+  )
+
   .directive('heliStepField', ($compile, Entities) ->
     result = 
       restrict: "A"
