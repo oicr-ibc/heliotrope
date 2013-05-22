@@ -203,8 +203,6 @@ db.views.insert({
   "weight" : 100,
   "body" : 
 "<div>" +
-"  <form>" +
-"    <button class='btn btn-primary' type='button'>Download report</button>" +
-"  </form>" +
+"  <div heli-form-button action='downloadReport'>Download report</button>" +
 "</div>"
 });
