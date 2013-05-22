@@ -359,6 +359,33 @@ describe('POST /studies/GPS/samples/id;new/step/sample', function() {
         done();
       });
     });
-  });  
+  });
+
+  it('should succeed with all fields set', function(done){
+    initialize.withDB("tracker", function(db, err, result) {
+      
+      var request = {
+        "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
+        "body": {"data": {"step": {"fields": {
+          "identifier": {"value": "TST001BIOXPAR3"},
+          "participantEntityRef": {"value": "TST-001"},
+          "requiresCollection": {"value": true},
+          "site": {"value": "Primary"},
+          "source": {"value": "Biopsy"},
+          "type": {"value": "FFPE"}
+        }}}}
+      };
+      var response = {locals: {passthrough: "value"}};
+      
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
+        db.close();
+
+        should.not.exist(err);
+        should.exist(result);
+        result.should.equal('/studies/GPS/samples/TST001BIOXPAR3/step/sample');
+        done();
+      });
+    });
+  });
 });
 
