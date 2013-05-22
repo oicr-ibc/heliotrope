@@ -37,7 +37,7 @@ angular
                 url = url + ";" + stepData['count']
               rowData.push(new Date(step["stepDate"]).toLocaleDateString())
               rowData.push("<a href='" + url + "'>" + stepData["label"] + "</a>")
-              rowData.push(step["stepUser"])
+              rowData.push(step["stepUser"] || "anonymous")
               row = ("<td>" + element + "</td>" for element in rowData).join("")
               jQuery("<tr>" + row + "</tr>").appendTo(body)
 
