@@ -303,6 +303,40 @@ describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/assessSample', function(
       });
     });
   });
+
+  it('should record the request user for the step', function(done){
+    initialize.withDB("tracker", function(db, err, result) {
+      
+      var request = {
+        "user": "mungo",
+        "params": {"study": "GPS", "role": "samples", "identity": "TST001BIOXPAR1", "step": "assessSample"},
+        "body": {"data": {"step": {"fields": {"dnaConcentration": {"value": "100"}, "dnaQuality" : {"value" : "Moderate"}}}}}
+      };
+      var response = {locals: {passthrough: "value"}};
+      
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
+        should.not.exist(err);
+        result.should.equal("/studies/GPS/samples/TST001BIOXPAR1/step/assessSample");
+
+        res.locals.passthrough.should.equal("value");
+
+        // At this stage, we ought to be able to find the entity
+        db.collection("entities", function(err, entities) {
+          entities.find({role: "samples", "identity": "TST001BIOXPAR1"}).limit(1).toArray(function(err, docs) {
+            db.close();
+
+            should.exist(docs);
+            docs.length.should.equal(1);
+            should.exist(docs[0].steps);
+            docs[0].steps.length.should.equal(2);
+            docs[0].steps[1].stepUser.should.equal("mungo");
+
+            done();
+          });
+        });
+      });
+    });
+  });
 });
 
 describe('POST /studies/GPS/samples/id;new/step/sample', function() {
@@ -325,35 +359,6 @@ describe('POST /studies/GPS/samples/id;new/step/sample', function() {
         done();
       });
     });
-  });
-
-  // Locating an observation is a little harder, as we don't always have a good name 
-  // or identity for them. The simplest and easiest way is to do a quick search and 
-  // handle this. We could, of course, really use a stable URL. 
-
-  // it('should create a new sample correctly', function(done){
-  //   initialize.withDB("tracker", function(db, err, result) {
-      
-  //     var request = {
-  //       "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
-  //       "body": {"data": {"step": {"fields": {
-  //         "identifier": {"value": "TST001BIOXPAR3"}, 
-  //         "type" : {"value" : "FFPE"},
-  //         "requiresCollection" : {"value" : "false"},
-  //         "participantEntityRef" : {"value" : "TST-001"}
-  //       }}}}
-  //     }
-  //     tracker.postEntityStep(null, db, request, function(db, err, result) {
-  //       db.close();
-
-  //       console.log("XXX", err, result);
-        
-  //       should.not.exist(err);
-  //       result.should.equal("/studies/GPS/samples/TST001BIOXPAR3/step/sample");
-  //       done();
-  //     });
-  //   });
-  // });
-  
+  });  
 });
 
