@@ -94,7 +94,7 @@ angular
                 active = ""
                 template = angular.element(body)
                 linkFn = $compile(template)
-                iElement.append "<h3 id='" + view.name + "'>" + view.label.default + "</h3>"
+                iElement.append "<h3 class='summary-section-header' id='" + view.name + "'>" + view.label.default + "</h3>"
                 iElement.append linkFn(scope)
                 result = navElement.append "<li><a class='nav-section' href='#" + view.name + "'>" + view.label.default + "</a></li>"
               navElement.find("a.nav-section").click (e) ->

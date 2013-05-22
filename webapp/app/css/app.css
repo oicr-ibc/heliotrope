@@ -454,6 +454,15 @@ a[rel="external"], a.external {
     zoom: 1;
 }
 
+.summary-section-header {
+  margin-top: 1.0em;
+  clear: both;
+}
+
+div.paging_bootstrap {
+  margin-bottom: 2em;
+}
+
 /*
 This section defines rules that affect how the page is displayed for printing. Some components, such
 as navigation elements, are best hidden from printing. 

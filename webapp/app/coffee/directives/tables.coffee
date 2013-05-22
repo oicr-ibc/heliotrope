@@ -3,6 +3,43 @@
 angular
   .module('heliotrope.directives.tables', [])
 
+  .directive 'heliEntitySteps', () ->
+    result = 
+      restrict: "A"
+      replace: true
+      template: '<table class="table table-bordered table-striped table-condensed">' +
+                '<thead>' +
+                '<tr>' +
+                '<th>Date</th>' +
+                '<th>Step</th>' +
+                '<th>User</th>' +
+                '<th>Actions</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody class="step-body">' +
+                '</tbody>' + 
+                '</table>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$watch 'entity', (entity) -> 
+          if entity
+            body = iElement.find(".step-body")
+            steps = entity.data.steps.sort (a, b) ->
+              b.stepDate.localeCompare(a.stepDate)
+            availableSteps = entity.data.availableSteps
+            stepTable = {}
+            stepTable[step._id] = step for step in availableSteps
+            for id, step in stepTable
+              step['count'] = 0
+            for step in steps
+              stepData = stepTable[step.stepRef]
+              rowData = []
+              rowData.push(new Date(step["stepDate"]).toLocaleDateString())
+              rowData.push(stepData["label"])
+              rowData.push(step["stepUser"])
+              row = ("<td>" + element + "</td>" for element in rowData).join("")
+              jQuery("<tr>" + row + "</tr>").appendTo(body)
+
+
   .directive('heliStudyEntities', (Study) ->
     result = 
       restrict: "A"
@@ -93,7 +130,7 @@ angular
       replace: true
       transclude: false
       scope: false
-      template: '<table class="table table-bordered table-striped table-condensed">' +
+      template: '<table class="table table-bordered table-striped table-condensed table-paginated">' +
                 '<thead>' +
                 '<tr>' +
                 '<th>Mutation</th>' +
