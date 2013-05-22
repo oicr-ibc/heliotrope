@@ -32,7 +32,7 @@ angular
             for step in steps
               stepData = stepTable[step.stepRef]
               rowData = []
-              url = entity.data.config["trackerUriBase"] + entity.data.url + "/" + stepData["name"]
+              url = entity.data.url + "/step/" + stepData["name"]
               if stepData['count']++ > 1 
                 url = url + ";" + stepData['count']
               rowData.push(new Date(step["stepDate"]).toLocaleDateString())
