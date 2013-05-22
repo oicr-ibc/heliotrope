@@ -13,7 +13,6 @@ angular
                 '<th>Date</th>' +
                 '<th>Step</th>' +
                 '<th>User</th>' +
-                '<th>Actions</th>' +
                 '</tr>' +
                 '</thead>' +
                 '<tbody class="step-body">' +
@@ -33,8 +32,11 @@ angular
             for step in steps
               stepData = stepTable[step.stepRef]
               rowData = []
+              url = entity.data.config["trackerUriBase"] + entity.data.url + "/" + stepData["name"]
+              if stepData['count']++ > 1 
+                url = url + ";" + stepData['count']
               rowData.push(new Date(step["stepDate"]).toLocaleDateString())
-              rowData.push(stepData["label"])
+              rowData.push("<a href='" + url + "'>" + stepData["label"] + "</a>")
               rowData.push(step["stepUser"])
               row = ("<td>" + element + "</td>" for element in rowData).join("")
               jQuery("<tr>" + row + "</tr>").appendTo(body)

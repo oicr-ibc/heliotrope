@@ -129,6 +129,18 @@ db.views.insert({
 
 db.views.insert({
   "studyId" : study_id,
+  "name" : "steps",
+  "role" : "participants",
+  "label" : { "default" : "Steps" },
+  "weight" : 500,
+  "body" : 
+"<div>" +
+"<div heli-entity-steps></div>" +
+"</div>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
   "name" : "summary",
   "role" : "samples",
   "label" : { "default" : "Summary" },
@@ -172,6 +184,18 @@ db.views.insert({
 
 db.views.insert({
   "studyId" : study_id,
+  "name" : "steps",
+  "role" : "samples",
+  "label" : { "default" : "Steps" },
+  "weight" : 500,
+  "body" : 
+"<div>" +
+"<div heli-entity-steps></div>" +
+"</div>"
+});
+
+db.views.insert({
+  "studyId" : study_id,
   "name" : "summary",
   "role" : "observations",
   "label" : { "default" : "Summary" },
@@ -206,3 +230,16 @@ db.views.insert({
 "  <div heli-form-button action='downloadReport'>Download report</button>" +
 "</div>"
 });
+
+db.views.insert({
+  "studyId" : study_id,
+  "name" : "steps",
+  "role" : "observations",
+  "label" : { "default" : "Steps" },
+  "weight" : 500,
+  "body" : 
+"<div>" +
+"<div heli-entity-steps></div>" +
+"</div>"
+});
+
