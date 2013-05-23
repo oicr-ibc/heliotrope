@@ -23,7 +23,12 @@
         <h1>
           <span ng-show="entity.data.name">{{entity.data.name}}</span>
           <span ng-hide="entity.data.name">{{entity.data.identity}}</span>
-          <small> / <a href="{{entity.data.study.url}}">{{entity.data.study.name}}</a></small>
+          <small>
+            {{entity.data.role | capitalize | singularize}}
+            <span ng-repeat="owner in entity.data.study.notes[entity.data.role].ownerFields">
+            / <a href="{{entity.data.study.url}}/{{entity.data.values[owner].entity}}/{{entity.data.values[owner].displayValue}}">{{entity.data.values[owner].displayValue}}</a>
+            </span>
+          / <a href="{{entity.data.study.url}}/">{{entity.data.study.name}}</a></small>
         </h1>
       </div>
     </div>
