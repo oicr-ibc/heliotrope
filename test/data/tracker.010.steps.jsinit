@@ -15,6 +15,7 @@ db.steps.insert({
   "weight" : 0,
   "name" : "participant",
   "showSummary" : false,
+  "isRepeatable" : false,
   "stepOptions" : {
     "method" : "CreateEntity"
   },
@@ -44,6 +45,7 @@ db.steps.insert({
   "appliesTo" : "participants",
   "name" : "enrolment",
   "showSummary" : true,
+  "isRepeatable" : false,
   "label" : {
     "default" : "Enrolment",
   },
@@ -63,6 +65,7 @@ db.steps.insert({
   "weight" : 20,
   "name" : "consent",
   "showSummary" : true,
+  "isRepeatable" : false,
   "label" : { "default" : "Consent" },
   "fields" : {
     "consentDate" : {
@@ -80,6 +83,7 @@ db.steps.insert({
   "weight" : 30,
   "name" : "biopsy",
   "showSummary" : true,
+  "isRepeatable" : false,
   "label" : { "default" : "Biopsy" },
   "fields" : {
     "biopsyDate" : {
@@ -103,6 +107,7 @@ db.steps.insert({
   "weight" : 40,
   "name" : "pathology",
   "showSummary" : true,
+  "isRepeatable" : false,
   "label" : { "default" : "Pathology" },
   "fields" : {
     "pathologyDate" : {
@@ -120,6 +125,7 @@ db.steps.insert({
   "weight" : 200,
   "name" : "clinicalHistory",
   "showSummary" : true,
+  "isRepeatable" : false,
   "label" : { "default" : "Clinical history" },
   "fields" : {
     "clinicalHistory" : {
@@ -138,6 +144,7 @@ db.steps.insert({
   "weight" : 300,
   "name" : "genomics",
   "showSummary" : false,
+  "isRepeatable" : false,
   "label" : { "default" : "Genomics" },
   "fields" : {
     "file" : {
@@ -154,10 +161,58 @@ db.steps.insert({
   "appliesTo" : "participants",
   "name" : "addSample",
   "showSummary" : false,
+  "isRepeatable" : false,
   "label" : { "default" : "Add sample" },
   "weight" : 400,
   "url" : "{{study.url}}/samples/id;new/step/sample?participantEntityRef={{identity}}"
-})
+});
+
+db.steps.insert({
+  "studyId" : study_id,
+  "appliesTo" : "participants",
+  "weight" : 500,
+  "name" : "expertPanel",
+  "showSummary" : true,
+  "isRepeatable" : true,
+  "label" : { "default" : "Expert panel decision" },
+  "fields" : {
+    "observationRef" : {
+      "controlType" : "chooser",
+      "entity" : "observation",
+      "type" : "Reference",
+      "isRequired" : true,
+      "isReadonly" : false,
+      "label" : { "default" : "Observation" }      
+    },
+    "reportable" : {
+      "controlType" : "checkbox",
+      "type" : "Boolean",
+      "default" : false,
+      "isRequired" : true,
+      "label" : { "default" : "Reportable" }
+    }, 
+    "actionable" : {
+      "controlType" : "checkbox",
+      "type" : "Boolean",
+      "default" : false,
+      "isRequired" : true,
+      "label" : { "default" : "Actionable" }
+    }, 
+    "expertPanelDate" : {
+      "controlType" : "date",
+      "type" : "Date",
+      "isRequired" : true,
+      "label" : { "default" : "Expert panel date" }
+    },
+    "expertPanelDecision" : {
+      "controlType" : "textarea",
+      "controlArguments" : { "html" : true },
+      "type" : "String",
+      "isRequired" : true,
+      "label" : { "default" : "Expert panel decision" }
+    }
+  }
+});
 
 db.steps.insert({
   "studyId" : study_id,
@@ -169,6 +224,7 @@ db.steps.insert({
   },
   "name" : "sample",
   "showSummary" : false,
+  "isRepeatable" : false,
   "label" : { "default" : "Create sample" },
   "redoLabel" : { "default" : "Update sample" },
   "fields" : {
@@ -245,6 +301,7 @@ db.steps.insert({
   "weight" : 20,
   "name" : "markAsCollected",
   "showSummary" : true,
+  "isRepeatable" : false,
   "label" : { "default" : "Mark as collected" }
 });
 
@@ -254,6 +311,7 @@ db.steps.insert({
   "weight" : 10,
   "name" : "recordResults",
   "showSummary" : true,
+  "isRepeatable" : false,
   "label" : { "default" : "Record results" },
   "plugin" : {
     "module" : "vcf",
@@ -274,6 +332,7 @@ db.steps.insert({
   "weight" : 0,
   "name" : "observation",
   "showSummary" : false,
+  "isRepeatable" : false,
   "stepOptions" : {
     "method" : "CreateEntity",
     "parentField": "sampleEntityRef"
@@ -358,6 +417,7 @@ db.steps.insert({
   "weight" : 100,
   "name" : "clinicallyVerified",
   "showSummary" : true,
+  "isRepeatable" : false,
   "label" : { "default" : "Clinical verification" },
   "fields" : {
     "verified" : {
@@ -372,44 +432,6 @@ db.steps.insert({
       "type" : "Integer",
       "isRequired" : false,
       "label" : { "default" : "Frequency" }
-    }
-  }
-});
-
-db.steps.insert({
-  "studyId" : study_id,
-  "appliesTo" : "observations",
-  "weight" : 200,
-  "name" : "expertPanel",
-  "showSummary" : true,
-  "label" : { "default" : "Expert panel decision" },
-  "fields" : {
-    "reportable" : {
-      "controlType" : "checkbox",
-      "type" : "Boolean",
-      "default" : false,
-      "isRequired" : true,
-      "label" : { "default" : "Reportable" }
-    }, 
-    "actionable" : {
-      "controlType" : "checkbox",
-      "type" : "Boolean",
-      "default" : false,
-      "isRequired" : true,
-      "label" : { "default" : "Actionable" }
-    }, 
-    "expertPanelDate" : {
-      "controlType" : "date",
-      "type" : "Date",
-      "isRequired" : true,
-      "label" : { "default" : "Expert panel date" }
-    },
-    "expertPanelDecision" : {
-      "controlType" : "textarea",
-      "controlArguments" : { "html" : true },
-      "type" : "String",
-      "isRequired" : true,
-      "label" : { "default" : "Expert panel decision" }
     }
   }
 });

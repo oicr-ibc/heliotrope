@@ -7,9 +7,19 @@ var fs = require('fs'),
     should = require('should'),
     initialize = require('./initialize');
 
-describe('GET /genes/KRAS', function() {
-  it('should retrieve a gene', function(done){
-    initialize.withDB("heliotrope", function(db, err) {
+describe('GET request', function() {
+
+  var db;
+
+  beforeEach(function(done){
+    initialize.withDB("heliotrope", function(idb, ierr, iresult) {
+      db = idb;
+      done();
+    });
+  });
+
+  describe('/genes/KRAS', function() {
+    it('should retrieve a gene', function(done){
       
       var request = {params: {gene: "KRAS"}};
       var response = {locals: {passthrough: "value"}};
@@ -28,11 +38,9 @@ describe('GET /genes/KRAS', function() {
       });
     });
   });
-});
 
-describe('GET /genes/XXXXX', function() {
-  it('should fail to retrieve a gene', function(done){
-    initialize.withDB("heliotrope", function(db, err) {
+  describe('/genes/XXXXX', function() {
+    it('should fail to retrieve a gene', function(done){
       
       var request = {params: {gene: "XXXXX"}};
       var response = {locals: {passthrough: "value"}};
@@ -46,11 +54,9 @@ describe('GET /genes/XXXXX', function() {
       });
     });
   });
-});
 
-describe('GET /queries/frequencies', function() {
-  it('should retrieve a set of gene frequencies', function(done){
-    initialize.withDB("heliotrope", function(db, err) {
+  describe('/queries/frequencies', function() {
+    it('should retrieve a set of gene frequencies', function(done){
       
       var request = {params: {query: "frequencies"}};
       var response = {locals: {passthrough: "value"}};
@@ -67,11 +73,9 @@ describe('GET /queries/frequencies', function() {
       });
     });
   });
-});
 
-describe('GET /variants/KRAS+p.G12D', function() {
-  it('should retrieve a variant', function(done){
-    initialize.withDB("heliotrope", function(db, err) {
+  describe('/variants/KRAS+p.G12D', function() {
+    it('should retrieve a variant', function(done){
       
       var request = {params: {id: "KRAS p.G12D"}};
       var response = {locals: {passthrough: "value"}};
@@ -89,11 +93,9 @@ describe('GET /variants/KRAS+p.G12D', function() {
       });
     });
   });
-});
 
-describe('GET /variants/KRAS+p.Gly12Asp', function() {
-  it('should retrieve a variant', function(done){
-    initialize.withDB("heliotrope", function(db, err) {
+  describe('/variants/KRAS+p.Gly12Asp', function() {
+    it('should retrieve a variant', function(done){
       
       var request = {params: {id: "KRAS p.Gly12Asp"}};
       var response = {locals: {passthrough: "value"}};
