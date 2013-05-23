@@ -117,30 +117,6 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "appliesTo" : "participants",
-  "weight" : 100,
-  "name" : "expertPanel",
-  "showSummary" : true,
-  "label" : { "default" : "Expert panel" },
-  "fields" : {
-    "expertPanelDate" : {
-      "controlType" : "date",
-      "type" : "Date",
-      "isRequired" : true,
-      "label" : { "default" : "Expert panel date" }
-    },
-    "expertPanelDecision" : {
-      "controlType" : "textarea",
-      "controlArguments" : { "html" : true },
-      "type" : "String",
-      "isRequired" : true,
-      "label" : { "default" : "Expert panel decision" }
-    }
-  }
-});
-
-db.steps.insert({
-  "studyId" : study_id,
-  "appliesTo" : "participants",
   "weight" : 300,
   "name" : "genomics",
   "showSummary" : false,
@@ -366,7 +342,7 @@ db.steps.insert({
   "showSummary" : true,
   "label" : { "default" : "Clinical verification" },
   "fields" : {
-    "label" : {
+    "verified" : {
       "controlType" : "checkbox",
       "type" : "Boolean",
       "default" : false,
@@ -378,6 +354,44 @@ db.steps.insert({
       "type" : "Integer",
       "isRequired" : false,
       "label" : { "default" : "Frequency" }
+    }
+  }
+});
+
+db.steps.insert({
+  "studyId" : study_id,
+  "appliesTo" : "observations",
+  "weight" : 200,
+  "name" : "expertPanel",
+  "showSummary" : true,
+  "label" : { "default" : "Expert panel decision" },
+  "fields" : {
+    "reportable" : {
+      "controlType" : "checkbox",
+      "type" : "Boolean",
+      "default" : false,
+      "isRequired" : true,
+      "label" : { "default" : "Reportable" }
+    }, 
+    "actionable" : {
+      "controlType" : "checkbox",
+      "type" : "Boolean",
+      "default" : false,
+      "isRequired" : true,
+      "label" : { "default" : "Actionable" }
+    }, 
+    "expertPanelDate" : {
+      "controlType" : "date",
+      "type" : "Date",
+      "isRequired" : true,
+      "label" : { "default" : "Expert panel date" }
+    },
+    "expertPanelDecision" : {
+      "controlType" : "textarea",
+      "controlArguments" : { "html" : true },
+      "type" : "String",
+      "isRequired" : true,
+      "label" : { "default" : "Expert panel decision" }
     }
   }
 });

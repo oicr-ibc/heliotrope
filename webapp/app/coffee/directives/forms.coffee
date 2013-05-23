@@ -3,6 +3,23 @@
 angular
   .module('heliotrope.directives.forms', [])
 
+  .directive('heliStepForm', () ->
+    result =
+      restrict: 'A',
+      replace: true,
+      transclude: true,
+      template: '<div>' +
+                '<form class="form-horizontal">' +
+                '<div class="body" ng-transclude></div>' +
+                '<div class="control-group">' +
+                '<div class="controls">' +
+                '<button type="submit" class="btn btn-primary submit" ng-click="update(entity)">Save</button>' +
+                '</div>' +
+                '</div>' +
+                '</form>' +
+                '</div>'
+  )
+  
   .directive('heliFormButton', () ->
     result = 
       restrict: "A"
