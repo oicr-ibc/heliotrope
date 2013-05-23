@@ -1,6 +1,7 @@
 require.extensions['.testjs'] = require.extensions['.js'];
 
 var fs = require('fs'),
+    sys = require('sys'),
     mongo = require("mongodb"),
     MongoClient = mongo.MongoClient,
     tracker = require("../lib/trackerImplementation"),
@@ -192,6 +193,34 @@ describe('GET /studies/GPS/samples/TST001BIOXPAR1/step/assessSample', function()
   });
 });
 
+describe('GET /studies/GPS/samples/id%3Bnew/step/sample?participantEntityRef=TST-001', function() {
+  it('should get the initial step format', function(done){
+    initialize.withDB("tracker", function(db, err, result) {
+      
+      var request = {
+        params: {study: "GPS", role: "samples", identity: "id;new", step: "sample"},
+        query: {participantEntityRef: "TST-001"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        should.exist(result);
+        should.exist(result.data);
+        should.exist(result.data.step);
+        should.exist(result.data.step.fields);
+        should.exist(result.data.step.fields["participantEntityRef"]);
+        should.exist(result.data.step.fields["participantEntityRef"].displayValue);
+        result.data.step.fields["participantEntityRef"].displayValue.should.equal("TST-001")
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+});
+
 describe('POST /studies/GPS/participants/TST-001/step/consent', function() {
   it('should write a date field successfully', function(done){
     initialize.withDB("tracker", function(db, err, result) {
@@ -222,7 +251,7 @@ describe('POST /studies/GPS/participants/TST-001/step/participant', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
-        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-002"}, "institution" : {"value" : "London"}}}}}
+        "body": {"data": {"step": {"fields": {"identifier": {"identity": "TST-002"}, "institution" : {"value" : "London"}}}}}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -265,7 +294,7 @@ describe('POST /studies/GPS/participants/TST-001/step/participant', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
-        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-001"}, "institution" : {"value" : "London"}}}}}
+        "body": {"data": {"step": {"fields": {"identifier": {"identity": "TST-001"}, "institution" : {"value" : "London"}}}}}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -367,7 +396,7 @@ describe('POST /studies/GPS/samples/id;new/step/sample', function() {
       var request = {
         "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
         "body": {"data": {"step": {"fields": {
-          "identifier": {"value": "TST001BIOXPAR3"},
+          "identifier": {"identity": "TST001BIOXPAR3"},
           "participantEntityRef": {"value": "TST-001"},
           "requiresCollection": {"value": true},
           "site": {"value": "Primary"},

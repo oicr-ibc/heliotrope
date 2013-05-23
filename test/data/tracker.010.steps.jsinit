@@ -19,20 +19,20 @@ db.steps.insert({
     "method" : "CreateEntity"
   },
   "label" : { "default" : "Create participant" },
-  "editLabel" : { "default" : "Update participant" },
+  "redoLabel" : { "default" : "Update participant" },
   "fields" : {
     "identifier" : {
-      "controlType" : "text",
+      "controlType" : "identity",
       "type" : "String",
-      "required" : true,
-      "identity" : true,
+      "isRequired" : true,
+      "isIdentity" : true,
       "label" : { "default" : "Identifier" }
     },
     "institution" : {
       "controlType" : "select",
       "type" : "String",
       "range" : ["PMH/UHN", "London", "Ottawa", "Thunder Bay"],
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Institution" }
     },
   }
@@ -51,7 +51,7 @@ db.steps.insert({
     "enrolmentDate" : {
       "controlType" : "date",
       "type" : "Date",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Enrolment date" }
     }
   }
@@ -68,7 +68,7 @@ db.steps.insert({
     "consentDate" : {
       "controlType" : "date",
       "type" : "Date",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Consent date" }
     }
   }
@@ -85,13 +85,13 @@ db.steps.insert({
     "biopsyDate" : {
       "controlType" : "date",
       "type" : "Date",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Biopsy date" }
     },
     "biopsyCores" : {
       "controlType" : "integer",
       "type" : "Integer",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Number of cores" }
     }
   }
@@ -108,7 +108,7 @@ db.steps.insert({
     "pathologyDate" : {
       "controlType" : "date",
       "type" : "Date",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Pathology date" }
     }
   }
@@ -125,14 +125,14 @@ db.steps.insert({
     "expertPanelDate" : {
       "controlType" : "date",
       "type" : "Date",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Expert panel date" }
     },
     "expertPanelDecision" : {
       "controlType" : "textarea",
       "controlArguments" : { "html" : true },
       "type" : "String",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Expert panel decision" }
     }
   }
@@ -149,7 +149,7 @@ db.steps.insert({
     "file" : {
       "controlType" : "file",
       "type" : "File",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "File" }
     }
   }
@@ -176,35 +176,35 @@ db.steps.insert({
   "name" : "sample",
   "showSummary" : false,
   "label" : { "default" : "Create sample" },
-  "editLabel" : { "default" : "Update sample" },
+  "redoLabel" : { "default" : "Update sample" },
   "fields" : {
     "identifier" : {
-      "controlType" : "text",
+      "controlType" : "identity",
       "type" : "String",
-      "required" : true,
-      "identity" : true,
+      "isRequired" : true,
+      "isIdentity" : true,
       "label" : { "default" : "Barcode" }
     },
     "participantEntityRef" : {
       "controlType" : "chooser",
       "entity" : "participants",
       "type" : "Reference",
-      "required" : true,
-      "readonly" : true,
+      "isRequired" : true,
+      "isReadonly" : true,
       "label" : { "default" : "Participant" }
     },
     "source" : {
       "controlType" : "select",
       "type" : "String",
       "range" : ["Biopsy", "Archival", "Control"],
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Source" }
     },
     "type" : {
       "controlType" : "select",
       "type" : "String",
       "range" : ["FFPE", "Frozen", "Blood", "Fluid", "FNA"],
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Type" }
     },
     "site" : {
@@ -217,7 +217,7 @@ db.steps.insert({
       "controlType" : "checkbox",
       "type" : "Boolean",
       "default" : true,
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Requires collection" }
     }
   }
@@ -285,7 +285,7 @@ db.steps.insert({
     "parentField": "sampleEntityRef"
   },
   "label" : { "default" : "Create observation" },
-  "editLabel" : { "default" : "Update observation" },
+  "redoLabel" : { "default" : "Update observation" },
   "fields" : {
     "label" : {
       "controlType" : "hidden",
@@ -297,62 +297,62 @@ db.steps.insert({
       "controlType" : "chooser",
       "type" : "Reference",
       "entity" : "participants",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Participant" }
     },
     "sampleEntityRef" : {
       "controlType" : "chooser",
       "type" : "Reference",
       "entity" : "samples",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Sample" }
     },
     "genomicPosition" : {
       "controlType" : "text",
       "type" : "String",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Genomic position" }
     },
     "genomicChange" : {
       "controlType" : "text",
       "type" : "String",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Genomic change" }
     },
     "geneName" : {
       "controlType" : "text",
       "type" : "String",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Gene" }
     },
     "geneId" : {
       "controlType" : "text",
       "type" : "String",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Gene ID" }
     },
     "transcriptId" : {
       "controlType" : "text",
       "type" : "String",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Transcript ID" }
     },
     "aminoAcidMutation" : {
       "controlType" : "text",
       "type" : "String",
-      "required" : false,
+      "isRequired" : false,
       "label" : { "default" : "Protein mutation" }
     },
     "dnaMutation" : {
       "controlType" : "text",
       "type" : "String",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "DNA mutation" }
     },
     "depth" : {
       "controlType" : "text",
       "type" : "String",
-      "required" : true,
+      "isRequired" : true,
       "label" : { "default" : "Depth" }      
     }
   }

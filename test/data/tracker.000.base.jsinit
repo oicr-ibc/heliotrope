@@ -67,7 +67,10 @@ db.studies.insert({
   "name": "GPS",
   "notes" : {
     "observations" : {
-      "ownerField" : "participantEntityRef"
+      "ownerFields" : ["sampleEntityRef", "participantEntityRef"]
+    },
+    "samples" : {
+      "ownerFields" : ["participantEntityRef"]
     }
   }
 });

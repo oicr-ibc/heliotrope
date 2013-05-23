@@ -1,6 +1,7 @@
 require.extensions['.testjs'] = require.extensions['.js'];
 
 var fs = require('fs'),
+    sys = require("sys"),
     mongo = require("mongodb"),
     MongoClient = mongo.MongoClient,
     tracker = require("../lib/trackerImplementation"),
@@ -155,14 +156,14 @@ describe('findStepUpdater', function() {
             fields: { 
               identifier: { 
                 type: 'String',
-                required: true,
-                identity: true },
+                isRequired: true,
+                isIdentity: true },
               institution:  { 
                 type: 'String',
                 range: ["London", "Hamilton", "Europa"],
-                required: true }}};
+                isRequired: true }}};
 
-        var fields = { identifier: { value: 'TST-002' }, institution: { value: 'London' } };
+        var fields = { identifier: { identity: 'TST-002' }, institution: { value: 'London' } };
         
         tracker.findStepUpdater(db, study._id, step, fields, {}, {"$set" : {"steps.$.fields" : []}}, function(db, err, updater) {
           db.close();
@@ -189,12 +190,12 @@ describe('findStepUpdater', function() {
             fields: { 
               identifier: { 
                 type: 'String',
-                required: true,
-                identity: true },
+                isRequired: true,
+                isIdentity: true },
               institution:  { 
                 type: 'String',
                 range: ["London", "Hamilton", "Europa"],
-                required: true }}};
+                isRequired: true }}};
         var fields = { identifier: { value: 'TST-002' } };
         
         tracker.findStepUpdater(db, study._id, step, fields, {}, {"$set" : {"steps.$.fields" : []}}, function(db, err, updater) {
@@ -203,46 +204,11 @@ describe('findStepUpdater', function() {
           should.exist(err);
           should.ok(err.hasOwnProperty("missingFields"), "err should set missingFields");
           err["missingFields"].should.eql(["institution"]);
-          updater["$set"]["steps.$.fields"][0]["identity"].should.equal("TST-002");
-          updater["$set"]["steps.$.fields"][0]["key"].should.equal("identifier");
           done();
         });
       });
     });
   });
   
-  // it('should build an updater for a reference', function(done){
-  //   initialize.withDB("tracker", function(db, err, result) {
-      
-  //     initialize.withStudy(db, "GPS", function(err, study) {
-
-  //       var step = {
-  //           name: 'sample',
-  //           stepOptions: { method: 'CreateEntity' },
-  //           fields: { 
-  //             identifier: { 
-  //               type: 'String',
-  //               required: true,
-  //               identity: true },
-  //             participantEntityRef:  { 
-  //               type: 'Reference',
-  //               entity : "participants",
-  //               required: true }}};
-  //       var fields = { identifier: { value: 'TST001BIOXPAR3' }, participantEntityRef: { value : "TST-001" } };
-        
-  //       tracker.findStepUpdater(db, study._id, step, fields, {}, {"$set" : {"steps.$.fields" : []}}, function(db, err, updater) {
-  //         db.close();
-          
-  //         should.not.exist(err);
-  //         updater["$set"]["steps.$.fields"][0]["identity"].should.equal("TST001BIOXPAR3");
-  //         updater["$set"]["steps.$.fields"][0]["key"].should.equal("identifier");
-  //         updater["$set"]["steps.$.fields"][1]["key"].should.equal("participantEntityRef");
-  //         should.ok(updater["$set"]["steps.$.fields"][1].hasOwnProperty("ref"));
-  //         updater["$set"]["steps.$.fields"][1]["ref"]._bsontype.should.equal("ObjectID");
-  //         done();
-  //       });
-  //     });
-  //   });  
-  // });
 });
 
