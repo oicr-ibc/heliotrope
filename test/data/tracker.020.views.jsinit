@@ -112,7 +112,6 @@ db.views.insert({
   "body" : 
 "<div>" +
 "{{entity.data.values.clinicalHistory | field}}" +
-"<p><b>Last updated:</b> {{entity.data.values.clinicalHistoryUpdated | field}}</p>" +
 "</div>"
 });
 

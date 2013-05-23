@@ -117,6 +117,24 @@ db.steps.insert({
 db.steps.insert({
   "studyId" : study_id,
   "appliesTo" : "participants",
+  "weight" : 200,
+  "name" : "clinicalHistory",
+  "showSummary" : true,
+  "label" : { "default" : "Clinical history" },
+  "fields" : {
+    "clinicalHistory" : {
+      "controlType" : "textarea",
+      "controlArguments" : { "html" : true },
+      "type" : "String",
+      "isRequired" : true,
+      "label" : { "default" : "History" }
+    }
+  }
+});
+
+db.steps.insert({
+  "studyId" : study_id,
+  "appliesTo" : "participants",
   "weight" : 300,
   "name" : "genomics",
   "showSummary" : false,
