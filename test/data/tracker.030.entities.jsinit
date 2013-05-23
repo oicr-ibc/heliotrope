@@ -2,7 +2,7 @@
 // containing a minimal set of objects which we can use to test out the service. 
 
 db.entities.drop();
-db.createCollection("users");
+db.createCollection("entities");
 
 // Locates a step within a case, and ensures uniqueness
 db.entities.ensureIndex({"studyId": 1, "steps.id": 1});

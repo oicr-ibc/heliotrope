@@ -32,6 +32,9 @@ function withDB(database, callback) {
 			MongoClient.connect("mongodb://localhost:27017/" + database, function(err, db) {
 	      db.eval(data.join("\n"), [], 
 	        function(err, result) {
+	        	if (err) {
+	        		console.error(err);
+	        	}
 	          callback(db, err, result);
 	      });
 	    });

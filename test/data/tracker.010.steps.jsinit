@@ -357,3 +357,28 @@ db.steps.insert({
     }
   }
 });
+
+db.steps.insert({
+  "studyId" : study_id,
+  "appliesTo" : "observations",
+  "weight" : 100,
+  "name" : "clinicallyVerified",
+  "showSummary" : true,
+  "label" : { "default" : "Clinical verification" },
+  "fields" : {
+    "label" : {
+      "controlType" : "checkbox",
+      "type" : "Boolean",
+      "default" : false,
+      "isRequired" : true,
+      "label" : { "default" : "Verified" }
+    }, 
+    "frequency" : {
+      "controlType" : "integer",
+      "type" : "Integer",
+      "isRequired" : false,
+      "label" : { "default" : "Frequency" }
+    }
+  }
+});
+
