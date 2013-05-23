@@ -221,18 +221,6 @@ db.views.insert({
 
 db.views.insert({
   "studyId" : study_id,
-  "name" : "reports",
-  "role" : "observations",
-  "label" : { "default" : "Reports" },
-  "weight" : 100,
-  "body" : 
-"<div>" +
-"  <div heli-form-button action='downloadReport'>Download report</button>" +
-"</div>"
-});
-
-db.views.insert({
-  "studyId" : study_id,
   "name" : "steps",
   "role" : "observations",
   "label" : { "default" : "Steps" },
