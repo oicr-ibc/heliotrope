@@ -215,6 +215,28 @@ describe('GET request', function() {
 
 
   describe('/studies/GPS/participants/TST-001/related?role=samples', function() {
+    it('should get the list of all related entities for a participant', function(done){
+
+      var request = {
+        params: {study: "GPS", role: "participants", identity: "TST-001"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      tracker.getRelatedEntities(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        should.exist(result);
+        should.exist(result.data);
+        result.data.length.should.equal(3);
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+
+    });
+  });
+
+  describe('/studies/GPS/participants/TST-001/related?role=samples', function() {
     it('should get the list of samples for a participant', function(done){
 
       var request = {
@@ -228,7 +250,10 @@ describe('GET request', function() {
         should.not.exist(err);
         should.exist(result);
         should.exist(result.data);
-        result.data.length.should.equal(3);
+        result.data.length.should.equal(2);
+        result.data.every(function(entity) {
+          entity.role.should.equal("samples");
+        })
 
         res.locals.passthrough.should.equal("value");
         done();
