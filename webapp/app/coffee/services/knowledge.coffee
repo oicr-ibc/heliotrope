@@ -1,25 +1,35 @@
-angular.module('heliotrope.services', [])
-  .value('version', '0.1');
-
 angular.module('knowledge.services', ['ngResource'])
+
+  # Service to access the gene frequencies. This doens't want any parameters or 
+  # or routing usually, it's all global.
+
   .factory('GeneFrequencies', ($resource) ->
     $resource('/knowledge/api/queries/gene_frequencies', {},
       query: 
         method: 'GET'
     )
   )
+
+  # Service to retrieve gene information. 
+
   .factory('Gene', ($resource) ->
     $resource('/knowledge/api/genes/:gene', {},
       query: 
         method: 'GET'
     )
   )
+
+  # Service to retrieve search information. 
+
   .factory('Search', ($resource) ->
     $resource('/knowledge/api/search', {},
       query: 
         method: 'GET'
     )
   )
+
+  # Service to retrieve variant information. 
+
   .factory('Variant', ($resource) ->
     Variant = $resource('/knowledge/api/variants/:variant', {},
       query: 
@@ -44,41 +54,4 @@ angular.module('knowledge.services', ['ngResource'])
       positions
     Variant
   )
-  .factory('Study', ($resource) ->
-    $resource('/tracker/api/studies/:study', {},
-      query: 
-        method: 'GET'
-    )
-  )
-  .factory('Entity', ($resource) ->
-    Entity = $resource('/tracker/api/studies/:study/:role/:identity', {},
-      query: 
-        method: 'GET'
-    )
-    Entity.prototype.getField = (x) ->
-      this.data.values[x]
-    Entity
-  )
-  .factory('Views', ($resource) ->
-    $resource('/tracker/api/views/:study/:role', {},
-      query: 
-        method: 'GET'
-    )
-  )
-  .factory('EntityStep', ($resource) ->
-    EntityStep = $resource('/tracker/api/studies/:study/:role/:identity/step/:step', {},
-      query: 
-        method: 'GET'
-    )
-    EntityStep.prototype.getField = (x) ->
-      this.data.values[x]
-    EntityStep
-  )
-  .factory('Entities', ($resource) ->
-    Entities = $resource('/tracker/api/studies/:study/:role', {},
-      query: 
-        method: 'GET'
-    )
-    Entities
-  )
-  
+

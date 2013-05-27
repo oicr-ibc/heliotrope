@@ -28,11 +28,17 @@ angular
 
   .filter 'capitalize', () ->
     (input) ->
-      return input.substring(0, 1).toUpperCase() + input.substring(1)
+      if input
+        input.substring(0, 1).toUpperCase() + input.substring(1)
+      else
+        ""
 
   .filter 'singularize', () ->
     (input) ->
-      return input.slice(0, -1)
+      if input
+        return input.slice(0, -1)
+      else 
+        ""
 
   .filter 'keywordToString', () ->
     (input) ->

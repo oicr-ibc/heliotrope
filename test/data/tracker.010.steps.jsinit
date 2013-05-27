@@ -178,7 +178,7 @@ db.steps.insert({
   "fields" : {
     "observationRef" : {
       "controlType" : "chooser",
-      "entity" : "observation",
+      "entity" : "observations",
       "type" : "Reference",
       "isRequired" : true,
       "isReadonly" : false,
