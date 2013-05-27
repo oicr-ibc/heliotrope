@@ -8,10 +8,19 @@ var fs = require('fs'),
     should = require('should'),
     initialize = require('./initialize');
 
+describe('Component function', function() {
 
-describe('annotateEntity', function() {
-  it('should handle an empty query list', function(done){
-    initialize.withDB("tracker", function(db, err, result) {
+  var db;
+
+  beforeEach(function(done){
+    initialize.withDB("tracker", function(idb, ierr, iresult) {
+      db = idb;
+      done();
+    });
+  });
+
+  describe('annotateEntity', function() {
+    it('should handle an empty query list', function(done){
       var object = {};
       
       tracker.annotateEntity(db, object, [], function(o) {
@@ -21,10 +30,8 @@ describe('annotateEntity', function() {
         done();
       });
     });
-  });
 
-  it('should be able to add a basic query', function(done){
-    initialize.withDB("tracker", function(db, err, result) {
+    it('should be able to add a basic query', function(done){
       var object = {};
       
       var query = {
@@ -45,10 +52,8 @@ describe('annotateEntity', function() {
         done();
       });
     });
-  });
 
-  it('should be able to add a counting query', function(done){
-    initialize.withDB("tracker", function(db, err, result) {
+    it('should be able to add a counting query', function(done){
       var object = {};
       
       var query = {
@@ -71,10 +76,8 @@ describe('annotateEntity', function() {
         done();
       });
     });
-  });
 
-  it('should be able to use an aggregation pipeline', function(done){
-    initialize.withDB("tracker", function(db, err, result) {
+    it('should be able to use an aggregation pipeline', function(done){
       var object = {};
       
       var query = {
@@ -105,10 +108,8 @@ describe('annotateEntity', function() {
         done();
       });
     });
-  });
 
-  it('should be able to handle multiple queries', function(done){
-    initialize.withDB("tracker", function(db, err, result) {
+    it('should be able to handle multiple queries', function(done){
       var object = {};
       
       var query1 = {
@@ -141,12 +142,9 @@ describe('annotateEntity', function() {
     });
   });
 
-})
-
-describe('findStepUpdater', function() {
+  describe('findStepUpdater', function() {
   
-  it('should build an simple updater', function(done){
-    initialize.withDB("tracker", function(db, err, result) {
+    it('should build an simple updater', function(done){
 
       initialize.withStudy(db, "GPS", function(err, study) {
 
@@ -177,10 +175,8 @@ describe('findStepUpdater', function() {
 
       });
     });
-  });
-  
-  it('should report a missing field', function(done){
-    initialize.withDB("tracker", function(db, err, result) {
+    
+    it('should report a missing field', function(done){
       
       initialize.withStudy(db, "GPS", function(err, study) {
 
