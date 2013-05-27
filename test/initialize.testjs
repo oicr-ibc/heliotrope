@@ -30,6 +30,10 @@ function withDB(database, callback) {
 		getFileContents(files, [], function(err, data) {
 			if (err) throw err;
 			MongoClient.connect("mongodb://localhost:27017/" + database, function(err, db) {
+				if (err) {
+					console.error(err);
+					return;
+				}
 	      db.eval(data.join("\n"), [], 
 	        function(err, result) {
 	        	if (err) {

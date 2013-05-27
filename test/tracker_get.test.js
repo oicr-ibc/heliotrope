@@ -12,7 +12,7 @@ describe('GET request', function() {
 
   var db;
 
-  beforeEach(function(done){
+  beforeEach(function(done) {
     initialize.withDB("tracker", function(idb, ierr, iresult) {
       db = idb;
       done();
@@ -20,7 +20,7 @@ describe('GET request', function() {
   });
 
   describe('/studies/GPS', function() {
-    it('should retrieve a study', function(done){
+    it('should retrieve a study', function(done) {
       db.close();
       
       var request = {params: {study: "GPS"}};
@@ -91,6 +91,48 @@ describe('GET request', function() {
 
         res.locals.passthrough.should.equal("value");
         done()
+      });
+    });
+  });
+
+  describe('/studies/GPS/participants/TST-001', function() {
+    it('should retrieve a single identified participant', function(done){
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntity(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        result.data.identity.should.equal("TST-001");
+        result.data.url.should.equal("/studies/GPS/participants/TST-001");
+        result.data.role.should.equal("participants");
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
+  describe('/studies/GPS/participants/TST-001', function() {
+
+    it('should return steps correctly', function(done){
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntity(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.exist(result.data.steps);
+        result.data.steps.every(function(step) {
+          should.exist(step.id);
+          should.exist(step.stepRef);
+          should.exist(step.stepDate);
+          should.exist(step.url);
+        })
+
+        res.locals.passthrough.should.equal("value");
+        done();
       });
     });
   });
