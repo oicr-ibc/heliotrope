@@ -83,7 +83,7 @@ db.steps.insert({
   "weight" : 30,
   "name" : "biopsy",
   "showSummary" : true,
-  "isRepeatable" : false,
+  "isRepeatable" : true,
   "label" : { "default" : "Biopsy" },
   "fields" : {
     "biopsyDate" : {

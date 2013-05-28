@@ -67,6 +67,15 @@ db.entities.insert({
       "key" : "pathologyDate",
       "value" : toFloatingISOString(new Date(2012, 10, 17, 12, 19))
     }]
+  }, {
+    "id" : ObjectId("51a4e3d99be0f733f234e6a4"),
+    "stepRef" : get_step_id(study_id, "participants", "biopsy"),
+    "stepDate" : new Date(2012, 10, 19, 13, 26),
+    "stepUser" : "swatt",
+    "fields" : [{
+      "key" : "biopsyDate",
+      "value" : toFloatingISOString(new Date(2012, 10, 19, 13, 26))
+    }]
   }]
 });
 

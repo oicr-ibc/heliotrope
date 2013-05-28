@@ -179,6 +179,56 @@ describe('GET request', function() {
     });
   });
 
+  // There are two different biopsy steps. They both ought to be accessible
+  // with the additional identifier. 
+  describe('/studies/GPS/participants/TST-001/step/biopsy;511d2295ea2a8c2f1e2c1ff2', function() {
+    it('should retrieve a single identified step', function(done){
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "biopsy;511d2295ea2a8c2f1e2c1ff2"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        result.data.identity.should.equal("TST-001");
+        result.data.url.should.equal("/studies/GPS/participants/TST-001");
+        result.data.step.name.should.equal("biopsy");
+        result.data.step.label.should.equal("Biopsy");
+        result.data.step.fields.biopsyDate.controlType.should.equal("date");
+        result.data.step.fields.biopsyDate.type.should.equal("Date");
+        result.data.step.fields.biopsyDate.label.should.equal("Biopsy date");
+        result.data.step.fields.biopsyDate.value.should.equal("2012-11-14T14:12:00.000");
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
+  // There are two different biopsy steps. They both ought to be accessible
+  // with the additional identifier. 
+  describe('/studies/GPS/participants/TST-001/step/biopsy;51a4e3d99be0f733f234e6a4', function() {
+    it('should retrieve a single identified step', function(done){
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "biopsy;51a4e3d99be0f733f234e6a4"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        result.data.identity.should.equal("TST-001");
+        result.data.url.should.equal("/studies/GPS/participants/TST-001");
+        result.data.step.name.should.equal("biopsy");
+        result.data.step.label.should.equal("Biopsy");
+        result.data.step.fields.biopsyDate.controlType.should.equal("date");
+        result.data.step.fields.biopsyDate.type.should.equal("Date");
+        result.data.step.fields.biopsyDate.label.should.equal("Biopsy date");
+        result.data.step.fields.biopsyDate.value.should.equal("2012-11-19T18:26:00.000");
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
   describe('/studies/GPS/samples/TST001BIOXPAR1', function() {
     it('should retrieve a single identified sample', function(done){
       
