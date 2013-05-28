@@ -3,6 +3,7 @@ require.extensions['.testjs'] = require.extensions['.js'];
 var fs = require('fs'),
     sys = require('sys'),
     mongo = require("mongodb"),
+    BSON = mongo.BSONPure,
     MongoClient = mongo.MongoClient,
     tracker = require("../lib/trackerImplementation"),
     should = require('should'),
@@ -143,7 +144,7 @@ describe('POST request', function() {
 
         // At this stage, we ought to be able to find the entity
         db.collection("entities", function(err, entities) {
-          entities.find({role: "samples", "identity": "TST001BIOXPAR1"}).limit(1).toArray(function(err, docs) {
+          entities.find({studyId: new BSON.ObjectID("51a4e7df9be0f733f234e6a5"), role: "samples", "identity": "TST001BIOXPAR1"}).limit(1).toArray(function(err, docs) {
             db.close();
 
             should.exist(docs);
@@ -151,6 +152,133 @@ describe('POST request', function() {
             should.exist(docs[0].steps);
             docs[0].steps.length.should.equal(2);
             docs[0].steps[1].stepUser.should.equal("mungo");
+
+            done();
+          });
+        });
+      });
+    });
+  });
+
+  function getFields(entity, stepId) {
+    var filteredSteps = entity.steps.filter(function(step) { return step.id.toString() === stepId});
+    filteredSteps.length.should.equal(1);
+    var fields = {};
+    filteredSteps[0].fields.forEach(function(field) {
+      fields[field["key"]] = field;
+    });
+    return fields;
+  }
+
+  // Make sure we can distinguish and update a step with an identity
+  describe('/studies/GPS/participants/TST-001/step/biopsy;511d2295ea2a8c2f1e2c1ff2', function() {
+    it('should update a sample appropriately', function(done){
+      
+      var request = {
+        "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "biopsy;511d2295ea2a8c2f1e2c1ff2"},
+        "body": {"data": {"step": {"fields": {"biopsyDate": {"value": "2013-01-01T01:01:01.000"}, "biopsyCores" : {"value" : "9"}}}}}
+      };
+      var response = {locals: {passthrough: "value"}};
+      
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
+
+        should.not.exist(err);
+        result.should.equal("/studies/GPS/participants/TST-001/step/biopsy;511d2295ea2a8c2f1e2c1ff2");
+        res.locals.passthrough.should.equal("value");
+
+        // When done, peek in the database to see what we can find.
+        db.collection("entities", function(err, entities) {
+          entities.find({studyId: new BSON.ObjectID("51a4e7df9be0f733f234e6a5"), role: "participants", identity: "TST-001"}).limit(1).toArray(function(err, docs) {
+
+            db.close();
+
+            should.exist(docs);
+            docs.length.should.equal(1);
+            should.exist(docs[0].steps);
+
+            var fields = getFields(docs[0], "511d2295ea2a8c2f1e2c1ff2")
+            should.exist(fields["biopsyDate"]);
+            should.exist(fields["biopsyDate"]["value"]);
+            fields["biopsyDate"]["value"].should.equal("2013-01-01T01:01:01.000");
+
+            done();
+          });
+        });
+      });
+    });
+  });
+
+  // Same again, but with the other instance, so we can confirm that even a later step definition
+  // can be updated without affecting the first. 
+  describe('/studies/GPS/participants/TST-001/step/biopsy;51a4e3d99be0f733f234e6a4', function() {
+    it('should update a sample appropriately', function(done){
+      
+      var request = {
+        "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "biopsy;51a4e3d99be0f733f234e6a4"},
+        "body": {"data": {"step": {"fields": {"biopsyDate": {"value": "2013-02-02T02:02:02.000"}, "biopsyCores" : {"value" : "9"}}}}}
+      };
+      var response = {locals: {passthrough: "value"}};
+      
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
+        should.not.exist(err);
+        result.should.equal("/studies/GPS/participants/TST-001/step/biopsy;51a4e3d99be0f733f234e6a4");
+        res.locals.passthrough.should.equal("value");
+
+        // When done, peek in the database to see what we can find.
+        db.collection("entities", function(err, entities) {
+          entities.find({studyId: new BSON.ObjectID("51a4e7df9be0f733f234e6a5"), role: "participants", identity: "TST-001"}).limit(1).toArray(function(err, docs) {
+
+            db.close();
+
+            should.exist(docs);
+            docs.length.should.equal(1);
+            should.exist(docs[0].steps);
+
+            var fields = getFields(docs[0], "51a4e3d99be0f733f234e6a4")
+            should.exist(fields["biopsyDate"]);
+            should.exist(fields["biopsyDate"]["value"]);
+            fields["biopsyDate"]["value"].should.equal("2013-02-02T02:02:02.000");
+
+            done();
+          });
+        });
+      });
+    });
+  });
+
+  // And now for a third time. When we do a biopsy without a step identifier, this should create a
+  // new step, making three in all. 
+  describe('/studies/GPS/participants/TST-001/step/biopsy', function() {
+    it('should update a sample appropriately', function(done){
+      
+      var request = {
+        "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "biopsy"},
+        "body": {"data": {"step": {"fields": {"biopsyDate": {"value": "2013-02-02T02:02:02.000"}, "biopsyCores" : {"value" : "9"}}}}}
+      };
+      var response = {locals: {passthrough: "value"}};
+      
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
+        should.not.exist(err);
+        res.locals.passthrough.should.equal("value");
+
+        // When done, peek in the database to see what we can find.
+        db.collection("entities", function(err, entities) {
+          entities.find({studyId: new BSON.ObjectID("51a4e7df9be0f733f234e6a5"), role: "participants", identity: "TST-001"}).limit(1).toArray(function(err, docs) {
+
+            db.close();
+
+            should.exist(docs);
+            docs.length.should.equal(1);
+            should.exist(docs[0].steps);
+
+            // We should now find three steps with a biopsyDate field.
+            var steps = docs[0].steps.filter(function(step) {
+              return step.fields.some(function(field) {
+                return field.key === "biopsyDate";
+              })
+            });
+
+            steps.length.should.equal(3);
 
             done();
           });

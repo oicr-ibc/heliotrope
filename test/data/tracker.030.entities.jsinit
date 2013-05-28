@@ -57,6 +57,9 @@ db.entities.insert({
     "fields" : [{
       "key" : "biopsyDate",
       "value" : toFloatingISOString(new Date(2012, 10, 14, 9, 12))
+    }, {
+      "key" : "biopsyCores",
+      "value" : 4
     }]
   }, {
     "id" : ObjectId("511d389aea2a8c2f1e2c1ff7"),
@@ -75,6 +78,9 @@ db.entities.insert({
     "fields" : [{
       "key" : "biopsyDate",
       "value" : toFloatingISOString(new Date(2012, 10, 19, 13, 26))
+    }, {
+      "key" : "biopsyCores",
+      "value" : 6
     }]
   }]
 });
