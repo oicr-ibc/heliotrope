@@ -259,6 +259,7 @@ describe('POST request', function() {
       
       tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
         should.not.exist(err);
+        result.should.match(/\/studies\/GPS\/participants\/TST-001\/step\/biopsy\;[0-9a-z]{24,24}/);
         res.locals.passthrough.should.equal("value");
 
         // When done, peek in the database to see what we can find.
