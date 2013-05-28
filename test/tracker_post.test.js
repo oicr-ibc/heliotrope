@@ -272,6 +272,9 @@ describe('POST request', function() {
             docs.length.should.equal(1);
             should.exist(docs[0].steps);
 
+            // Make sure all steps have a stepRef set 
+            docs[0].steps.filter(function(step) { return !step["stepRef"]; }).length.should.equal(0);
+
             // We should now find three steps with a biopsyDate field.
             var steps = docs[0].steps.filter(function(step) {
               return step.fields.some(function(field) {
