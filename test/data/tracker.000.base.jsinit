@@ -63,6 +63,7 @@ function obj() {
 }
 
 db.studies.insert({
+  "_id" : ObjectId("51a4e7df9be0f733f234e6a5"),
   "version": 1,
   "name": "GPS",
   "notes" : {

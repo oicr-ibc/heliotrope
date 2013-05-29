@@ -36,7 +36,7 @@ angular
               e.preventDefault()
   )
 
-  .directive('heliStepField', ($compile, Entities) ->
+  .directive('heliStepField', ($compile, RelatedEntities) ->
     result = 
       restrict: "A"
       replace: true
@@ -173,32 +173,43 @@ angular
                 template = angular.element(body)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
+
+              # The chooser is how we link to related entities. The chooser control type is a selection,
+              # but there could be other controls some time. Ideally, this would be a dynamic dispatch
+              # with some better factoring.
+
               when "chooser"
-                body = '<input type="text" class="chooser" ng-model="fieldValue.displayValue" id="{{fieldKey}}" autocomplete="off"></input>'
+
+                body = '<select class="chooser" name="{{fieldKey}} id="{{fieldKey}}">' +
+                       '<option value="" disabled="disabled">Select one--</option>' + 
+                       '</select>'
                 template = angular.element(body)
-                if newValue.isReadonly
-                  template.prop('readOnly', true)
                 linkFn = $compile(template)
                 iElement.append linkFn(scope)
+
                 chooser = jQuery(iElement.find(".chooser"))
-                chooser.typeahead(
-                  source: (query, callback) =>
-                    entity = scope.$eval('entity')
-                    studyName = entity.data.study.name
-                    role = newValue.entity
-                    entities = Entities.get({study: studyName, role: role, q: "^"+query}, () ->
-                      callback(entry.identity for entry in entities.data)
-                      # Must return false to avoid double callback weirdness
-                      false
-                    )
-                )
-                # See: https://github.com/twitter/bootstrap/issues/4018 for Chrome issue workaround
-                jQuery(document).on('mousedown', 'ul.typeahead', (e) -> 
-                  e.preventDefault()
-                )
-                chooser.change (e) =>
-                	scope.fieldValue.value = chooser.val();
-                	scope.$apply()
+                chooser.selectBoxIt({theme: "bootstrap"})
+
+                entity = scope.$eval('entity')
+                studyName = entity.data.study.name
+                role = entity.data.role
+                identity = entity.data.identity
+                relatedEntity = newValue.entity
+                entities = RelatedEntities.get {study: studyName, role: role, identity: identity, "_role" : relatedEntity}, () ->
+
+                  selector = chooser.data("selectBox-selectBoxIt")
+                  for entity in entities.data
+                    selector.add({value: entity.identity, text: entity.name})
+
+                  selector.selectOption(newValue.displayValue)
+
+                  chooser.change (e) =>
+                    scope.fieldValue.value = chooser.val()
+                    scope.$apply()
+
+                  false
+
+
               else
                 console.log "Unknown control type", newValue
   )

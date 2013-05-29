@@ -57,6 +57,9 @@ db.entities.insert({
     "fields" : [{
       "key" : "biopsyDate",
       "value" : toFloatingISOString(new Date(2012, 10, 14, 9, 12))
+    }, {
+      "key" : "biopsyCores",
+      "value" : 4
     }]
   }, {
     "id" : ObjectId("511d389aea2a8c2f1e2c1ff7"),
@@ -66,6 +69,18 @@ db.entities.insert({
     "fields" : [{
       "key" : "pathologyDate",
       "value" : toFloatingISOString(new Date(2012, 10, 17, 12, 19))
+    }]
+  }, {
+    "id" : ObjectId("51a4e3d99be0f733f234e6a4"),
+    "stepRef" : get_step_id(study_id, "participants", "biopsy"),
+    "stepDate" : new Date(2012, 10, 19, 13, 26),
+    "stepUser" : "swatt",
+    "fields" : [{
+      "key" : "biopsyDate",
+      "value" : toFloatingISOString(new Date(2012, 10, 19, 13, 26))
+    }, {
+      "key" : "biopsyCores",
+      "value" : 6
     }]
   }]
 });

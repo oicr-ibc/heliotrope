@@ -12,7 +12,7 @@ describe('GET request', function() {
 
   var db;
 
-  beforeEach(function(done){
+  beforeEach(function(done) {
     initialize.withDB("tracker", function(idb, ierr, iresult) {
       db = idb;
       done();
@@ -20,7 +20,7 @@ describe('GET request', function() {
   });
 
   describe('/studies/GPS', function() {
-    it('should retrieve a study', function(done){
+    it('should retrieve a study', function(done) {
       db.close();
       
       var request = {params: {study: "GPS"}};
@@ -114,6 +114,48 @@ describe('GET request', function() {
     });
   });
 
+  describe('/studies/GPS/participants/TST-001', function() {
+
+    it('should return steps correctly', function(done){
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntity(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.exist(result.data.steps);
+        result.data.steps.every(function(step) {
+          should.exist(step.id);
+          should.exist(step.stepRef);
+          should.exist(step.stepDate);
+          should.exist(step.url);
+        })
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
+  describe('/studies/GPS/participants/TST-001', function() {
+    it('should retrieve a single identified participant', function(done){
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntity(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        result.data.identity.should.equal("TST-001");
+        result.data.url.should.equal("/studies/GPS/participants/TST-001");
+        result.data.role.should.equal("participants");
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
   describe('/studies/GPS/participants/TST-001/step/consent', function() {
     it('should retrieve a single identified step', function(done){
       
@@ -130,6 +172,56 @@ describe('GET request', function() {
         result.data.step.fields.consentDate.type.should.equal("Date");
         result.data.step.fields.consentDate.label.should.equal("Consent date");
         result.data.step.fields.consentDate.value.should.equal("2012-11-13T18:45:00.000");
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
+  // There are two different biopsy steps. They both ought to be accessible
+  // with the additional identifier. 
+  describe('/studies/GPS/participants/TST-001/step/biopsy;511d2295ea2a8c2f1e2c1ff2', function() {
+    it('should retrieve a single identified step', function(done){
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "biopsy;511d2295ea2a8c2f1e2c1ff2"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        result.data.identity.should.equal("TST-001");
+        result.data.url.should.equal("/studies/GPS/participants/TST-001");
+        result.data.step.name.should.equal("biopsy");
+        result.data.step.label.should.equal("Biopsy");
+        result.data.step.fields.biopsyDate.controlType.should.equal("date");
+        result.data.step.fields.biopsyDate.type.should.equal("Date");
+        result.data.step.fields.biopsyDate.label.should.equal("Biopsy date");
+        result.data.step.fields.biopsyDate.value.should.equal("2012-11-14T14:12:00.000");
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
+  // There are two different biopsy steps. They both ought to be accessible
+  // with the additional identifier. 
+  describe('/studies/GPS/participants/TST-001/step/biopsy;51a4e3d99be0f733f234e6a4', function() {
+    it('should retrieve a single identified step', function(done){
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "biopsy;51a4e3d99be0f733f234e6a4"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        result.data.identity.should.equal("TST-001");
+        result.data.url.should.equal("/studies/GPS/participants/TST-001");
+        result.data.step.name.should.equal("biopsy");
+        result.data.step.label.should.equal("Biopsy");
+        result.data.step.fields.biopsyDate.controlType.should.equal("date");
+        result.data.step.fields.biopsyDate.type.should.equal("Date");
+        result.data.step.fields.biopsyDate.label.should.equal("Biopsy date");
+        result.data.step.fields.biopsyDate.value.should.equal("2012-11-19T18:26:00.000");
 
         res.locals.passthrough.should.equal("value");
         done();
