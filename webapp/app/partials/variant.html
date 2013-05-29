@@ -19,113 +19,116 @@
     </div>
 
     <div id="page-body">
+
+      <div ng-form>
     
-      <div heli-section body-id="summary" title="Summary">
-        <div id="summary-table">
-          <dl>
-            <dt>Mutation</dt>
-            <dd>{{entity.data.mutation}} 
-            (<span ng-show="ordered[0].HGVSpr">{{ordered[0].HGVSpr}}, </span>
-             DNA: <span class="inline-list">
-             <span class="inline-item" ng-repeat="item in ordered">{{item.HGVSc}}</span></span>)
-            </dd>
-            <dt>Type</dt>
-            <dd>
-            <span ng-show="ordered[0]">{{ordered[0].consequence}}</span>
-            <span ng-show="! ordered[0]">not available</span>
-            </dd>
-            <dt>Predicted impact</dt>
-            <dd>
-            <span class="inline-list">
-            <span class="inline-item" ng-show="ordered[0].sift">{{ordered[0].sift.level}} (SIFT, score: {{ordered[0].sift.score}})</span>
-            <span class="inline-item" ng-show="ordered[0].polyphen">{{ordered[0].polyphen.level}} (PolyPhen, score: {{ordered[0].polyphen.score}})</span>                
-            <span class="inline-item" ng-hide="ordered[0].sift || ordered[0].polyphen">Not available</span>
-            </span>
-            <br>
-            <span class="text-warning"><strong>Note: Impact prediction algorithms are not clinically validated</strong></span>
-            </dd>
-            
-            <dt>Gene</dt>
-            <dd>
-              <a href="/genes/{{entity.data.genesRefx.name}}">{{entity.data.genesRefx.name}}</a>
-            </dd>
-            <dt>Position</dt>
-            <dd>Codon: <span ng-show="ordered[0].codon">{{ordered[0].codon}}</span>
-            (in exon: 
-            <span ng-show="ordered[0].exon">{{ordered[0].exon}}</span><span ng-show="! ordered[0].exon">not available</span>)
-            </dd>
-          </dl>
+        <div heli-section body-id="summary" title="Summary">
+          <div id="summary-table">
+            <dl>
+              <dt>Mutation</dt>
+              <dd>{{entity.data.mutation}} 
+              (<span ng-show="ordered[0].HGVSpr">{{ordered[0].HGVSpr}}, </span>
+               DNA: <span class="inline-list">
+               <span class="inline-item" ng-repeat="item in ordered">{{item.HGVSc}}</span></span>)
+              </dd>
+              <dt>Type</dt>
+              <dd>
+              <span ng-show="ordered[0]">{{ordered[0].consequence}}</span>
+              <span ng-show="! ordered[0]">not available</span>
+              </dd>
+              <dt>Predicted impact</dt>
+              <dd>
+              <span class="inline-list">
+              <span class="inline-item" ng-show="ordered[0].sift">{{ordered[0].sift.level}} (SIFT, score: {{ordered[0].sift.score}})</span>
+              <span class="inline-item" ng-show="ordered[0].polyphen">{{ordered[0].polyphen.level}} (PolyPhen, score: {{ordered[0].polyphen.score}})</span>                
+              <span class="inline-item" ng-hide="ordered[0].sift || ordered[0].polyphen">Not available</span>
+              </span>
+              <br>
+              <span class="text-warning"><strong>Note: Impact prediction algorithms are not clinically validated</strong></span>
+              </dd>
+              
+              <dt>Gene</dt>
+              <dd>
+                <a href="/genes/{{entity.data.genesRefx.name}}">{{entity.data.genesRefx.name}}</a>
+              </dd>
+              <dt>Position</dt>
+              <dd>Codon: <span ng-show="ordered[0].codon">{{ordered[0].codon}}</span>
+              (in exon: 
+              <span ng-show="ordered[0].exon">{{ordered[0].exon}}</span><span ng-show="! ordered[0].exon">not available</span>)
+              </dd>
+            </dl>
+          </div>
+
+        </div>
         </div>
 
-      </div>
-      </div>
-
-      <div heli-section body-id="domains" title="Gene structure">
-        <div heli-structure-distribution></div>
-      </div>
-      
-      <div heli-section body-id="frequencies" title="Mutation frequencies">
-        <div id="frequencies-table">
-          <div heli-frequencies></div>
-        </div>
-      </div>
-      
-      <div heli-section body-id="clinical-action" title="Clinical summary">
-        <div class="row-fluid" ng-hide="entity.data.sections.clinical">
-          <p>Information not available</p>
+        <div heli-section body-id="domains" title="Gene structure">
+          <div heli-structure-distribution></div>
         </div>
         
-        <div class="row-fluid" ng-show="entity.data.sections.clinical">
-          <div heli-editable-significance></div>
-        </div>
-      </div>
-
-      <div heli-section body-id="clinical-significance" title="Clinical significance">
-        <div class="row-fluid" ng-hide="entity.data.sections.clinical">
-          <p>Information not available</p>
+        <div heli-section body-id="frequencies" title="Mutation frequencies">
+          <div id="frequencies-table">
+            <div heli-frequencies></div>
+          </div>
         </div>
         
-        <div class="row-fluid" ng-show="entity.data.sections.clinical">
-          <div ng-repeat="(key, value) in classifiedSignifance | orderBy:predicate:+key">
-            <h4>{{key | capitalize}}</h4>
-            <div ng-repeat="significance in classifiedSignifance[key] | orderBy:predicate:+levelOfEvidence">
-              <div heli-editable-clinical-significance></div>
+        <div heli-section body-id="clinical-action" title="Clinical summary">
+          <div class="row-fluid" ng-hide="entity.data.sections.clinical">
+            <p>Information not available</p>
+          </div>
+          
+          <div class="row-fluid" ng-show="entity.data.sections.clinical">
+            <div heli-editable-significance></div>
+          </div>
+        </div>
+
+        <div heli-section body-id="clinical-significance" title="Clinical significance">
+          <div class="row-fluid" ng-hide="entity.data.sections.clinical">
+            <p>Information not available</p>
+          </div>
+          
+          <div class="row-fluid" ng-show="entity.data.sections.clinical">
+            <div ng-repeat="(key, value) in classifiedSignifance | orderBy:predicate:+key">
+              <h4>{{key | capitalize}}</h4>
+              <div ng-repeat="significance in classifiedSignifance[key] | orderBy:predicate:+levelOfEvidence">
+                <div heli-editable-clinical-significance></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div heli-section body-id="drugs" title="Drugs">
-        <div class="row-fluid" ng-hide="entity.data.sections.clinical">
-          <p>Information not available</p>
+        
+        <div heli-section body-id="drugs" title="Drugs">
+          <div class="row-fluid" ng-hide="entity.data.sections.clinical">
+            <p>Information not available</p>
+          </div>
+          
+          <div class="row-fluid" ng-show="entity.data.sections.clinical">
+            <div ng-repeat="agent in entity.data.sections.clinical.data.agents">
+              <div heli-editable-agent></div>
+          </div>
         </div>
         
-        <div class="row-fluid" ng-show="entity.data.sections.clinical">
-          <div ng-repeat="agent in entity.data.sections.clinical.data.agents">
-            <div heli-editable-agent></div>
+        <div heli-section body-id="genomics" title="Genomics">
+          <div id="genomics-table">
+            <dl>
+              <dt>Chromosome</dt>
+              <dd>{{ordered[0].chromosome}}</dd>
+              <dt>Position</dt>
+              <dd>Codon: <span ng-show="ordered[0].codon">{{ordered[0].codon}}</span>
+              (in exon: 
+              <span ng-show="ordered[0].exon">{{ordered[0].exon}}</span><span ng-show="! ordered[0].exon">not available</span>)
+              </dd>
+               <dt>Genomic coordinates</dt>
+              <dd>{{ordered[0].chromosome}}:{{ordered[0].start}}-{{ordered[0].stop}}</dd>
+              <dt>Ensembl gene</dt>
+              <dd><a href="http://www.ensembl.org/id/{{ordered[0].gene}}" rel="external">{{ordered[0].gene}}</a></dd>
+              <dt>Ensembl transcript</dt>
+              <dd><a href="http://www.ensembl.org/id/{{ordered[0].transcript}}" rel="external">{{ordered[0].transcript}}</a></dd>
+            </dl>
+          </div>
         </div>
+        
       </div>
-      
-      <div heli-section body-id="genomics" title="Genomics">
-        <div id="genomics-table">
-          <dl>
-            <dt>Chromosome</dt>
-            <dd>{{ordered[0].chromosome}}</dd>
-            <dt>Position</dt>
-            <dd>Codon: <span ng-show="ordered[0].codon">{{ordered[0].codon}}</span>
-            (in exon: 
-            <span ng-show="ordered[0].exon">{{ordered[0].exon}}</span><span ng-show="! ordered[0].exon">not available</span>)
-            </dd>
-             <dt>Genomic coordinates</dt>
-            <dd>{{ordered[0].chromosome}}:{{ordered[0].start}}-{{ordered[0].stop}}</dd>
-            <dt>Ensembl gene</dt>
-            <dd><a href="http://www.ensembl.org/id/{{ordered[0].gene}}" rel="external">{{ordered[0].gene}}</a></dd>
-            <dt>Ensembl transcript</dt>
-            <dd><a href="http://www.ensembl.org/id/{{ordered[0].transcript}}" rel="external">{{ordered[0].transcript}}</a></dd>
-          </dl>
-        </div>
-      </div>
-      
     </div>
   </div>
 </div>

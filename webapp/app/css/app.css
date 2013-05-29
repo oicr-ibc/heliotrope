@@ -463,6 +463,10 @@ div.paging_bootstrap {
   margin-bottom: 2em;
 }
 
+.select-dropdown {
+  vertical-align: middle;
+}
+
 /*
 This section defines rules that affect how the page is displayed for printing. Some components, such
 as navigation elements, are best hidden from printing. 

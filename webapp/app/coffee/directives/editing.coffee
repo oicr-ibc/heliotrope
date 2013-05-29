@@ -29,19 +29,29 @@ angular
       replace: true
       transclude: true
       template: '<div class="well well-small">' +
-                '<p>This mutation is: <b>{{entity.data.sections.clinical.data.action.type}}</b></p>' +
+                '<p ng-hide="editing">This mutation is: ' +
+                '<b>{{entity.data.sections.clinical.data.action.type}}</b>' + 
+                '</p>' +
+                '<label ng-show="editing" >This mutation is: ' +
+                '<select class="select-dropdown" ng-model="entity.data.sections.clinical.data.action.type">' +
+                '<option>activating</option>' +
+                '<option>inactivating</option>' +
+                '<option>other</option>' +
+                '</select>' +
+                '</label>' +
                 '<p ng-show="entity.data.sections.clinical.action.comment">{{entity.data.sections.clinical.action.comment}}</p>' +
                 '<p>Sources: ' +
-                '  <span class="inline-list">' +
+                '  <span ng-hide="editing" class="inline-list">' +
                 '  <span class="inline-item" ng-repeat="reference in entity.data.sections.clinical.data.action.reference">' +
                 '  <span heli-reference reference="reference"></span> ' +
                 '  </span>' +
                 '  </span>' +
+                '  <input ng-show="editing" type="text" value="{{entity.data.sections.clinical.data.action.reference}}">' +
                 '</p>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
+        iElement.find("select").selectBoxIt({theme: "bootstrap", copyClasses: "container"})
         scope.$watch 'editing', (newValue) ->
-          console.log newValue
           if newValue
             iElement.attr("class", "well well-small")
           else 
@@ -67,7 +77,6 @@ angular
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
         scope.$watch 'editing', (newValue) ->
-          console.log newValue
           if newValue
             iElement.attr("class", "well well-small")
           else 
@@ -88,7 +97,6 @@ angular
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
         scope.$watch 'editing', (newValue) ->
-          console.log newValue
           if newValue
             iElement.attr("class", "well well-small")
           else 
