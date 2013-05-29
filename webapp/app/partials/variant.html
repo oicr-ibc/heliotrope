@@ -76,15 +76,7 @@
         </div>
         
         <div class="row-fluid" ng-show="entity.data.sections.clinical">
-          <p>This mutation is: <b>{{entity.data.sections.clinical.data.action.type}}</b></p>
-          <p ng-show="entity.data.sections.clinical.action.comment">{{entity.data.sections.clinical.action.comment}}</p>
-          <p>Sources: 
-            <span class="inline-list"">
-            <span class="inline-item" ng-repeat="reference in entity.data.sections.clinical.data.action.reference">
-            <span heli-reference reference="reference"></span> 
-            </span>
-            </span>
-          </p>
+          <div heli-editable-significance></div>
         </div>
       </div>
 
@@ -97,19 +89,7 @@
           <div ng-repeat="(key, value) in classifiedSignifance | orderBy:predicate:+key">
             <h4>{{key | capitalize}}</h4>
             <div ng-repeat="significance in classifiedSignifance[key] | orderBy:predicate:+levelOfEvidence">
-              <div class="well well-small">
-              
-              <p>The clinical significance of this mutation has been assessed by <b>{{significance.studyType}}</b> clinical trials.</p>
-              <p>{{significance.comment}}</p>
-              <p>Sources:
-                <span class="inline-list"">
-                <span class="inline-item" ng-repeat="reference in significance.reference">
-                <span heli-reference reference="reference"></span> 
-                </span>
-                </span>
-              
-                Level of evidence: {{significance.levelOfEvidence}}</p>
-              </div>
+              <div heli-editable-clinical-significance></div>
             </div>
           </div>
         </div>
@@ -122,12 +102,7 @@
         
         <div class="row-fluid" ng-show="entity.data.sections.clinical">
           <div ng-repeat="agent in entity.data.sections.clinical.data.agents">
-            <div class="well well-small">
-              <dl style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">
-                <dt>{{agent.sensitivity | keywordToString}}</dt>
-                <dd>{{agent.name}}</dd>
-               </dl>
-            </div>
+            <div heli-editable-agent></div>
         </div>
       </div>
       
