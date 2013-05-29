@@ -9,15 +9,13 @@
 REPORTER = "list"
 
 task "test", "run tests", ->
-  exec "NODE_ENV=test 
-    ./node_modules/mocha/bin/mocha 
-    --reporter #{REPORTER}
-    --colors
-  ", (err, output) ->
-    throw err if err
-    console.log output
+  tester = spawn 'node', ['./node_modules/mocha/bin/mocha', '--reporter', REPORTER, '--colors']
+  tester.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  tester.stdout.on 'data', (data) ->
+    print data.toString()
 
-task "build", 'Compile the CoffeeScript', ->
+task "build", 'Compile sources', ->
   coffee = spawn 'coffee', ['-c', '-o', 'webapp/app/js', 'webapp/app/coffee']
   coffee.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
