@@ -25,7 +25,6 @@
         types[sig.tumourType] = [] for sig in clinical.data.significance
         types[sig.tumourType].push(sig) for sig in clinical.data.significance
         $scope.classifiedSignifance = types
-        console.log "Scope", $scope
     (error) ->
       console.log error
   )
