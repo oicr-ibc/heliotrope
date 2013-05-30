@@ -219,6 +219,7 @@ angular
       transclude: true
       scope: 
         agents: '='
+      controller: 'EditableAgentsController'
       template: '<div class="well well-small">' +
                 '<div class="row-fluid" ng-hide="agents">' +
                 '<p>No information available</p>' +
@@ -227,7 +228,9 @@ angular
                 '<div ng-repeat="agent in agents">' +
                 '<span class="label-value dropdown-value" heli-edit-dropdown value="agent.sensitivity" options="sensitivity,resistance,maybe_sensitivity,maybe_resistance"></span>: ' +
                 '<span class="labelled-value text-value" heli-edit-text value="agent.name"></span>' +
+                '<button ng-show="editing" class="btn btn-danger" ng-click="removeDrug(agent)">Remove</button>' +
                 '</div>' +
+                '<button ng-show="editing" class="btn" ng-click="addDrug()">Add drug</button>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
         scope.$parent.$watch 'editing', (editing) ->

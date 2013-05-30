@@ -13,6 +13,13 @@
       console.log error
   )
 
+@EditableAgentsController = ($scope, $routeParams, $timeout, Variant) ->
+  $scope.addDrug = () ->
+    $scope.agents.push({sensitivity: "", name: ""})
+  $scope.removeDrug = (agent) ->
+    $scope.agents = $scope.agents.filter (other) ->
+      other.name != agent.name || other.sensitivity != agent.sensitivity
+
 @VariantController = ($scope, $routeParams, $timeout, Variant) ->
   $scope.entity = Variant.get($routeParams
     (entity) ->
