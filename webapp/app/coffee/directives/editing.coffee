@@ -1,6 +1,8 @@
 angular
   .module('heliotrope.directives.editing', [])
 
+  # When editing is enabled.
+
   .directive('heliEditButton', () ->
     result = 
       restrict: "A"
@@ -23,36 +25,134 @@ angular
           e.preventDefault()
   )
 
+  .directive('heliReferenceTags', () ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: false
+      scope: 
+        references: '='
+      template: '<input type="text" class="reference-tags" value=""></input>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$watch 'references', (references) ->
+          
+          referenceString = (ref) ->
+            ref.type + ":" + ref.id
+          tags = references.map(referenceString)
+
+          iElement.val(tags).select2({
+            tags: tags,
+            tokenSeparators: [",", " "]
+          })
+
+          # Now, when we have a change, we need to propogate to the scope.
+          iElement.unbind 'change'
+          iElement.on 'change', (event) ->
+            value = event.val
+            scope.references = value.map (value) ->
+              keys = value.split(":")
+              { type: keys[0], id: keys[1] }
+            scope.$digest()
+  )
+
+  .directive('heliEditReferences', ($compile) ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: false
+      scope: 
+        references: '='
+      template: '<span></span>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$parent.$watch 'editing', (editing) ->
+          if editing
+            body = '<div heli-reference-tags references="references"><div>'
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+          else
+            body = '<span ng-hide="editing" class="inline-list">' +
+                   '<span class="inline-item" ng-repeat="reference in references">' +
+                   '<span heli-reference reference="reference"></span> ' +
+                   '</span>' +
+                   '</span>'
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+  )
+
+  .directive('heliEditDropdown', ($compile) ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: false
+      scope: 
+        value: '='
+        options: '@'
+      template: '<span></span>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$parent.$watch 'editing', (editing) ->
+          if editing
+            body = '<select class="select-dropdown" ng-model="value">' +
+                   '<option ng-repeat="alt in options | split" ng-selected="(alt == value)" value="{{alt}}">{{alt}}</option>' +
+                   '</select>'
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+          else 
+            body = "<b>{{value}}</b>"
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+  )
+
+  .directive('heliEditComment', ($compile) ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: false
+      scope: 
+        value: '='
+      template: '<div></div>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$parent.$watch 'editing', (editing) ->
+          if editing
+            body = '<label>Comment:<br><textarea ng-model="value"></textarea></label>'
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+          else 
+            body = "<p>{{value}}</p>"
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+  )
+
   .directive('heliEditableSignificance', () ->
     result = 
       restrict: "A"
       replace: true
       transclude: true
       template: '<div class="well well-small">' +
-                '<p ng-hide="editing">This mutation is: ' +
-                '<b>{{entity.data.sections.clinical.data.action.type}}</b>' + 
-                '</p>' +
-                '<label ng-show="editing" >This mutation is: ' +
-                '<select class="select-dropdown" ng-model="entity.data.sections.clinical.data.action.type">' +
-                '<option>activating</option>' +
-                '<option>inactivating</option>' +
-                '<option>other</option>' +
-                '</select>' +
+                '<label>This mutation is: ' +
+                '<span heli-edit-dropdown value="entity.data.sections.clinical.data.action.type" options="activating,inactivating,other"></span>' +
                 '</label>' +
-                '<p ng-show="entity.data.sections.clinical.action.comment">{{entity.data.sections.clinical.action.comment}}</p>' +
-                '<p>Sources: ' +
-                '  <span ng-hide="editing" class="inline-list">' +
-                '  <span class="inline-item" ng-repeat="reference in entity.data.sections.clinical.data.action.reference">' +
-                '  <span heli-reference reference="reference"></span> ' +
-                '  </span>' +
-                '  </span>' +
-                '  <input ng-show="editing" type="text" value="{{entity.data.sections.clinical.data.action.reference}}">' +
-                '</p>' +
+                '<label>' +
+                '<div heli-edit-comment value="entity.data.sections.clinical.action.comment"></div>' +
+                '</label>' +
+                '<label>Sources: ' +
+                '<span heli-edit-references references="entity.data.sections.clinical.data.action.reference"></span>' +
+                '</label>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
-        iElement.find("select").selectBoxIt({theme: "bootstrap", copyClasses: "container"})
-        scope.$watch 'editing', (newValue) ->
-          if newValue
+        scope.$watch 'editing', (editing) ->
+          if editing
             iElement.attr("class", "well well-small")
           else 
             iElement.attr("class", "")

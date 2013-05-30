@@ -467,6 +467,10 @@ div.paging_bootstrap {
   vertical-align: middle;
 }
 
+.reference-tags {
+  width: 30em;
+}
+
 /*
 This section defines rules that affect how the page is displayed for printing. Some components, such
 as navigation elements, are best hidden from printing. 

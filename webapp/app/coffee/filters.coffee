@@ -7,8 +7,12 @@ angular
   .filter 'interpolate', 
     ['version', (version)->
       (text) ->
-        return String(text).replace(/\%VERSION\%/mg, version)
+        String(text).replace(/\%VERSION\%/mg, version)
     ]
+
+  .filter 'split', () ->
+    (value) -> value.split(/[\s,]+/)
+
 
   .filter 'field', () ->
      (field) -> 
@@ -36,11 +40,11 @@ angular
   .filter 'singularize', () ->
     (input) ->
       if input
-        return input.slice(0, -1)
+        input.slice(0, -1)
       else 
         ""
 
   .filter 'keywordToString', () ->
     (input) ->
       value = input.substring(0, 1).toUpperCase() + input.substring(1)
-      return value.replace(/_/g, " ").replace(/,\b/g, ", ")
+      value.replace(/_/g, " ").replace(/,\b/g, ", ")
