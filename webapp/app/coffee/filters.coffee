@@ -11,7 +11,7 @@ angular
     ]
 
   .filter 'split', () ->
-    (value) -> value.split(/[\s,]+/)
+    (value) -> value.split(/,/)
 
 
   .filter 'field', () ->

@@ -471,6 +471,10 @@ div.paging_bootstrap {
   width: 30em;
 }
 
+textarea.comment {
+  width: 30em;
+}
+
 /*
 This section defines rules that affect how the page is displayed for printing. Some components, such
 as navigation elements, are best hidden from printing. 

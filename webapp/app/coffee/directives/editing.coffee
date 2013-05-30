@@ -121,13 +121,37 @@ angular
       link: (scope, iElement, iAttrs, controller) ->
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-            body = '<label>Comment:<br><textarea ng-model="value"></textarea></label>'
+            body = '<label>Comment:<br><textarea class="comment"ng-model="value"></textarea></label>'
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
           else 
             body = "<p>{{value}}</p>"
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+  )
+
+  .directive('heliEditText', ($compile) ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: false
+      scope: 
+        value: '='
+      template: '<span></span>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$parent.$watch 'editing', (editing) ->
+          if editing
+            body = '<input class="text" ng-model="value"></input>'
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+          else 
+            body = "<span>{{value}}</span>"
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
@@ -153,7 +177,7 @@ angular
       link: (scope, iElement, iAttrs, controller) ->
         scope.$watch 'editing', (editing) ->
           if editing
-            iElement.attr("class", "well well-small")
+            iElement.attr("class", "well well-small editing-enabled")
           else 
             iElement.attr("class", "")
   )
@@ -164,42 +188,54 @@ angular
       replace: true
       transclude: true
       template: '<div class="well well-small">' +
-                '<p>The clinical significance of this mutation has been assessed by <b>{{significance.studyType}}</b> clinical trials.</p>' +
-                '<p>{{significance.comment}}</p>' +
-                '<p>Sources:' +
-                '  <span class="inline-list"">' +
-                '  <span class="inline-item" ng-repeat="reference in significance.reference">' +
-                '  <span heli-reference reference="reference"></span> ' +
-                '  </span>' +
-                '  </span>' +
-                '  Level of evidence: {{significance.levelOfEvidence}}</p>' +
-                '</div>' +
+                '<label>The clinical significance of this mutation has been assessed by ' +
+                '<span heli-edit-dropdown value="significance.studyType" options="prospective,retrospective,preclinical,case,observational,other"></span>' +
+                ' clinical trials' +
+                '</label>' +
+                '<label>' +
+                '<div heli-edit-comment value="significance.comment"></div>' +
+                '</label>' +
+                '<label>Sources: ' +
+                '<span heli-edit-references references="significance.reference"></span>' +
+                '</label>' +
+                '<label>Level of evidence: ' +
+                '<span heli-edit-dropdown value="significance.levelOfEvidence" options="IA,IB,IIB,IIC,IIIC,IVD,VD"></span>' +
+                ' clinical trials' +
+                '</label>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
         scope.$watch 'editing', (newValue) ->
           if newValue
-            iElement.attr("class", "well well-small")
+            iElement.attr("class", "well well-small editing-enabled")
           else 
             iElement.attr("class", "")
         # Watch editing in the scope. When it's enabled, switcheroo stuff. 
   )
 
-  .directive('heliEditableAgent', () ->
+  .directive('heliEditableAgents', () ->
     result = 
       restrict: "A"
       replace: true
       transclude: true
+      scope: 
+        agents: '='
       template: '<div class="well well-small">' +
-                '<dl style="margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;">' +
-                '  <dt>{{agent.sensitivity | keywordToString}}</dt>' +
-                '  <dd>{{agent.name}}</dd>' +
-                '</dl>' +
+                '<div class="row-fluid" ng-hide="agents">' +
+                '<p>No information available</p>' +
+                '</div>' +
+                '<div class="row-fluid" ng-show="agents">' +
+                '<div ng-repeat="agent in agents">' +
+                '<span class="label-value dropdown-value" heli-edit-dropdown value="agent.sensitivity" options="sensitivity,resistance,maybe_sensitivity,maybe_resistance"></span>: ' +
+                '<span class="labelled-value text-value" heli-edit-text value="agent.name"></span>' +
+                '</div>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'editing', (newValue) ->
-          if newValue
-            iElement.attr("class", "well well-small")
+        scope.$parent.$watch 'editing', (editing) ->
+          scope.editing = editing
+          if editing
+            iElement.attr("class", "well well-small editing-enabled")
           else 
             iElement.attr("class", "")
   )
+
 

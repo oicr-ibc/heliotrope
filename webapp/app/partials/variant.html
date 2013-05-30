@@ -98,14 +98,7 @@
         </div>
         
         <div heli-section body-id="drugs" title="Drugs">
-          <div class="row-fluid" ng-hide="entity.data.sections.clinical">
-            <p>Information not available</p>
-          </div>
-          
-          <div class="row-fluid" ng-show="entity.data.sections.clinical">
-            <div ng-repeat="agent in entity.data.sections.clinical.data.agents">
-              <div heli-editable-agent></div>
-          </div>
+          <div heli-editable-agents agents="entity.data.sections.clinical.data.agents"></div>
         </div>
         
         <div heli-section body-id="genomics" title="Genomics">
