@@ -11,7 +11,11 @@ angular
     ]
 
   .filter 'split', () ->
-    (value) -> value.split(/,/)
+    (value) -> 
+      if value
+        value.split(/,/)
+      else
+        value
 
 
   .filter 'field', () ->
@@ -36,6 +40,40 @@ angular
         input.substring(0, 1).toUpperCase() + input.substring(1)
       else
         ""
+
+  .filter 'classifySignificances', () ->
+    (input) ->
+      if input
+        classified = {}
+        for significance in input
+          tumourType = significance["tumourType"]
+          classified[tumourType] = [] unless classified[tumourType]?
+          classified[tumourType].push(significance)
+        console.log "Classified", input, classified
+        classified
+      else  
+        input
+
+  .filter 'uniqueKeys', () ->
+    (input, property) ->
+      if input
+        classified = {}
+        for element in input
+          classified[element[property]] = property
+        Object.keys(classified)
+      else  
+        input
+
+  .filter 'hasPropertyValue', () ->
+    (input, property, value) ->
+      if input
+        result = []
+        for element in input
+          if element[property] == value
+            result.push(element)
+        result
+      else  
+        input
 
   .filter 'singularize', () ->
     (input) ->

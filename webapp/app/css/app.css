@@ -278,6 +278,65 @@ dd {
   margin-bottom: 20px;
 }
 
+/* Modified CSS for division-based definition lists, useful for use in
+   ng-repeat contexts*/
+div.heli-dl {
+  margin-bottom: 20px;
+  padding: 0.5em;
+}
+
+div.heli-dt,
+div.heli-dd {
+  line-height: 20px;
+}
+
+div.heli-dt:after {
+  content: ":";
+}
+
+div.heli-dt {
+  float: left;
+  clear: both;
+  width: 180px;
+  text-align: right;
+  font-weight: bold;
+}
+
+div.heli-dd {
+  margin: 0 0 0 200px;
+  padding: 0 0 0.7em 0;
+}
+
+.dl-horizontal {
+  *zoom: 1;
+}
+
+.dl-horizontal:before,
+.dl-horizontal:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.dl-horizontal:after {
+  clear: both;
+}
+
+.dl-horizontal div.heli-dt {
+  float: left;
+  width: 160px;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dl-horizontal div.heli-dd {
+  margin-left: 180px;
+}
+
+
 /* Sidenav for Heliotrope
 -------------------------------------------------- */
 

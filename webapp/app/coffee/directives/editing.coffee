@@ -110,6 +110,39 @@ angular
             iElement.append linkFn(scope)
   )
 
+  .directive('heliEditTypeahead', ($compile) ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: false
+      scope: 
+        value: '='
+        options: '&'
+      template: '<span></span>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$parent.$watch 'editing', (editing) ->
+          if editing
+            body = '<input class="input-typeahead" ng-model="value" type="text"></input>'
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+            options = scope.options()
+            typeahead = iElement.find(".input-typeahead")
+            typeahead.typeahead({source: options})
+            typeahead.on 'blur', (event) ->
+              console.log "Blur", event
+            typeahead.on 'change', (event) ->
+              console.log "Change", event
+            
+          else 
+            body = "<b>{{value}}</b>"
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+  )
+
   .directive('heliEditComment', ($compile) ->
     result = 
       restrict: "A"
@@ -121,7 +154,7 @@ angular
       link: (scope, iElement, iAttrs, controller) ->
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-            body = '<label>Comment:<br><textarea class="comment"ng-model="value"></textarea></label>'
+            body = '<textarea class="comment"ng-model="value"></textarea>'
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
@@ -158,58 +191,87 @@ angular
             iElement.append linkFn(scope)
   )
 
-  .directive('heliEditableSignificance', () ->
+  .directive('heliEditableAction', () ->
     result = 
       restrict: "A"
       replace: true
       transclude: true
+      scope: 
+        action: '='
       template: '<div class="well well-small">' +
-                '<label>This mutation is: ' +
-                '<span heli-edit-dropdown value="entity.data.sections.clinical.data.action.type" options="activating,inactivating,other"></span>' +
-                '</label>' +
-                '<label>' +
-                '<div heli-edit-comment value="entity.data.sections.clinical.action.comment"></div>' +
-                '</label>' +
-                '<label>Sources: ' +
-                '<span heli-edit-references references="entity.data.sections.clinical.data.action.reference"></span>' +
-                '</label>' +
+                '<dl class="dl-horizontal">' + 
+                '<dt>Mutation action</dt>' +
+                '<dd><span heli-edit-dropdown value="action.type" options="activating,inactivating,other"></span></dd>' +
+                '<dt ng-show="editing || action.comment">Comment</dt>' +
+                '<dd ng-show="editing || action.comment"><div heli-edit-comment value="action.comment"></div></dd>' +
+                '<dt>Sources</dt>' +
+                '<dd><span heli-edit-references references="action.reference"></span></dd>' +
+                '</dl>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'editing', (editing) ->
+        scope.$parent.$watch 'editing', (editing) ->
+          scope.editing = editing
           if editing
             iElement.attr("class", "well well-small editing-enabled")
           else 
             iElement.attr("class", "")
   )
 
-  .directive('heliEditableClinicalSignificance', () ->
+  .directive('heliEditableSignificances', () ->
     result = 
       restrict: "A"
       replace: true
       transclude: true
+      scope: 
+        significance: '='
+      controller: 'EditableSignificanceController'
       template: '<div class="well well-small">' +
-                '<label>The clinical significance of this mutation has been assessed by ' +
-                '<span heli-edit-dropdown value="significance.studyType" options="prospective,retrospective,preclinical,case,observational,other"></span>' +
-                ' clinical trials' +
-                '</label>' +
-                '<label>' +
-                '<div heli-edit-comment value="significance.comment"></div>' +
-                '</label>' +
-                '<label>Sources: ' +
-                '<span heli-edit-references references="significance.reference"></span>' +
-                '</label>' +
-                '<label>Level of evidence: ' +
-                '<span heli-edit-dropdown value="significance.levelOfEvidence" options="IA,IB,IIB,IIC,IIIC,IVD,VD"></span>' +
-                ' clinical trials' +
-                '</label>' +
+                '<div ng-repeat="sig in significance">' +
+                '<dl class="dl-horizontal">' +
+                '<dt>Tumour type</dt>' +
+                '<dd>' +
+                '<span heli-edit-typeahead value="sig.tumourType" options="tumourTypes"></span>' +
+                '</dd>' +
+                '<dt>Trial types</dt>' +
+                '<dd>' +
+                '<span heli-edit-dropdown value="sig.studyType" options="prospective,retrospective,preclinical,case,observational,other"></span>' +
+                '</dd>' +
+                '<dt>Comment</dt>' +
+                '<dd>' +
+                '<div heli-edit-comment value="sig.comment"></div>' +
+                '</dd>' +
+                '<dt>Sources</dt>' +
+                '<dd><span heli-edit-references references="sig.reference"></span></dd>' +
+                '<dt>Level of evidence</dt>' +
+                '<dd><span heli-edit-dropdown value="sig.levelOfEvidence" options="IA,IB,IIB,IIC,IIIC,IVD,VD"></span><dd>' +
+                '</dl>' +
+                '</div>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'editing', (newValue) ->
-          if newValue
+
+        # Need data for the significances that isn't going to be affected by the model changes. 
+        # This allows the display to remain unmodified during most of the editing
+        # process. If we don't do this, every edit to the tumourType field modifies
+        # the model and triggers a redisplay we don't actually want. We also really want a
+        # stable set of tumour types we can use for typeahead in a dropdown, but we can 
+        # pull that from the server. The easiest way to achieve that is to ignore the tumourType as
+        # a filtering system, and just display significances in order. That order can be adjusted by
+        # business logic, but again we don't want that to change live if we can help it, as that 
+        # would mess up the display. 
+        watcher = scope.$watch 'significance', (significance) ->
+          if significance && ! scope.tumourTypes
+            watcher()
+            classified = {}
+            for element in significance
+              classified[element["tumourType"]] = element
+            scope.tumourTypes = Object.keys(classified)
+
+        scope.$parent.$watch 'editing', (editing) ->
+          scope.editing = editing
+          if editing
             iElement.attr("class", "well well-small editing-enabled")
           else 
             iElement.attr("class", "")
-        # Watch editing in the scope. When it's enabled, switcheroo stuff. 
   )
 
   .directive('heliEditableAgents', () ->
@@ -225,14 +287,17 @@ angular
                 '<p>No information available</p>' +
                 '</div>' +
                 '<div class="row-fluid" ng-show="agents">' +
+                '<div class="heli-dl dl-horizontal">' +
                 '<div ng-repeat="agent in agents">' +
-                '<span class="label-value dropdown-value" heli-edit-dropdown value="agent.sensitivity" options="sensitivity,resistance,maybe_sensitivity,maybe_resistance"></span>: ' +
-                '<span class="labelled-value text-value" heli-edit-text value="agent.name"></span>' +
-                '<button ng-show="editing" class="btn btn-danger" ng-click="removeDrug(agent)">Remove</button>' +
+                '<div class="heli-dt"><span class="label-value dropdown-value" heli-edit-dropdown value="agent.sensitivity" options="sensitivity,resistance,maybe_sensitivity,maybe_resistance"></span></div>' +
+                '<div class="heli-dd"><span class="labelled-value text-value" heli-edit-text value="agent.name"></span>' +
+                '<button ng-show="editing" class="btn btn-danger" ng-click="removeDrug(agent)">Remove</button></div>' +
+                '</div>' +
                 '</div>' +
                 '<button ng-show="editing" class="btn" ng-click="addDrug()">Add drug</button>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
+
         scope.$parent.$watch 'editing', (editing) ->
           scope.editing = editing
           if editing

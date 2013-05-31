@@ -25,7 +25,7 @@ angular
   )
 
   .controller('EditableSignificanceController', ($scope, $routeParams, $timeout, Variant) ->
-   
+
   ) 
 
   .controller('VariantController', ($scope, $routeParams, $timeout, Variant) ->
