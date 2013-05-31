@@ -154,13 +154,13 @@ angular
       link: (scope, iElement, iAttrs, controller) ->
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-            body = '<textarea class="comment"ng-model="value"></textarea>'
+            body = '<textarea class="comment" ng-model="value"></textarea>'
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
           else 
-            body = "<p>{{value}}</p>"
+            body = '<span class="comment">{{value}}</span>'
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
