@@ -1,4 +1,4 @@
-angular.module('knowledge.services', ['ngResource'])
+angular.module('heliotrope.services.knowledge', ['ngResource'])
 
   # Service to access the gene frequencies. This doens't want any parameters or 
   # or routing usually, it's all global.

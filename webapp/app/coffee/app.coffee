@@ -1,8 +1,10 @@
 angular
   .module('heliotrope', [
     'heliotrope.filters'
-    'heliotrope.services'
-    'knowledge.services'
+    'heliotrope.controllers.tracker'
+    'heliotrope.controllers.knowledge'
+    'heliotrope.services.tracker'
+    'heliotrope.services.knowledge'
     'heliotrope.directives'
     'heliotrope.directives.charts'
     'heliotrope.directives.forms'

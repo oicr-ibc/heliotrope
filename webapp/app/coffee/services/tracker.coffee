@@ -1,4 +1,4 @@
-angular.module('heliotrope.services', ['ngResource'])
+angular.module('heliotrope.services.tracker', ['ngResource'])
 
   # Some value, it might be useful for something. Or it might not. 
 
