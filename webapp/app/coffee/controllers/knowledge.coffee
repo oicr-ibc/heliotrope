@@ -33,6 +33,8 @@ angular
   ) 
 
   .controller('VariantController', ($scope, $routeParams, $timeout, Variant) ->
+    $scope.originalSections = undefined
+
     $scope.entity = Variant.get($routeParams
       (entity) ->
         $scope.ordered = entity.getOrderedPositions()
@@ -44,9 +46,14 @@ angular
           types[sig.tumourType] = [] for sig in clinical.data.significance
           types[sig.tumourType].push(sig) for sig in clinical.data.significance
           $scope.classifiedSignifance = types
+        $scope.originalSections = angular.copy(entity.data.sections) 
       (error) ->
         console.log error
     )
+
+    $scope.reset = () ->
+      if $scope.originalSections
+        $scope.entity.data.sections = angular.copy($scope.originalSections)
   )
 
   .controller('SearchFormController', ($scope, $routeParams, $timeout, $location, Search) ->

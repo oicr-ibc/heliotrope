@@ -105,7 +105,7 @@ angular
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
         scope.$watch 'entity.data.sections.frequencies.data.tumour', (newValue, oldValue) -> 
-          if (newValue)
+          if (newValue && ! angular.equals(newValue, oldValue))
             renderPercent = (x) -> 
               formatter = new NumberFormat(x.frequency * 100.0)
               formatter.setPlaces(2)
@@ -113,7 +113,7 @@ angular
             jQuery(iElement).dataTable(
               sPaginationType: "bootstrap"
               bPaginate: true
-              aaData: newValue
+              aaData: angular.copy(newValue)
               aoColumns: [
                 { "sTitle": "Tumour type", "sClass": "span8", "mData": "tumourTypesRefx.name" }
                 { "sTitle": "Frequency", "sClass": "span4", "mData": renderPercent, "sType": "percent" }

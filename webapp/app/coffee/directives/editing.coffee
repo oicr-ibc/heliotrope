@@ -1,7 +1,9 @@
 angular
   .module('heliotrope.directives.editing', [])
 
-  # When editing is enabled.
+  # When editing is enabled. When we start editing, we ought to add a cancel button, too. 
+  # This can do a reset. In an ideal world, this would involve a deep copy of the resource
+  # data. 
 
   .directive('heliEditButton', () ->
     result = 
