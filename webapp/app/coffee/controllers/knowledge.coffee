@@ -25,7 +25,11 @@ angular
   )
 
   .controller('EditableSignificanceController', ($scope, $routeParams, $timeout, Variant) ->
-
+    $scope.addSignificance = () ->
+      $scope.significance.push({tumourType: "", studyType: "", comment: "", reference: "", levelOfEvidence: ""})
+    $scope.removeSignificance = (significance) ->
+      $scope.significance = $scope.significance.filter (other) ->
+        other != significance
   ) 
 
   .controller('VariantController', ($scope, $routeParams, $timeout, Variant) ->

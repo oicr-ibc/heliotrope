@@ -231,6 +231,7 @@ angular
                 '<dt>Tumour type</dt>' +
                 '<dd>' +
                 '<span heli-edit-typeahead value="sig.tumourType" options="tumourTypes"></span>' +
+                '<button ng-show="editing" class="btn btn-danger" ng-click="removeSignificance(sig)">Remove</button>' +
                 '</dd>' +
                 '<dt>Trial types</dt>' +
                 '<dd>' +
@@ -246,6 +247,7 @@ angular
                 '<dd><span heli-edit-dropdown value="sig.levelOfEvidence" options="IA,IB,IIB,IIC,IIIC,IVD,VD"></span><dd>' +
                 '</dl>' +
                 '</div>' +
+                '<button ng-show="editing" class="btn" ng-click="addSignificance()">Add study</button>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
 
