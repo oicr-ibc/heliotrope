@@ -65,8 +65,8 @@ angular
       $scope.editing = false
 
     $scope.saveChanges = () ->
-      scope.entity.$save()
-      scope.editing = false
+      $scope.entity.$save()
+      $scope.editing = false
   )
 
   .controller('SearchFormController', ($scope, $routeParams, $timeout, $location, Search) ->
