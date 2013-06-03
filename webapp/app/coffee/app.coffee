@@ -19,7 +19,7 @@ angular
       $routeProvider.when "/",                                           {templateUrl: 'app/partials/home.html',         controller: "HomeController"}
       $routeProvider.when "/genes",                                      {templateUrl: 'app/partials/home.html',         controller: "HomeController"}
       $routeProvider.when "/genes/:gene",                                {templateUrl: 'app/partials/gene.html',         controller: "GeneController"}
-      $routeProvider.when "/variants/:variant",                          {templateUrl: 'app/partials/variant.html',      controller: "VariantController"}
+      $routeProvider.when "/variants/:name",                             {templateUrl: 'app/partials/variant.html',      controller: "VariantController"}
       $routeProvider.when "/studies/:study",                             {templateUrl: 'app/partials/study.html',        controller: "StudyController"}
       $routeProvider.when "/studies/:study/:role/:identity",             {templateUrl: 'app/partials/entity.html',       controller: "EntityController"}
       $routeProvider.when "/studies/:study/:role/:identity/step/:step",  {templateUrl: 'app/partials/step.html',         controller: "EntityStepController"}

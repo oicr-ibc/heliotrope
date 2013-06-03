@@ -28,13 +28,23 @@ angular.module('heliotrope.services.knowledge', ['ngResource'])
     )
   )
 
-  # Service to retrieve variant information. 
+  # Service to retrieve variant information. The service allows variants to be 
+  # saved and created too. It's unlikely we'll ever use the POST requests 
+  # and the service may well not expose them. PUT is normal for saving, as 
+  # we want the body back (and we're using JS anyway) and the body will be
+  # used to redisplay. 
 
   .factory('Variant', ($resource) ->
-    Variant = $resource('/knowledge/api/variants/:variant', {},
+
+    Variant = $resource('/knowledge/api/variants/:name', {name: "@data.name"},
       query: 
         method: 'GET'
+      save:
+        method: 'PUT'
+      create:
+        method: 'POST'
     )
+
     Variant.prototype.getOrderedPositions = () ->
       positions = @data.sections.positions.data
       positions.forEach((a) ->
@@ -52,6 +62,7 @@ angular.module('heliotrope.services.knowledge', ['ngResource'])
         return result
       )
       positions
+
     Variant
   )
 

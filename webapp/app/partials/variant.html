@@ -12,6 +12,7 @@
       <div class="page-header">
         <div class="pull-right"><div heli-form-button>Download PDF</div></div>
         <div class="pull-right"><div heli-edit-button></div></div>
+        <div class="pull-right"><a ng-show="editing" class="btn" ng-click="cancel()">Cancel</a></div>
         <div class="pull-right"><a ng-show="editing" class="btn" ng-click="reset()">Reset</a></div>
         <h1>
           {{entity.data.name}} <small>Variant {{orderedPositions}}</small>

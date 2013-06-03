@@ -16,45 +16,22 @@ angular
           button = jQuery(e.delegateTarget)
           if button.attr("class") == "btn"
             button.attr("class", "btn btn-danger")
-            button.text("Stop editing")
+            button.text("Save")
             scope.editing = true
           else 
+
+            # Start by saving the entity. This will, on success, generate a new entity
+            # result (we're using PUT) and we can get this to update the display. The service
+            # can do additional authentication and so on, and does not need to write all the
+            # data. 
+            scope.entity.$save()
+
             button.attr("class", "btn")
             button.text("Start editing")
             scope.editing = false
           scope.$digest()
           e.stopPropagation()
           e.preventDefault()
-  )
-
-  .directive('heliReferenceTags', () ->
-    result = 
-      restrict: "A"
-      replace: true
-      transclude: false
-      scope: 
-        references: '='
-      template: '<input type="text" class="reference-tags" value=""></input>'
-      link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'references', (references) ->
-          
-          referenceString = (ref) ->
-            ref.type + ":" + ref.id
-          tags = references.map(referenceString)
-
-          iElement.val(tags).select2({
-            tags: tags,
-            tokenSeparators: [",", " "]
-          })
-
-          # Now, when we have a change, we need to propogate to the scope.
-          iElement.unbind 'change'
-          iElement.on 'change', (event) ->
-            value = event.val
-            scope.references = value.map (value) ->
-              keys = value.split(":")
-              { type: keys[0], id: keys[1] }
-            scope.$digest()
   )
 
   .directive('heliEditReferences', ($compile) ->
@@ -68,11 +45,42 @@ angular
       link: (scope, iElement, iAttrs, controller) ->
         scope.$parent.$watch 'editing', (editing) ->
           if editing
+
             body = '<div heli-reference-tags references="references"><div>'
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
+
+            body = '<input type="text" class="reference-tags" value=""></input>'
+            iElement.empty()
+            iElement.append(jQuery(body))
+
+            changeHandler = (evt) ->
+              value = evt.val
+              if value?
+                scope.references = value.map (value) ->
+                  keys = value.split(":")
+                  { type: keys[0], id: keys[1] }
+                scope.$digest()
+
+            tagsElement = iElement.find(".reference-tags")
+            tagsElement.select2(
+              tags: []
+              tokenSeparators: [",", " "]
+            )
+            tagsElement.bind 'change', changeHandler
+
+            # Establish a watcher to write values into the tags editor
+            scope.$watch 'references', (references) ->
+          
+              referenceString = (ref) ->
+                ref.type + ":" + ref.id
+              tags = references.map(referenceString)
+
+              if ! angular.equals(tags, tagsElement.val().split(","))
+                tagsElement.val(tags).trigger('change')
+
           else
             body = '<span ng-hide="editing" class="inline-list">' +
                    '<span class="inline-item" ng-repeat="reference in references">' +

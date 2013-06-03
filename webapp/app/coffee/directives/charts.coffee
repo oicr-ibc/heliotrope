@@ -26,6 +26,9 @@ angular
             chartWidth = 700
             chartHeight = 140
             element = display.get()[0]
+
+            d3.select('svg').remove();
+
             chart = d3.select(element)
               .append("svg")
               .attr("class", "chart")
