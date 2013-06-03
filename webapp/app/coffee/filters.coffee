@@ -83,6 +83,12 @@ angular
         ""
 
   .filter 'keywordToString', () ->
-    (input) ->
-      value = input.substring(0, 1).toUpperCase() + input.substring(1)
-      value.replace(/_/g, " ").replace(/,\b/g, ", ")
+    (input, capitalize) ->
+      if input?
+        value = if capitalize != false 
+          input.substring(0, 1).toUpperCase() + input.substring(1)
+        else
+          input
+        value.replace(/_/g, " ").replace(/,\b/g, ", ")
+      else
+        input

@@ -70,17 +70,18 @@ angular
         options: '@'
       template: '<span></span>'
       link: (scope, iElement, iAttrs, controller) ->
+        capitalize = iAttrs["capitalize"] == "true"
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-            body = '<select class="select-dropdown" ng-model="value">' +
-                   '<option ng-repeat="alt in options | split" ng-selected="(alt == value)" value="{{alt}}">{{alt}}</option>' +
-                   '</select>'
+            body = "<select class='select-dropdown' ng-model='value'>" +
+                   "<option ng-repeat='alt in options | split' ng-selected='(alt == value)' value='{{alt}}'>{{alt | keywordToString:#{capitalize}}}</option>" +
+                   "</select>"
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
           else 
-            body = "<b>{{value}}</b>"
+            body = "<b>{{value | keywordToString:#{capitalize}}}</b>"
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
@@ -268,7 +269,7 @@ angular
                 '<div class="row-fluid" ng-show="agents">' +
                 '<div class="heli-dl dl-horizontal">' +
                 '<div ng-repeat="agent in agents">' +
-                '<div class="heli-dt"><span class="label-value dropdown-value" heli-edit-dropdown value="agent.sensitivity" options="sensitivity,resistance,maybe_sensitivity,maybe_resistance"></span></div>' +
+                '<div class="heli-dt"><span class="label-value dropdown-value" heli-edit-dropdown capitalize="true" value="agent.sensitivity" options="sensitivity,resistance,maybe_sensitivity,maybe_resistance"></span></div>' +
                 '<div class="heli-dd"><span class="labelled-value text-value" heli-edit-text value="agent.name"></span>' +
                 '<button ng-show="editing" class="btn btn-danger" ng-click="removeDrug(agent)">Remove</button></div>' +
                 '</div>' +

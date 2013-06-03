@@ -36,14 +36,14 @@
               </dd>
               <dt>Type</dt>
               <dd>
-              <span ng-show="ordered[0]">{{ordered[0].consequence}}</span>
+              <span ng-show="ordered[0]">{{ordered[0].consequence | keywordToString:false}}</span>
               <span ng-show="! ordered[0]">not available</span>
               </dd>
               <dt>Predicted impact</dt>
               <dd>
               <span class="inline-list">
-              <span class="inline-item" ng-show="ordered[0].sift">{{ordered[0].sift.level}} (SIFT, score: {{ordered[0].sift.score}})</span>
-              <span class="inline-item" ng-show="ordered[0].polyphen">{{ordered[0].polyphen.level}} (PolyPhen, score: {{ordered[0].polyphen.score}})</span>                
+              <span class="inline-item" ng-show="ordered[0].sift">{{ordered[0].sift.level | keywordToString:false}} (SIFT, score: {{ordered[0].sift.score}})</span>
+              <span class="inline-item" ng-show="ordered[0].polyphen">{{ordered[0].polyphen.level | keywordToString:false}} (PolyPhen, score: {{ordered[0].polyphen.score}})</span>      
               <span class="inline-item" ng-hide="ordered[0].sift || ordered[0].polyphen">Not available</span>
               </span>
               <br>
@@ -55,7 +55,7 @@
                 <a href="/genes/{{entity.data.genesRefx.name}}">{{entity.data.genesRefx.name}}</a>
               </dd>
               <dt>Position</dt>
-              <dd>Codon: <span ng-show="ordered[0].codon">{{ordered[0].codon}}</span>
+              <dd>codon: <span ng-show="ordered[0].codon">{{ordered[0].codon}}</span>
               (in exon: 
               <span ng-show="ordered[0].exon">{{ordered[0].exon}}</span><span ng-show="! ordered[0].exon">not available</span>)
               </dd>
