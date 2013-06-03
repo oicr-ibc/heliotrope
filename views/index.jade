@@ -9,7 +9,13 @@ mixin references(references)
 html(xmlns="http://www.w3.org/1999/xhtml")
   head
     title Mutation Report for #{data.mutation} (#{data.shortMutation}) in #{data.gene}
+
   body
+
+    h2 Gene structure
+
+    != data.chart
+
     h2 Frequency of #{data.mutation} mutation in #{data.gene} in the top tumour types
 
     - var frequencies = data.sections.frequencies.data.tumour

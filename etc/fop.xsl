@@ -4,6 +4,7 @@
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns:fn="http://www.w3.org/2005/xpath-functions"
+                xmlns:svg="http://www.w3.org/2000/svg"
                 exclude-result-prefixes="fo">
   <xsl:template match="html:html">
     <fo:root writing-mode="lr-tb" hyphenate="false" text-align="start" role="html:html">
@@ -89,6 +90,42 @@
     <fo:inline font-weight="bold" role="html:b">
       <xsl:apply-templates />
     </fo:inline>
+  </xsl:template>
+  
+  <xsl:template match="html:svg">
+    <fo:instream-foreign-object>
+      <svg:svg>
+        <xsl:attribute name="width"><xsl:value-of select="@width"/><xsl:text>px</xsl:text></xsl:attribute>
+        <xsl:attribute name="height"><xsl:value-of select="@height"/><xsl:text>px</xsl:text></xsl:attribute>
+        <xsl:apply-templates />
+      </svg:svg>
+    </fo:instream-foreign-object>
+  </xsl:template>
+
+  <xsl:template match="html:g">
+    <svg:g>
+      <xsl:attribute name="transform"><xsl:value-of select="@transform"/></xsl:attribute>
+      <xsl:apply-templates />
+    </svg:g>
+  </xsl:template>
+  
+  <xsl:template match="html:line">
+    <svg:line>
+      <xsl:attribute name="x1"><xsl:value-of select="sum(@x1)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="y1"><xsl:value-of select="sum(@y1)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="x2"><xsl:value-of select="sum(@x2)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="y2"><xsl:value-of select="sum(@y2)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:apply-templates />
+    </svg:line>
+  </xsl:template>
+  
+  <xsl:template match="html:text">
+    <svg:text>
+      <xsl:attribute name="x"><xsl:value-of select="sum(@x)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="y"><xsl:value-of select="sum(@y)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="dx"><xsl:value-of select="sum(@dx)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:apply-templates />
+    </svg:text>
   </xsl:template>
   
   <xsl:template match="html:a[@href]">
