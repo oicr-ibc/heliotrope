@@ -10,6 +10,7 @@ angular
         references: '='
       template: '<span></span>'
       link: (scope, iElement, iAttrs, controller) ->
+
         scope.$parent.$watch 'editing', (editing) ->
           if editing
 
@@ -26,10 +27,10 @@ angular
             changeHandler = (evt) ->
               value = evt.val
               if value?
-                scope.references = value.map (value) ->
-                  keys = value.split(":")
-                  { type: keys[0], id: keys[1] }
-                scope.$digest()
+                scope.$apply () ->
+                  scope.references = value.map (value) ->
+                    keys = value.split(":")
+                    { type: keys[0], id: keys[1] }
 
             tagsElement = iElement.find(".reference-tags")
             tagsElement.select2(
@@ -41,6 +42,7 @@ angular
             # Establish a watcher to write values into the tags editor
             scope.$watch 'references', (references) ->
           
+              references ||= []
               referenceString = (ref) ->
                 ref.type + ":" + ref.id
               tags = references.map(referenceString)
@@ -50,7 +52,8 @@ angular
 
           else
             body = '<span ng-hide="editing" class="inline-list">' +
-                   '<span class="inline-item" ng-repeat="reference in references">' +
+                   '<span ng-hide="references">none</span>' +
+                   '<span ng-show="references" class="inline-item" ng-repeat="reference in references">' +
                    '<span heli-reference reference="reference"></span> ' +
                    '</span>' +
                    '</span>'
@@ -81,7 +84,7 @@ angular
             iElement.empty()
             iElement.append linkFn(scope)
           else 
-            body = "<b>{{value | keywordToString:#{capitalize}}}</b>"
+            body = "<span>{{value | keywordToString:#{capitalize}}}</span>"
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
@@ -179,7 +182,10 @@ angular
       template: '<div class="well well-small">' +
                 '<dl class="dl-horizontal">' + 
                 '<dt>Mutation action</dt>' +
-                '<dd><span heli-edit-dropdown value="action.type" options="activating,inactivating,other"></span></dd>' +
+                '<dd>' +
+                '<span ng-show="editing"><span heli-edit-dropdown value="action.type" options="activating,inactivating,other"></span></span>' +
+                '<span ng-hide="editing">{{action.type || &quot;unknown&quot;}}</span>' +
+                '</dd>' +
                 '<dt ng-show="editing || action.comment">Comment</dt>' +
                 '<dd ng-show="editing || action.comment"><div heli-edit-comment value="action.comment"></div></dd>' +
                 '<dt>Sources</dt>' +
@@ -204,6 +210,7 @@ angular
         significance: '='
       controller: 'EditableSignificanceController'
       template: '<div class="well well-small">' +
+                '<p ng-hide="editing || significance">No information available</p>' +
                 '<div ng-repeat="sig in significance">' +
                 '<dl class="dl-horizontal">' +
                 '<dt>Tumour type</dt>' +
@@ -263,11 +270,11 @@ angular
         agents: '='
       controller: 'EditableAgentsController'
       template: '<div class="well well-small">' +
-                '<div class="row-fluid" ng-hide="agents">' +
+                '<div class="row-fluid" ng-hide="editing || agents">' +
                 '<p>No information available</p>' +
                 '</div>' +
-                '<div class="row-fluid" ng-show="agents">' +
-                '<div class="heli-dl dl-horizontal">' +
+                '<div class="row-fluid" ng-show="editing || agents">' +
+                '<div ng-show="agents" class="heli-dl dl-horizontal">' +
                 '<div ng-repeat="agent in agents">' +
                 '<div class="heli-dt"><span class="label-value dropdown-value" heli-edit-dropdown capitalize="true" value="agent.sensitivity" options="sensitivity,resistance,maybe_sensitivity,maybe_resistance"></span></div>' +
                 '<div class="heli-dd"><span class="labelled-value text-value" heli-edit-text value="agent.name"></span>' +

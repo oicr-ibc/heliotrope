@@ -18,6 +18,8 @@ angular
 
   .controller('EditableAgentsController', ($scope, $routeParams, $timeout) ->
     $scope.addDrug = () ->
+      if ! $scope.agents?
+        $scope.agents = []
       $scope.agents.push({sensitivity: "", name: ""})
     $scope.removeDrug = (agent) ->
       $scope.agents = $scope.agents.filter (other) ->
@@ -26,6 +28,8 @@ angular
 
   .controller('EditableSignificanceController', ($scope, $routeParams, $timeout, Variant) ->
     $scope.addSignificance = () ->
+      if ! $scope.significance?
+        $scope.significance = []
       $scope.significance.push({tumourType: "", studyType: "", comment: "", reference: [], levelOfEvidence: ""})
     $scope.removeSignificance = (significance) ->
       $scope.significance = $scope.significance.filter (other) ->
@@ -48,7 +52,7 @@ angular
           types[sig.tumourType] = [] for sig in clinical.data.significance
           types[sig.tumourType].push(sig) for sig in clinical.data.significance
           $scope.classifiedSignifance = types
-        $scope.originalSections = angular.copy(entity.data.sections) 
+        $scope.originalSections = angular.copy(entity.data.sections) || {}
       (error) ->
         console.log error
     )
@@ -62,6 +66,7 @@ angular
       $scope.editing = true
 
     $scope.cancelChanges =  () ->
+      $scope.reset()
       $scope.editing = false
 
     $scope.saveChanges = () ->

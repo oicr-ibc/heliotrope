@@ -83,19 +83,7 @@
 
         <div heli-section body-id="clinical-significance" title="Clinical significance">
           <div heli-editable-significances significance="entity.data.sections.clinical.data.significance"></div>
-<!--           <div class="row-fluid" ng-hide="entity.data.sections.clinical">
-            <p>Information not available</p>
-          </div>
-          
-          <div class="row-fluid" ng-show="entity.data.sections.clinical">
-            <div ng-repeat="(key, value) in classifiedSignifance | orderBy:predicate:+key">
-              <h4>{{key | capitalize}}</h4>
-              <div ng-repeat="significance in classifiedSignifance[key] | orderBy:predicate:+levelOfEvidence">
-                <div heli-editable-clinical-significance></div>
-              </div>
-            </div>
-          </div>
- -->        </div>
+        </div>
         
         <div heli-section body-id="drugs" title="Drugs">
           <div heli-editable-agents agents="entity.data.sections.clinical.data.agents"></div>
