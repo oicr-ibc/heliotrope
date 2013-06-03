@@ -1,39 +1,6 @@
 angular
   .module('heliotrope.directives.editing', [])
 
-  # When editing is enabled. When we start editing, we ought to add a cancel button, too. 
-  # This can do a reset. In an ideal world, this would involve a deep copy of the resource
-  # data. 
-
-  .directive('heliEditButton', () ->
-    result = 
-      restrict: "A"
-      replace: true
-      transclude: true
-      template: '<a class="btn">Start editing</a>'
-      link: (scope, iElement, iAttrs, controller) ->
-        iElement.on 'click', (e) ->
-          button = jQuery(e.delegateTarget)
-          if button.attr("class") == "btn"
-            button.attr("class", "btn btn-danger")
-            button.text("Save")
-            scope.editing = true
-          else 
-
-            # Start by saving the entity. This will, on success, generate a new entity
-            # result (we're using PUT) and we can get this to update the display. The service
-            # can do additional authentication and so on, and does not need to write all the
-            # data. 
-            scope.entity.$save()
-
-            button.attr("class", "btn")
-            button.text("Start editing")
-            scope.editing = false
-          scope.$digest()
-          e.stopPropagation()
-          e.preventDefault()
-  )
-
   .directive('heliEditReferences', ($compile) ->
     result = 
       restrict: "A"

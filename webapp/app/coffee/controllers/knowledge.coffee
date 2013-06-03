@@ -33,6 +33,8 @@ angular
   ) 
 
   .controller('VariantController', ($scope, $routeParams, $timeout, Variant) ->
+
+    # Store a copy of the original data here
     $scope.originalSections = undefined
 
     $scope.entity = Variant.get($routeParams
@@ -51,9 +53,20 @@ angular
         console.log error
     )
 
+    # Copy back the original data, assuming we have it
     $scope.reset = () ->
       if $scope.originalSections
         $scope.entity.data.sections = angular.copy($scope.originalSections)
+
+    $scope.startEditing = () ->
+      $scope.editing = true
+
+    $scope.cancelChanges =  () ->
+      $scope.editing = false
+
+    $scope.saveChanges = () ->
+      scope.entity.$save()
+      scope.editing = false
   )
 
   .controller('SearchFormController', ($scope, $routeParams, $timeout, $location, Search) ->
