@@ -19,11 +19,13 @@ describe('GET request', function() {
   });
 
   // Used to get the data for a report. In practice, express will
-  // render this using jade. 
-  describe('/variants/KRAS+p.G12D/report?type=xml', function() {
+  // render this using jade. By far the most interesting bit is the
+  // chart data, which will be an SVG string by the time we get here. 
+
+  describe('/variants/KRAS+p.G12D/report', function() {
     it('should get the report data', function(done){
       
-      var request = {params: {id: "KRAS p.G12D"}, query: {"type" : "xml"}};
+      var request = {params: {id: "KRAS p.G12D"}};
       var response = {locals: {passthrough: "value"}};
       knowledge.getVariantReport(null, db, request, response, function(db, err, result, res) {
         db.close();
