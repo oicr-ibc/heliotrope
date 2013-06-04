@@ -95,11 +95,14 @@
   <xsl:template match="html:svg">
     <fo:instream-foreign-object>
       <svg:svg>
-        <xsl:attribute name="width"><xsl:value-of select="@width"/><xsl:text>px</xsl:text></xsl:attribute>
-        <xsl:attribute name="height"><xsl:value-of select="@height"/><xsl:text>px</xsl:text></xsl:attribute>
-        <xsl:apply-templates>
-          <xsl:with-param name="class" select="''"/>
-        </xsl:apply-templates>
+        <xsl:attribute name="width"><xsl:value-of select="@width * 0.82"/></xsl:attribute>
+        <xsl:attribute name="height"><xsl:value-of select="@height * 0.82"/></xsl:attribute>
+        <svg:g>
+          <xsl:attribute name="transform"><xsl:text>scale(0.82, 0.82)</xsl:text></xsl:attribute>
+          <xsl:apply-templates>
+            <xsl:with-param name="class" select="''"/>
+          </xsl:apply-templates>
+      </svg:g>
       </svg:svg>
     </fo:instream-foreign-object>
   </xsl:template>
@@ -118,13 +121,14 @@
   <xsl:template match="html:line">
     <xsl:param name="class"/>
     <svg:line>
-      <xsl:attribute name="x1"><xsl:value-of select="sum(@x1)"/><xsl:text>px</xsl:text></xsl:attribute>
-      <xsl:attribute name="y1"><xsl:value-of select="sum(@y1)"/><xsl:text>px</xsl:text></xsl:attribute>
-      <xsl:attribute name="x2"><xsl:value-of select="sum(@x2)"/><xsl:text>px</xsl:text></xsl:attribute>
-      <xsl:attribute name="y2"><xsl:value-of select="sum(@y2)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:if test="@x1"><xsl:attribute name="x1"><xsl:value-of select="@x1"/></xsl:attribute></xsl:if>
+      <xsl:if test="@y1"><xsl:attribute name="y1"><xsl:value-of select="@y1"/></xsl:attribute></xsl:if>
+      <xsl:if test="@x2"><xsl:attribute name="x2"><xsl:value-of select="@x2"/></xsl:attribute></xsl:if>
+      <xsl:if test="@y2"><xsl:attribute name="y2"><xsl:value-of select="@y2"/></xsl:attribute></xsl:if>
       <xsl:choose>
         <xsl:when test="$class = 'axis tick major'">
-          <xsl:attribute name="style"><xsl:text>stroke: #aaa</xsl:text></xsl:attribute>
+          <xsl:attribute name="stroke"><xsl:text>#aaa</xsl:text></xsl:attribute>
+          <xsl:attribute name="stroke-width"><xsl:text>0.5px</xsl:text></xsl:attribute>
         </xsl:when>
       </xsl:choose>
 
@@ -134,20 +138,25 @@
   
   <xsl:template match="html:text">
     <svg:text>
-      <xsl:attribute name="x"><xsl:value-of select="sum(@x)"/><xsl:text>px</xsl:text></xsl:attribute>
-      <xsl:attribute name="y"><xsl:value-of select="sum(@y)"/><xsl:text>px</xsl:text></xsl:attribute>
-      <xsl:attribute name="dx"><xsl:value-of select="sum(@dx)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:if test="@transform"><xsl:attribute name="transform"><xsl:value-of select="@transform"/></xsl:attribute></xsl:if>
+      <xsl:if test="@x"><xsl:attribute name="x"><xsl:value-of select="@x"/></xsl:attribute></xsl:if>
+      <xsl:if test="@y"><xsl:attribute name="y"><xsl:value-of select="@y"/></xsl:attribute></xsl:if>
+      <xsl:if test="@dx"><xsl:attribute name="dx"><xsl:value-of select="@dx"/></xsl:attribute></xsl:if>
+      <xsl:if test="@dy"><xsl:attribute name="dy"><xsl:value-of select="@dy"/></xsl:attribute></xsl:if>
+      <xsl:if test="@style"><xsl:attribute name="style"><xsl:value-of select="@style"/></xsl:attribute></xsl:if>
       <xsl:apply-templates />
     </svg:text>
   </xsl:template>
 
   <xsl:template match="html:rect">
     <svg:rect>
-      <xsl:attribute name="x"><xsl:value-of select="sum(@x)"/><xsl:text>px</xsl:text></xsl:attribute>
-      <xsl:attribute name="y"><xsl:value-of select="sum(@y)"/><xsl:text>px</xsl:text></xsl:attribute>
-      <xsl:attribute name="width"><xsl:value-of select="sum(@width)"/><xsl:text>px</xsl:text></xsl:attribute>
-      <xsl:attribute name="height"><xsl:value-of select="sum(@height)"/><xsl:text>px</xsl:text></xsl:attribute>
-      <xsl:attribute name="fill"><xsl:value-of select="@fill"/></xsl:attribute>
+      <xsl:if test="@x"><xsl:attribute name="x"><xsl:value-of select="@x"/></xsl:attribute></xsl:if>
+      <xsl:if test="@y"><xsl:attribute name="y"><xsl:value-of select="@y"/></xsl:attribute></xsl:if>
+      <xsl:if test="@width"><xsl:attribute name="width"><xsl:value-of select="@width"/></xsl:attribute></xsl:if>
+      <xsl:if test="@height"><xsl:attribute name="height"><xsl:value-of select="@height"/></xsl:attribute></xsl:if>
+      <xsl:if test="@rx"><xsl:attribute name="rx"><xsl:value-of select="@rx"/></xsl:attribute></xsl:if>
+      <xsl:if test="@ry"><xsl:attribute name="ry"><xsl:value-of select="@ry"/></xsl:attribute></xsl:if>
+      <xsl:if test="@fill"><xsl:attribute name="fill"><xsl:value-of select="@fill"/></xsl:attribute></xsl:if>
       <xsl:apply-templates />
     </svg:rect>
   </xsl:template>
@@ -159,7 +168,14 @@
       <xsl:attribute name="class"><xsl:value-of select="normalize-space(concat($class, ' ', @class))"/></xsl:attribute>
       <xsl:choose>
         <xsl:when test="normalize-space(concat($class, ' ', @class)) = 'axis domain'">
-          <xsl:attribute name="style"><xsl:text>stroke: #aaa; stroke-width: 0.5pt</xsl:text></xsl:attribute>
+          <xsl:attribute name="stroke"><xsl:text>#aaa</xsl:text></xsl:attribute>
+          <xsl:attribute name="stroke-width"><xsl:text>0.5</xsl:text></xsl:attribute>
+          <xsl:attribute name="fill"><xsl:text>none</xsl:text></xsl:attribute>
+        </xsl:when>
+        <xsl:when test="normalize-space(concat($class, ' ', @class)) = 'marker'">
+          <xsl:attribute name="stroke"><xsl:text>black</xsl:text></xsl:attribute>
+          <xsl:attribute name="stroke-width"><xsl:text>0.5</xsl:text></xsl:attribute>
+          <xsl:attribute name="fill"><xsl:text>none</xsl:text></xsl:attribute>
         </xsl:when>
       </xsl:choose>
 
@@ -168,10 +184,17 @@
   </xsl:template>
   
   <xsl:template match="html:circle">
+    <xsl:param name="class"/>
     <svg:circle>
       <xsl:attribute name="cx"><xsl:value-of select="sum(@cx)"/><xsl:text>px</xsl:text></xsl:attribute>
       <xsl:attribute name="cy"><xsl:value-of select="sum(@cy)"/><xsl:text>px</xsl:text></xsl:attribute>
       <xsl:attribute name="r"><xsl:value-of select="sum(@r)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="class"><xsl:value-of select="normalize-space(concat($class, ' ', @class))"/></xsl:attribute>
+      <xsl:choose>
+        <xsl:when test="normalize-space(concat($class, ' ', @class)) = 'marker'">
+          <xsl:attribute name="fill"><xsl:text>#a22</xsl:text></xsl:attribute>
+        </xsl:when>
+      </xsl:choose>
       <xsl:apply-templates />
     </svg:circle>
   </xsl:template>

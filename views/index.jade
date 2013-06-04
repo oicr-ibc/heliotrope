@@ -12,32 +12,6 @@ html(xmlns="http://www.w3.org/1999/xhtml")
 
   body
 
-    h2 Gene structure
-
-    != data.chart
-
-    h2 Frequency of #{data.mutation} mutation in #{data.gene} in the top tumour types
-
-    - var frequencies = data.sections.frequencies.data.tumour
-    - var frequencyValues = {}
-    - frequencies.forEach(function(frequency) { frequencyValues[frequency.tumourTypesRefx.name] = frequency.frequency; })
-    - var sortedTypes = Object.keys(frequencyValues).sort(function(a, b) { return frequencyValues[b] - frequencyValues[a]; })
-
-    table
-      thead
-        tr
-          th(width="300") Tumour
-          th(width="60") Frequency
-          th(width="100") Samples
-      tbody
-        each frequency, i in frequencies
-          tr
-            td #{frequency.tumourTypesRefx.name}
-            td #{(frequency.frequency * 100).toFixed(2)}%
-            td (#{frequency.affected}/#{frequency.total} samples)
-
-    hr
-
     h2 #{data.gene} #{data.mutation} Characteristics
 
     if data.sections.clinical
@@ -57,6 +31,33 @@ html(xmlns="http://www.w3.org/1999/xhtml")
       p 
         | The functional consequence of this mutation is: 
         b unknown
+
+    h2 #{data.mutation} in #{data.gene} protein domain context
+
+    != data.chart
+
+    h2 Frequency of #{data.mutation} mutation in #{data.gene} in the top tumour types
+
+    - var frequencies = data.sections.frequencies.data.tumour
+    - var frequencyValues = {}
+    - frequencies.forEach(function(frequency) { frequencyValues[frequency.tumourTypesRefx.name] = frequency.frequency; })
+    - var sortedTypes = Object.keys(frequencyValues).sort(function(a, b) { return frequencyValues[b] - frequencyValues[a]; })
+
+    table
+      thead
+        tr
+          th(width="300") Tumour
+          th(width="60") Frequency
+          th(width="100") Samples
+      tbody
+        each frequency, i in frequencies
+          if frequency.total >= 40
+            tr
+              td #{frequency.tumourTypesRefx.name}
+              td #{(frequency.frequency * 100).toFixed(2)}%
+              td (#{frequency.affected}/#{frequency.total} samples)
+
+    hr
 
     h2 #{data.genesRefx._body.name} - #{data.genesRefx._body.sections.description.data.fullName}
 
