@@ -18,62 +18,6 @@ describe('GET request', function() {
     });
   });
 
-  describe('/genes/KRAS', function() {
-    it('should retrieve a gene', function(done){
-      
-      var request = {params: {gene: "KRAS"}};
-      var response = {locals: {passthrough: "value"}};
-      knowledge.getGene(null, db, request, response, function(db, err, result, res) {
-        db.close();
-
-        should.not.exist(err);
-        result.data.name.should.equal("KRAS");
-        result.data.url.should.equal("/genes/KRAS");
-
-        result.data.sections.mutations.data[0].name.should.equal('p.Gly12Asp');
-        result.data.sections.mutations.data[0].url.should.equal('/variants/KRAS%20p.G12D');
-
-        res.locals.passthrough.should.equal("value");
-        done();
-      });
-    });
-  });
-
-  describe('/genes/XXXXX', function() {
-    it('should fail to retrieve a gene', function(done){
-      
-      var request = {params: {gene: "XXXXX"}};
-      var response = {locals: {passthrough: "value"}};
-      knowledge.getGene(null, db, request, response, function(db, err, result, res) {
-        db.close();
-        
-        should.exist(err);
-
-        res.locals.passthrough.should.equal("value");
-        done();
-      });
-    });
-  });
-
-  describe('/queries/frequencies', function() {
-    it('should retrieve a set of gene frequencies', function(done){
-      
-      var request = {params: {query: "frequencies"}};
-      var response = {locals: {passthrough: "value"}};
-      knowledge.executeQuery(null, db, request, response, function(db, err, result, res) {
-        db.close();
-
-        should.not.exist(err);
-        result.data[0].name.should.equal('TTN');
-        result.data[1].name.should.equal('JAK2');
-        result.data[2].name.should.equal('TP53');
-
-        res.locals.passthrough.should.equal("value");
-        done();
-      });
-    });
-  });
-
   describe('/variants/KRAS+p.G12D', function() {
     it('should retrieve a variant', function(done){
       
