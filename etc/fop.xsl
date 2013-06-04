@@ -97,24 +97,37 @@
       <svg:svg>
         <xsl:attribute name="width"><xsl:value-of select="@width"/><xsl:text>px</xsl:text></xsl:attribute>
         <xsl:attribute name="height"><xsl:value-of select="@height"/><xsl:text>px</xsl:text></xsl:attribute>
-        <xsl:apply-templates />
+        <xsl:apply-templates>
+          <xsl:with-param name="class" select="''"/>
+        </xsl:apply-templates>
       </svg:svg>
     </fo:instream-foreign-object>
   </xsl:template>
 
   <xsl:template match="html:g">
+    <xsl:param name="class"/>
     <svg:g>
       <xsl:attribute name="transform"><xsl:value-of select="@transform"/></xsl:attribute>
-      <xsl:apply-templates />
+      <xsl:attribute name="class"><xsl:value-of select="normalize-space(concat($class, ' ', @class))"/></xsl:attribute>
+      <xsl:apply-templates>
+        <xsl:with-param name="class" select="normalize-space(concat($class, ' ', @class))"/>
+      </xsl:apply-templates>
     </svg:g>
   </xsl:template>
   
   <xsl:template match="html:line">
+    <xsl:param name="class"/>
     <svg:line>
       <xsl:attribute name="x1"><xsl:value-of select="sum(@x1)"/><xsl:text>px</xsl:text></xsl:attribute>
       <xsl:attribute name="y1"><xsl:value-of select="sum(@y1)"/><xsl:text>px</xsl:text></xsl:attribute>
       <xsl:attribute name="x2"><xsl:value-of select="sum(@x2)"/><xsl:text>px</xsl:text></xsl:attribute>
       <xsl:attribute name="y2"><xsl:value-of select="sum(@y2)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:choose>
+        <xsl:when test="$class = 'axis tick major'">
+          <xsl:attribute name="style"><xsl:text>stroke: #aaa</xsl:text></xsl:attribute>
+        </xsl:when>
+      </xsl:choose>
+
       <xsl:apply-templates />
     </svg:line>
   </xsl:template>
@@ -127,16 +140,51 @@
       <xsl:apply-templates />
     </svg:text>
   </xsl:template>
+
+  <xsl:template match="html:rect">
+    <svg:rect>
+      <xsl:attribute name="x"><xsl:value-of select="sum(@x)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="y"><xsl:value-of select="sum(@y)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="width"><xsl:value-of select="sum(@width)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="height"><xsl:value-of select="sum(@height)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="fill"><xsl:value-of select="@fill"/></xsl:attribute>
+      <xsl:apply-templates />
+    </svg:rect>
+  </xsl:template>
+  
+  <xsl:template match="html:path">
+    <xsl:param name="class"/>
+    <svg:path>
+      <xsl:attribute name="d"><xsl:value-of select="@d"/></xsl:attribute>
+      <xsl:attribute name="class"><xsl:value-of select="normalize-space(concat($class, ' ', @class))"/></xsl:attribute>
+      <xsl:choose>
+        <xsl:when test="normalize-space(concat($class, ' ', @class)) = 'axis domain'">
+          <xsl:attribute name="style"><xsl:text>stroke: #aaa; stroke-width: 0.5pt</xsl:text></xsl:attribute>
+        </xsl:when>
+      </xsl:choose>
+
+      <xsl:apply-templates />
+    </svg:path>
+  </xsl:template>
+  
+  <xsl:template match="html:circle">
+    <svg:circle>
+      <xsl:attribute name="cx"><xsl:value-of select="sum(@cx)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="cy"><xsl:value-of select="sum(@cy)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:attribute name="r"><xsl:value-of select="sum(@r)"/><xsl:text>px</xsl:text></xsl:attribute>
+      <xsl:apply-templates />
+    </svg:circle>
+  </xsl:template>
   
   <xsl:template match="html:a[@href]">
     <fo:basic-link text-decoration="underline" color="blue" role="html:a">
-          <xsl:attribute name="external-destination">
-            <xsl:text>url('</xsl:text>
-            <xsl:value-of select="@href"/>
-            <xsl:text>')</xsl:text>
-          </xsl:attribute>
-          <xsl:apply-templates />
-      </fo:basic-link>
+      <xsl:attribute name="external-destination">
+        <xsl:text>url('</xsl:text>
+        <xsl:value-of select="@href"/>
+        <xsl:text>')</xsl:text>
+      </xsl:attribute>
+      <xsl:apply-templates />
+    </fo:basic-link>
   </xsl:template>
   
   <xsl:template match="html:table">
