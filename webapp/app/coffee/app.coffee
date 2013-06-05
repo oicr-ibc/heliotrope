@@ -1,6 +1,7 @@
 angular
   .module('heliotrope', [
     'heliotrope.filters'
+    'heliotrope.controllers.common'
     'heliotrope.controllers.tracker'
     'heliotrope.controllers.knowledge'
     'heliotrope.services.tracker'

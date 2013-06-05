@@ -10,12 +10,27 @@ angular
     result = 
       restrict: "A"
       replace: true
-      transclude: true
       template: '<ul class="dropdown-menu">' +
                 '<li ng-repeat="step in entity.data.availableSteps">' +
                 '<a href="{{step.url}}">{{step.label}}</a>' +
                 '</li>' +
                 '</ul>'
+  )
+
+  # To display the study menu link, make a request and see what we get. This should
+  # probably be done more elegantly in the root scope, and then handled from there.
+
+  .directive('heliStudyMenuLink', (StudyList) ->
+    result = 
+      restrict: "A"
+      replace: true
+      template: '<li class="disabled"><a>studies</a></li>'
+      link: (scope, iElement, iAttrs, controller) ->
+
+        studyList = StudyList.get({}, () ->
+          iElement.toggleClass("disabled")
+          iElement.find('a').attr('href','/studies');
+        )
   )
 
   .directive('heliKnowledgeBaseSearch', ($http) ->

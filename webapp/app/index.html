@@ -17,12 +17,12 @@
 <body>
 
   <header>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div ng-controller="NavigationController" class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="/">Heliotrope</a>
           <ul class="nav">
-            <li><a href="/studies/GPS">gps</a></li>
+            <li><a ng-show="studiesAvailable" href="/studies">studies</a></li>
             <li><a href="/genes">genes</a></li>
             <li>
               <form ng-controller="SearchFormController" ng-submit="submit()" id="search" class="navbar-search go-to" >
@@ -68,6 +68,7 @@
 
 <script src="app/js/services/knowledge.js"></script>
 <script src="app/js/services/tracker.js"></script>
+<script src="app/js/controllers/common.js"></script>
 <script src="app/js/controllers/knowledge.js"></script>
 <script src="app/js/controllers/tracker.js"></script>
 <script src="app/js/filters.js"></script>

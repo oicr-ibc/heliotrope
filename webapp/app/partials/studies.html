@@ -1,9 +1,16 @@
 <div class="row">
-
-  <div class="span12">
+  <div class="span3" id="sidebar">
+    <div class="well" style="max-width: 240px; padding: 8px 0; margin-top: 2em">
+      <ul class="nav nav-list">
+        <li class="nav-header">Studies</li>
+      </ul>
+    </div>  
+  </div>
+  <div class="span9">
 
     <div class="page-header">
-      <h1>List of studies</h1>
+      <h1 ng-show="studies.data">List of studies</h1>
+      <h1 ng-hide="studies.data">No studies available</h1>
     </div>
 
     <div ng-repeat="study in studies.data">
