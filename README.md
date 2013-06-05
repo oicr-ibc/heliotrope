@@ -26,8 +26,8 @@ Installation
 
 First, install the dependencies (node.js, MongoDB, Perl, and a Java runtime). Check out Heliotrope using:
 
-  $ git clone git@github.com:oicr-ibc/heliotrope.git
-  $ cd heliotrope
+    $ git clone git@github.com:oicr-ibc/heliotrope.git
+    $ cd heliotrope
 
 
 Initializing the knowledge base
