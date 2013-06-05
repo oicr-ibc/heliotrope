@@ -13,24 +13,40 @@ angular
     'heliotrope.directives.workflows'
     'heliotrope.directives.navigation'
   ])
-  .config(['$routeProvider', 
-    ($routeProvider) ->
-      $routeProvider.when "/search",                                     {templateUrl: 'app/partials/search.html',       controller: "SearchController"}
-      $routeProvider.when "/",                                           {templateUrl: 'app/partials/home.html',         controller: "HomeController"}
-      $routeProvider.when "/genes",                                      {templateUrl: 'app/partials/home.html',         controller: "HomeController"}
-      $routeProvider.when "/genes/:gene",                                {templateUrl: 'app/partials/gene.html',         controller: "GeneController"}
-      $routeProvider.when "/variants/:name",                             {templateUrl: 'app/partials/variant.html',      controller: "VariantController"}
-      $routeProvider.when "/studies/:study",                             {templateUrl: 'app/partials/study.html',        controller: "StudyController"}
-      $routeProvider.when "/studies/:study/:role/:identity",             {templateUrl: 'app/partials/entity.html',       controller: "EntityController"}
-      $routeProvider.when "/studies/:study/:role/:identity/step/:step",  {templateUrl: 'app/partials/step.html',         controller: "EntityStepController"}
-      $routeProvider.otherwise {redirectTo: "/view1"}
+  .config(['$routeProvider', ($routeProvider) ->
+    $routeProvider.when "/search",                                     {templateUrl: 'app/partials/search.html',       controller: "SearchController"}
+    $routeProvider.when "/",                                           {templateUrl: 'app/partials/home.html',         controller: "HomeController"}
+    $routeProvider.when "/genes",                                      {templateUrl: 'app/partials/home.html',         controller: "HomeController"}
+    $routeProvider.when "/genes/:gene",                                {templateUrl: 'app/partials/gene.html',         controller: "GeneController"}
+    $routeProvider.when "/variants/:name",                             {templateUrl: 'app/partials/variant.html',      controller: "VariantController"}
+    $routeProvider.when "/studies/:study",                             {templateUrl: 'app/partials/study.html',        controller: "StudyController"}
+    $routeProvider.when "/studies/:study/:role/:identity",             {templateUrl: 'app/partials/entity.html',       controller: "EntityController"}
+    $routeProvider.when "/studies/:study/:role/:identity/step/:step",  {templateUrl: 'app/partials/step.html',         controller: "EntityStepController"}
+    $routeProvider.otherwise {redirectTo: "/view1"}
   ])
-  .config( ['$locationProvider', ($locationProvider) ->
-      $locationProvider.html5Mode(true)
-      $locationProvider.hashPrefix = "!"
+  .config(['$locationProvider', ($locationProvider) ->
+    $locationProvider.html5Mode(true)
+    $locationProvider.hashPrefix = "!"
+  ])
+  .config(['$httpProvider', ($httpProvider) ->
+
+    authenticationInterceptor = ($q, $log) ->
+
+      success = (response) ->
+        console.log 'Successful response: ', response
+        response
+      error = (response) ->
+        status = response.status
+        console.log 'Response status: ',status, response
+        $q.reject(response)
+
+      (promise) ->
+        promise.then(success, error)
+
+    $httpProvider.responseInterceptors.push(authenticationInterceptor)
+    
   ])
 
-# angular.bootstrap(document,['heliotrope'])
 
 jQuery.extend(jQuery.fn.dataTableExt.oStdClasses, {
   "sSortAsc": "header headerSortDown", 
