@@ -2,8 +2,6 @@
 
 {print} = require 'sys'
 
-{exec} = require "child_process"
-
 {spawn} = require "child_process"
 
 REPORTER = "list"

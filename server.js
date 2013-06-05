@@ -49,6 +49,17 @@ var ldap = new LdapAuth({
   cache: true
 });
 
+var authenticate = express.basicAuth(function (username, password, callback) {
+  ldap.authenticate(username, password, function (err, user) {
+    if (err) {
+      console.log("LDAP auth error: %s", err);
+    }
+    callback(err, user)
+  });
+});
+
+app.locals.authenticate = authenticate;
+
 app.configure(function(){
   app.locals.pretty = true;
   app.set('view engine', 'jade');
@@ -73,16 +84,16 @@ app.configure(function(){
     })
   }));
 
-  if (config["authenticate"]) {
-    app.use(express.basicAuth(function (username, password, callback) {
-      ldap.authenticate(username, password, function (err, user) {
-        if (err) {
-          console.log("LDAP auth error: %s", err);
-        }
-        callback(err, user)
-      });
-    }));
-  }
+  // if (config["authenticate"]) {
+  //   app.use(express.basicAuth(function (username, password, callback) {
+  //     ldap.authenticate(username, password, function (err, user) {
+  //       if (err) {
+  //         console.log("LDAP auth error: %s", err);
+  //       }
+  //       callback(err, user)
+  //     });
+  //   }));
+  // }
 
 });
 

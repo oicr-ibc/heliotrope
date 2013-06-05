@@ -19,6 +19,30 @@ describe('GET request', function() {
     });
   });
 
+  describe('/studies', function() {
+    it('should retrieve a list of studies', function(done) {
+      db.close();
+      
+      var request = {params: {}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getStudies(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        should.exist(result);
+        should.exist(result.data);
+        should.exist(result.data[0]);
+        result.data[0].name.should.equal('GPS')
+        result.data[0].statistics["participants"].count.should.equal(1)
+        result.data[0].statistics["samples"].count.should.equal(2)
+        result.data[0].statistics["observations"].count.should.equal(1)
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
   describe('/studies/GPS', function() {
     it('should retrieve a study', function(done) {
       db.close();
