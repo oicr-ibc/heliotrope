@@ -1,6 +1,15 @@
 angular
   .module('heliotrope.controllers.tracker', [])
 
+  .controller('StudyListController', ($scope, $routeParams, $timeout, StudyList) ->
+    $scope.studies = StudyList.get($routeParams
+      (study) ->
+
+      (error) ->
+        console.log error
+    )
+  )
+
   .controller('StudyController', ($scope, $routeParams, $timeout, Study) ->
     $scope.study = Study.get($routeParams
       (study) ->

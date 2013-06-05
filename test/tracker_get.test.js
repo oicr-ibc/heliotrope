@@ -36,6 +36,7 @@ describe('GET request', function() {
         result.data[0].statistics["participants"].count.should.equal(1)
         result.data[0].statistics["samples"].count.should.equal(2)
         result.data[0].statistics["observations"].count.should.equal(1)
+        should.exist(result.data[0].lastModified);
 
         res.locals.passthrough.should.equal("value");
         done();
