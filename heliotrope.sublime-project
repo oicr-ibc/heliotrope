@@ -3,9 +3,7 @@
     [
         {
             "path": ".",
-            "file_exclude_patterns": [".*"],
-            "folder_exclude_patterns": ["webapp/app/js", "webapp/app/img", "node_modules"],
-            "file_exclude_patterns": [".*"]
+            "folder_exclude_patterns": ["webapp/app/js", "webapp/app/img", "node_modules"]
         }
     ],
     "settings":
