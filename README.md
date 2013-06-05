@@ -15,10 +15,10 @@ This second-generation implementation provides the following features:
 
 Heliotrope depends on these technologies:
 
-*  node.js -- web server, providing core server systems
-*  MongoDB -- data storage for the knowledge base and tracking system
-*  Perl -- used to build the initial primary knowledge base from exterbal sources
-*  Java runtime -- used by the reporting system to generate PDF files
+*  node.js -- web server, providing core server systems (tested with node 0.10.7)
+*  MongoDB -- data storage for the knowledge base and tracking system (tested with MongoDB 2.4.3)
+*  Perl -- used to build the initial primary knowledge base from exterbal sources (tested with Perl 5.16.1)
+*  Java runtime -- used by the reporting system to generate PDF files (tested with Oracle Java 1.7.0_11)
 
 
 Installation
@@ -26,14 +26,34 @@ Installation
 
 First, install the dependencies (node.js, MongoDB, Perl, and a Java runtime). Check out Heliotrope using:
 
-    $ git clone git@github.com:oicr-ibc/heliotrope.git
-    $ cd heliotrope
-
+```shell
+$ git clone git@github.com:oicr-ibc/heliotrope.git
+$ cd heliotrope
+$ npm install
+$ cake build
+$ cake server
+```
 
 Initializing the knowledge base
 -------------------------------
 
-To be written.
+Before Heliotrope can work effectively, it is a good idea to initialize the knowledge base. This takes a good
+few hours, and requires a number of other dependencies. In particular, it requires the Ensembl variant 
+effect predictor (VEP), which itself requires a copy of the human reference genome hg19 and databases for
+SIFT and PolyPhen annotation of variants. 
+
+The knowledge base initialization system is primarily written in Perl. Most recent Perl versions should be
+able to do this, with the right modules installed, but it is usually a good idea to build a clean one using
+`perlbrew`, mostly to avoid OS Perl contamination. 
+
+Heliotrope currently includes adapters to read and draw on the following information sources when constructing
+its knowledge base:
+
+*  Boot -- always used first
+*  Ensembl -- always used next, primary gene information source
+*  COSMIC -- used to calculate variant frequencies
+*  Entrez -- used as a source for gene descriptions
+*  Sanger Cancer Gene Census -- cancer-specific gene-level annotation
 
 
 Security
