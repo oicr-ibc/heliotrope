@@ -6,7 +6,8 @@ var fs = require("fs"),
     polyfill = require('./lib/polyfill'),
     url = require("url"),
     nconf = require('nconf'),
-    MongoStore = require('connect-mongo')(express)
+    MongoStore = require('connect-mongo')(express),
+    passport = require("passport"),
     LdapAuth = require("./lib/ldapauth");
 
 var configFile = process.cwd()+"/config.json";
@@ -34,6 +35,7 @@ nconf.defaults({
   'ldap:url': "ldap://ldap.oicr.on.ca/",
   'ldap:searchBase': "dc=oicr,dc=on,dc=ca",
   'ldap:searchFilter': "(uid={{username}})",
+  'ldap:userField': "uid",
   'cookieSecret': 'keyboard cat'
 })
 
@@ -41,6 +43,10 @@ var app = module.exports.app = express();
 
 var config = nconf.get();
 module.exports.config = config;
+
+// Config needs to be exported before we get here. And yes, this
+// is a bit nasty. 
+var authenticator = require("./lib/authentication")
 
 var ldap = new LdapAuth({
   url: config.ldap.url,
@@ -83,18 +89,14 @@ app.configure(function(){
       auto_reconnect: true
     })
   }));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
-  // if (config["authenticate"]) {
-  //   app.use(express.basicAuth(function (username, password, callback) {
-  //     ldap.authenticate(username, password, function (err, user) {
-  //       if (err) {
-  //         console.log("LDAP auth error: %s", err);
-  //       }
-  //       callback(err, user)
-  //     });
-  //   }));
-  // }
-
+  // Unusually, we don't have global authorization here, although we could. This allows
+  // the knowledge base to have public read access, without allowing access to the tracker
+  // without logging in. The session here doesn't block access in the absence of a session,
+  // but it does populate the session. To restrict, the authentication system needs to 
+  // verify the existence of req.user for routes that we need authenticated. 
 });
 
 app.configure('development', function(){
