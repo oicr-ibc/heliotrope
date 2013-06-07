@@ -64,6 +64,7 @@ angular
 
     # Holds all the requests which failed due to 401 response.
     scope.requests401 = []
+    scope.user = undefined
 
     scope.logout = () ->
       console.log "Sending logout request"
@@ -71,6 +72,10 @@ angular
 
     scope.$on 'event:loginRequired', () ->
       console.log "Handle event:loginRequired"
+
+    config = 
+      headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
+
 
     # Probably should let this be handled by an authentication controller
     # which can handle a modal dialog and initiate the event:loginRequest
@@ -80,9 +85,14 @@ angular
       console.log "Handle event:loginCancelled"
       $location.path('/')
 
-    scope.$on 'event:loginConfirmed', () ->
+    scope.$on 'event:logoutConfirmed', () ->
+      console.log "Handle event:logoutConfirmed"
+      scope.user = undefined
+      $location.path('/')
 
-      console.log "Handle event:loginConfirmed"
+    scope.$on 'event:loginConfirmed', (event, user) ->
+      console.log "Handle event:loginConfirmed", user
+      scope.user = user
 
       retry = (req) ->
         console.log "About to retry request", req
@@ -92,17 +102,13 @@ angular
       retry(request) for request in scope.requests401
 
     scope.$on 'event:loginRequest', (event, username, password) ->
-
-      config = 
-        headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
-
       payload = jQuery.param
         username: username
         password: password
 
       success = (data) ->
         console.log "Login response successful", data
-        scope.$broadcast 'event:loginConfirmed'
+        scope.$broadcast 'event:loginConfirmed', data.data.user
       
       error = (data) ->
         console.log "Login response failure", data
@@ -111,11 +117,21 @@ angular
 
     scope.$on 'event:logoutRequest', () ->
       console.log "Handle event:logoutRequest"
-      config = 
-        headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 
       $http.post('/authentication/api/logout', {}, config).success (data) ->
-        $location.path('/')
+        scope.$broadcast 'event:logoutConfirmed'
+
+    # When we start the app, we might be on an unauthenticated route but still have a session
+    # info available. This allows us to pick up the initial service level user. It should always
+    # return a 200 status (i.e., not be restricted by authentication, and return the current user)
+    # exactly like the login event system.
+    ping = () ->
+      $http.get('/authentication/api/ping', {}, config).success (data) ->
+        console.log("Ping response", data)
+        if data.data.user
+          scope.$broadcast 'event:loginConfirmed', data.data.user
+
+    ping()
   ])
 
 
