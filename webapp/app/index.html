@@ -35,7 +35,7 @@
               <a class="dropdown-toggle" data-toggle="dropdown">account <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li ng-hide="user" class="disabled"><a>Not logged in</a></li>
-                <li ng-show="user" class="disabled"><a>Logged in as: {{user.id}}</a></li>
+                <li ng-show="user" class="disabled"><a>Logged in as: {{user.userId}}</a></li>
                 <li ng-show="user"><a ng-click="logout()">Logout</a></li>
               </ul>
             </li>

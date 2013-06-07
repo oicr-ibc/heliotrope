@@ -1,0 +1,6 @@
+// This file is loaded when running the test suite. 
+
+db.users.drop();
+db.createCollection("users");
+
+db.users.insert({"userId": "swatt", "roles" : ["KB_EDITOR"]});

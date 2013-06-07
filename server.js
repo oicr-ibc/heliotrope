@@ -23,6 +23,7 @@ nconf.defaults({
   'db:port': 27017,
   'db:host': 'localhost',
   'db:session:name': 'session',
+  'data:userdb': "mongodb://localhost:27017/user",
   'server:port': 3000,
   'server:address': "0.0.0.0",
   'flavor': "regular",
