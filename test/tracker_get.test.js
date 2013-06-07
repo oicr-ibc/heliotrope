@@ -23,7 +23,7 @@ describe('GET request', function() {
     it('should retrieve a list of studies', function(done) {
       db.close();
       
-      var request = {params: {}};
+      var request = {params: {}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getStudies(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -48,7 +48,7 @@ describe('GET request', function() {
     it('should retrieve a study', function(done) {
       db.close();
       
-      var request = {params: {study: "GPS"}};
+      var request = {params: {study: "GPS"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getStudy(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -67,7 +67,7 @@ describe('GET request', function() {
     it('should retrieve a list of participants', function(done){
       db.close();
     
-      var request = {params: {study: "GPS", role: "participants"}};
+      var request = {params: {study: "GPS", role: "participants"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntities(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -86,7 +86,7 @@ describe('GET request', function() {
     it('should retrieve a list of samples', function(done){
       db.close();
       
-      var request = {params: {study: "GPS", role: "samples"}};
+      var request = {params: {study: "GPS", role: "samples"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntities(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -105,7 +105,7 @@ describe('GET request', function() {
   describe('/studies/GPS/observations', function() {
     it('should retrieve a list of observations', function(done){
       
-      var request = {params: {study: "GPS", role: "observations"}};
+      var request = {params: {study: "GPS", role: "observations"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntities(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -123,7 +123,7 @@ describe('GET request', function() {
   describe('/studies/GPS/participants/TST-001', function() {
     it('should retrieve a single identified participant', function(done){
       
-      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}};
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntity(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -143,7 +143,7 @@ describe('GET request', function() {
 
     it('should return steps correctly', function(done){
       
-      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}};
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntity(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -165,7 +165,7 @@ describe('GET request', function() {
   describe('/studies/GPS/participants/TST-001', function() {
     it('should retrieve a single identified participant', function(done){
       
-      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}};
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntity(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -184,7 +184,7 @@ describe('GET request', function() {
   describe('/studies/GPS/participants/TST-001/step/consent', function() {
     it('should retrieve a single identified step', function(done){
       
-      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "consent"}};
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "consent"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -209,7 +209,7 @@ describe('GET request', function() {
   describe('/studies/GPS/participants/TST-001/step/biopsy;511d2295ea2a8c2f1e2c1ff2', function() {
     it('should retrieve a single identified step', function(done){
       
-      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "biopsy;511d2295ea2a8c2f1e2c1ff2"}};
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "biopsy;511d2295ea2a8c2f1e2c1ff2"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -234,7 +234,7 @@ describe('GET request', function() {
   describe('/studies/GPS/participants/TST-001/step/biopsy;51a4e3d99be0f733f234e6a4', function() {
     it('should retrieve a single identified step', function(done){
       
-      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "biopsy;51a4e3d99be0f733f234e6a4"}};
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "biopsy;51a4e3d99be0f733f234e6a4"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -257,7 +257,7 @@ describe('GET request', function() {
   describe('/studies/GPS/samples/TST001BIOXPAR1', function() {
     it('should retrieve a single identified sample', function(done){
       
-      var request = {params: {study: "GPS", role: "samples", identity: "TST001BIOXPAR1"}};
+      var request = {params: {study: "GPS", role: "samples", identity: "TST001BIOXPAR1"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntity(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -288,7 +288,7 @@ describe('GET request', function() {
   describe('/studies/GPS/samples/TST001BIOXPAR1/step/assessSample', function() {
     it('should retrieve a single identified step', function(done){
       
-      var request = {params: {study: "GPS", role: "samples", identity: "TST001BIOXPAR1", step: "assessSample"}};
+      var request = {params: {study: "GPS", role: "samples", identity: "TST001BIOXPAR1", step: "assessSample"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
         db.close();
@@ -309,7 +309,8 @@ describe('GET request', function() {
       
       var request = {
         params: {study: "GPS", role: "samples", identity: "id;new", step: "sample"},
-        query: {participantEntityRef: "TST-001"}
+        query: {participantEntityRef: "TST-001"},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
@@ -335,7 +336,7 @@ describe('GET request', function() {
     it('should get the list of all related entities for a participant', function(done){
 
       var request = {
-        params: {study: "GPS", role: "participants", identity: "TST-001"}
+        params: {study: "GPS", role: "participants", identity: "TST-001"}, "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       tracker.getRelatedEntities(null, db, request, response, function(db, err, result, res) {
@@ -358,7 +359,8 @@ describe('GET request', function() {
 
       var request = {
         params: {study: "GPS", role: "participants", identity: "TST-001"},
-        query: {role: "samples"}
+        query: {role: "samples"},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       tracker.getRelatedEntities(null, db, request, response, function(db, err, result, res) {

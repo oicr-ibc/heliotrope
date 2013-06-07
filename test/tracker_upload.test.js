@@ -32,7 +32,7 @@ describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/recordResults/files', fu
 
     initialize.withDB("tracker", function(db, err, result) {
       
-      var request = {params: {study: "GPS", step: "recordResults", identity: "TST001BIOXPAR1", role: "samples"}};
+      var request = {params: {study: "GPS", step: "recordResults", identity: "TST001BIOXPAR1", role: "samples"}, user: {userId: "swatt"}};
       var response = {};
       var form = new Gently;
       var endHandler;

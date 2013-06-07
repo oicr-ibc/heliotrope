@@ -25,7 +25,8 @@ describe('POST request', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "consent"},
-        "body": {"data": {"step": {"fields": {"consentDate": {"value": "2013-04-17T00:00:00.000"}}}}}
+        "body": {"data": {"step": {"fields": {"consentDate": {"value": "2013-04-17T00:00:00.000"}}}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -46,7 +47,8 @@ describe('POST request', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
-        "body": {"data": {"step": {"fields": {"identifier": {"identity": "TST-002"}, "institution" : {"value" : "London"}}}}}
+        "body": {"data": {"step": {"fields": {"identifier": {"identity": "TST-002"}, "institution" : {"value" : "London"}}}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -67,7 +69,8 @@ describe('POST request', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
-        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-002"}}}}}
+        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST-002"}}}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -89,7 +92,8 @@ describe('POST request', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "id;new", "step": "participant"},
-        "body": {"data": {"step": {"fields": {"identifier": {"identity": "TST-001"}, "institution" : {"value" : "London"}}}}}
+        "body": {"data": {"step": {"fields": {"identifier": {"identity": "TST-001"}, "institution" : {"value" : "London"}}}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -111,7 +115,8 @@ describe('POST request', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "samples", "identity": "TST001BIOXPAR1", "step": "assessSample"},
-        "body": {"data": {"step": {"fields": {"dnaConcentration": {"value": "100"}, "dnaQuality" : {"value" : "Moderate"}}}}}
+        "body": {"data": {"step": {"fields": {"dnaConcentration": {"value": "100"}, "dnaQuality" : {"value" : "Moderate"}}}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -130,9 +135,9 @@ describe('POST request', function() {
     it('should record the request user for the step', function(done){
       
       var request = {
-        "user": "mungo",
         "params": {"study": "GPS", "role": "samples", "identity": "TST001BIOXPAR1", "step": "assessSample"},
-        "body": {"data": {"step": {"fields": {"dnaConcentration": {"value": "100"}, "dnaQuality" : {"value" : "Moderate"}}}}}
+        "body": {"data": {"step": {"fields": {"dnaConcentration": {"value": "100"}, "dnaQuality" : {"value" : "Moderate"}}}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -151,7 +156,7 @@ describe('POST request', function() {
             docs.length.should.equal(1);
             should.exist(docs[0].steps);
             docs[0].steps.length.should.equal(2);
-            docs[0].steps[1].stepUser.should.equal("mungo");
+            docs[0].steps[1].stepUser.should.equal("swatt");
 
             done();
           });
@@ -176,7 +181,8 @@ describe('POST request', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "biopsy;511d2295ea2a8c2f1e2c1ff2"},
-        "body": {"data": {"step": {"fields": {"biopsyDate": {"value": "2013-01-01T01:01:01.000"}, "biopsyCores" : {"value" : "9"}}}}}
+        "body": {"data": {"step": {"fields": {"biopsyDate": {"value": "2013-01-01T01:01:01.000"}, "biopsyCores" : {"value" : "9"}}}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -215,7 +221,8 @@ describe('POST request', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "biopsy;51a4e3d99be0f733f234e6a4"},
-        "body": {"data": {"step": {"fields": {"biopsyDate": {"value": "2013-02-02T02:02:02.000"}, "biopsyCores" : {"value" : "9"}}}}}
+        "body": {"data": {"step": {"fields": {"biopsyDate": {"value": "2013-02-02T02:02:02.000"}, "biopsyCores" : {"value" : "9"}}}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -253,7 +260,8 @@ describe('POST request', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "biopsy"},
-        "body": {"data": {"step": {"fields": {"biopsyDate": {"value": "2013-02-02T02:02:02.000"}, "biopsyCores" : {"value" : "9"}}}}}
+        "body": {"data": {"step": {"fields": {"biopsyDate": {"value": "2013-02-02T02:02:02.000"}, "biopsyCores" : {"value" : "9"}}}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -296,7 +304,8 @@ describe('POST request', function() {
       
       var request = {
         "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
-        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST001BIOXPAR3"}}}}}
+        "body": {"data": {"step": {"fields": {"identifier": {"value": "TST001BIOXPAR3"}}}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
@@ -324,7 +333,8 @@ describe('POST request', function() {
           "site": {"value": "Primary"},
           "source": {"value": "Biopsy"},
           "type": {"value": "FFPE"}
-        }}}}
+        }}}},
+        "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
       
