@@ -62,6 +62,14 @@ angular
 
   .run(['$rootScope', '$http', '$location', (scope, $http, $location) ->
 
+    class User
+      constructor: (user) ->
+        for own key, value of user
+          this[key] = value
+
+      hasRole: (role) ->
+        role in @roles
+
     # Holds all the requests which failed due to 401 response.
     scope.requests401 = []
     scope.user = undefined
@@ -92,7 +100,7 @@ angular
 
     scope.$on 'event:loginConfirmed', (event, user) ->
       console.log "Handle event:loginConfirmed", user
-      scope.user = user
+      scope.user = new User(user)
 
       retry = (req) ->
         console.log "About to retry request", req

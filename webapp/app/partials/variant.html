@@ -10,9 +10,9 @@
 
     <div id="page-header">
       <div class="page-header">
-        <div class="pull-right"><div ng-hide="editing" heli-form-button>Download PDF</div></div>
-        <div class="pull-right"><a ng-hide="editing" class="btn" ng-click="startEditing()">Start Editing</a></div>
-        <div class="pull-right"><a ng-show="editing" class="btn btn-danger" ng-click="saveChanges()">Save</a></div>
+        <div class="pull-right"><div ng-show="! editing" heli-form-button>Download PDF</div></div>
+        <div class="pull-right"><a ng-show="user.hasRole('KB_EDITOR') &amp;&amp; ! editing" class="btn" ng-click="startEditing()">Start Editing</a></div>
+        <div class="pull-right"><a ng-show="user.hasRole('KB_EDITOR') &amp;&amp; editing" class="btn btn-danger" ng-click="saveChanges()">Save</a></div>
         <div class="pull-right"><a ng-show="editing" class="btn" ng-click="cancelChanges()">Cancel</a></div>
         <div class="pull-right"><a ng-show="editing" class="btn" ng-click="reset()">Reset</a></div>
         <h1>
