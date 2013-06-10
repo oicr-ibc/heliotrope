@@ -9,7 +9,7 @@ angular
   #
   # Note that a variant is a bit different, and we ought to handle it accordingly.
   # Genes can be displayed immediately. 
-  
+
   .directive('heliStructureDistribution', () ->
     result = 
       restrict: "A"
@@ -18,114 +18,46 @@ angular
       scope: false
       template: '<div class="diagram"></div>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'entity.data', (newValue, oldValue) -> 
-          if (newValue)
-            
+        scope.$watch 'entity.data', (entityData) -> 
+          if (entityData)
+
             display = jQuery(iElement)
-            
             chartWidth = 700
             chartHeight = 140
             element = display.get()[0]
 
-            d3.select('svg').remove();
+            charter = ProteinStructureChart
 
-            chart = d3.select(element)
-              .append("svg")
-              .attr("class", "chart")
-              .attr("width", chartWidth)
-              .attr("height", chartHeight)
-              
-            data = newValue.sections.distribution.data
-            transcript = newValue.sections.transcripts.data.records[0]
-            
-            maximumValue = Math.max.apply(Math, data)
-      
-            leftMargin = 20
-            rightMargin = 10
-            availableWidth = chartWidth - leftMargin - rightMargin
-            w = availableWidth / data.length        #/ -- to shut up the IDE stupidity
-            h = 100
-            x = d3.scale.linear().domain([0, 200]).range([leftMargin, availableWidth + leftMargin])
-            y = d3.scale.linear().domain([0, maximumValue]).rangeRound([0, h])
-            xCodon = d3.scale.linear().domain([0, transcript.lengthAminoAcid]).range([leftMargin, availableWidth + leftMargin])
-                  
-            xOffsetFunction = (d, i) => x(i) + 0.5
-            yOffsetFunction = (d) => h - y(d) - 0.5;
-            widthFunction = (d) => w + 1
-            heightFunction = (d) => y(d);
-              
-            identity = (x) => x
-            chart.selectAll("rect.frequency")
-              .data(data)
-              .enter()
-              .append("rect")
-              .attr("class", "frequency")
-              .attr("x", xOffsetFunction)
-              .attr("y", yOffsetFunction)
-              .attr("width", widthFunction)
-              .attr("height", heightFunction)
-              
-            xAxis = d3.svg.axis()
-            xAxis.scale(xCodon)
-            xAxis.orient("bottom")
-            chart.append("g")
-              .attr("class", "axis")
-              .attr("transform", "translate(0," + (h - 0.5) + ")")
-              .call(xAxis)
-             
-            variantData = newValue.sections.positions
-            if variantData
-              codon = variantData.data[0].codon
-              if codon
-                codon = codon.replace(/(?:-\d+)$/, "")
-                chart.append("line")
-                  .attr("x1", xCodon(codon))
-                  .attr("x2", xCodon(codon))
-                  .attr("y1", h - 0.5)
-                  .attr("y2", h - 20 + 0.5)
-                  .attr("stroke", "#000")
-                  .attr("stroke-width", 2)
-                chart.append("circle")
-                  .attr("cx", xCodon(codon))
-                  .attr("cy", h - 20 + 0.5)
-                  .attr("r", 7)
-                  .attr("fill", "#c55")
-      
-            domains = (element for element in transcript.domains when element.gffSource is "Pfam")
-      #      console.debug 'transcript', transcript
-      #      console.debug 'domains', domains
-            
-            xOffsetDomainFunction = (d, i) => xCodon(d.start) - 0.5
-            yOffsetDomainFunction = (d) => h + 24 - 0.5;
-            widthDomainFunction = (d) => xCodon(d.end) - xCodon(d.start) - 0.5
-            heightDomainFunction = (d) => 12;
-            textDomainFunction = (d) => d.description
-            
-            domainColours = d3.scale.category10()
-            colorDomainFunction = (d, i) => domainColours(i)
-            
-      #      console.log xOffsetDomainFunction(domains[0]), yOffsetDomainFunction(domains[0]), widthDomainFunction(domains[0]), heightDomainFunction(domains[0])
-      
-            domainGroups = chart.selectAll("g.domain")
-              .data(domains)
-              .enter()
-              .append("g")
-              .attr("class", "domain")
-              .attr("rel", "tooltip")
-              .attr("title", textDomainFunction)
-               
-            domainGroups.append("rect")
-              .attr("x", xOffsetDomainFunction)
-              .attr("y", yOffsetDomainFunction)
-              .attr("width", widthDomainFunction)
-              .attr("height", heightDomainFunction)
-              .style("fill", colorDomainFunction)
-              
-            domainElements = jQuery(display).find("g.domain")
-            domainElements.tooltip({container: "body", placement: "right"})
-            # console.debug display.find("g.domain rect")
+            transcript = entityData.sections.transcripts.data.records[0]
+            position = entityData.sections.positions.data[0]["codon"];
+            domains = (domain for domain in transcript["domains"] when domain["gffSource"] == "Pfam")
+            for domain in domains
+              domain["id"] = domain["hitName"]
+              domain["stop"] = domain["end"]
+            domains.sort (a, b) -> a.start - b.start
+
+            data = 
+              start: 1,
+              stop: transcript["lengthAminoAcid"],
+              domains: domains
+              mutations: [{id: entityData["shortMutation"], position: position, url: null, value: 4}]
+
+            if entityData.sections.distribution
+              data["background"] = entityData.sections.distribution["data"]
+
+            chart = new ProteinStructureChart({
+              tooltips: false, 
+              leftMargin: 25, 
+              markerRadius: 6, 
+              domainLegendBarSize: 55,
+              domainLegendBarDescriptionOffset: 58,
+              displayWidth: chartWidth, 
+              valueHeight: chartHeight}, 
+              data)
+
+            result = chart.display(element)
   )
-  
+
   .directive('heliGeneFrequencies', () ->
     result = 
       restrict: "A"

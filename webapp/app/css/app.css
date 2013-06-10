@@ -534,6 +534,16 @@ textarea.comment {
   width: 30em;
 }
 
+svg.proteinstructure g.marker circle {
+  fill: #A00;
+}
+svg.proteinstructure g.marker path {
+  stroke: black;
+}
+svg.proteinstructure g.domain-legend text, svg.proteinstructure g.domain text {
+  font-size: 1.5ex;
+}
+
 /*
 This section defines rules that affect how the page is displayed for printing. Some components, such
 as navigation elements, are best hidden from printing. 
