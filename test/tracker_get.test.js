@@ -63,6 +63,26 @@ describe('GET request', function() {
     });
   });
 
+  describe('/studies/GPS', function() {
+    it('should fail to retrieve a study for a disallowed user', function(done) {
+      db.close();
+      
+      var request = {params: {study: "GPS"}, "user": {"userId": "mungo"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getStudy(null, db, request, response, function(db, err, result, res) {
+        db.close();
+
+        should.exist(err);
+        should.exist(err.error);
+        err.error.should.equal("Forbidden");
+        should.exist(res.locals.statusCode);
+        res.locals.statusCode.should.equal(403);
+
+        done();
+      });
+    });
+  });
+
   describe('/studies/GPS/participants', function() {
     it('should retrieve a list of participants', function(done){
       db.close();
@@ -81,6 +101,26 @@ describe('GET request', function() {
       });
     });
   }); 
+
+  describe('/studies/GPS/participants', function() {
+    it('should fail to retrieve a list of participants for a disallowed user', function(done){
+      db.close();
+    
+      var request = {params: {study: "GPS", role: "participants"}, "user": {"userId": "mungo"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntities(null, db, request, response, function(db, err, result, res) {
+        db.close();
+
+        should.exist(err);
+        should.exist(err.error);
+        err.error.should.equal("Forbidden");
+        should.exist(res.locals.statusCode);
+        res.locals.statusCode.should.equal(403);
+
+        done();
+      });
+    });
+  });
 
   describe('/studies/GPS/samples', function() {
     it('should retrieve a list of samples', function(done){
@@ -140,7 +180,25 @@ describe('GET request', function() {
   });
 
   describe('/studies/GPS/participants/TST-001', function() {
+    it('should fail to retrieve a single identified participant for a disallowed user', function(done){
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}, "user": {"userId": "mungo"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntity(null, db, request, response, function(db, err, result, res) {
+        db.close();
 
+        should.exist(err);
+        should.exist(err.error);
+        err.error.should.equal("Forbidden");
+        should.exist(res.locals.statusCode);
+        res.locals.statusCode.should.equal(403);
+
+        done();
+      });
+    });
+  });
+
+  describe('/studies/GPS/participants/TST-001', function() {
     it('should return steps correctly', function(done){
       
       var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}, "user": {"userId": "swatt"}};
@@ -155,25 +213,6 @@ describe('GET request', function() {
           should.exist(step.stepDate);
           should.exist(step.url);
         })
-
-        res.locals.passthrough.should.equal("value");
-        done();
-      });
-    });
-  });
-
-  describe('/studies/GPS/participants/TST-001', function() {
-    it('should retrieve a single identified participant', function(done){
-      
-      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}, "user": {"userId": "swatt"}};
-      var response = {locals: {passthrough: "value"}};
-      tracker.getEntity(null, db, request, response, function(db, err, result, res) {
-        db.close();
-        
-        should.not.exist(err);
-        result.data.identity.should.equal("TST-001");
-        result.data.url.should.equal("/studies/GPS/participants/TST-001");
-        result.data.role.should.equal("participants");
 
         res.locals.passthrough.should.equal("value");
         done();
@@ -199,6 +238,25 @@ describe('GET request', function() {
         result.data.step.fields.consentDate.value.should.equal("2012-11-13T18:45:00.000");
 
         res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
+  describe('/studies/GPS/participants/TST-001/step/consent', function() {
+    it('should fail to retrieve a single identified step for a disallowed user', function(done){
+      
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001", step: "consent"}, "user": {"userId": "mungo"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntityStep(null, db, request, response, function(db, err, result, res) {
+        db.close();
+
+        should.exist(err);
+        should.exist(err.error);
+        err.error.should.equal("Forbidden");
+        should.exist(res.locals.statusCode);
+        res.locals.statusCode.should.equal(403);
+
         done();
       });
     });
@@ -332,7 +390,7 @@ describe('GET request', function() {
   });
 
 
-  describe('/studies/GPS/participants/TST-001/related?role=samples', function() {
+  describe('/studies/GPS/participants/TST-001/related', function() {
     it('should get the list of all related entities for a participant', function(done){
 
       var request = {
@@ -354,12 +412,34 @@ describe('GET request', function() {
     });
   });
 
+  describe('/studies/GPS/participants/TST-001/related', function() {
+    it('should fail to get the list of all related entities for a participant for a disallowed user', function(done){
+
+      var request = {
+        params: {study: "GPS", role: "participants", identity: "TST-001"}, "user": {"userId": "mungo"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      tracker.getRelatedEntities(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.exist(err);
+        should.exist(err.error);
+        err.error.should.equal("Forbidden");
+        should.exist(res.locals.statusCode);
+        res.locals.statusCode.should.equal(403);
+
+        done();
+      });
+
+    });
+  });
+
   describe('/studies/GPS/participants/TST-001/related?role=samples', function() {
     it('should get the list of samples for a participant', function(done){
 
       var request = {
-        params: {study: "GPS", role: "participants", identity: "TST-001"},
-        query: {role: "samples"},
+        "params": {"study": "GPS", "role": "participants", "identity": "TST-001"},
+        "query": {"role": "samples"},
         "user": {"userId": "swatt"}
       };
       var response = {locals: {passthrough: "value"}};
@@ -380,6 +460,53 @@ describe('GET request', function() {
 
     });
   });
+
+  describe('/views/GPS/participants', function() {
+    it('should get the list of views for a participant', function(done){
+
+      var request = {
+        params: {study: "GPS", role: "participants"}, "user": {"userId": "swatt"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      tracker.getViews(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        should.exist(result);
+        should.exist(result.data);
+        result.data.length.should.equal(6);
+        result.data[0].name.should.equal('summary')
+        should.exist(result.data[0].body);
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+
+    });
+  });
+
+  describe('/views/GPS/participants', function() {
+    it('should fail to get the list of views for a participant for a disallowed user', function(done){
+
+      var request = {
+        params: {study: "GPS", role: "participants"}, "user": {"userId": "mungo"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      tracker.getViews(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.exist(err);
+        should.exist(err.error);
+        err.error.should.equal("Forbidden");
+        should.exist(res.locals.statusCode);
+        res.locals.statusCode.should.equal(403);
+
+        done();
+      });
+
+    });
+  });
+
 });
 
 
