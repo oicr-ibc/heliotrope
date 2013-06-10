@@ -23,7 +23,8 @@ describe('Tracker component', function() {
 
     var access = [{
       "modify" : ["mweisner"],
-      "read": ["acavender", "mweisner"]
+      "read": ["acavender", "mweisner"],
+      "none": ["sboon"]
     }, {
       "modify" : ["ehoag", "acavender"],
       "read": ["oloudon", "mweisner", "sboon"]
@@ -60,7 +61,6 @@ describe('Tracker component', function() {
     });
 
     it('should block non-inherited modify access for read permissions', function(done) {
-      debugger;
       tracker.checkAccessList("acavender", access, "modify").should.equal(false);
       done();
     });
@@ -77,6 +77,16 @@ describe('Tracker component', function() {
 
     it('should block modify access for no permissions', function(done) {
       tracker.checkAccessList("mungo", access, "modify").should.equal(false);
+      done();
+    });
+
+    it('should block modify access for denied permissions', function(done) {
+      tracker.checkAccessList("sboon", access, "modify").should.equal(false);
+      done();
+    });
+
+    it('should block read access for denied permissions', function(done) {
+      tracker.checkAccessList("sboon", access, "read").should.equal(false);
       done();
     });
   });
