@@ -19,6 +19,10 @@ db.steps.insert({
   "stepOptions" : {
     "method" : "CreateEntity"
   },
+  "access" : {
+    "modify" : ["swatt"],
+    "none" : ["oloudon", "mweisner"]
+  },
   "label" : { "default" : "Create participant" },
   "redoLabel" : { "default" : "Update participant" },
   "fields" : {
@@ -49,6 +53,10 @@ db.steps.insert({
   "label" : {
     "default" : "Enrolment",
   },
+  "access" : {
+    "modify" : ["swatt", "oloudon"],
+    "read" : ["acavender", "mweisner"]
+  },
   "fields" : {
     "enrolmentDate" : {
       "controlType" : "date",
@@ -67,6 +75,10 @@ db.steps.insert({
   "showSummary" : true,
   "isRepeatable" : false,
   "label" : { "default" : "Consent" },
+  "access" : {
+    "modify" : ["swatt", "acavender"],
+    "read" : ["oloudon", "mweisner"]
+  },
   "fields" : {
     "consentDate" : {
       "controlType" : "date",
@@ -85,6 +97,10 @@ db.steps.insert({
   "showSummary" : true,
   "isRepeatable" : true,
   "label" : { "default" : "Biopsy" },
+  "access" : {
+    "modify" : ["swatt", "mweisner"],
+    "none" : ["oloudon", "acavender"]
+  },
   "fields" : {
     "biopsyDate" : {
       "controlType" : "date",
@@ -163,6 +179,10 @@ db.steps.insert({
   "showSummary" : false,
   "isRepeatable" : false,
   "label" : { "default" : "Add sample" },
+  "access" : {
+    "modify" : ["swatt", "mweisner"],
+    "none" : ["oloudon", "acavender"]
+  },
   "weight" : 400,
   "url" : "{{study.url}}/samples/id;new/step/sample?participantEntityRef={{identity}}"
 });
@@ -175,6 +195,10 @@ db.steps.insert({
   "showSummary" : true,
   "isRepeatable" : true,
   "label" : { "default" : "Expert panel decision" },
+  "access" : {
+    "modify" : ["swatt", "oloudon"],
+    "none" : ["mweisner", "acavender"]
+  },
   "fields" : {
     "observationRef" : {
       "controlType" : "chooser",
@@ -313,6 +337,10 @@ db.steps.insert({
   "showSummary" : true,
   "isRepeatable" : false,
   "label" : { "default" : "Record results" },
+  "access" : {
+    "modify" : ["acavender"],
+    "none" : ["mweisner", "oloudon"]
+  },
   "plugin" : {
     "module" : "vcf",
     "method" : "handleVcf"

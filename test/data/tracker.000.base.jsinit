@@ -56,13 +56,17 @@ function obj() {
   return result;
 }
 
+// Permissions established here are allowed as a default through an entire study. There are also permissions
+// per step. The rule is that we select from both the step and the study, choosing the first available 
+// permission, which may be "modify", "read", or "none". 
+
 db.studies.insert({
   "_id" : ObjectId("51a4e7df9be0f733f234e6a5"),
   "version": 1,
   "name": "GPS",
   "access" : {
-    "modify" : ["swatt"],
-    "read": ["vferretti"]
+    "modify" : ["swatt", "acavender"],
+    "read": ["oloudon", "mweisner", "sboon"]
   },
   "notes" : {
     "observations" : {
@@ -75,5 +79,3 @@ db.studies.insert({
 });
 
 db.studies.ensureIndex({name:1},{unique:true});
-
-0

@@ -481,7 +481,6 @@ describe('GET request', function() {
         res.locals.passthrough.should.equal("value");
         done();
       });
-
     });
   });
 
@@ -503,7 +502,6 @@ describe('GET request', function() {
 
         done();
       });
-
     });
   });
 

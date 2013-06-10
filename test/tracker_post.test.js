@@ -42,6 +42,54 @@ describe('POST request', function() {
     });
   });
 
+  describe('/studies/GPS/participants/TST-001/step/consent', function() {
+    it('should fail to write a date field successfully for a disallowed user', function(done){
+      
+      var request = {
+        "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "consent"},
+        "body": {"data": {"step": {"fields": {"consentDate": {"value": "2013-04-17T00:00:00.000"}}}}},
+        "user": {"userId": "mungo"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.exist(err);
+        should.exist(err.error);
+        err.error.should.equal("Forbidden");
+        should.exist(res.locals.statusCode);
+        res.locals.statusCode.should.equal(403);
+
+        done();
+      });
+    });
+  });
+
+  describe('/studies/GPS/participants/TST-001/step/consent', function() {
+    it('should fail to write a date field successfully for a user with read access', function(done){
+      
+      var request = {
+        "params": {"study": "GPS", "role": "participants", "identity": "TST-001", "step": "consent"},
+        "body": {"data": {"step": {"fields": {"consentDate": {"value": "2013-04-17T00:00:00.000"}}}}},
+        "user": {"userId": "oloudon"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.exist(err);
+        should.exist(err.error);
+        err.error.should.equal("Forbidden");
+        should.exist(res.locals.statusCode);
+        res.locals.statusCode.should.equal(403);
+
+        done();
+      });
+    });
+  });
+
   describe('/studies/GPS/participants/TST-001/step/participant', function() {
     it('should write an identifier field successfully', function(done){
       
