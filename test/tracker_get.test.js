@@ -220,6 +220,43 @@ describe('GET request', function() {
     });
   });
 
+  // When we have a user blocked access to a single step, the values for that step should not be 
+  // available. 
+  describe('/studies/GPS/participants/TST-001', function() {
+    it('should retrieve a filtered single identified participant for partially-authorized user', function(done){
+
+      var request = {params: {study: "GPS", role: "participants", identity: "TST-001"}, "user": {"userId": "acavender"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getEntity(null, db, request, response, function(db, err, result, res) {
+        db.close();
+
+        should.not.exist(err);
+        result.data.identity.should.equal("TST-001");
+        result.data.url.should.equal("/studies/GPS/participants/TST-001");
+        result.data.role.should.equal("participants");
+
+        // Check the step is missing from the steps array
+        should.exist(result.data.steps);
+        result.data.steps.some(function(step) {
+          return step.fields && step.fields.some(function(field) { return field.key === 'biopsyDate'; });
+        }).should.equal(false);
+
+        // But check that there are a decent number of steps visible
+        result.data.steps.length.should.be.above(3);
+
+        // Check the fields are missing from the values table
+        should.not.exist(result.data.values["biopsyDate"]);
+        should.not.exist(result.data.values["biopsyCores"]);
+
+        // To be safe, check that other fields do exist. 
+        should.exist(result.data.values["consentDate"]);
+        should.exist(result.data.values["pathologyDate"]);
+
+        done();
+      });
+    });
+  });
+
   describe('/studies/GPS/participants/TST-001/step/consent', function() {
     it('should retrieve a single identified step', function(done){
       
