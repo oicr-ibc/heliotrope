@@ -34,6 +34,7 @@ nconf.defaults({
   'heliotrope:trackerUriBase': '/tracker/api',
   'heliotrope:knowledgeServiceUrl': 'http://localhost:3000/knowledge/api',
   'heliotrope:knowledgeUrl': 'http://localhost:3000',
+  'heliotrope:apikey': 'garblemonkey',
   'ldap:url': "ldap://ldap.oicr.on.ca/",
   'ldap:searchBase': "dc=oicr,dc=on,dc=ca",
   'ldap:searchFilter': "(uid={{username}})",
