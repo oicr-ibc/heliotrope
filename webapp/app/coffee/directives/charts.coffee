@@ -1,7 +1,7 @@
 # Directives 
 
 angular
-  .module('heliotrope.directives.charts', [])
+  .module('heliotrope.directives.charts', ['heliotrope.services.genomics'])
 
   # Add the directive for the genome frequencies data, which has an optional marker
   # included for a current location. This depends on d3, and is therefore requiring an
@@ -10,7 +10,8 @@ angular
   # Note that a variant is a bit different, and we ought to handle it accordingly.
   # Genes can be displayed immediately. 
 
-  .directive('heliStructureDistribution', () ->
+  .directive('heliStructureDistribution', (domainService) ->
+
     result = 
       restrict: "A"
       replace: true
@@ -30,10 +31,7 @@ angular
 
             transcript = entityData.sections.transcripts.data.records[0]
             domains = (domain for domain in transcript["domains"] when domain["gffSource"] == "Pfam")
-            for domain in domains
-              domain["id"] = domain["hitName"]
-              domain["stop"] = domain["end"]
-            domains.sort (a, b) -> a.start - b.start
+            domains = domainService.transform(domains)
 
             data = 
               start: 1,

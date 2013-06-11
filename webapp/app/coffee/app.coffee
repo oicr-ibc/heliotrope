@@ -6,6 +6,7 @@ angular
     'heliotrope.controllers.knowledge'
     'heliotrope.services.tracker'
     'heliotrope.services.knowledge'
+    'heliotrope.services.genomics'
     'heliotrope.directives'
     'heliotrope.directives.authentication'
     'heliotrope.directives.charts'
