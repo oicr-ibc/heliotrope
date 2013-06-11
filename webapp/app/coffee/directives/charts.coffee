@@ -29,7 +29,6 @@ angular
             charter = ProteinStructureChart
 
             transcript = entityData.sections.transcripts.data.records[0]
-            position = entityData.sections.positions.data[0]["codon"];
             domains = (domain for domain in transcript["domains"] when domain["gffSource"] == "Pfam")
             for domain in domains
               domain["id"] = domain["hitName"]
@@ -40,7 +39,9 @@ angular
               start: 1,
               stop: transcript["lengthAminoAcid"],
               domains: domains
-              mutations: [{id: entityData["shortMutation"], position: position, url: null, value: 4}]
+
+            if entityData.sections.positions
+              data.mutations = [{id: entityData["shortMutation"], position: entityData.sections.positions.data[0]["codon"], url: null, value: 4}]
 
             if entityData.sections.distribution
               data["background"] = entityData.sections.distribution["data"]
