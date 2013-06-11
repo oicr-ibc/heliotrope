@@ -8,10 +8,11 @@ var fs = require("fs"),
     nconf = require('nconf'),
     MongoStore = require('connect-mongo')(express),
     passport = require("passport"),
-    LdapAuth = require("./lib/ldapauth");
+    LdapAuth = require("./lib/ldapauth"),
+    colors = require('colors');
 
 var configFile = process.cwd()+"/config.json";
-console.log("Configuring from: " + configFile);
+console.log(("Configuring from: " + configFile).magenta);
 
 nconf
   .use('memory')
@@ -114,5 +115,5 @@ require('./lib/coreService');
 
 if(!process.argv[2] || !process.argv[2].indexOf("expresso")) {
   app.listen(config['server']['port'], config['server']['address']);
-  console.log("Express server listening on port " + config['server']['port']);
+  console.log(("Express server listening on port " + config['server']['port']).magenta);
 }
