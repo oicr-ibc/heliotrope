@@ -47,7 +47,7 @@ angular
 
             chart = new ProteinStructureChart({
               tooltips: false, 
-              leftMargin: 25, 
+              leftMargin: 30, 
               markerRadius: 6, 
               domainLegendBarSize: 55,
               domainLegendBarDescriptionOffset: 58,
