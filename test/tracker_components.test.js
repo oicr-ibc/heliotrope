@@ -19,6 +19,20 @@ describe('Tracker component', function() {
     });
   });
 
+  describe('checkAdminAccess', function() {
+    var req = {"user": {"userId" : "swatt", "roles": ["ADMIN"]}};
+
+    it('should allow read access for admin permissions', function(done) {
+      tracker.checkAdminAccess(req, "read").should.equal(true);
+      done();
+    });
+
+    it('should allow modify access for admin permissions', function(done) {
+      tracker.checkAdminAccess(req, "modify").should.equal(true);
+      done();
+    });
+  });
+
   describe('checkAccessList', function() {
 
     var access = [{
@@ -31,62 +45,62 @@ describe('Tracker component', function() {
     }];
 
     it('should allow inherited read access for read permissions', function(done) {
-      tracker.checkAccessList("ehoag", access, "read").should.equal(true);
+      tracker.checkAccessList({"user": {"userId" : "ehoag"}}, access, "read").should.equal(true);
       done();
     });
 
     it('should allow inherited modify access for modify permissions', function(done) {
-      tracker.checkAccessList("ehoag", access, "modify").should.equal(true);
+      tracker.checkAccessList({"user": {"userId" : "ehoag"}}, access, "modify").should.equal(true);
       done();
     });
 
     it('should block inherited modify access for read permissions', function(done) {
-      tracker.checkAccessList("oloudon", access, "modify").should.equal(false);
+      tracker.checkAccessList({"user": {"userId" : "oloudon"}}, access, "modify").should.equal(false);
       done();
     });
 
     it('should allow inherited read access for read permissions', function(done) {
-      tracker.checkAccessList("oloudon", access, "read").should.equal(true);
+      tracker.checkAccessList({"user": {"userId" : "oloudon"}}, access, "read").should.equal(true);
       done();
     });
 
     it('should allow non-inherited read access for read permissions', function(done) {
-      tracker.checkAccessList("acavender", access, "read").should.equal(true);
+      tracker.checkAccessList({"user": {"userId" : "acavender"}}, access, "read").should.equal(true);
       done();
     });
 
     it('should allow non-inherited modify access for modify permissions', function(done) {
-      tracker.checkAccessList("mweisner", access, "modify").should.equal(true);
+      tracker.checkAccessList({"user": {"userId" : "mweisner"}}, access, "modify").should.equal(true);
       done();
     });
 
     it('should block non-inherited modify access for read permissions', function(done) {
-      tracker.checkAccessList("acavender", access, "modify").should.equal(false);
+      tracker.checkAccessList({"user": {"userId" : "acavender"}}, access, "modify").should.equal(false);
       done();
     });
 
     it('should allow inherited read access for read permissions', function(done) {
-      tracker.checkAccessList("acavender", access, "read").should.equal(true);
+      tracker.checkAccessList({"user": {"userId" : "acavender"}}, access, "read").should.equal(true);
       done();
     });
 
     it('should block read access for no permissions', function(done) {
-      tracker.checkAccessList("mungo", access, "read").should.equal(false);
+      tracker.checkAccessList({"user": {"userId" : "mungo"}}, access, "read").should.equal(false);
       done();
     });
 
     it('should block modify access for no permissions', function(done) {
-      tracker.checkAccessList("mungo", access, "modify").should.equal(false);
+      tracker.checkAccessList({"user": {"userId" : "mungo"}}, access, "modify").should.equal(false);
       done();
     });
 
     it('should block modify access for denied permissions', function(done) {
-      tracker.checkAccessList("sboon", access, "modify").should.equal(false);
+      tracker.checkAccessList({"user": {"userId" : "sboon"}}, access, "modify").should.equal(false);
       done();
     });
 
     it('should block read access for denied permissions', function(done) {
-      tracker.checkAccessList("sboon", access, "read").should.equal(false);
+      tracker.checkAccessList({"user": {"userId" : "sboon"}}, access, "read").should.equal(false);
       done();
     });
   });
