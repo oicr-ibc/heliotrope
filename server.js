@@ -1,7 +1,6 @@
 // Heliotrope
 
 var fs = require("fs"),
-    util = require('util'),
     express = require('express')
     polyfill = require('./lib/polyfill'),
     url = require("url"),
