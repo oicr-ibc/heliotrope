@@ -9,21 +9,48 @@ var fs = require('fs'),
 
 describe('POST request', function() {
 
-  var db;
+  var db, request;
+  var newIndex;
 
-  beforeEach(function(done){
+  // Create a marker index so we can quickly clean
+  before(function(done) {
     initialize.withDB("heliotrope", function(idb, ierr, iresult) {
-      db = idb;
-      done();
+      idb.ensureIndex("variants", {"sections.positions.data.TESTMARKER" : 1}, function(err, indexName) {
+        idb.close();
+        newIndex = indexName;
+        done();
+      });
     });
   });
 
-  describe('/variants', function() {
-    it('should create a new variant', function(done){
+  // Drop the marker index so we can quickly clean
+  after(function(done) {
+    initialize.withDB("heliotrope", function(idb, ierr, iresult) {
+      idb.dropIndex("variants", newIndex, function(err, result) {
+        idb.close();
+        done();
+      });
+    });
+  });
 
-      var request = {
+  // After each, throw away any test variants
+  afterEach(function(done) {
+    // Yes, this can be slow unless we ensure we have an index. But we don't need one long term
+    db.collection("variants", function(err, variants) {
+      variants.remove({"sections.positions.data.TESTMARKER" : "TESTMARKER"}, function(e, r) {
+        db.close();
+        done();
+      });
+    });
+  });
+
+  beforeEach(function(done) {
+    initialize.withDB("heliotrope", function(idb, ierr, iresult) {
+      db = idb;
+
+      request = {
         "body" : {
-          "data" : [{
+          "data" : {
             "variantType"        : "mutation",
             "consequence"        : "missense_variant",
             "type"               : "variant",
@@ -41,18 +68,68 @@ describe('POST request', function() {
             "codon"              : "1208",
             "start"              : "36317520",
             "stop"               : "36317520",
-            "HGVSc"              : "c.3622G>T"
-          }]
+            "HGVSc"              : "c.3622G>T",
+            "TESTMARKER"         : "TESTMARKER"
+          }
         }
       }
-      
+
+      done();
+    });
+  });
+
+  describe('/variants', function() {
+
+    function testMissingField(field) {
+      it('should fail to validate variant with missing field: ' + field, function(done){
+        delete request["body"]["data"][field];
+        var response = {locals: {passthrough: "value"}};
+        knowledge.postVariant(null, db, request, response, function(db, err, result, res) {
+          
+          should.exist(err);
+          err.error.should.match(/missing/i);
+          err.error.should.match(/field/i);
+
+          done();
+        });
+      });
+    }
+
+    testMissingField("geneId");
+    testMissingField("mutation");
+    testMissingField("transcript");
+    testMissingField("start");
+    testMissingField("stop");
+
+    testMissingField("consequence");
+    testMissingField("type");
+    testMissingField("gene");
+
+    it('should fail to create an existing variant', function(done){
       var response = {locals: {passthrough: "value"}};
-      knowledge.postVariants(null, db, request, response, function(db, err, result, res) {
-        db.close();
+      knowledge.postVariant(null, db, request, response, function(db, err, result, res, status) {
+        
+        should.exist(err);
+        should.exist(status);
+        status.should.equal(403);
+        err.error.should.match(/duplicate/i);
+
+        done();
+      });
+    });
+
+    it('should create a novel variant', function(done){
+      request["body"]["data"]["mutation"] = "p.Asp1206Tyr";
+      delete request["body"]["data"]["shortMutation"];
+      delete request["body"]["data"]["name"];
+      delete request["body"]["data"]["shortName"];
+      var response = {"locals": {"passthrough": "value"}, "config" : {"knowledgeUriBase" : "/"}};
+      knowledge.postVariant(null, db, request, response, function(db, err, result, res, status) {
         
         should.not.exist(err);
+        should.exist(result);
+        result.should.equal("/variants/NPHS1%20p.D1206Y");
 
-        res.locals.passthrough.should.equal("value");
         done();
       });
     });
