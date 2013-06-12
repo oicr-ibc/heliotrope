@@ -45,10 +45,11 @@ describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/recordResults/files', fu
 
   it('should process a VCF file', function(done){
 
-    this.timeout(5000);
+    this.timeout(10000);
+    var variantCount = 17;
 
     var request = {params: {study: "GPS", step: "recordResults", identity: "TST001BIOXPAR1", role: "samples"}, user: {userId: "swatt"}};
-    var response = {};
+    var response = {locals: {config: {knowledgeServiceUrl: "http://localhost:3000/knowledge/api", apikey: 'garblemonkey'}}};
     var form = new Gently;
     var endHandler;
     form.expect(form, 'on', null, function(type, handler) {
@@ -65,6 +66,12 @@ describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/recordResults/files', fu
       endHandler();
     }, 500);
 
+    var nock = require('nock');
+    var i, scopes = [];
+    for(i = 0; i < variantCount; i++) {
+      scopes.push(nock('http://localhost:3000').post('/knowledge/api/variants').reply(200, "/ok"));
+    }
+
     tracker.postEntityStepFiles(null, db, request, response, function(db, err, result) {
       should.not.exist(err);
       should.exist(result);
@@ -73,7 +80,7 @@ describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/recordResults/files', fu
       db.collection("entities", function(err, entities) {
         entities.find({role: "observations"}).count(function(err, count) {
           should.not.exist(err);
-          count.should.equal(17);
+          count.should.equal(variantCount);
           done();
         })
       });

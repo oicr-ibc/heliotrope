@@ -22,7 +22,8 @@
     "passport": "0.1.17",
     "passport-local": "0.1.6",
     "colors": "0.6.0-1",
-    "passport-localapikey": "0.0.3"
+    "passport-localapikey": "0.0.3",
+    "nock": "0.18.2"
   },
   "engines": {
     "node": "0.8.x",
