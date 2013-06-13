@@ -68,18 +68,38 @@ var authenticate = express.basicAuth(function (username, password, callback) {
 
 app.locals.authenticate = authenticate;
 
+function logErrors(err, req, res, next) {
+  console.error(err.stack);
+  next(err);
+}
+
+function clientErrorHandler(err, req, res, next) {
+  if (req.xhr) {
+    res.send(500, { error: "Error: " + err.name + " " + err.message, err: err });
+  } else {
+    next(err);
+  }
+}
+
+function errorHandler(err, req, res, next) {
+  res.status(500);
+  res.render('error', { error: err });
+}
+
 app.configure(function(){
   app.locals.pretty = true;
   app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
-  
+
+  app.use(express.static(process.cwd() + '/webapp', { maxAge: 1000 * 60 * 60 * 24 }));
+  app.use(express.logger('dev'));
+
+  app.use(express.methodOverride());
   app.use(express.bodyParser({
     keepExtensions: true,
     limit: 10000000, // 10M limit
     defer: true  
   }));
-  app.use(express.static(process.cwd() + '/webapp', { maxAge: 1000 * 60 * 60 * 24 }));
-  app.use(express.logger('dev'));
 
   app.use(express.cookieParser());
   app.use(express.session({
@@ -93,20 +113,16 @@ app.configure(function(){
   }));
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(app.router);
+  app.use(logErrors);
+  app.use(clientErrorHandler);
+  app.use(errorHandler);
 
   // Unusually, we don't have global authorization here, although we could. This allows
   // the knowledge base to have public read access, without allowing access to the tracker
   // without logging in. The session here doesn't block access in the absence of a session,
   // but it does populate the session. To restrict, the authentication system needs to 
   // verify the existence of req.user for routes that we need authenticated. 
-});
-
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-
-app.configure('production', function(){
-  app.use(express.errorHandler());
 });
 
 require('./lib/trackerService');

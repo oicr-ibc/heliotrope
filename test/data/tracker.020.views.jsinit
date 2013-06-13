@@ -208,13 +208,14 @@ db.views.insert({
 "  <dt>Ensembl transcript id</dt>" +
 "  <dd><a href='http://useast.ensembl.org/Homo_sapiens/Transcript/Summary?t={{entity.data.values.geneId | field}}' rel='external'>{{entity.data.values.transcriptId | field}}</a></dd>" +
 "  <dt>Amino acid mutation</dt>" +
-"  <dd>{{entity.data.values.aminoAcidMutation | field}}</dd>" +
+"  <dd ng-show='entity.data.values.aminoAcidMutation'>{{entity.data.values.aminoAcidMutation | field}}</dd>" +
+"  <dd ng-hide='entity.data.values.aminoAcidMutation'>Not available</dd>" +
 "  <dt>DNA mutation</dt>" +
 "  <dd>{{entity.data.values.dnaMutation | field}}</dd>" +
 "  <dt>Depth</dt>" +
 "  <dd>{{entity.data.values.depth | field}}</dd>" +
 "  <dt>Open in knowledge base</dt>" +
-"  <dd heli-knowledge-base-search term='entity.data.values.geneName.value + &quot;+&quot; + entity.data.values.aminoAcidMutation.value' entity='entity'>Not available</dd>" +
+"  <dd heli-knowledge-base-search term='entity.data.values.geneName.value + &quot;+&quot; + (entity.data.values.aminoAcidMutation.value || entity.data.values.dnaMutation.value)' entity='entity'>Not available</dd>" +
 "</dl>"
 });
 
