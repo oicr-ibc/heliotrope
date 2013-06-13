@@ -47,3 +47,21 @@ angular
           $scope.error = error
       )
   )
+
+  .controller('AdminController', ($scope, $routeParams, $timeout, StudyList) ->
+
+    $scope.studiesAvailable = false
+
+    $scope.studies = StudyList.get(
+      {}
+      () -> $scope.studiesAvailable = true
+      () -> 
+    )
+  )
+
+  .controller('AdminStudyController', () ->
+
+    $scope.study = {}
+    
+  )
+

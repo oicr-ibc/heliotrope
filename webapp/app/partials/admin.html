@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="span3" id="sidebar">
+    <div class="well" style="max-width: 240px; padding: 8px 0; margin-top: 2em">
+      <ul class="nav nav-list">
+        <li class="nav-header">Manage studies</li>
+        <li><a href="/admin/studies">New study</a></li>
+      </ul>
+    </div>  
+  </div>
+  <div class="span9">
+
+    <div class="page-header">
+      <h1>Manage Heliotrope</h1>
+
+      <h3>Current studies</h3>
+	    <div ng-repeat="study in studies.data">
+	      <h3><a ng-href="/admin{{study.url}}">{{study.name}}</a></h3>
+	      <p>
+	        <span class="inline-list">
+	          <span class="inline-item" ng-repeat="(key, value) in study.statistics">{{key | capitalize}}: {{value.count}}</span>
+	        </span><br>
+	        Last modified: {{study.lastModified | date:'medium'}}
+	      </p>
+	    </div>
+	  </div>
+
+  </div>
+</div>
