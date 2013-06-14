@@ -3,11 +3,31 @@
 angular
   .module('heliotrope.directives.forms', [])
 
+  .directive('heliTagControl', () ->
+    result =
+      restrict: 'A'
+      replace: false
+      scope:
+        model: '='
+      link: (scope, iElement, iAttrs, controller) ->
+        loading = false
+        iElement.select2({tags: [], tokenSeparators: [",", " "]})
+        scope.$watch 'model', (val) ->
+          if val
+            loading = true
+            iElement.val(val).trigger("change")
+            loading = false
+        iElement.on 'change', (evt) ->
+          if !loading
+            scope.$apply () ->
+              scope.model = evt.val
+  )
+
   .directive('heliStepForm', () ->
     result =
-      restrict: 'A',
-      replace: true,
-      transclude: true,
+      restrict: 'A'
+      replace: true
+      transclude: true
       template: '<div>' +
                 '<form class="form-horizontal">' +
                 '<div class="body" ng-transclude></div>' +

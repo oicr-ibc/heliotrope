@@ -566,3 +566,10 @@ as navigation elements, are best hidden from printing.
 #frequencies-table {
 	margin-bottom: 2.0cm;
 }
+
+div.study-form input.label-control {
+  width: 8em;
+}
+div.study-form input, div.study-form textarea {
+  width: 30em;
+}

@@ -59,9 +59,25 @@ angular
     )
   )
 
-  .controller('AdminStudyController', () ->
+  # A relatively neutral controller that can create an initial empty study or 
+  # retrieve an identified one. We can always well which by the presence/absence
+  # of the _id. 
 
-    $scope.study = {}
-    
+  .controller('AdminStudyController', ($scope, $routeParams, $location, Study) ->
+
+    $scope.study = new Study()
+
+    if ($routeParams["study"])
+      $scope.study = Study.get($routeParams
+        (study) ->
+
+        (error) ->
+          console.log error
+      )
+  
+    $scope.update = () ->
+      $scope.study.$save()
+      $location.path("admin")
+
   )
 
