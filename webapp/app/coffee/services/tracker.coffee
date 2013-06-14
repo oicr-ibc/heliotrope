@@ -78,3 +78,12 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
     RelatedEntities
   )
   
+  # Service to access the data for a particular step for a given study. 
+
+  .factory('Step', ($resource) ->
+    Step = $resource('/tracker/api/studies/:study/step/:step', {},
+      query: 
+        method: 'GET'
+    )
+    Step
+  )

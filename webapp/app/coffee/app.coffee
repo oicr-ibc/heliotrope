@@ -17,18 +17,20 @@ angular
     'heliotrope.directives.navigation'
   ])
   .config(['$routeProvider', ($routeProvider) ->
-    $routeProvider.when "/search",                                     {templateUrl: 'app/partials/search.html',       controller: "SearchController"}
-    $routeProvider.when "/",                                           {templateUrl: 'app/partials/home.html',         controller: "HomeController"}
-    $routeProvider.when "/genes",                                      {templateUrl: 'app/partials/home.html',         controller: "HomeController"}
-    $routeProvider.when "/genes/:gene",                                {templateUrl: 'app/partials/gene.html',         controller: "GeneController"}
-    $routeProvider.when "/variants/:name",                             {templateUrl: 'app/partials/variant.html',      controller: "VariantController"}
-    $routeProvider.when "/studies",                                    {templateUrl: 'app/partials/studies.html',      controller: "StudyListController"}
-    $routeProvider.when "/studies/:study",                             {templateUrl: 'app/partials/study.html',        controller: "StudyController"}
-    $routeProvider.when "/studies/:study/:role/:identity",             {templateUrl: 'app/partials/entity.html',       controller: "EntityController"}
-    $routeProvider.when "/studies/:study/:role/:identity/step/:step",  {templateUrl: 'app/partials/step.html',         controller: "EntityStepController"}
-    $routeProvider.when "/admin",                                      {templateUrl: 'app/partials/admin.html',        controller: "AdminController"}
+    $routeProvider.when "/search",                                     {templateUrl: 'app/partials/search.html',         controller: "SearchController"}
+    $routeProvider.when "/",                                           {templateUrl: 'app/partials/home.html',           controller: "HomeController"}
+    $routeProvider.when "/genes",                                      {templateUrl: 'app/partials/home.html',           controller: "HomeController"}
+    $routeProvider.when "/genes/:gene",                                {templateUrl: 'app/partials/gene.html',           controller: "GeneController"}
+    $routeProvider.when "/variants/:name",                             {templateUrl: 'app/partials/variant.html',        controller: "VariantController"}
+    $routeProvider.when "/studies",                                    {templateUrl: 'app/partials/studies.html',        controller: "StudyListController"}
+    $routeProvider.when "/studies/:study",                             {templateUrl: 'app/partials/study.html',          controller: "StudyController"}
+    $routeProvider.when "/studies/:study/:role/:identity",             {templateUrl: 'app/partials/entity.html',         controller: "EntityController"}
+    $routeProvider.when "/studies/:study/:role/:identity/step/:step",  {templateUrl: 'app/partials/step.html',           controller: "EntityStepController"}
+    $routeProvider.when "/admin",                                      {templateUrl: 'app/partials/admin.html',          controller: "AdminController"}
     $routeProvider.when "/admin/studies",                              {templateUrl: 'app/partials/admin_studies.html',  controller: "AdminStudyController"}
     $routeProvider.when "/admin/studies/:study",                       {templateUrl: 'app/partials/admin_studies.html',  controller: "AdminStudyController"}
+    $routeProvider.when "/admin/studies/:study/steps",                 {templateUrl: 'app/partials/admin_steps.html',    controller: "AdminStudyController"}
+    $routeProvider.when "/admin/studies/:study/steps/:step",           {templateUrl: 'app/partials/admin_step.html',     controller: "AdminStepController"}
     $routeProvider.otherwise {redirectTo: "/view1"}
   ])
   .config(['$locationProvider', ($locationProvider) ->

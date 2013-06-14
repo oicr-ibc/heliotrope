@@ -4,6 +4,8 @@
       <ul class="nav nav-list">
         <li class="nav-header">Manage studies</li>
         <li><a href="/admin/studies">New study</a></li>
+        <li ng-show="study.data._id"><a href="/admin/studies/{{study.data.name}}/steps">Manage steps</a></li>
+        <li ng-show="study.data._id"><a href="/admin/studies/{{study.data.name}}/views">Manage views</a></li>
       </ul>
     </div>  
   </div>

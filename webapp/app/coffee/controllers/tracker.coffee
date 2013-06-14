@@ -81,3 +81,34 @@ angular
 
   )
 
+  # A relatively neutral controller that can create an initial empty study or 
+  # retrieve an identified one. We can always well which by the presence/absence
+  # of the _id. 
+
+  .controller('AdminStepController', ($scope, $routeParams, $location, Step) ->
+
+    $scope.study = new Step()
+
+    if $routeParams["study"] && $routeParams["step"]
+      $scope.step = Step.get($routeParams
+        (study) ->
+
+        (error) ->
+          console.log error
+      )
+  
+    $scope.update = () ->
+      $scope.step.$save()
+      $location.path("admin/studies")
+
+  )
+
+  .controller('AdminStepsController', ($scope, $routeParams, $location, Steps) ->
+    $scope.steps = Steps.get($routeParams
+      (study) ->
+
+      (error) ->
+        console.log error
+    )
+  )
+
