@@ -567,9 +567,13 @@ as navigation elements, are best hidden from printing.
 	margin-bottom: 2.0cm;
 }
 
-div.study-form input.label-control {
+div input.label-control {
   width: 8em;
 }
-div.study-form input, div.study-form textarea {
+div input, div textarea {
   width: 30em;
+}
+
+a.clickable {
+  cursor: pointer;
 }

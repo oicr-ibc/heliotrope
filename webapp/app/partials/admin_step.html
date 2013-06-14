@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="span3" id="sidebar">
+    <div class="well" style="max-width: 240px; padding: 8px 0; margin-top: 2em">
+      <ul class="nav nav-list">
+        <li class="nav-header"><a href="/admin">Manage studies</a></li>
+      </ul>
+    </div>  
+  </div>
+
+  <div class="span9">
+
+    <div class="page-header">
+      <h1 ng-show="step.data.step._id">Step {{step.data.step.name}} <small>/ 
+        for: {{step.data.step.appliesTo}} / 
+        in: <a href="/admin/studies/{{step.data.study.name}}">{{step.data.study.name}}</a></small></h1>
+    </div>
+
+    <div class="form-horizontal step-form" ng-form>
+
+      <div class="control-group">
+        <label class="control-label" for="label">Label</label>
+        <div class="controls">
+          <input type="text" id="label" ng-model="step.data.step.label.default" placeholder="Step label" required>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="identifier">Identifier</label>
+        <div class="controls">
+          <input class="identifier-control" type="text" id="identifier" ng-model="step.data.step.name" placeholder="Identifier" required>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="applies-to">Applies to</label>
+        <div class="controls">
+          <input class="identifier-control" type="text" id="applies-to" ng-model="step.data.step.appliesTo" placeholder="Applies to" required>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="weight">Weight</label>
+        <div class="controls">
+          <input type="text" id="weight" ng-model="step.data.step.weight" placeholder="Weight" required>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="repeatable">Repeatable</label>
+        <div class="controls">
+          <input type="checkbox" id="repeatable" ng-model="step.data.step.isRepeatable">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="showSummary">Show on summary page</label>
+        <div class="controls">
+          <input type="checkbox" id="showSummary" ng-model="step.data.step.showSummary">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="name">User permissions</label>
+        <div class="controls">
+          <span class="help-block">List of users with read-write permission</span>
+          <input type="text" id="access.write" placeholder="Read-write users" heli-tag-control model="step.data.step.access.modify">
+          <span class="help-block">List of users with read-only permission</span>
+          <input type="text" id="access.read" placeholder="Read-only users" heli-tag-control model="step.data.step.access.read">
+        </div>
+      </div>
+
+
+      {{step.data.step}}
+
+    </div>
+  </div>
+</div>

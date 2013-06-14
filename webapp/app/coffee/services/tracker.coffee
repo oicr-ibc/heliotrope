@@ -36,7 +36,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
     Entity
   )
 
-  # Service to access the views for an entity role. 
+  # Service to access the views for an entity role. Technically, the role is optional
 
   .factory('Views', ($resource) ->
     $resource('/tracker/api/views/:study/:role', {},
@@ -78,12 +78,26 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
     RelatedEntities
   )
   
-  # Service to access the data for a particular step for a given study. 
+  # Service to access the data for a particular step for a given study. We're breaking away
+  # from the resource structure convention here, largely so we don't break the use of a 
+  # role called step. That might seem frivolous and unlikely. It probably is. 
 
   .factory('Step', ($resource) ->
-    Step = $resource('/tracker/api/studies/:study/step/:step', {},
+    Step = $resource('/tracker/api/steps/:study/:role/:step', {},
       query: 
         method: 'GET'
     )
     Step
+  )
+
+  # Service to access the data for a particular view for a given study. We're breaking away
+  # from the resource structure convention here, largely so we don't break the use of a 
+  # role called view. That might seem frivolous and unlikely. It probably is. 
+
+  .factory('View', ($resource) ->
+    View = $resource('/tracker/api/views/:study/:role/:view', {},
+      query: 
+        method: 'GET'
+    )
+    View
   )

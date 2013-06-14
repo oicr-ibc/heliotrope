@@ -89,7 +89,7 @@ angular
             views = Views.get({study: name, role: role}, () ->
               
               # Insert the views from the server data, one at a time, picking the first to be active
-              for view in views.data
+              for view in views.data.views
                 body = '<div class="summary-section">' + view.body  + '</div>'
                 active = ""
                 template = angular.element(body)
@@ -121,7 +121,7 @@ angular
             views = Views.get({study: name, role: "studies"}, () ->
               
               # Insert the views from the server data, one at a time, picking the first to be active
-              for view in views.data
+              for view in views.data.views
                 body = '<div class="summary-section">' + view.body  + '</div>'
                 active = ""
                 template = angular.element(body)

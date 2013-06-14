@@ -79,6 +79,13 @@ angular
       $scope.study.$save()
       $location.path("admin")
 
+    $scope.newStep = (study) ->
+      console.log "newStep", study
+      $location.path("admin/steps/" + study.data.name)
+
+    $scope.editStep = (study, step) ->
+      console.log "editStep", study, step
+      $location.path("admin/steps/" + study.data.name + "/" + step["appliesTo"] + "/" + step["name"])
   )
 
   # A relatively neutral controller that can create an initial empty study or 
@@ -87,9 +94,9 @@ angular
 
   .controller('AdminStepController', ($scope, $routeParams, $location, Step) ->
 
-    $scope.study = new Step()
+    $scope.step = new Step()
 
-    if $routeParams["study"] && $routeParams["step"]
+    if $routeParams["study"] && $routeParams["role"] && $routeParams["step"]
       $scope.step = Step.get($routeParams
         (study) ->
 
@@ -103,12 +110,50 @@ angular
 
   )
 
-  .controller('AdminStepsController', ($scope, $routeParams, $location, Steps) ->
-    $scope.steps = Steps.get($routeParams
+  # A relatively neutral controller that can create an initial empty study or 
+  # retrieve an identified one. We can always well which by the presence/absence
+  # of the _id. 
+
+  .controller('AdminViewController', ($scope, $routeParams, $location, View) ->
+
+    $scope.view = new View()
+
+    console.log "$routeParams", $routeParams
+
+    if $routeParams["study"] && $routeParams["role"] && $routeParams["view"]
+      $scope.view = View.get($routeParams
+        (view) ->
+          console.log view
+        (error) ->
+          console.log error
+      )
+  
+    $scope.update = () ->
+      $scope.view.$save()
+      $location.path("admin/studies")
+  )
+
+  # A relatively neutral controller that can create an initial empty study or 
+  # retrieve an identified one. We can always well which by the presence/absence
+  # of the _id. 
+
+  .controller('AdminViewsController', ($scope, $routeParams, $location, Views) ->
+
+    $scope.views = Views.get($routeParams
       (study) ->
 
       (error) ->
         console.log error
     )
-  )
+  
+    $scope.newView= (study) ->
+      console.log "newView", study
+      console.log "admin/steps/" + $scope.views.data.study.name
+      # $location.path("admin/steps/" + $scope.views.data.study.name)
 
+    $scope.editView = (study, view) ->
+      console.log "editView", study, view
+      console.log "admin/views/" + $scope.views.data.study.name + "/" + view["role"] + "/" + view["name"]
+      $location.path("admin/views/" + $scope.views.data.study.name + "/" + view["role"] + "/" + view["name"])
+
+  )

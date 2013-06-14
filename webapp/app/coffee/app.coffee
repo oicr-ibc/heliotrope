@@ -30,7 +30,11 @@ angular
     $routeProvider.when "/admin/studies",                              {templateUrl: 'app/partials/admin_studies.html',  controller: "AdminStudyController"}
     $routeProvider.when "/admin/studies/:study",                       {templateUrl: 'app/partials/admin_studies.html',  controller: "AdminStudyController"}
     $routeProvider.when "/admin/studies/:study/steps",                 {templateUrl: 'app/partials/admin_steps.html',    controller: "AdminStudyController"}
-    $routeProvider.when "/admin/studies/:study/steps/:step",           {templateUrl: 'app/partials/admin_step.html',     controller: "AdminStepController"}
+    $routeProvider.when "/admin/studies/:study/views",                 {templateUrl: 'app/partials/admin_views.html',    controller: "AdminViewsController"}
+    $routeProvider.when "/admin/steps/:study",                         {templateUrl: 'app/partials/admin_step.html',     controller: "AdminStepController"}
+    $routeProvider.when "/admin/steps/:study/:role/:step",             {templateUrl: 'app/partials/admin_step.html',     controller: "AdminStepController"}
+    $routeProvider.when "/admin/views/:study",                         {templateUrl: 'app/partials/admin_view.html',     controller: "AdminViewController"}
+    $routeProvider.when "/admin/views/:study/:role/:view",             {templateUrl: 'app/partials/admin_view.html',     controller: "AdminViewController"}
     $routeProvider.otherwise {redirectTo: "/view1"}
   ])
   .config(['$locationProvider', ($locationProvider) ->

@@ -511,9 +511,10 @@ describe('GET request', function() {
         should.not.exist(err);
         should.exist(result);
         should.exist(result.data);
-        result.data.length.should.equal(6);
-        result.data[0].name.should.equal('summary')
-        should.exist(result.data[0].body);
+        should.exist(result.data.views);
+        result.data.views.length.should.equal(6);
+        result.data.views[0].name.should.equal('summary')
+        should.exist(result.data.views[0].body);
 
         res.locals.passthrough.should.equal("value");
         done();
@@ -537,6 +538,31 @@ describe('GET request', function() {
         should.exist(res.locals.statusCode);
         res.locals.statusCode.should.equal(403);
 
+        done();
+      });
+    });
+  });
+
+  describe('/views/GPS', function() {
+    it('should get the list of views for a participant', function(done){
+
+      var request = {
+        params: {study: "GPS"}, "user": {"userId": "swatt"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      tracker.getViews(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        should.exist(result);
+        should.exist(result.data);
+        should.exist(result.data.views["participants"]);
+        should.exist(result.data.views["samples"]);
+        result.data.views["participants"].length.should.equal(6);
+        result.data.views["participants"][0].name.should.equal('summary')
+        should.exist(result.data.views["participants"][0].body);
+
+        res.locals.passthrough.should.equal("value");
         done();
       });
     });

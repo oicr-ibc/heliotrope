@@ -19,13 +19,34 @@ describe('GET request', function() {
     });
   });
 
-  describe('/admin/studies/GPS/steps', function() {
-    it('should retrieve a list of step definitions', function(done) {
+  describe('/admin/steps/GPS/participants/participant', function() {
+    it('should retrieve a step definition', function(done) {
       db.close();
       
-      var request = {"params": {"study": "GPS"}, "user": {"userId": "swatt"}};
+      var request = {"params": {"study" : "GPS", "role" : "participants", "step" : "participant"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
-      tracker.getSteps(null, db, request, response, function(db, err, result, res) {
+      tracker.getStudyStep(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        should.exist(result);
+        should.exist(result.data);
+
+        console.log (err, result);
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
+  describe('/admin/steps/GPS/participants/enrolment', function() {
+    it('should retrieve a step definition', function(done) {
+      db.close();
+      
+      var request = {"params": {"study" : "GPS", "role" : "participants", "step" : "enrolment"}, "user": {"userId": "swatt"}};
+      var response = {locals: {passthrough: "value"}};
+      tracker.getStudyStep(null, db, request, response, function(db, err, result, res) {
         db.close();
         
         should.not.exist(err);
