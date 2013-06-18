@@ -102,18 +102,20 @@ describe('POST request', function() {
       var response = {locals: {passthrough: "value"}};
       request["body"] = {
         "data": {
-          "name": "interviewing",
-          "appliesTo": "participants",
-          "label": { "default" : "Interviewing" },
-          "isRepeatable": false,
-          "showSummary": true,
-          "weight": 20,
-          "fields": {
-            "interviewDate" : {
-              "controlType": "date",
-              "isRequired": true,
-              "type": "Date",
-              "label": { "default" : "Interview date" }
+          "step" : {
+            "name": "interviewing",
+            "appliesTo": "participants",
+            "label": { "default" : "Interviewing" },
+            "isRepeatable": false,
+            "showSummary": true,
+            "weight": 20,
+            "fields": {
+              "interviewDate" : {
+                "controlType": "date",
+                "isRequired": true,
+                "type": "Date",
+                "label": { "default" : "Interview date" }
+              }
             }
           }
         }
@@ -124,7 +126,7 @@ describe('POST request', function() {
         
         should.not.exist(err);
         should.exist(result);
-        result.should.equal("/admin/steps/GPS/participants/interviewing");
+        result.should.equal("/steps/GPS/participants/interviewing");
 
         res.locals.passthrough.should.equal("value");
         done();
@@ -141,11 +143,13 @@ describe('POST request', function() {
       var response = {locals: {passthrough: "value"}};
       request["body"] = {
         "data": {
-          "name": "report",
-          "role": "participants",
-          "label": { "default" : "Interviewing" },
-          "weight": 3.1415927,
-          "body": "<p>Testing</p>"
+          "view" : {
+            "name": "report",
+            "role": "participants",
+            "label": { "default" : "Interviewing" },
+            "weight": 3.1415927,
+            "body": "<p>Testing</p>"
+          }
         }
       };
 
@@ -154,7 +158,7 @@ describe('POST request', function() {
         
         should.not.exist(err);
         should.exist(result);
-        result.should.equal("/admin/views/GPS/participants/report");
+        result.should.equal("/views/GPS/participants/report");
 
         res.locals.passthrough.should.equal("value");
         done();

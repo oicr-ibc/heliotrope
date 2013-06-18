@@ -80,11 +80,9 @@ angular
       $location.path("admin")
 
     $scope.newStep = (study) ->
-      console.log "newStep", study
       $location.path("admin/steps/" + study.data.name)
 
     $scope.editStep = (study, step) ->
-      console.log "editStep", study, step
       $location.path("admin/steps/" + study.data.name + "/" + step["appliesTo"] + "/" + step["name"])
   )
 
@@ -141,7 +139,7 @@ angular
         $scope.step.data.step = {}
       $scope.step.data.step.fields = fields
 
-      $scope.step.$save()
+      $scope.step.$save({study: $scope.step.data.study.name, role: $scope.step.data.step.appliesTo, step: $scope.step.data.step.name})
       $location.path("admin/studies/" + $scope.step.data.study.name + "/steps")
 
     $scope.resetStep = () ->
@@ -159,9 +157,9 @@ angular
 
   .controller('AdminViewController', ($scope, $routeParams, $location, View, Study) ->
 
-    $scope.original = new View()
+    $scope.original = new View($routeParams)
 
-    $scope.view = new View()
+    $scope.view = new View($routeParams)
 
     if $routeParams["study"] && $routeParams["role"] && $routeParams["view"]
       $scope.view = View.get($routeParams
@@ -181,7 +179,7 @@ angular
       angular.copy($scope.original, $scope.view)
   
     $scope.update = () ->
-      $scope.view.$save()
+      $scope.view.$save({study: $scope.view.data.study.name, role: $scope.view.data.view.role, view: $scope.view.data.view.name})
       $location.path("admin/studies/" + $scope.view.data.study.name + "/views")
   )
 
@@ -199,13 +197,9 @@ angular
     )
   
     $scope.newView = (study) ->
-      console.log "newView", study
-      console.log "admin/views/" + $scope.views.data.study.name
       $location.path("admin/views/" + $scope.views.data.study.name)
 
     $scope.editView = (study, view) ->
-      console.log "editView", study, view
-      console.log "admin/views/" + $scope.views.data.study.name
       $location.path("admin/views/" + $scope.views.data.study.name + "/" + view["role"] + "/" + view["name"])
 
   )

@@ -81,6 +81,4 @@ angular
       template: '<div class="accordion" id="fields-accordion">' +
                 '<div ng-repeat="field in fields" heli-admin-field field="field">' +
                 '</div>'
-      link: (scope, iElement, iAttrs) ->
-        console.log "heliAdminFields", scope
   )
