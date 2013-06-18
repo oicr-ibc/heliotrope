@@ -46,9 +46,15 @@
       </div>
 
       <div class="control-group">
-        <label class="control-label" for="weight">Body</label>
+        <label class="control-label" for="body">Body</label>
+        <div class="edit-body-control controls">
+          <textarea class="edit-body edit-code span9" id="body" ng-model="view.data.view.body" placeholder="Body" required></textarea>
+        </div>
+      </div>
+
+      <div class="control-group">
         <div class="controls">
-          <textarea id="body" ng-model="view.data.view.body" placeholder="Body" required></textarea>
+          <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </div>
 

@@ -15,6 +15,7 @@ angular
     'heliotrope.directives.tables'
     'heliotrope.directives.workflows'
     'heliotrope.directives.navigation'
+    'heliotrope.directives.admin'
   ])
   .config(['$routeProvider', ($routeProvider) ->
     $routeProvider.when "/search",                                     {templateUrl: 'app/partials/search.html',         controller: "SearchController"}

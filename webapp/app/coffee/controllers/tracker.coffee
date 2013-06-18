@@ -94,20 +94,49 @@ angular
 
   .controller('AdminStepController', ($scope, $routeParams, $location, Step) ->
 
+    $scope.original = new Step()
+
+    $scope.fieldTypes = ["String", "Boolean", "Integer", "Reference", "Float", "File", "Date"]
+    $scope.controlTypes = ["identity", "select", "date", "integer", "textarea", "file", "chooser", "checkbox", "float", "hidden", "text"]
+
     $scope.step = new Step()
+    $scope.fields = []
+
+    # We actually unpack fields into a separate array, because iterating over a 
+    # hash is really bad form. We therefore need to repack on save. 
+    initializeFields = () ->
+      if $scope.step.data.step.fields
+        fields = angular.copy($scope.step.data.step.fields)
+        $scope.fields = Object.keys(fields).map (key) ->
+          field = fields[key]
+          field["key"] = key
+          field
 
     if $routeParams["study"] && $routeParams["role"] && $routeParams["step"]
       $scope.step = Step.get($routeParams
-        (study) ->
-
+        (step) ->
+          angular.copy($scope.step, $scope.original)
+          initializeFields()
         (error) ->
-          console.log error
+
       )
   
     $scope.update = () ->
-      $scope.step.$save()
-      $location.path("admin/studies")
 
+      fields = new Object
+      $scope.fields.forEach (field) ->
+        key = field["key"]
+        delete field["key"]
+        fields[key] = field
+
+      $scope.step.data.step.fields = fields
+
+      $scope.step.$save()
+      $location.path("admin/studies/" + $scope.step.data.study.name + "/steps")
+
+    $scope.resetStep = () ->
+      angular.copy($scope.original, $scope.step)
+      initializeFields()
   )
 
   # A relatively neutral controller that can create an initial empty study or 
@@ -117,8 +146,6 @@ angular
   .controller('AdminViewController', ($scope, $routeParams, $location, View) ->
 
     $scope.view = new View()
-
-    console.log "$routeParams", $routeParams
 
     if $routeParams["study"] && $routeParams["role"] && $routeParams["view"]
       $scope.view = View.get($routeParams

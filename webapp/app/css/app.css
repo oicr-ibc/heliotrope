@@ -51,12 +51,10 @@ small {
 
 .accordion * {
   background: transparent url(../img/e-arrow-20x20.png) center left no-repeat;
-  padding: 0 0 0 25px;
 }
 
 .accordion-opened * {
   background: transparent url(../img/se-arrow-20x20.png) center left no-repeat;
-  padding: 0 0 0 25px;
 }
 
 div.nav_buttons {
@@ -532,6 +530,19 @@ div.paging_bootstrap {
 
 textarea.comment {
   width: 30em;
+}
+
+textarea.edit-code {
+  font-family: "Monaco", monospace;
+  font-size: 1.7ex;
+}
+
+textarea.edit-body {
+  height: 24ex;
+}
+
+.form-horizontal .edit-body-control {
+  margin-left: 0px;
 }
 
 svg.proteinstructure g.marker circle {

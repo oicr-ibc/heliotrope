@@ -60,8 +60,15 @@
       </div>
 
       <div class="control-group">
-        <label class="control-label" for="name">User permissions</label>
+        <label class="control-label" for="fields">Fields</label>
         <div class="controls">
+          <div heli-admin-fields fields="step.fields"></div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="access.write" data-toggle="collapse" data-target="#permissions-controls"><a>User permissions</a></label>
+        <div class="controls collapse out" id="permissions-controls">
           <span class="help-block">List of users with read-write permission</span>
           <input type="text" id="access.write" placeholder="Read-write users" heli-tag-control model="step.data.step.access.modify">
           <span class="help-block">List of users with read-only permission</span>
@@ -69,8 +76,12 @@
         </div>
       </div>
 
-
-      {{step.data.step}}
+      <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-primary" ng-click="update()">Save</button>
+          <button class="btn" ng-click="resetStep()">Reset</button>
+        </div>
+      </div>
 
     </div>
   </div>
