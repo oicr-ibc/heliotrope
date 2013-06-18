@@ -32,8 +32,6 @@ describe('GET request', function() {
         should.exist(result);
         should.exist(result.data);
 
-        console.log (err, result);
-
         res.locals.passthrough.should.equal("value");
         done();
       });
@@ -52,8 +50,6 @@ describe('GET request', function() {
         should.not.exist(err);
         should.exist(result);
         should.exist(result.data);
-
-        console.log (err, result);
 
         res.locals.passthrough.should.equal("value");
         done();
