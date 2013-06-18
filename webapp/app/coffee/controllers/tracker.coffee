@@ -92,7 +92,7 @@ angular
   # retrieve an identified one. We can always well which by the presence/absence
   # of the _id. 
 
-  .controller('AdminStepController', ($scope, $routeParams, $location, Step) ->
+  .controller('AdminStepController', ($scope, $routeParams, $location, Step, Study) ->
 
     $scope.original = new Step()
 
@@ -120,6 +120,12 @@ angular
         (error) ->
 
       )
+    else if $routeParams["study"]
+      study = Study.get($routeParams
+        (study) ->
+          $scope.step.data = {}
+          $scope.step.data.study = angular.copy(study.data)
+      )
   
     $scope.update = () ->
 
@@ -129,6 +135,10 @@ angular
         delete field["key"]
         fields[key] = field
 
+      if ! $scope.step.data
+        $scope.step.data = {}
+      if ! $scope.step.data.step
+        $scope.step.data.step = {}
       $scope.step.data.step.fields = fields
 
       $scope.step.$save()
@@ -137,13 +147,17 @@ angular
     $scope.resetStep = () ->
       angular.copy($scope.original, $scope.step)
       initializeFields()
+
+    $scope.addField = () ->
+      $scope.fields.push
+        key: "newfield"
   )
 
   # A relatively neutral controller that can create an initial empty study or 
   # retrieve an identified one. We can always well which by the presence/absence
   # of the _id. 
 
-  .controller('AdminViewController', ($scope, $routeParams, $location, View) ->
+  .controller('AdminViewController', ($scope, $routeParams, $location, View, Study) ->
 
     $scope.original = new View()
 
@@ -155,6 +169,12 @@ angular
           angular.copy($scope.view, $scope.original)
         (error) ->
           console.log error
+      )
+    else if $routeParams["study"]
+      study = Study.get($routeParams
+        (study) ->
+          $scope.view.data = {}
+          $scope.view.data.study = angular.copy(study.data)
       )
 
     $scope.resetView = () ->
@@ -178,14 +198,14 @@ angular
         console.log error
     )
   
-    $scope.newView= (study) ->
+    $scope.newView = (study) ->
       console.log "newView", study
-      console.log "admin/steps/" + $scope.views.data.study.name
-      # $location.path("admin/steps/" + $scope.views.data.study.name)
+      console.log "admin/views/" + $scope.views.data.study.name
+      $location.path("admin/views/" + $scope.views.data.study.name)
 
     $scope.editView = (study, view) ->
       console.log "editView", study, view
-      console.log "admin/views/" + $scope.views.data.study.name + "/" + view["role"] + "/" + view["name"]
+      console.log "admin/views/" + $scope.views.data.study.name
       $location.path("admin/views/" + $scope.views.data.study.name + "/" + view["role"] + "/" + view["name"])
 
   )

@@ -13,6 +13,8 @@
       <h1 ng-show="view.data.view._id">View {{view.data.view.name}} <small>/ 
         for: {{view.data.view.role}} / 
         in: <a href="/admin/studies/{{view.data.study.name}}">{{view.data.study.name}}</a></small></h1>
+      <h1 ng-hide="view.data.view._id">New View <small>/ 
+        in: <a href="/admin/studies/{{view.data.study.name}}">{{view.data.study.name}}</a></small></h1>
     </div>
 
     <div class="form-horizontal view-form" ng-form>

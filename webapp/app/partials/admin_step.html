@@ -13,6 +13,8 @@
       <h1 ng-show="step.data.step._id">Step {{step.data.step.name}} <small>/ 
         for: {{step.data.step.appliesTo}} / 
         in: <a href="/admin/studies/{{step.data.study.name}}">{{step.data.study.name}}</a></small></h1>
+      <h1 ng-hide="step.data.step._id">New Step <small>/ 
+        in: <a href="/admin/studies/{{step.data.study.name}}">{{step.data.study.name}}</a></small></h1>
     </div>
 
     <div class="form-horizontal step-form" ng-form>
@@ -60,7 +62,7 @@
       </div>
 
       <div class="control-group">
-        <label class="control-label" for="fields">Fields</label>
+        <label class="control-label" for="fields">Fields<br><a ng-click="addField()">Add field</a></label>
         <div class="controls">
           <div heli-admin-fields fields="step.fields"></div>
         </div>
