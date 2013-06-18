@@ -145,19 +145,24 @@ angular
 
   .controller('AdminViewController', ($scope, $routeParams, $location, View) ->
 
+    $scope.original = new View()
+
     $scope.view = new View()
 
     if $routeParams["study"] && $routeParams["role"] && $routeParams["view"]
       $scope.view = View.get($routeParams
         (view) ->
-          console.log view
+          angular.copy($scope.view, $scope.original)
         (error) ->
           console.log error
       )
+
+    $scope.resetView = () ->
+      angular.copy($scope.original, $scope.view)
   
     $scope.update = () ->
       $scope.view.$save()
-      $location.path("admin/studies")
+      $location.path("admin/studies/" + $scope.view.data.study.name + "/views")
   )
 
   # A relatively neutral controller that can create an initial empty study or 
