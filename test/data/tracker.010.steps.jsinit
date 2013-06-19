@@ -31,6 +31,7 @@ db.steps.insert({
       "type" : "String",
       "isRequired" : true,
       "isIdentity" : true,
+      "pattern" : "TST-\\d+",
       "label" : { "default" : "Identifier" }
     },
     "institution" : {

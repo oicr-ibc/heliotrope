@@ -66,47 +66,38 @@ angular
       template: '<div class="controls">' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
+
         scope.$watch 'fieldValue', (newValue, oldValue) ->
+  
+          linkBody = (body, attributes) ->
+            template = angular.element(body)
+            if attributes
+              Object.keys(attributes).forEach (key) ->
+                fieldKey = attributes[key]
+                if newValue[fieldKey]?
+                  template.attr(key, newValue[fieldKey])
+            linked = $compile(template)(scope)
+            iElement.append linked
+            linked.jqBootstrapValidation()
+
           if newValue
             switch newValue.controlType
               when "hidden"
-                body = '<input type="hidden" id="{{fieldKey}}" ng-model="fieldValue.value">'
-                template = angular.element(body)
-                linkFn = $compile(template)
-                iElement.append linkFn(scope)
+                linkBody('<input type="hidden" id="{{fieldKey}}" ng-model="fieldValue.value">')
               when "identity"
-                body = '<input type="text" id="{{fieldKey}}" ng-model="fieldValue.identity" placeholder="{{fieldValue.label}}">'
-                template = angular.element(body)
-                linkFn = $compile(template)
-                iElement.append linkFn(scope)
+                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.identity" placeholder="{{fieldValue.label}}">', {"pattern" : "pattern"})
               when "text"
-                body = '<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">'
-                template = angular.element(body)
-                linkFn = $compile(template)
-                iElement.append linkFn(scope)
+                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">')
               when "textarea"
-                body = '<textarea class="texteditor" id="{{fieldKey}}" rows="4" style="width: 30em" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}"></textarea>'
-                template = angular.element(body)
-                linkFn = $compile(template)
-                iElement.append linkFn(scope)
-#                if (newValue.controlArguments && newValue.controlArguments.html)
-#                  htmlEditor = jQuery(iElement.find(".texteditor"))
-#                  htmlEditor.wysihtml5()
+                linkBody('<textarea class="texteditor" id="{{fieldKey}}" rows="4" style="width: 30em" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}"></textarea>')
               when "select"
-                body = '<select ng-model="fieldValue.value"><option ng-repeat="value in fieldValue.range">{{value}}</option></select>'
-                template = angular.element(body)
-                linkFn = $compile(template)
-                iElement.append linkFn(scope)
+                linkBody('<select ng-model="fieldValue.value"><option ng-repeat="value in fieldValue.range">{{value}}</option></select>')
               when "integer"
-                body = '<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">'
-                template = angular.element(body)
-                linkFn = $compile(template)
-                iElement.append linkFn(scope)
+                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">')
               when "float"
-                body = '<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">'
-                template = angular.element(body)
-                linkFn = $compile(template)
-                iElement.append linkFn(scope)
+                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">')
+              when "checkbox"
+                linkBody('<input type="checkbox" ng-model="fieldValue.value" id="{{fieldKey}}">')
               when "file"
                 body = '<div>' +
                        '<input type="file" class="control" id="{{fieldKey}}" style="display: none">' + 
@@ -188,11 +179,6 @@ angular
                     timeString = timeString.slice(0, -1)
                   scope.fieldValue.value = timeString
                   scope.$apply()
-              when "checkbox"
-                body = '<input type="checkbox" ng-model="fieldValue.value" id="{{fieldKey}}">'
-                template = angular.element(body)
-                linkFn = $compile(template)
-                iElement.append linkFn(scope)
 
               # The chooser is how we link to related entities. The chooser control type is a selection,
               # but there could be other controls some time. Ideally, this would be a dynamic dispatch
