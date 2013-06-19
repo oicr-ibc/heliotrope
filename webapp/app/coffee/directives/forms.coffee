@@ -74,7 +74,7 @@ angular
             if attributes
               Object.keys(attributes).forEach (key) ->
                 fieldKey = attributes[key]
-                if newValue[fieldKey]?
+                if newValue[fieldKey]
                   template.attr(key, newValue[fieldKey])
             linked = $compile(template)(scope)
             iElement.append linked
@@ -85,29 +85,26 @@ angular
               when "hidden"
                 linkBody('<input type="hidden" id="{{fieldKey}}" ng-model="fieldValue.value">')
               when "identity"
-                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.identity" placeholder="{{fieldValue.label}}">', {"pattern" : "pattern"})
+                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.identity" placeholder="{{fieldValue.label}}">', {"pattern" : "pattern", "data-validation-pattern-message" : "pattern-message"})
               when "text"
-                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">')
+                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">', {"pattern" : "pattern", "data-validation-pattern-message" : "pattern-message"})
               when "textarea"
                 linkBody('<textarea class="texteditor" id="{{fieldKey}}" rows="4" style="width: 30em" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}"></textarea>')
               when "select"
                 linkBody('<select ng-model="fieldValue.value"><option ng-repeat="value in fieldValue.range">{{value}}</option></select>')
               when "integer"
-                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">')
+                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" data-validation-regex-regex="[0-9]+" data-validation-regex-message="Must be a valid integer" placeholder="{{fieldValue.label}}">')
               when "float"
-                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">')
+                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" data-validation-regex-regex="(?:[1-9]\d*|0)?(?:\.\d+)?" data-validation-regex-message="Must be a valid number" placeholder="{{fieldValue.label}}">')
               when "checkbox"
                 linkBody('<input type="checkbox" ng-model="fieldValue.value" id="{{fieldKey}}">')
               when "file"
-                body = '<div>' +
-                       '<input type="file" class="control" id="{{fieldKey}}" style="display: none">' + 
-                       '<div class="input-append">' +
-                       '<input id="{{fieldKey}}-text" class="input-large file-display" type="text">' +
-                       '<a class="btn">Browse</a>' +
-                       '</div>'
-                template = angular.element(body)
-                linkFn = $compile(template)
-                iElement.append linkFn(scope)
+                linkBody('<div>' +
+                         '<input type="file" class="control" id="{{fieldKey}}" style="display: none">' + 
+                         '<div class="input-append">' +
+                         '<input id="{{fieldKey}}-text" class="input-large file-display" type="text">' +
+                         '<a class="btn">Browse</a>' +
+                         '</div>')
                 iElement.find(".btn").click (e) ->
                   iElement.find(".control").click()
                 iElement.find(".control").change (e) ->

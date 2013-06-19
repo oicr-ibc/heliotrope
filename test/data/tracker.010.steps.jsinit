@@ -31,7 +31,8 @@ db.steps.insert({
       "type" : "String",
       "isRequired" : true,
       "isIdentity" : true,
-      "pattern" : "TST-\\d+",
+      "pattern" : "TST-\\d{3,3}",
+      "pattern-message" : "Must have the format TST-nnn",
       "label" : { "default" : "Identifier" }
     },
     "institution" : {
