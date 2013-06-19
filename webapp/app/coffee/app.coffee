@@ -53,7 +53,6 @@ angular
 
       error = (response) ->
         status = response.status
-        console.log 'HTTP response status: ',status, response
 
         if status == 401
           deferred = $q.defer()
@@ -86,11 +85,9 @@ angular
     scope.user = undefined
 
     scope.logout = () ->
-      console.log "Sending logout request"
       scope.$emit "event:logoutRequest"
 
     scope.$on 'event:loginRequired', () ->
-      console.log "Handle event:loginRequired"
 
     config = 
       headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
@@ -101,20 +98,16 @@ angular
     # event. It actually seems I am beginning to understand AngularJS 
 
     scope.$on 'event:loginCancelled', () ->
-      console.log "Handle event:loginCancelled"
       $location.path('/')
 
     scope.$on 'event:logoutConfirmed', () ->
-      console.log "Handle event:logoutConfirmed"
       scope.user = undefined
       $location.path('/')
 
     scope.$on 'event:loginConfirmed', (event, user) ->
-      console.log "Handle event:loginConfirmed", user
       scope.user = new User(user)
 
       retry = (req) ->
-        console.log "About to retry request", req
         $http(req.config).then (response) ->
           req.deferred.resolve(response)
 
@@ -126,16 +119,13 @@ angular
         password: password
 
       success = (data) ->
-        console.log "Login response successful", data
         scope.$broadcast 'event:loginConfirmed', data.data.user
       
       error = (data) ->
-        console.log "Login response failure", data
 
       $http.post('/authentication/api/login', payload, config).success(success).error(error)
 
     scope.$on 'event:logoutRequest', () ->
-      console.log "Handle event:logoutRequest"
 
       $http.post('/authentication/api/logout', {}, config).success (data) ->
         scope.$broadcast 'event:logoutConfirmed'
@@ -146,7 +136,6 @@ angular
     # exactly like the login event system.
     ping = () ->
       $http.get('/authentication/api/ping', {}, config).success (data) ->
-        console.log("Ping response", data)
         if data.data.user
           scope.$broadcast 'event:loginConfirmed', data.data.user
 

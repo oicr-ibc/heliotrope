@@ -2,8 +2,7 @@
   <div class="span3" id="sidebar">
     <div class="well" style="max-width: 240px; padding: 8px 0; margin-top: 2em">
       <ul class="nav nav-list">
-        <li class="nav-header">Manage studies</li>
-        <li><a href="/admin/studies">New study</a></li>
+        <li class="nav-header"><a href="/admin">Manage studies</a></li>
         <li ng-show="study.data._id"><a href="/admin/studies/{{study.data.name}}/steps">Manage steps</a></li>
         <li ng-show="study.data._id"><a href="/admin/studies/{{study.data.name}}/views">Manage views</a></li>
       </ul>

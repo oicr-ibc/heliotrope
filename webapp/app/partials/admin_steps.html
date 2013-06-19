@@ -3,6 +3,9 @@
     <div class="well" style="max-width: 240px; padding: 8px 0; margin-top: 2em">
       <ul class="nav nav-list">
         <li class="nav-header"><a href="/admin">Manage studies</a></li>
+        <li ng-show="study.data._id" class="disabled"><a href="/admin/studies/{{study.data.name}}/steps">Manage steps</a></li>
+        <li ng-show="study.data._id"><a href="/admin/studies/{{study.data.name}}/views">Manage views</a></li>
+        <li class="divider"></li>
         <li><a ng-click="newStep(study)") class="clickable">New step</a></li>
       </ul>
     </div>  
@@ -12,7 +15,7 @@
 
     <div class="form-horizontal step-form" ng-form>
 
-      <h1>{{study.data.name}} <small>/ Manage steps</small></h1>
+      <h1><a href="/admin/studies/{{study.data.name}}">{{study.data.name}}</a> <small>/ Manage steps</small></h1>
 
       <div ng-repeat="(key, value) in study.data.steps">
 
