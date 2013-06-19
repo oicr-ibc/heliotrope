@@ -74,21 +74,21 @@ angular
       template: '<span></span>'
       link: (scope, iElement, iAttrs, controller) ->
         capitalize = iAttrs["capitalize"] == "true"
+
+        linkBody = (body) ->
+          template = angular.element(body)
+          linked = $compile(template)(scope)
+          iElement.empty()
+          iElement.append linked
+          linked
+
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-            body = "<select class='select-dropdown' ng-model='value'>" +
-                   "<option ng-repeat='alt in options | split' ng-selected='(alt == value)' value='{{alt}}'>{{alt | keywordToString:#{capitalize}}}</option>" +
-                   "</select>"
-            template = angular.element(body)
-            linkFn = $compile(template)
-            iElement.empty()
-            iElement.append linkFn(scope)
+            linkBody("<select class='select-dropdown' heli-select-element ng-model='value'>" +
+                     "<option ng-repeat='alt in options | split' ng-selected='(alt == value)' value='{{alt}}'>{{alt | keywordToString:#{capitalize}}}</option>" +
+                     "</select>")
           else 
-            body = "<span>{{value | keywordToString:#{capitalize}}}</span>"
-            template = angular.element(body)
-            linkFn = $compile(template)
-            iElement.empty()
-            iElement.append linkFn(scope)
+            linkBody("<span>{{value | keywordToString:#{capitalize}}}</span>")
   )
 
   .directive('heliEditTypeahead', ($compile) ->
