@@ -528,7 +528,7 @@ div.paging_bootstrap {
   width: 30em;
 }
 
-textarea.comment {
+div.admin-form textarea.comment {
   width: 30em;
 }
 
@@ -581,7 +581,7 @@ as navigation elements, are best hidden from printing.
 div input.label-control {
   width: 8em;
 }
-div input, div textarea {
+div.admin-form div input, div textarea {
   width: 30em;
 }
 
