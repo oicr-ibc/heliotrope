@@ -79,7 +79,7 @@ angular
             linked = $compile(template)(scope)
             iElement.append linked
             linked.jqBootstrapValidation()
-
+            linked
           if newValue
             switch newValue.controlType
               when "hidden"
@@ -91,7 +91,8 @@ angular
               when "textarea"
                 linkBody('<textarea class="texteditor" id="{{fieldKey}}" rows="4" style="width: 30em" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}"></textarea>')
               when "select"
-                linkBody('<select ng-model="fieldValue.value"><option ng-repeat="value in fieldValue.range">{{value}}</option></select>')
+                select = linkBody('<select ng-model="fieldValue.value"><option ng-repeat="value in fieldValue.range">{{value}}</option></select>')
+                select.select2("val", newValue.value)
               when "integer"
                 linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" data-validation-regex-regex="[0-9]+" data-validation-regex-message="Must be a valid integer" placeholder="{{fieldValue.label}}">')
               when "float"
