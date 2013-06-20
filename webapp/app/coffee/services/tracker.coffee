@@ -71,7 +71,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # filtered by a passed role query argument, although other filters may also be possible. 
 
   .factory('RelatedEntities', ($resource) ->
-    RelatedEntities = $resource('/tracker/api/studies/:study/:role/:identity/related', {},
+    RelatedEntities = $resource('/tracker/api/related/:study/:role/:identity', {},
       query: 
         method: 'GET'
     )

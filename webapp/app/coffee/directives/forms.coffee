@@ -100,12 +100,16 @@ angular
               when "checkbox"
                 linkBody('<input type="checkbox" ng-model="fieldValue.value" id="{{fieldKey}}">')
               when "file"
-                linkBody('<div>' +
-                         '<input type="file" class="control" id="{{fieldKey}}" style="display: none">' + 
-                         '<div class="input-append">' +
-                         '<input id="{{fieldKey}}-text" class="input-large file-display" type="text">' +
-                         '<a class="btn">Browse</a>' +
-                         '</div>')
+                body = '<div>' +
+                       '<input type="file" class="control" id="{{fieldKey}}" style="display: none">' + 
+                       '<div class="input-append">' +
+                       '<input id="{{fieldKey}}-text" class="input-large file-display" type="text">' +
+                       '<a class="btn">Browse</a>' +
+                       '</div>'
+                template = angular.element(body)
+                linked = $compile(template)(scope)
+                iElement.append linked
+
                 iElement.find(".btn").click (e) ->
                   iElement.find(".control").click()
                 iElement.find(".control").change (e) ->
@@ -178,41 +182,40 @@ angular
                   scope.fieldValue.value = timeString
                   scope.$apply()
 
+              when "reference"
+                console.log "New reference", newValue
+                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.displayValue" disabled readonly>')
+
               # The chooser is how we link to related entities. The chooser control type is a selection,
               # but there could be other controls some time. Ideally, this would be a dynamic dispatch
               # with some better factoring.
 
               when "chooser"
 
-                body = '<select class="chooser" name="{{fieldKey}} id="{{fieldKey}}">' +
-                       '<option value="" disabled="disabled">Select one--</option>' + 
-                       '</select>'
-                template = angular.element(body)
-                linkFn = $compile(template)
-                iElement.append linkFn(scope)
-
-                chooser = jQuery(iElement.find(".chooser"))
-                chooser.selectBoxIt({theme: "bootstrap"})
+                template = '<input class="chooser" type="text" name="{{fieldKey}}" id="{{fieldKey}}" required>'
+                linked = $compile(template)(scope)
+                iElement.append linked
+                if newValue.ref
+                  linked.val(newValue.ref)
 
                 entity = scope.$eval('entity')
                 studyName = entity.data.study.name
                 role = entity.data.role
                 identity = entity.data.identity
                 relatedEntity = newValue.entity
-                entities = RelatedEntities.get {study: studyName, role: role, identity: identity, "_role" : relatedEntity}, () ->
 
-                  selector = chooser.data("selectBox-selectBoxIt")
-                  for entity in entities.data
-                    selector.add({value: entity.identity, text: entity.name})
+                entities = RelatedEntities.get {"study": studyName, "role": role, "identity": identity, "_role" : relatedEntity}, () ->
+                  data = ({id: entity.identity, text: (entity.name || entity.identity), _id: entity._id} for entity in entities.data)
+                  configure = {data: data, width: "element"}
+                  configure.initSelection = (element, callback) ->
+                    for entry in data
+                      if entry._id == element.val()
+                        callback entry
+                  linked.select2(configure)
 
-                  selector.selectOption(newValue.displayValue)
-
-                  chooser.change (e) =>
-                    scope.fieldValue.value = chooser.val()
-                    scope.$apply()
-
-                  false
-
+                linked.on "change", (e) ->
+                  scope.$apply () ->
+                    scope.fieldValue.value = linked.select2("val")
 
               else
                 console.log "Unknown control type", newValue

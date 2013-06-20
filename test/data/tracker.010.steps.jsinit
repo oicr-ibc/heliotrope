@@ -262,7 +262,7 @@ db.steps.insert({
       "label" : { "default" : "Barcode" }
     },
     "participantEntityRef" : {
-      "controlType" : "chooser",
+      "controlType" : "reference",
       "entity" : "participants",
       "type" : "Reference",
       "isRequired" : true,
@@ -377,14 +377,14 @@ db.steps.insert({
       "label" : { "default" : "Name" }
     },
     "participantEntityRef" : {
-      "controlType" : "chooser",
+      "controlType" : "reference",
       "type" : "Reference",
       "entity" : "participants",
       "isRequired" : true,
       "label" : { "default" : "Participant" }
     },
     "sampleEntityRef" : {
-      "controlType" : "chooser",
+      "controlType" : "reference",
       "type" : "Reference",
       "entity" : "samples",
       "isRequired" : true,

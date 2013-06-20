@@ -427,7 +427,7 @@ describe('GET request', function() {
   });
 
 
-  describe('/studies/GPS/participants/TST-001/related', function() {
+  describe('/related/GPS/participants/TST-001', function() {
     it('should get the list of all related entities for a participant', function(done){
 
       var request = {
@@ -441,6 +441,58 @@ describe('GET request', function() {
         should.exist(result);
         should.exist(result.data);
         result.data.length.should.equal(3);
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+
+    });
+  });
+
+  describe('/related/GPS?_role=participants', function() {
+    it('should get the list of all participants for a study', function(done){
+
+      var request = {
+        "params": {"study": "GPS"}, 
+        "user": {"userId": "swatt"},
+        "query": {"_role" : "participants"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      tracker.getStudyRelatedEntities(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        should.exist(result);
+        should.exist(result.data);
+        result.data.length.should.equal(1);
+
+        result.data[0].identity.should.equal("TST-001");
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
+
+  describe('/related/GPS?_role=samples', function() {
+    it('should get the list of all samples for a study', function(done){
+
+      var request = {
+        "params": {"study": "GPS"}, 
+        "user": {"userId": "swatt"},
+        "query": {"_role" : "samples"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      tracker.getStudyRelatedEntities(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        should.exist(result);
+        should.exist(result.data);
+        result.data.length.should.equal(2);
+
+        result.data[0].identity.should.equal("TST001BIOXPAR1");
+        result.data[1].identity.should.equal("TST001BIOXPAR2");
 
         res.locals.passthrough.should.equal("value");
         done();

@@ -19,7 +19,7 @@ angular
   ])
   .config(['$routeProvider', ($routeProvider) ->
     $routeProvider.when "/search",                                     {templateUrl: 'app/partials/search.html',         controller: "SearchController"}
-    $routeProvider.when "/",                                           {templateUrl: 'app/partials/home.html',           controller: "HomeController"}
+    $routeProvider.when "/",                                           {templateUrl: 'app/partials/studies.html',        controller: "StudyListController"}
     $routeProvider.when "/genes",                                      {templateUrl: 'app/partials/home.html',           controller: "HomeController"}
     $routeProvider.when "/genes/:gene",                                {templateUrl: 'app/partials/gene.html',           controller: "GeneController"}
     $routeProvider.when "/variants/:name",                             {templateUrl: 'app/partials/variant.html',        controller: "VariantController"}
