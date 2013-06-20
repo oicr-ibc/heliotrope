@@ -95,7 +95,7 @@ angular
     $scope.original = new Step()
 
     $scope.fieldTypes = ["String", "Boolean", "Integer", "Reference", "Float", "File", "Date"]
-    $scope.controlTypes = ["identity", "select", "date", "integer", "textarea", "file", "chooser", "checkbox", "float", "hidden", "text"]
+    $scope.controlTypes = ["identity", "select", "date", "integer", "textarea", "file", "reference", "chooser", "checkbox", "float", "hidden", "text"]
 
     $scope.step = new Step()
     $scope.fields = []
