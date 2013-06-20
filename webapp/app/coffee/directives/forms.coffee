@@ -183,7 +183,6 @@ angular
                   scope.$apply()
 
               when "reference"
-                console.log "New reference", newValue
                 linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.displayValue" disabled readonly>')
 
               # The chooser is how we link to related entities. The chooser control type is a selection,
