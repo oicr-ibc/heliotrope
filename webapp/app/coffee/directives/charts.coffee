@@ -39,7 +39,9 @@ angular
               domains: domains
 
             if entityData.sections.positions
-              data.mutations = [{id: entityData["shortMutation"], position: entityData.sections.positions.data[0]["codon"], url: null, value: 4}]
+              positions = entityData.sections.positions
+              if positions.data[0]["codon"]
+                data.mutations = [{id: entityData["shortMutation"], position: positions.data[0]["codon"], url: null, value: 4}]
 
             if entityData.sections.distribution
               data["background"] = entityData.sections.distribution["data"]
