@@ -36,7 +36,7 @@
               </dd>
               <dt>Type</dt>
               <dd>
-              <span ng-show="ordered[0]">{{ordered[0].consequence | keywordToString:false}}</span>
+              <span ng-show="ordered[0]">{{(ordered[0].consequence || "Not available") | keywordToString:false}}</span>
               <span ng-show="! ordered[0]">not available</span>
               </dd>
               <dt>Predicted impact</dt>
