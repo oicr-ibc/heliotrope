@@ -521,7 +521,7 @@ AND sr.seq_region_id NOT IN
    JOIN attrib_type at ON sra.attrib_type_id = at.attrib_type_id
    WHERE at.code = 'non_ref');
 
-DELETE FROM interesting_genes WHERE id NOT IN (SELECT min(id) FROM interesting_genes GROUP BY name HAVING COUNT(id) > 1);
+DELETE FROM interesting_genes WHERE id NOT IN (SELECT min(id) FROM interesting_genes GROUP BY name);
 __ENDSQL__
 	
 	$statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
