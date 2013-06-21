@@ -491,7 +491,7 @@ sub build_data {
 	# as we need to remove the sequencing regions that aren't reference.
 	
 	say "Finding genes.";
-	
+  
 	$self->execute_delimited_sql(<<__ENDSQL__);
 DROP TABLE IF EXISTS interesting_genes;
 
@@ -519,7 +519,9 @@ AND sr.seq_region_id NOT IN
   (SELECT sra.seq_region_id
    FROM seq_region_attrib sra
    JOIN attrib_type at ON sra.attrib_type_id = at.attrib_type_id
-   WHERE at.code = 'non_ref')
+   WHERE at.code = 'non_ref');
+
+DELETE FROM interesting_genes WHERE id NOT IN (SELECT min(id) FROM interesting_genes GROUP BY name HAVING COUNT(id) > 1);
 __ENDSQL__
 	
 	$statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
