@@ -192,9 +192,9 @@ sub _variant_effect_predictor {
     my $annovar_dir = $self->annovar_directory();
     my $vep_dir = $self->vep_directory();
     my $executable = $^X;
-    my $command = ["-X", "$vep_dir/variant_effect_predictor.pl", 
-                   "--format", "ensembl", "--offline", "--compress", "gzcat", "--no_progress", "--canonical", "--check_existing",
-                   "--force_overwrite", "--numbers", "--buffer_size", "10000", "--sift", "b", "--polyphen", "b",
+    my $command = ["-X", "$vep_dir/variant_effect_predictor.pl", "--fork", "4",
+                   "--format", "ensembl", "--offline", "--no_progress", "--canonical", "--check_existing",
+                   "--force_overwrite", "--numbers", "--buffer_size", "3000", "--sift", "b", "--polyphen", "b",
                    "--hgvs", "--fasta", "$annovar_dir/humandb/hg19seq",
                    "--input_file", "$var_filename",
                    "--output_file", "$var_filename.vep_output"];
