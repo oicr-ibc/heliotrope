@@ -49,6 +49,7 @@ sub get_target_file {
 	
 	my $root = $registry->cache_root();
     my $directory = File::Spec->catfile($root, $self->name());
+    File::Path::make_path($directory);
     my $target = File::Spec->catfile($directory, $filename);
     return $target;
 }
