@@ -20,7 +20,7 @@ has annotation_filename => (
     is  => 'rw'
 );
 
-has annovar_directory => (
+has fasta_directory => (
     is  => 'rw'
 );
 
@@ -38,7 +38,7 @@ sub clear {
     $self->annotation_fh($var_fh);
     $self->annotation_filename($var_filename);
     
-    $self->annovar_directory($ENV{ANNOVAR_HOME} || File::Spec->rel2abs("annovar", File::HomeDir->my_home()));
+    $self->fasta_directory($ENV{HELIOTROPE_FASTA_DIRECTORY} || File::Spec->rel2abs("fasta", File::HomeDir->my_home()));
     $self->vep_directory($ENV{VEP_HOME} || File::Spec->rel2abs("variant_effect_predictor", File::HomeDir->my_home()));
 }
 
@@ -189,13 +189,13 @@ sub _variant_effect_predictor {
     # and fork simply crashes. There is a performance issue here, but there isn't much we can do about
     # it. 
     
-    my $annovar_dir = $self->annovar_directory();
+    my $fasta_dir = $self->fasta_directory();
     my $vep_dir = $self->vep_directory();
     my $executable = $^X;
     my $command = ["-X", "$vep_dir/variant_effect_predictor.pl", "--fork", "4",
                    "--format", "ensembl", "--offline", "--no_progress", "--canonical", "--check_existing",
                    "--force_overwrite", "--numbers", "--buffer_size", "3000", "--sift", "b", "--polyphen", "b",
-                   "--hgvs", "--fasta", "$annovar_dir/humandb/hg19seq",
+                   "--hgvs", "--fasta", "$fasta_dir",
                    "--input_file", "$var_filename",
                    "--output_file", "$var_filename.vep_output"];
     
