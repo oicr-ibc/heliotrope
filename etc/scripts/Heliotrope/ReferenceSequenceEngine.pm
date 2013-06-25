@@ -53,6 +53,8 @@ sub get_reference_sequences {
         my $reference_allele = $db->seq($chromosome, $start, $stop);
         &$callback($chromosome, $start, $stop, $reference_allele);
     }
+
+    $self->clear();
 }
 
 1;
