@@ -28,6 +28,11 @@ has vep_directory => (
     is  => 'rw'
 );
 
+has annotation_block_size => (
+    is  => 'rw',
+    default => sub { 3000; }
+);
+
 sub clear {
 	my ($self) = @_;
 	
@@ -65,6 +70,10 @@ sub get_annotations {
     delete $self->{annotation_fh};
 
     my $var_filename = $self->annotation_filename();
+
+    # In an ideal world, we'd use VEP and forking. We're not in an ideal world, so we do the forking 
+    # manually using Parallel::ForkManager. This is because VEP forking breaks. 
+
 	$self->_variant_effect_predictor("$var_filename");
 	
     open(my $var_fh, "<", "$var_filename.vep_output") or die("Can't open: $var_filename.vep_output: $!");
@@ -192,12 +201,17 @@ sub _variant_effect_predictor {
     my $fasta_dir = $self->fasta_directory();
     my $vep_dir = $self->vep_directory();
     my $executable = $^X;
-    my $command = ["-X", "$vep_dir/variant_effect_predictor.pl", "--fork", "4",
+    my $command = ["-X", "$vep_dir/variant_effect_predictor.pl",
                    "--format", "ensembl", "--offline", "--no_progress", "--canonical", "--check_existing",
-                   "--force_overwrite", "--numbers", "--buffer_size", "3000", "--sift", "b", "--polyphen", "b",
-                   "--hgvs", "--fasta", "$fasta_dir",
+                   "--force_overwrite", "--numbers", "--buffer_size", "5000", "--sift", "b", "--polyphen", "b",
+                   "--compress", "gzcat",
+                   "--fasta", "$fasta_dir",
                    "--input_file", "$var_filename",
-                   "--output_file", "$var_filename.vep_output"];
+                   "--output_file", "$var_filename.vep_output",
+                   "--hgvs", 
+                   "--fork", "8"];
+
+    print STDERR "Executing: ".$executable." ".join(" ", map { qq{"$_"}; } @$command)."\n";
     
     # We could probably dispense with some of this. 
     capture {

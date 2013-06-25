@@ -518,6 +518,8 @@ __ENDSQL__
     # used already. 
     
     my $database = $self->open_database();
+
+    $dbh->begin_work();
     
     my $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
 INSERT INTO canonical_gene_size (canonical_gene_id, size) VALUES (?, ?)
@@ -531,6 +533,8 @@ __ENDSQL__
         } 
     }
     
+    $dbh->commit();
+   
     # Close off the MongoDB connection.
     $self->close_database($database);
     undef($database);
@@ -567,6 +571,8 @@ __ENDSQL__
     
     # Now we can build an in-memory table of gene bucketed distributions. We'll rely to some
     # extend on autovivification here.
+
+    $dbh->begin_work();
     
     $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
 SELECT canonical_gene_id, bucket, mutated 
@@ -586,6 +592,8 @@ __ENDSQL__
     	my $array = $distribution_table->{$canonical_gene_id};
     	$distribution_table->{$canonical_gene_id} = [ map { $_ || 0 } @$array[0..($bucket_count - 1)] ];
     }
+
+    $dbh->commit();
     
     return $distribution_table;
 }
