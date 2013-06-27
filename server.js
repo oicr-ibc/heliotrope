@@ -8,7 +8,8 @@ var fs = require("fs"),
     MongoStore = require('connect-mongo')(express),
     passport = require("passport"),
     LdapAuth = require("./lib/ldapauth"),
-    colors = require('colors');
+    colors = require('colors'),
+    log4js = require('log4js');
 
 var configFile = process.cwd()+"/config.json";
 console.log(("Configuring from: " + configFile).magenta);
@@ -54,7 +55,8 @@ var ldap = new LdapAuth({
   url: config.ldap.url,
   searchBase: config.ldap.searchBase,
   searchFilter: config.ldap.searchFilter,
-  cache: true
+  cache: true,
+  log4js: log4js
 });
 
 var authenticate = express.basicAuth(function (username, password, callback) {

@@ -34,9 +34,9 @@
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">account <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li ng-hide="user" class="disabled"><a>Not logged in</a></li>
+                <li ng-hide="user"><a ng-click="login()">Log in</a></li>
                 <li ng-show="user" class="disabled"><a>Logged in as: {{user.userId}}</a></li>
-                <li class="divider"></li>
+                <li ng-show="user" class="divider"></li>
                 <li ng-show="user.hasRole('TRACKER_ADMIN')"><a href="/admin">Tracker administration</a></li>
                 <li ng-show="user.hasRole('TRACKER_ADMIN')" class="divider"></li>
                 <li ng-show="user"><a ng-click="logout()">Logout</a></li>
