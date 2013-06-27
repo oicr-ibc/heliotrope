@@ -51,36 +51,43 @@
         <div id="cancer-gene-census-table">
           <dl>
             <dt>Full name</dt>
-            <dd>{{entity.data.sections.gene_census_data.data.name}}</dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.name">{{entity.data.sections.gene_census_data.data.name}}</dd>
+            <dd ng-show="! entity.data.sections.gene_census_data.data.name">Not available</dd>
             <dt>Chromosomal band</dt>
-            <dd>{{entity.data.sections.gene_census_data.data.chromosome_band}}</dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.chromosome_band">{{entity.data.sections.gene_census_data.data.chromosome_band}}</dd>
+            <dd ng-show="! entity.data.sections.gene_census_data.data.chromosome_band">Not available</dd>
             <dt>Germline</dt>
-            <dd ng-show="entity.data.sections.gene_census_data.data.germline">Yes</dd>
-            <dd ng-show="! entity.data.sections.gene_census_data.data.germline">No</dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.germline == true">Yes</dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.germline == false">No</dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.germline == undefined">Not available</dd>
             <dt>Somatic</dt>
-            <dd ng-show="entity.data.sections.gene_census_data.data.somatic">Yes</dd>
-            <dd ng-show="! entity.data.sections.gene_census_data.data.somatic">No</dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.somatic == true">Yes</dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.somatic == false">No</dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.somatic == undefined">Not available</dd>
             <dt>Tissue types</dt>
-            <dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.tissue_types">
               <span class="inline-list">
                 <span class="inline-item"
                   ng-repeat="type in entity.data.sections.gene_census_data.data.tissue_types">{{type}}</span>
               </span>
             </dd>
+            <dd ng-show="! entity.data.sections.gene_census_data.data.tissue_types">Not available</dd>
             <dt>Mutation types</dt>
-            <dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.mutation_types">
               <span class="inline-list">
                 <span class="inline-item"
                   ng-repeat="type in entity.data.sections.gene_census_data.data.mutation_types">{{type}}</span>
               </span>
             </dd>
+            <dd ng-show="! entity.data.sections.gene_census_data.data.mutation_types">Not available</dd>
             <dt>Somatic tumour types</dt>
-            <dd>
+            <dd ng-show="entity.data.sections.gene_census_data.data.tumour_types_somatic">
               <span class="inline-list">
                 <span class="inline-item"
                   ng-repeat="type in entity.data.sections.gene_census_data.data.tumour_types_somatic">{{type}}</span>
               </span>
             </dd>
+            <dd ng-show="! entity.data.sections.gene_census_data.data.tumour_types_somatic">Not available</dd>
           </dl>
         </div>
       </div>
