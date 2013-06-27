@@ -1,9 +1,10 @@
 #!/bin/bash
 
-export HELIOTROPE_DATABASE_NAME=test
-perl -I. boot.pl --force
-perl -I. ensembl.pl --force
-perl -I. cosmic.pl --force
-perl -I. entrez.pl --force
-perl -I. cgc.pl --force
-perl -I. export.pl --force
+# This script initializes the knowledge base. Best run when you have plenty of time
+# to spare. 
+
+perl -I. boot.pl
+perl -I. ensembl.pl
+perl -I. cosmic.pl
+perl -I. entrez.pl
+perl -I. cgc.pl
