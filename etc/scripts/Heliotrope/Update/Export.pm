@@ -183,7 +183,7 @@ sub update_mutation {
                 } else {
                     my $copy = clone($reference);
                     delete($copy->{ref});
-                    $reference->{_id} = $self->save_record($database, $collection, $copy, {safe => 1});
+                    $reference->{_id} = $self->save_record($database, $collection, $copy, {w => 1, j => true});
                     $reference_id_cache->{$reference->{ref}}->{$reference->{name}} = $reference->{_id};
                 }
             }
@@ -192,7 +192,7 @@ sub update_mutation {
           
         $resolved->{version} = $resolved->{version} + 1;
           
-        $self->save_record($database, 'variants', $resolved, {safe => 1});
+        $self->save_record($database, 'variants', $resolved, {w => 1, j => true});
     }
 }
 

@@ -140,7 +140,7 @@ sub entry {
     $changes->{'$set'}->{'sections.description.data.summary'} = $summary;
     $changes->{'$addToSet'}->{'sections.description._alerts'} = $entrez_alert;
     
-    my $result = $self->update_record($database, 'genes', {id => $ensembl_id}, $changes, {upsert => 0, multiple => 0, safe => 1});
+    my $result = $self->update_record($database, 'genes', {id => $ensembl_id}, $changes, {upsert => 0, multiple => 0, w => 1, j => true});
 }
 
 1;

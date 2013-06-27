@@ -1,5 +1,6 @@
 package Heliotrope::Store;
 
+use Carp;
 use common::sense;
 
 use Moose::Role;
@@ -10,42 +11,57 @@ sub open_database {
 	my ($self) = @_;
 	
 	my $database_name = $ENV{HELIOTROPE_DATABASE_NAME} || "heliotrope";
-    my $database_server = $ENV{HELIOTROPE_DATABASE_SERVER} || "localhost:27017";
-    my $database_username = $ENV{HELIOTROPE_DATABASE_USERNAME};
-    my $database_password = $ENV{HELIOTROPE_DATABASE_PASSWORD};
-    
-    my @options = (host => $database_server);
-    push @options, username => $database_username if ($database_username);
-    push @options, password => $database_password if ($database_password);
-	
-    $DB::single = 1;
+  my $database_server = $ENV{HELIOTROPE_DATABASE_SERVER} || "localhost:27017";
+  my $database_username = $ENV{HELIOTROPE_DATABASE_USERNAME};
+  my $database_password = $ENV{HELIOTROPE_DATABASE_PASSWORD};
+  
+  my @options = (host => $database_server);
+  push @options, username => $database_username if ($database_username);
+  push @options, password => $database_password if ($database_password);
+
+  $DB::single = 1;
 	my $conn = MongoDB::Connection->new(@options);	
-    my $database = $conn->get_database($database_name);
+  my $database = $conn->get_database($database_name);
 	return $database;
 }
 
 sub close_database {
-	my ($self) = @_;
+  my ($self) = @_;
 }
+
+# Added extra safety to insert and update queries, as these are likely to die 
+# sometimes. 
 
 sub save_record {
 	my ($self, $database, $collection, $data, @options) = @_;
-	return $database->get_collection($collection)->save($data, @options);
+  my $result = eval {
+    $database->get_collection($collection)->save($data, @options);
+  };
+  if ($@ && ! defined($result)) {
+    carp($@);
+  }
+  return $result;
 }
 
 sub update_record {
-    my ($self, $database, $collection, $query, $changes, @options) = @_;
-    return $database->get_collection($collection)->update($query, $changes, @options);
+  my ($self, $database, $collection, $query, $changes, @options) = @_;
+  my $result = eval {
+    $database->get_collection($collection)->update($query, $changes, @options);
+  };
+  if ($@ && ! defined($result)) {
+    carp("$@: " . $database->last_error());
+  }
+  return $result;
 }
 
 sub find_one_record {
-    my ($self, $database, $collection, $query, @options) = @_;
-    return $database->get_collection($collection)->find_one($query, @options);
+  my ($self, $database, $collection, $query, @options) = @_;
+  return $database->get_collection($collection)->find_one($query, @options);
 }
 
 sub ensure_index {
-    my ($self, $database, $collection, $index, @options) = @_;
-    return $database->get_collection($collection)->ensure_index($index, @options);
+  my ($self, $database, $collection, $index, @options) = @_;
+  return $database->get_collection($collection)->ensure_index($index, @options);
 }
 
 1;

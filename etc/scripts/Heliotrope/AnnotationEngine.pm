@@ -8,6 +8,7 @@ use Carp;
 use File::Spec;
 use File::HomeDir;
 use File::Temp;
+use Storable;
 use IO::CaptureOutput qw(capture);
 
 use Heliotrope::Utilities qw(convert_codes_to_names);
@@ -177,7 +178,7 @@ sub _handle_variant_block {
                          ($a->{gene} cmp $b->{gene}) } @$records;
     foreach my $record (@records) {
         my $key = $record->{extra}->{HGVSp} || $record->{extra}->{HGVSc} || $record->{extra}->{HGVSfallback};
-        push @{$merge->{$key}}, \@records;
+        push @{$merge->{$key}}, Storable::freeze(\@records);
         last;
     }
 }

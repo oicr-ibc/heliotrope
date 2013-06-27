@@ -19,6 +19,7 @@ use IO::File;
 use IO::Uncompress::Gunzip;
 use IO::CaptureOutput qw(capture);
 use Clone qw(clone);
+use Storable;
 
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
@@ -338,6 +339,8 @@ AND stop = ?
 AND var_allele = ? 
 __ENDSQL__
     
+    say "Annotation completed.";
+
     $dbh->begin_work();
     
     foreach my $key (sort keys %$table) {
@@ -350,12 +353,15 @@ __ENDSQL__
         my ($canonical_gene, $canonical_mutation) = split(":", $key, 2);
         
         foreach my $record (@$records) {
-            $DB::single = 1 if (! $record->[0]->{location});
-            my $location = $record->[0]->{location};
+
+            my $thawed_record = Storable::thaw($record);
+
+            $DB::single = 1 if (! $thawed_record->[0]->{location});
+            my $location = $thawed_record->[0]->{location};
             my ($chromosome, $start, $stop) = ($location =~ m{^([0-9XYMT]+):(\d+)(?:-(\d+))?$});
             $stop ||= $start;
-            my $var_allele = $record->[0]->{allele};
-            my $canonical_mutation_type = $record->[0]->{consequence};
+            my $var_allele = $thawed_record->[0]->{allele};
+            my $canonical_mutation_type = $thawed_record->[0]->{consequence};
             
             # Now, in every single case there ought to be at least one record that matches.
             # There must be, as we are working from the database that produced all this
@@ -364,12 +370,12 @@ __ENDSQL__
             $var_allele = '' if ($var_allele eq '-');
             
             my $canonical_cds_mutation = undef;
-            if (exists($record->[0]->{extra}->{HGVSc})) {
-                (undef, $canonical_cds_mutation) = split(":", $record->[0]->{extra}->{HGVSc}, 2);
+            if (exists($thawed_record->[0]->{extra}->{HGVSc})) {
+                (undef, $canonical_cds_mutation) = split(":", $thawed_record->[0]->{extra}->{HGVSc}, 2);
             }
             
             my $canonical_codon = undef;
-            if ($record->[0]->{protein_position} =~ m{^(\d+)}) {
+            if ($thawed_record->[0]->{protein_position} =~ m{^(\d+)}) {
                 $canonical_codon = $1;
             }
             
@@ -402,7 +408,7 @@ CREATE INDEX mutation_gene_name_mutation_aa ON mutations(gene_name, mutation_aa)
 __ENDSQL__
 
     $self->execute_sql(<<__ENDSQL__);
-CREATE INDEX mutation_genomic_coordinates ON mutations(chromosome, start)
+CREATE INDEX mutation_genomic_coordinates ON mutations(chromosome, start, stop)
 __ENDSQL__
 
     $self->execute_sql(<<__ENDSQL__);
@@ -434,10 +440,10 @@ AND EXISTS (SELECT k.canonical_gene_id FROM mutations k
             AND k.canonical_gene_id IS NOT NULL AND k.canonical_mutation IS NOT NULL)
 __ENDSQL__
 
-    $self->execute_sql(<<__ENDSQL__);
-DELETE FROM mutations
-WHERE id_sample IN 
-(SELECT id_sample FROM 
+    $self->execute_delimited_sql(<<__ENDSQL__);
+DROP TABLE IF EXISTS to_delete;
+CREATE TABLE to_delete AS
+SELECT id_sample FROM 
 (SELECT id_sample, 
        COUNT(mutation_cds) as p1, 
        COUNT(NULLIF('c.?', mutation_cds)) as p2, 
@@ -445,7 +451,15 @@ WHERE id_sample IN
        COUNT(mutation_id) as p4 
 FROM mutations
 GROUP BY id_sample
-HAVING (p3 != 0 AND p2 = 0)))
+HAVING (p3 != 0 AND p2 = 0));
+
+CREATE INDEX to_delete_id_sample ON to_delete(id_sample);
+
+DELETE FROM mutations
+WHERE id_sample IN 
+(SELECT id_sample FROM to_delete);
+
+DROP TABLE IF EXISTS to_delete;
 __ENDSQL__
 }
 
@@ -525,7 +539,7 @@ __ENDSQL__
 INSERT INTO canonical_gene_size (canonical_gene_id, size) VALUES (?, ?)
 __ENDSQL__
     
-    my $cursor = $database->genes->find({}, {'id' => 1, 'sections.transcripts.data.records.lengthAminoAcid' => 1});
+    my $cursor = $database->get_collection('genes')->find({}, {'id' => 1, 'sections.transcripts.data.records.lengthAminoAcid' => 1});
     while (my $object = $cursor->next) {
         if (my $length = $object->{sections}->{transcripts}->{data}->{records}->[0]->{lengthAminoAcid}) {
         	my $gene_id = $object->{id};
@@ -897,6 +911,9 @@ __ENDSQL__
  	    my $resolved = resolve_references($new, $existing);
  	    maybe_update_object($self, $resolved, $existing, $reference_id_cache, $database, 'genes');
     }
+
+    # Save a wee bit of memory
+    undef($gene_data);
     
     # Now we have done the genes, we can do the variants. Much less is actually needed to be 
     # stored here. 
@@ -933,14 +950,16 @@ __ENDSQL__
         push @{$variant_data->{$data->{name}}->{$data->{block}}}, $data;
     }
     
-    $database->variants->ensure_index(
+    $database->get_collection('variants')->ensure_index(
         Tie::IxHash->new(geneId => 1, name => 1), 
         { unique => true, safe => true }
     );  
 
     say STDERR "Writing variant frequencies.";
 
-    foreach my $variant (keys %$variant_data) {
+    my @variant_keys = keys %$variant_data;
+
+    foreach my $variant (@variant_keys) {
     	
     	my ($gene_id, $variant_name) = split(":", $variant, 2);
         my $existing = $self->find_one_record($database, 'variants', {geneId => $gene_id, variantName => $variant_name});
@@ -979,10 +998,11 @@ __ENDSQL__
         # positioning information. 
 
         my $table_data = $table->{"$gene_id:$variant_name"};
-        $existing->{consequence} = $table_data->[0]->[0]->{consequence} unless (exists($existing->{consequence}));
+        my @thawed_table_data = map { Storable::thaw($_); } @{$table_data};
+        $existing->{consequence} = $thawed_table_data[0]->[0]->{consequence} unless (exists($existing->{consequence}));
         my $position_data = [];
         my $colocated = {};
-        foreach my $record (map { @$_; } @$table_data) {
+        foreach my $record (map { @$_; } @thawed_table_data) {
         	my $position = {};
         	($position->{exon}) = ($record->{extra}->{EXON} =~ m{^(\d+)}) if (exists($record->{extra}->{EXON}));
             $position->{codon} = $record->{protein_position} if (exists($record->{protein_position}));
@@ -1019,7 +1039,8 @@ __ENDSQL__
             push $position_data, $position;
         }
         
-        my $frequencies = $variant_data->{$variant};
+        # Again, save a wee bit of memory
+        my $frequencies = delete $variant_data->{$variant};
         foreach my $block (keys %$frequencies) {
         	
         	# Don't make references for an _ prefixed type. 
@@ -1066,7 +1087,7 @@ sub maybe_update_object {
                 my $copy = clone($reference);
                 delete($copy->{ref});
                 
-                $reference->{_id} = $self->save_record($database, $collection, $copy, {safe => 1});
+                $reference->{_id} = $self->save_record($database, $collection, $copy, {w => 1, j => true});
                 $reference_id_cache->{$reference->{ref}}->{$reference->{name}} = $reference->{_id};
             }
         }
@@ -1074,7 +1095,7 @@ sub maybe_update_object {
     }
             
     $resolved->{version} = $existing->{version} + 1;
-    $self->save_record($database, $collection, $resolved, {safe => 1});
+    $self->save_record($database, $collection, $resolved, {w => 1, j => true});
 }
 
 1;

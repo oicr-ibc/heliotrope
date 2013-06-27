@@ -484,7 +484,7 @@ sub output {
       }
     }
     
-    $self->update_record($dbh, $collection, $existing, $changes, {upsert => 1, multiple => 0})
+    $self->update_record($dbh, $collection, $existing, $changes, {upsert => 1, multiple => 0, w => 1, j => true})
   }
   
   $self->close_database($dbh);
