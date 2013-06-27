@@ -18,14 +18,11 @@ angular
   	$scope.password = undefined
 
   	$scope.login = (username, password) ->
-  		console.log "Sending login request", username, password
   		$scope.$emit "event:loginRequest", username, password
 
     $scope.cancelLogin = () ->
-      console.log "Sending login request"
       $scope.$emit "event:loginCancelled"
 
   	$scope.logout = () ->
-  		console.log "Sending logout request"
   		$scope.$emit "event:logoutRequest"
   )

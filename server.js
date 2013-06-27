@@ -21,6 +21,7 @@ nconf
   .file({ file: configFile });
 
 nconf.defaults({
+  'password:salt': 'kw#@gS1bdss@dqSq',
   'data:sessiondb': "mongodb://localhost:27017/session",
   'data:userdb': "mongodb://localhost:27017/user",
   'data:knowledgedb': "mongodb://localhost:27017/heliotrope",
@@ -39,6 +40,7 @@ nconf.defaults({
   'ldap:searchBase': "dc=oicr,dc=on,dc=ca",
   'ldap:searchFilter': "(uid={{username}})",
   'ldap:userField': "uid",
+  'ldap:enabled': true,
   'cookieSecret': 'keyboard cat'
 })
 
@@ -50,25 +52,6 @@ module.exports.config = config;
 // Config needs to be exported before we get here. And yes, this
 // is a bit nasty. 
 var authenticator = require("./lib/authentication")
-
-var ldap = new LdapAuth({
-  url: config.ldap.url,
-  searchBase: config.ldap.searchBase,
-  searchFilter: config.ldap.searchFilter,
-  cache: true,
-  log4js: log4js
-});
-
-var authenticate = express.basicAuth(function (username, password, callback) {
-  ldap.authenticate(username, password, function (err, user) {
-    if (err) {
-      console.log("LDAP auth error: %s", err);
-    }
-    callback(err, user)
-  });
-});
-
-app.locals.authenticate = authenticate;
 
 function logErrors(err, req, res, next) {
   console.error(err.stack);

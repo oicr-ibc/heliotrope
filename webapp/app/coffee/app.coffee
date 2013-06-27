@@ -85,7 +85,6 @@ angular
     scope.user = undefined
 
     scope.login = () ->
-      console.log "Starting login"
       scope.$emit "event:loginRequest"
 
     scope.logout = () ->
