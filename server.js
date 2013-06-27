@@ -40,7 +40,7 @@ nconf.defaults({
   'ldap:searchBase': "dc=oicr,dc=on,dc=ca",
   'ldap:searchFilter': "(uid={{username}})",
   'ldap:userField': "uid",
-  'ldap:enabled': true,
+  'ldap:cache': true,
   'cookieSecret': 'keyboard cat'
 })
 
