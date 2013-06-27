@@ -2,7 +2,7 @@
 
 # Download and install the node.js stuff
 apt-get update
-apt-get install -y python-software-properties python g++ make
+apt-get install -y python-software-properties python g++ make xz-utils
 add-apt-repository -y ppa:chris-lea/node.js
 apt-get update
 apt-get install -y nodejs
@@ -55,3 +55,17 @@ initctl start heliotrope
 # npm install
 # cake build
 # cake server
+
+# Now let's get and install the database - this is a compressed pre-built data dump
+# hosted on Google Drive. The build process is documented in "knowledge.sh", but it takes
+# more than a few hours to run. The uncompressed BSON is about 1.5Gb, but compressed it's
+# an 80Mb file which is fine to host from Google Drive. For now. 
+wget -q -O heliotrope-dump-1.0.tar.xz "https://googledrive.com/host/0B75vAAGHtrjaRGdaQV8wX3VrNVE/heliotrope-dump-1.0.tar.xz"
+mkdir dump
+pushd dump
+xzcat ../heliotrope-dump-1.0.tar.xz | tar xvf -
+popd
+
+# Stuff the data into the MongoDB database
+mongorestore --db heliotrope dump/heliotrope
+rm -rf heliotrope-dump-1.0.tar.xz dump/heliotrope
