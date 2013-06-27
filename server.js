@@ -20,10 +20,10 @@ nconf
   .file({ file: configFile });
 
 nconf.defaults({
-  'db:port': 27017,
-  'db:host': 'localhost',
-  'db:session:name': 'session',
+  'data:sessiondb': "mongodb://localhost:27017/session",
   'data:userdb': "mongodb://localhost:27017/user",
+  'data:knowledgedb': "mongodb://localhost:27017/heliotrope",
+  'data:trackerdb': "mongodb://localhost:27017/tracker",
   'server:port': 3000,
   'server:address': "0.0.0.0",
   'flavor': "regular",
@@ -105,9 +105,7 @@ app.configure(function(){
   app.use(express.session({
     secret: config["cookieSecret"],
     store: new MongoStore({
-      db: config["db"]["session"]["name"],
-      host: config["db"]["host"],
-      port: config["db"]["port"],
+      url: config["data"]["sessiondb"],
       auto_reconnect: true
     })
   }));
