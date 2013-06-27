@@ -4,3 +4,4 @@ db.users.drop();
 db.createCollection("users");
 
 db.users.insert({"userId": "swatt", "roles" : ["KB_EDITOR", "TRACKER_ADMIN"]});
+db.users.insert({"userId": "admin", "password": "d033e22ae348aeb5660fc2140aec35850c4da997", "roles" : ["KB_EDITOR", "TRACKER_ADMIN"]});

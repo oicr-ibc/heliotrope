@@ -21,7 +21,7 @@ nconf
   .file({ file: configFile });
 
 nconf.defaults({
-  'password:salt': 'kw#@gS1bdss@dqSq',
+  'password:salt': '',
   'data:sessiondb': "mongodb://localhost:27017/session",
   'data:userdb': "mongodb://localhost:27017/user",
   'data:knowledgedb': "mongodb://localhost:27017/heliotrope",
@@ -41,6 +41,7 @@ nconf.defaults({
   'ldap:searchFilter': "(uid={{username}})",
   'ldap:userField': "uid",
   'ldap:cache': true,
+  'ldap:enabled': false,
   'cookieSecret': 'keyboard cat'
 })
 
