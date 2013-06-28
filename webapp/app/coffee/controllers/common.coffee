@@ -26,3 +26,4 @@ angular
   	$scope.logout = () ->
   		$scope.$emit "event:logoutRequest"
   )
+

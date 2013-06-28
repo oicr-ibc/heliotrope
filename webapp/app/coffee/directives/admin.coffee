@@ -82,3 +82,44 @@ angular
                 '<div ng-repeat="field in fields" heli-admin-field field="field">' +
                 '</div>'
   )
+
+  .directive('heliAdminUsers', () ->
+    result = 
+      restrict: "A"
+      replace: true
+      transclude: true
+      scope: false
+      template: '<table class="table table-bordered table-striped table-condensed">' +
+                '<thead>' +
+                '<tr>' +
+                '<th>Username</th>' +
+                '<th>Roles</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody>' +
+                '</tbody>' + 
+                '</table>'
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$watch 'users.data', (users) -> 
+          console.log "New value", users
+          if users?
+            jQuery(iElement).dataTable(
+              sPaginationType: "bootstrap"
+              bPaginate: true
+              aaData: angular.copy(users)
+              aoColumns: [ { 
+                "sTitle": "Username", 
+                "sClass": "span8", 
+                "mData": "userId",
+                "mRender" : (data) ->
+                  "<a href='/admin/users/#{data}'>#{data}</a>"
+              }, { 
+                "sTitle": "Roles", 
+                "sClass": "span4", 
+                "mData": "roles" 
+              }]
+              aaSorting: [[ 0, "asc" ]]
+            )
+    result
+  )
+

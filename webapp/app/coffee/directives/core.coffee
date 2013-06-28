@@ -23,6 +23,12 @@ angular
                 '<strong>{{alert.level | uppercase}}!</strong> {{alert.body}}' +
                 '</div>'
   )
+
+  .directive('heliValidate', () ->
+    result =
+      link: (scope, iElement, iAttrs) ->
+        iElement.jqBootstrapValidation()
+  )
   
   .directive('heliReference', () ->
     result = 

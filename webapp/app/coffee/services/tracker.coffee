@@ -101,12 +101,3 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
     )
     View
   )
-
-  # Service to access data for users.
-  .factory('Users', ($resource) ->
-    Users = $resource('/tracker/api/users/:user', {},
-      query: 
-        method: 'GET'
-    )
-    View
-  )

@@ -1,5 +1,5 @@
 angular
-  .module('heliotrope.controllers.tracker', [])
+  .module('heliotrope.controllers.tracker', ['heliotrope.services.common'])
 
   .controller('StudyListController', ($scope, $routeParams, $timeout, StudyList) ->
     $scope.studies = StudyList.get($routeParams
@@ -210,10 +210,32 @@ angular
   
   .controller('AdminUsersController', ($scope, $routeParams, $location, Users) ->
 
-    $scope.users = Users.get($routeParams
-      (study) ->
+    $scope.error = false
 
+    $scope.original = new Users($routeParams)
+
+    $scope.users = Users.get($routeParams
+      (users) ->
+        angular.copy($scope.users, $scope.original)
       (error) ->
         console.log error
     )
+
+    $scope.cancel = () ->
+      $location.path("admin/users")
+
+    $scope.reset = () ->
+      angular.copy($scope.original, $scope.users)
+
+    $scope.create = () ->
+      console.log "Create new user"
+
+    $scope.update = () ->
+      $scope.users.$save(
+        (users) ->
+          $location.path("admin/users")
+        (error) ->
+          $scope.error = error
+      )
   )
+  
