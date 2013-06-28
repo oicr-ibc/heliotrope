@@ -203,3 +203,17 @@ angular
       $location.path("admin/views/" + $scope.views.data.study.name + "/" + view["role"] + "/" + view["name"])
 
   )
+
+  # Add controllers for user management. This manages the Users service, which allows
+  # users and passwords to be managed within the application, roles to be assigned, and 
+  # so on. User authentication through LDAP is also available.
+  
+  .controller('AdminUsersController', ($scope, $routeParams, $location, Users) ->
+
+    $scope.users = Users.get($routeParams
+      (study) ->
+
+      (error) ->
+        console.log error
+    )
+  )

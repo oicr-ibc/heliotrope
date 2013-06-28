@@ -36,6 +36,7 @@ angular
     $routeProvider.when "/admin/steps/:study/:role/:step",             {templateUrl: 'app/partials/admin_step.html',     controller: "AdminStepController"}
     $routeProvider.when "/admin/views/:study",                         {templateUrl: 'app/partials/admin_view.html',     controller: "AdminViewController"}
     $routeProvider.when "/admin/views/:study/:role/:view",             {templateUrl: 'app/partials/admin_view.html',     controller: "AdminViewController"}
+    $routeProvider.when "/admin/users",                                {templateUrl: 'app/partials/admin_users.html',    controller: "AdminUsersController"}
     $routeProvider.otherwise {redirectTo: "/view1"}
   ])
   .config(['$locationProvider', ($locationProvider) ->
