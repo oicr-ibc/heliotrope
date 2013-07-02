@@ -92,3 +92,10 @@ angular
         value.replace(/_/g, " ").replace(/,\b/g, ", ")
       else
         input
+
+  .filter 'default', () ->
+    (input, value) ->
+      if input?
+        input
+      else
+        value
