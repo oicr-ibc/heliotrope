@@ -52,7 +52,7 @@ rsync -av -P rsync://ftp.ensembl.org/ensembl/pub/release-72/fasta/homo_sapiens/d
   dna/Homo_sapiens.GRCh37.72.dna.primary_assembly.fa.gz
 gzip -d dna/Homo_sapiens.GRCh37.72.dna.primary_assembly.fa.gz
 
-rm -f installer_config.tx
+rm -f installer_config.txt
 echo "n" >> installer_config.txt
 
 perl INSTALL.pl < installer_config.txt
