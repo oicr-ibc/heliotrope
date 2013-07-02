@@ -212,14 +212,17 @@ angular
 
     $scope.error = false
 
-    $scope.original = new Users($routeParams)
+    $scope.original = new Users
 
-    $scope.users = Users.get($routeParams
-      (users) ->
-        angular.copy($scope.users, $scope.original)
-      (error) ->
-        console.log error
-    )
+    if ! $routeParams["create"]
+      $scope.users = Users.get($routeParams
+        (users) ->
+          angular.copy($scope.users, $scope.original)
+        (error) ->
+          console.log error
+      )
+    else
+      $scope.users = new Users
 
     $scope.cancel = () ->
       $location.path("admin/users")
@@ -229,6 +232,7 @@ angular
 
     $scope.create = () ->
       console.log "Create new user"
+      $location.path("admin/users/newuser?create")
 
     $scope.update = () ->
       $scope.users.$save(

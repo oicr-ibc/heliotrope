@@ -13,7 +13,7 @@
     <form class="form-horizontal study-form" ng-init="isValid = true">
 
       <div class="page-header">
-        <h1>{{users.data.userId}} <small> / <a href="/admin">Manage Heliotrope</a></h1>
+        <h1>{{users.data.userId | default:'New user'}} <small> / <a href="/admin">Manage Heliotrope</a></h1>
       </div>
 
       <div ng-show="error" class="alert alert-error alert-block">
@@ -24,7 +24,7 @@
       <div class="control-group">
         <label class="control-label" for="username">Username</label>
         <div class="controls">
-          <input type="text" id="username" ng-model="users.data.userId" readonly placeholder="Username" required>
+          <input type="text" id="username" ng-model="users.data.userId" ng-readonly="users.data._id" placeholder="Username" required>
         </div>
       </div>
 
