@@ -3,7 +3,7 @@
     [
         {
             "path": ".",
-            "folder_exclude_patterns": ["webapp/app/js", "webapp/app/img", "node_modules"]
+            "folder_exclude_patterns": ["webapp/app/js", "webapp/app/img", "node_modules", "webapp/app/vendor"]
         }
     ],
     "settings":
