@@ -59,6 +59,70 @@ angular
             result = chart.display(element)
   )
 
+  .directive 'heliGeneFrequenciesBubble', () ->
+    result =
+      restrict: "A"
+      replace: true
+      transclude: true
+      scope: false
+      template: '<div class="diagram"></div>'
+      link: (scope, iElement, iAttrs) ->
+        scope.$watch 'gene.data', (genes) -> 
+          if genes
+
+            display = jQuery(iElement)
+            element = display.get()[0]
+
+            chartWidth = 840
+            chartHeight = 650
+            color = d3.scale.category20c()
+
+            svg = d3.select(element)
+              .append("svg")
+              .attr("width", chartWidth)
+              .attr("height", chartHeight)
+              .attr("class", "bubble")
+
+            classes = (nodes) ->
+              result = []
+              for element in nodes
+                result.push
+                  name: element.name
+                  value: element.frequency.total
+              output = 
+                children: result
+
+            bubble = d3.layout.pack()
+              .sort(null)
+              .size([chartWidth, chartHeight])
+              .padding(1.5)
+
+            filtered = bubble.nodes(classes(genes)).filter((d) -> !d.children)
+
+            nodes = svg.selectAll(".bubble")
+              .data(filtered)
+              .enter()
+              .append("g")
+              .attr("class", "bubble")
+              .attr("transform", (d) -> "translate(#{d.x},#{d.y})")
+
+            nodes.append("title")
+              .text((d) -> d.name)
+
+            links = nodes.append("a")
+              .attr("xlink:href", (d) -> "genes/" + d.name)
+
+            links.append("circle")
+              .attr("r", (d) -> d.r)
+              .style("fill", (d) -> color(d.name))
+
+            links.append("text")
+              .attr("dy", ".3em")
+              .style("text-anchor", "middle")
+              .style("font-size", (d) -> d.r / 2)
+              .text((d) -> d.name)
+
+
   .directive('heliGeneFrequencies', () ->
     result = 
       restrict: "A"
