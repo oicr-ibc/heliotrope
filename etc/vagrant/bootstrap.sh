@@ -4,9 +4,9 @@
 apt-get update
 apt-get install -y python-software-properties python g++ make xz-utils
 add-apt-repository -y ppa:chris-lea/node.js
+add-apt-repository -y ppa:nginx/stable
 apt-get update
-apt-get install -y nodejs
-apt-get install -y ssl-cert
+apt-get install -y nodejs ssl-cert
 
 npm install -g coffee-script
 
@@ -16,13 +16,8 @@ echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' |
 apt-get update
 apt-get install -y mongodb-10gen
 
-# We also need a JRE
-apt-get install -y openjdk-7-jre
-
-# We do want nginx as a reverse proxy for the front end
-add-apt-repository ppa:nginx/stable
-apt-get update 
-apt-get install -y nginx
+# We also need a JRE and nginx
+apt-get install -y openjdk-7-jre nginx
 
 # Now let's get the stuff where we need it. Note that we need to make a copy
 # because node_modules will contain binary shit. 
@@ -31,6 +26,10 @@ cp -rf /vagrant /var/local/heliotrope
 
 # Remove node_modules, which likely contains garbage synced here
 rm -rf /var/local/heliotrope/node_modules
+
+# Remove config.json if we have one (synced from host) and put in the deployment one
+rm -f /var/local/heliotrope/config.json
+cp -f /vagrant/etc/vagrant/heliotrope-config.json /var/local/heliotrope/config.json
 
 # And set up the server configuration
 cp /vagrant/etc/vagrant/nginx-heliotrope.conf /etc/nginx/sites-available/heliotrope

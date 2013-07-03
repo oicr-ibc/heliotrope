@@ -3,6 +3,9 @@
     "apikey" : "R6Gz0M25wv64uv22750W8U2zi98aK4TL"
   },
   "server" : {
-  	"port" : 8080
+  	"port" : 3000
+  },
+  "data" : {
+  	"knowledgedb" : "mongodb://localhost:27017/heliotrope"
   }
 }
