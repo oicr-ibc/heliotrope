@@ -50,7 +50,7 @@ angular
         scope.$watch 'entity', (newValue, oldValue) ->
           if newValue
             iElement.on 'click', (e) ->
-              url = newValue.data.config.knowledgeServiceUrl + newValue.data.url + "/report?type=pdf"
+              url = newValue.data.config.baseUrl + newValue.data.config.knowledgeUriBase + newValue.data.url + "/report?type=pdf"
               location.href = url
               e.stopPropagation()
               e.preventDefault()

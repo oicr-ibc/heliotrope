@@ -49,7 +49,7 @@ describe('POST /studies/GPS/samples/TST001BIOXPAR1/step/recordResults/files', fu
     var variantCount = 17;
 
     var request = {params: {study: "GPS", step: "recordResults", identity: "TST001BIOXPAR1", role: "samples"}, user: {userId: "swatt"}};
-    var response = {locals: {config: {knowledgeServiceUrl: "http://localhost:3000/knowledge/api", apikey: 'garblemonkey'}}};
+    var response = {locals: {config: {baseUrl: "http://localhost:3000", knowledgeUriBase: "/knowledge/api", apikey: 'garblemonkey'}}};
     var form = new Gently;
     var endHandler;
     form.expect(form, 'on', null, function(type, handler) {
