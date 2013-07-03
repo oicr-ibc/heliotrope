@@ -21,8 +21,26 @@ Heliotrope depends on these technologies:
 *  Java runtime -- used by the reporting system to generate PDF files (tested with Oracle Java 1.7.0_11)
 
 
-Installation
-------------
+Quick Start
+-----------
+
+To deploy heliotrope quickly, you can use [Vagrant](http://www.vagrantup.com/‎) and [VirtualBox](https://www.virtualbox.org/‎).
+First install them, then use the following commands:
+
+```shell
+$ git clone git@github.com:oicr-ibc/heliotrope.git
+$ cd heliotrope
+$ npm install
+```
+
+This will automatically install all dependencies, and will assemble a local virtual machine with a complete
+knowledge base data package. You can then connect to this in your local browser at: https://localhost:8443/. 
+An initial user is created with the username `admin` and password `admin` -- you can use this to create more
+users and configure studies as you choose, as well as to annotate the knowledge base.
+
+
+Manual Installation
+-------------------
 
 First, install the dependencies (node.js, MongoDB, Perl, and a Java runtime). Check out Heliotrope using:
 
