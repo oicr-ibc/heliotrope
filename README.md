@@ -24,8 +24,8 @@ Heliotrope depends on these technologies:
 Quick Start
 -----------
 
-To deploy heliotrope quickly, you can use [Vagrant](http://www.vagrantup.com/‎) and [VirtualBox](https://www.virtualbox.org/‎).
-First install them, then use the following commands:
+To deploy heliotrope quickly, we recommend you use [Vagrant](http://www.vagrantup.com/‎) and [VirtualBox](https://www.virtualbox.org/‎).
+First install these components, then use the following commands:
 
 ```shell
 $ git clone git@github.com:oicr-ibc/heliotrope.git
@@ -42,7 +42,8 @@ users and configure studies as you choose, as well as to annotate the knowledge 
 Manual Installation
 -------------------
 
-First, install the dependencies (node.js, MongoDB, Perl, and a Java runtime). Check out Heliotrope using:
+If you don't want to use Vagrant and VirtualBox, you can install Heliotrope manually, but it is a little more work.
+First, install the dependencies (node.js, MongoDB, Perl, and a Java runtime). Then you can check out Heliotrope using:
 
 ```shell
 $ git clone git@github.com:oicr-ibc/heliotrope.git
@@ -52,6 +53,12 @@ $ cake build
 $ cake server
 ```
 
+This starts a command-line server, which you can deploy in an appropriate way. We recommend using a front-end 
+proxy, such as nginx (this is set up automatically by the Vagrant deployment above) as this can manage secure
+communications to and from your server, and can also improve performance by serving the static files used by
+the front-end directly. 
+
+
 Initializing the knowledge base
 -------------------------------
 
@@ -59,6 +66,10 @@ Before Heliotrope can work effectively, it is a good idea to initialize the know
 few hours, and requires a number of other dependencies. In particular, it requires the Ensembl variant 
 effect predictor (VEP), which itself requires a copy of the human reference genome hg19 and databases for
 SIFT and PolyPhen annotation of variants. 
+
+For basic use, we recommend you download one of our [pre-built knowledge base packs](https://github.com/oicr-ibc/heliotrope/wiki/Knowledge-base). 
+You can built your own using the scripts in `etc/scripts`, but it is a fairly slow process, likely to take at least 
+8-10 hours from start to finish. 
 
 The knowledge base initialization system is primarily written in Perl. Most recent Perl versions should be
 able to do this, with the right modules installed, but it is usually a good idea to build a clean one using
