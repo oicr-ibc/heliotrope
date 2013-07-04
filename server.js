@@ -28,7 +28,6 @@ nconf.defaults({
   'data:trackerdb': "mongodb://localhost:27017/tracker",
   'server:port': 3000,
   'server:address': "0.0.0.0",
-  'flavor': "regular",
   'debug': true,
   'authenticate': false, 
   'heliotrope:knowledgeUriBase': '/knowledge/api',
