@@ -30,7 +30,7 @@ First install these components, then use the following commands:
 ```shell
 $ git clone git@github.com:oicr-ibc/heliotrope.git
 $ cd heliotrope
-$ npm install
+$ vagrant up
 ```
 
 This will automatically install all dependencies, and will assemble a local virtual machine with a complete
