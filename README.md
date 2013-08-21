@@ -92,4 +92,5 @@ Heliotrope uses separate databases for the tracking system (which may contain co
 is derived entirely from public sources and curation). 
 
 Authentication is based on LDAP. 
+ 
 
