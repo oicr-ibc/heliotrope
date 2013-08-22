@@ -17,8 +17,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :path => "etc/vagrant/bootstrap.sh"
 
   # Redirect networking from host to guest
-  # Now you can navigate to https://localhost:8443/
-  config.vm.network :forwarded_port, guest: 443, host: 8443
+  # Now you can navigate to https://localhost:8888/
+  config.vm.network :forwarded_port, guest: 80, host: 8888
 
   # For VirtualBox, set RAM availability. 
   config.vm.provider "virtualbox" do |v|

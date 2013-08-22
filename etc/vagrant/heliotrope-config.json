@@ -1,7 +1,7 @@
 {
   "heliotrope" : {
     "apikey" : "R6Gz0M25wv64uv22750W8U2zi98aK4TL",
-    "baseUrl" : "https://localhost:8443"
+    "baseUrl" : "https://localhost:8888"
   },
   "ldap" : {
   	"enabled" : false
