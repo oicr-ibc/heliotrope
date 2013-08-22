@@ -20,7 +20,7 @@ describe('Tracker component', function() {
   });
 
   describe('checkAdminAccess', function() {
-    var req = {"user": {"userId" : "swatt", "roles": ["ADMIN"]}};
+    var req = {"user": {"userId" : "swatt", "roles": ["TRACKER_ADMIN"]}};
 
     it('should allow read access for admin permissions', function(done) {
       tracker.checkAdminAccess(req, "read").should.equal(true);
