@@ -68,3 +68,11 @@ popd
 # Stuff the data into the MongoDB database
 mongorestore --db heliotrope dump/heliotrope
 rm -rf heliotrope-dump-1.0.tar.xz dump/heliotrope
+
+# Now at this stage it would also be right to boot up the test data. These are in 
+# the .jsinit files, and we need to load them into the right databases. 
+cat /var/local/heliotrope/test/data/user.*.jsinit | mongo user
+cat /var/local/heliotrope/test/data/tracker.*.jsinit | mongo tracker
+
+# We're done if we get here
+echo "All done :-)"
