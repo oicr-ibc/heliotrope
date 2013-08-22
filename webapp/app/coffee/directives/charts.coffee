@@ -40,8 +40,10 @@ angular
 
             if entityData.sections.positions
               positions = entityData.sections.positions
-              if positions.data[0]["codon"]
-                data.mutations = [{id: entityData["shortMutation"], position: positions.data[0]["codon"], url: null, value: 4}]
+              codon = positions.data[0]["codon"]
+              position = parseInt((codon).toString())
+              if ! isNaN(position)
+                data.mutations = [{id: entityData["shortMutation"], position: position, url: null, value: 4}]
 
             if entityData.sections.distribution
               data["background"] = entityData.sections.distribution["data"]

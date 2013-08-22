@@ -41,4 +41,24 @@ describe('GET request', function() {
       });
     });
   });
+
+  describe('/variants/EGFR+c.2062-55_2062-34delTCCAGCATGGTGAGGGCTGAGG/report', function() {
+    it('should get the report data', function(done){
+      
+      var request = {params: {id: "EGFR c.2062-55_2062-34delTCCAGCATGGTGAGGGCTGAGG"}};
+      var response = {locals: {passthrough: "value"}};
+      knowledge.getVariantReport(null, db, request, response, function(db, err, result, res) {
+        db.close();
+        
+        should.not.exist(err);
+        should.exist(result);
+        should.exist(result.data);
+        should.exist(result.data.chart);
+        should.exist(result.data.genesRefx);
+        should.exist(result.data.genesRefx._body);
+
+        done();
+      });
+    });
+  });
 });
