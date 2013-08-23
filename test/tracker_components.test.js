@@ -278,7 +278,7 @@ describe('Tracker component', function() {
                 type: 'String',
                 range: ["London", "Hamilton", "Europa"],
                 isRequired: true }}};
-        var fields = { identifier: { value: 'TST-002' } };
+        var fields = { identifier: { identity: 'TST-002' } };
         
         tracker.findStepUpdater(db, study._id, step, fields, {}, {"$set" : {"steps.$.fields" : []}}, function(db, err, updater) {
           db.close();

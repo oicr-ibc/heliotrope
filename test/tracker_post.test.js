@@ -396,5 +396,34 @@ describe('POST request', function() {
       });
     });
   });
+
+  describe('/studies/GPS/samples/id;new/step/sample', function() {
+    it('should report a missing barcode appropriately', function(done){
+      
+      var request = {
+        "params": {"study": "GPS", "role": "samples", "identity": "id;new", "step": "sample"},
+        "body": {"data": {"step": {"fields": {
+          "participantEntityRef": {"value": "TST-001"},
+          "requiresCollection": {"value": true},
+          "site": {"value": "Primary"},
+          "source": {"value": "Biopsy"},
+          "type": {"value": "FFPE"}
+        }}}},
+        "user": {"userId": "swatt"}
+      };
+      var response = {locals: {passthrough: "value"}};
+      
+      tracker.postEntityStep(null, db, request, response, function(db, err, result, res, statusCode) {
+        db.close();
+
+        should.exist(err);
+        statusCode.should.equal(400);        
+        err.err.should.match(/missing fields/);
+
+        res.locals.passthrough.should.equal("value");
+        done();
+      });
+    });
+  });
 });
 

@@ -41,7 +41,7 @@ db.steps.insert({
       "range" : ["PMH/UHN", "London", "Ottawa", "Thunder Bay"],
       "isRequired" : true,
       "label" : { "default" : "Institution" }
-    },
+    }
   }
 });
 
