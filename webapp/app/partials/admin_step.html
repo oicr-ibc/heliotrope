@@ -34,6 +34,13 @@
       </div>
 
       <div class="control-group">
+        <label class="control-label" for="description">Description</label>
+        <div class="controls">
+          <textarea class="description-control" id="description" ng-model="step.data.step.description.default" placeholder="Step description"></textarea>
+        </div>
+      </div>
+
+      <div class="control-group">
         <label class="control-label" for="applies-to">Applies to</label>
         <div class="controls">
           <input class="identifier-control" type="text" id="applies-to" ng-model="step.data.step.appliesTo" placeholder="Applies to" required>

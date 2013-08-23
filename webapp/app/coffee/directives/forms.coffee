@@ -23,6 +23,18 @@ angular
               scope.model = evt.val
   )
 
+  .directive('heliDescription', () ->
+    result =
+      restrict: 'A'
+      replace: false
+      scope:
+        html: '='
+      link: (scope, iElement, iAttrs, controller) ->
+        scope.$watch 'html', (val) ->
+          if val
+            iElement.html(val)
+  )
+
   .directive('heliStepForm', () ->
     result =
       restrict: 'A'

@@ -404,6 +404,10 @@ div.heli-dd {
   bottom: 270px;
 }
 
+div.step-description {
+  margin-bottom: 3em;
+}
+
 table .header {
   cursor: pointer;
 }
@@ -588,3 +592,4 @@ div.admin-form div input, div textarea {
 a.clickable {
   cursor: pointer;
 }
+
