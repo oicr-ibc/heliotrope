@@ -50,10 +50,12 @@ angular
     authenticationInterceptor = ($rootScope, $q) ->
 
       success = (response) ->
+        $rootScope.$emit "event:stopSpinner"
         # console.log 'HTTP successful response: ', response
         response
 
       error = (response) ->
+        $rootScope.$emit "event:stopSpinner"
         status = response.status
 
         if status == 401
@@ -66,13 +68,14 @@ angular
           $q.reject response
 
       (promise) ->
+        $rootScope.$emit "event:startSpinner"
         promise.then(success, error)
 
     $httpProvider.responseInterceptors.push(authenticationInterceptor)
     
   ])
 
-  .run(['$rootScope', '$http', '$location', (scope, $http, $location) ->
+  .run(['$rootScope', '$http', '$location', '$timeout', (scope, $http, $location, $timeout) ->
 
     class User
       constructor: (user) ->
@@ -97,10 +100,33 @@ angular
     config = 
       headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 
+    spinner = false
+    spinnerPromise = false
 
     # Probably should let this be handled by an authentication controller
     # which can handle a modal dialog and initiate the event:loginRequest
     # event. It actually seems I am beginning to understand AngularJS 
+
+    scope.$on 'event:startSpinner', () ->
+      if ! spinnerPromise
+        spinnerPromise = $timeout(
+          (() ->
+            if ! spinner
+              target = document.getElementById('spinner-container');
+              spinner = new Spinner({lines: 12})
+              spinner.spin(target)
+          ),
+          200
+        )
+
+    scope.$on 'event:stopSpinner', () ->
+      if spinnerPromise
+        $timeout.cancel(spinnerPromise)
+        spinnerPromise = false
+
+      if spinner
+        spinner.stop()
+        spinner = false
 
     scope.$on 'event:loginCancelled', () ->
       $location.path('/')

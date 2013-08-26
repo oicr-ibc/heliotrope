@@ -593,3 +593,7 @@ a.clickable {
   cursor: pointer;
 }
 
+#spinner-container {
+  position: relative;
+  top: 100px; 
+}

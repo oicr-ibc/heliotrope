@@ -7,7 +7,7 @@ angular
     (scope, elm, attrs) ->
       elm.text(version)
   ])
-  
+
   # This is used to embed an alert, or a set of alerts. The alerts are supposed to be 
   # passed as a parameter somehow, so we can get to them. They will normally be 
   # injected into the response. 

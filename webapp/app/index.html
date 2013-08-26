@@ -48,7 +48,9 @@
     </div>
   </header>
 
-  <div class="container outer-container" id="page-container"  ng-view>
+  <div id="spinner-container"></div>
+
+  <div class="container outer-container" id="page-container" ng-view>
   </div>
 
   <div ng-controller="AuthenticationController" heli-login-form></div>
@@ -65,6 +67,7 @@
 <script src="app/vendor/jquery.fileupload.js"></script>
 <script src="app/vendor/select2.js"></script>
 <script src="app/vendor/jqBootstrapValidation.js"></script>
+<script src="app/vendor/spin.min.js"></script>
 
 <script src="app/lib/angular/angular.js"></script>
 <script src="app/lib/angular/angular-resource.js"></script>
