@@ -3,7 +3,8 @@
     [
         {
             "path": ".",
-            "folder_exclude_patterns": ["webapp/app/js", "webapp/app/img", "node_modules", "webapp/app/vendor"]
+            "folder_exclude_patterns": ["webapp/app/js", "webapp/app/img", "node_modules", "webapp/app/vendor"],
+            "file_exclude_patterns": ["*.sublime-*"]
         }
     ],
     "settings":

@@ -2,3 +2,4 @@
 /.*
 !/.gitignore
 /config.json
+/*.sublime-workspace
