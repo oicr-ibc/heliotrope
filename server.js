@@ -7,12 +7,14 @@ var fs = require("fs"),
     nconf = require('nconf'),
     MongoStore = require('connect-mongo')(express),
     passport = require("passport"),
-    LdapAuth = require("./lib/ldapauth"),
     log4js = require('log4js');
 
 var logger = log4js.getLogger();
 
 module.exports.logger = logger;
+module.exports.log4js = log4js;
+
+var LdapAuth = require("./lib/ldapauth");
 
 var configFile = process.cwd()+"/config.json";
 logger.info("Configuring from: " + configFile);
@@ -43,6 +45,7 @@ nconf.defaults({
   'ldap:userField': "uid",
   'ldap:cache': true,
   'ldap:enabled': false,
+  'ldap:verbose': true,
   'cookieSecret': 'keyboard cat'
 })
 
