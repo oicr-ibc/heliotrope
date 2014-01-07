@@ -8,11 +8,14 @@ var fs = require("fs"),
     MongoStore = require('connect-mongo')(express),
     passport = require("passport"),
     LdapAuth = require("./lib/ldapauth"),
-    colors = require('colors'),
     log4js = require('log4js');
 
+var logger = log4js.getLogger();
+
+module.exports.logger = logger;
+
 var configFile = process.cwd()+"/config.json";
-console.log(("Configuring from: " + configFile).magenta);
+logger.info("Configuring from: " + configFile);
 
 nconf
   .use('memory')
@@ -53,7 +56,7 @@ module.exports.config = config;
 var authenticator = require("./lib/authentication")
 
 function logErrors(err, req, res, next) {
-  console.error(err.stack);
+  logger.error(err.stack);
   next(err);
 }
 
@@ -113,5 +116,5 @@ require('./lib/coreService');
 
 if(!process.argv[2] || !process.argv[2].indexOf("expresso")) {
   app.listen(config['server']['port'], config['server']['address']);
-  console.log(("Express server listening on port " + config['server']['port']).magenta);
+  logger.info("Express server listening on port " + config['server']['port']);
 }
