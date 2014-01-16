@@ -1,0 +1,47 @@
+Template: heliotrope-server/admin_password
+Type: password
+Description: New password for the Heliotrope "administrator" user:
+ While not mandatory, it is highly recommended that you set a password
+ for the Heliotrope "administrator" user.
+ .
+ If this field is left blank, the password will not be changed.
+
+Template: heliotrope-server/admin_password_again
+Type: password
+Description: Repeat password for the Heliotrope "administrator" user:
+
+Template: heliotrope-server/database_host
+Default: localhost
+Type: string
+Description: The database server address:
+ The domain name or IP address for the MongoDB database server is 
+ needed to make a connection to the database. 
+
+Template: heliotrope-server/database_port
+Default: 27017
+Type: string
+Description: The database server port:
+ The port for the MongoDB database server is needed
+ to make a connection to the database. 
+
+Template: heliotrope-server/database_name
+Default: heliotrope
+Type: string
+Description: The name of the database:
+ There may be several databases on this database server. 
+ The name is needed to locate the database containing the 
+ informatiom needed by Heliotrope.
+
+Template: heliotrope-server/database_username
+Type: string
+Description: The database server user name:
+ If the database server requires authentication, a user
+ name and a password will be needed to connect to the
+ server. Leave this empty to skip authentication. 
+
+Template: heliotrope-server/database_password
+Type: password
+Description: The database server password:
+ If the database server requires authentication, a user
+ name and a password will be needed to connect to the
+ server. Leave this empty to skip authentication. 

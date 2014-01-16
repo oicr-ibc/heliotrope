@@ -1,0 +1,43 @@
+#!/bin/sh -e
+
+. /usr/share/debconf/confmodule
+
+if [ -n "$DEBIAN_SCRIPT_DEBUG" ]; then set -v -x; DEBIAN_SCRIPT_TRACE=1; fi
+${DEBIAN_SCRIPT_TRACE:+ echo "#42#DEBUG# RUNNING $0 $*" 1>&2 }
+
+# only ask this question on fresh installs ($2 is empty), during "reconfiguration"
+if [ "$1" = "configure" ] && [ -z "$2" ] || [ "$1" = "reconfigure" ]; then
+
+  RET=""
+  db_input high heliotrope-server/database_host || true
+  db_go
+  db_input high heliotrope-server/database_port || true
+  db_go
+  db_input high heliotrope-server/database_name || true
+  db_go
+  db_input high heliotrope-server/database_username || true
+  db_go
+  db_input high heliotrope-server/database_password || true
+  db_go
+
+  while :; do
+    RET=""
+    db_input high heliotrope-server/admin_password || true
+    db_go
+    db_get heliotrope-server/admin_password
+    # if password isn't empty we ask for password verification
+    if [ -z "$RET" ]; then
+      break
+    fi
+    ROOT_PW="$RET"
+    db_input high heliotrope-server/admin_password_again || true
+    db_go
+    db_get heliotrope-server/admin_password_again
+    if [ "$RET" = "$ROOT_PW" ]; then
+      ROOT_PW=''
+      break
+    fi
+    db_set heliotrope-server/admin_password "" 
+    db_set heliotrope-server/admin_password_again ""
+  done
+fi
