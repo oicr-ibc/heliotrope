@@ -23,7 +23,7 @@ webappVendorSource = 'webapp/app/vendor'
 
 target = 'target'
 
-packageTarget = "#{target}/debian"
+packageTarget = "#{target}/package"
 
 task "test", "run tests", ->
   tester = spawn 'node', ['./node_modules/mocha/bin/mocha', '--reporter', REPORTER, '--colors']
@@ -88,14 +88,15 @@ prepackage = (callback) ->
         packageData["date"] = (new Date()).toLocaleString()
         util.log "Building " + packageData['name'] + " version " + packageData['version']
 
-        copyRecursively "etc/debian", "#{packageTarget}/usr/share", () ->
+        copyRecursively "etc/debian", "#{packageTarget}/debian", () ->
 
-          util.log "Filtering #{packageTarget}/usr/share"
-          cmd = "find '#{packageTarget}/usr/share' -type f -exec perl -pi -e 's/\\@project.version\\@/#{packageData.version}/g; s/\\@date\\@/#{packageData.date}/g' {} \\\;"
+          util.log "Filtering #{packageTarget}/debian"
+          cmd = "find '#{packageTarget}/debian' -type f -exec perl -pi -e 's/\\@project.version\\@/#{packageData.version}/g; s/\\@date\\@/#{packageData.date}/g' {} \\\;"
           filter = exec cmd, (error, stdout, stderr) ->
             
             util.error 'stderr: ' + stderr if stderr
             util.error 'exec error: ' + error if error
+
             callback() if typeof callback is 'function'
 
       catch e
