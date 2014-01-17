@@ -12,7 +12,7 @@ async = require "async"
 REPORTER = "list"
 
 commonFolders = [
-  'lib/common'
+  'lib/common/'
 ]
 
 webappCoffeeSource = 'webapp/app/coffee'
@@ -24,6 +24,19 @@ webappVendorSource = 'webapp/app/vendor'
 target = 'target'
 
 packageTarget = "#{target}/package"
+
+fileTarget = "#{packageTarget}/usr/share"
+
+configTarget = "#{packageTarget}/etc"
+
+ensureDirectories = [
+  "#{target}"
+  "#{packageTarget}"
+  "#{packageTarget}/usr"
+  "#{packageTarget}/usr/share"
+  "#{packageTarget}/usr/share/webapp"
+  "#{packageTarget}/etc"
+]
 
 task "test", "run tests", ->
   tester = spawn 'node', ['./node_modules/mocha/bin/mocha', '--reporter', REPORTER, '--colors']
@@ -44,7 +57,7 @@ task "clean", "Clean generated code", ->
 
 copyRecursively = (from, to, callback) ->
   util.log "Copying " + from + " to " + to
-  cp = spawn 'cp', ['-r', '-f', from + "/", to]
+  cp = spawn 'cp', ['-r', '-f', from, to]
   cp.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
   cp.stdout.on 'data', (data) ->
@@ -52,14 +65,29 @@ copyRecursively = (from, to, callback) ->
   cp.on 'exit', (code) ->
     callback()
 
-merge = (cb) ->
+copyResources = (cb) ->
+  resources = [
+    {'from': 'lib', 'to': "#{fileTarget}/lib"}
+    {'from': 'webapp/app', 'to': "#{fileTarget}/webapp/app"}
+    {'from': 'server.js', 'to': "#{fileTarget}/server.js"}
+    {'from': 'package.json', 'to': "#{fileTarget}/package.json"}
+    {'from': 'LICENSE.md', 'to': "#{fileTarget}/LICENSE.md"}
+    {'from': 'LICENSE-GPL3.txt', 'to': "#{fileTarget}/LICENSE-GPL3.txt"}
+    {'from': 'etc/conf/', 'to': "#{configTarget}"}
+    {'from': 'config.json', 'to': "#{configTarget}/config.json"}
+  ]
+  copyFiles = (item, callback) ->
+    copyRecursively item['from'], item['to'], callback
+  async.each resources, copyFiles, cb
+
+mergeJavaScriptSources = (cb) ->
   copyFiles = (folder, callback) ->
-    copyRecursively(folder, webappJavaScriptSource, callback)
+    copyRecursively folder, "#{packageTarget}/usr/share/webapp/js", callback
   async.eachSeries commonFolders, copyFiles, cb
 
 compile = (options, callback) ->
-  util.log "Compiling " + webappCoffeeSource + " to " + webappJavaScriptSource
-  coffee = spawn 'coffee', options.concat('-c', '-o', webappJavaScriptSource, webappCoffeeSource)
+  util.log "Compiling " + webappCoffeeSource + " to " + "#{packageTarget}/usr/share/webapp/js"
+  coffee = spawn 'coffee', options.concat('-c', '-o', "#{packageTarget}/usr/share/webapp/js", webappCoffeeSource)
   coffee.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
   coffee.stdout.on 'data', (data) ->
@@ -79,7 +107,7 @@ ensureDirectory = (directory, callback) ->
       callback("Already exists: " + directory)
 
 prepackage = (callback) ->
-  async.eachSeries ["#{target}", "#{packageTarget}", "#{packageTarget}/usr", "#{packageTarget}/usr/share", "#{packageTarget}/etc"],
+  async.eachSeries ensureDirectories,
     ensureDirectory,
     (err) ->
       try
@@ -113,17 +141,37 @@ buildPackage = (callback) ->
       callback()
 
 task "merge", "Merge JavaScript sources", () ->
-  merge () ->
+  mergeJavaScriptSources () ->
 
 task "build", 'Build sources', ->
-  merge () ->
-    compile [], () ->
+  for folder in commonFolders  
+    cp = spawn 'cp', ['-r', '-f', folder + "/", webappJavaScriptSource]
+    cp.stderr.on 'data', (data) ->
+      process.stderr.write data.toString()
+    cp.stdout.on 'data', (data) ->
+      util.log data.toString()
+  coffee = spawn 'coffee', ['-c', '-o', webappJavaScriptSource, webappCoffeeSource]
+  coffee.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  coffee.stdout.on 'data', (data) ->
+    print data.toString()
+
+task "buildDebian", 'Build sources', ->
+  async.eachSeries ensureDirectories,
+    ensureDirectory,
+    (err) ->
+      copyResources () ->
+        mergeJavaScriptSources () ->
+          compile [], () ->
+
+  # mergeJavaScriptSources () ->
+  #   compile [], () ->
 
 task "watch", 'Watch src for changes', ->
   compile ['-w'], () ->
 
 task "server", 'Start the command-line', ->
-  merge () ->
+  mergeJavaScriptSources () ->
     compile [], () ->
       util.log "Starting server"
       coffee = spawn 'node', ['server.js']
