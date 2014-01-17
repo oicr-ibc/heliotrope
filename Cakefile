@@ -33,8 +33,8 @@ task "test", "run tests", ->
     print data.toString()
 
 task "clean", "Clean generated code", ->
-  util.log "Cleaning " + webappJavaScriptSource
-  remove = spawn 'rm', ['-r', '-f', webappJavaScriptSource]
+  util.log "Cleaning " + webappJavaScriptSource + ", " + target
+  remove = spawn 'rm', ['-r', '-f', webappJavaScriptSource, target]
   remove.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
   remove.stdout.on 'data', (data) ->
@@ -91,7 +91,7 @@ prepackage = (callback) ->
         copyRecursively "etc/debian", "#{packageTarget}/usr/share", () ->
 
           util.log "Filtering #{packageTarget}/usr/share"
-          cmd = "find '#{packageTarget}/usr/share' -type f -exec sed -i '' 's/@project.version@/#{packageData.version}/g;s/@date@/#{packageData.date}/g' {} \\\;"
+          cmd = "find '#{packageTarget}/usr/share' -type f -exec perl -pi -e 's/\\@project.version\\@/#{packageData.version}/g; s/\\@date\\@/#{packageData.date}/g' {} \\\;"
           filter = exec cmd, (error, stdout, stderr) ->
             
             util.error 'stderr: ' + stderr if stderr
