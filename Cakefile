@@ -85,7 +85,7 @@ prepackage = (callback) ->
       try
         package_file = 'package.json'
         packageData = JSON.parse("#{fs.readFileSync package_file}")
-        packageData["date"] = (new Date()).toLocaleString()
+        packageData["date"] = (new Date()).toUTCString().replace('GMT', '+0000')
         util.log "Building " + packageData['name'] + " version " + packageData['version']
 
         copyRecursively "etc/debian", "#{packageTarget}/debian", () ->
