@@ -2,6 +2,7 @@
   "name": "heliotrope",
   "version": "0.0.1",
   "dependencies": {
+    "coffee-script": "1.6.3",
     "express": "3.1.x",
     "mongodb": "1.2.14",
     "mocha": "0.9.0",
