@@ -3,3 +3,4 @@
 !/.gitignore
 /config.json
 /target
+/*.sublime-*
