@@ -87,7 +87,7 @@ mergeJavaScriptSources = (cb) ->
 
 compile = (options, callback) ->
   util.log "Compiling " + webappCoffeeSource + " to " + "#{packageTarget}/usr/share/webapp/js"
-  coffee = spawn 'coffee', options.concat('-c', '-o', "#{packageTarget}/usr/share/webapp/js", webappCoffeeSource)
+  coffee = spawn 'node', options.concat('node_modules/coffee-script/bin/coffee', '-c', '-o', "#{packageTarget}/usr/share/webapp/js", webappCoffeeSource)
   coffee.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
   coffee.stdout.on 'data', (data) ->
@@ -150,11 +150,13 @@ task "build", 'Build sources', ->
       process.stderr.write data.toString()
     cp.stdout.on 'data', (data) ->
       util.log data.toString()
-  coffee = spawn 'coffee', ['-c', '-o', webappJavaScriptSource, webappCoffeeSource]
+  coffee = spawn 'node', ['node_modules/coffee-script/bin/coffee', '-c', '-o', webappJavaScriptSource, webappCoffeeSource]
   coffee.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
   coffee.stdout.on 'data', (data) ->
     print data.toString()
+  coffee.on 'error', (data) ->
+    util.error data
 
 task "buildDebian", 'Build sources', ->
   async.eachSeries ensureDirectories,
