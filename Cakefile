@@ -150,6 +150,8 @@ task "build", 'Build sources', ->
       process.stderr.write data.toString()
     cp.stdout.on 'data', (data) ->
       util.log data.toString()
+    cp.on 'exit', () ->
+      util.log "Copied common files: " + folder
   coffee = spawn 'node', ['node_modules/coffee-script/bin/coffee', '-c', '-o', webappJavaScriptSource, webappCoffeeSource]
   coffee.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
@@ -157,6 +159,8 @@ task "build", 'Build sources', ->
     print data.toString()
   coffee.on 'error', (data) ->
     util.error data
+  coffee.on 'exit', () ->
+    util.log "Compiled: " + webappCoffeeSource
 
 task "buildDebian", 'Build sources', ->
   async.eachSeries ensureDirectories,
