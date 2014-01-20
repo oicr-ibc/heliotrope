@@ -1,33 +1,107 @@
-#!/bin/bash
+#! /bin/sh
+# ------------------------------------------------------------------------------
+# SOME INFOS : fairly standard (debian) init script.
+#                 Note that node doesn't create a PID file (hence --make-pidfile)
+#                 has to be run in the background (hence --background)
+#                 and NOT as root (hence --chuid)
+#
+# MORE INFOS :  INIT SCRIPT       http://www.debian.org/doc/debian-policy/ch-opersys.html#s-sysvinit
+#               INIT-INFO RULES   http://wiki.debian.org/LSBInitScripts
+#               INSTALL/REMOVE    http://www.debian-administration.org/articles/28
+# ------------------------------------------------------------------------------
+#                                                                              #
+#                     BEGIN                                                    #
+#                                                                              #
+#
+#  1) Don't forget to also modify the COMMENTED fields in the "### BEGIN INIT INFO"
+#     below (don't uncomment them) if you wish to install system-wide with update-rc.d
+#     eg: provides, Short-Description, Description
+#
+#  2) replace APPNAME with the name of the app you are running
+#
+#  3) copy the renamed/modified script(s) to /etc/init.d
+#     chmod 755,
+#
+#  4) if you wish the Daemon to be lauched at boot / stopped at shutdown :
+#     INSTALL : update-rc.d scriptname defaults
+#     (UNINSTALL : update-rc.d -f  scriptname remove)
+#
+#  5) it is a good idea to run it with some auto restart manager
+#     and multi-threader like
+#     https://github.com/LearnBoost/cluster
+#
+#  6) based on : Debian /etc/init.d/skeleton
+#     modified by : Peter Host (www.oghme.com)
+#     modified for nave and many pids by : Shimon Doodkin (doodkin.com)
+# ______________________________________________________________________________
 ### BEGIN INIT INFO
-# Provides:          heliotrope
-# Required-Start:    $network $local_fs $remote_fs
-# Required-Stop:     $remote_fs
+# Provides:          heliotrope_node_debian_init
+# Required-Start:    $remote_fs $named $syslog
+# Required-Stop:     $remote_fs $named $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Heliotrope
-# Description:       HeLIOTrope: Computational Pathogen Sequence IDentification
+# Short-Description: DEBIAN initscript for node.js servers/apps
+# Description:       ex : proxy server is a node.js http server listening on
+#                    port 8080 (relayed from 80 by iptables). It balances
+#                    http requests between the main nodejs server
+#                    (nodejs.mydomain.com:8000), the static file-server
+#                    (static.mydomain.com) and the legacy apache server
+#                    (apache.mydomain.com) and possibly other servers
+#                    place this file in /etc/init.d.
 ### END INIT INFO
 
-# Author: OBiBa <info@obiba.org>
-
+# Author: Stuart Watt <stuart.watt@oicr.on.ca>
+# ______________________________________________________________________________
+#
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
-PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC=heliotrope             # Introduce a short description here
-NAME=heliotrope             # Introduce the short server's name here
-HELIOTROPE_USER=heliotrope  # User to use to run the service
-DAEMON=/usr/bin/daemon      # Introduce the server's location here
-DAEMON_ARGS=""              # Arguments to run the daemon with
-MAIN_CLASS=ca.on.oicr.heliotrope.server.httpd.HeliotropeJettyServer
-TMPDIR=/var/run/$NAME
-PIDFILE=$TMPDIR/$NAME.pid
-SCRIPTNAME=/etc/init.d/$NAME
+PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin # modify if you need
+
+
+DAEMON_ARGS="/var/lib/heliotrope/server.js"               # node arguments ex. path to your app.js/server.js
+                                            # NB: don't use ~/ in path
+
+DAEMON_HOME="/var/lib/heliotrope"
+
+DESC="heliotrope http server"               # whatever fancy description you like
+
+NODEUSER=heliotrope:heliotrope              # USER who OWNS the daemon process (no matter whoever runs the init script)
+                                            # user:group (if no group is specified, the primary GID for that user is used)
+
+LOCAL_VAR_RUN=/var/run                      # in case the init script is run by non-root user, you need to
+                                            # indicate a directory writeable by $NODEUSER to store the PID file
+                                            # NB : 1) /usr/local/var/run does not exist by DEFAULT. Either create it
+                                            #      or choose one of your own liking.
+                                            #      2) node, npm,... are best NOT installed/run as ROOT.
+                                            #         (see here: https://github.com/isaacs/npm/blob/master/README.md)
+
+NAME=heliotrope                             # name of the service
+DAEMON=$(which node)                        # uncomment this to use node js insted of nave (and comment the nave line one above)
+                                            # it finds node.js path automatically 
+#
+#                                                                              #
+#                   END </MODIFY TO REFLECT YOUR SETTINGS>                     #
+#                (Nothing else to modify from this point on...)                #
+# ------------------------------------------------------------------------------
+
+
+
+# Do NOT "set -e"
+
+THIS_ARG=$0
+INIT_SCRIPT_NAME=`basename $THIS_ARG`
+[ -h $THIS_ARG ] && INIT_SCRIPT_NAME=`basename $(readlink $THIS_ARG)` # in case of symlink
+INIT_SCRIPT_NAME_NOEXT=${INIT_SCRIPT_NAME%.*}
+PIDFILE="$LOCAL_VAR_RUN/$INIT_SCRIPT_NAME_NOEXT.pid"
+SCRIPTNAME=/etc/init.d/$INIT_SCRIPT_NAME
 
 # Exit if the package is not installed
-[ -x $DAEMON ] || exit 0
+[ -x "$DAEMON" ] ||  { echo "can't find Node.js ($DAEMON)"  >&2; exit 0; }
+
+# Exit if the 'run' folder is not present
+[ -d "$LOCAL_VAR_RUN" ] || { echo "Directory $LOCAL_VAR_RUN does not exist. Modify the '$INIT_SCRIPT_NAME_NOEXT' init.d script ($THIS_ARG) accordingly" >&2; exit 0; }
 
 # Read configuration variable file if it is present
-[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+[ -r /etc/default/$INIT_SCRIPT_NAME ] && . /etc/default/$INIT_SCRIPT_NAME
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
@@ -36,49 +110,43 @@ SCRIPTNAME=/etc/init.d/$NAME
 # Depend on lsb-base (>= 3.0-6) to ensure that this file is present.
 . /lib/lsb/init-functions
 
-DAEMON_ARGS="--name=$NAME --user=$HELIOTROPE_USER --pidfile=$PIDFILE --inherit --env=HELIOTROPE_HOME=$HELIOTROPE_HOME --env=HELIOTROPE_LOG=$HELIOTROPE_LOG --output=$HELIOTROPE_LOG/stdout.log --chdir=$HELIOTROPE_HOME"
-CLASSPATH="$HELIOTROPE_HOME/conf:$HELIOTROPE_DIST/lib/*"
 
-# Get the status of the daemon process
-get_daemon_status()
-{
-    $DAEMON $DAEMON_ARGS --running || return 1
+pidchildtree() {
+    local _pid=$1
+    local _sig=${2-TERM}
+    for _child in $(ps -o pid --no-headers --ppid ${_pid}); do
+        pidchildtree ${_child} ${_sig}
+    done
+    #kill -${_sig} ${_pid}
+    echo -n  " "${_pid}
 }
 
-get_running() 
-{
-    return `ps -U $HELIOTROPE_USER --no-headers -f | egrep -e '(java|daemon)' | grep -c . `
-}
-
-get_running_daemon() 
-{
-    return `ps -U $HELIOTROPE_USER --no-headers -f | egrep -e '(daemon)' | grep -c . `
-}
-
-force_stop() 
-{
-    get_running
-    if [ $? -ne 0 ]; then 
-        killall -u $HELIOTROPE_USER java || return 3
-    fi
-}
+# uncomment to override system setting
+VERBOSE=yes
 
 #
 # Function that starts the daemon/service
 #
 do_start()
 {
-    # Return
-    #   0 if daemon has been started
-    #   1 if daemon was already running
-    #   2 if daemon could not be started
-    $DAEMON $DAEMON_ARGS --running && return 1
+        # Return
+        #   0 if daemon has been started
+        #   1 if daemon was already running
+        #   2 if daemon could not be started
+        if [ -f $PIDFILE ]; then
+             RUNIDS=$(pidchildtree `cat $PIDFILE`)
+             [ "$RUNIDS" != "" ] && log_daemon_msg  "  --->  Daemon already running $DESC" "$INIT_SCRIPT_NAME_NOEXT"; return 1;
+        fi
 
-    if [ -n "$MAXOPENFILES" ]; then
-        ulimit -n $MAXOPENFILES
-    fi
-    
-    $DAEMON $DAEMON_ARGS -- $JAVA $JAVA_ARGS -cp $CLASSPATH -DHELIOTROPE_HOME=$HELIOTROPE_HOME -DHELIOTROPE_DIST=$HELIOTROPE_DIST -DHELIOTROPE_LOG=$HELIOTROPE_LOG $MAIN_CLASS $HELIOTROPE_ARGS || return 2
+        start-stop-daemon --start --quiet --chuid $NODEUSER --chdir $DAEMON_HOME --make-pidfile --pidfile $PIDFILE --background --exec $DAEMON -- \
+                $DAEMON_ARGS \
+                || { [ "$VERBOSE" != no ] && log_daemon_msg  "  --->  could not be start $DESC" "$INIT_SCRIPT_NAME_NOEXT"; return 2; }
+
+        # Add code here, if necessary, that waits for the process to be ready
+        # to handle requests from services started subsequently which depend
+        # on this one.  As a last resort, sleep for some time.
+
+        [ "$VERBOSE" != no ] && log_daemon_msg  "  --->  started $DESC" "$INIT_SCRIPT_NAME_NOEXT"
 }
 
 #
@@ -86,127 +154,145 @@ do_start()
 #
 do_stop()
 {
-    # Return
-    #   0 if daemon has been stopped
-    #   1 if daemon was already stopped
-    #   2 if daemon could not be stopped
-    #   other if a failure occurred
-    get_daemon_status 
-    case "$?" in
-        0) 
-            $DAEMON $DAEMON_ARGS --stop || return 2
-        # wait for the process to really terminate
-        echo -n "   "
-        for n in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
-            sleep 1
-            echo -n "."
-            $DAEMON $DAEMON_ARGS --running || break
-        done
-        if get_daemon_status; then
-                force_stop || return 3
+        # Return
+        #   0 if daemon has been stopped
+        #   1 if daemon was already stopped
+        #   2 if daemon could not be stopped
+        #   other if a failure occurred
+        RETVAL=1
+
+        if [ -f $PIDFILE ]; then
+             kill $(pidchildtree `cat $PIDFILE`) 2> /dev/null
+             RETVAL="$?"
         fi
-            ;;
-        *)
-            force_stop || return 3
-            ;;
-    esac
 
-    # Many daemons don't delete their pidfiles when they exit.
-    rm -f $PIDFILE
-    return 0
+        [ "$RETVAL" = 2 ] && return 2
+        # Wait for children to finish too if this is a daemon that forks
+        # and if the daemon is only ever run from this initscript.
+        # If the above conditions are not satisfied then add some other code
+        # that waits for the process to drop all resources that could be
+        # needed by services started subsequently.  A last resort is to
+        # sleep for some time.
+        start-stop-daemon --stop --quiet --oknodo --retry=0/3/KILL/5 --pidfile $PIDFILE  --chuid $NODEUSER --chdir $DAEMON_HOME --exec $DAEMON -- $DAEMON_ARGS
+        [ "$?" = 2 ] && return 2
+        # Many daemons don't delete their pidfiles when they exit.
+        rm -f $PIDFILE
+        [ "$VERBOSE" != no ] && [ "$RETVAL" = 1 ] && log_daemon_msg "  --->  $DESC not running" "$INIT_SCRIPT_NAME_NOEXT"
+        [ "$VERBOSE" != no -a "$RETVAL" = 0 ] && log_daemon_msg "  --->  $DESC stopped" "$INIT_SCRIPT_NAME_NOEXT"
+        return "$RETVAL"
 }
-
 
 #
 # Function that sends a SIGHUP to the daemon/service
 #
 do_reload() {
-	#
-	# If the daemon can reload its configuration without
-	# restarting (for example, when it is sent a SIGHUP),
-	# then implement that here.
-	#
-	start-stop-daemon --stop --signal 1 --quiet --pidfile $PIDFILE --name $NAME
-	return 0
+        #
+        # If the daemon can reload its configuration without
+        # restarting (for example, when it is sent a SIGHUP),
+        # then implement that here.
+        #
+        start-stop-daemon --stop --quiet --signal 1 --pidfile $PIDFILE  --chuid $NODEUSER --chdir $DAEMON_HOME --name $NAME
+        return 0
 }
 
 #
-# Make sure heliotrope tmp dir exists, otherwise daemon calls will fail
+# Function that returns the daemon
 #
-if [ ! -d $TMPDIR ]; then 
-  mkdir $TMPDIR
-  chown -R heliotrope:adm $TMPDIR
-  chmod -R 750 $TMPDIR
-fi
+do_status() {
+  #
+  # http://refspecs.freestandards.org/LSB_3.1.1/LSB-Core-generic/LSB-Core-generic/iniscrptact.html
+  # 0 program is running or service is OK
+  # 1 program is dead and /var/run pid file exists
+  # (2 program is dead and /var/lock lock file exists) (not used here)
+  # 3 program is not running
+  # 4 program or service status is unknown
+
+  RUNNING=$(running)
+
+  #echo $RUNNING
+  #echo pidof -x $NAME
+
+  # $PIDFILE corresponds to a live $NAME process
+
+  ispidactive=$(pidof -x $DAEMON | grep `cat $PIDFILE 2>&1` >/dev/null 2>&1)
+  ISPIDACTIVE=$?
+
+  if [ -n "$RUNNING" ]; then
+    if [ $ISPIDACTIVE ]; then
+      log_success_msg "$INIT_SCRIPT_NAME_NOEXT (launched by $USER) (--chuid $NODEUSER) is running"
+      exit 0
+    fi
+  else
+    if [ -f $PIDFILE ]; then
+      log_success_msg "$INIT_SCRIPT_NAME_NOEXT (launched by $USER) (--chuid $NODEUSER) is not running, phantom pidfile $PIDFILE"
+      exit 1
+    else
+      log_success_msg "no instance launched by $USER, of $INIT_SCRIPT_NAME_NOEXT (--chuid $NODEUSER) found"
+      exit 3
+    fi
+  fi
+
+}
+
+running() {
+ if [ -f $PIDFILE ]; then
+   RUNIDS=$(pidchildtree `cat $PIDFILE`)
+   [ "$RUNIDS" != "" ] &&  echo y;
+ fi
+
+ # RUNSTAT=$(start-stop-daemon --start --quiet --pidfile $PIDFILE --chuid $NODEUSER --background --exec $DAEMON --test > /dev/null)
+ # if [ "$?" = 1 ]; then
+ #   echo y
+ # fi
+}
+
 
 case "$1" in
   start)
-    log_daemon_msg "Starting $DESC" "$NAME"
-    do_start
-    case "$?" in
-        0|1) log_end_msg 0 ;;
-        2) log_end_msg 1 ;;
-    esac
-    ;;
-  stop)
-    log_daemon_msg "Stopping $DESC" "$NAME"
-    do_stop
-    case "$?" in
-        0|1) log_end_msg 0 ;;
-        2) log_end_msg 1 ;;
-    esac
-    ;;
-  restart|force-reload)
-    #
-    # If the "reload" option is implemented then remove the
-    # 'force-reload' alias
-    #
-    log_daemon_msg "Restarting $DESC" "$NAME"
-    do_stop
-    case "$?" in
-      0|1)
+        [ "$VERBOSE" != no ] && log_daemon_msg "Starting $DESC" "$INIT_SCRIPT_NAME_NOEXT"
         do_start
         case "$?" in
-          0) log_end_msg 0 ;;
-          1) log_end_msg 1 ;; # Old process is still running
-          *) log_end_msg 1 ;; # Failed to start
+                0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+                2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
         esac
         ;;
-      *)
-        # Failed to stop
-        log_end_msg 1
+  stop)
+        [ "$VERBOSE" != no ] && log_daemon_msg "Stopping $DESC" "$INIT_SCRIPT_NAME_NOEXT"
+        do_stop
+        case "$?" in
+                0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+                2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+        esac
         ;;
-    esac
-    ;;
+  restart|force-reload)
+        #
+        # If the "reload" option is implemented then remove the
+        # 'force-reload' alias
+        #
+        log_daemon_msg "Restarting $DESC" "$INIT_SCRIPT_NAME_NOEXT"
+        do_stop
+        case "$?" in
+          0|1)
+                do_start
+                case "$?" in
+                        0) log_end_msg 0 ;;
+                        1) log_end_msg 1 ;; # Old process is still running
+                        *) log_end_msg 1 ;; # Failed to start
+                esac
+                ;;
+          *)
+                # Failed to stop
+                log_end_msg 1
+                ;;
+        esac
+        ;;
   status)
-      get_daemon_status
-      case "$?" in 
-         0) echo "$DESC is running with the pid `cat $PIDFILE`";;
-         *) 
-              get_running_daemon
-              procs=$?
-              if [ $procs -eq 0 ]; then 
-                  echo -n "$DESC is not running"
-                  if [ -f $PIDFILE ]; then 
-                      echo ", but the pidfile ($PIDFILE) still exists"
-                  else 
-                      echo
-                  fi
-              elif [ $procs -eq 1 ]; then 
-                  echo "An instance of heliotrope is running at the moment"
-                  echo "but the pidfile $PIDFILE is missing"
-              else 
-                  echo "$procs instances of heliotrope are running at the moment"
-                  echo "but the pidfile $PIDFILE is missing"
-              fi
-              ;;
-      esac
-    ;;
+    do_status
+  ;;
   *)
-    echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
-    exit 3
-    ;;
+        echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload}" >&2
+        exit 3
+        ;;
 esac
 
 exit 0
-
