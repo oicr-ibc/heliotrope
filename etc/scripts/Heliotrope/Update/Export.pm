@@ -8,7 +8,6 @@ with 'Heliotrope::Updater';
 with 'Heliotrope::Store';
 
 use boolean;
-use DBI;
 use HTTP::Request;
 use File::Slurp;
 use File::Temp;
@@ -48,7 +47,7 @@ sub output {
     my ($self, $registry) = @_;
     
     my $database = $self->open_database();
-    my $collection = $database->variants;
+    my $collection = $database->get_collection('variants');
 
     my $cached_data = $self->get_data($registry);
     
