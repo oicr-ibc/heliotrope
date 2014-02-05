@@ -17,12 +17,33 @@ sub parse {
 
 	while($content =~ m/$templates/g) {
 		my $match = $1;
+
 		if (substr($match, 0, 2) eq '{{') {
 			# We have a template. We can now parse this recursively. Sort of. First of all,
 			# we should get the command. 
+
+
+			# We can trim off the first and last two characters straightforwardly.
+			$match = substr($match, 2, -2);
+
+			# And now we can regex to find the tag.
+			if (my ($tag, $body) = ($match =~ m{^(\w+)(.*)})) {
+				$self->handle_event('template', $tag, $body);
+			} else {
+				$self->handle_event('error', 'template', $match);
+			}
+
 		} else {
 			# This is text. 
+
+			$self->handle_event('text', $match);
 		}
 	}
 
 }
+
+sub handle_event {
+	my ($self, $event, @args) = @_;
+}
+
+1;
