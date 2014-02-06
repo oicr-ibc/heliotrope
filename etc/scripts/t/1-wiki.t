@@ -31,6 +31,29 @@ $parser->parse(get_content());
 my $text = join("", @$result);
 like($text, qr/is an NADPH-dependent enzyme/, "Found and merged link text");
 
+# And finally, let's do a test of pulling out the references.
+$result = [];
+my $in_references = 0;
+$parser = MediaWiki::Parser->new({
+	handlers => {
+		template => sub {
+			my ($self, $event, $tag, $body) = @_; 
+			$self->parse($body); 
+			if ($tag eq 'refbegin') {
+				$in_references = 1;
+			} elsif ($tag eq 'refend') {
+				$in_references = 0;
+			} elsif ($tag eq 'cite') {
+				$self->unpack_keys($body);
+				push @$result, $body;
+			}
+		}
+	}
+});
+$parser->parse(get_content());
+ok(@$result, "Found some citations");
+is(@$result, 20, "20 of them, to be precise");
+
 done_testing();
 
 sub get_content {

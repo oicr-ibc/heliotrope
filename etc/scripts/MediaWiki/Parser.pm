@@ -62,6 +62,18 @@ sub parse {
 
 }
 
+sub unpack_keys {
+  my ($self, $string) = @_;
+  my %result = ();
+  while($string =~ m{\|[ ]*(\w+)[ ]*=[ ]*((?:[^{}\[\]|]+|\{\{(?:[^\r\n{}]++|(?-1))*+\}\}|\[\[(?:[^\r\n\[\]]++|(?-1))*+\]\])*)}gs) {
+	  my $key = $1;
+	  my $value = $2;
+	  $value =~ s/\s+$//;
+    $result{$key} = $value;
+  }
+  return \%result;
+}
+
 sub handle_event {
 	my ($self, $event, @args) = @_;
 	my $handler = $self->{_handlers}->{$event};
