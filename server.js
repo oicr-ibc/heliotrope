@@ -31,6 +31,7 @@ nconf.defaults({
   'data:userdb': "mongodb://localhost:27017/user",
   'data:knowledgedb': "mongodb://localhost:27017/heliotrope",
   'data:trackerdb': "mongodb://localhost:27017/tracker",
+  'data:annotationUrl': "http://localhost:8006/annotation",
   'server:port': 3000,
   'server:address': "0.0.0.0",
   'debug': true,
@@ -83,6 +84,7 @@ app.configure(function(){
 
   app.use(express.static(process.cwd() + '/webapp', { maxAge: 1000 * 60 * 60 * 24 }));
   app.use(express.logger('dev'));
+  // app.use(log4js.connectLogger(logger, { level: 'auto', format: ':method :url :status :response-timems - :content-length' }));
 
   app.use(express.methodOverride());
   app.use(express.bodyParser({

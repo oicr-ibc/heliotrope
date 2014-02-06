@@ -39,7 +39,7 @@ sub parse {
 			$match_template = substr($match_template, 2, -2);
 
 			# And now we can regex to find the tag.
-			if (my ($tag, $body) = ($match_template =~ m{^(\w+)(.*)})) {
+			if (my ($tag, $body) = ($match_template =~ m{^(\w+)(.*)}s)) {
 				$self->handle_event('template', $tag, $body);
 			} else {
 				$self->handle_event('error', 'template', $match_template);
@@ -68,6 +68,13 @@ sub handle_event {
 	if (defined($handler)) {
 		&$handler($self, $event, @args);
 	}
+}
+
+sub clean {
+	my ($self, $text) = @_;
+	$text =~ s/'''?//g;
+	$text =~ s/<[^>]+>//g;
+	return $text;
 }
 
 1;
