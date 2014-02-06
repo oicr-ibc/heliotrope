@@ -4,8 +4,32 @@ use Test::More;
 
 use MediaWiki::Parser;
 
-my $parser = MediaWiki::Parser->new();
+my $result = [];
+sub _template_handler {
+	my ($self, $event, $tag, $body) = @_; 
+	$self->parse($body); 
+	push @$result, [$tag, $body];
+}
+
+my $parser = MediaWiki::Parser->new({handlers => {template => \&_template_handler}});
 $parser->parse(get_content());
+
+ok(@$result, "Found some templates");
+is_deeply($result->[0], ["PBB", "|geneid=3290"], "Found the first template");
+
+# Now let's assemble some code we can use to get the description. 
+
+$result = [];
+$parser = MediaWiki::Parser->new({
+	handlers => {
+		text => sub { my ($self, $event, $body) = @_; push @$result, $body; },
+		link => sub { my ($self, $event, $body) = @_; push @$result, $body; }
+	}
+});
+$parser->parse(get_content());
+
+my $text = join("", @$result);
+like($text, qr/is an NADPH-dependent enzyme/, "Found and merged link text");
 
 done_testing();
 
