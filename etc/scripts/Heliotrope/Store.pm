@@ -2,10 +2,18 @@ package Heliotrope::Store;
 
 use Carp;
 use common::sense;
+use boolean;
 
 use Moose::Role;
 
 use MongoDB;
+
+use Heliotrope::Data qw(deep_eq);
+
+sub BUILD {
+  my ($self) = @_;
+  $self->{_reference_id_cache} = {};
+}
 
 sub open_database {
 	my ($self) = @_;
@@ -18,8 +26,8 @@ sub open_database {
   my @options = (host => $database_server);
   push @options, username => $database_username if ($database_username);
   push @options, password => $database_password if ($database_password);
+  push @options, query_timeout => -1;
 
-  $DB::single = 1;
 	my $conn = MongoDB::Connection->new(@options);	
   my $database = $conn->get_database($database_name);
 	return $database;
@@ -41,6 +49,38 @@ sub save_record {
     carp($@);
   }
   return $result;
+}
+
+sub maybe_write_record {
+  my ($self, $database, $write_collection, $resolved, $existing) = @_;
+  my $reference_id_cache = $self->{_reference_id_cache};
+
+  if (! deep_eq($resolved, $existing)) {
+      
+    foreach my $reference (@{$resolved->{references}}) {
+      next if ($reference->{_id});
+      
+      if (my $id = $reference_id_cache->{$reference->{ref}}->{$reference->{name}}) {
+        $reference->{_id} = $id;
+      } else {
+        my $collection = $reference->{ref};
+        if (my $existing = $self->find_one_record($database, $collection, {name => $reference->{name}})) {
+          $reference->{_id} = $existing->{_id};
+          $reference_id_cache->{$reference->{ref}}->{$reference->{name}} = $reference->{_id};
+        } else {
+          my $copy = clone($reference);
+          delete($copy->{ref});
+          $reference->{_id} = $self->save_record($database, $collection, $copy, {w => 1, j => true});
+          $reference_id_cache->{$reference->{ref}}->{$reference->{name}} = $reference->{_id};
+        }
+      }
+      next;
+    }
+    
+    $resolved->{version} = $resolved->{version} + 1;
+    
+    $self->save_record($database, $write_collection, $resolved, {w => 1, j => true});
+  }
 }
 
 sub update_record {
