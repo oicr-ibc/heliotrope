@@ -63,13 +63,15 @@ sub update {
     # where we can start to iterate through these pages and get the textual content, JSON representations, 
     # and so on. 
 
+    my $database = $self->open_database();
     foreach my $gene_page (@gene_pages) {
-        _build_article($self, $mech, $root, $gene_page);
+        _build_article($self, $database, $mech, $root, $gene_page);
     }
+    $self->close_database($database);
 }
 
 sub _build_article {
-    my ($self, $mech, $root, $gene_page) = @_;
+    my ($self, $database, $mech, $root, $gene_page) = @_;
 
     my $url = $root->clone();
     my $query = {action => 'query', prop => 'revisions', format => 'json', rvprop => 'content|tags|timestamp', pageids => $gene_page->{pageid}};
@@ -115,6 +117,8 @@ sub _build_article {
     my $parser = MediaWiki::Parser->new({handlers => {template => $template_handler, link => $link_handler, text => $text_handler}});
     $parser->parse($page_body);
 
+    my $article = {};
+
     say "$page_body";
 
     # We don't need everything, but we do want the contents of the PBB template, as this 
@@ -129,7 +133,7 @@ sub _build_article {
 
     my $pages = $perl_scalar->{query}->{pages};
     my @pages = keys %{$pages};
-    $page_body = $pages->{$pages[0]}->{revisions}->[0]->{"*"};
+    $box_page_body = $pages->{$pages[0]}->{revisions}->[0]->{"*"};
 
     my $box_body;
     my $gnf_template_handler = sub {
@@ -139,16 +143,46 @@ sub _build_article {
         }
     };
     $parser = MediaWiki::Parser->new({handlers => {template => $gnf_template_handler}});
-    $parser->parse($page_body);
+    $parser->parse($box_page_body);
 
-    if ($box_body) {
-        $box_body =~ s/^\s*\|\s*//s;
-        my $keys = $parser->unpack_keys($box_body);
-        $DB::single = 1;
-        say $keys;
+    # If there's no box body, quit, as we'll not be able to find an Ensembl ID
+    if (! $box_body) {
+        say "Missing box. Skipping record.";
+        return;
     }
-    say "$page_body";
-    # $query = {action => 'expandtemplates',  format => 'json', text => '{{PBB|geneid=3290}}'}
+
+    $box_body =~ s/^\s*\|\s*//s;
+    my $keys = $parser->unpack_keys($box_body);
+
+    # Okay, now at this stage we can start processing the links to other items.
+    my $gene_id = $keys->{Hs_Ensembl};
+
+    my $existing = $self->find_one_record($database, 'genes', {"id" => $gene_id});
+    if (! $existing) {
+        say "Can't find gene $gene_id. Skipping record.";
+        return;
+    }
+
+    # So now we have a gene record, and we can link to that effectively. That will enable
+    # references to be resolved. That means we can now begin to assemble the additional
+    # gene information, which we can add to the gene page. 
+
+    foreach my $citation (@citations) {
+        my $doi = $citation->{doi};
+        my $pmid = $citation->{pmid};
+
+        # We can haz PMID. We can now go poke in the database to see if it matches our
+        # likely info. 
+
+        say "Found PMID: $pmid";
+        my $pubmed = $database->get_collection('pubmed')
+    }
+
+
+    my $new = expand_references($existing);
+    $new->{sections}->{wikipedia} = $wikipedia_data;
+    my $resolved = resolve_references($new, $existing);
+    $self->maybe_write_record($database, 'genes', $resolved, $existing);
 }
 
 sub output {
