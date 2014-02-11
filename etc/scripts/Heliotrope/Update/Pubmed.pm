@@ -132,7 +132,11 @@ sub update {
     my $wanted = sub {
         _handle_file($self, $collection, $File::Find::name);
     };
-    find({wanted => $wanted, nochdir => 1}, $base);
+    my $preprocess = sub {
+        my @files = @_;
+	return sort { $a cmp $b } @files;
+    };
+    find({wanted => $wanted, preprocess => $preprocess, nochdir => 1}, $base);
 
     $self->close_database($database);
 
