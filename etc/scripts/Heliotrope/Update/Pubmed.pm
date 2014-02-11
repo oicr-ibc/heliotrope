@@ -128,7 +128,7 @@ sub update {
     my $collection = $database->get_collection('publications');
     $collection->ensure_index({"name" => 1}, { unique => true, sparse => true, safe => true });
 
-    my $base = "/Users/swatt/pubmed_xml";
+    my $base = $ENV{HELIOTROPE_PUBMED_BASE} || "/Users/swatt/pubmed_xml";
     my $wanted = sub {
         _handle_file($self, $collection, $File::Find::name);
     };

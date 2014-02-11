@@ -8,7 +8,6 @@ use MooseX::Singleton;
 
 with 'Heliotrope::Updater';
 with 'Heliotrope::Store';
-with 'Heliotrope::WorkingDatabase';
 
 sub BUILD {
 	my ($self) = @_;
