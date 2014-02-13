@@ -33,20 +33,29 @@ sub _handle_file {
     my ($self, $collection, $file) = @_;
     return unless ($file =~ /n\d{4,4}\.xml\.gz$/);
 
-    say "Reading $file";
+    $self->{_count} = 0;
+    $self->{_skip_count} = 0;
     my $fh = IO::Uncompress::Gunzip->new($file);
     my $reader = XML::LibXML::Reader->new(IO => $fh);
+    $self->{_element_count} = 0;
 
     # Skip to first entry element
+    say "$file";
     while($reader->read() && $reader->name() ne 'MedlineCitation') {};
     
     do {
         if ($reader->name() eq 'MedlineCitation') {
-            entry($self, $collection, $reader)
+            entry($self, $collection, $reader);
+	    $self->{_element_count}++;
+	    if ($self->{_element_count} % 1000 == 0) {
+		print "$self->{_element_count} ";
+	    }
         }
     } while($reader->nextSibling());
+    print "\n";
 
     close($fh);
+    say "$file: loaded $self->{_count} items, skipped $self->{_skip_count} items";
 }
 
 sub _is_article {
@@ -72,26 +81,6 @@ sub _is_article {
         return 1;
     }
     return 0;
-
-        #   isArticle = (article) ->
-        # articleData = article["Article"]
-        # if articleData.hasOwnProperty 'Abstract'
-        #   articleTitle = getElementText(articleData["ArticleTitle"])
-        #   articleAbstractText = getElementText(articleData["Abstract"])
-        #   articleTitleAndAbstractText = articleTitle + "\n" + articleAbstractText
-
-        #   publicationTypes = if articleData["PublicationTypeList"]? then articleData["PublicationTypeList"]["$children"] else []
-        #   meshTerms = if article["MeshHeadingList"]? then article["MeshHeadingList"]["$children"] else []
-
-        #   trialPublicationType = publicationTypes.some((type) -> getElementText(type) == 'Clinical Trial')
-        #   trialMeshTerm = meshTerms.some (mesh) -> clinicalTrialRegexp.test(getElementText(mesh["DescriptorName"]))
-
-        #   trialTerms = clinicalRegexp.test(articleTitleAndAbstractText) && trialRegexp.test(articleTitleAndAbstractText)
-
-        #   trialTerms || trialPublicationType || trialMeshTerm
-        # else
-        #   false
-
 }
 
 sub entry {
@@ -103,20 +92,37 @@ sub entry {
     
     my $pmid = $root->findvalue('/MedlineCitation/PMID');
 
-    if (_is_article($root)) {
-        my $encoded = convert_document_to_json($root, "");
-        $encoded->STORE('PMID', "$pmid");
+    my $encoded = convert_document_to_json($root, "");
+    $encoded->STORE('PMID', "$pmid");
 
-        my $query = {name => "pmid:$pmid"};
+    my $query = {name => "pmid:$pmid"};
 
-        my $action = {'$set' => Tie::IxHash->new()};
-        $action->{'$set'}->STORE('id', "pmid:$pmid");
-        $action->{'$set'}->STORE('name', "pmid:$pmid");
-        $action->{'$set'}->STORE('sections.pubmed', {"data" => $encoded});
+    my $document =  Tie::IxHash->new();
+    $document->STORE('id', "pmid:$pmid");
+    $document->STORE('name', "pmid:$pmid");
+    $document->STORE('sections',  Tie::IxHash->new('pubmed', {"data" => $encoded}));
+    my $action = {'$set' => $document};
+    my $new_date = $encoded->FETCH('DateRevised') // $encoded->FETCH('DateCompleted') // $encoded->FETCH('DateCreated');
 
-        my $result = $collection->update($query, $action, {upsert => true, w => 1, j => true});
-        say "Written: pmid:$pmid, updated $result->{n} records";
-    };
+    my $existing = $collection->find_one($query);
+    if (! $existing) {
+	$collection->insert($document, {w => 1, j => true});
+	$self->{_count}++;
+	return;
+    }
+
+    my $existing_data =  $existing->{sections}->{pubmed}->{data};
+    my $existing_date = $existing_data->{DateRevised} // $existing_data->{DateCompleted} // $existing_data->{DateCreated};
+    carp if (! $existing_date || ! $new_date);
+    $DB::single = 1 if (! $new_date || ! $new_date);  
+    if (DateTime->compare($existing_date, $new_date) == -1) {
+	$collection->update($query, $action, {w => 1, j => true});
+	$self->{_count}++;
+	return;
+    } else {
+	$self->{_skip_count}++;
+	return;
+    }
 }
 
 sub update {
@@ -158,6 +164,7 @@ my $element_list_entries = {
   "/Article/GrantList/Grant" => 1,
   "/OtherID" => 1,
   "/CommentsCorrectionsList/CommentsCorrections" => 1,
+  "/KeywordList" => 1,
   "/KeywordList/Keyword" => 1,
   "/GeneralNote" => 1,
   "/InvestigatorList/Investigator" => 1,
