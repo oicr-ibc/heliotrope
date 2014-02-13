@@ -11,6 +11,7 @@ use boolean;
 use Carp;
 use File::Find;
 use IO::Uncompress::Gunzip;
+use Parallel::ForkManager;
 use XML::LibXML;
 use XML::LibXML::Reader;
 
@@ -18,6 +19,8 @@ use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 
 $| = 1;
+
+my $MAX_PROCESSES = 12;
 
 sub BUILD {
     my ($self) = @_;
@@ -30,32 +33,44 @@ sub maybe_update {
 }
 
 sub _handle_file {
-    my ($self, $collection, $file) = @_;
+    my ($self, $file) = @_;
     return unless ($file =~ /n\d{4,4}\.xml\.gz$/);
 
-    $self->{_count} = 0;
-    $self->{_skip_count} = 0;
-    my $fh = IO::Uncompress::Gunzip->new($file);
-    my $reader = XML::LibXML::Reader->new(IO => $fh);
-    $self->{_element_count} = 0;
+    my $database = $self->open_database();
+    my $collection = $database->get_collection('publications');
+    $collection->ensure_index({"name" => 1}, { unique => true, sparse => true, safe => true });
 
-    # Skip to first entry element
-    say "$file";
-    while($reader->read() && $reader->name() ne 'MedlineCitation') {};
-    
-    do {
-        if ($reader->name() eq 'MedlineCitation') {
-            entry($self, $collection, $reader);
-	    $self->{_element_count}++;
-	    if ($self->{_element_count} % 1000 == 0) {
-		print "$self->{_element_count} ";
-	    }
-        }
-    } while($reader->nextSibling());
-    print "\n";
+    eval {
+        my $fh = IO::Uncompress::Gunzip->new($file);
+        my $reader = XML::LibXML::Reader->new(IO => $fh);
+        $self->{_element_count} = 0;
+        $self->{_count} = 0;
+        $self->{_skip_count} = 0;
 
-    close($fh);
-    say "$file: loaded $self->{_count} items, skipped $self->{_skip_count} items";
+        # Skip to first entry element
+        say "$file";
+        while($reader->read() && $reader->name() ne 'MedlineCitation') {};
+        
+        do {
+            if ($reader->name() eq 'MedlineCitation') {
+                entry($self, $collection, $reader);
+                $self->{_element_count}++;
+                if ($self->{_element_count} % 1000 == 0) {
+                    print "$self->{_element_count} ";
+                }
+            }
+        } while($reader->nextSibling());
+        print "\n";
+
+        close($fh);
+        say "$file: loaded $self->{_count} items, skipped $self->{_skip_count} items";
+    };
+
+    if ($@) {
+        carp "$@";
+    }
+
+    $self->close_database($database);
 }
 
 sub _is_article {
@@ -130,23 +145,25 @@ sub update {
 
     say "About to update.";
 
-    my $database = $self->open_database();
-    my $collection = $database->get_collection('publications');
-    $collection->ensure_index({"name" => 1}, { unique => true, sparse => true, safe => true });
-
     my $base = $ENV{HELIOTROPE_PUBMED_BASE} || "/Users/swatt/pubmed_xml";
+    my @files = ();
     my $wanted = sub {
-        _handle_file($self, $collection, $File::Find::name);
+        push @files, $File::Find::name if ($File::Find::name =~ /n\d{4,4}\.xml\.gz$/);
     };
     my $preprocess = sub {
         my @files = @_;
-	return sort { $a cmp $b } @files;
+	   return sort { $a cmp $b } @files;
     };
     find({wanted => $wanted, preprocess => $preprocess, nochdir => 1}, $base);
 
-    $self->close_database($database);
+    my $pm = new Parallel::ForkManager($MAX_PROCESSES);
+    foreach my $file (@files) {
+        my $pid = $pm->start() and next; 
+        _handle_file($self, $file);
+        $pm->finish();
+    };
 
-    # $self->output($registry);
+    $pm->wait_all_children();
 }
 
 my $element_list_entries = {
