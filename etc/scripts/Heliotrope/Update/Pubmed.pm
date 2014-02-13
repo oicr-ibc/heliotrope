@@ -55,12 +55,8 @@ sub _handle_file {
             if ($reader->name() eq 'MedlineCitation') {
                 entry($self, $collection, $reader);
                 $self->{_element_count}++;
-                if ($self->{_element_count} % 1000 == 0) {
-                    print "$self->{_element_count} ";
-                }
             }
         } while($reader->nextSibling());
-        print "\n";
 
         close($fh);
         say "$file: loaded $self->{_count} items, skipped $self->{_skip_count} items";
