@@ -8,6 +8,7 @@ with 'Heliotrope::Store';
 
 use boolean;
 use Carp;
+use DateTime::Tiny;
 
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 
@@ -41,7 +42,7 @@ sub _is_article {
 
 sub analyse {
 	my ($self) = @_;
-	my $database = $self->open_database();
+	my $database = $self->open_database(dt_type => 'DateTime::Tiny');
 	my $collection = $database->get_collection('publications');
 
 	my $cursor = $collection->find({});
