@@ -16,14 +16,14 @@ sub BUILD {
 }
 
 sub open_database {
-    my ($self) = @_;
+    my ($self, @args) = @_;
     
     my $database_name = $ENV{HELIOTROPE_DATABASE_NAME} || "heliotrope";
     my $database_server = $ENV{HELIOTROPE_DATABASE_SERVER} || "localhost:27017";
     my $database_username = $ENV{HELIOTROPE_DATABASE_USERNAME};
     my $database_password = $ENV{HELIOTROPE_DATABASE_PASSWORD};
     
-    my @options = (host => $database_server);
+    my @options = (@args, host => $database_server);
     push @options, username => $database_username if ($database_username);
     push @options, password => $database_password if ($database_password);
     push @options, query_timeout => -1;
