@@ -69,31 +69,6 @@ sub _handle_file {
     $self->close_database($database);
 }
 
-sub _is_article {
-    my ($root) = @_;
-
-    my ($article) = ($root->findnodes('/MedlineCitation/Article'));
-    return 0 unless ($article);
-    return 0 unless ($article->exists("Abstract"));
-
-    my $title = $article->findvalue("ArticleTitle");
-    my $abstract = $article->findvalue("Abstract");
-    my $title_abstract = "$title\n$abstract";
-
-    my @publication_types = $article->findnodes("PublicationTypeList/*");
-    my @mesh_terms = $article->findnodes("MeshHeadingList/*");
-
-    my $trial_publication_type = grep { $_->textContent() eq 'Clinical Trial' } @publication_types;
-    my $trial_mesh_term = grep { $_->textContent() =~ /^clinical trial/i } @mesh_terms;
-
-    my $trial_terms = $title_abstract =~ /\bclinical\b/i && $title_abstract =~ /\btrial\b/i;
-
-    if ($trial_terms || $trial_publication_type || $trial_mesh_term) {
-        return 1;
-    }
-    return 0;
-}
-
 sub entry {
     my ($self, $collection, $reader) = @_; 
     
@@ -115,24 +90,24 @@ sub entry {
     my $action = {'$set' => $document};
     my $new_date = $encoded->FETCH('DateRevised') // $encoded->FETCH('DateCompleted') // $encoded->FETCH('DateCreated');
 
-    my $existing = $collection->find_one($query);
+    my $existing = $collection->find_one($query, {_id => true});
     if (! $existing) {
-	$collection->insert($document, {w => 1, j => true});
-	$self->{_count}++;
-	return;
+    	$collection->insert($document, {w => 1, j => true});
+    	$self->{_count}++;
+    	return;
     }
 
     my $existing_data =  $existing->{sections}->{pubmed}->{data};
     my $existing_date = $existing_data->{DateRevised} // $existing_data->{DateCompleted} // $existing_data->{DateCreated};
+    
     carp if (! $existing_date || ! $new_date);
-    $DB::single = 1 if (! $new_date || ! $new_date);  
     if (DateTime->compare($existing_date, $new_date) == -1) {
-	$collection->update($query, $action, {w => 1, j => true});
-	$self->{_count}++;
-	return;
+    	$collection->update($query, $action, {w => 1, j => true});
+    	$self->{_count}++;
+    	return;
     } else {
-	$self->{_skip_count}++;
-	return;
+    	$self->{_skip_count}++;
+    	return;
     }
 }
 
@@ -267,7 +242,6 @@ sub output {
     my $count = @pmids;
     say "About to update $count documents";
 
-    $DB::single = 1;
     foreach my $pmid (@pmids) {
         my $result = $collection->update({PMID => "$pmid"}, {'$set' => {name => "pmid:$pmid", id => "pmid:$pmid"}}, {w => 1, j => true});
         say "Update: $pmid updated $result->{n} documents";
