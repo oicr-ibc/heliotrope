@@ -47,7 +47,7 @@ sub analyse {
 
 	my $cursor = $collection->find({});
 	my @clinical_trials = ();
-	while (my $object = $cursor->next) {
+	while (my $object = $cursor->next()) {
 		if (_is_article($object)) {
 			push @clinical_trials, $object->{_id};
 		}
