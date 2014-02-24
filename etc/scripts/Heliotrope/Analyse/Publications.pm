@@ -13,54 +13,55 @@ use DateTime::Tiny;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 
 sub _is_article {
-  my ($document) = @_;
+    my ($document) = @_;
 
-  my $body = $document->{sections}->{pubmed}->{data};
-  return 0 unless $body;
-  my $article = $body->{Article};
-  return 0 unless ($article);
-  return 0 unless (defined($article->{Abstract}));
+    my $body = $document->{sections}->{pubmed}->{data};
+    return 0 unless $body;
+    my $article = $body->{Article};
+    return 0 unless ($article);
+    return 0 unless (defined($article->{Abstract}));
 
-  my $title = $article->{ArticleTitle};
-  my $abstract = $article->{Abstract};
-  my $abstract_text = join(" ", map { $_->{value} } @{$abstract->{AbstractText}});
-  my $title_abstract = "$title\n$abstract_text";
+    my $title = $article->{ArticleTitle};
+    my $abstract = $article->{Abstract};
+    my $abstract_text = join(" ", map { $_->{value} } @{$abstract->{AbstractText}});
+    my $title_abstract = "$title\n$abstract_text";
 
-  my $trial_terms = $title_abstract =~ /\bclinical\b/i && $title_abstract =~ /\btrial\b/i;
-  return 1 if ($trial_terms);
+    my $trial_terms = $title_abstract =~ /\bclinical\b/i && $title_abstract =~ /\btrial\b/i;
+    return 1 if ($trial_terms);
 
-  my @publication_types = @{$article->{PublicationTypeList}->{PublicationType}};
-  my $trial_publication_type = @publication_types && grep { $_ eq 'Clinical Trial' } @publication_types;
-  return 1 if ($trial_publication_type);
+    my @publication_types = @{$article->{PublicationTypeList}->{PublicationType}};
+    my $trial_publication_type = @publication_types && grep { $_ eq 'Clinical Trial' } @publication_types;
+    return 1 if ($trial_publication_type);
 
-  my @mesh_terms = $body->{MeshHeadingList} ? @{$body->{MeshHeadingList}->{MeshHeading}} : ();
-  my $trial_mesh_term = @mesh_terms && grep { $_->{DescriptorName}->{value} =~ /^clinical trial/i } @mesh_terms;
-  return 1 if ($trial_mesh_term);
+    my @mesh_terms = $body->{MeshHeadingList} ? @{$body->{MeshHeadingList}->{MeshHeading}} : ();
+    my $trial_mesh_term = @mesh_terms && grep { $_->{DescriptorName}->{value} =~ /^clinical trial/i } @mesh_terms;
+    return 1 if ($trial_mesh_term);
 
-  return 0;
+    return 0;
 }
 
 sub analyse {
-	my ($self) = @_;
-	my $database = $self->open_database(dt_type => 'DateTime::Tiny');
-	my $collection = $database->get_collection('publications');
+    my ($self) = @_;
+    my $database = $self->open_database();
+    my $collection = $database->get_collection('publications');
 
-	my $cursor = $collection->find({});
-	my @clinical_trials = ();
-	while (my $object = $cursor->next()) {
-		if (_is_article($object)) {
-			push @clinical_trials, $object->{_id};
-		}
-  }
+    my $cursor = $collection->find({});
+    my $trial_count = 0;
+    my @trials = ();
+    while (my $object = $cursor->next()) {
+	if (_is_article($object)) {
+	    push @trials, $object->{_id};
+	    $trial_count++;
+	}
+    }
 
-  foreach my $id (@clinical_trials) {
-  	$collection->update({'_id' => $id}, {'$addToSet' => {'classes' => ["ct:haynes"]}});
-  }
+    foreach my $id (@trials) {
+	$collection->update({'_id' => $id}, {'$addToSet' => {'classes' => "ct:haynes"}});
+    }
 
-  my $trial_count = @clinical_trials;
-  say "Updated: $trial_count";
+    say "Updated: $trial_count";
 
-	$self->close_database();
+    $self->close_database();
 }
 
 1;
