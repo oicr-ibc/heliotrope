@@ -12,6 +12,8 @@ use DateTime::Tiny;
 
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 
+$| = 1;
+
 sub _is_article {
     my ($document) = @_;
 
@@ -42,18 +44,21 @@ sub _is_article {
 
 sub analyse {
     my ($self) = @_;
-    my $database = $self->open_database();
+    my $database = $self->open_database(dt_type => undef);
     my $collection = $database->get_collection('publications');
 
     my $cursor = $collection->find({});
     my $trial_count = 0;
     my @trials = ();
+    my $i = 0;
     while (my $object = $cursor->next()) {
 	if (_is_article($object)) {
 	    push @trials, $object->{_id};
 	    $trial_count++;
 	}
+        print "$i " if (++$i % 10000 == 0);
     }
+    print "\n";
 
     foreach my $id (@trials) {
 	$collection->update({'_id' => $id}, {'$addToSet' => {'classes' => "ct:haynes"}});
