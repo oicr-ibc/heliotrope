@@ -51,7 +51,7 @@ sub analyse {
   my $cursor = $publications->find({});
   while (my $object = $cursor->next()) {
     if (_is_article($object)) {
-      $tags->update({_id => $object->{_id}}, {'$addToSet' => {'classes' => $class}}, {upsert => true});
+      $tags->update({_id => $object->{_id}}, {'$addToSet' => {'classes' => "ct:haynes"}}, {upsert => true});
       say "$object->{_id}";
     }
   }
