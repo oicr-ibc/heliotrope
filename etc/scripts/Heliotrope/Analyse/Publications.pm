@@ -45,11 +45,13 @@ sub _is_article {
 sub analyse {
   my ($self) = @_;
   my $database = $self->open_database(dt_type => undef);
-  my $collection = $database->get_collection('publications');
+  my $publications = $database->get_collection('publications');
+  my $tags = $database->get_collection('tags');
 
-  my $cursor = $collection->find({});
+  my $cursor = $publications->find({});
   while (my $object = $cursor->next()) {
     if (_is_article($object)) {
+      $tags->update({_id => $object->{_id}}, {'$addToSet' => {'classes' => $class}}, {upsert => true});
       say "$object->{_id}";
     }
   }
