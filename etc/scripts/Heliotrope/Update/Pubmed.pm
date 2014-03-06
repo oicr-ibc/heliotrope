@@ -93,6 +93,7 @@ sub entry {
     my $existing = $collection->find_one($query, {_id => true, "sections.pubmed.data" => true});
     if (! $existing) {
     	$collection->insert($document, {w => 1, j => true});
+        say "Inserting: pmid:$pmid";
     	$self->{_count}++;
     	return;
     }
@@ -100,9 +101,12 @@ sub entry {
     my $existing_data =  $existing->{sections}->{pubmed}->{data};
     my $existing_date = $existing_data->{DateRevised} // $existing_data->{DateCompleted} // $existing_data->{DateCreated};
     
-    carp if (! $existing_date || ! $new_date);
+    if (! $existing_date || ! $new_date) {
+        carp("Can't resolve dates: $existing_date, $new_date");
+    }
     if (DateTime->compare($existing_date, $new_date) == -1) {
     	$collection->update($query, $action, {w => 1, j => true});
+        say "Updating: pmid:$pmid";
     	$self->{_count}++;
     	return;
     } else {
