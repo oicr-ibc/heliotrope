@@ -90,7 +90,7 @@ sub entry {
     my $action = {'$set' => $document};
     my $new_date = $encoded->FETCH('DateRevised') // $encoded->FETCH('DateCompleted') // $encoded->FETCH('DateCreated');
 
-    my $existing = $collection->find_one($query, {_id => true});
+    my $existing = $collection->find_one($query, {_id => true, "sections.pubmed.data" => true});
     if (! $existing) {
     	$collection->insert($document, {w => 1, j => true});
     	$self->{_count}++;
