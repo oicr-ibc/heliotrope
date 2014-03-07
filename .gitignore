@@ -4,3 +4,6 @@
 /config.json
 /target
 /*.sublime-*
+/etc/scripts/*.log
+/etc/scripts/*.err
+
