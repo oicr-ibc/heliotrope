@@ -245,7 +245,7 @@ sub step3 {
 
       $DB::single = 1 if ($pattern eq 'seminiferous');
       $DB::single = 1 if ($global_probability == 0);
-      my $score = log($local_probability / $global_probability);
+      my $score = log(0.1 + $this_label_feature_count) - log(0.1 + ($labelled_feature_count - $this_label_feature_count));
 
       # my $alpha = 0.5;
       # my $beta = 0.5;
