@@ -7,10 +7,11 @@ use common::sense;
 
 use Carp;
 use Digest::SHA qw(sha1_hex);
-use List::MoreUtils qw(uniq first_index);
+use List::MoreUtils qw(first_index);
 use Lingua::StopWords qw(getStopWords);
 use Lingua::Stem::Snowball;
 use Text::CSV;
+use PDL;
 
 use constant E_PMID => 0;
 use constant E_INDEX => 1;
@@ -19,6 +20,8 @@ use constant E_CLASS => 3;
 use constant E_SYMBOL => 4;
 use constant E_TEXT => 5;
 
+use Heliotrope::Statistics qw(lexpected);
+
 my $FILE = "/Users/swatt/data.csv";
 
 sub tokenized {
@@ -26,7 +29,7 @@ sub tokenized {
   $text =~ s{[\(\)]}{}g;
   $text =~ s{\b}{ }g;
   $text =~ s{(\p{PosixPunct})(\p{PosixPunct})}{$1 $2}g;
-  $text =~ s{$symbol}{__TARGET__}g;
+  $text =~ s{\b$symbol\b}{__TARGET__}g;
   $text =~ s{\s+}{ }g;
   return $text;
 }
@@ -115,6 +118,7 @@ sub step2 {
   $table->{__rules} = [
     [">gene", qr/__TARGET__ \bgene\b/, 'positive', 0],
     ["<syndrome", qr/\bsyndrome\b __TARGET__/, 'negative', 0],
+    [">treatment", qr/__TARGET__ \btreatment\b/, 'negative', 0],
     ["<acid", qr/\bacid\b __TARGET__/, 'negative', 0],
   ];
 }
@@ -156,6 +160,7 @@ sub step3 {
   my $entries = $table->{__entries};
   my $classes = $table->{__classes};
   my $frequencies = {};
+  my $sample_frequencies = {};
   my $label_frequencies = {};
   foreach my $entry (@$entries) {
     my $label = $entry->[E_LABEL];
@@ -177,6 +182,9 @@ sub step3 {
         $frequencies->{'<'.$token}->{'+'}++ if ($i == $position - 1);
         $frequencies->{'>'.$token}->{'+'}++ if ($i == $position + 1);
         $frequencies->{'#'.$token}->{'+'}++;
+        $sample_frequencies->{'<'}++ if ($i == $position - 1);
+        $sample_frequencies->{'>'}++ if ($i == $position + 1);
+        $sample_frequencies->{'#'}++;
       } else {
         $frequencies->{'<'.$token}->{'-'}++ if ($i == $position - 1);
         $frequencies->{'>'.$token}->{'-'}++ if ($i == $position + 1);
@@ -194,6 +202,9 @@ sub step3 {
       $frequencies->{'['.$tokens[$position-2].' '.$tokens[$position-1]}->{'+'}++ if ($position >= 2);
       $frequencies->{'@'.$tokens[$position-1].' '.$tokens[$position+1]}->{'+'}++ if ($position >= 1 && $position+1 < $length);
       $frequencies->{']'.$tokens[$position+1].' '.$tokens[$position+2]}->{'+'}++ if ($position+2 < $length);
+      $sample_frequencies->{'['}++ if ($position >= 2);
+      $sample_frequencies->{'@'}++ if ($position >= 1 && $position+1 < $length);
+      $sample_frequencies->{']'}++ if ($position+2 < $length);
     } else {
       $frequencies->{'['.$tokens[$position-2].' '.$tokens[$position-1]}->{'-'}++ if ($position >= 2);
       $frequencies->{'@'.$tokens[$position-1].' '.$tokens[$position+1]}->{'-'}++ if ($position >= 1 && $position+1 < $length);
@@ -308,7 +319,11 @@ sub accuracy {
   foreach my $entry (@$entries) {
     if (defined($entry->[E_LABEL])) {
       $classified_count++;
-      $true_count++ if ($entry->[E_LABEL] eq $entry->[E_CLASS]);
+      if ($entry->[E_LABEL] eq $entry->[E_CLASS]) {
+        $true_count++; 
+      } else {
+        say "Mismatched: ".$entry->[E_PMID].", ".$entry->[E_SYMBOL].", ".$entry->[E_LABEL].", ".$entry->[E_CLASS]." => ".$entry->[E_TEXT];
+      }
     }
   }
 
