@@ -271,9 +271,8 @@ sub step3 {
       my $lexp1 = lexpected($r1, $a1, $A1, $n1, $N1);
 
       my $a2 = $labelled_feature_count - $this_label_feature_count;
-      my $A2 = $table->{__global_term_frequencies}->{$key};
-      $DB::single = 1 if ($a2 == 0 && $A2 == 0);
-      my $lexp2 = lexpected($r1, $a2, $A2, $n1, $N1);
+      $DB::single = 1 if ($a2 == 0 && $A1 == 0);
+      my $lexp2 = lexpected($r1, $a2, $A1, $n1, $N1);
 
       my $diff = abs($lexp1 - $lexp2);
       my $score = $diff;
