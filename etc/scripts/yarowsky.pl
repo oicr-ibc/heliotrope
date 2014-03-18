@@ -55,12 +55,14 @@ sub process {
 
   $table->{__iterations} = 0;
 
+  my $i = 0;
   while(1) {
+    say "Iteration: $i";
     step3($table);
     print_rules($table);
     apply($table);
-    accuracy($table);\
-    last;
+    accuracy($table);
+    $i++;
   }
 };
 
