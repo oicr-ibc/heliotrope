@@ -281,7 +281,7 @@ sub step3 {
 
   my $rule_limit = 10 * $table->{__iterations};
   my @sorted = sort { $b->[2] <=> $a->[2] } @rules;
-  @sorted = @sorted[0..($rule_limit - 1)];
+  @sorted = @sorted[0..($rule_limit - 1)] if ($#sorted > $rule_limit);
   my @rules = map {
     my $rule = $_;
     my $key = $rule->[0];
