@@ -83,8 +83,20 @@ sub step1 {
       my $text = tokenized($gene, "$title $text");
       my @tokens = split(/\s/, $text);
       my $j = 0;
+
+      # Build a table of where the targets are
+      my @indexes = indexes { $_ eq '__TARGET__' } @tokens;
+      my %index_table = ();
+      @index_table{@indexes} = ((1) x @indexes);
+
+      # Now make all the symbols concrete again. This means symbols show as 
+      # tokens around each target. 
       for(my $index = 0; $index <= $#tokens; $index++) {
-        if ($tokens[$index] eq '__TARGET__') {
+        $tokens[$index] = $gene if ($tokens[$index] eq '__TARGET__');
+      }
+
+      for(my $index = 0; $index <= $#tokens; $index++) {
+        if ($index_table{$index}) {
           my $before_start = $index - 10;
           my $before_end = $index - 1;
           my $after_start = $index + 1;
@@ -116,15 +128,13 @@ sub step1 {
             $table->{__global_term_frequencies}->{'@'.$tokens[$before_end].' '.$tokens[$after_start]}++;
             $table->{__global_counts}->{'@'}++;
           }
-          $before =~ s{__TARGET__}{$gene}g;
-          $after =~ s{__TARGET__}{$gene}g;
           push @{$table->{__entries}}, [$pmid, $j, undef, $class, $gene, $before.' __TARGET__ '.$after];
           $j++;
-        } else {
+        }
+        # In all cases, even when this is a gene symbol, we add the term
           $table->{__global_term_frequencies}->{'#'.$tokens[$index]}++;
           $table->{__global_counts}->{'#'}++;
         }
-      }
     };
   });
   return;
@@ -205,9 +215,12 @@ sub step3 {
         $frequencies->{'<'.$token}->{'+'}++ if ($i == $position - 1);
         $frequencies->{'>'.$token}->{'+'}++ if ($i == $position + 1);
         $frequencies->{'#'.$token}->{'+'}++;
-        $sample_frequencies->{'<'}++ if ($i == $position - 1);
-        $sample_frequencies->{'>'}++ if ($i == $position + 1);
-        $sample_frequencies->{'#'}++;
+        $sample_frequencies->{$label}->{'<'}++ if ($i == $position - 1);
+        $sample_frequencies->{$label}->{'>'}++ if ($i == $position + 1);
+        $sample_frequencies->{$label}->{'#'}++;
+        $sample_frequencies->{'*'}->{'<'}++ if ($i == $position - 1);
+        $sample_frequencies->{'*'}->{'>'}++ if ($i == $position + 1);
+        $sample_frequencies->{'*'}->{'#'}++;
       } else {
         $frequencies->{'<'.$token}->{'-'}++ if ($i == $position - 1);
         $frequencies->{'>'.$token}->{'-'}++ if ($i == $position + 1);
@@ -225,9 +238,12 @@ sub step3 {
       $frequencies->{'['.$tokens[$position-2].' '.$tokens[$position-1]}->{'+'}++ if ($position >= 2);
       $frequencies->{'@'.$tokens[$position-1].' '.$tokens[$position+1]}->{'+'}++ if ($position >= 1 && $position+1 < $length);
       $frequencies->{']'.$tokens[$position+1].' '.$tokens[$position+2]}->{'+'}++ if ($position+2 < $length);
-      $sample_frequencies->{'['}++ if ($position >= 2);
-      $sample_frequencies->{'@'}++ if ($position >= 1 && $position+1 < $length);
-      $sample_frequencies->{']'}++ if ($position+2 < $length);
+      $sample_frequencies->{$label}->{'['}++ if ($position >= 2);
+      $sample_frequencies->{$label}->{'@'}++ if ($position >= 1 && $position+1 < $length);
+      $sample_frequencies->{$label}->{']'}++ if ($position+2 < $length);
+      $sample_frequencies->{'*'}->{'['}++ if ($position >= 2);
+      $sample_frequencies->{'*'}->{'@'}++ if ($position >= 1 && $position+1 < $length);
+      $sample_frequencies->{'*'}->{']'}++ if ($position+2 < $length);
     } else {
       $frequencies->{'['.$tokens[$position-2].' '.$tokens[$position-1]}->{'-'}++ if ($position >= 2);
       $frequencies->{'@'.$tokens[$position-1].' '.$tokens[$position+1]}->{'-'}++ if ($position >= 1 && $position+1 < $length);
@@ -263,16 +279,19 @@ sub step3 {
       # different numbers of exemplars of each type. 
 
       my $a1 = $this_label_feature_count;
-      my $A1 = $table->{__global_term_frequencies}->{$key} - $all_feature_count;
-      my $n1 = $sample_frequencies->{$rule_type};
-      my $N1 = $table->{__global_counts}->{$rule_type} - $sample_frequencies->{$rule_type};
-      my $r1 = $sample_frequencies->{$rule_type} / $table->{__global_counts}->{$rule_type};
+      my $A1 = $table->{__global_term_frequencies}->{$key} - $a1;
+      my $n1 = $sample_frequencies->{$label}->{$rule_type};
+      my $N1 = $table->{__global_counts}->{$rule_type} - $n1;
+      my $r1 = $sample_frequencies->{$label}->{$rule_type} / $table->{__global_counts}->{$rule_type};
       $DB::single = 1 if ($a1 == 0 && $A1 == 0);
       my $lexp1 = lexpected($r1, $a1, $A1, $n1, $N1);
 
       my $a2 = $labelled_feature_count - $this_label_feature_count;
-      $DB::single = 1 if ($a2 == 0 && $A1 == 0);
-      my $lexp2 = lexpected($r1, $a2, $A1, $n1, $N1);
+      my $A2 = $table->{__global_term_frequencies}->{$key} - $a2;
+      my $n2 = $sample_frequencies->{'*'}->{$rule_type} - $sample_frequencies->{$label}->{$rule_type};
+      my $N2 = $table->{__global_counts}->{$rule_type} - $n2;
+      $DB::single = 1 if ($a2 == 0 && $A2 == 0);
+      my $lexp2 = lexpected($r1, $a2, $A2, $n2, $N2);
 
       my $diff = abs($lexp1 - $lexp2);
       my $score = $diff;
@@ -281,7 +300,7 @@ sub step3 {
     }
   }
 
-  my $rule_limit = 10 * $table->{__iterations};
+  my $rule_limit = 5 * $table->{__iterations};
   my @sorted = sort { $b->[2] <=> $a->[2] } @rules;
   @sorted = @sorted[0..($rule_limit - 1)] if ($#sorted > $rule_limit);
   my @rules = map {
