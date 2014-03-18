@@ -74,7 +74,7 @@ sub step1 {
     my $i = 0;
     $table->{__entries} = [];
     $table->{__global_term_frequencies} = {};
-    $table->{__global_term_count} = 0;
+    $table->{__global_counts} = {};
     while (my $row = $csv->getline($fh)) {
       say STDERR "$i " if (++$i % 10000 == 0);
       last if ($i == 2000);
@@ -95,13 +95,34 @@ sub step1 {
           $after_end = $#tokens if ($after_end > $#tokens);
           my $before = join(' ', @tokens[$before_start..$before_end]);
           my $after = join(' ', @tokens[$after_start..$after_end]);
+          if ($before) {
+            $table->{__global_term_frequencies}->{'<'.$tokens[$before_end]}++;
+            $table->{__global_counts}->{'<'}++;
+          }
+          if ($after) {
+            $table->{__global_term_frequencies}->{'>'.$tokens[$after_start]}++;
+            $table->{__global_counts}->{'>'}++;
+          }
+          if ($before_end - $before_start > 1) {
+            $table->{__global_term_frequencies}->{'['.$tokens[$before_end-1].' '.$tokens[$before_end]}++;
+            $table->{__global_counts}->{'['}++;
+          }
+          if ($after_end - $after_start > 1) {
+            $table->{__global_term_frequencies}->{']'.$tokens[$after_start].' '.$tokens[$after_start+1]}++;
+            $table->{__global_counts}->{']'}++;
+          }
+          # $DB::single = 1 if ('@'.$tokens[$before_end].' '.$tokens[$after_start] eq '@syndrome .');
+          if ($before && $after) {
+            $table->{__global_term_frequencies}->{'@'.$tokens[$before_end].' '.$tokens[$after_start]}++;
+            $table->{__global_counts}->{'@'}++;
+          }
           $before =~ s{__TARGET__}{$gene}g;
           $after =~ s{__TARGET__}{$gene}g;
           push @{$table->{__entries}}, [$pmid, $j, undef, $class, $gene, $before.' __TARGET__ '.$after];
           $j++;
         } else {
-          $table->{__global_term_frequencies}->{$tokens[$index]}++;
-          $table->{__global_term_count}++;
+          $table->{__global_term_frequencies}->{'#'.$tokens[$index]}++;
+          $table->{__global_counts}->{'#'}++;
         }
       }
     };
@@ -234,47 +255,29 @@ sub step3 {
       my $this_label_feature_count = $value->{$label};
       next unless ($this_label_feature_count);
 
+      my $pattern = substr($key, 1);
+      my $rule_type = substr($key, 0, 1);
+
       # Scoring also depends on the relative sizes of the two labels, which are not equal, or
       # at least cannot be assumed to be. This, the actual probability needs to include the
       # different numbers of exemplars of each type. 
 
-      my $local_probability = $this_label_feature_count / $all_feature_count;
-      my $global_probability;
+      my $a1 = $this_label_feature_count;
+      my $A1 = $table->{__global_term_frequencies}->{$key} - $all_feature_count;
+      my $n1 = $sample_frequencies->{$rule_type};
+      my $N1 = $table->{__global_counts}->{$rule_type} - $sample_frequencies->{$rule_type};
+      my $r1 = $sample_frequencies->{$rule_type} / $table->{__global_counts}->{$rule_type};
+      $DB::single = 1 if ($a1 == 0 && $A1 == 0);
+      my $lexp1 = lexpected($r1, $a1, $A1, $n1, $N1);
 
-      my $pattern = substr($key, 1);
-      my $rule_type = substr($key, 0, 1);
-      if ($rule_type eq '#') {
-        next unless (exists($table->{__global_term_frequencies}->{$pattern}));
-        $global_probability = $table->{__global_term_frequencies}->{$pattern} / $table->{__global_term_count};
-      } elsif ($rule_type eq '<') {
-        next unless (exists($table->{__global_term_frequencies}->{$pattern}));
-        $global_probability = $table->{__global_term_frequencies}->{$pattern} / $table->{__global_term_count};
-      } elsif ($rule_type eq '>') {
-        next unless (exists($table->{__global_term_frequencies}->{$pattern}));
-        $global_probability = $table->{__global_term_frequencies}->{$pattern} / $table->{__global_term_count};
-      } else {
-        $global_probability = 0.1;
-      }
+      my $a2 = $labelled_feature_count - $this_label_feature_count;
+      my $A2 = $table->{__global_term_frequencies}->{$key};
+      $DB::single = 1 if ($a2 == 0 && $A2 == 0);
+      my $lexp2 = lexpected($r1, $a2, $A2, $n1, $N1);
 
-      $DB::single = 1 if ($pattern eq 'seminiferous');
-      $DB::single = 1 if ($global_probability == 0);
-      my $score = log(0.1 + $this_label_feature_count) - log(0.1 + ($labelled_feature_count - $this_label_feature_count));
+      my $diff = abs($lexp1 - $lexp2);
+      my $score = $diff;
 
-      # my $alpha = 0.5;
-      # my $beta = 0.5;
-      # my $this_probability = $this_label_feature_count / $labelled_feature_count;
-      # my $other_probability = ($labelled_feature_count - $this_label_feature_count) / $labelled_feature_count;
-      # my $this_likelihood = ($this_label_feature_count * $all_label_frequency) / ($labelled_feature_count * $this_label_frequency);
-      # my $other_likelihood = (($labelled_feature_count - $this_label_feature_count) * $all_label_frequency) / ($labelled_feature_count * $this_label_frequency);
-      # my $this_log_likelihood = log($beta + $this_likelihood);
-      # my $other_log_likelihood = log($beta + $other_likelihood);
-      # # $DB::single = 1 if ($other_log_likelihood == 0 || $key eq '#the');
-
-      # # my $score = $this_log_likelihood / $other_log_likelihood;
-
-      # say "$key, $label, $this_label_feature_count, $labelled_feature_count, $this_probability, $other_probability, $this_likelihood, $other_likelihood, $this_log_likelihood, $other_log_likelihood";
-
-      # my $score = ($this_label_feature_count + $alpha) / ($labelled_feature_count + $label_count * $alpha);
       push @rules, [$key, $label, $score];
     }
   }
