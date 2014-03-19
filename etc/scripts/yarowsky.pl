@@ -19,6 +19,24 @@ use constant E_LABEL => 2;
 use constant E_CLASS => 3;
 use constant E_SYMBOL => 4;
 use constant E_TEXT => 5;
+use constant E_RULE => 6;
+
+use constant RULE_KEY => 0;
+use constant RULE_PATTERN => 1;
+use constant RULE_LABEL => 2;
+use constant RULE_SCORE => 3;
+
+use constant WINDOW_SIZE => 20;
+use constant END_AFTER => 10;
+use constant RULES_PER_ITERATION => 3;
+
+use constant SEED_RULES => [
+  [">gene", qr/__TARGET__ gene\b/, 'positive', 0],
+  ["[wild type", qr/\bwild type __TARGET__/, 'positive', 0],
+  ["<syndrome", qr/\bsyndrome __TARGET__/, 'negative', 0],
+  [">treatment", qr/__TARGET__ \btreatment\b/, 'negative', 0],
+  ["<acid", qr/\bacid\b __TARGET__/, 'negative', 0],
+];
 
 use Heliotrope::Statistics qw(lexpected);
 
@@ -63,6 +81,7 @@ sub process {
     apply($table);
     accuracy($table);
     $i++;
+    last if ($i == END_AFTER);
   }
 };
 
@@ -97,10 +116,10 @@ sub step1 {
 
       for(my $index = 0; $index <= $#tokens; $index++) {
         if ($index_table{$index}) {
-          my $before_start = $index - 10;
+          my $before_start = $index - WINDOW_SIZE;
           my $before_end = $index - 1;
           my $after_start = $index + 1;
-          my $after_end = $index + 10;
+          my $after_end = $index + WINDOW_SIZE;
           $before_start = 0 if ($before_start < 0);
           $before_end = 0 if ($before_end < 0);
           $after_start = $#tokens if ($after_start > $#tokens);
@@ -128,7 +147,7 @@ sub step1 {
             $table->{__global_term_frequencies}->{'@'.$tokens[$before_end].' '.$tokens[$after_start]}++;
             $table->{__global_counts}->{'@'}++;
           }
-          push @{$table->{__entries}}, [$pmid, $j, undef, $class, $gene, $before.' __TARGET__ '.$after];
+          push @{$table->{__entries}}, [$pmid, $j, undef, $class, $gene, $before.' __TARGET__ '.$after, undef];
           $j++;
         }
         # In all cases, even when this is a gene symbol, we add the term
@@ -140,20 +159,10 @@ sub step1 {
   return;
 }
 
-use constant RULE_KEY => 0;
-use constant RULE_PATTERN => 1;
-use constant RULE_LABEL => 2;
-use constant RULE_SCORE => 3;
-
 sub step2 {
   my ($table) = @_;
   say STDERR "Step 2 - setting seed rules";
-  $table->{__rules} = [
-    [">gene", qr/__TARGET__ \bgene\b/, 'positive', 0],
-    ["<syndrome", qr/\bsyndrome\b __TARGET__/, 'negative', 0],
-    [">treatment", qr/__TARGET__ \btreatment\b/, 'negative', 0],
-    ["<acid", qr/\bacid\b __TARGET__/, 'negative', 0],
-  ];
+  $table->{__rules} = SEED_RULES;
 }
 
 sub apply {
@@ -168,12 +177,15 @@ sub apply {
     foreach my $rule (@$rules) {
       my $pattern = $rule->[RULE_PATTERN];
       my $label = $rule->[RULE_LABEL];
+      my $key = $rule->[RULE_KEY];
       while ($entry->[E_TEXT] =~ m{$pattern}g) {
         $entry->[E_LABEL] = $label;
+        $entry->[E_RULE] = [$key, $rule->[RULE_SCORE]];
         $label_count->{$label}++;
         next ENTRY;
       }
       $entry->[E_LABEL] = undef;
+      $entry->[E_RULE] = undef;
     }
   }
   foreach my $label (sort keys %$label_count) {
@@ -300,12 +312,12 @@ sub step3 {
     }
   }
 
-  my $rule_limit = 3 * $table->{__iterations};
+  my $rule_limit = RULES_PER_ITERATION * $table->{__iterations};
   my @all_rules = ();
   while (my ($key, $value) = each %$rules) {
     push @all_rules, select_rules($rule_limit, @$value);
   }
-  @all_rules = sort { $b->[3] <=> $a->[3] } @all_rules;
+  @all_rules = sort { $b->[RULE_SCORE] <=> $a->[RULE_SCORE] } @all_rules;
   $DB::single = 1;
   $table->{__rules} = \@all_rules;
 }
@@ -361,7 +373,13 @@ sub accuracy {
       if ($entry->[E_LABEL] eq $entry->[E_CLASS]) {
         $true_count++; 
       } else {
-        say "Mismatched: ".$entry->[E_PMID].", ".$entry->[E_SYMBOL].", ".$entry->[E_LABEL].", ".$entry->[E_CLASS]." => ".$entry->[E_TEXT];
+        my $pmid = $entry->[E_PMID];
+        my $symbol = $entry->[E_SYMBOL];
+        my $label = $entry->[E_LABEL];
+        my $class = $entry->[E_CLASS];
+        my $text = $entry->[E_TEXT];
+        my $rule = "$entry->[E_RULE]->[0]: $entry->[E_RULE]->[1]";
+        say "Mismatched: $pmid, $symbol, $label, $class ($rule) => $text";
       }
     }
   }
