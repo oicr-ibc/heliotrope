@@ -26,7 +26,7 @@ use constant RULE_PATTERN => 1;
 use constant RULE_LABEL => 2;
 use constant RULE_SCORE => 3;
 
-use constant WINDOW_SIZE => 20;
+use constant WINDOW_SIZE => 10;
 use constant END_AFTER => 10;
 use constant RULES_PER_ITERATION => 3;
 
@@ -92,6 +92,7 @@ sub step1 {
     my ($fh, $csv) = @_;
     my $i = 0;
     $table->{__entries} = [];
+    $table->{__entries_by_discourse} = {};
     $table->{__global_term_frequencies} = {};
     $table->{__global_counts} = {};
     while (my $row = $csv->getline($fh)) {
@@ -147,7 +148,9 @@ sub step1 {
             $table->{__global_term_frequencies}->{'@'.$tokens[$before_end].' '.$tokens[$after_start]}++;
             $table->{__global_counts}->{'@'}++;
           }
-          push @{$table->{__entries}}, [$pmid, $j, undef, $class, $gene, $before.' __TARGET__ '.$after, undef];
+          my $entry = [$pmid, $j, undef, $class, $gene, $before.' __TARGET__ '.$after, undef];
+          push @{$table->{__entries}}, $entry;
+          push @{$table->{__entries_by_discourse}->{$pmid}}, $entry;
           $j++;
         }
         # In all cases, even when this is a gene symbol, we add the term
@@ -172,6 +175,8 @@ sub apply {
   my $rules = $table->{__rules};
   my $count = @$entries;
   my $label_count = {};
+
+  my $discourses = {};
   ENTRY: foreach my $entry (@$entries) {
     # say $entry->[E_CLASS].': '. $entry->[E_TEXT] if (defined($entry->[E_LABEL]));
     foreach my $rule (@$rules) {
@@ -182,12 +187,37 @@ sub apply {
         $entry->[E_LABEL] = $label;
         $entry->[E_RULE] = [$key, $rule->[RULE_SCORE]];
         $label_count->{$label}++;
+        $discourses->{$entry->[E_PMID]}++;
         next ENTRY;
       }
       $entry->[E_LABEL] = undef;
       $entry->[E_RULE] = undef;
     }
   }
+
+  # Now we can re-label according to the score heuristic. This is the one sense per discourse
+  # constraint. Here we collect all the identifiers that have any label, and go through them
+  # one at a time.
+
+  foreach my $key (keys %$discourses) {
+    my @scores = ();
+    my @entries = @{$table->{__entries_by_discourse}->{$key}};
+    my @matched_entries = grep { $_->[E_RULE] } @entries;
+    @matched_entries = sort { $b->[E_RULE]->[1] <=> $a->[E_RULE]->[1] } @matched_entries;
+    my $top = $matched_entries[0];
+
+    # If there is "substantial disagreement" we are supposed to return everything to the residual,
+    # whatever "substantial disagreement" is supposed to mean. 
+
+    croak if (! defined($top));
+    foreach my $entry (@entries) {
+      next if ($top == $entry);
+      $entry->[E_LABEL] = $top->[E_LABEL];
+      $entry->[E_RULE] = ["...".$top->[E_RULE]->[0], $top->[E_RULE]->[1]];
+    }
+    say @scores;
+  }
+
   foreach my $label (sort keys %$label_count) {
     my $proportion = 100 * $label_count->{$label} / $count;
     say STDERR sprintf("Labelled %s: %0.2f%% (%d of %d)", $label, $proportion, $label_count->{$label}, $count);
