@@ -7,7 +7,7 @@ use common::sense;
 
 use Carp;
 use Digest::SHA qw(sha1_hex);
-use List::MoreUtils qw(first_index);
+use List::MoreUtils qw(first_index indexes);
 use Lingua::StopWords qw(getStopWords);
 use Lingua::Stem::Snowball;
 use Text::CSV;
@@ -132,9 +132,9 @@ sub step1 {
           $j++;
         }
         # In all cases, even when this is a gene symbol, we add the term
-          $table->{__global_term_frequencies}->{'#'.$tokens[$index]}++;
-          $table->{__global_counts}->{'#'}++;
-        }
+        $table->{__global_term_frequencies}->{'#'.$tokens[$index]}++;
+        $table->{__global_counts}->{'#'}++;
+      }
     };
   });
   return;
@@ -209,7 +209,7 @@ sub step3 {
       next if ($i == $position);
       my $token = $tokens[$i];
       if (defined($label)) {
-        $frequencies->{'<'.$token}->{$label}++ if ($i == $position - 1);
+        $frequencies->{'<'.$token}->{$label}++ if ($i == $position - 1); 
         $frequencies->{'>'.$token}->{$label}++ if ($i == $position + 1);
         $frequencies->{'#'.$token}->{$label}++;
         $frequencies->{'<'.$token}->{'+'}++ if ($i == $position - 1);
@@ -262,7 +262,7 @@ sub step3 {
 
   say STDERR "Step 3 - calculating decision list";
   my $label_count = @$classes;
-  my @rules = ();
+  my $rules = {};
   while(my ($key, $value) = each %$frequencies) {
     foreach my $label (@$classes) {
       my $unlabelled_feature_count = $value->{'-'};
@@ -293,14 +293,25 @@ sub step3 {
       $DB::single = 1 if ($a2 == 0 && $A2 == 0);
       my $lexp2 = lexpected($r1, $a2, $A2, $n2, $N2);
 
-      my $diff = abs($lexp1 - $lexp2);
-      my $score = $diff;
+      my $diff = $lexp1 - $lexp2;
+      my $score = $diff->at();
 
-      push @rules, [$key, $label, $score];
+      push @{$rules->{$label}}, [$key, $label, $score];
     }
   }
 
-  my $rule_limit = 5 * $table->{__iterations};
+  my $rule_limit = 3 * $table->{__iterations};
+  my @all_rules = ();
+  while (my ($key, $value) = each %$rules) {
+    push @all_rules, select_rules($rule_limit, @$value);
+  }
+  @all_rules = sort { $b->[3] <=> $a->[3] } @all_rules;
+  $DB::single = 1;
+  $table->{__rules} = \@all_rules;
+}
+
+sub select_rules {
+  my ($rule_limit, @rules) = @_;
   my @sorted = sort { $b->[2] <=> $a->[2] } @rules;
   @sorted = @sorted[0..($rule_limit - 1)] if ($#sorted > $rule_limit);
   my @rules = map {
@@ -308,29 +319,34 @@ sub step3 {
     my $key = $rule->[0];
     my $label = $rule->[1];
     my $score = $rule->[2];
-    my $pattern = substr($key, 1);
-    my $rule_type = substr($key, 0, 1);
-    if ($rule_type eq '#') {
-      $pattern = "\\b$pattern\\b";
-    } elsif ($rule_type eq '<') {
-      $pattern = "\\b$pattern __TARGET__";
-    } elsif ($rule_type eq '>') {
-      $pattern = "__TARGET__ $pattern\\b";
-    } elsif ($rule_type eq '[') {
-      my @tokens = split(/ /, $pattern);
-      $pattern = "\\b$tokens[0] $tokens[1] __TARGET__";
-    } elsif ($rule_type eq ']') {
-      my @tokens = split(/ /, $pattern);
-      $pattern = "__TARGET__ $tokens[0] $tokens[1]\\b";
-    } elsif ($rule_type eq '@') {
-      my @tokens = split(/ /, $pattern);
-      $pattern = "\\b$tokens[0] __TARGET__ $tokens[1]\\b";
-    } else {
-      croak "Invalid rule: $key";
-    }
-    [$key, qr/$pattern/, $label, $score];
+    [$key, build_rule_pattern($key), $label, $score];
   } @sorted;
-  $table->{__rules} = \@rules;
+  return @rules;  
+}
+
+sub build_rule_pattern {
+  my ($key) = @_;
+  my $pattern = substr($key, 1);
+  my $rule_type = substr($key, 0, 1);
+  if ($rule_type eq '#') {
+    $pattern = "\\b$pattern\\b";
+  } elsif ($rule_type eq '<') {
+    $pattern = "\\b$pattern __TARGET__";
+  } elsif ($rule_type eq '>') {
+    $pattern = "__TARGET__ $pattern\\b";
+  } elsif ($rule_type eq '[') {
+    my @tokens = split(/ /, $pattern);
+    $pattern = "\\b$tokens[0] $tokens[1] __TARGET__";
+  } elsif ($rule_type eq ']') {
+    my @tokens = split(/ /, $pattern);
+    $pattern = "__TARGET__ $tokens[0] $tokens[1]\\b";
+  } elsif ($rule_type eq '@') {
+    my @tokens = split(/ /, $pattern);
+    $pattern = "\\b$tokens[0] __TARGET__ $tokens[1]\\b";
+  } else {
+    croak "Invalid rule: $key";
+  }
+  return qr/$pattern/;
 }
 
 sub accuracy {
