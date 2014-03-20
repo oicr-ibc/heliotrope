@@ -26,12 +26,14 @@ use constant RULE_PATTERN => 1;
 use constant RULE_LABEL => 2;
 use constant RULE_SCORE => 3;
 
-use constant WINDOW_SIZE => 10;
-use constant END_AFTER => 20;
+use constant WINDOW_SIZE => 15;
+use constant END_AFTER => 30;
+use constant RULES_BASE => 5;
 use constant RULES_PER_ITERATION => 5;
 
 use constant SEED_RULES => [
   [">gene", qr/__TARGET__ gene\b/, 'positive', 0],
+  [">knockout", qr/__TARGET__ knockout\b/, 'positive', 0],
   ["[wild type", qr/\bwild type __TARGET__/, 'positive', 0],
   ["<syndrome", qr/\bsyndrome __TARGET__/, 'negative', 0],
   [">treatment", qr/__TARGET__ \btreatment\b/, 'negative', 0],
@@ -206,10 +208,19 @@ sub apply {
     my @entries = @{$table->{__entries_by_discourse}->{$key}};
     my @matched_entries = grep { $_->[E_RULE] } @entries;
     @matched_entries = sort { $b->[E_RULE]->[1] <=> $a->[E_RULE]->[1] } @matched_entries;
+
     my $top = $matched_entries[0];
 
     # If there is "substantial disagreement" we are supposed to return everything to the residual,
     # whatever "substantial disagreement" is supposed to mean. 
+
+    my $bottom = $matched_entries[-1];
+    if ($top != $bottom && $top->[E_LABEL] ne $bottom->[E_LABEL]) {
+      foreach my $entry (@entries) {
+        $entry->[E_LABEL] = undef;
+      }
+      next;
+    }
 
     croak if (! defined($top));
     foreach my $entry (@entries) {
@@ -310,14 +321,14 @@ sub step3 {
       my $n1 = $sample_frequencies->{$label}->{$rule_type};
       my $N1 = $table->{__global_counts}->{$rule_type} - $n1;
       my $r1 = $sample_frequencies->{$label}->{$rule_type} / $table->{__global_counts}->{$rule_type};
-      $DB::single = 1 if ($a1 == 0 && $A1 == 0);
+      # $DB::single = 1 if ($a1 == 0 && $A1 == 0);
       my $lexp1 = lexpected($r1, $a1, $A1, $n1, $N1);
 
       my $a2 = $labelled_feature_count - $this_label_feature_count;
       my $A2 = $table->{__global_term_frequencies}->{$key} - $a2;
       my $n2 = $sample_frequencies->{'*'}->{$rule_type} - $sample_frequencies->{$label}->{$rule_type};
       my $N2 = $table->{__global_counts}->{$rule_type} - $n2;
-      $DB::single = 1 if ($a2 == 0 && $A2 == 0);
+      # $DB::single = 1 if ($a2 == 0 && $A2 == 0);
       my $lexp2 = lexpected($r1, $a2, $A2, $n2, $N2);
 
       my $diff = $lexp1 - $lexp2;
@@ -327,7 +338,7 @@ sub step3 {
     }
   }
 
-  my $rule_limit = RULES_PER_ITERATION * $table->{__iterations};
+  my $rule_limit = RULES_BASE + RULES_PER_ITERATION * $table->{__iterations};
   my @all_rules = ();
   while (my ($key, $value) = each %$rules) {
     push @all_rules, select_rules($rule_limit, @$value);
