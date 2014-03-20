@@ -263,14 +263,7 @@ sub step3 {
         $sample_frequencies->{'*'}->{'<'}++ if ($i == $position - 1);
         $sample_frequencies->{'*'}->{'>'}++ if ($i == $position + 1);
         $sample_frequencies->{'*'}->{'#'}++;
-      } else {
-        $frequencies->{'<'.$token}->{'-'}++ if ($i == $position - 1);
-        $frequencies->{'>'.$token}->{'-'}++ if ($i == $position + 1);
-        $frequencies->{'#'.$token}->{'-'}++;
       }
-      $frequencies->{'<'.$token}->{'*'}++ if ($i == $position - 1);
-      $frequencies->{'>'.$token}->{'*'}++ if ($i == $position + 1);
-      $frequencies->{'#'.$token}->{'*'}++;
     }
     # And the special cases for boundary positions. 
     if (defined($label)) {
@@ -286,14 +279,7 @@ sub step3 {
       $sample_frequencies->{'*'}->{'['}++ if ($position >= 2);
       $sample_frequencies->{'*'}->{'@'}++ if ($position >= 1 && $position+1 < $length);
       $sample_frequencies->{'*'}->{']'}++ if ($position+2 < $length);
-    } else {
-      $frequencies->{'['.$tokens[$position-2].' '.$tokens[$position-1]}->{'-'}++ if ($position >= 2);
-      $frequencies->{'@'.$tokens[$position-1].' '.$tokens[$position+1]}->{'-'}++ if ($position >= 1 && $position+1 < $length);
-      $frequencies->{']'.$tokens[$position+1].' '.$tokens[$position+2]}->{'-'}++ if ($position+2 < $length);      
     }
-    $frequencies->{'['.$tokens[$position-2].' '.$tokens[$position-1]}->{'*'}++ if ($position >= 2);
-    $frequencies->{'@'.$tokens[$position-1].' '.$tokens[$position+1]}->{'*'}++ if ($position >= 1 && $position+1 < $length);
-    $frequencies->{']'.$tokens[$position+1].' '.$tokens[$position+2]}->{'*'}++ if ($position+2 < $length);
   }
   say "Step 3 - removing residual-only tokens";
   my @remove = ();
@@ -307,9 +293,7 @@ sub step3 {
   my $rules = {};
   while(my ($key, $value) = each %$frequencies) {
     foreach my $label (@$classes) {
-      my $unlabelled_feature_count = $value->{'-'};
       my $labelled_feature_count = $value->{'+'};
-      my $all_feature_count = $value->{'*'};
       my $this_label_feature_count = $value->{$label};
       next unless ($this_label_feature_count);
 
