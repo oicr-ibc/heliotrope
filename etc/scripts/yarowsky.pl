@@ -148,7 +148,10 @@ sub step1 {
             $table->{__global_term_frequencies}->{'@'.$tokens[$before_end].' '.$tokens[$after_start]}++;
             $table->{__global_counts}->{'@'}++;
           }
-          my $entry = [$pmid, $j, undef, $class, $gene, $before.' __TARGET__ '.$after, undef];
+          my $text = $before.' __TARGET__ '.$after;
+          $text =~ s{^\s+}{};
+          $text =~ s{\s+$}{};
+          my $entry = [$pmid, $j, undef, $class, $gene, $text, undef];
           push @{$table->{__entries}}, $entry;
           push @{$table->{__entries_by_discourse}->{$pmid}}, $entry;
           $j++;
@@ -215,7 +218,6 @@ sub apply {
       $entry->[E_LABEL] = $top->[E_LABEL];
       $entry->[E_RULE] = ["...".$top->[E_RULE]->[0], $top->[E_RULE]->[1]];
     }
-    say @scores;
   }
 
   foreach my $label (sort keys %$label_count) {
