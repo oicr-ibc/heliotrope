@@ -73,7 +73,7 @@ sub process {
 
   $table->{__iterations} = 0;
 
-  my $i = 0;
+  my $i = 1;
   while(1) {
     say "Iteration: $i";
     step3($table);
@@ -333,7 +333,6 @@ sub step3 {
     push @all_rules, select_rules($rule_limit, @$value);
   }
   @all_rules = sort { $b->[RULE_SCORE] <=> $a->[RULE_SCORE] } @all_rules;
-  $DB::single = 1;
   $table->{__rules} = \@all_rules;
 }
 
@@ -373,7 +372,6 @@ sub build_rule_pattern {
   } else {
     croak "Invalid rule: $key";
   }
-  say $pattern;
   return qr/$pattern/;
 }
 
