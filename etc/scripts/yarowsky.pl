@@ -27,8 +27,8 @@ use constant RULE_LABEL => 2;
 use constant RULE_SCORE => 3;
 
 use constant WINDOW_SIZE => 10;
-use constant END_AFTER => 10;
-use constant RULES_PER_ITERATION => 3;
+use constant END_AFTER => 20;
+use constant RULES_PER_ITERATION => 5;
 
 use constant SEED_RULES => [
   [">gene", qr/__TARGET__ gene\b/, 'positive', 0],
@@ -254,16 +254,16 @@ sub step3 {
       if (defined($label)) {
         $frequencies->{'<'.$token}->{$label}++ if ($i == $position - 1); 
         $frequencies->{'>'.$token}->{$label}++ if ($i == $position + 1);
-        $frequencies->{'#'.$token}->{$label}++;
+        $frequencies->{'#'.$token}->{$label}++ if ($i < $position - 1 || $i > $position + 1);
         $frequencies->{'<'.$token}->{'+'}++ if ($i == $position - 1);
         $frequencies->{'>'.$token}->{'+'}++ if ($i == $position + 1);
-        $frequencies->{'#'.$token}->{'+'}++;
+        $frequencies->{'#'.$token}->{'+'}++ if ($i < $position - 1 || $i > $position + 1);
         $sample_frequencies->{$label}->{'<'}++ if ($i == $position - 1);
         $sample_frequencies->{$label}->{'>'}++ if ($i == $position + 1);
-        $sample_frequencies->{$label}->{'#'}++;
+        $sample_frequencies->{$label}->{'#'}++ if ($i < $position - 1 || $i > $position + 1);
         $sample_frequencies->{'*'}->{'<'}++ if ($i == $position - 1);
         $sample_frequencies->{'*'}->{'>'}++ if ($i == $position + 1);
-        $sample_frequencies->{'*'}->{'#'}++;
+        $sample_frequencies->{'*'}->{'#'}++ if ($i < $position - 1 || $i > $position + 1);
       }
     }
     # And the special cases for boundary positions. 
@@ -400,7 +400,7 @@ sub accuracy {
 
   my $accuracy = 100 * $true_count / $classified_count;
   my $classified = 100 * $classified_count / $entry_count;
-  say sprintf("Accuracy: %0.2f%% (coverage: %0.2f%%: %d of %d)", $accuracy, $classified, $classified_count, $entry_count);
+  say STDERR sprintf("Accuracy: %0.2f%% (coverage: %0.2f%%: %d of %d)", $accuracy, $classified, $classified_count, $entry_count);
 }
 
 sub print_rules {
