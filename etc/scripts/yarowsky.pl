@@ -135,15 +135,14 @@ sub step1 {
             $table->{__global_term_frequencies}->{'>'.$tokens[$after_start]}++;
             $table->{__global_counts}->{'>'}++;
           }
-          if ($before_end - $before_start > 1) {
+          if ($before_end - $before_start > 0) {
             $table->{__global_term_frequencies}->{'['.$tokens[$before_end-1].' '.$tokens[$before_end]}++;
             $table->{__global_counts}->{'['}++;
           }
-          if ($after_end - $after_start > 1) {
+          if ($after_end - $after_start > 0) {
             $table->{__global_term_frequencies}->{']'.$tokens[$after_start].' '.$tokens[$after_start+1]}++;
             $table->{__global_counts}->{']'}++;
           }
-          # $DB::single = 1 if ('@'.$tokens[$before_end].' '.$tokens[$after_start] eq '@syndrome .');
           if ($before && $after) {
             $table->{__global_term_frequencies}->{'@'.$tokens[$before_end].' '.$tokens[$after_start]}++;
             $table->{__global_counts}->{'@'}++;
@@ -354,26 +353,27 @@ sub select_rules {
 
 sub build_rule_pattern {
   my ($key) = @_;
-  my $pattern = substr($key, 1);
+  my $pattern = quotemeta(substr($key, 1));
   my $rule_type = substr($key, 0, 1);
   if ($rule_type eq '#') {
-    $pattern = "\\b$pattern\\b";
+    $pattern = "(?:\\^|\\s)$pattern(?:\\$|\\s)";
   } elsif ($rule_type eq '<') {
-    $pattern = "\\b$pattern __TARGET__";
+    $pattern = "(?:\\^|\\s)$pattern __TARGET__";
   } elsif ($rule_type eq '>') {
-    $pattern = "__TARGET__ $pattern\\b";
+    $pattern = "__TARGET__ $pattern(?:\\$|\\s)";
   } elsif ($rule_type eq '[') {
     my @tokens = split(/ /, $pattern);
-    $pattern = "\\b$tokens[0] $tokens[1] __TARGET__";
+    $pattern = "(?:\\^|\\s)$tokens[0] $tokens[1] __TARGET__";
   } elsif ($rule_type eq ']') {
     my @tokens = split(/ /, $pattern);
-    $pattern = "__TARGET__ $tokens[0] $tokens[1]\\b";
+    $pattern = "__TARGET__ $tokens[0] $tokens[1](?:\\$|\\s)";
   } elsif ($rule_type eq '@') {
     my @tokens = split(/ /, $pattern);
-    $pattern = "\\b$tokens[0] __TARGET__ $tokens[1]\\b";
+    $pattern = "(?:\\^|\\s)$tokens[0] __TARGET__ $tokens[1](?:\\$|\\s)";
   } else {
     croak "Invalid rule: $key";
   }
+  say $pattern;
   return qr/$pattern/;
 }
 
