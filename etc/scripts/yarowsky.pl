@@ -356,20 +356,20 @@ sub build_rule_pattern {
   my $pattern = quotemeta(substr($key, 1));
   my $rule_type = substr($key, 0, 1);
   if ($rule_type eq '#') {
-    $pattern = "(?:\\^|\\s)$pattern(?:\\$|\\s)";
+    $pattern = "(?:\^|\\s)$pattern(?:\$|\\s)";
   } elsif ($rule_type eq '<') {
-    $pattern = "(?:\\^|\\s)$pattern __TARGET__";
+    $pattern = "(?:\^|\\s)$pattern __TARGET__";
   } elsif ($rule_type eq '>') {
-    $pattern = "__TARGET__ $pattern(?:\\$|\\s)";
+    $pattern = "__TARGET__ $pattern(?:\$|\\s)";
   } elsif ($rule_type eq '[') {
     my @tokens = split(/ /, $pattern);
-    $pattern = "(?:\\^|\\s)$tokens[0] $tokens[1] __TARGET__";
+    $pattern = "(?:\^|\\s)$tokens[0] $tokens[1] __TARGET__";
   } elsif ($rule_type eq ']') {
     my @tokens = split(/ /, $pattern);
-    $pattern = "__TARGET__ $tokens[0] $tokens[1](?:\\$|\\s)";
+    $pattern = "__TARGET__ $tokens[0] $tokens[1](?:\$|\\s)";
   } elsif ($rule_type eq '@') {
     my @tokens = split(/ /, $pattern);
-    $pattern = "(?:\\^|\\s)$tokens[0] __TARGET__ $tokens[1](?:\\$|\\s)";
+    $pattern = "(?:\^|\\s)$tokens[0] __TARGET__ $tokens[1](?:\$|\\s)";
   } else {
     croak "Invalid rule: $key";
   }
