@@ -17,7 +17,7 @@ has cache_root => (
     is      => 'ro',
     isa     => 'Str',
     default => sub { 
-        File::Spec->catfile(File::HomeDir->my_home, '.heliotrope')
+        $ENV{HELIOTROPE_CACHE_ROOT} // File::Spec->catfile(File::HomeDir->my_home, '.heliotrope');
     },
 );
 
