@@ -712,7 +712,7 @@ JOIN protein_feature pf ON pf.translation_id = tl.translation_id
 JOIN analysis a ON pf.analysis_id = a.analysis_id
 LEFT JOIN interpro ip ON pf.hit_name = ip.id
 LEFT JOIN xref x ON x.external_db_id = (SELECT external_db_id FROM external_db WHERE db_name = 'Interpro')
-  AND x.dbprimary_acc = ip.interpro_ac
+AND x.dbprimary_acc = ip.interpro_ac
 __ENDSQL__
   
   $statement->execute() or die($dbh->errstr());
