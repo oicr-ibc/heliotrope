@@ -29,44 +29,49 @@ has vep_directory => (
     is  => 'rw'
 );
 
+has cache_directory => (
+    is  => 'rw'
+);
+
 has annotation_block_size => (
     is  => 'rw',
     default => sub { 3000; }
 );
 
 sub clear {
-	my ($self) = @_;
-	
+    my ($self) = @_;
+    
     close $self->annotation_fh() if ($self->annotation_fh());
 
-	my $var_fh = File::Temp->new(UNLINK => 0);
+    my $var_fh = File::Temp->new(UNLINK => 0);
     my $var_filename = $var_fh->filename();
     $self->annotation_fh($var_fh);
     $self->annotation_filename($var_filename);
     
     $self->fasta_directory($ENV{HELIOTROPE_FASTA_DIRECTORY} || File::Spec->rel2abs("fasta", File::HomeDir->my_home()));
     $self->vep_directory($ENV{VEP_HOME} || File::Spec->rel2abs("variant_effect_predictor", File::HomeDir->my_home()));
+    $self->cache_directory($ENV{VEP_CACHE_DIRECTORY} || File::Spec->rel2abs(".vep", File::HomeDir->my_home()));
 }
 
 sub BUILD {
-	my ($self) = @_;
-	$self->clear();
+    my ($self) = @_;
+    $self->clear();
 }
 
 sub add_annotation_request {
-	my ($self, $chromosome, $start, $stop, $ref_allele, $var_allele, $strand) = @_;
-	
-	# VEP requires a start/stop flip, sometimes.
-	($start, $stop) = ($stop, $start) if ($ref_allele eq '');
-	
-	# And write the record
-	my $fh = $self->annotation_fh();
-	say $fh join("\t", $chromosome, $start, $stop, ($ref_allele || '-')."/".($var_allele || '-'), $strand);
+    my ($self, $chromosome, $start, $stop, $ref_allele, $var_allele, $strand) = @_;
+    
+    # VEP requires a start/stop flip, sometimes.
+    ($start, $stop) = ($stop, $start) if ($ref_allele eq '');
+    
+    # And write the record
+    my $fh = $self->annotation_fh();
+    say $fh join("\t", $chromosome, $start, $stop, ($ref_allele || '-')."/".($var_allele || '-'), $strand);
 }
 
 sub get_annotations {
-	my ($self, $callback) = @_;
-	
+    my ($self, $callback) = @_;
+    
     close $self->annotation_fh();
     delete $self->{annotation_fh};
 
@@ -75,11 +80,11 @@ sub get_annotations {
     # In an ideal world, we'd use VEP and forking. We're not in an ideal world, so we do the forking 
     # manually using Parallel::ForkManager. This is because VEP forking breaks. 
 
-	$self->_variant_effect_predictor("$var_filename");
-	
+      $self->_variant_effect_predictor("$var_filename");
+    
     open(my $var_fh, "<", "$var_filename.vep_output") or die("Can't open: $var_filename.vep_output: $!");
     my $previous_variation = "";
-	my @records = ();
+    my @records = ();
     my $merge = {};
     
     while(my $line = <$var_fh>) {
@@ -184,7 +189,7 @@ sub _handle_variant_block {
 }
 
 sub _variant_effect_predictor {
-	my ($self, $var_filename) = @_;
+    my ($self, $var_filename) = @_;
     
     my $stdout;
     my $stderr;
@@ -201,11 +206,13 @@ sub _variant_effect_predictor {
     
     my $fasta_dir = $self->fasta_directory();
     my $vep_dir = $self->vep_directory();
+    my $cache_dir = $self->cache_directory();
     my $executable = $^X;
     my $command = ["-X", "$vep_dir/variant_effect_predictor.pl",
                    "--format", "ensembl", "--offline", "--no_progress", "--canonical", "--check_existing",
                    "--force_overwrite", "--numbers", "--buffer_size", "5000", "--sift", "b", "--polyphen", "b",
                    "--compress", "gzcat",
+                   "--dir_cache", $cache_dir,
                    "--fasta", "$fasta_dir",
                    "--input_file", "$var_filename",
                    "--output_file", "$var_filename.vep_output",
