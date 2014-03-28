@@ -3,10 +3,20 @@
 # Download and install the node.js stuff
 apt-get update
 apt-get install -y python-software-properties python g++ make xz-utils
-add-apt-repository -y ppa:chris-lea/node.js
 add-apt-repository -y ppa:nginx/stable
 apt-get update
-apt-get install -y nodejs ssl-cert
+apt-get install -y ssl-cert
+
+# Install node.js from the latest release file. 
+cd
+wget http://nodejs.org/dist/node-latest.tar.gz
+mkdir node-latest-install
+cd node-latest-install
+tar xz --strip-components=1 < ../node-latest.tar.gz
+./configure
+make && sudo make install
+cd ..
+rm -rf node-latest.tar.gz node-latest-install
 
 npm install -g coffee-script
 
