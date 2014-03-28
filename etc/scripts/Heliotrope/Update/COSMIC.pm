@@ -12,6 +12,7 @@ use boolean;
 use HTTP::Request;
 use File::Slurp;
 use File::Temp;
+use File::Listing qw(parse_dir);
 use DateTime;
 use DateTime::Format::Natural;
 use Carp;
@@ -36,26 +37,28 @@ sub maybe_update {
     my ($self, $registry, %options) = @_;
     
     my ($req, $result, $file);
-    
-    # First of all, we need to locate the right directory
+
     my $base_url = "ftp://ftp.sanger.ac.uk/pub/CGP/cosmic/data_export/";
     $req = HTTP::Request->new(GET => $base_url);
-    $req->header(Accept => "text/html, */*;q=0.1"); 
+    $req->header(Accept => "text/ftp-dir-listing, */*;q=0.1"); 
     ($result, $file) = $self->get_resource($registry, $req);
     my $listing = read_file($file);
+
+    my @records = parse_dir($listing);
+    my ($cosmic) = grep { $_->[0] =~ m{^CosmicCompleteExport_v} } @records;
+    
+    my $dt = DateTime->from_epoch(epoch => $cosmic->[3]);
+    my $normalized_date = $dt->format_cldr("yyyy-MM-dd");
+    say "Normalized: $normalized_date.";
 
     # In COSMIC, we can use the file name as an indication of the date
     # and the version, as it is all encoded there. 
     
-    my ($release, $date, $month, $year) = ($listing =~ m{CosmicCompleteExport_v(\d+)_(\d{2,2})(\d{2,2})(\d{2,2})[\w\.]+}sp);
+    my ($release) = ($listing =~ m{CosmicCompleteExport_v(\d+)}sp);
     if (! $release) {
     	croak("Failed to find CosmicCompleteExport file");
     }
-    my $filename = ${^MATCH};
-    
-    my $dt = DateTime->new(year => 2000 + $year, month => $month, day => $date);
-    my $normalized_date = $dt->format_cldr("yyyy-MM-dd");
-    say "Normalized: $normalized_date.";
+    my $filename = $cosmic->[0];
     
     my $cached_data = $self->get_data($registry);
     my $existing = $self->get_target_file($registry, "CosmicCompleteExport.tsv.gz");
