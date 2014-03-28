@@ -25,7 +25,7 @@ use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 
 has 'release' => (
   is => 'ro',
-  default => sub { "72"; }
+  default => sub { "75"; }
 );
 
 has 'files' => (
@@ -264,7 +264,7 @@ CREATE TABLE external_synonym (
 __ENDSQL__
   
   $self->load_data($registry, "gene.txt.gz",
-     qq{INSERT INTO gene (gene_id, biotype, analysis_id, seq_region_id, seq_region_start, seq_region_end, seq_region_strand, display_xref_id, source, status, description, is_current, canonical_transcript_id, canonical_annotation, stable_id, version, created_date, modified_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
+     qq{INSERT INTO gene (gene_id, biotype, analysis_id, seq_region_id, seq_region_start, seq_region_end, seq_region_strand, display_xref_id, source, status, description, is_current, canonical_transcript_id, stable_id, version, created_date, modified_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
 CREATE TABLE gene (
   gene_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -280,7 +280,6 @@ CREATE TABLE gene (
   description TEXT,
   is_current INTEGER NOT NULL,
   canonical_transcript_id INTEGER NOT NULL,
-  canonical_annotation VARCHAR(255),
   stable_id VARCHAR(128),
   version INTEGER NOT NULL,
   created_date DATETIME,
@@ -359,7 +358,7 @@ CREATE INDEX type_val_idx ON seq_region_attrib(attrib_type_id, value);
 __ENDSQL__
   
   $self->load_data($registry, "transcript.txt.gz",
-     qq{INSERT INTO transcript (transcript_id, gene_id, analysis_id, seq_region_id, seq_region_start, seq_region_end, seq_region_strand, display_xref_id, biotype, status, description, is_current, canonical_translation_id, stable_id, version, created_date, modified_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
+     qq{INSERT INTO transcript (transcript_id, gene_id, analysis_id, seq_region_id, seq_region_start, seq_region_end, seq_region_strand, display_xref_id, source, biotype, status, description, is_current, canonical_translation_id, stable_id, version, created_date, modified_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
 CREATE TABLE transcript (
   transcript_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -370,6 +369,7 @@ CREATE TABLE transcript (
   seq_region_end INTEGER NOT NULL,
   seq_region_strand INTEGER NOT NULL,
   display_xref_id INTEGER,
+  source VARCHAR(20),
   biotype VARCHAR(40) NOT NULL,
   status VARCHAR(20),
   description TEXT,
