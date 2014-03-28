@@ -687,9 +687,9 @@ __ENDSQL__
 SELECT g.id, tr.stable_id, x.display_label
 FROM external_db xdb
 CROSS JOIN interesting_genes g
-JOIN transcript tr ON tr.gene_id = g.gene_id
-JOIN object_xref ox ON ox.ensembl_id = tr.transcript_id AND ox.ensembl_object_type = 'Transcript'
-JOIN xref x on x.xref_id = ox.xref_id AND x.external_db_id = xdb.external_db_id
+CROSS JOIN transcript tr ON tr.gene_id = g.gene_id
+CROSS JOIN object_xref ox ON ox.ensembl_id = tr.transcript_id AND ox.ensembl_object_type = 'Transcript'
+CROSS JOIN xref x on x.xref_id = ox.xref_id AND x.external_db_id = xdb.external_db_id
 WHERE xdb.db_name = 'RefSeq_mRNA'
 ORDER BY g.id ASC, tr.stable_id ASC, x.display_label
 __ENDSQL__
