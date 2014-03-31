@@ -36,9 +36,48 @@ sub _handle_file {
     my ($self, $file) = @_;
     return unless ($file =~ /n\d{4,4}\.xml\.gz$/);
 
+    say "$file";
+
     my $database = $self->open_database();
     my $collection = $database->get_collection('publications');
     $collection->ensure_index({"name" => 1}, { unique => true, sparse => true, safe => true });
+
+    say "Reading $file";
+    eval {
+        my $fh = IO::Uncompress::Gunzip->new($file);
+        my $reader = XML::LibXML::Reader->new(IO => $fh);
+
+        # Skip to first entry element
+        while($reader->read() && $reader->name() ne 'MedlineCitation') {};
+        
+        do {
+            if ($reader->name() eq 'MedlineCitation') {
+                entry($self, $collection, $reader)
+            }
+        } while($reader->nextSibling());
+
+        close($fh);
+    };
+    if ($@) {
+        carp "$@";
+    }
+
+    $self->close_database($database);
+}
+
+sub _is_article {
+    my ($root) = @_;
+
+    my ($article) = ($root->findnodes('/MedlineCitation/Article'));
+    return 0 unless ($article);
+    return 0 unless ($article->exists("Abstract"));
+
+    my $title = $article->findvalue("ArticleTitle");
+    my $abstract = $article->findvalue("Abstract");
+    my $title_abstract = "$title\n$abstract";
+
+    my @publication_types = $article->findnodes("PublicationTypeList/*");
+    my @mesh_terms = $article->findnodes("MeshHeadingList/*");
 
     eval {
         my $fh = IO::Uncompress::Gunzip->new($file);
@@ -65,8 +104,7 @@ sub _handle_file {
     if ($@) {
         carp "$@";
     }
-
-    $self->close_database($database);
+    return 0;
 }
 
 sub entry {
