@@ -56,7 +56,7 @@ sub maybe_update {
     
     my ($release) = ($listing =~ m{CosmicCompleteExport_v(\d+)}sp);
     if (! $release) {
-    	croak("Failed to find CosmicCompleteExport file");
+        croak("Failed to find CosmicCompleteExport file");
     }
     my $filename = $cosmic->[0];
     
@@ -94,7 +94,7 @@ sub maybe_update {
 }
 
 sub update {
-	my ($self, $registry) = @_;
+    my ($self, $registry) = @_;
 
     say "About to update.";
     
@@ -262,8 +262,8 @@ __ENDSQL__
 }
 
 sub reference_allele_phase {
-	my ($self, $registry, $dbh) = @_;
-	
+    my ($self, $registry, $dbh) = @_;
+    
     $dbh->begin_work();
     
     # Note that we don't need to bother if the reference allele is the empty string. 
@@ -280,11 +280,11 @@ __ENDSQL__
     $statement->execute() or die($dbh->errstr());
     
     my $engine = Heliotrope::ReferenceSequenceEngine->new();
-	while (my ($chromosome, $start, $stop) = $statement->fetchrow_array()) {
-		$engine->add_reference_sequence_request($chromosome, $start, $stop);
+    while (my ($chromosome, $start, $stop) = $statement->fetchrow_array()) {
+        $engine->add_reference_sequence_request($chromosome, $start, $stop);
     };
     
-	# Check we write to the same thing. 
+    # Check we write to the same thing. 
     my $update_statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
 UPDATE mutations
 SET ref_allele = CASE WHEN grch37_strand = '+' THEN ? WHEN grch37_strand = '-' THEN ? END 
@@ -295,8 +295,8 @@ AND ref_allele = ?
 __ENDSQL__
     
     $engine->get_reference_sequences(sub {
-    	my ($chromosome, $start, $stop, $reference_allele) = @_;
-    	my $reverse_reference_allele = convert_sequence('-', $reference_allele);
+        my ($chromosome, $start, $stop, $reference_allele) = @_;
+        my $reverse_reference_allele = convert_sequence('-', $reference_allele);
         my $result = $update_statement->execute($reference_allele, $reverse_reference_allele, $chromosome, $start, $stop, "N" x length($reference_allele));
         if ($update_statement->rows() == 0) {
             $DB::single = 1;
@@ -327,7 +327,7 @@ __ENDSQL__
     my $engine = Heliotrope::AnnotationEngine->new();
     
     while (my ($chromosome, $start, $stop, $var_allele, $ref_allele, $strand) = $statement->fetchrow_array()) {
-    	$engine->add_annotation_request($chromosome, $start, $stop, $ref_allele, $var_allele, $strand);
+        $engine->add_annotation_request($chromosome, $start, $stop, $ref_allele, $var_allele, $strand);
     };
     
     say "Analyzing variants.";
@@ -402,7 +402,7 @@ __ENDSQL__
 # now have in place.
 
 sub create_indexes_phase {
-	my ($self, $registry, $dbh) = @_;
+    my ($self, $registry, $dbh) = @_;
 
     say STDERR "Creating indexes.";
     
@@ -467,13 +467,13 @@ __ENDSQL__
 }
 
 sub label_phase {
-	my ($self, $registry, $dbh) = @_;
-	
-	say STDERR "Labelling genes.";
-	
-	# Labels genes with a canonical identifier. When we can. Try with both gene
-	# and accession, then accession alone, then gene alone. 
-	
+    my ($self, $registry, $dbh) = @_;
+    
+    say STDERR "Labelling genes.";
+    
+    # Labels genes with a canonical identifier. When we can. Try with both gene
+    # and accession, then accession alone, then gene alone. 
+    
     $self->execute_delimited_sql(<<__ENDSQL__);
 DROP TABLE IF EXISTS gene_identifiers;
 
@@ -509,17 +509,17 @@ __ENDSQL__
 my $bucket_count = 200;
 
 sub frequency_distribution_phase {
-	my ($self, $registry, $dbh) = @_;
-	
-	say STDERR "Calculating frequency distribution.";
-	
-	# First, we create a table of buckets, each containing a low end an an upper end. We
-	# can use this with a find, to pick a bucket. Stuff on the boundaries ought to be
-	# handled more systematically than this, but that is hard. We can use this in a 
-	# subquery to find which bucket we want, and use that as a bucket count key when
-	# calculating the distributions. 
-	
-	$self->execute_delimited_sql(<<__ENDSQL__);
+    my ($self, $registry, $dbh) = @_;
+    
+    say STDERR "Calculating frequency distribution.";
+    
+    # First, we create a table of buckets, each containing a low end an an upper end. We
+    # can use this with a find, to pick a bucket. Stuff on the boundaries ought to be
+    # handled more systematically than this, but that is hard. We can use this in a 
+    # subquery to find which bucket we want, and use that as a bucket count key when
+    # calculating the distributions. 
+    
+    $self->execute_delimited_sql(<<__ENDSQL__);
 DROP TABLE IF EXISTS canonical_gene_size;
 
 CREATE TABLE canonical_gene_size (
@@ -545,8 +545,8 @@ __ENDSQL__
     my $cursor = $database->get_collection('genes')->find({}, {'id' => 1, 'sections.transcripts.data.records.lengthAminoAcid' => 1});
     while (my $object = $cursor->next) {
         if (my $length = $object->{sections}->{transcripts}->{data}->{records}->[0]->{lengthAminoAcid}) {
-        	my $gene_id = $object->{id};
-        	$statement->execute($gene_id, $length);
+            my $gene_id = $object->{id};
+            $statement->execute($gene_id, $length);
         } 
     }
     
@@ -601,13 +601,13 @@ __ENDSQL__
     my $distribution_table = {};
     $statement->execute() or die($dbh->errstr());
     while (my ($canonical_gene_id, $bucket, $mutated) = $statement->fetchrow_array()) {
-    	$distribution_table->{$canonical_gene_id}->[$bucket] += $mutated;
+        $distribution_table->{$canonical_gene_id}->[$bucket] += $mutated;
     }
     
     # Completes each gene's array with zeros, and makes sure it's the right number of buckets
     foreach my $canonical_gene_id (keys %$distribution_table) {
-    	my $array = $distribution_table->{$canonical_gene_id};
-    	$distribution_table->{$canonical_gene_id} = [ map { $_ || 0 } @$array[0..($bucket_count - 1)] ];
+        my $array = $distribution_table->{$canonical_gene_id};
+        $distribution_table->{$canonical_gene_id} = [ map { $_ || 0 } @$array[0..($bucket_count - 1)] ];
     }
 
     $dbh->commit();
@@ -831,8 +831,8 @@ __ENDSQL__
 }
 
 sub output {
-	my ($self, $registry, $table, $distribution_table) = @_;
-	
+    my ($self, $registry, $table, $distribution_table) = @_;
+    
     my $cached_data = $self->get_data($registry);
 
     my $dbh = $self->reopen_working_database($registry);
@@ -867,7 +867,7 @@ __ENDSQL__
     $statement->execute() or die($dbh->errstr());
     my $gene_data = {};
     while(my $data = $statement->fetchrow_hashref()) {
-    	push @{$gene_data->{$data->{identifier}}->{$data->{block}}}, $data;
+        push @{$gene_data->{$data->{identifier}}->{$data->{block}}}, $data;
     }
     
     my @alert = (
@@ -884,35 +884,35 @@ __ENDSQL__
     say STDERR "Writing gene frequencies.";
 
     foreach my $gene (sort keys %$gene_data) {
-    	my $existing = $self->find_one_record($database, 'genes', {"id" => $gene});
+        my $existing = $self->find_one_record($database, 'genes', {"id" => $gene});
         if (! defined($existing)) {
             say "Can't locate: $gene";
             next;
         }
-    	
+        
         my $new = expand_references($existing);
         
         my $frequencies = $gene_data->{$gene};
         
         foreach my $block (keys %$frequencies) {
-        	
-        	# Don't make references for an _ prefixed type. 
+            
+            # Don't make references for an _ prefixed type. 
             $frequencies->{$block} = [ map { 
-        		{
-        			(($_->{type} !~ m{^_}) ? ($block."TypesRefx" => $_->{type}) : ()), 
+                {
+                    (($_->{type} !~ m{^_}) ? ($block."TypesRefx" => $_->{type}) : ()), 
                     affected => int($_->{sample_mutated}), 
                     total => int($_->{total_sample}),
                     frequency => $_->{frequency} * 1.0
-        		}
-        	} sort {
-        		$b->{frequency} <=> $a->{frequency} || lc($a->{type}) cmp lc($b->{type}) 
-        	} @{$frequencies->{$block}} ];
+                }
+            } sort {
+                $b->{frequency} <=> $a->{frequency} || lc($a->{type}) cmp lc($b->{type}) 
+            } @{$frequencies->{$block}} ];
         }
- 	
- 	    $new->{sections}->{frequencies} = {_format => "frequencies", @alert, data => $frequencies};
+     
+         $new->{sections}->{frequencies} = {_format => "frequencies", @alert, data => $frequencies};
         $new->{sections}->{distribution} = {_format => "distribution", @alert, data => $distribution_table->{$gene} };
- 	    my $resolved = resolve_references($new, $existing);
- 	    maybe_update_object($self, $resolved, $existing, $reference_id_cache, $database, 'genes');
+         my $resolved = resolve_references($new, $existing);
+         maybe_update_object($self, $resolved, $existing, $reference_id_cache, $database, 'genes');
     }
 
     # Save a wee bit of memory
@@ -963,15 +963,15 @@ __ENDSQL__
     my @variant_keys = keys %$variant_data;
 
     foreach my $variant (@variant_keys) {
-    	
-    	my ($gene_id, $variant_name) = split(":", $variant, 2);
+        
+        my ($gene_id, $variant_name) = split(":", $variant, 2);
         my $existing = $self->find_one_record($database, 'variants', {geneId => $gene_id, variantName => $variant_name});
         
         if (! defined($existing)) {
             $existing = {
                 type => 'variant',
                 variantType => 'mutation',
-            	version => 1,
+                version => 1,
                 geneId => $gene_id, 
                 mutation => $variant_name, 
                 references => [],
@@ -985,14 +985,14 @@ __ENDSQL__
         
         my $existing_gene = $self->find_one_record($database, 'genes', {id => $gene_id});
         if (! defined($existing_gene)) {
-        	carp("Failed to find gene: $gene_id - skipping $variant");
-        	next;
+            carp("Failed to find gene: $gene_id - skipping $variant");
+            next;
         } else {
-        	$existing->{gene} = $existing_gene->{name};
+            $existing->{gene} = $existing_gene->{name};
             $existing->{shortMutation} = convert_names_to_codes($existing->{mutation});          
-            $existing->{name} = "$existing->{gene} $existing->{mutation}";        	
+            $existing->{name} = "$existing->{gene} $existing->{mutation}";            
             $existing->{shortName} = "$existing->{gene} $existing->{shortMutation}"; 
-        	$existing->{genesRidx} = $#{$existing->{references}} + 1;
+            $existing->{genesRidx} = $#{$existing->{references}} + 1;
             push @{$existing->{references}}, {ref => "genes", name => $existing_gene->{name}, _id => $existing_gene->{_id}};
         }
             
@@ -1006,8 +1006,8 @@ __ENDSQL__
         my $position_data = [];
         my $colocated = {};
         foreach my $record (map { @$_; } @thawed_table_data) {
-        	my $position = {};
-        	($position->{exon}) = ($record->{extra}->{EXON} =~ m{^(\d+)}) if (exists($record->{extra}->{EXON}));
+            my $position = {};
+            ($position->{exon}) = ($record->{extra}->{EXON} =~ m{^(\d+)}) if (exists($record->{extra}->{EXON}));
             $position->{codon} = $record->{protein_position} if (exists($record->{protein_position}));
             
             # Expands, eg., X:135763775 => X:135763775-135763775, when not already a range
@@ -1023,8 +1023,8 @@ __ENDSQL__
             $position->{referenceAllele} = $record->{_reference_allele} if (exists($record->{_reference_allele}));
             $position->{variantAllele} = $record->{_variant_allele} if (exists($record->{_variant_allele}));
             if (exists($record->{extra}->{SIFT})) {
-            	my ($level, $score) = ($record->{extra}->{SIFT} =~ m{(\w+)\(([0-9\.]+)\)});
-            	$position->{sift} = {level => $level, score => (0.0 + $score)};
+                my ($level, $score) = ($record->{extra}->{SIFT} =~ m{(\w+)\(([0-9\.]+)\)});
+                $position->{sift} = {level => $level, score => (0.0 + $score)};
             }
             if (exists($record->{extra}->{PolyPhen})) {
                 my ($level, $score) = ($record->{extra}->{PolyPhen} =~ m{(\w+)\(([0-9\.]+)\)});
@@ -1032,9 +1032,9 @@ __ENDSQL__
             }
             
             if ($record->{colocated} =~ m{\w+}) {
-            	foreach my $value (split(",", $record->{colocated})) {
-            		$colocated->{$value} = $value;
-            	}
+                foreach my $value (split(",", $record->{colocated})) {
+                    $colocated->{$value} = $value;
+                }
             }
                         
             $position->{HGVSpr} = convert_names_to_codes($position->{HGVSp}) if (exists($position->{HGVSp}));
@@ -1045,8 +1045,8 @@ __ENDSQL__
         # Again, save a wee bit of memory
         my $frequencies = delete $variant_data->{$variant};
         foreach my $block (keys %$frequencies) {
-        	
-        	# Don't make references for an _ prefixed type. 
+            
+            # Don't make references for an _ prefixed type. 
             $frequencies->{$block} = [ map { 
                 {
                     (($_->{type} !~ m{^_}) ? ($block."TypesRefx" => $_->{type}) : ()), 
@@ -1072,9 +1072,9 @@ __ENDSQL__
 }
 
 sub maybe_update_object {
-	my ($self, $resolved, $existing, $reference_id_cache, $database, $collection) = @_;
-	
-	return if (deep_eq($resolved, $existing));
+    my ($self, $resolved, $existing, $reference_id_cache, $database, $collection) = @_;
+    
+    return if (deep_eq($resolved, $existing));
             
     foreach my $reference (@{$resolved->{references}}) {
         next if ($reference->{_id});
