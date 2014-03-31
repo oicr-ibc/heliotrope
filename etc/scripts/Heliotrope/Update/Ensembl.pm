@@ -584,11 +584,10 @@ FROM external_db xdb
 CROSS JOIN interesting_genes g 
 CROSS JOIN transcript tr ON tr.gene_id = g.gene_id
 CROSS JOIN translation tl ON tl.transcript_id = tr.transcript_id
-CROSS JOIN seq_region sr ON sr.seq_region_id = tr.seq_region_id
-LEFT JOIN object_xref ox ON ox.ensembl_id = tr. transcript_id AND ox.ensembl_object_type = 'Transcript'
+LEFT JOIN object_xref ox ON ox.ensembl_id = tr.transcript_id AND ox.ensembl_object_type = 'Transcript'
 CROSS JOIN xref x on x.xref_id = ox.xref_id AND x.external_db_id = xdb.external_db_id
-WHERE xdb.db_name = 'HGNC_transcript_name'
-ORDER BY g.id asc, g.canonical_transcript_id = tr.transcript_id desc, x.display_label asc;
+WHERE xdb.db_name = 'HGNC_trans_name'
+ORDER BY g.id asc, g.canonical_transcript_id = tr.transcript_id desc, x.display_label asc
 __ENDSQL__
   
   # Transcripts are a tricky area. We want to be able to access transcripts by name, and quickly to
@@ -643,8 +642,7 @@ SELECT g.id, tr.stable_id, ext.rank,
 FROM interesting_genes g
 JOIN transcript tr ON tr.gene_id = g.gene_id
 JOIN translation tl ON tl.transcript_id = tr.transcript_id
-JOIN seq_region sr ON sr. seq_region_id = tr.seq_region_id
-JOIN exon_transcript ext ON ext.transcript_id = tr. transcript_id
+JOIN exon_transcript ext ON ext.transcript_id = tr.transcript_id
 JOIN exon ex on ex.exon_id = ext.exon_id
 ORDER BY g.id, tr.stable_id, ext.rank
 __ENDSQL__
