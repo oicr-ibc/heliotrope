@@ -87,7 +87,8 @@ mergeJavaScriptSources = (cb) ->
 
 compile = (options, callback) ->
   util.log "Compiling " + webappCoffeeSource + " to " + "#{packageTarget}/usr/share/webapp/js"
-  coffee = spawn 'node', options.concat('node_modules/coffee-script/bin/coffee', '-c', '-o', "#{packageTarget}/usr/share/webapp/js", webappCoffeeSource)
+
+  coffee = spawn 'node', ['node_modules/coffee-script/bin/coffee'].concat(options, '-c', '-o', "#{packageTarget}/usr/share/webapp/js", webappCoffeeSource)
   coffee.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
   coffee.stdout.on 'data', (data) ->
