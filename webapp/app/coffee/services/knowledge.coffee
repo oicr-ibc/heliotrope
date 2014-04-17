@@ -28,6 +28,15 @@ angular.module('heliotrope.services.knowledge', ['ngResource'])
     )
   )
 
+  # Service to retrieve publication information. 
+
+  .factory('Publication', ($resource) ->
+    $resource('/knowledge/api/publications/:type/:id', {},
+      query: 
+        method: 'GET'
+    )
+  )
+
   # Service to retrieve variant information. The service allows variants to be 
   # saved and created too. It's unlikely we'll ever use the POST requests 
   # and the service may well not expose them. PUT is normal for saving, as 

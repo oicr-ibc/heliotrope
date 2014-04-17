@@ -16,6 +16,16 @@ angular
     )
   )
 
+  .controller('PublicationController', ($scope, $routeParams, $timeout, Publication) ->
+    console.log('PublicationController')
+    $scope.entity = Publication.get($routeParams
+      (entity) ->
+        
+      (error) ->
+        console.log error
+    )
+  )
+
   .controller('EditableAgentsController', ($scope, $routeParams, $timeout) ->
     $scope.addDrug = () ->
       if ! $scope.agents?

@@ -23,6 +23,7 @@ angular
     $routeProvider.when "/genes",                                      {templateUrl: 'app/partials/home.html',           controller: "HomeController"}
     $routeProvider.when "/genes/:gene",                                {templateUrl: 'app/partials/gene.html',           controller: "GeneController"}
     $routeProvider.when "/variants/:name",                             {templateUrl: 'app/partials/variant.html',        controller: "VariantController"}
+    $routeProvider.when "/publications/:type/:id",                     {templateUrl: 'app/partials/publication.html',    controller: "PublicationController"}
     $routeProvider.when "/studies",                                    {templateUrl: 'app/partials/studies.html',        controller: "StudyListController"}
     $routeProvider.when "/studies/:study",                             {templateUrl: 'app/partials/study.html',          controller: "StudyController"}
     $routeProvider.when "/studies/:study/:role/:identity",             {templateUrl: 'app/partials/entity.html',         controller: "EntityController"}
