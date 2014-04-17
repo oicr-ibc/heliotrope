@@ -118,15 +118,18 @@ sub output {
     my $worksheet = $workbook->worksheet('List');
     ($row_min, $row_max) = $worksheet->row_range();
     my ($col_min, $col_max) = $worksheet->col_range();
-    
-    my @headers = map { $worksheet->get_cell($row_min, $_)->unformatted(); } ($col_min .. $col_max);
+
+    my @headers = map { 
+      my $cell = $worksheet->get_cell($row_min, $_);
+      (defined($cell) ? $cell->unformatted() : ""); 
+    } ($col_min .. $col_max);
     @headers = map { my $in = lc($_); $in = trim($in); $in =~ s/[()]//g; $in =~ s/(?:\b\s+\b|\/)/_/gr; } @headers;
     shift(@headers);
     
     $row_min++;
     my $data = {};
     for my $row ($row_min .. $row_max) {
-        my @values = map { my $cell = $worksheet->get_cell($row, $_);  trim(($cell && $cell->unformatted()) || '');  } ($col_min .. $col_max);
+        my @values = map { my $cell = $worksheet->get_cell($row, $_); trim(($cell && $cell->unformatted()) || '');  } ($col_min .. $col_max);
         my $gene = shift(@values);
         my %block = ();
         @block{@headers} = @values;
