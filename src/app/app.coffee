@@ -18,30 +18,32 @@ angular
     'heliotrope.directives.navigation'
     'heliotrope.directives.tables'
     'heliotrope.directives.workflows'
+    'heliotrope.filters'
+    'heliotrope-templates'
   ]
 
   .config ['$routeProvider', ($routeProvider) ->
-    $routeProvider.when "/search",                                     {templateUrl: 'app/partials/search.html',         controller: "SearchController"}
-    $routeProvider.when "/",                                           {templateUrl: 'app/partials/studies.html',        controller: "StudyListController"}
-    $routeProvider.when "/genes",                                      {templateUrl: 'app/partials/home.html',           controller: "HomeController"}
-    $routeProvider.when "/genes/:gene",                                {templateUrl: 'app/partials/gene.html',           controller: "GeneController"}
-    $routeProvider.when "/variants/:name",                             {templateUrl: 'app/partials/variant.html',        controller: "VariantController"}
-    $routeProvider.when "/publications/:type/:id",                     {templateUrl: 'app/partials/publication.html',    controller: "PublicationController"}
-    $routeProvider.when "/studies",                                    {templateUrl: 'app/partials/studies.html',        controller: "StudyListController"}
-    $routeProvider.when "/studies/:study",                             {templateUrl: 'app/partials/study.html',          controller: "StudyController"}
-    $routeProvider.when "/studies/:study/:role/:identity",             {templateUrl: 'app/partials/entity.html',         controller: "EntityController"}
-    $routeProvider.when "/studies/:study/:role/:identity/step/:step",  {templateUrl: 'app/partials/step.html',           controller: "EntityStepController"}
-    $routeProvider.when "/admin",                                      {templateUrl: 'app/partials/admin.html',          controller: "AdminController"}
-    $routeProvider.when "/admin/studies",                              {templateUrl: 'app/partials/admin_studies.html',  controller: "AdminStudyController"}
-    $routeProvider.when "/admin/studies/:study",                       {templateUrl: 'app/partials/admin_studies.html',  controller: "AdminStudyController"}
-    $routeProvider.when "/admin/studies/:study/steps",                 {templateUrl: 'app/partials/admin_steps.html',    controller: "AdminStudyController"}
-    $routeProvider.when "/admin/studies/:study/views",                 {templateUrl: 'app/partials/admin_views.html',    controller: "AdminViewsController"}
-    $routeProvider.when "/admin/steps/:study",                         {templateUrl: 'app/partials/admin_step.html',     controller: "AdminStepController"}
-    $routeProvider.when "/admin/steps/:study/:role/:step",             {templateUrl: 'app/partials/admin_step.html',     controller: "AdminStepController"}
-    $routeProvider.when "/admin/views/:study",                         {templateUrl: 'app/partials/admin_view.html',     controller: "AdminViewController"}
-    $routeProvider.when "/admin/views/:study/:role/:view",             {templateUrl: 'app/partials/admin_view.html',     controller: "AdminViewController"}
-    $routeProvider.when "/admin/users",                                {templateUrl: 'app/partials/admin_users.html',    controller: "AdminUsersController"}
-    $routeProvider.when "/admin/users/:user",                          {templateUrl: 'app/partials/admin_user.html',     controller: "AdminUsersController"}
+    $routeProvider.when "/search",                                     {templateUrl: '/heliotrope/partials/search.html',         controller: "SearchController"}
+    $routeProvider.when "/",                                           {templateUrl: '/heliotrope/partials/studies.html',        controller: "StudyListController"}
+    $routeProvider.when "/genes",                                      {templateUrl: '/heliotrope/partials/home.html',           controller: "HomeController"}
+    $routeProvider.when "/genes/:gene",                                {templateUrl: '/heliotrope/partials/gene.html',           controller: "GeneController"}
+    $routeProvider.when "/variants/:name",                             {templateUrl: '/heliotrope/partials/variant.html',        controller: "VariantController"}
+    $routeProvider.when "/publications/:type/:id",                     {templateUrl: '/heliotrope/partials/publication.html',    controller: "PublicationController"}
+    $routeProvider.when "/studies",                                    {templateUrl: '/heliotrope/partials/studies.html',        controller: "StudyListController"}
+    $routeProvider.when "/studies/:study",                             {templateUrl: '/heliotrope/partials/study.html',          controller: "StudyController"}
+    $routeProvider.when "/studies/:study/:role/:identity",             {templateUrl: '/heliotrope/partials/entity.html',         controller: "EntityController"}
+    $routeProvider.when "/studies/:study/:role/:identity/step/:step",  {templateUrl: '/heliotrope/partials/step.html',           controller: "EntityStepController"}
+    $routeProvider.when "/admin",                                      {templateUrl: '/heliotrope/partials/admin.html',          controller: "AdminController"}
+    $routeProvider.when "/admin/studies",                              {templateUrl: '/heliotrope/partials/admin_studies.html',  controller: "AdminStudyController"}
+    $routeProvider.when "/admin/studies/:study",                       {templateUrl: '/heliotrope/partials/admin_studies.html',  controller: "AdminStudyController"}
+    $routeProvider.when "/admin/studies/:study/steps",                 {templateUrl: '/heliotrope/partials/admin_steps.html',    controller: "AdminStudyController"}
+    $routeProvider.when "/admin/studies/:study/views",                 {templateUrl: '/heliotrope/partials/admin_views.html',    controller: "AdminViewsController"}
+    $routeProvider.when "/admin/steps/:study",                         {templateUrl: '/heliotrope/partials/admin_step.html',     controller: "AdminStepController"}
+    $routeProvider.when "/admin/steps/:study/:role/:step",             {templateUrl: '/heliotrope/partials/admin_step.html',     controller: "AdminStepController"}
+    $routeProvider.when "/admin/views/:study",                         {templateUrl: '/heliotrope/partials/admin_view.html',     controller: "AdminViewController"}
+    $routeProvider.when "/admin/views/:study/:role/:view",             {templateUrl: '/heliotrope/partials/admin_view.html',     controller: "AdminViewController"}
+    $routeProvider.when "/admin/users",                                {templateUrl: '/heliotrope/partials/admin_users.html',    controller: "AdminUsersController"}
+    $routeProvider.when "/admin/users/:user",                          {templateUrl: '/heliotrope/partials/admin_user.html',     controller: "AdminUsersController"}
     $routeProvider.otherwise {redirectTo: "/view1"}
   ]
 
