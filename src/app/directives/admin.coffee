@@ -3,7 +3,7 @@
 angular
   .module 'heliotrope.directives.admin', []
 
-  .directive('heliAdminRange', () ->
+  .directive 'heliAdminRange', () ->
     result =
       restrict: "A"
       replace: true
@@ -28,7 +28,7 @@ angular
           range ||= []
           if ! angular.equals(range, iElement.val().split(","))
             iElement.val(range).trigger('change')
-  )
+
 
   .directive('heliAdminFieldBody', () ->
     result =
