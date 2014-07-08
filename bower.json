@@ -21,12 +21,13 @@
   "dependencies": {
     "javascript-number-formatter": "~1.1.2",
 
-    "angular": "~1.2.14",
-    "angular-route": "~1.2.14",
-
     "jquery": "~1.11.1",
     "jquery-ui": "~1.11.0",
     "jquery-form": "~3.46.0",
+
+    "angular": "~1.2.19",
+    "angular-route": "~1.2.19",
+    "angular-resource": "~1.2.19",
 
     "bootstrap": "~3.1.1",
     "bootstrap-datepicker": "~1.3.0",
@@ -39,9 +40,12 @@
     "spin": "~1.1.6",
     "wysihtml5": "~0.3.0",
     "datatables": "~1.10.0"
-
   },
   "devDependencies": {
     "angular-mocks": "~1.2.14"
+  },
+  // Shouldn't be needed, but it is, due to weird naming clashes in jquery
+  "overrides": {
+    "jQuery": { "ignore":  true }
   }
 }
