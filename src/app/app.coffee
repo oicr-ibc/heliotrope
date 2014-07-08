@@ -161,11 +161,11 @@ angular
 
       error = (data) ->
 
-      $http.post('/authentication/api/login', payload, config).success(success).error(error)
+      $http.post('/api/authentication/login', payload, config).success(success).error(error)
 
     scope.$on 'event:logoutRequest', () ->
 
-      $http.post('/authentication/api/logout', {}, config).success (data) ->
+      $http.post('/api/authentication/logout', {}, config).success (data) ->
         scope.$broadcast 'event:logoutConfirmed'
 
     # When we start the app, we might be on an unauthenticated route but still have a session
@@ -173,7 +173,7 @@ angular
     # return a 200 status (i.e., not be restricted by authentication, and return the current user)
     # exactly like the login event system.
     ping = () ->
-      $http.get('/authentication/api/ping', {}, config).success (data) ->
+      $http.get('/api/authentication/ping', {}, config).success (data) ->
         if data.data.user
           scope.$broadcast 'event:loginConfirmed', data.data.user
 

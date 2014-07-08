@@ -9,7 +9,12 @@ var gulp = require('gulp'),
     lazypipe = require('lazypipe'),
     stylish = require('jshint-stylish'),
     bower = require('./bower'),
+    url = require('url'),
+    proxy = require('proxy-middleware'),
     isWatching = false;
+
+var proxyOptions = url.parse('http://localhost:3001/api');
+proxyOptions.route = '/api';
 
 var htmlminOpts = {
   removeComments: true,
@@ -71,6 +76,13 @@ gulp.task('coffee', function () {
     .pipe(g.coffee())
     .pipe(gulp.dest('./.tmp/src/app'));
 });
+gulp.task('coffee-service', function () {
+  return gulp.src([
+    './src/service/**/*.*coffee'
+  ])
+    .pipe(g.coffee())
+    .pipe(gulp.dest('./.tmp/src/service'));
+});
 
 /**
  * Scripts
@@ -105,7 +117,7 @@ gulp.task('vendors', function () {
  * Index
  */
 gulp.task('index', index);
-gulp.task('build-all', ['styles', 'templates', 'coffee'], index);
+gulp.task('build-all', ['styles', 'templates', 'coffee', 'coffee-service'], index);
 
 function index () {
   var opt = {read: false};
@@ -142,7 +154,8 @@ gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist'], function
  */
 gulp.task('statics', g.serve({
   port: 3000,
-  root: ['./.tmp', './.tmp/src/app', './src/app', './bower_components']
+  root: ['./.tmp', './.tmp/src/app', './src/app', './bower_components'],
+  middlewares: [proxy(proxyOptions)]
 }));
 
 /**
@@ -153,11 +166,12 @@ gulp.task('watch', ['statics', 'default'], function () {
   isWatching = true;
   // Initiate livereload server:
   g.livereload();
-  gulp.watch('./src/app/**/*.js', ['jshint']).on('change', function (evt) {
+  gulp.watch('./src/app/**/*.*coffee', ['coffee']).on('change', function (evt) {
     if (evt.type !== 'changed') {
       gulp.start('index');
     }
   });
+  gulp.watch('./src/service/**/*.*coffee', ['coffee-service']);
   gulp.watch('./src/app/index.html', ['index']);
   gulp.watch(['./src/app/**/*.html', '!./src/app/index.html'], ['templates']);
   gulp.watch(['./src/app/**/*.scss'], ['csslint']).on('change', function (evt) {
@@ -165,6 +179,10 @@ gulp.task('watch', ['statics', 'default'], function () {
       gulp.start('index');
     }
   });
+  g.nodemon({ script: '.tmp/src/service/main.js', watch: ['.tmp/src/service'] })
+    .on('restart', function () {
+      console.log('restarted!');
+    });
 });
 
 /**
