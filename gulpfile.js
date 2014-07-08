@@ -66,7 +66,7 @@ gulp.task('csslint', ['styles'], function () {
  */
 gulp.task('coffee', function () {
   return gulp.src([
-    './src/app/**/*.coffee'
+    './src/app/**/*.*coffee'
   ])
     .pipe(g.coffee())
     .pipe(gulp.dest('./.tmp/src/app'));
