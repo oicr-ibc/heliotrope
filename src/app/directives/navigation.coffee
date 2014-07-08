@@ -1,13 +1,15 @@
-# Directives 
+# Directives
 
 angular
-  .module('heliotrope.directives.navigation', [])
+  .module 'heliotrope.directives.navigation', [
+    'heliotrope.services.tracker'
+  ]
 
   # Used to generate a dropdown menu of the available workflows. These can then be
-  # used to direct to a form on selection. 
-  
-  .directive('heliWorkflows', () ->
-    result = 
+  # used to direct to a form on selection.
+
+  .directive 'heliWorkflows', () ->
+    result =
       restrict: "A"
       replace: true
       template: '<ul class="dropdown-menu">' +
@@ -15,13 +17,13 @@ angular
                 '<a href="{{step.url}}">{{step.label}}</a>' +
                 '</li>' +
                 '</ul>'
-  )
+
 
   # To display the study menu link, make a request and see what we get. This should
   # probably be done more elegantly in the root scope, and then handled from there.
 
-  .directive('heliStudyMenuLink', (StudyList) ->
-    result = 
+  .directive 'heliStudyMenuLink', ['StudyList', (StudyList) ->
+    result =
       restrict: "A"
       replace: true
       template: '<li class="disabled"><a>studies</a></li>'
@@ -31,10 +33,10 @@ angular
           iElement.toggleClass("disabled")
           iElement.find('a').attr('href','/studies');
         )
-  )
+  ]
 
-  .directive('heliKnowledgeBaseSearch', ($http) ->
-    result = 
+  .directive 'heliKnowledgeBaseSearch', ['http', ($http) ->
+    result =
       restrict: "A"
       scope: { term: '&', entity: '&entity' }
       link: (scope, iElement, iAttrs, controller) ->
@@ -56,10 +58,11 @@ angular
                 ).error((data, status, headers, config) ->
                   jQuery(iElement).html("<span class='warn'>Not found in knowledge base</span>")
                 )
-                  
-  )
 
-  .directive('heliSection', () ->
+  ]
+
+  .directive 'heliSection', () ->
+    result =
       priority: 1
       restrict: "A"
       replace: true
@@ -68,7 +71,7 @@ angular
       template: '<div class="row-fluid">' +
                 '<div class="tab-content">' +
                 '<div class="tab-pane active">' +
-                '<div class="row-fluid">' + 
+                '<div class="row-fluid">' +
                 '<h3 class="pull-left" id="{{id}}">{{title}}</h3>' +
                 '</div>' +
                 '<div class="body" ng-transclude></div>' +
@@ -87,5 +90,3 @@ angular
           offset = jQuery(target).offset().top - 150
           jQuery("body").animate({scrollTop: offset}, 'slow')
           true
-  )
-  

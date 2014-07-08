@@ -1,8 +1,8 @@
 Authentication directives
 =========================
 
-This module provides the directives needed to support authentication. These are invoked in a scope 
-managed by the `AuthenticationController`. 
+This module provides the directives needed to support authentication. These are invoked in a scope
+managed by the `AuthenticationController`.
 
 
     angular
@@ -10,13 +10,13 @@ managed by the `AuthenticationController`.
 
 
 The `heliLoginForm` directive manages the login form. It waits for a broadcast event
-`event:loginRequired` and then displays a modal dialog. On successful completion, it 
+`event:loginRequired` and then displays a modal dialog. On successful completion, it
 passes the login information back to the controller to send back for a modest cookie-based
-authentication system. 
+authentication system.
 
 
       .directive('heliLoginForm', () ->
-        result = 
+        result =
           restrict: "A"
           replace: true
           template: '<div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">' +

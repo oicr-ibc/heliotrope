@@ -1,23 +1,26 @@
 angular
-  .module('heliotrope', [
-    'heliotrope.filters'
-    'heliotrope.controllers.common'
-    'heliotrope.controllers.tracker'
-    'heliotrope.controllers.knowledge'
+  .module 'heliotrope', [
+    'ng'
+    'ngRoute'
+    'heliotrope.services.common'
     'heliotrope.services.tracker'
     'heliotrope.services.knowledge'
     'heliotrope.services.genomics'
-    'heliotrope.directives'
+    'heliotrope.controllers.common'
+    'heliotrope.controllers.knowledge'
+    'heliotrope.controllers.tracker'
+    'heliotrope.directives.core'
+    'heliotrope.directives.admin'
     'heliotrope.directives.authentication'
     'heliotrope.directives.charts'
-    'heliotrope.directives.forms'
     'heliotrope.directives.editing'
+    'heliotrope.directives.forms'
+    'heliotrope.directives.navigation'
     'heliotrope.directives.tables'
     'heliotrope.directives.workflows'
-    'heliotrope.directives.navigation'
-    'heliotrope.directives.admin'
-  ])
-  .config(['$routeProvider', ($routeProvider) ->
+  ]
+
+  .config ['$routeProvider', ($routeProvider) ->
     $routeProvider.when "/search",                                     {templateUrl: 'app/partials/search.html',         controller: "SearchController"}
     $routeProvider.when "/",                                           {templateUrl: 'app/partials/studies.html',        controller: "StudyListController"}
     $routeProvider.when "/genes",                                      {templateUrl: 'app/partials/home.html',           controller: "HomeController"}
@@ -40,13 +43,14 @@ angular
     $routeProvider.when "/admin/users",                                {templateUrl: 'app/partials/admin_users.html',    controller: "AdminUsersController"}
     $routeProvider.when "/admin/users/:user",                          {templateUrl: 'app/partials/admin_user.html',     controller: "AdminUsersController"}
     $routeProvider.otherwise {redirectTo: "/view1"}
-  ])
-  .config(['$locationProvider', ($locationProvider) ->
+  ]
+
+  .config ['$locationProvider', ($locationProvider) ->
     $locationProvider.html5Mode(true)
     $locationProvider.hashPrefix = "!"
-  ])
+  ]
 
-  .config(['$httpProvider', ($httpProvider) ->
+  .config ['$httpProvider', ($httpProvider) ->
 
     authenticationInterceptor = ($rootScope, $q) ->
 
@@ -73,10 +77,10 @@ angular
         promise.then(success, error)
 
     $httpProvider.responseInterceptors.push(authenticationInterceptor)
-    
-  ])
 
-  .run(['$rootScope', '$http', '$location', '$timeout', (scope, $http, $location, $timeout) ->
+  ]
+
+  .run ['$rootScope', '$http', '$location', '$timeout', (scope, $http, $location, $timeout) ->
 
     class User
       constructor: (user) ->
@@ -98,7 +102,7 @@ angular
 
     scope.$on 'event:loginRequired', () ->
 
-    config = 
+    config =
       headers: {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 
     spinner = false
@@ -106,7 +110,7 @@ angular
 
     # Probably should let this be handled by an authentication controller
     # which can handle a modal dialog and initiate the event:loginRequest
-    # event. It actually seems I am beginning to understand AngularJS 
+    # event. It actually seems I am beginning to understand AngularJS
 
     scope.$on 'event:startSpinner', () ->
       if ! spinnerPromise
@@ -152,7 +156,7 @@ angular
 
       success = (data) ->
         scope.$broadcast 'event:loginConfirmed', data.data.user
-      
+
       error = (data) ->
 
       $http.post('/authentication/api/login', payload, config).success(success).error(error)
@@ -172,12 +176,12 @@ angular
           scope.$broadcast 'event:loginConfirmed', data.data.user
 
     ping()
-  ])
+  ]
 
 
 jQuery.extend(jQuery.fn.dataTableExt.oStdClasses, {
-  "sSortAsc": "header headerSortDown", 
-  "sSortDesc": "header headerSortUp", 
+  "sSortAsc": "header headerSortDown",
+  "sSortDesc": "header headerSortUp",
   "sSortable": "header"
 })
 
@@ -185,10 +189,10 @@ jQuery.extend(jQuery.fn.dataTableExt.oSort, {
   "percent-pre": (a) ->
     x = if a == "-" then 0 else a.replace( /%/, "" )
     parseFloat(x)
- 
+
   "percent-asc": (a, b) ->
     if a < b then -1 else if (a > b) then 1 else 0
-  
+
   "percent-desc": (a, b) ->
     if a < b then 1 else if (a > b) then -1 else 0
 })

@@ -1,12 +1,12 @@
 angular
-  .module('heliotrope.directives.editing', [])
+  .module 'heliotrope.directives.editing', []
 
-  .directive('heliEditReferences', ($compile) ->
-    result = 
+  .directive 'heliEditReferences', ['$compile', ($compile) ->
+    result =
       restrict: "A"
       replace: true
       transclude: false
-      scope: 
+      scope:
         references: '='
       template: '<span></span>'
       link: (scope, iElement, iAttrs, controller) ->
@@ -41,7 +41,7 @@ angular
 
             # Establish a watcher to write values into the tags editor
             scope.$watch 'references', (references) ->
-          
+
               references ||= []
               referenceString = (ref) ->
                 ref.type + ":" + ref.id
@@ -61,14 +61,14 @@ angular
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
-  )
+  ]
 
-  .directive('heliEditDropdown', ($compile) ->
-    result = 
+  .directive 'heliEditDropdown', ['$compile', ($compile) ->
+    result =
       restrict: "A"
       replace: true
       transclude: false
-      scope: 
+      scope:
         value: '='
         options: '@'
       template: '<span></span>'
@@ -87,16 +87,16 @@ angular
             linkBody("<select class='select-dropdown' heli-select-element ng-model='value'>" +
                      "<option ng-repeat='alt in options | split' ng-selected='(alt == value)' value='{{alt}}'>{{alt | keywordToString:#{capitalize}}}</option>" +
                      "</select>")
-          else 
+          else
             linkBody("<span>{{value | keywordToString:#{capitalize}}}</span>")
-  )
+  ]
 
-  .directive('heliEditTypeahead', ($compile) ->
-    result = 
+  .directive 'heliEditTypeahead', ['$compile', ($compile) ->
+    result =
       restrict: "A"
       replace: true
       transclude: false
-      scope: 
+      scope:
         value: '='
         options: '&'
       template: '<span></span>'
@@ -115,21 +115,21 @@ angular
               console.log "Blur", event
             typeahead.on 'change', (event) ->
               console.log "Change", event
-            
-          else 
+
+          else
             body = "<b>{{value}}</b>"
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
-  )
+  ]
 
-  .directive('heliEditComment', ($compile) ->
-    result = 
+  .directive 'heliEditComment', ['$compile', ($compile) ->
+    result =
       restrict: "A"
       replace: true
       transclude: false
-      scope: 
+      scope:
         value: '='
       template: '<div></div>'
       link: (scope, iElement, iAttrs, controller) ->
@@ -140,20 +140,20 @@ angular
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
-          else 
+          else
             body = '<span class="comment">{{value}}</span>'
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
-  )
+  ]
 
-  .directive('heliEditText', ($compile) ->
-    result = 
+  .directive 'heliEditText', ['$compile', ($compile) ->
+    result =
       restrict: "A"
       replace: true
       transclude: false
-      scope: 
+      scope:
         value: '='
       template: '<span></span>'
       link: (scope, iElement, iAttrs, controller) ->
@@ -164,23 +164,23 @@ angular
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
-          else 
+          else
             body = "<span>{{value}}</span>"
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
-  )
+  ]
 
-  .directive('heliEditableAction', () ->
-    result = 
+  .directive 'heliEditableAction', () ->
+    result =
       restrict: "A"
       replace: true
       transclude: true
-      scope: 
+      scope:
         action: '='
       template: '<div class="well well-small">' +
-                '<dl class="dl-horizontal">' + 
+                '<dl class="dl-horizontal">' +
                 '<dt>Mutation action</dt>' +
                 '<dd>' +
                 '<span ng-show="editing"><span heli-edit-dropdown value="action.type" options="activating,inactivating,other"></span></span>' +
@@ -197,16 +197,15 @@ angular
           scope.editing = editing
           if editing
             iElement.attr("class", "well well-small editing-enabled")
-          else 
+          else
             iElement.attr("class", "")
-  )
 
-  .directive('heliEditableSignificances', () ->
-    result = 
+  .directive 'heliEditableSignificances', () ->
+    result =
       restrict: "A"
       replace: true
       transclude: true
-      scope: 
+      scope:
         significance: '='
       controller: 'EditableSignificanceController'
       template: '<div class="well well-small">' +
@@ -236,15 +235,15 @@ angular
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
 
-        # Need data for the significances that isn't going to be affected by the model changes. 
+        # Need data for the significances that isn't going to be affected by the model changes.
         # This allows the display to remain unmodified during most of the editing
         # process. If we don't do this, every edit to the tumourType field modifies
         # the model and triggers a redisplay we don't actually want. We also really want a
-        # stable set of tumour types we can use for typeahead in a dropdown, but we can 
+        # stable set of tumour types we can use for typeahead in a dropdown, but we can
         # pull that from the server. The easiest way to achieve that is to ignore the tumourType as
         # a filtering system, and just display significances in order. That order can be adjusted by
-        # business logic, but again we don't want that to change live if we can help it, as that 
-        # would mess up the display. 
+        # business logic, but again we don't want that to change live if we can help it, as that
+        # would mess up the display.
         watcher = scope.$watch 'significance', (significance) ->
           if significance && ! scope.tumourTypes
             watcher()
@@ -257,16 +256,16 @@ angular
           scope.editing = editing
           if editing
             iElement.attr("class", "well well-small editing-enabled")
-          else 
+          else
             iElement.attr("class", "")
-  )
 
-  .directive('heliEditableAgents', () ->
-    result = 
+
+  .directive 'heliEditableAgents', () ->
+    result =
       restrict: "A"
       replace: true
       transclude: true
-      scope: 
+      scope:
         agents: '='
       controller: 'EditableAgentsController'
       template: '<div class="well well-small">' +
@@ -289,8 +288,5 @@ angular
           scope.editing = editing
           if editing
             iElement.attr("class", "well well-small editing-enabled")
-          else 
+          else
             iElement.attr("class", "")
-  )
-
-

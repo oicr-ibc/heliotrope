@@ -1,52 +1,52 @@
 angular.module('heliotrope.services.knowledge', ['ngResource'])
 
-  # Service to access the gene frequencies. This doens't want any parameters or 
+  # Service to access the gene frequencies. This doens't want any parameters or
   # or routing usually, it's all global.
 
-  .factory('GeneFrequencies', ($resource) ->
+  .factory 'GeneFrequencies', ['$resource', ($resource) ->
     $resource('/knowledge/api/queries/gene_frequencies', {},
-      query: 
+      query:
         method: 'GET'
     )
-  )
+  ]
 
-  # Service to retrieve gene information. 
+  # Service to retrieve gene information.
 
-  .factory('Gene', ($resource) ->
+  .factory 'Gene', ['$resource', ($resource) ->
     $resource('/knowledge/api/genes/:gene', {},
-      query: 
+      query:
         method: 'GET'
     )
-  )
+  ]
 
-  # Service to retrieve search information. 
+  # Service to retrieve search information.
 
-  .factory('Search', ($resource) ->
+  .factory 'Search', ['$resource', ($resource) ->
     $resource('/knowledge/api/search', {},
-      query: 
+      query:
         method: 'GET'
     )
-  )
+  ]
 
-  # Service to retrieve publication information. 
+  # Service to retrieve publication information.
 
-  .factory('Publication', ($resource) ->
+  .factory 'Publication', ['$resource', ($resource) ->
     $resource('/knowledge/api/publications/:type/:id', {},
-      query: 
+      query:
         method: 'GET'
     )
-  )
+  ]
 
-  # Service to retrieve variant information. The service allows variants to be 
-  # saved and created too. It's unlikely we'll ever use the POST requests 
-  # and the service may well not expose them. PUT is normal for saving, as 
+  # Service to retrieve variant information. The service allows variants to be
+  # saved and created too. It's unlikely we'll ever use the POST requests
+  # and the service may well not expose them. PUT is normal for saving, as
   # we want the body back (and we're using JS anyway) and the body will be
-  # used to redisplay. 
+  # used to redisplay.
 
-  .factory('Variant', ($resource) ->
+  .factory 'Variant', ['$resource', ($resource) ->
 
     Variant = $resource('/knowledge/api/variants/:name', {name: "@data.name"},
-      query: 
+      query:
         method: 'GET'
       save:
         method: 'PUT'
@@ -59,7 +59,7 @@ angular.module('heliotrope.services.knowledge', ['ngResource'])
       positions.forEach((a) ->
         a.codon = null if a.codon == "-"
       )
-      positions.sort((a, b) -> 
+      positions.sort((a, b) ->
         result = 0
         result = -1 if ("sift" in a and ! "sift" in b)
         result = 1 if ("sift" in b and ! "sift" in a)
@@ -73,5 +73,5 @@ angular.module('heliotrope.services.knowledge', ['ngResource'])
       positions
 
     Variant
-  )
+  ]
 

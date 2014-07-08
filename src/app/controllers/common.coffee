@@ -1,18 +1,20 @@
 angular
-  .module('heliotrope.controllers.common', [])
+  .module 'heliotrope.controllers.common', [
+    'heliotrope.services.tracker'
+  ]
 
-  .controller('NavigationController', ($scope, $routeParams, $timeout, StudyList) ->
+  .controller 'NavigationController', ['$scope', 'StudyList', ($scope, StudyList) ->
 
     $scope.studiesAvailable = false
 
     $scope.studies = StudyList.get(
       {}
       () -> $scope.studiesAvailable = true
-      () -> 
+      () ->
     )
-  )
+  ]
 
-  .controller('AuthenticationController', ($scope, $routeParams, $timeout, StudyList) ->
+  .controller 'AuthenticationController', ['$scope', ($scope) ->
 
   	$scope.username = undefined
   	$scope.password = undefined
@@ -25,5 +27,5 @@ angular
 
   	$scope.logout = () ->
   		$scope.$emit "event:logoutRequest"
-  )
+  ]
 

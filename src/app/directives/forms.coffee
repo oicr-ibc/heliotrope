@@ -1,9 +1,11 @@
-# Directives 
+# Directives
 
 angular
-  .module('heliotrope.directives.forms', [])
+  .module 'heliotrope.directives.forms', [
+    'heliotrope.services.tracker'
+  ]
 
-  .directive('heliTagControl', () ->
+  .directive 'heliTagControl', () ->
     result =
       restrict: 'A'
       replace: false
@@ -21,9 +23,9 @@ angular
           if !loading
             scope.$apply () ->
               scope.model = evt.val
-  )
 
-  .directive('heliDescription', () ->
+
+  .directive 'heliDescription', () ->
     result =
       restrict: 'A'
       replace: false
@@ -33,9 +35,9 @@ angular
         scope.$watch 'html', (val) ->
           if val
             iElement.html(val)
-  )
 
-  .directive('heliStepForm', () ->
+
+  .directive 'heliStepForm', () ->
     result =
       restrict: 'A'
       replace: true
@@ -50,10 +52,10 @@ angular
                 '</div>' +
                 '</form>' +
                 '</div>'
-  )
-  
-  .directive('heliFormButton', () ->
-    result = 
+
+
+  .directive 'heliFormButton', () ->
+    result =
       restrict: "A"
       replace: true
       transclude: true
@@ -66,10 +68,10 @@ angular
               location.href = url
               e.stopPropagation()
               e.preventDefault()
-  )
 
-  .directive('heliStepField', ($compile, RelatedEntities) ->
-    result = 
+
+  .directive 'heliStepField', ['$compile', 'RelatedEntities', ($compile, RelatedEntities) ->
+    result =
       restrict: "A"
       replace: true
       transclude: true
@@ -80,7 +82,7 @@ angular
       link: (scope, iElement, iAttrs, controller) ->
 
         scope.$watch 'fieldValue', (newValue, oldValue) ->
-  
+
           linkBody = (body, attributes) ->
             template = angular.element(body)
             if attributes
@@ -113,7 +115,7 @@ angular
                 linkBody('<input type="checkbox" ng-model="fieldValue.value" id="{{fieldKey}}">')
               when "file"
                 body = '<div>' +
-                       '<input type="file" class="control" id="{{fieldKey}}" style="display: none">' + 
+                       '<input type="file" class="control" id="{{fieldKey}}" style="display: none">' +
                        '<div class="input-append">' +
                        '<input id="{{fieldKey}}-text" class="input-large file-display" type="text">' +
                        '<a class="btn">Browse</a>' +
@@ -127,22 +129,22 @@ angular
                 iElement.find(".control").change (e) ->
                   iElement.find(".file-display").val jQuery(this).val()
                 form = iElement.parents("form")
-                
-                # File-containing forms are a little different. We actually want to 
+
+                # File-containing forms are a little different. We actually want to
                 # push the files somehow through the service. The step can then take these
-                # values and handle the data. The question is: how to incorporate the 
+                # values and handle the data. The question is: how to incorporate the
                 # file data into the final submission process for the step, and still
                 # push to the same URL. That should really involve capturing the form
-                # submission process. 
+                # submission process.
                 #
                 # We actually want to stop (defer) the regular form submission process
                 # for these cases. That involves removing the current click handler for
-                # the submit button. 
-                
+                # the submit button.
+
                 form.fileupload
                   dataType: 'json'
                   url: scope.entity.data.serviceUrl + "/files"
-                  
+
                   add: (e, data) =>
                     fileCount = data.files.length
                     files = (data.files[i] for i in [0..fileCount])
@@ -151,9 +153,9 @@ angular
                     scope.toUpload = true
                     scope.$digest()
                     scope.$broadcast('fileadded', {files: fileCount})
-                    
+
                     form.find(".submit").off('click')
-                    
+
                     form.find(".submit").on('click', (e) =>
                       e.preventDefault()
                       e.stopPropagation()
@@ -163,21 +165,21 @@ angular
                   done: (e, data) =>
                     # We should get a response here, and if we do, and if we get some files back, we
                     # can then add them into the control data and re-initiate the form submission. This
-                    # will then put the file identifiers into the form value. Sorted. 
+                    # will then put the file identifiers into the form value. Sorted.
 
                     console.log "Done", data, scope
 
                     identifiers = data.result["files"]
                     scope.fieldValue.value = identifiers
                     scope.$apply()
-                    
+
                     # And now, hey presto, let's submit the form for real now. Of course, we do this using
                     # Angular rather than naive stuff
                     scope.update(scope.entity)
-                    
+
                   progress: (e, data) =>
                   progressall: (e, data) =>
-                  
+
               when "date"
                 body = '<input type="text" class="datepicker" id="{{fieldKey}}" placeholder="{{fieldValue.label}}">'
                 template = angular.element(body)
@@ -230,6 +232,6 @@ angular
 
               else
                 console.log "Unknown control type", newValue
-  )
-  
+  ]
+
 

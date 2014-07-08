@@ -1,10 +1,12 @@
-# Directives 
+# Directives
 
 angular
-  .module('heliotrope.directives.tables', [])
+  .module 'heliotrope.directives.tables', [
+    'heliotrope.services.tracker'
+  ]
 
   .directive 'heliEntitySteps', () ->
-    result = 
+    result =
       restrict: "A"
       replace: true
       template: '<table class="table table-bordered table-striped table-condensed">' +
@@ -16,10 +18,10 @@ angular
                 '</tr>' +
                 '</thead>' +
                 '<tbody class="step-body">' +
-                '</tbody>' + 
+                '</tbody>' +
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'entity', (entity) -> 
+        scope.$watch 'entity', (entity) ->
           if entity
             body = iElement.find(".step-body")
             steps = entity.data.steps.sort (a, b) ->
@@ -33,7 +35,7 @@ angular
               stepData = stepTable[step.stepRef]
               rowData = []
               url = entity.data.url + "/step/" + stepData["name"]
-              if stepData['count']++ > 1 
+              if stepData['count']++ > 1
                 url = url + ";" + stepData['count']
               rowData.push(new Date(step["stepDate"]).toLocaleDateString())
               rowData.push("<a href='" + step["url"] + "'>" + stepData["label"] + "</a>")
@@ -42,8 +44,8 @@ angular
               jQuery("<tr>" + row + "</tr>").appendTo(body)
 
 
-  .directive('heliStudyEntities', (Study) ->
-    result = 
+  .directive 'heliStudyEntities', ['Study', (Study) ->
+    result =
       restrict: "A"
       replace: true
       template: '<table class="table table-bordered table-striped table-condensed">' +
@@ -53,10 +55,10 @@ angular
                 '</tr>' +
                 '</thead>' +
                 '<tbody class="step-body">' +
-                '</tbody>' + 
+                '</tbody>' +
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'study', (newValue, oldValue) -> 
+        scope.$watch 'study', (newValue, oldValue) ->
           if newValue
             role = iAttrs.role
             label = iAttrs.label
@@ -72,7 +74,7 @@ angular
                 header.after newHeader
                 header = newHeader
             query = Study.get({study: newValue.data.name, q: 'getEntities', role: role}, () ->
-              
+
               for record in query.data
                 row = ("" for i in [1..stepIndex])
                 row[0] = "<a href='" + record.url + " '>" + record.identity + "</a>"
@@ -82,13 +84,13 @@ angular
                 row = ("<td>" + rowData + "</td>" for rowData in row).join("")
                 jQuery("<tr>" + row + "</tr>").appendTo(body)
             )
-  )
-  
+  ]
+
   # Add the directive for the data tables for frequencies. This could be parameterised, but encapsulates all the
-  # primary logic for the frequencies table. 
-  
-  .directive('heliFrequencies', () ->
-    result = 
+  # primary logic for the frequencies table.
+
+  .directive 'heliFrequencies', () ->
+    result =
       restrict: "A"
       replace: true
       transclude: true
@@ -101,12 +103,12 @@ angular
                 '</tr>' +
                 '</thead>' +
                 '<tbody>' +
-                '</tbody>' + 
+                '</tbody>' +
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'entity.data.sections.frequencies.data.tumour', (newValue, oldValue) -> 
+        scope.$watch 'entity.data.sections.frequencies.data.tumour', (newValue, oldValue) ->
           if (newValue && ! angular.equals(newValue, oldValue))
-            renderPercent = (x) -> 
+            renderPercent = (x) ->
               formatter = new NumberFormat(x.frequency * 100.0)
               formatter.setPlaces(2)
               '<b>' + formatter.toFormatted() + "%" + '</b> (' + x.affected + ' of ' + x.total + ' samples)'
@@ -121,13 +123,12 @@ angular
               aaSorting: [[ 1, "desc" ]]
             )
     result
-  )
 
   # Add the directive for the data tables for frequencies. This could be parameterised, but encapsulates all the
-  # primary logic for the frequencies table. 
-  
-  .directive('heliObservations', () ->
-    result = 
+  # primary logic for the frequencies table.
+
+  .directive 'heliObservations', () ->
+    result =
       restrict: "A"
       replace: true
       transclude: false
@@ -139,10 +140,10 @@ angular
                 '</tr>' +
                 '</thead>' +
                 '<tbody>' +
-                '</tbody>' + 
+                '</tbody>' +
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'entity.data.related.observations', (newValue, oldValue) -> 
+        scope.$watch 'entity.data.related.observations', (newValue, oldValue) ->
           if (newValue)
             jQuery(iElement).dataTable(
               sPaginationType: "bootstrap"
@@ -161,4 +162,3 @@ angular
               aaSorting: [[ 1, "asc" ]]
             )
     result
-  )

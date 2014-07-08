@@ -1,10 +1,10 @@
 angular.module('heliotrope.services.common', ['ngResource'])
 
   # Service to access data for users.
-  .factory('Users', ($resource) ->
+  .factory 'Users', ['$resource', ($resource) ->
     Users = $resource('/authentication/api/users/:user', {},
-      query: 
+      query:
         method: 'GET'
     )
     Users
-  )
+  ]

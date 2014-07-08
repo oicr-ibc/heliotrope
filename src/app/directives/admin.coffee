@@ -1,7 +1,7 @@
-# Directives 
+# Directives
 
 angular
-  .module('heliotrope.directives.admin', [])
+  .module 'heliotrope.directives.admin', []
 
   .directive('heliAdminRange', () ->
     result =
@@ -74,7 +74,7 @@ angular
   )
 
   .directive('heliAdminFields', () ->
-    result = 
+    result =
       restrict: "A"
       replace: true
       transclude: true
@@ -84,7 +84,7 @@ angular
   )
 
   .directive('heliAdminUsers', () ->
-    result = 
+    result =
       restrict: "A"
       replace: true
       transclude: true
@@ -97,26 +97,26 @@ angular
                 '</tr>' +
                 '</thead>' +
                 '<tbody>' +
-                '</tbody>' + 
+                '</tbody>' +
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'users.data', (users) -> 
+        scope.$watch 'users.data', (users) ->
           console.log "New value", users
           if users?
             jQuery(iElement).dataTable(
               sPaginationType: "bootstrap"
               bPaginate: true
               aaData: angular.copy(users)
-              aoColumns: [ { 
-                "sTitle": "Username", 
-                "sClass": "span8", 
+              aoColumns: [ {
+                "sTitle": "Username",
+                "sClass": "span8",
                 "mData": "userId",
                 "mRender" : (data) ->
                   "<a href='/admin/users/#{data}'>#{data}</a>"
-              }, { 
-                "sTitle": "Roles", 
-                "sClass": "span4", 
-                "mData": "roles" 
+              }, {
+                "sTitle": "Roles",
+                "sClass": "span4",
+                "mData": "roles"
               }]
               aaSorting: [[ 0, "asc" ]]
             )

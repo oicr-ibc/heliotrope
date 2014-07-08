@@ -1,25 +1,27 @@
-# Directives 
+# Directives
 
 angular
-  .module('heliotrope.directives.charts', ['heliotrope.services.genomics'])
+  .module 'heliotrope.directives.charts', [
+    'heliotrope.services.genomics'
+  ]
 
   # Add the directive for the genome frequencies data, which has an optional marker
   # included for a current location. This depends on d3, and is therefore requiring an
-  # svg enabled browser. 
+  # svg enabled browser.
   #
   # Note that a variant is a bit different, and we ought to handle it accordingly.
-  # Genes can be displayed immediately. 
+  # Genes can be displayed immediately.
 
-  .directive('heliStructureDistribution', (domainService) ->
+  .directive 'heliStructureDistribution', ['domainService', (domainService) ->
 
-    result = 
+    result =
       restrict: "A"
       replace: true
       transclude: true
       scope: false
       template: '<div class="diagram"></div>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'entity.data', (entityData) -> 
+        scope.$watch 'entity.data', (entityData) ->
           if (entityData)
 
             display = jQuery(iElement)
@@ -33,7 +35,7 @@ angular
             domains = (domain for domain in transcript["domains"] when domain["gffSource"] == "Pfam")
             domains = domainService.transform(domains)
 
-            data = 
+            data =
               start: 1,
               stop: transcript["lengthAminoAcid"],
               domains: domains
@@ -49,17 +51,17 @@ angular
               data["background"] = entityData.sections.distribution["data"]
 
             chart = new ProteinStructureChart({
-              tooltips: false, 
-              leftMargin: 30, 
-              markerRadius: 6, 
+              tooltips: false,
+              leftMargin: 30,
+              markerRadius: 6,
               domainLegendBarSize: 55,
               domainLegendBarDescriptionOffset: 58,
-              displayWidth: chartWidth, 
-              valueHeight: chartHeight}, 
+              displayWidth: chartWidth,
+              valueHeight: chartHeight},
               data)
 
             result = chart.display(element)
-  )
+  ]
 
   .directive 'heliGeneFrequenciesBubble', () ->
     result =
@@ -69,7 +71,7 @@ angular
       scope: false
       template: '<div class="diagram"></div>'
       link: (scope, iElement, iAttrs) ->
-        scope.$watch 'gene.data', (genes) -> 
+        scope.$watch 'gene.data', (genes) ->
           if genes
 
             display = jQuery(iElement)
@@ -91,7 +93,7 @@ angular
                 result.push
                   name: element.name
                   value: element.frequency.total
-              output = 
+              output =
                 children: result
 
             bubble = d3.layout.pack()
@@ -125,21 +127,21 @@ angular
               .text((d) -> d.name)
 
 
-  .directive('heliGeneFrequencies', () ->
-    result = 
+  .directive 'heliGeneFrequencies', () ->
+    result =
       restrict: "A"
       replace: true
       transclude: true
       scope: false
       template: '<div class="diagram"></div>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'gene.data', (newValue, oldValue) -> 
+        scope.$watch 'gene.data', (newValue, oldValue) ->
           if (newValue)
-            
+
             display = jQuery(iElement)
-            
+
             # console.debug newValue
-            
+
             data = newValue.slice(0, 30)
 
             chartWidth = 760
@@ -148,18 +150,18 @@ angular
             margin = {top: 20, right: 20, bottom: 30, left: 80}
             width = chartWidth - margin.left - margin.right
             height = chartHeight - margin.top - margin.bottom
-      
+
             formatPercent = d3.format(".0%");
-            
+
             x = d3.scale.linear().range([0, width])
             y = d3.scale.ordinal().rangeRoundBands([0, height], 0.1)
-            
+
             xAxis = d3.svg.axis().scale(x).orient("top").tickFormat(formatPercent)
             yAxis = d3.svg.axis().scale(y).orient("left")
-            
+
             x.domain([0, d3.max(data, (d) -> d.frequency.frequency)])
             y.domain(data.map((d) -> d.name))
-      
+
             element = display.get()[0]
             svg = d3.select(element)
               .append("svg")
@@ -168,11 +170,11 @@ angular
               .attr("height", height + margin.top + margin.bottom)
               .append("g")
               .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-              
+
             svg.append("g")
               .attr("class", "x axis")
               .call(xAxis)
-            
+
             svg.append("g")
               .attr("class", "y axis")
               .call(yAxis)
@@ -180,19 +182,18 @@ angular
               .attr("transform", "rotate(-90)")
               .attr("y", 6)
               .attr("dy", ".71em")
-            
+
       #      console.debug data
-              
+
             node = svg.selectAll(".bar")
               .data(data)
               .enter()
               .append("a")
               .attr("xlink:href", (d) -> "genes/" + d.name)
-            
+
             node.append("rect")
               .attr("class", "bar")
               .attr("x", 0.5)
               .attr("y", (d) -> y(d.name))
               .attr("width", (d) -> x(d.frequency.frequency))
               .attr("height", y.rangeBand())
-  )

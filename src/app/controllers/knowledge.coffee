@@ -1,32 +1,34 @@
 angular
-  .module('heliotrope.controllers.knowledge', [])
+  .module 'heliotrope.controllers.knowledge', [
+    'heliotrope.services.knowledge'
+  ]
 
-  .controller('HomeController', ($scope, $routeParams, $timeout, GeneFrequencies) ->
-    $scope.gene = GeneFrequencies.get({}, 
+  .controller 'HomeController', ['$scope', '$routeParams', 'GeneFrequencies', ($scope, $routeParams, GeneFrequencies) ->
+    $scope.gene = GeneFrequencies.get({},
       (frequencies) ->
     )
-  )
+  ]
 
-  .controller('GeneController', ($scope, $routeParams, $timeout, Gene) ->
+  .controller 'GeneController', ['$scope', '$routeParams', 'Gene', ($scope, $routeParams, Gene) ->
     $scope.entity = Gene.get($routeParams
       (entity) ->
         $scope.description = entity.data.sections.description.data
       (error) ->
         console.log error
     )
-  )
+  ]
 
-  .controller('PublicationController', ($scope, $routeParams, $timeout, Publication) ->
+  .controller 'PublicationController', ['$scope', '$routeParams', 'Publication', ($scope, $routeParams, Publication) ->
     console.log('PublicationController')
     $scope.entity = Publication.get($routeParams
       (entity) ->
-        
+
       (error) ->
         console.log error
     )
-  )
+  ]
 
-  .controller('EditableAgentsController', ($scope, $routeParams, $timeout) ->
+  .controller 'EditableAgentsController', ['$scope', '$routeParams', ($scope, $routeParams, $timeout) ->
     $scope.addDrug = () ->
       if ! $scope.agents?
         $scope.agents = []
@@ -34,9 +36,9 @@ angular
     $scope.removeDrug = (agent) ->
       $scope.agents = $scope.agents.filter (other) ->
         other.name != agent.name || other.sensitivity != agent.sensitivity
-  )
+  ]
 
-  .controller('EditableSignificanceController', ($scope, $routeParams, $timeout, Variant) ->
+  .controller 'EditableSignificanceController', ['$scope', '$routeParams', 'Variant', ($scope, $routeParams, Variant) ->
     $scope.addSignificance = () ->
       if ! $scope.significance?
         $scope.significance = []
@@ -44,9 +46,9 @@ angular
     $scope.removeSignificance = (significance) ->
       $scope.significance = $scope.significance.filter (other) ->
         other != significance
-  ) 
+  ]
 
-  .controller('VariantController', ($scope, $routeParams, $timeout, Variant) ->
+  .controller 'VariantController', ['$scope', '$routeParams', 'Variant', ($scope, $routeParams, Variant) ->
 
     # Store a copy of the original data here
     $scope.originalSections = undefined
@@ -82,20 +84,20 @@ angular
     $scope.saveChanges = () ->
       $scope.entity.$save()
       $scope.editing = false
-  )
+  ]
 
-  .controller('SearchFormController', ($scope, $routeParams, $timeout, $location, Search) ->
+  .controller 'SearchFormController', ['$scope', '$routeParams', '$location', 'Search', ($scope, $routeParams, $location, Search) ->
     $scope.q = '';
     $scope.submit = () ->
       $location.path("search")
       $location.search("q", $scope.q)
-  )
+  ]
 
-  .controller('SearchController', ($scope, $routeParams, $timeout, Search) ->
+  .controller 'SearchController', ['$scope', '$routeParams', 'Search', ($scope, $routeParams, Search) ->
     $scope.search = Search.get($routeParams
       (entity) ->
         console.log "@SearchController", $routeParams, $scope
       (error) ->
         console.log error
     )
-  )
+  ]

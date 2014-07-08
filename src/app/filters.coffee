@@ -2,24 +2,24 @@
 # Filters
 
 angular
-  .module('heliotrope.filters', [])
-  
-  .filter 'interpolate', 
+  .module 'heliotrope.filters', []
+
+  .filter 'interpolate',
     ['version', (version)->
       (text) ->
         String(text).replace(/\%VERSION\%/mg, version)
     ]
 
   .filter 'split', () ->
-    (value) -> 
+    (value) ->
       if value
         value.split(/,/)
       else
-        value
+        valuex
 
 
   .filter 'field', () ->
-     (field) -> 
+     (field) ->
        if field
          switch field.type
            when "Boolean"
@@ -29,7 +29,7 @@ angular
                new XDate(field.value, true).toUTCString("d/MMM/yyyy")
              else
                "N/A"
-           else 
+           else
              if field.displayValue != undefined then field.displayValue else "N/A"
        else
          "N/A"
@@ -51,7 +51,7 @@ angular
           classified[tumourType].push(significance)
         console.log "Classified", input, classified
         classified
-      else  
+      else
         input
 
   .filter 'uniqueKeys', () ->
@@ -61,7 +61,7 @@ angular
         for element in input
           classified[element[property]] = property
         Object.keys(classified)
-      else  
+      else
         input
 
   .filter 'hasPropertyValue', () ->
@@ -72,20 +72,20 @@ angular
           if element[property] == value
             result.push(element)
         result
-      else  
+      else
         input
 
   .filter 'singularize', () ->
     (input) ->
       if input
         input.slice(0, -1)
-      else 
+      else
         ""
 
   .filter 'keywordToString', () ->
     (input, capitalize) ->
       if input?
-        value = if capitalize != false 
+        value = if capitalize != false
           input.substring(0, 1).toUpperCase() + input.substring(1)
         else
           input

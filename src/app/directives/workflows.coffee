@@ -1,9 +1,9 @@
-# Directives 
+# Directives
 
 angular
-  .module('heliotrope.directives.workflows', [])
+  .module 'heliotrope.directives.workflows', []
 
-  .directive('heliChooseStep', () ->
+  .directive 'heliChooseStep', () ->
     result =
       restrict: "A"
       replace: true
@@ -19,5 +19,3 @@ angular
                 '</div>' +
                 '</div>' +
                 '</form>'
-  )
-

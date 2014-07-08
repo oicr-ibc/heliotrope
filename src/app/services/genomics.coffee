@@ -18,7 +18,7 @@ angular.module('heliotrope.services.genomics', [])
           # Simple case, next domain starts after this one, no overlap
           d++
 
-        else 
+        else
 
           # The domains do overlap. Keep the biggest. Note we splice the sortedDomains
           # array and adjust count so we can continue.
@@ -30,7 +30,7 @@ angular.module('heliotrope.services.genomics', [])
             sortedDomains.splice(next, 1)
             domainCount--
 
-          else 
+          else
 
             sortedDomains.splice(d, 2, nextDomain)
             domainCount--
