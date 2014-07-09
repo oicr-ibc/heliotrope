@@ -11,8 +11,22 @@ var gulp = require('gulp'),
     bower = require('./bower'),
     url = require('url'),
     proxy = require('proxy-middleware'),
+    pushState = require('connect-pushstate/lib/pushstate').pushState(),
     isWatching = false;
 
+// When we have a URL that matches ^/api/, wejust forward, otherwise we
+// do the pushstate thing. This allows the embedded service/nodemon to
+// pick up immediately.
+var conditionalPushStateMiddleware = function(req, res, next) {
+  var pathname = url.parse(req.url).pathname;
+  if (!pathname.match(/^\/api\//)) {
+    pushState(req, res, next);
+  } else {
+    next();
+  }
+};
+
+// Proxy for /api/ from 3000 -> 3001.
 var proxyOptions = url.parse('http://localhost:3001/api');
 proxyOptions.route = '/api';
 
@@ -155,7 +169,7 @@ gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist'], function
 gulp.task('statics', g.serve({
   port: 3000,
   root: ['./.tmp', './.tmp/src/app', './src/app', './bower_components'],
-  middlewares: [proxy(proxyOptions)]
+  middlewares: [conditionalPushStateMiddleware, proxy(proxyOptions)]
 }));
 
 /**
