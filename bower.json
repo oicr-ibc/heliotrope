@@ -19,7 +19,7 @@
     "src"
   ],
   "dependencies": {
-    "javascript-number-formatter": "~1.1.2",
+    "string-format": "1.0.2",
 
     "jquery": "~1.11.1",
     "jquery-ui": "~1.11.0",

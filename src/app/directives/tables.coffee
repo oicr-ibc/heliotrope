@@ -109,9 +109,7 @@ angular
         scope.$watch 'entity.data.sections.frequencies.data.tumour', (newValue, oldValue) ->
           if (newValue && ! angular.equals(newValue, oldValue))
             renderPercent = (x) ->
-              formatter = new NumberFormat(x.frequency * 100.0)
-              formatter.setPlaces(2)
-              '<b>' + formatter.toFormatted() + "%" + '</b> (' + x.affected + ' of ' + x.total + ' samples)'
+              '<b>%0.2f%%</b> (%d of %d samples)'.format(x.frequency * 100.0, x.affected, x.total)
             jQuery(iElement).dataTable(
               sPaginationType: "bootstrap"
               bPaginate: true
