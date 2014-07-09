@@ -6,6 +6,7 @@ nconf =     require('nconf')
 ## Middlewares
 methodOverride = require('method-override')
 cookieParser =   require('cookie-parser')
+morgan =         require('morgan')
 
 ## Make the server
 app = express()
@@ -33,8 +34,8 @@ nconf.defaults
   'server:address': "0.0.0.0",
   'debug': true,
   'authenticate': false,
-  'heliotrope:knowledgeUriBase': '/knowledge/api',
-  'heliotrope:trackerUriBase': '/tracker/api',
+  'heliotrope:knowledgeUriBase': '/api/knowledge',
+  'heliotrope:trackerUriBase': '/api/tracker',
   'heliotrope:baseUrl': 'http://localhost:3000',
   'heliotrope:apikey': 'garblemonkey',
   'ldap:url': "ldap://ldap.oicr.on.ca/",
@@ -58,6 +59,7 @@ app.locals.pretty = true
 
 app.use methodOverride('X-HTTP-Method-Override')
 app.use cookieParser()
+app.use morgan('short')
 
 ## Now bring in the service components
 app.get '/api/authentication/ping', (req, res) ->
@@ -65,6 +67,9 @@ app.get '/api/authentication/ping', (req, res) ->
   if req.user
     response["user"] = req.user
   res.send 200, {data: response}
+
+require("./lib/knowledgeService")
+require("./lib/trackerService")
 
 app.listen config['server']['port'], config['server']['address']
 logger.info "Express server listening on port " + config['server']['port']

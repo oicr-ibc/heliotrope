@@ -4,7 +4,7 @@ angular.module('heliotrope.services.knowledge', ['ngResource'])
   # or routing usually, it's all global.
 
   .factory 'GeneFrequencies', ['$resource', ($resource) ->
-    $resource('/knowledge/api/queries/gene_frequencies', {},
+    $resource('/api/knowledge/queries/gene_frequencies', {},
       query:
         method: 'GET'
     )
@@ -13,7 +13,7 @@ angular.module('heliotrope.services.knowledge', ['ngResource'])
   # Service to retrieve gene information.
 
   .factory 'Gene', ['$resource', ($resource) ->
-    $resource('/knowledge/api/genes/:gene', {},
+    $resource('/api/knowledge/genes/:gene', {},
       query:
         method: 'GET'
     )
@@ -22,7 +22,7 @@ angular.module('heliotrope.services.knowledge', ['ngResource'])
   # Service to retrieve search information.
 
   .factory 'Search', ['$resource', ($resource) ->
-    $resource('/knowledge/api/search', {},
+    $resource('/api/knowledge/search', {},
       query:
         method: 'GET'
     )
@@ -31,7 +31,7 @@ angular.module('heliotrope.services.knowledge', ['ngResource'])
   # Service to retrieve publication information.
 
   .factory 'Publication', ['$resource', ($resource) ->
-    $resource('/knowledge/api/publications/:type/:id', {},
+    $resource('/api/knowledge/publications/:type/:id', {},
       query:
         method: 'GET'
     )
@@ -45,7 +45,7 @@ angular.module('heliotrope.services.knowledge', ['ngResource'])
 
   .factory 'Variant', ['$resource', ($resource) ->
 
-    Variant = $resource('/knowledge/api/variants/:name', {name: "@data.name"},
+    Variant = $resource('/api/knowledge/variants/:name', {name: "@data.name"},
       query:
         method: 'GET'
       save:
