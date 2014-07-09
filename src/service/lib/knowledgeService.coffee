@@ -9,8 +9,9 @@ base =   config["heliotrope"]["knowledgeUriBase"]
 logger = module.exports.logger
 
 ## Knowledge service implementation. Nothing much to see here, move along please.
-responders =   require("./responders")
-knowledge =    require("./knowledgeImplementation")
+responders =      require("./responders")
+authentication =  require("./authentication")
+knowledge =       require("./knowledgeImplementation")
 
 knowledge.initialize()
 
@@ -41,7 +42,7 @@ app.get base + '/publications/:type/:id',
     knowledge.getPublication err, db, req, res, responders.sendGetResponse(req, res)
 
 ## PUT requests require authentication, and properly authorization too.
-app.put base + '/variants/:id',
+app.put base + '/variants/:id', authentication.accessAuthenticator(),
   knowledge.connected config["data"]["knowledgedb"], (err, db, req, res) ->
     initializeResponse(res)
     knowledge.putVariant err, db, req, res, responders.sendGetResponse(req, res)
@@ -50,7 +51,7 @@ app.put base + '/variants/:id',
 ## not public, as it is primarily a service endpoint that can be used create a
 ## bunch of variants from, e.g., VCF file parsing. The POST system needs to be
 ## idempotent and accessible over web access.
-app.post base + '/variants',
+app.post base + '/variants', authentication.apiAuthenticator(),
   knowledge.connected config["data"]["knowledgedb"], (err, db, req, res) ->
     initializeResponse(res)
     knowledge.postVariant err, db, req, res, responders.sendPostResponse(req, res)
