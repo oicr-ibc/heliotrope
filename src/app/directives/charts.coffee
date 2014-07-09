@@ -12,8 +12,7 @@ angular
   # Note that a variant is a bit different, and we ought to handle it accordingly.
   # Genes can be displayed immediately.
 
-  .directive 'heliStructureDistribution', ['domainService', (domainService) ->
-
+  .directive 'heliStructureDistribution', ['transformDomains', (transformDomains) ->
     result =
       restrict: "A"
       replace: true
@@ -33,7 +32,7 @@ angular
 
             transcript = entityData.sections.transcripts.data.records[0]
             domains = (domain for domain in transcript["domains"] when domain["gffSource"] == "Pfam")
-            domains = domainService.transform(domains)
+            domains = transformDomains(domains)
 
             data =
               start: 1,
