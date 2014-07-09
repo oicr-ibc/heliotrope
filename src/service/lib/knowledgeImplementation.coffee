@@ -3,7 +3,9 @@ module.exports.logger = module.parent.exports.logger
 
 mongo =           require("mongodb")
 MongoClient =     mongo.MongoClient
+BSON =            mongo.BSONPure
 
+genomics =        require("./genomics")
 
 module.exports.connected = (url, callback) ->
   (req, res) ->
@@ -128,3 +130,44 @@ module.exports.getGene = (err, db, req, res, callback) ->
           result["data"]["sections"]["mutations"] = mutations
 
           callback db, err, result, res, 200
+
+getVariantSelector = (req) ->
+  id = req.params.id.replace(/\+/, " ")
+  components = id.split(" ")
+
+  if components.length >= 2
+    name = components[0]
+    mutation = components[1]
+    mutation = genomics.convertNamesToCodes(mutation)
+    mutation = "p." + mutation if ! mutation.substring("p.")
+    {gene: name, shortMutation: mutation}
+  else
+    {_id: new BSON.ObjectID(id)}
+
+findVariant = (err, db, variants, selector, res, callback) ->
+  variants.find(selector).limit(1).toArray (err, docs) ->
+    if err then return callback db, err, {}, res
+    if docs.length < 1 then return callback db, {err: "no such object: " + name}, "", res, 404
+    doc = docs[0]
+
+    resolved = resolve(doc);
+    resolved.url = "/variants/" + encodeURIComponent(doc.shortName)
+
+    result = new Object
+    result["data"] = resolved
+
+    geneId = resolved["genesRefx"]["_id"].toHexString()
+    db.collection "genes", (err, genes) ->
+      genes.find({_id: new BSON.ObjectID(geneId)}).limit(1).toArray (err, geneDocs) ->
+        if err then return callback db, err, {}, res
+        if geneDocs.length < 1 then return callback db, {err: "no such gene: " + geneId}, "", res, 404
+
+        result["data"]["sections"]["distribution"] = geneDocs[0]["sections"]["distribution"]
+        result["data"]["sections"]["transcripts"] = geneDocs[0]["sections"]["transcripts"]
+        callback db, err, result, res, 200
+
+module.exports.getVariant = (err, db, req, res, callback) ->
+  selector = getVariantSelector(req)
+
+  db.collection "variants", (err, variants) ->
+    findVariant err, db, variants, selector, res, callback

@@ -29,3 +29,8 @@ app.get base + '/queries/:query',
   knowledge.connected config["data"]["knowledgedb"], (err, db, req, res) ->
     initializeResponse(res);
     knowledge.executeQuery err, db, req, res, responders.sendGetResponse(req, res)
+
+app.get base + '/variants/:id',
+  knowledge.connected config["data"]["knowledgedb"], (err, db, req, res) ->
+    initializeResponse(res);
+    knowledge.getVariant err, db, req, res, responders.sendGetResponse(req, res)
