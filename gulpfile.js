@@ -185,6 +185,11 @@ gulp.task('watch', ['statics', 'default'], function () {
       gulp.start('index');
     }
   });
+  gulp.watch('./src/app/**/*.js', ['jshint']).on('change', function (evt) {
+    if (evt.type !== 'changed') {
+      gulp.start('index');
+    }
+  });
   gulp.watch('./src/service/**/*.*coffee', ['coffee-service']);
   gulp.watch('./src/app/index.html', ['index']);
   gulp.watch(['./src/app/**/*.html', '!./src/app/index.html'], ['templates']);
