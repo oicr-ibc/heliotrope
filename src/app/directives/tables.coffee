@@ -111,7 +111,7 @@ angular
             renderPercent = (x) ->
               '<b>%0.2f%%</b> (%d of %d samples)'.format(x.frequency * 100.0, x.affected, x.total)
             jQuery(iElement).dataTable(
-              sPaginationType: "bootstrap"
+              sPaginationType: "bs_normal"
               bPaginate: true
               aaData: angular.copy(newValue)
               aoColumns: [
@@ -144,7 +144,7 @@ angular
         scope.$watch 'entity.data.related.observations', (newValue, oldValue) ->
           if (newValue)
             jQuery(iElement).dataTable(
-              sPaginationType: "bootstrap"
+              sPaginationType: "bs_normal"
               bPaginate: true
               bLengthChange: false
               iDisplayLength: 5

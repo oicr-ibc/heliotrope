@@ -39,7 +39,8 @@
     "select2": "~3.5.0",
     "spin": "~1.1.6",
     "wysihtml5": "~0.3.0",
-    "datatables": "~1.10.0"
+    "datatables": "~1.10.0",
+    "datatables-bootstrap3": "376895df7f"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.14"
