@@ -16,16 +16,17 @@ angular
 
   .controller 'AuthenticationController', ['$scope', ($scope) ->
 
-  	$scope.username = undefined
-  	$scope.password = undefined
+    $scope.username = undefined
+    $scope.password = undefined
 
-  	$scope.login = (username, password) ->
-  		$scope.$emit "event:loginRequest", username, password
+    $scope.login = (username, password) ->
+      ## console.log "Calling event:loginRequest with #{username} and #{password}"
+      $scope.$emit "event:loginRequest", username, password
 
     $scope.cancelLogin = () ->
       $scope.$emit "event:loginCancelled"
 
-  	$scope.logout = () ->
-  		$scope.$emit "event:logoutRequest"
+    $scope.logout = () ->
+      $scope.$emit "event:logoutRequest"
   ]
 

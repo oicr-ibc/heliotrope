@@ -1,7 +1,11 @@
 ## Main modules
-express =   require('express')
-log4js =    require('log4js')
-nconf =     require('nconf')
+express =    require('express')
+log4js =     require('log4js')
+nconf =      require('nconf')
+passport =   require('passport')
+session =    require('express-session')
+MongoStore = require('connect-mongo')(session)
+bodyParser = require('body-parser')
 
 ## Middlewares
 methodOverride = require('method-override')
@@ -25,7 +29,8 @@ nconf
 
 nconf.defaults
   'password:salt': '',
-  'data:sessiondb': "mongodb://localhost:27017/session",
+  'data:session:secret': "keyboard cat",
+  'data:session:store:url': "mongodb://localhost:27017/session",
   'data:userdb': "mongodb://localhost:27017/user",
   'data:knowledgedb': "mongodb://localhost:27017/heliotrope",
   'data:trackerdb': "mongodb://localhost:27017/tracker",
@@ -44,8 +49,7 @@ nconf.defaults
   'ldap:userField': "uid",
   'ldap:cache': true,
   'ldap:enabled': false,
-  'ldap:verbose': true,
-  'cookieSecret': 'keyboard cat'
+  'ldap:verbose': true
 
 config = nconf.get()
 
@@ -58,16 +62,21 @@ module.exports.config =   config
 app.locals.pretty = true
 
 app.use methodOverride('X-HTTP-Method-Override')
+app.use bodyParser.urlencoded(extended: true)
 app.use cookieParser()
 app.use morgan('short')
 
-## Now bring in the service components
-app.get '/api/authentication/ping', (req, res) ->
-  response = new Object
-  if req.user
-    response["user"] = req.user
-  res.send 200, {data: response}
+app.use session(
+  secret: config["data"]["session"]["secret"]
+  saveUninitialized: true
+  resave: true
+  store: new MongoStore(config["data"]["session"]["store"])
+)
 
+app.use passport.initialize()
+app.use passport.session()
+
+require("./lib/coreService")
 require("./lib/knowledgeService")
 require("./lib/trackerService")
 

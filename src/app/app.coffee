@@ -58,17 +58,20 @@ angular
 
       success = (response) ->
         $rootScope.$emit "event:stopSpinner"
-        # console.log 'HTTP successful response: ', response
+        ## console.log 'HTTP successful response: ', response
         response
 
       error = (response) ->
         $rootScope.$emit "event:stopSpinner"
+        ## console.log 'HTTP failure response: ', response
         status = response.status
 
         if status == 401
           deferred = $q.defer()
-          req = {config: response.config, deferred: deferred}
-          $rootScope.requests401.push(req)
+          ## console.log "Remembering 401 request", response.config
+          if ! response.config.url.match(/^\/api\/authentication/)
+            req = {config: response.config, deferred: deferred}
+            $rootScope.requests401.push(req)
           $rootScope.$broadcast 'event:loginRequired'
           deferred.promise
         else
@@ -79,7 +82,6 @@ angular
         promise.then(success, error)
 
     $httpProvider.responseInterceptors.push(authenticationInterceptor)
-
   ]
 
   .run ['$rootScope', '$http', '$location', '$timeout', (scope, $http, $location, $timeout) ->
@@ -136,35 +138,47 @@ angular
         spinner = false
 
     scope.$on 'event:loginCancelled', () ->
+      ## console.log 'Called event:loginCancelled'
       $location.path('/')
 
     scope.$on 'event:logoutConfirmed', () ->
+      ## console.log 'Called event:logoutConfirmed'
       scope.user = undefined
       $location.path('/')
 
     scope.$on 'event:loginConfirmed', (event, user) ->
+      ## console.log 'Called event:loginConfirmed'
       scope.user = new User(user)
 
       retry = (req) ->
+        console.log "Retrying queued 401 request: #{req}"
         $http(req.config).then (response) ->
           req.deferred.resolve(response)
 
       retry(request) for request in scope.requests401
 
     scope.$on 'event:loginRequest', (event, username, password) ->
+      ## console.log "Called event:loginRequest with #{username} #{password}"
       payload = jQuery.param
         username: username
         password: password
 
       success = (data) ->
-        scope.$broadcast 'event:loginConfirmed', data.data.user
+        ## console.log "Calling event:loginApproved with #{data}"
+        scope.$broadcast 'event:loginApproved', data.data.user
+        scope.$emit 'event:loginConfirmed', data.data.user
 
       error = (data) ->
+        ## console.log "Calling event:loginDenied with #{data}"
+        scope.$broadcast 'event:loginDenied', data.data.user
 
-      $http.post('/api/authentication/login', payload, config).success(success).error(error)
+      $http
+        .post '/api/authentication/login', payload, config
+        .success success
+        .error error
 
     scope.$on 'event:logoutRequest', () ->
-
+      ## console.log 'Called event:logoutRequest'
       $http.post('/api/authentication/logout', {}, config).success (data) ->
         scope.$broadcast 'event:logoutConfirmed'
 

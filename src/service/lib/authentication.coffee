@@ -14,6 +14,7 @@ MongoClient =          mongo.MongoClient
 
 ## Local variables for easier access
 config =               module.parent.exports.config
+logger =               module.parent.exports.logger
 
 LdapAuth =             require("./ldapauth")
 
@@ -90,7 +91,7 @@ passport.deserializeUser deserializer
 ## in which case database access is the only valid approach. If LDAP returns any error, we try
 ## the database route anyway.
 
-heliotropeAuthenticationStrategy = (username, password, done) ->
+heliotropeLocalStrategy = (username, password, done) ->
   databaseAuthenticate = () ->
     hash = saltedPassword password
     connected (err, db) ->
@@ -126,7 +127,7 @@ heliotropeAuthenticationStrategy = (username, password, done) ->
     ldap.authenticate username, password, ldapCallback
 
   if config['ldap']['enabled']
-    ldapAuthenticate();
+    ldapAuthenticate()
   else
     databaseAuthenticate()
 
@@ -136,10 +137,11 @@ heliotropeAPIKeyStrategy = (apikey, done) ->
   else
     done(null, false)
 
-passport.use(new LocalStrategy(heliotropeAuthenticationStrategy))
+passport.use(new LocalStrategy(heliotropeLocalStrategy))
 passport.use(new LocalAPIKeyStrategy(heliotropeAPIKeyStrategy))
 
 module.exports.initialize = () ->
+  logger.info "Initializing authentication system"
   connected (err, db) ->
     if err
       throw new Error("Can't connect to user database!")
