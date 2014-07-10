@@ -417,8 +417,6 @@ module.exports.getEntity = (err, db, req, res, callback) ->
   identity = req.params.identity
   userId = req.user.userId
 
-  logger.info "Called getEntity"
-
   findStudy db, req, res, 'read', (err, doc) ->
 
     if err || ! doc
@@ -544,7 +542,6 @@ buildRelatedEntities = (entity, related) ->
 buildEntityValues = (entity, related, stepsArray) ->
   fields = {}
 
-  console.log sys.inspect(stepsArray)
   for step in stepsArray
     for own fieldName, field of step.fields
       fields[field] = step.fields[field]
@@ -587,16 +584,38 @@ miniEval = (object, value) ->
   start = 0
   end = value.length
   originalValue = value
+  originalObject = object
   while start != end
     next = value.indexOf(".", start)
     element = value.slice(start, (if (next == -1) then end else next))
-    if object.hasOwnProperty(element)
-      object = object[element]
-    else
-      throw new EvalError("Missing property: " + originalValue)
     if object.hasOwnProperty(element)
       object = object[element]
       if next == -1
         return object
       else
         start = next + 1
+    else
+      console.error "Missing property", originalValue, originalObject
+      throw new EvalError("Missing property: " + originalValue)
+
+## buildEntityStepUrls adds URLs to all the steps in an entity.
+## It really helps if we have a set of steps we can use with definitions
+## to make sure we get the right URL.
+## @param entity
+
+buildEntityStepUrls = (entity, stepsArray) ->
+  stepTable = {}
+
+  for step in stepsArray
+    stepTable[step._id.toString()] = step
+
+  # At this late stage, we can filter out steps we don't want
+  entity.steps.filter (step) ->
+    stepDefinition = stepTable[step.stepRef.toString()]
+    url = entity.url
+    if stepDefinition
+      step.url = url + "/step/" + stepDefinition.name
+      step.url = step.url + ";" + step.id.toString() if stepDefinition.isRepeatable
+      true
+    else
+      false
