@@ -2,6 +2,7 @@
 
 module.exports.log4js = module.parent.exports.log4js
 module.exports.logger = module.parent.exports.logger
+module.exports.config = module.parent.exports.config
 
 app =    module.parent.exports.app
 config = module.parent.exports.config

@@ -12,6 +12,7 @@ shasum =               crypto.createHash('sha1')
 BSON =                 mongo.BSONPure
 MongoClient =          mongo.MongoClient
 
+## Local variables for easier access
 config =               module.parent.exports.config
 
 LdapAuth =             require("./ldapauth")
