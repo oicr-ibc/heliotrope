@@ -8,7 +8,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # data access.
 
   .factory 'StudyList', ['$resource', ($resource) ->
-    $resource('/tracker/api/studies', {},
+    $resource('/api/tracker/studies', {},
       query:
         method: 'GET'
     )
@@ -18,7 +18,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # data access for a given study.
 
   .factory 'Study', ['$resource', ($resource) ->
-    $resource('/tracker/api/studies/:study', {},
+    $resource('/api/tracker/studies/:study', {},
       query:
         method: 'GET'
     )
@@ -27,7 +27,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # Service to access the properties and relationships of an entity within a study.
 
   .factory 'Entity', ['$resource', ($resource) ->
-    Entity = $resource('/tracker/api/studies/:study/:role/:identity', {},
+    Entity = $resource('/api/tracker/studies/:study/:role/:identity', {},
       query:
         method: 'GET'
     )
@@ -39,7 +39,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # Service to access the views for an entity role. Technically, the role is optional
 
   .factory 'Views', ['$resource', ($resource) ->
-    $resource('/tracker/api/views/:study/:role', {},
+    $resource('/api/tracker/views/:study/:role', {},
       query:
         method: 'GET'
     )
@@ -48,7 +48,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # Service to access the data for a particular step for a given entity.
 
   .factory 'EntityStep', ['$resource', ($resource) ->
-    EntityStep = $resource('/tracker/api/studies/:study/:role/:identity/step/:step', {},
+    EntityStep = $resource('/api/tracker/studies/:study/:role/:identity/step/:step', {},
       query:
         method: 'GET'
     )
@@ -60,7 +60,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # Service to access a list of all entities with a given role.
 
   .factory 'Entities', ['$resource', ($resource) ->
-    Entities = $resource('/tracker/api/studies/:study/:role', {},
+    Entities = $resource('/api/tracker/studies/:study/:role', {},
       query:
         method: 'GET'
     )
@@ -71,7 +71,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # filtered by a passed role query argument, although other filters may also be possible.
 
   .factory 'RelatedEntities', ['$resource', ($resource) ->
-    RelatedEntities = $resource('/tracker/api/related/:study/:role/:identity', {},
+    RelatedEntities = $resource('/api/tracker/related/:study/:role/:identity', {},
       query:
         method: 'GET'
     )
@@ -83,7 +83,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # role called step. That might seem frivolous and unlikely. It probably is.
 
   .factory 'Step', ['$resource', ($resource) ->
-    Step = $resource('/tracker/api/steps/:study/:role/:step', {},
+    Step = $resource('/api/tracker/steps/:study/:role/:step', {},
       query:
         method: 'GET'
     )
@@ -95,7 +95,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # role called view. That might seem frivolous and unlikely. It probably is.
 
   .factory 'View', ['$resource', ($resource) ->
-    View = $resource('/tracker/api/views/:study/:role/:view', {},
+    View = $resource('/api/tracker/views/:study/:role/:view', {},
       query:
         method: 'GET'
     )

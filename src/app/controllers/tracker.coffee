@@ -31,7 +31,7 @@ angular
     )
   ]
 
-  .controller 'EntityStepController', ['$scope', '$routeParams', 'EntityStep', ($scope, $routeParams, EntityStep) ->
+  .controller 'EntityStepController', ['$scope', '$routeParams', '$location', 'EntityStep', ($scope, $routeParams, $location, EntityStep) ->
     $scope.entity = EntityStep.get($routeParams
       (entityStep) ->
 
@@ -66,7 +66,7 @@ angular
   # retrieve an identified one. We can always well which by the presence/absence
   # of the _id.
 
-  .controller 'AdminStudyController', ['$scope', '$routeParams', 'Study', ($scope, $routeParams, Study) ->
+  .controller 'AdminStudyController', ['$scope', '$routeParams', '$location', 'Study', ($scope, $routeParams, $location, Study) ->
 
     $scope.study = new Study()
 
@@ -158,7 +158,7 @@ angular
   # retrieve an identified one. We can always well which by the presence/absence
   # of the _id.
 
-  .controller 'AdminViewController', ['$scope', '$routeParams', 'View', 'Study', ($scope, $routeParams, View, Study) ->
+  .controller 'AdminViewController', ['$scope', '$routeParams', '$location', 'View', 'Study', ($scope, $routeParams, $location, View, Study) ->
 
     $scope.original = new View($routeParams)
 
@@ -190,7 +190,7 @@ angular
   # retrieve an identified one. We can always well which by the presence/absence
   # of the _id.
 
-  .controller 'AdminViewsController', ['$scope', '$routeParams', 'Views', ($scope, $routeParams, Views) ->
+  .controller 'AdminViewsController', ['$scope', '$routeParams', '$location', 'Views', ($scope, $routeParams, $location, Views) ->
 
     $scope.views = Views.get($routeParams
       (study) ->
@@ -211,7 +211,7 @@ angular
   # users and passwords to be managed within the application, roles to be assigned, and
   # so on. User authentication through LDAP is also available.
 
-  .controller 'AdminUsersController', ['$scope', '$routeParams', 'Users', ($scope, $routeParams, Users) ->
+  .controller 'AdminUsersController', ['$scope', '$routeParams', '$location', 'Users', ($scope, $routeParams, $location, Users) ->
 
     $scope.error = false
 

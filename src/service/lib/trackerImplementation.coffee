@@ -10,7 +10,7 @@ module.exports.initialize = () ->
     addIndexes = () ->
       if indexes.length > 0
         index = indexes.shift()
-        db.createIndex(index["collection"], index["index"], addIndexes)
+        db.createIndex index["collection"], index["index"], addIndexes
     addIndexes()
 
 module.exports.connected = (url, callback) ->
@@ -63,3 +63,40 @@ module.exports.getStudies = (err, db, req, res, callback) ->
             result = new Object
             result["data"] = (results[key] for own key of results)
             callback db, err, result, res, 200
+
+## Endpoint to create a new study, or update an existing study (depending on whether
+## or not we have an identifier). The body is in approximately the right shape, so
+## we don't need to do too much except strip out some of the crap added by the getStudy
+## endpoint.
+module.exports.postStudies = (err, db, req, res, callback) ->
+
+  body = req.body
+  switch
+
+    # Validation logic
+    when ! req.user.hasRole('TRACKER_ADMIN')
+      callback(db, {error: "Forbidden"}, {}, res, 403)
+
+    when ! body["data"]["name"]
+      callback(db, {error: "Missing study name"}, {}, res, 400)
+
+    # And do the action
+    else
+      id = body["data"]["_id"] || new BSON.ObjectID().toString()
+
+      for field in ["config", "counts", "steps", "url", "serviceUrl", "_id", "version"]
+        delete body["data"][field]
+
+      selector = {"_id" : new BSON.ObjectID(id)}
+      updates = {"$set" : {}}
+
+      for own fieldName of body["data"]
+        updates["$set"][fieldName] = body["data"][fieldName]
+
+      updates["$inc"] = {"version" : 1}
+
+      newUrl = "/studies/" + encodeURIComponent(body["data"]["name"])
+
+      db.collection "studies", (err, studies) ->
+        studies.update selector, updates, {"upsert" : true, "w" : 1, "fsync" : 1}, (err, result) ->
+          callback db, err, newUrl, res
