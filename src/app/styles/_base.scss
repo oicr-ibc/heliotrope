@@ -21,3 +21,15 @@ a[rel="external"], .external {
         -moz-osx-font-smoothing: grayscale;
     }
 }
+
+.sidebar {
+  padding-top: 2em;
+}
+
+.nav-list.nav > li > a {
+  padding: 3px 15px;
+}
+
+.nav-header {
+  font-weight: bold;
+}
