@@ -531,8 +531,7 @@ buildRelatedEntitySelector = (entity, step, query) ->
 ## expect the core settings for a value to be available.
 
 buildFieldsDisplayValues = (fields, related) ->
-  for field in fields
-    record = fields[field]
+  for own field, record of fields
     type = record.type
 
     if record.hasOwnProperty("ref") && record.ref != null
@@ -566,8 +565,8 @@ buildEntityValues = (entity, related, stepsArray) ->
   fields = {}
 
   for step in stepsArray
-    for own fieldName, field of step.fields
-      fields[field] = step.fields[field]
+    for own fieldName, fieldValue of step.fields
+      fields[fieldName] = fieldValue
 
   # Now merge the keys from the entity itself.
   for step in entity.steps
