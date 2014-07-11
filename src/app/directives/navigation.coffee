@@ -35,7 +35,7 @@ angular
         )
   ]
 
-  .directive 'heliKnowledgeBaseSearch', ['http', ($http) ->
+  .directive 'heliKnowledgeBaseSearch', ['$http', ($http) ->
     result =
       restrict: "A"
       scope: { term: '&', entity: '&entity' }
@@ -72,7 +72,7 @@ angular
                 '<div class="tab-content">' +
                 '<div class="tab-pane active">' +
                 '<div class="row-fluid">' +
-                '<h3 class="pull-left" id="{{id}}">{{title}}</h3>' +
+                '<h3 id="{{id}}">{{title}}</h3>' +
                 '</div>' +
                 '<div class="body" ng-transclude></div>' +
                 '</div' +
