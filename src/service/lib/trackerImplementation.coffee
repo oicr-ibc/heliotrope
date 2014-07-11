@@ -478,6 +478,29 @@ maybeInterceptedCallback = (plugin, db, err, result, req, res, callback) ->
   else
     callback db, err, result, res, 200
 
+
+module.exports.getEntityStep = (err, db, req, res, callback) ->
+  studyName = req.params.study
+  role = req.params.role
+  identity = req.params.identity
+
+  findStudy db, req, res, 'read', (err, doc) ->
+    if err || ! doc
+      return callback db, err, doc, res, res.locals.statusCode || 404
+
+    studyId = new BSON.ObjectID(doc._id.toString())
+    entityModifier = (entity) ->
+      entity.study = doc
+      entity.url = doc.url + "/" + role + "/" + identity
+      entity
+
+    if identity == "id;new"
+      entity = {}
+      findEntityStepWithEntity db, req, res, studyId, entityModifier(entity), callback
+    else
+      findEntity db, studyId, role, identity, (err, entity) ->
+        findEntityStepWithEntity db, req, res, studyId, entityModifier(entity), callback
+
 ## There are two sets of related entities: those which have a "steps.fields.ref"
 ## that link back to me, and those which we have a link to from one of ours
 ## steps with a reference field. We should actually ask for both. We can do
@@ -619,3 +642,155 @@ buildEntityStepUrls = (entity, stepsArray) ->
       true
     else
       false
+
+## Woefully inadequate. This requires us to locate related entities, as usual, and we also ought to do all
+## the field defaulting code just as we do for the entity as a whole.
+
+findEntityStepWithEntity = (db, req, res, studyId, entity, callback) ->
+  role = req.params.role
+  stepName = req.params.step
+  query = req.query || {}
+
+  ## If the step name contains a semicolon, the part after the semicolon will be
+  ## an ObjectId string we can use as a better way of locating repeated steps.
+
+  stepSelector = getStepSelector(studyId, role, stepName)
+  #### logger.debug "Step selector", stepSelector
+
+  ## Now locate the requested step.
+  db.collection "steps", (err, steps) ->
+    steps.find(stepSelector).toArray (err, stepsArray) ->
+
+      #### logger.debug "Found steps", err, stepsArray
+
+      if err
+        return callback db, {err: err}, null, res
+      else if stepsArray.length == 0
+        return callback db, {err: "Missing step: " + stepName}, null, res
+
+      step = stepsArray[0]
+      stepDefinition = stepsArray[0]
+      if ! stepDefinition
+        return callback db, {err: "Missing step definition: " + stepName}, null, res
+
+      ## This is weird logic, and I wish I'd commented it when I wrote it. The
+      ## steps contain all fields. This builds a set of all field values in
+      ## stepValues, but doesn't do defaulting or anything.
+
+      stepValues = {}
+      stepDataBlocks = entity.steps || []
+      stepDataBlockCount = stepDataBlocks.length
+
+      for thisStep in stepDataBlocks
+        if thisStep.stepRef.equals(stepDefinition._id)
+          for field in thisStep.fields
+            stepValues[field.key] =
+              if      field.ref != undefined   then field.ref
+              else if field.value != undefined then field.value
+              else                                  field.identity
+          break
+
+      selectedStepDataBlock = getSelectedDataBlock(stepName, stepDefinition, stepDataBlocks)
+
+      ## Change the step label to be localized.
+      stepDefinition.label = localize(if selectedStepDataBlock && stepDefinition.redoLabel != undefined then stepDefinition.redoLabel else stepDefinition.label)
+      stepDefinition.description = localize(stepDefinition.description) if stepDefinition.description
+
+      ## We may, or may not, have related entities here. If we do, we need to make an effort to
+      ## find them, and to resolve references to display values for rendering relations to
+      ## other entities. Note that some related entities may be defined even if we don't actually
+      ## have a primary entity yet, because we are about to create one. Therefore, the step
+      ## descriptor and the query are also required.
+
+      ## And finally, related entities.
+      relatedSelector = buildRelatedEntitySelector(entity, stepDefinition, query)
+
+      db.collection "entities", (err, entities) ->
+        entities.find(relatedSelector).toArray (err, related) ->
+
+          buildRelatedEntities(entity, related)
+
+          ## Now we handle the fields for the selected step.
+
+          fields = stepDefinition.fields || {}
+
+          ## Iff we've done this step before, find the field and merge the keys
+          if selectedStepDataBlock
+
+            for own fieldKey of fields
+              stepDefinition.fields[fieldKey].label = localize(stepDefinition.fields[fieldKey].label)
+
+              currentValueObject = undefined
+              for selectedField in selectedStepDataBlock.fields
+                if selectedField.key == fieldKey
+                  currentValueObject = selectedField
+                  break
+
+              if typeof currentValueObject == "object"
+                for own valueKey of currentValueObject
+                  if valueKey != "key"
+                    stepDefinition.fields[fieldKey][valueKey] = currentValueObject[valueKey]
+
+          else
+
+            ## We've never done this step before, but we do have a step definition. Use it
+            ## to pull in query params and write values in. Especially related references,
+            ## which is key.
+
+            for own fieldKey of fields
+              stepDefinition.fields[fieldKey].label = localize(stepDefinition.fields[fieldKey].label);
+
+              field = fields[fieldKey]
+              queryValue = query[fieldKey]
+              if queryValue
+                if field.isIdentity
+                  stepDefinition.fields[fieldKey]["identity"] = queryValue
+                else if field["type"] == "Reference"
+                  for relatedEntity in related
+                    if relatedEntity.identity == queryValue
+                      stepDefinition.fields[fieldKey]["ref"] = relatedEntity._id
+                      stepDefinition.fields[fieldKey]["value"] = relatedEntity.identity
+                else
+                  stepDefinition.fields[fieldKey]["value"] = queryValue
+
+          buildFieldsDisplayValues stepDefinition.fields, related
+
+          entity.step = stepDefinition
+          callback db, err, {data: entity}, res, 200
+
+getStepSelector = (studyId, role, stepName) ->
+  stepSelector = {"studyId" : studyId, "appliesTo" : role}
+  semicolonPosition = stepName.indexOf(";")
+  stepSelector["name"] = if semicolonPosition != -1 then stepName.substring(0, semicolonPosition) else stepName
+  stepSelector
+
+## getSelectedDataBlock returns a matching data block from a list, using
+## the step identity in the step name (if there is one), or otherwise the
+## identity from the step definition read from the DB.
+
+getSelectedDataBlock = (stepName, stepDefinition, stepDataBlocks) ->
+
+  ## If there is a step identifier in the name, the selected data block should be
+  ## identified by the identifier, rather than by the name (or, strictly, stepRef)
+  ## which is not unique for repeated steps.
+
+  semicolonPosition = stepName.indexOf(";")
+  stepId = if semicolonPosition != -1 then stepName.substring(semicolonPosition + 1)
+
+  selectedStepDataBlock = undefined
+
+  ## Special case. If the step normally repeats and we don't have an identifier
+  ## then don't match any data block.
+  if ! stepId && stepDefinition.isRepeatable
+    return selectedStepDataBlock
+
+  for thisStep in stepDataBlocks
+    if stepId
+      if thisStep.id.toString() == stepId
+        selectedStepDataBlock = thisStep
+        break
+    else if thisStep.stepRef.equals(stepDefinition._id)
+      selectedStepDataBlock = thisStep
+      break
+
+  selectedStepDataBlock
