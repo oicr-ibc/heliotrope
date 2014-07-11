@@ -37,6 +37,7 @@
     "xdate": "~0.8.1",
     "d3": "~3.4.9",
     "select2": "~3.5.0",
+    "select2-bootstrap3-css": "~1.2.0",
     "spin": "~1.1.6",
     "wysihtml5": "~0.3.0",
     "datatables": "~1.10.0",
@@ -46,6 +47,11 @@
     "angular-mocks": "~1.2.14"
   },
   "overrides": {
-    "jQuery": { "ignore":  true }
+    "jQuery": {
+      "ignore":  true
+    },
+    "select2-bootstrap3-css": {
+      "main": "select2-bootstrap.css"
+    }
   }
 }

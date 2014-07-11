@@ -45,8 +45,9 @@ angular
       template: '<div>' +
                 '<form class="form-horizontal">' +
                 '<div class="body" ng-transclude></div>' +
-                '<div class="control-group">' +
-                '<div class="controls">' +
+                '<div class="form-group">' +
+                '<div class="col-sm-3"></div>' +
+                '<div class="controls col-sm-9">' +
                 '<button type="submit" class="btn btn-primary submit" ng-click="update(entity)">Save</button>' +
                 '</div>' +
                 '</div>' +
@@ -92,32 +93,39 @@ angular
                   template.attr(key, newValue[fieldKey])
             linked = $compile(template)(scope)
             iElement.append linked
-            linked.jqBootstrapValidation()
+            #### linked.jqBootstrapValidation()
             linked
           if newValue
             switch newValue.controlType
               when "hidden"
                 linkBody('<input type="hidden" id="{{fieldKey}}" ng-model="fieldValue.value">')
               when "identity"
-                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.identity" placeholder="{{fieldValue.label}}">', {"pattern" : "pattern", "data-validation-pattern-message" : "pattern-message"})
+                linkBody('<input type="text" id="{{fieldKey}}" class="form-control" ng-model="fieldValue.identity" placeholder="{{fieldValue.label}}">', {"pattern" : "pattern", "data-validation-pattern-message" : "pattern-message"})
               when "text"
-                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">', {"pattern" : "pattern", "data-validation-pattern-message" : "pattern-message"})
+                linkBody('<input type="text" id="{{fieldKey}}" class="form-control" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}">', {"pattern" : "pattern", "data-validation-pattern-message" : "pattern-message"})
               when "textarea"
-                linkBody('<textarea class="texteditor" id="{{fieldKey}}" rows="4" style="width: 30em" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}"></textarea>')
+                linkBody('<textarea class="texteditor" class="form-control" id="{{fieldKey}}" rows="4" style="width: 30em" ng-model="fieldValue.value" placeholder="{{fieldValue.label}}"></textarea>')
               when "select"
-                select = linkBody('<select ng-model="fieldValue.value"><option ng-repeat="value in fieldValue.range">{{value}}</option></select>')
-                select.select2("val", newValue.value)
+                select = linkBody('<input type="text" id="{{fieldKey}}"></input>')
+                values = ({id: i, text: v.toString(), value: v} for v, i in newValue.range)
+                select.select2({"val": newValue.value, "placeholder": newValue.label, "allowClear": true, "data": values})
+                select.on 'change', (e) ->
+                  if e.added?
+                    scope.fieldValue.value = e.added.value
+                  else
+                    scope.fieldValue.value = null
+                  scope.$apply()
               when "integer"
-                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" data-validation-regex-regex="[0-9]+" data-validation-regex-message="Must be a valid integer" placeholder="{{fieldValue.label}}">')
+                linkBody('<input type="text" id="{{fieldKey}}" class="form-control" ng-model="fieldValue.value" data-validation-regex-regex="[0-9]+" data-validation-regex-message="Must be a valid integer" placeholder="{{fieldValue.label}}">')
               when "float"
-                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.value" data-validation-regex-regex="(?:[1-9]\d*|0)?(?:\.\d+)?" data-validation-regex-message="Must be a valid number" placeholder="{{fieldValue.label}}">')
+                linkBody('<input type="text" id="{{fieldKey}}" class="form-control" ng-model="fieldValue.value" data-validation-regex-regex="(?:[1-9]\d*|0)?(?:\.\d+)?" data-validation-regex-message="Must be a valid number" placeholder="{{fieldValue.label}}">')
               when "checkbox"
-                linkBody('<input type="checkbox" ng-model="fieldValue.value" id="{{fieldKey}}">')
+                linkBody('<input type="checkbox" class="form-control" ng-model="fieldValue.value" id="{{fieldKey}}">')
               when "file"
                 body = '<div>' +
-                       '<input type="file" class="control" id="{{fieldKey}}" style="display: none">' +
+                       '<input type="file" class="form-control" id="{{fieldKey}}" style="display: none">' +
                        '<div class="input-append">' +
-                       '<input id="{{fieldKey}}-text" class="input-large file-display" type="text">' +
+                       '<input id="{{fieldKey}}-text" class="input-large file-display" class="form-control" type="text">' +
                        '<a class="btn">Browse</a>' +
                        '</div>'
                 template = angular.element(body)
@@ -197,7 +205,7 @@ angular
                   scope.$apply()
 
               when "reference"
-                linkBody('<input type="text" id="{{fieldKey}}" ng-model="fieldValue.displayValue" disabled readonly>')
+                linkBody('<input type="text" id="{{fieldKey}}" class="form-control" ng-model="fieldValue.displayValue" disabled readonly>')
 
               # The chooser is how we link to related entities. The chooser control type is a selection,
               # but there could be other controls some time. Ideally, this would be a dynamic dispatch
@@ -205,7 +213,7 @@ angular
 
               when "chooser"
 
-                template = '<input class="chooser" type="text" name="{{fieldKey}}" id="{{fieldKey}}" required>'
+                template = '<input class="chooser form-control" type="text" name="{{fieldKey}}" id="{{fieldKey}}" required>'
                 linked = $compile(template)(scope)
                 iElement.append linked
                 if newValue.ref
@@ -224,6 +232,8 @@ angular
                     for entry in data
                       if entry._id == element.val()
                         callback entry
+
+                  console.log "About to configure select2", configure
                   linked.select2(configure)
 
                 linked.on "change", (e) ->

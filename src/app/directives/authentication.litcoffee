@@ -28,13 +28,13 @@ authentication system.
                     '      </div>' +
                     '      <div class="modal-body">' +
                     '        <form class="form-horizontal" style="padding-top: 1em">' +
-                    '          <div class="control-group">' +
+                    '          <div class="form-group">' +
                     '            <label class="control-label" for="inputUsername">Username</label>' +
                     '            <div class="controls">' +
                     '              <input type="text" id="inputUsername" placeholder="Username" ng-model="username">' +
                     '            </div>' +
                     '          </div>' +
-                    '          <div class="control-group">' +
+                    '          <div class="form-group">' +
                     '            <label class="control-label" for="inputPassword">Password</label>' +
                     '            <div class="controls">' +
                     '              <input type="password" id="inputPassword" placeholder="Password" ng-model="password">' +

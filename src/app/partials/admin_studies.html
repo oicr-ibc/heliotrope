@@ -7,29 +7,30 @@
         <h1 ng-show="study.data._id">{{study.data.name}}</h1>
       </div>
 
-      <div class="control-group">
-        <label class="control-label" for="name">Label</label>
-        <div class="controls">
-          <input class="label-control" type="text" id="label" ng-model="study.data.name" placeholder="Study label" required>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="name">Label</label>
+        <div class="controls col-sm-9">
+          <input class="form-control" type="text" id="label" ng-model="study.data.name" placeholder="Study label" required>
         </div>
       </div>
-      <div class="control-group">
-        <label class="control-label" for="name">Description</label>
-        <div class="controls">
-          <textarea id="description" ng-model="study.data.description" rows="3" placeholder="Study description"></textarea>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="name">Description</label>
+        <div class="controls col-sm-9">
+          <textarea id="description" class="form-control" ng-model="study.data.description" rows="3" placeholder="Study description"></textarea>
         </div>
       </div>
-      <div class="control-group">
-        <label class="control-label" for="name">User permissions</label>
-        <div class="controls">
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="name">User permissions</label>
+        <div class="controls col-sm-9">
+          <input type="text" id="access.write" class="form-control" placeholder="Read-write users" heli-tag-control model="study.data.access.modify">
           <span class="help-block">List of users with read-write permission</span>
-          <input type="text" id="access.write" placeholder="Read-write users" heli-tag-control model="study.data.access.modify">
+          <input type="text" id="access.read" class="form-control" placeholder="Read-only users" heli-tag-control model="study.data.access.read">
           <span class="help-block">List of users with read-only permission</span>
-          <input type="text" id="access.read" placeholder="Read-only users" heli-tag-control model="study.data.access.read">
         </div>
       </div>
-      <div class="control-group">
-        <div class="controls">
+      <div class="form-group">
+        <div class="col-sm-3"></div>
+        <div class="controls col-sm-9">
           <button type="submit" class="btn btn-primary" ng-click="update()">Save</button>
         </div>
       </div>

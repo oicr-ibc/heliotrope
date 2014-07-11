@@ -16,9 +16,9 @@
     <div ng-repeat="alert in entity.data.alerts"><div heli-alert alert="{{alert}}"></div></div>
 
     <div heli-step-form>
-      <div class="control-group" ng-repeat="(fieldKey, fieldValue) in entity.data.step.fields">
-        <label class="control-label" for="{{fieldKey}}">{{fieldValue.label}}<span ng-show="fieldValue.required">*</span></label>
-        <div class="controls" heli-step-field field-key="fieldKey" fieldValue="fieldValue"></div>
+      <div class="form-group" ng-repeat="(fieldKey, fieldValue) in entity.data.step.fields">
+        <label class="control-label col-sm-3" for="{{fieldKey}}">{{fieldValue.label}}<span ng-show="fieldValue.required">*</span></label>
+        <div class="controls col-sm-9" heli-step-field field-key="fieldKey" fieldValue="fieldValue"></div>
       </div>
     </div>
   </div>
