@@ -118,7 +118,6 @@ angular
                 { "title": "Tumour type", "className": "span8", "data": "tumourTypesRefx.name" }
                 { "title": "Frequency", "className": "span4", "data": renderPercent, "sType": "percent" }
               ]
-              aaSorting: [[ 1, "desc" ]]
             )
     result
 
