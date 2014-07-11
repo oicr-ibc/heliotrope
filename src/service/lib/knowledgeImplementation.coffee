@@ -147,7 +147,7 @@ getVariantSelector = (req) ->
 findVariant = (err, db, variants, selector, res, callback) ->
   variants.find(selector).limit(1).toArray (err, docs) ->
     if err then return callback db, err, {}, res
-    if docs.length < 1 then return callback db, {err: "no such object: " + name}, "", res, 404
+    if docs.length < 1 then return callback db, {err: "no such object: " + selector.toString()}, "", res, 404
     doc = docs[0]
 
     resolved = resolve(doc);
