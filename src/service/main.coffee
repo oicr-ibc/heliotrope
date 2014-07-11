@@ -66,19 +66,22 @@ app.use bodyParser.urlencoded(extended: true)
 app.use cookieParser()
 app.use morgan('short')
 
-app.use session(
-  secret: config["data"]["session"]["secret"]
-  saveUninitialized: true
-  resave: true
-  store: new MongoStore(config["data"]["session"]["store"])
-)
+# See: http://stackoverflow.com/questions/22698661/mongodb-error-setting-ttl-index-on-collection-sessions
+sessionStore = new MongoStore config["data"]["session"]["store"], (err) ->
 
-app.use passport.initialize()
-app.use passport.session()
+  app.use session(
+    secret: config["data"]["session"]["secret"]
+    saveUninitialized: true
+    resave: true
+    store: sessionStore
+  )
 
-require("./lib/coreService")
-require("./lib/knowledgeService")
-require("./lib/trackerService")
+  app.use passport.initialize()
+  app.use passport.session()
 
-app.listen config['server']['port'], config['server']['address']
-logger.info "Express server listening on port " + config['server']['port']
+  require("./lib/coreService")
+  require("./lib/knowledgeService")
+  require("./lib/trackerService")
+
+  app.listen config['server']['port'], config['server']['address']
+  logger.info "Express server listening on port " + config['server']['port']
