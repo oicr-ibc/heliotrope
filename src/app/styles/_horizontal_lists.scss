@@ -1,0 +1,60 @@
+/* Regular definition list logic. We use this because it's semantically right to
+   organize most of the time as definition lists. It's not always possible, due to
+   the problems when we can't have elements between the list and the terms/definitions,
+   so we handle that differently, adding classes we can use instead. */
+
+dl, .heli-dl {
+  padding: 0.5em;
+}
+dt, .heli-dt {
+  float: left;
+  clear: left;
+  width: 180px;
+  text-align: right;
+  font-weight: bold;
+}
+dt:after {
+  content: ":";
+}
+dd, .heli-dd {
+  margin: 0 0 0 200px;
+  padding: 0 0 0.5em 0;
+}
+
+/* Modified CSS for division-based definition lists, useful for use in
+   ng-repeat contexts */
+
+.heli-dt,
+.heli-dd {
+  line-height: 20px;
+}
+
+.heli-dt:after {
+  content: ":";
+}
+
+.dl-horizontal:before,
+.dl-horizontal:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.dl-horizontal:after {
+  clear: both;
+}
+
+.dl-horizontal .heli-dt {
+  float: left;
+  width: 160px;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dl-horizontal .heli-dd {
+  margin-left: 180px;
+}
+

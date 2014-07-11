@@ -2,42 +2,6 @@ body {
   padding: 50px;
 }
 
-.chart div {
-  font: 10px sans-serif;
-  background-color: #4682B4;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: white;
-}
-
-.chart rect {
-  fill: #aaa;
-  stroke: none;
-}
-
-.axis path,
-.axis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges;
-}
-
-.axis text {
-    font-family: sans-serif;
-    font-size: 11px;
-}
-
-svg.proteinstructure g.marker circle {
-  fill: #A00;
-}
-svg.proteinstructure g.marker path {
-  stroke: black;
-}
-svg.proteinstructure g.domain-legend text, svg.proteinstructure g.domain text {
-  font-size: 1.5ex;
-}
-
 .inline-list .inline-item:after {
   content: ", ";
 }
@@ -45,64 +9,15 @@ svg.proteinstructure g.domain-legend text, svg.proteinstructure g.domain text {
   content: "";
 }
 
-/* Modified CSS for division-based definition lists, useful for use in
-   ng-repeat contexts*/
-div.heli-dl {
-  margin-bottom: 20px;
-  padding: 0.5em;
-}
-
-div.heli-dt,
-div.heli-dd {
-  line-height: 20px;
-}
-
-div.heli-dt:after {
-  content: ":";
-}
-
-div.heli-dt {
-  float: left;
-  clear: both;
-  width: 180px;
-  text-align: right;
-  font-weight: bold;
-}
-
-div.heli-dd {
-  margin: 0 0 0 200px;
-  padding: 0 0 0.7em 0;
-}
-
-.dl-horizontal {
-  *zoom: 1;
-}
-
-.dl-horizontal:before,
-.dl-horizontal:after {
-  display: table;
-  line-height: 0;
-  content: "";
-}
-
-.dl-horizontal:after {
-  clear: both;
-}
-
-.dl-horizontal div.heli-dt {
-  float: left;
-  width: 160px;
-  overflow: hidden;
-  clear: left;
-  text-align: right;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.dl-horizontal div.heli-dd {
-  margin-left: 180px;
-}
-
-a[rel="external"], a.external {
-    &:after { content: "\e066"; font-size: 80%; padding-left: 3px; font-family: 'Glyphicons Halflings'; font-style: normal; font-weight: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
+a[rel="external"], .external {
+    &:after {
+        content: "\e066";
+        font-size: 80%;
+        padding-left: 2px;
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 }
