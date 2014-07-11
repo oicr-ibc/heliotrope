@@ -793,3 +793,240 @@ getSelectedDataBlock = (stepName, stepDefinition, stepDataBlocks) ->
       break
 
   selectedStepDataBlock
+
+## Now we can handle some of the additional logic in handling a POST
+## request. We have to handle entities as we do with a GET request. The
+## special cases involve the handling of the stepOptions field. That tells
+## us what to do. If the method is set to CreateEntity, we should make a new
+## entity, i.e. do an upsert. Some values in some fields can be set (actually
+## this needs to happen for a GET request, too, at least for display reasons)
+## and then we can build a new entity and create the wee beauty.
+
+postEntityStep = (err, db, req, res, callback) ->
+  studyName = req.params.study
+  role = req.params.role
+  identity = req.params.identity
+  stepName = req.params.step
+
+  findStudy db, req, res, 'read', (err, doc) ->
+
+    # If we have an error, respond appropriately.
+    if err || ! doc
+      return callback db, err, doc, res, res.locals.statusCode || 404
+
+    studyId = new BSON.ObjectID(doc._id.toString())
+    stepSelector = getStepSelector studyId, role, stepName
+
+    # Find the referenced step
+    db.collection "steps", (err, steps) ->
+      steps.find(stepSelector).toArray (err, stepsArray) ->
+        step = stepsArray[0]
+
+        # Actually, to work with a step, we need read access to the study, and modify access
+        # to the step. This means rejection. Although we have defined read access, here we don't
+        # need to test for it, nor do we in reading steps either.
+
+        access = accessList(step, doc)
+        if ! (checkAdminAccess(req, 'modify') || checkAccessList(req, access, 'modify'))
+          res.locals.statusCode = 403
+          return callback db, {error: "Forbidden"}, null, res, 403
+
+        # Handle repeating steps. When we have a repeating step with an identifier as part
+        # of the step name, locate that step specifically. We can use that instead of the
+        # stepRef, as it is more specific. In both cases, these locate (through $) the individual
+        # specific step to update.
+        #
+        # A special case should be the stepRef without an identifier for a repeating step.
+        # In this case, we should really use a newly constructed step identifier, so we
+        # guarantee not to find and modify an existing step.
+
+        stepId = undefined
+        semicolonPosition = stepName.indexOf(";")
+        if semicolonPosition != -1
+          stepId = stepName.substring(semicolonPosition + 1);
+          stepName = stepName.substring(0, semicolonPosition);
+
+        existingEntityStepSelector = {
+          "studyId" : studyId,
+          "role" : role,
+          "identity" : identity
+        }
+
+        if step["isRepeatable"]
+          existingEntityStepSelector["steps.id"] = if stepId then new BSON.ObjectID(stepId) else new BSON.ObjectID()
+        else
+          existingEntityStepSelector["steps.stepRef"] = new BSON.ObjectID(step._id.toString())
+
+        # The important bit: build the step updater. This can generate an error. If it
+        # does we should go no further but pass it to the callback here and now.
+
+        initialUpdater = {"$set" : {}}
+        initialUpdater["$set"]["steps.$.fields"] = []
+        initialUpdater["$set"]["steps.$.stepDate"] = new Date()
+        initialUpdater["$set"]["steps.$.stepUser"] = (req.user && req.user.userId) || null
+        initialUpdater["$set"]["lastModified"] = new Date()
+        findStepUpdater db, studyId, step, req.body.data.step.fields, {}, initialUpdater, (db, err, updater) ->
+
+          if err
+            return callback db, err, err.toString(), res, 400
+
+          # OK. At this stage we have an updater. We can proceed to use it. Again, for a repeating step,
+          # we get an identifier tagged on the end of the URL.
+
+          newIdentity = updater["$set"]["identity"] || identity
+          newUrl = doc.url + "/" + role + "/" + newIdentity + "/step/" + stepName
+          if step["isRepeatable"]
+            newUrl = newUrl + ";" + existingEntityStepSelector["steps.id"].toString()
+
+          updateOptions = {"fsync" : true, "w" : 1}
+
+          db.collection "entities", (err, entities) ->
+            entities.update existingEntityStepSelector, updater, updateOptions, (err, result) ->
+
+              if err
+                return callback db, err, newUrl, res, 400
+
+              # Now if result == 1 we changed something. If result == 0, we didn't, and
+              # need to actually do something about it. That could mean that the step didn't exist,
+              # or that the entity didn't exist. We can handle entities that didn't exist
+              # later, as really should 404.
+
+              if result == 0
+
+                if existingEntityStepSelector["identity"] == "id;new"
+                  existingEntityStepSelector["identity"] = updater["$set"]["identity"]
+                  existingEntityStepSelector["steps"] = []
+                  updateOptions["upsert"] = true
+
+                # When we don't have an identity, make one that's going to be unique.
+                if existingEntityStepSelector["identity"] == undefined
+                  existingEntityStepSelector["identity"] = new BSON.ObjectID().toString()
+
+                if updater["$push"] == undefined
+                  updater["$push"] = {};
+
+                # At this stage, we failed to locate an existing step. If the step is repeatable
+                # we can move ahead with a new identifier here.
+
+                updater["$push"]["steps"] = {
+                  "fields" : updater["$set"]["steps.$.fields"],
+                  "stepDate" : updater["$set"]["steps.$.stepDate"],
+                  "stepUser" : (req.user && req.user.userId) || null,
+                  "stepRef" : new BSON.ObjectID(step._id.toString())
+                }
+
+                if step["isRepeatable"]
+                  updater["$push"]["steps"]["id"] = existingEntityStepSelector["steps.id"]
+                else
+                  updater["$push"]["steps"]["id"] = new BSON.ObjectID()
+
+                delete updater["$set"]["steps.$.fields"]
+                delete updater["$set"]["steps.$.stepDate"]
+                delete updater["$set"]["steps.$.stepUser"]
+                delete existingEntityStepSelector['steps.stepRef']
+                delete existingEntityStepSelector['steps.id']
+
+                entities.update existingEntityStepSelector, updater, updateOptions, (err, result) ->
+                  switch
+                    when err then         callback db, err, newUrl, res, 400
+                    when result == 0 then callback db, "Internal error inserting document", newUrl, res, 400
+                    else                  callback db, err, newUrl, res
+
+              else
+                callback db, err, newUrl, res
+
+findStepUpdater = (db, studyId, step, fields, errors, updater, callback) ->
+
+  remainingFields = if fields == undefined then [] else Object.keys(fields)
+
+  # Simple case: no more fields, we are done.
+  if remainingFields.length == 0
+
+    # Check for missing fields. These will be absent but required.
+    foundFields = {}
+    missingFields = []
+    for field in updater["$set"]["steps.$.fields"]
+      foundFields[field.key] = 1;
+    if step.fields != undefined
+      for own stepField of step.fields
+        if step.fields[stepField].isRequired && ! foundFields[stepField]
+          missingFields.push(stepField);
+
+    # If there are missing fields, add to the error
+    if missingFields.length > 0
+      errors["missingFields"] = missingFields
+      errors.err = "missing fields: " + missingFields.join(", ")
+
+    # If the error is empty, make it null
+    if Object.keys(errors).length == 0
+      errors = null
+
+    callback db, errors, updater
+
+  else
+
+    # Grab and remove the first property.
+    fieldName = remainingFields.shift()
+    fieldValue = fields[fieldName]
+    delete fields[fieldName]
+
+    # Discard if it's not a step field
+    if ! step.fields.hasOwnProperty(fieldName)
+      return findStepUpdater db, studyId, step, fields, errors, updater, callback
+
+    # Otherwise, get the field definition.
+    fieldDefinition = step.fields[fieldName]
+
+    # Use the field type, but carefully.
+    newField = {"key" : fieldName}
+
+    if fieldDefinition.isIdentity
+
+      if fieldValue["identity"] != undefined
+        newField["identity"] = fieldValue["identity"]
+        updater["$set"]["steps.$.fields"].push(newField)
+        updater["$set"]["identity"] = newField["identity"]
+      return findStepUpdater db, studyId, step, fields, errors, updater, callback
+
+    else if fieldDefinition.type == 'Reference' && fieldDefinition.hasOwnProperty('entity')
+
+      reference = fieldValue.ref
+      role = fieldDefinition.entity
+      selector =
+        if      fieldValue.ref != undefined    then {_id: new BSON.ObjectID(fieldValue.ref.toString())}
+        else if fieldValue.value != undefined  then {identity: fieldValue.value}
+        else                                        undefined
+
+      if selector?
+        # Shouldn't throw an error. Should really be a missing field. If it's required.
+        findStepUpdater db, studyId, step, fields, errors, updater, callback
+
+      else
+
+        db.collection "entities", (err, entities) ->
+          entities.find(selector).limit(1).toArray (err, docs) ->
+            if err
+              callback db, {err: err}, null
+            else if docs.length == 0
+              errors.missingObject = ["role", reference.toString()];
+              findStepUpdater db, studyId, step, fields, errors, updater, callback
+            else
+              entity = docs[0]
+              id = new BSON.ObjectID(entity._id.toString())
+              newField["ref"] = id
+              updater["$set"]["steps.$.fields"].push(newField)
+              findStepUpdater db, studyId, step, fields, errors, updater, callback
+
+    else if ! fieldDefinition.isIdentity
+
+      newField["value"] = fieldValue.value
+      updater["$set"]["steps.$.fields"].push(newField)
+
+      # If it's a name field, set the name too.
+      if fieldDefinition.name
+        updater["$set"]["name"] = newField["value"];
+
+      findStepUpdater db, studyId, step, fields, errors, updater, callback
+
+    else
+      throw new Error("Should never get here!")
