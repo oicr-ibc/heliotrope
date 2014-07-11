@@ -1,14 +1,5 @@
 <div class="row">
-  <div class="span3" id="sidebar">
-    <div class="well" style="max-width: 240px; padding: 8px 0; margin-top: 2em">
-    <ul class="nav nav-list">
-      <li class="nav-header">Publication</li>
-    </ul>
-    </div> 
-  </div>
-  
-  <div class="span9">
-
+  <div class="col-md-9">
     <div id="page-header">
       <div class="page-header">
         <h1>
@@ -21,7 +12,7 @@
       <div heli-section body-id="source" title="Source">
 
         <p>
-          <em>{{entity.data.sections.pubmed.data.Article.Journal.ISOAbbreviation}}</em>, 
+          <em>{{entity.data.sections.pubmed.data.Article.Journal.ISOAbbreviation}}</em>,
           vol. {{entity.data.sections.pubmed.data.Article.Journal.JournalIssue.Volume}},
           {{entity.data.sections.pubmed.data.Article.Journal.JournalIssue.PubDate.Day}}
           {{entity.data.sections.pubmed.data.Article.Journal.JournalIssue.PubDate.Month}}
@@ -54,5 +45,11 @@
       </div>
 
     </div>
+  </div>
+
+  <div class="col-md-3" id="sidebar">
+    <ul class="nav nav-list">
+      <li class="nav-header">Publication</li>
+    </ul>
   </div>
 </div>

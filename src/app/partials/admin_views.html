@@ -1,18 +1,5 @@
 <div class="row">
-  <div class="span3" id="sidebar">
-    <div class="well" style="max-width: 240px; padding: 8px 0; margin-top: 2em">
-      <ul class="nav nav-list">
-        <li class="nav-header"><a href="/admin/studies/{{views.data.study.name}}">Manage {{views.data.study.name}}</a></li>
-        <li ng-show="views.data.study._id"><a href="/admin/studies/{{views.data.study.name}}/steps">Manage steps</a></li>
-        <li ng-show="views.data.study._id" class="disabled"><a href="/admin/studies/{{views.data.study.name}}/views">Manage views</a></li>
-        <li class="divider"></li>
-        <li><a ng-click="newView(views.data.study)") class="clickable">New view</a></li>
-      </ul>
-    </div>  
-  </div>
-
-  <div class="span9">
-
+  <div class="col-md-9">
     <div class="form-horizontal step-form admin-form" ng-form>
 
       <h1>{{views.data.study.name}} <small>/ Manage views</small></h1>
@@ -38,5 +25,15 @@
       </div>
 
     </div>
+  </div>
+
+  <div class="col-md-3" id="sidebar">
+    <ul class="nav nav-list">
+      <li class="nav-header"><a href="/admin/studies/{{views.data.study.name}}">Manage {{views.data.study.name}}</a></li>
+      <li ng-show="views.data.study._id"><a href="/admin/studies/{{views.data.study.name}}/steps">Manage steps</a></li>
+      <li ng-show="views.data.study._id" class="disabled"><a href="/admin/studies/{{views.data.study.name}}/views">Manage views</a></li>
+      <li class="divider"></li>
+      <li><a ng-click="newView(views.data.study)") class="clickable">New view</a></li>
+    </ul>
   </div>
 </div>

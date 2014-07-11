@@ -1,7 +1,6 @@
 <div class="row">
-  <div class="span3" id="sidebar"></div>
-  <div class="span9">
-  
+  <div class="col-md-9">
+
     <div id="page-header">
       <div class="page-header">
         <h1>
@@ -11,7 +10,7 @@
     </div>
 
     <div class="help-block step-description" heli-description html="entity.data.step.description"></div>
-    
+
     <div heli-error-alert field="error.data.error.err"></div>
 
     <div ng-repeat="alert in entity.data.alerts"><div heli-alert alert="{{alert}}"></div></div>
@@ -22,6 +21,7 @@
         <div class="controls" heli-step-field field-key="fieldKey" fieldValue="fieldValue"></div>
       </div>
     </div>
-
   </div>
+
+  <div class="col-md-3" id="sidebar"></div>
 </div>
