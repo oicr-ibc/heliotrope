@@ -802,7 +802,7 @@ getSelectedDataBlock = (stepName, stepDefinition, stepDataBlocks) ->
 ## this needs to happen for a GET request, too, at least for display reasons)
 ## and then we can build a new entity and create the wee beauty.
 
-postEntityStep = (err, db, req, res, callback) ->
+module.exports.postEntityStep = (err, db, req, res, callback) ->
   studyName = req.params.study
   role = req.params.role
   identity = req.params.identity
@@ -865,6 +865,7 @@ postEntityStep = (err, db, req, res, callback) ->
         initialUpdater["$set"]["steps.$.stepDate"] = new Date()
         initialUpdater["$set"]["steps.$.stepUser"] = (req.user && req.user.userId) || null
         initialUpdater["$set"]["lastModified"] = new Date()
+
         findStepUpdater db, studyId, step, req.body.data.step.fields, {}, initialUpdater, (db, err, updater) ->
 
           if err
@@ -934,6 +935,11 @@ postEntityStep = (err, db, req, res, callback) ->
 
               else
                 callback db, err, newUrl, res
+
+## Given a set of objects, it returns an array of all the actual access
+## objects present within them, omitting those that don't exist.
+accessList = (values...) ->
+  (access["access"] for access in values when access["access"]?)
 
 findStepUpdater = (db, studyId, step, fields, errors, updater, callback) ->
 
