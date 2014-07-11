@@ -80,7 +80,7 @@ angular
                 row[0] = "<a href='" + record.url + " '>" + record.identity + "</a>"
                 for recordStep in record.steps
                   index = stepTable[recordStep.stepRef]
-                  row[index] = '<i class="icon-ok"></i>' if index
+                  row[index] = '<span class="glyphicon glyphicon-ok"></span>' if index
                 row = ("<td>" + rowData + "</td>" for rowData in row).join("")
                 jQuery("<tr>" + row + "</tr>").appendTo(body)
             )
