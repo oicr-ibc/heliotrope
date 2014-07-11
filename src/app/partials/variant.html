@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-md-9">
+
+    <div id="page-header">
+      <div class="page-header">
+        <h1>
+          {{entity.data.name}} <small>Variant {{orderedPositions}}</small>
+        </h1>
+      </div>
+    </div>
+
+    <div id="page-body">
+
+      <div ng-form>
+
+        <div heli-section body-id="summary" title="Summary">
+          <div id="summary-table">
+            <dl class="dl-horizontal">
+              <dt>Mutation</dt>
+              <dd>{{entity.data.mutation}}
+              (<span ng-show="ordered[0].HGVSpr">{{ordered[0].HGVSpr}}, </span>
+               DNA: <span class="inline-list">
+               <span class="inline-item" ng-repeat="item in ordered">{{item.HGVSc}}</span></span>)
+              </dd>
+              <dt>Type</dt>
+              <dd>
+              <span ng-show="ordered[0]">{{(ordered[0].consequence || "Not available") | keywordToString:false}}</span>
+              <span ng-show="! ordered[0]">not available</span>
+              </dd>
+              <dt>Predicted impact</dt>
+              <dd>
+              <span class="inline-list">
+              <span class="inline-item" ng-show="ordered[0].sift">{{ordered[0].sift.level | keywordToString:false}} (SIFT, score: {{ordered[0].sift.score}})</span>
+              <span class="inline-item" ng-show="ordered[0].polyphen">{{ordered[0].polyphen.level | keywordToString:false}} (PolyPhen, score: {{ordered[0].polyphen.score}})</span>
+              <span class="inline-item" ng-hide="ordered[0].sift || ordered[0].polyphen">Not available</span>
+              </span>
+              <br>
+              <span class="text-warning"><strong>Note: Impact prediction algorithms are not clinically validated</strong></span>
+              </dd>
+
+              <dt>Gene</dt>
+              <dd>
+                <a href="/genes/{{entity.data.genesRefx.name}}">{{entity.data.genesRefx.name}}</a>
+              </dd>
+              <dt>Position</dt>
+              <dd>codon: <span ng-show="ordered[0].codon">{{ordered[0].codon}}</span>
+              (in exon:
+              <span ng-show="ordered[0].exon">{{ordered[0].exon}}</span><span ng-show="! ordered[0].exon">not available</span>)
+              </dd>
+            </dl>
+          </div>
+
+        </div>
+      </div>
+
+      <div heli-section body-id="domains" title="Gene structure">
+        <div heli-structure-distribution></div>
+      </div>
+
+      <div heli-section body-id="frequencies" title="Mutation frequencies">
+        <div id="frequencies-table">
+          <div heli-frequencies></div>
+        </div>
+      </div>
+
+      <div heli-section body-id="clinical-action" title="Clinical summary">
+        <div class="row-fluid">
+          <div heli-editable-action action="entity.data.sections.clinical.data.action"></div>
+        </div>
+      </div>
+
+      <div heli-section body-id="clinical-significance" title="Clinical significance">
+        <div heli-editable-significances significance="entity.data.sections.clinical.data.significance"></div>
+      </div>
+
+      <div heli-section body-id="drugs" title="Drugs">
+        <div heli-editable-agents agents="entity.data.sections.clinical.data.agents"></div>
+      </div>
+
+      <div heli-section body-id="genomics" title="Genomics">
+        <div id="genomics-table">
+          <dl class="dl-horizontal">
+            <dt>Chromosome</dt>
+            <dd>{{ordered[0].chromosome}}</dd>
+            <dt>Position</dt>
+            <dd>Codon: <span ng-show="ordered[0].codon">{{ordered[0].codon}}</span>
+            (in exon:
+            <span ng-show="ordered[0].exon">{{ordered[0].exon}}</span><span ng-show="! ordered[0].exon">not available</span>)
+            </dd>
+             <dt>Genomic coordinates</dt>
+            <dd>{{ordered[0].chromosome}}:{{ordered[0].start}}-{{ordered[0].stop}}</dd>
+            <dt>Ensembl gene</dt>
+            <dd><a href="http://www.ensembl.org/id/{{ordered[0].gene}}" rel="external">{{ordered[0].gene}}</a></dd>
+            <dt>Ensembl transcript</dt>
+            <dd><a href="http://www.ensembl.org/id/{{ordered[0].transcript}}" rel="external">{{ordered[0].transcript}}</a></dd>
+          </dl>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3" id="sidebar">
+    <ul class="nav nav-list">
+      <li class="nav-header">Variant</li>
+    </ul>
+  </div>
+
+</div>

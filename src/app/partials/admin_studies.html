@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="form-horizontal study-form" ng-form>
+
+      <div class="page-header">
+        <h1 ng-hide="study.data._id">New study</h1>
+        <h1 ng-show="study.data._id">{{study.data.name}}</h1>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="name">Label</label>
+        <div class="controls col-sm-9">
+          <input class="form-control" type="text" id="label" ng-model="study.data.name" placeholder="Study label" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="name">Description</label>
+        <div class="controls col-sm-9">
+          <textarea id="description" class="form-control" ng-model="study.data.description" rows="3" placeholder="Study description"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="name">User permissions</label>
+        <div class="controls col-sm-9">
+          <input type="text" id="access.write" class="form-control" placeholder="Read-write users" heli-tag-control model="study.data.access.modify">
+          <span class="help-block">List of users with read-write permission</span>
+          <input type="text" id="access.read" class="form-control" placeholder="Read-only users" heli-tag-control model="study.data.access.read">
+          <span class="help-block">List of users with read-only permission</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-3"></div>
+        <div class="controls col-sm-9">
+          <button type="submit" class="btn btn-primary" ng-click="update()">Save</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-3" id="sidebar">
+    <ul class="nav nav-list">
+      <li class="nav-header"><a href="/admin">Manage studies</a></li>
+      <li ng-show="study.data._id"><a href="/admin/studies/{{study.data.name}}/steps">Manage steps</a></li>
+      <li ng-show="study.data._id"><a href="/admin/studies/{{study.data.name}}/views">Manage views</a></li>
+    </ul>
+  </div>
+</div>

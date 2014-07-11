@@ -35,7 +35,7 @@ nconf.defaults({
   'server:port': 3000,
   'server:address': "0.0.0.0",
   'debug': true,
-  'authenticate': false, 
+  'authenticate': false,
   'heliotrope:knowledgeUriBase': '/knowledge/api',
   'heliotrope:trackerUriBase': '/tracker/api',
   'heliotrope:baseUrl': 'http://localhost:3000',
@@ -56,7 +56,7 @@ var config = nconf.get();
 module.exports.config = config;
 
 // Config needs to be exported before we get here. And yes, this
-// is a bit nasty. 
+// is a bit nasty.
 var authenticator = require("./lib/authentication")
 
 function logErrors(err, req, res, next) {
@@ -90,7 +90,7 @@ app.configure(function(){
   app.use(express.bodyParser({
     keepExtensions: true,
     limit: 10000000, // 10M limit
-    defer: true  
+    defer: true
   }));
 
   app.use(express.cookieParser());
@@ -111,8 +111,8 @@ app.configure(function(){
   // Unusually, we don't have global authorization here, although we could. This allows
   // the knowledge base to have public read access, without allowing access to the tracker
   // without logging in. The session here doesn't block access in the absence of a session,
-  // but it does populate the session. To restrict, the authentication system needs to 
-  // verify the existence of req.user for routes that we need authenticated. 
+  // but it does populate the session. To restrict, the authentication system needs to
+  // verify the existence of req.user for routes that we need authenticated.
 });
 
 require('./lib/trackerService');

@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+}
+
+.inline-list .inline-item:after {
+  content: ", ";
+}
+.inline-list .inline-item:last-child:after {
+  content: "";
+}
+
+a[rel="external"], .external {
+    &:after {
+        content: "\e066";
+        font-size: 80%;
+        padding-left: 2px;
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}

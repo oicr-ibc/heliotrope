@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en" ng-app="heliotrope">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heliotrope</title>
+  <!-- inject:vendor:css -->
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="/bootstrap-datepicker/css/datepicker.css">
+  <link rel="stylesheet" href="/bootstrap-datepicker/css/datepicker3.css">
+  <link rel="stylesheet" href="/select2/select2.css">
+  <link rel="stylesheet" href="/select2-bootstrap3-css/select2-bootstrap.css">
+  <link rel="stylesheet" href="/spin/stylesheets/jquery.spin.css">
+  <link rel="stylesheet" href="/datatables/media/css/jquery.dataTables.css">
+  <link rel="stylesheet" href="/datatables-bootstrap3/BS3/assets/css/datatables.css">
+  <link rel="stylesheet" href="/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css">
+  <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/css/app.css">
+  <!-- endinject -->
+
+</head>
+<body>
+
+  <nav ng-controller="NavigationController" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Heliotrope</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a ng-show="studiesAvailable" href="/studies">studies</a></li>
+          <li><a href="/genes">genes</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">account <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-hide="user"><a ng-click="login()">Log in</a></li>
+                <li ng-show="user" class="disabled"><a>Logged in as: {{user.userId}}</a></li>
+                <li ng-show="user" class="divider"></li>
+                <li ng-show="user.hasRole('TRACKER_ADMIN')"><a href="/admin">Tracker administration</a></li>
+                <li ng-show="user.hasRole('TRACKER_ADMIN')" class="divider"></li>
+                <li ng-show="user"><a ng-click="logout()">Logout</a></li>
+              </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <div id="spinner-container"></div>
+
+  <div class="container outer-container" id="page-container" ng-view>
+  </div>
+
+  <div ng-controller="AuthenticationController" heli-login-form></div>
+
+  <!-- inject:vendor:js -->
+  <script src="/string-format/string-format.js"></script>
+  <script src="/jquery/dist/jquery.js"></script>
+  <script src="/jquery-ui/jquery-ui.js"></script>
+  <script src="/jquery-form/jquery.form.js"></script>
+  <script src="/angular/angular.js"></script>
+  <script src="/angular-route/angular-route.js"></script>
+  <script src="/angular-resource/angular-resource.js"></script>
+  <script src="/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+  <script src="/xdate/src/xdate.js"></script>
+  <script src="/d3/d3.js"></script>
+  <script src="/select2/select2.js"></script>
+  <script src="/spin/javascripts/jquery.spin.js"></script>
+  <script src="/datatables/media/js/jquery.dataTables.js"></script>
+  <script src="/datatables-bootstrap3/BS3/assets/js/datatables.js"></script>
+  <script src="/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <script src="/directives/admin.js"></script>
+  <script src="/directives/authentication.js"></script>
+  <script src="/directives/core.js"></script>
+  <script src="/directives/editing.js"></script>
+  <script src="/directives/workflows.js"></script>
+  <script src="/filters.js"></script>
+  <script src="/heliotrope-templates.js"></script>
+  <script src="/lib/chartmaker.js"></script>
+  <script src="/services/common.js"></script>
+  <script src="/services/genomics.js"></script>
+  <script src="/services/knowledge.js"></script>
+  <script src="/services/tracker.js"></script>
+  <script src="/controllers/common.js"></script>
+  <script src="/controllers/knowledge.js"></script>
+  <script src="/controllers/tracker.js"></script>
+  <script src="/directives/charts.js"></script>
+  <script src="/directives/forms.js"></script>
+  <script src="/directives/navigation.js"></script>
+  <script src="/directives/tables.js"></script>
+  <script src="/app.js"></script>
+  <!-- endinject -->
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-9">
+
+    <div class="form-horizontal step-form admin-form" ng-form>
+
+      <h1><a href="/admin/studies/{{study.data.name}}">{{study.data.name}}</a> <small>/ Manage steps</small></h1>
+
+      <div ng-repeat="(key, value) in study.data.steps">
+
+        <h3>Role: {{key}}</h3>
+
+        <table class="table table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Step label</th>
+              <th>Weight</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="step in value">
+              <td><a ng-click="editStep(study, step)" class="clickable">{{step.label}}</a></td>
+              <td>{{step.weight}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-3" id="sidebar">
+    <ul class="nav nav-list">
+      <li class="nav-header"><a href="/admin">Manage studies</a></li>
+      <li ng-show="study.data._id" class="disabled"><a href="/admin/studies/{{study.data.name}}/steps">Manage steps</a></li>
+      <li ng-show="study.data._id"><a href="/admin/studies/{{study.data.name}}/views">Manage views</a></li>
+      <li class="divider"></li>
+      <li><a ng-click="newStep(study)") class="clickable">New step</a></li>
+    </ul>
+  </div>
+</div>

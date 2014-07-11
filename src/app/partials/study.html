@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="page-header">
+      <h1>{{study.data.name}}<small> / Study</small></h1>
+    </div>
+
+    <div id="data">
+      <div heli-study-summary></div>
+    </div>
+  </div>
+
+  <div class="col-md-3" id="sidebar">
+    <ul class="nav nav-list">
+      <li class="nav-header">Study</li>
+      <li><a href="{{study.data.url}}">{{study.data.name}}</a></li>
+      <li><a href="{{study.data.url}}/participants/id;new/step/participant">Create new participant</a></li>
+    </ul>
+  </div>
+</div>

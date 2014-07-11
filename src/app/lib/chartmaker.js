@@ -216,10 +216,10 @@ ProteinStructureChart.prototype.addValues = function() {
     .data(values)
     .enter()
     .append("g")
-    .attr("class", "marker")
+    .attr("class", "marker");
 
   values.append("path")
-    .attr("d", valuePathFn)
+    .attr("d", valuePathFn);
 
   values.append("circle")
     .attr("class", this.config.markerClassFn)
@@ -228,7 +228,7 @@ ProteinStructureChart.prototype.addValues = function() {
     .attr("r", markerRadius)
     .attr("rel", "tooltip")
     .attr("title", this.config.markerTooltipHtmlFn);
-}
+};
 
 /**
  * This method adds the domain elements to the overall chart. It's a fairly straight
@@ -241,7 +241,7 @@ ProteinStructureChart.prototype.addDomains = function() {
 
   var proteinScale = this._proteinScale;
   var domainRowScale = this._domainRowScale;
-  var domainColourScale = this._domainColourScale
+  var domainColourScale = this._domainColourScale;
   var domainLegendRowScale = this._domainLegendRowScale;
   var domainLegendColumnScale = this._domainLegendColumnScale;
   var drh = this.config.domainRowHeight;
@@ -294,7 +294,7 @@ ProteinStructureChart.prototype.addDomains = function() {
     .data(domains)
     .enter()
     .append("g")
-    .attr("class", "domain")
+    .attr("class", "domain");
 
   domainGroups.attr("rel", "tooltip")
     .attr("title", this.config.domainTooltipHtmlFn);
@@ -419,7 +419,7 @@ ProteinStructureChart.prototype.setChartScales = function() {
     .domain([0, 2])
     .range([0, this._width]);
   this._domainColourScale = d3.scale.category10();
-}
+};
 
 ProteinStructureChart.prototype.addChart = function() {
 
@@ -446,8 +446,8 @@ ProteinStructureChart.prototype.addAxes = function() {
 
   // And the axes; first for the values
   var xAxis = d3.svg.axis();
-  xAxis.scale(this._proteinScale)
-  xAxis.orient("bottom")
+  xAxis.scale(this._proteinScale);
+  xAxis.orient("bottom");
   chart.append("g")
     .attr("class", "axis")
     .attr("transform", "translate(" + 0 + "," + (tm + vh - 0.5) + ")")
@@ -455,8 +455,8 @@ ProteinStructureChart.prototype.addAxes = function() {
 
   // The second axis is the one for the protein coding space
   var valueAxis = d3.svg.axis().ticks(6).tickFormat(d3.format("d")).tickSubdivide(0);
-  valueAxis.scale(this._valueScale)
-  valueAxis.orient("left")
+  valueAxis.scale(this._valueScale);
+  valueAxis.orient("left");
   chart.append("g")
     .attr("class", "axis")
     .attr("transform", "translate(" + (lm + vaw) + "," + (- 0.5) + ")")
@@ -471,7 +471,7 @@ ProteinStructureChart.prototype.addAxes = function() {
     // .attr("dx", -(tm + vh/2))
     .style("text-anchor", "middle")
     .text("frequency in COSMIC");
-}
+};
 
 /**
  * Main display method sets up the chart.

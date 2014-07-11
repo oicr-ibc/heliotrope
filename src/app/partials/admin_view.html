@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="page-header">
+      <h1 ng-show="view.data.view._id">View {{view.data.view.name}} <small>/
+        for: {{view.data.view.role}} /
+        in: <a href="/admin/studies/{{view.data.study.name}}">{{view.data.study.name}}</a></small></h1>
+      <h1 ng-hide="view.data.view._id">New View <small>/
+        in: <a href="/admin/studies/{{view.data.study.name}}">{{view.data.study.name}}</a></small></h1>
+    </div>
+
+    <div class="form-horizontal view-form admin-form" ng-form>
+
+      <div class="control-group">
+        <label class="control-label" for="label">Label</label>
+        <div class="controls">
+          <input type="text" id="label" ng-model="view.data.view.label.default" placeholder="Step label" required>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="identifier">Identifier</label>
+        <div class="controls">
+          <input class="identifier-control" type="text" id="identifier" ng-model="view.data.view.name" placeholder="Identifier" required>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="applies-to">Applies to</label>
+        <div class="controls">
+          <input class="identifier-control" type="text" id="applies-to" ng-model="view.data.view.role" placeholder="Applies to" required>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="weight">Weight</label>
+        <div class="controls">
+          <input type="text" id="weight" ng-model="view.data.view.weight" placeholder="Weight" required>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="body">Body</label>
+        <div class="edit-body-control controls">
+          <textarea class="edit-body edit-code span9" id="body" ng-model="view.data.view.body" placeholder="Body" required></textarea>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-primary" ng-click="update()">Save</button>
+          <button class="btn" ng-click="resetView()">Reset</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-3" id="sidebar">
+    <ul class="nav nav-list">
+      <li class="nav-header"><a href="/admin">Manage studies</a></li>
+    </ul>
+  </div>
+</div>

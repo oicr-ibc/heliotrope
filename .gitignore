@@ -1,9 +1,12 @@
 /node_modules
 /.*
 !/.gitignore
+!/.jshintrc
+!/.csslintrc
 /config.json
 /target
 /*.sublime-*
 /etc/scripts/*.log
 /etc/scripts/*.err
-
+/bower_components
+!/bower_components/.gitkeep
