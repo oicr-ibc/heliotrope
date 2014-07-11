@@ -63,6 +63,7 @@ app.locals.pretty = true
 
 app.use methodOverride('X-HTTP-Method-Override')
 app.use bodyParser.urlencoded(extended: true)
+app.use bodyParser.json()
 app.use cookieParser()
 app.use morgan('short')
 
