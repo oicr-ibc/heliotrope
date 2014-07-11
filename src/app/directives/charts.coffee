@@ -42,7 +42,7 @@ angular
             if entityData.sections.positions
               positions = entityData.sections.positions
               codon = positions.data[0]["codon"]
-              position = parseInt((codon).toString())
+              position = codon && parseInt((codon).toString())
               if ! isNaN(position)
                 data.mutations = [{id: entityData["shortMutation"], position: position, url: null, value: 4}]
 
