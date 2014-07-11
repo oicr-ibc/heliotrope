@@ -202,14 +202,15 @@ jQuery.extend(jQuery.fn.dataTableExt.oStdClasses, {
 })
 
 jQuery.extend(jQuery.fn.dataTableExt.oSort, {
-  "percent-pre": (a) ->
+  "html-percent-pre": (a) ->
+    a = a.replace /<[^>]+>/, ''
     x = if a == "-" then 0 else a.replace( /%/, "" )
     parseFloat(x)
 
-  "percent-asc": (a, b) ->
+  "html-percent-asc": (a, b) ->
     if a < b then -1 else if (a > b) then 1 else 0
 
-  "percent-desc": (a, b) ->
+  "html-percent-desc": (a, b) ->
     if a < b then 1 else if (a > b) then -1 else 0
 })
 

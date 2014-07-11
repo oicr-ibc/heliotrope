@@ -115,9 +115,14 @@ angular
               paging: true
               data: angular.copy(newValue)
               columns: [
-                { "title": "Tumour type", "className": "span8", "data": "tumourTypesRefx.name" }
-                { "title": "Frequency", "className": "span4", "data": renderPercent, "sType": "percent" }
+                { "title": "Tumour type", "orderable" : true, "className": "span8", "data": "tumourTypesRefx.name" }
+                { "title": "Frequency", "orderable" : true, "className": "span4", "data": renderPercent }
               ]
+              order: [1, 'desc']
+              columnDefs: [ {
+                "targets": 1,
+                "type": "html-percent"
+              } ]
             )
     result
 
