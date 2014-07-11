@@ -111,12 +111,12 @@ angular
             renderPercent = (x) ->
               '<b>%0.2f%%</b> (%d of %d samples)'.format(x.frequency * 100.0, x.affected, x.total)
             jQuery(iElement).dataTable(
-              sPaginationType: "bs_normal"
-              bPaginate: true
-              aaData: angular.copy(newValue)
-              aoColumns: [
-                { "sTitle": "Tumour type", "sClass": "span8", "mData": "tumourTypesRefx.name" }
-                { "sTitle": "Frequency", "sClass": "span4", "mData": renderPercent, "sType": "percent" }
+              pagingType: "bs_normal"
+              paging: true
+              data: angular.copy(newValue)
+              columns: [
+                { "title": "Tumour type", "className": "span8", "data": "tumourTypesRefx.name" }
+                { "title": "Frequency", "className": "span4", "data": renderPercent, "sType": "percent" }
               ]
               aaSorting: [[ 1, "desc" ]]
             )
@@ -144,19 +144,18 @@ angular
         scope.$watch 'entity.data.related.observations', (newValue, oldValue) ->
           if (newValue)
             jQuery(iElement).dataTable(
-              sPaginationType: "bs_normal"
-              bPaginate: true
-              bLengthChange: false
-              iDisplayLength: 5
-              aaData: newValue
-              aoColumns: [
-                { "sTitle": "Mutation", "sClass": "span4", "mData": (data, type, val) ->
+              pagingType: "bs_normal"
+              paging: true
+              lengthChange: false
+              pageLength: 5
+              data: newValue
+              columns: [
+                { "title": "Mutation", "className": "span4", "data": (data, type, val) ->
                   if type == undefined
                     data
                   else
                     "<a href='" + data.url + "'>" + data.name + "</b>"
                 }
               ]
-              aaSorting: [[ 1, "asc" ]]
             )
     result
