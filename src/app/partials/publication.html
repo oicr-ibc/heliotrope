@@ -44,7 +44,25 @@
         </p>
       </div>
 
+      <div heli-section body-id="keywords" title="Keywords">
+
+        <h4>Substances</h4>
+        <ul>
+          <li ng-repeat="chemical in entity.data.sections.pubmed.data.ChemicalList.Chemical">
+            {{chemical.NameOfSubstance}}
+          </li>
+        </ul>
+
+        <h4>MeSH terms</h4>
+        <ul>
+          <li ng-repeat="heading in entity.data.sections.pubmed.data.MeshHeadingList.MeshHeading">
+            {{heading.DescriptorName.value}}
+          </li>
+        </ul>
+      </div>
+
     </div>
+
   </div>
 
   <div class="col-md-3 sidebar" id="sidebar">
