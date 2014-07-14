@@ -109,7 +109,14 @@ sub entry {
   my $root = $dom->documentElement();
 
   my $about = $root->getAttribute("rdf:about");
-  say "$about";
+  $DB::single = 1 if ($root->nodeName() eq 'owl:Class');
+
+  my $xc = XML::LibXML::XPathContext->new($root);
+  $xc->registerNs('t', 'http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#');
+  if ($xc->findvalue('t:Semantic_Type') eq 'Pharmacologic Substance') {
+    say "$about";
+  }
+
   return "";
 }
 
