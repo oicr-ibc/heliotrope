@@ -269,7 +269,7 @@ module.exports.getPublication = (err, db, req, res, callback) ->
 
     publications.find({name: publicationId}).limit(1).toArray (err, docs) ->
       if err then return callback db, err, {}, res
-      if docs.length < 1 then return callback db, {err: "no such object: " + name}, "", res, 404
+      if docs.length < 1 then return callback db, {err: "no such object: " + publicationId}, "", res, 404
       doc = docs[0]
 
       result = new Object
