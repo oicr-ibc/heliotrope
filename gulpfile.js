@@ -10,8 +10,8 @@ var gulp = require('gulp'),
     stylish = require('jshint-stylish'),
     bower = require('./bower'),
     url = require('url'),
+    path = require('path'),
     proxy = require('proxy-middleware'),
-    pushState = require('connect-pushstate/lib/pushstate').pushState(),
     isWatching = false;
 
 // When we have a URL that matches ^/api/, wejust forward, otherwise we
@@ -19,11 +19,10 @@ var gulp = require('gulp'),
 // pick up immediately.
 var conditionalPushStateMiddleware = function(req, res, next) {
   var pathname = url.parse(req.url).pathname;
-  if (!pathname.match(/^\/api\//)) {
-    pushState(req, res, next);
-  } else {
-    next();
+  if (!pathname.match(/^\/api\//) && !pathname.match(/\.(jpe?g|png|css|js|html?|woff|ttf|svg|map)$/i)) {
+    req.url = '/';
   }
+  next();
 };
 
 // Proxy for /api/ from 3000 -> 3001.
