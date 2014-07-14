@@ -38,14 +38,14 @@ sub maybe_update {
 
 sub update {
 	my ($self, $registry) = @_;
-	
+
     say "About to update.";
     $self->output($registry);
 }
 
 sub output {
 	my ($self, $registry) = @_;
-	    
+
     my ($data_file) = $self->get_target_file($registry, "clinical_trials.zip");
     my $zip = IO::Uncompress::Unzip->new($data_file);
 
@@ -94,19 +94,19 @@ sub output {
         }
 
         # We could close the file handle $zip, but really that's probably not the right thing
-        # to do here. 
+        # to do here.
     }
     say encode_json($counts);
 }
 
-## Relevant <condition>s: Sarcoma, *Cancer, *Tumor, Lymphoma, Leukemia, Multiple Myeloma and Plasma Cell Neoplasm, *Tumors, 
+## Relevant <condition>s: Sarcoma, *Cancer, *Tumor, Lymphoma, Leukemia, Multiple Myeloma and Plasma Cell Neoplasm, *Tumors,
 ## Melanoma, Neoplasm Metastasis
 
-sub entry { 
-    my ($self, $database, $cached_data, $reader) = @_; 
-    
+sub entry {
+    my ($self, $database, $cached_data, $reader) = @_;
+
     my $root = $reader->copyCurrentNode(1);
-    
+
     my $name = $root->findvalue(qq{/Entrezgene-Set/Entrezgene/Entrezgene_gene/Gene-ref/Gene-ref_locus});
     if (! $name) {
     	return;
@@ -116,19 +116,19 @@ sub entry {
     my $summary = $root->findvalue(qq{/Entrezgene-Set/Entrezgene/Entrezgene_summary});
     return unless $ensembl_id;
 #    say "$name, $ensembl_id: " . ($summary && "found summary");
-    
+
     my $entrez_alert = {
-        level => "note", 
+        level => "note",
         author => "entrez",
         text => "This information has been updated from Entrez on: $cached_data->{date}",
         date => DateTime->now()
     };
-    
+
     my $changes = {};
     $changes->{'$inc'}->{version} = 1;
     $changes->{'$set'}->{'sections.description.data.summary'} = $summary;
     $changes->{'$addToSet'}->{'sections.description._alerts'} = $entrez_alert;
-    
+
     my $result = $self->update_record($database, 'genes', {id => $ensembl_id}, $changes, {upsert => 0, multiple => 0, w => 1, j => true});
 }
 
