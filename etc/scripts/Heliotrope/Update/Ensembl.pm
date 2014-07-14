@@ -39,7 +39,7 @@ has 'files' => (
      "exon_transcript.txt.gz",
      "external_db.txt.gz",
      "external_synonym.txt.gz",
-     "gene.txt.gz", 
+     "gene.txt.gz",
      "interpro.txt.gz",
      "object_xref.txt.gz",
      "protein_feature.txt.gz",
@@ -59,7 +59,7 @@ sub BUILD {
 
 sub maybe_update {
   my ($self, $registry, %options) = @_;
-  
+
   my ($req, $result, $file);
 
   my $release = $self->release();
@@ -67,25 +67,25 @@ sub maybe_update {
   # First of all, we need to locate the right directory
   my $root_url = "ftp://ftp.ensembl.org/pub/release-$release/mysql/";
   $req = HTTP::Request->new(GET => $root_url);
-  $req->header(Accept => "text/html, */*;q=0.1");  
+  $req->header(Accept => "text/html, */*;q=0.1");
   ($result, $file) = $self->get_resource($registry, $req);
   my $mysql_listing = read_file($file);
   my ($directory, $version) = ($mysql_listing =~ m{(homo_sapiens_core)_(\w+)}s);
 
   # Now we can get the checksums file, to find out what might have changed. This is more
-  # that a little fragile, given it uses an old BSD checksum algorithm. But that's an 
-  # Ensembl decision. To overcome that risk, we use the version as a prefix. 
-  
+  # that a little fragile, given it uses an old BSD checksum algorithm. But that's an
+  # Ensembl decision. To overcome that risk, we use the version as a prefix.
+
   my $base_url = "$root_url/${directory}_${version}";
 
   $req = HTTP::Request->new(GET => "$base_url/CHECKSUMS.gz");
   $req->header(Accept => "text/html, */*;q=0.1");
 
   ($result, $file) = $self->get_resource($registry, $req);
-  
+
   my $uncompressed = IO::Uncompress::Gunzip->new($file);
   my $data = read_file($uncompressed);
-  
+
   my $checksums = {};
   while($data =~ m{([^\n]+)}g) {
     my $line = $1;
@@ -95,32 +95,32 @@ sub maybe_update {
       $checksums->{$file} = "$version $checksum";
     }
   }
-  
+
   # Now, we don't actually want all the tables. So let's define the files that we do need, and download
-  # any that need to be updated. 
-  
+  # any that need to be updated.
+
   my $cached_data = $self->get_data($registry);
   $cached_data = {} if (ref($cached_data) ne 'HASH');
-  
+
   my $any_change = 0;
-  
+
   my @files = @{$self->files()};
   foreach my $file (@files) {
     my $url = "$base_url/$file";
     my $file_data = $cached_data->{$file};
     my $checksum = $checksums->{$file};
-    
+
     if (exists($file_data->{checksum}) && $file_data->{checksum} eq $checksum) {
       say "Existing file is fine: $file. Skipping update.";
       next;
     }
-    
+
     $req = HTTP::Request->new(GET => $url);
     say "Downloading $url.";
     my ($req_result, $req_file) = $self->get_resource($registry, $req);
     say "Download complete.";
 
-    # Now we can store the data file in the right place and update the cache     
+    # Now we can store the data file in the right place and update the cache
     $file_data->{checksum} = $checksum;
     $file_data->{url} = $url;
     $file_data->{download_time} = DateTime->now()->iso8601();
@@ -128,7 +128,7 @@ sub maybe_update {
     $self->relocate_file($registry, $req_file, $file);
     $any_change = 1;
   }
-  
+
   if ($any_change) {
     $cached_data->{base_url} = $base_url;
     $cached_data->{version} = $version;
@@ -139,11 +139,11 @@ sub maybe_update {
 
 sub update {
   my ($self, $registry) = @_;
-  
+
   say "About to update.";
-  
+
   my $dbh = $self->open_working_database($registry);
-  
+
   $self->load_data($registry, "alt_allele.txt.gz",
      qq{INSERT INTO alt_allele (alt_allele_id, gene_id, is_ref) VALUES (?, ?, ?)},
      <<__ENDSQL__);
@@ -154,7 +154,7 @@ CREATE TABLE alt_allele (
   UNIQUE (alt_allele_id, gene_id)
 )
 __ENDSQL__
-  
+
   $self->load_data($registry, "analysis.txt.gz",
      qq{INSERT INTO analysis (analysis_id, created, logic_name, db, db_version, db_file, program, program_version, program_file, parameters, module, module_version, gff_source, gff_feature) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -175,7 +175,7 @@ CREATE TABLE analysis (
   gff_feature VARCHAR(40)
 )
 __ENDSQL__
-  
+
   $self->load_data($registry, "attrib_type.txt.gz",
      qq{INSERT INTO attrib_type (attrib_type_id, code, name, description) VALUES (?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -187,7 +187,7 @@ CREATE TABLE attrib_type (
 );
 CREATE UNIQUE INDEX code_idx ON attrib_type(code);
 __ENDSQL__
-  
+
   $self->load_data($registry, "coord_system.txt.gz",
      qq{INSERT INTO coord_system (coord_system_id, species_id, name, version, rank, attrib) VALUES (?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -201,7 +201,7 @@ CREATE TABLE coord_system (
 );
 CREATE UNIQUE INDEX name_idx ON coord_system(name, version, species_id);
 __ENDSQL__
-  
+
   $self->load_data($registry, "exon.txt.gz",
      qq{INSERT INTO exon (exon_id, seq_region_id, seq_region_start, seq_region_end, seq_region_strand, phase, end_phase, is_current, is_constitutive, stable_id, version, created_date, modified_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -221,7 +221,7 @@ CREATE TABLE exon (
   modified_date DATETIME
 )
 __ENDSQL__
-  
+
   $self->load_data($registry, "exon_transcript.txt.gz",
      qq{INSERT INTO exon_transcript (exon_id, transcript_id, rank) VALUES (?, ?, ?)},
      <<__ENDSQL__);
@@ -234,7 +234,7 @@ CREATE TABLE exon_transcript (
 CREATE INDEX exon_transcript_transcript_id ON exon_transcript(transcript_id);
 CREATE INDEX exon_transcript_exon_id ON exon_transcript(exon_id);
 __ENDSQL__
-  
+
   $self->load_data($registry, "external_db.txt.gz",
      qq{INSERT INTO external_db (external_db_id, db_name, db_release, status, priority, db_display_name, type, secondary_db_name, secondary_db_table, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -252,7 +252,7 @@ CREATE TABLE external_db (
 );
 CREATE UNIQUE INDEX db_name_db_release_idx ON external_db(db_name, db_release)
 __ENDSQL__
-  
+
   $self->load_data($registry, "external_synonym.txt.gz",
      qq{INSERT INTO external_synonym (xref_id, synonym) VALUES (?, ?)},
      <<__ENDSQL__);
@@ -262,7 +262,7 @@ CREATE TABLE external_synonym (
   PRIMARY KEY (xref_id, synonym)
 )
 __ENDSQL__
-  
+
   $self->load_data($registry, "gene.txt.gz",
      qq{INSERT INTO gene (gene_id, biotype, analysis_id, seq_region_id, seq_region_start, seq_region_end, seq_region_strand, display_xref_id, source, status, description, is_current, canonical_transcript_id, stable_id, version, created_date, modified_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -283,11 +283,11 @@ CREATE TABLE gene (
   stable_id VARCHAR(128),
   version INTEGER NOT NULL,
   created_date DATETIME,
-  modified_date DATETIME  
+  modified_date DATETIME
 );
 CREATE INDEX gene_stable_id_idx ON gene(stable_id)
 __ENDSQL__
-  
+
   $self->load_data($registry, "interpro.txt.gz",
      qq{INSERT INTO interpro (interpro_ac, id) VALUES (?, ?)},
      <<__ENDSQL__);
@@ -298,7 +298,7 @@ CREATE TABLE interpro (
 );
 CREATE INDEX interpro_id_idx ON interpro(id)
 __ENDSQL__
-  
+
   $self->load_data($registry, "object_xref.txt.gz",
      qq{INSERT INTO object_xref (object_xref_id, ensembl_id, ensembl_object_type, xref_id, linkage_annotation, analysis_id) VALUES (?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -312,7 +312,7 @@ CREATE TABLE object_xref (
 );
 CREATE INDEX ensembl_idx ON object_xref(ensembl_object_type, ensembl_id)
 __ENDSQL__
-  
+
   $self->load_data($registry, "protein_feature.txt.gz",
      qq{INSERT INTO protein_feature (protein_feature_id, translation_id, seq_start, seq_end, hit_start, hit_end, hit_name, analysis_id, score, evalue, perc_ident, external_data, hit_description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -333,7 +333,7 @@ CREATE TABLE protein_feature (
 );
 CREATE INDEX protein_feature_translation_id ON protein_feature(translation_id)
 __ENDSQL__
-  
+
   $self->load_data($registry, "seq_region.txt.gz",
      qq{INSERT INTO seq_region (seq_region_id, name, coord_system_id, length) VALUES (?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -344,7 +344,7 @@ CREATE TABLE seq_region (
   length INTEGER NOT NULL
 );
 __ENDSQL__
-  
+
   $self->load_data($registry, "seq_region_attrib.txt.gz",
      qq{INSERT INTO seq_region_attrib (seq_region_id, attrib_type_id, value) VALUES (?, ?, ?)},
      <<__ENDSQL__);
@@ -356,7 +356,7 @@ CREATE TABLE seq_region_attrib (
 CREATE INDEX seq_region_idx ON seq_region_attrib(seq_region_id);
 CREATE INDEX type_val_idx ON seq_region_attrib(attrib_type_id, value);
 __ENDSQL__
-  
+
   $self->load_data($registry, "transcript.txt.gz",
      qq{INSERT INTO transcript (transcript_id, gene_id, analysis_id, seq_region_id, seq_region_start, seq_region_end, seq_region_strand, display_xref_id, source, biotype, status, description, is_current, canonical_translation_id, stable_id, version, created_date, modified_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -378,12 +378,12 @@ CREATE TABLE transcript (
   stable_id VARCHAR(128),
   version INTEGER NOT NULL,
   created_date DATETIME,
-  modified_date DATETIME  
+  modified_date DATETIME
 );
 CREATE INDEX transcript_stable_id_idx ON transcript(stable_id);
 CREATE INDEX transcript_gene_id ON transcript(gene_id)
 __ENDSQL__
-  
+
 
   $self->load_data($registry, "translation.txt.gz",
      qq{INSERT INTO translation (translation_id, transcript_id, seq_start, start_exon_id, seq_end, end_exon_id, stable_id, version, created_date, modified_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)},
@@ -398,12 +398,12 @@ CREATE TABLE translation (
   stable_id VARCHAR(128),
   version INTEGER NOT NULL,
   created_date DATETIME,
-  modified_date DATETIME  
+  modified_date DATETIME
 );
 CREATE INDEX translation_stable_id_idx ON translation(stable_id);
 CREATE INDEX translation_transcript_id_idx ON translation(transcript_id)
 __ENDSQL__
-  
+
   $self->load_data($registry, "xref.txt.gz",
      qq{INSERT INTO xref (xref_id, external_db_id, dbprimary_acc, display_label, version, description, info_type, info_text) VALUES (?, ?, ?, ?, ?, ?, ?, ?)},
      <<__ENDSQL__);
@@ -419,58 +419,58 @@ CREATE TABLE xref (
   UNIQUE (dbprimary_acc, external_db_id, info_type, info_text, version)
 )
 __ENDSQL__
-  
+
   $self->close_working_database();
-  
+
   $self->output($registry);
 }
 
 sub output {
   my ($self, $registry) = @_;
-  
+
   my $cached_data = $self->get_data($registry);
-  
+
   my $gene_data = $self->build_data($registry);
-  
+
   my $dbh = $self->open_database();
-  my $collection = 'genes';  
-  
+  my $collection = 'genes';
+
   # Now we have finally made it to the stage where we can start to actually do
   # the dataase updating. We really want to go through all of the genes looking
-  # for them, and then updating them. Each section can be updated separately and 
+  # for them, and then updating them. Each section can be updated separately and
   # a Ensembl update note attached. This should inform people about when the
-  # data was actually updated. 
-  
+  # data was actually updated.
+
   say "Writing data.";
-  
+
   my @alert = (
     _alerts => [{
-      level => "note", 
+      level => "note",
       author => "ensembl",
       text => "This information has been updated in Ensembl version v$cached_data->{version}",
       url => $cached_data->{base_url},
       date => DateTime->now()
     }],
   );
-  
+
   $self->ensure_index($dbh, $collection, Tie::IxHash->new("id" => 1), { unique => true, safe => true });
   $self->ensure_index($dbh, $collection, Tie::IxHash->new("name" => 1), { unique => true, safe => true });
-  
+
   foreach my $id (sort { $gene_data->{$a}->{name} cmp $gene_data->{$b}->{name} } keys %$gene_data) {
     my $data = $gene_data->{$id};
-    
+
     my $existing = $self->find_one_record($dbh, $collection, {"id" => $id});
     $existing = {} unless (defined($existing));
     $existing->{version} = 1 unless (exists($existing->{version}));
     $existing->{id} = $id unless (exists($existing->{id}));
     $existing->{name} = $data->{name} unless (exists($existing->{name}));
     $existing->{type} = 'gene' unless (exists($existing->{type}));
-    
+
     my $changes = {};
     $changes->{'$set'}->{version} = $existing->{version} + 1;
-    
+
     my $new = expand_references($existing);
-    
+
     foreach my $block (qw(description location transcripts)) {
       my $existing_block = $existing->{sections}->{$block}->{data};
       my $new_block = $data->{$block};
@@ -483,36 +483,36 @@ sub output {
         }
       }
     }
-    
+
     $self->update_record($dbh, $collection, $existing, $changes, {upsert => 1, multiple => 0, w => 1, j => true})
   }
-  
+
   $self->close_database($dbh);
 }
 
 sub build_data {
   my ($self, $registry) = @_;
-    
+
   my $dbh = $self->reopen_working_database($registry);
   my $statement;
-  
-  # Start with gene and chromosome stuff. This is a more complex query 
+
+  # Start with gene and chromosome stuff. This is a more complex query
   # as we need to remove the sequencing regions that aren't reference.
-  
+
   say "Finding genes.";
-  
+
   $self->execute_delimited_sql(<<__ENDSQL__);
 DROP TABLE IF EXISTS interesting_genes;
 
 CREATE TABLE interesting_genes AS
 SELECT g.gene_id as gene_id,
-     g.stable_id as id, 
-     g.version as version, 
-     x.display_label as name, 
-     sr.name as chromosome, 
-     x.description as fullName, 
-     g.seq_region_start as txStart, 
-     g.seq_region_end as txEnd, 
+     g.stable_id as id,
+     g.version as version,
+     x.display_label as name,
+     sr.name as chromosome,
+     x.description as fullName,
+     g.seq_region_start as txStart,
+     g.seq_region_end as txEnd,
      g.seq_region_strand as strand,
      g.canonical_transcript_id as canonical_transcript_id,
      g.display_xref_id as display_xref_id
@@ -521,9 +521,9 @@ JOIN seq_region sr ON g.seq_region_id = sr.seq_region_id
 JOIN coord_system cs ON sr.coord_system_id = cs.coord_system_id
 JOIN xref x ON g.display_xref_id =  x.xref_id
 JOIN external_db xdb ON x.external_db_id = xdb.external_db_id
-WHERE cs.version = 'GRCh37' 
+WHERE cs.version = 'GRCh37'
 AND cs.name = 'chromosome'
-AND xdb.db_name = 'HGNC' 
+AND xdb.db_name = 'HGNC'
 AND sr.seq_region_id NOT IN
   (SELECT sra.seq_region_id
    FROM seq_region_attrib sra
@@ -532,9 +532,9 @@ AND sr.seq_region_id NOT IN
 
 DELETE FROM interesting_genes WHERE id NOT IN (SELECT min(id) FROM interesting_genes GROUP BY name);
 __ENDSQL__
-  
+
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
-SELECT id, version, name, chromosome, fullName, txStart, txEnd, strand 
+SELECT id, version, name, chromosome, fullName, txStart, txEnd, strand
 FROM interesting_genes
 ORDER BY name asc
 __ENDSQL__
@@ -557,13 +557,14 @@ __ENDSQL__
         fullName => $full_name,
         synonyms => [$name]
       },
+      identifiers => {},
       transcripts => {}
     };
   };
 
   say "Finding synonyms.";
-  
-  # Now let's read the synonyms. 
+
+  # Now let's read the synonyms.
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
 SELECT g.id, xs.synonym AS synonym
 FROM interesting_genes g
@@ -574,14 +575,14 @@ __ENDSQL__
   while (my ($stable_id, $synonym) = $statement->fetchrow_array()) {
     push @{$gene_data->{$stable_id}->{description}->{synonyms}}, $synonym if (exists($gene_data->{$stable_id}));
   }
-  
+
   say "Finding transcripts.";
-  
+
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
 SELECT g.id, g.canonical_transcript_id = tr.transcript_id, tr.stable_id, tr.version, tl.stable_id, tl.version,
      tl.seq_start, tl.start_exon_id, tl.seq_end, tl.end_exon_id, x.display_label
 FROM external_db xdb
-CROSS JOIN interesting_genes g 
+CROSS JOIN interesting_genes g
 CROSS JOIN transcript tr ON tr.gene_id = g.gene_id
 CROSS JOIN translation tl ON tl.transcript_id = tr.transcript_id
 LEFT JOIN object_xref ox ON ox.ensembl_id = tr.transcript_id AND ox.ensembl_object_type = 'Transcript'
@@ -589,18 +590,18 @@ CROSS JOIN xref x on x.xref_id = ox.xref_id AND x.external_db_id = xdb.external_
 WHERE xdb.db_name = 'HGNC_trans_name'
 ORDER BY g.id asc, g.canonical_transcript_id = tr.transcript_id desc, x.display_label asc
 __ENDSQL__
-  
+
   # Transcripts are a tricky area. We want to be able to access transcripts by name, and quickly to
   # get to the canonical transcript. That requires indexing, which means the associative array
-  # approach is baaad. We should really do the following (a) use an array (b) put the canonical 
-  # transcript at position 0, and (c) put the whole lot in a subfield with a canonicalTranscriptId 
-  # field to make the name of the canonical transcript easy. We could alternatively use a 
+  # approach is baaad. We should really do the following (a) use an array (b) put the canonical
+  # transcript at position 0, and (c) put the whole lot in a subfield with a canonicalTranscriptId
+  # field to make the name of the canonical transcript easy. We could alternatively use a
   # canonicalTranscriptIndex and a number with a plain sorted list of transcripts. In any event
   # the name remains accessible via a multikey. Must admit I like the idea of the zero positioned
-  # canonical value. 
-   
+  # canonical value.
+
   $statement->execute() or die($dbh->errstr());
-  while (my ($stable_id, $is_canonical, $transcript_stable_id, $transcript_version, $translation_stable_id, $translation_version, 
+  while (my ($stable_id, $is_canonical, $transcript_stable_id, $transcript_version, $translation_stable_id, $translation_version,
          $seq_start, $start_exon_id, $seq_end, $end_exon_id, $transcript_name) = $statement->fetchrow_array()) {
     croak if (! exists($gene_data->{$stable_id}));
     $gene_data->{$stable_id}->{transcripts}->{$transcript_stable_id} = {
@@ -615,29 +616,29 @@ __ENDSQL__
       _ensemblEndExonId => $end_exon_id,
     }
   }
-  
+
   # OK, transcript identification done. And we are using a Tie::IxHash so we need to remember that
-  # when poking around with the remaining data. 
+  # when poking around with the remaining data.
   #
   # The calculation of exons here differs from that in refGene.txt, and this is how. First of all
   # the translation includes four extra fields, a start and end exon id, and a start and end offset
-  # within those exons. These are used in translation to define which segments of the exons are 
+  # within those exons. These are used in translation to define which segments of the exons are
   # used in the coding sequence. These then correspond to the refGene.txt. This implies we should
   # probably only work (for now) with transcripts that do have a defined translation. It's probably
-  # best not to try to fit all of this into SQL, the boundary conditions are going to be a little 
-  # funny. However, we probably should filter out non-translating transcripts, and store the 
+  # best not to try to fit all of this into SQL, the boundary conditions are going to be a little
+  # funny. However, we probably should filter out non-translating transcripts, and store the
   # start/end exons and offsets -- and retain exon identifiers -- and use these to clean up the
   # data afterwards. Basically, the short story is, like refGene.txt, we focus on the coding DNA
-  # only, which makes it easier for us to handle things. 
+  # only, which makes it easier for us to handle things.
   #
   # NOTE: We probably also need to test out ANNOVAR for Ensembl transcripts, as we may actually need
   # to keep these offsets in the database and apply then at runtime, if we are getting different
   # coordinates against Ensembl transcripts than we would against refGene.txt coding segments.
-  
+
   say "Finding exons.";
-  
+
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
-SELECT g.id, tr.stable_id, ext.rank, 
+SELECT g.id, tr.stable_id, ext.rank,
      ex.exon_id, ex.seq_region_start, ex.seq_region_end, ex.phase, ex.end_phase
 FROM interesting_genes g
 JOIN transcript tr ON tr.gene_id = g.gene_id
@@ -646,9 +647,9 @@ JOIN exon_transcript ext ON ext.transcript_id = tr.transcript_id
 JOIN exon ex on ex.exon_id = ext.exon_id
 ORDER BY g.id, tr.stable_id, ext.rank
 __ENDSQL__
-  
+
   $statement->execute() or die($dbh->errstr());
-  while (my ($stable_id, $transcript_stable_id, undef, 
+  while (my ($stable_id, $transcript_stable_id, undef,
          $exon_id, $start, $end, $start_phase, $end_phase) = $statement->fetchrow_array()) {
     croak if (! exists($gene_data->{$stable_id}));
     my $transcript = $gene_data->{$stable_id}->{transcripts}->{$transcript_stable_id};
@@ -662,7 +663,7 @@ __ENDSQL__
     $transcript->{numberOfExons}++;
     $transcript->{length} += (1 + $end - $start);
   }
-  
+
   say "Removing Ensembl internal exon identifiers.";
   foreach my $gene (keys %$gene_data) {
     my $transcripts = $gene_data->{$gene}->{transcripts};
@@ -678,9 +679,9 @@ __ENDSQL__
       apply { delete($_->{_ensemblExonId}) } @$exons;
     }
   }
-  
+
   say "Finding RefSeq identifiers.";
-  
+
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
 SELECT g.id, tr.stable_id, x.display_label
 FROM external_db xdb
@@ -698,7 +699,24 @@ __ENDSQL__
     my $transcript = $gene_data->{$stable_id}->{transcripts}->{$transcript_stable_id};
     push @{$transcript->{refSeqId}}, $refseq_id;
   }
-  
+
+  say "Finding OMIM identifiers.";
+
+  $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
+SELECT g.id, x.dbprimary_acc
+FROM external_db xdb
+CROSS JOIN interesting_genes g
+CROSS JOIN object_xref ox ON ox.ensembl_id = g.gene_id AND ox.ensembl_object_type = 'Gene'
+CROSS JOIN xref x on x.xref_id = ox.xref_id AND x.external_db_id = xdb.external_db_id
+WHERE xdb.db_name = 'MIM_GENE'
+__ENDSQL__
+
+  $statement->execute() or die($dbh->errstr());
+  while (my ($stable_id, $omim_id) = $statement->fetchrow_array()) {
+    croak if (! exists($gene_data->{$stable_id}));
+    my $transcript = $gene_data->{$stable_id}->{identifiers}->{omim} = $omim_id;
+  }
+
   say "Finding domains.";
 
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
@@ -712,9 +730,9 @@ LEFT JOIN interpro ip ON pf.hit_name = ip.id
 LEFT JOIN xref x ON x.external_db_id = (SELECT external_db_id FROM external_db WHERE db_name = 'Interpro')
 AND x.dbprimary_acc = ip.interpro_ac
 __ENDSQL__
-  
+
   $statement->execute() or die($dbh->errstr());
-  while (my ($stable_id, $transcript_stable_id, 
+  while (my ($stable_id, $transcript_stable_id,
          $seq_start, $seq_end, $hit_name, $score, $evalue, $perc_ident, $external_data,
          $gff_source, $interpro, $description) = $statement->fetchrow_array()) {
     croak if (! exists($gene_data->{$stable_id}));
@@ -732,12 +750,12 @@ __ENDSQL__
     };
     push @{$transcript->{domains}}, $domain;
   }
-  
+
   # This is where we revise the transcript data, using a subfield for the list of transcripts,
-  # sorted in order, and a canonical identifier with that transcript first. We do this as a 
-  # post process, because using an associative array (aka hash) makes the Perl code very much 
-  # easier. 
-  
+  # sorted in order, and a canonical identifier with that transcript first. We do this as a
+  # post process, because using an associative array (aka hash) makes the Perl code very much
+  # easier.
+
   say "Finalizing transcripts.";
   foreach my $gene (keys %$gene_data) {
     my $transcripts = $gene_data->{$gene}->{transcripts};
@@ -748,35 +766,35 @@ __ENDSQL__
       $record->{id} = $identifier;
       push @$transcript_records, $record;
     };
-    
+
     foreach my $transcript (@$transcript_records) {
       calculate_transcript_values($transcript);
     };
-    
+
     $gene_data->{$gene}->{transcripts} = {
       canonicalTranscriptId => $transcript_records->[0]->{id},
       records => $transcript_records
     };
   }
-  
+
   $self->close_working_database();
-  
+
   return $gene_data;
 }
 
 # This calculates the amino acid length. The algorithm probably ought to be correct, but
-# it isn't matching the web data precisely. Where the problem lies is not yet clear. 
-# However, my tests show the issue is at most one off, which is not really that 
-# significant. We ought to get someone to check and the code this better some time. 
+# it isn't matching the web data precisely. Where the problem lies is not yet clear.
+# However, my tests show the issue is at most one off, which is not really that
+# significant. We ought to get someone to check and the code this better some time.
 
 sub calculate_transcript_values {
   my ($transcript) = @_;
-  
+
   my $start_exon = $transcript->{startExon};
   my $end_exon = $transcript->{endExon};
   my $exons = $transcript->{exons};
   my @transcribed = @$exons[$start_exon..$end_exon];
-  
+
   my $length = 0;
   if ($#transcribed == 0) {
     $length += ($transcript->{seqExonEnd} - $transcript->{seqExonStart} + 1);
@@ -787,7 +805,7 @@ sub calculate_transcript_values {
       $length += ($exon->{end} - $exon->{start} + 1);
     }
   }
-  
+
   $transcript->{lengthAminoAcid} = int($length / 3);
   $transcript->{lengthDNA} = $length;
   return $transcript;
