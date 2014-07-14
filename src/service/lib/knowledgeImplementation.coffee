@@ -150,8 +150,10 @@ findVariant = (err, db, variants, selector, res, callback) ->
     if docs.length < 1 then return callback db, {err: "no such object: " + selector.toString()}, "", res, 404
     doc = docs[0]
 
-    resolved = resolve(doc);
-    resolved.url = "/variants/" + encodeURIComponent(doc.shortName)
+    resolved = resolve(doc)
+    encodedName = encodeURIComponent(doc.shortName)
+    encodedName = encodedName.replace(/%20/g, '+')
+    resolved.url = "/variants/" + encodedName
 
     result = new Object
     result["data"] = resolved
