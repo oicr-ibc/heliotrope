@@ -14,6 +14,7 @@ use XML::LibXML::Reader;
 use IO::Uncompress::Unzip;
 use HTTP::Request;
 use DateTime;
+use Graph;
 
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
@@ -75,14 +76,31 @@ sub maybe_update {
 sub update {
   my ($self, $registry) = @_;
 
+  my $xc = XML::LibXML::XPathContext->new();
+  $xc->registerNs('t', 'http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#');
+  $xc->registerNs('rdfs', 'http://www.w3.org/2000/01/rdf-schema#');
+  $xc->registerNs('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#');
+  $xc->registerNs('owl', 'http://www.w3.org/2002/07/owl#');
+
+  my $context = {};
+  $context->{isa} = Graph->new(directed => 1);
+
   say "About to update.";
   my $data_file = $self->get_target_file($registry, "Thesaurus_OWL-byName.zip");
+  _scan_file($self, $data_file, $xc, $context, \&entry_pass_1);
+
+  $DB::single = 1;
+  $self->output($registry);
+}
+
+sub _scan_file {
+  my ($self, $data_file, $xc, $context, $handler) = @_;
+
   my $zip = IO::Uncompress::Unzip->new($data_file);
   die "Zipfile has no members" if ! defined $zip->getHeaderInfo;
 
   for (my $status = 1; $status > 0; $status = $zip->nextStream) {
     my $name = $zip->getHeaderInfo->{Name};
-    say "Processing member $name" ;
 
     my $reader = XML::LibXML::Reader->new(IO => $zip);
     my $first = 1;
@@ -90,35 +108,45 @@ sub update {
     my $attributes = {};
 
     while($reader->read()) {
-      say $reader->name();
       last if ($reader->name() eq 'owl:Ontology');
     };
 
     do {
-      entry($self, $reader) if ($reader->nodeType() == XML_READER_TYPE_ELEMENT);
+      _call_handler($self, $reader, $xc, $context, $handler) if ($reader->nodeType() == XML_READER_TYPE_ELEMENT);
     } while($reader->nextSibling());
   }
-
-  $self->output($registry);
 }
 
-sub entry {
-  my ($self, $reader) = @_;
+sub _call_handler {
+  my ($self, $reader, $xc, $context, $handler) = @_;
   my $xml = $reader->readOuterXml();
   my $dom = XML::LibXML->load_xml(string => $xml, clean_namespaces => 1);
   my $root = $dom->documentElement();
+  &$handler($self, $root, $xc, $context);
+}
 
-  my $about = $root->getAttribute("rdf:about");
-  $DB::single = 1 if ($root->nodeName() eq 'owl:Class');
+sub entry_pass_1 {
+  my ($self, $root, $xc, $context) = @_;
+  return unless ($root->nodeName() eq 'owl:Class');
 
-  my $xc = XML::LibXML::XPathContext->new($root);
-  $xc->registerNs('t', 'http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#');
-  if ($xc->findvalue('t:Semantic_Type') eq 'Pharmacologic Substance') {
-    say "$about";
+  my $about = $root->findvalue('@rdf:about');
+  my @subclasses = map { $_->nodeValue() } $root->findnodes('rdfs:subClassOf/@rdf:resource');
+
+  foreach my $class (@subclasses) {
+    $context->{isa}->add_edge($about, $class);
   }
 
-  return "";
+  # Record properties when they exist and are easily accessed
+  for my $property in (qw(t:OMIM_Number t:Preferred_Name)) {
+    if (my $value = $root->findvalue($property)) {
+      $context->{properties}->{$about}->{$property} = $value;
+    }
+  }
 }
+
+## After pass 1, we can start to iterate through the context and look for all subclasses of
+## a given class. This is basically a tree walk, except it might be a graph so we should
+## take a little extra care.
 
 sub output {
   my ($self, $registry) = @_;
