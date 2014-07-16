@@ -13,11 +13,13 @@ use XML::LibXML;
 use XML::LibXML::Reader;
 use IO::Uncompress::Unzip;
 use IO::Compress::Deflate qw(deflate $DeflateError);
+use IO::Uncompress::Inflate qw(inflate $InflateError) ;
 
 use HTTP::Request;
 use DateTime;
 use URI;
 use JSON;
+use Clone qw(clone);
 
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
@@ -142,6 +144,7 @@ sub update {
   $xc->registerNs('db', 'http://www.drugbank.ca');
 
   my $context = {};
+  $self->{_context} = $context;
 
   say "About to update.";
   my $data_file = $self->get_target_file($registry, "drugbank.xml.zip");
@@ -184,7 +187,6 @@ sub _call_handler {
 
 sub entry_pass_1 {
   my ($self, $root, $xc, $context) = @_;
-  $DB::single = 1;
 
   my $json_data = $self->{xmltojson}->convert_document_to_json($root);
   my $json_string = JSON->new()->utf8(1)->encode($json_data);
@@ -196,7 +198,82 @@ sub entry_pass_1 {
 
 sub output {
   my ($self, $registry) = @_;
+  my $context = $self->{_context};
 
+  my $database = $self->open_database();
+  my $collection = $database->get_collection('treatments');
+  my $reference_id_cache = {};
+
+  my @alert = (
+    _alerts => [{
+      level => "note",
+      author => "drugbank",
+      text => "This information has been updated in DrugBank",
+      date => DateTime->now()
+    }]
+  );
+
+
+  $collection->ensure_index({"name" => 1}, { unique => 1, sparse => 1, safe => 1 });
+
+  foreach my $compressed_json_string (@{$context->{drugs}}) {
+    my $json_string  = "";
+    inflate(\$compressed_json_string, \$json_string) or die "inflate failed: $InflateError\n";
+
+    my $data = JSON->new()->utf8(1)->decode($json_string);
+
+    ## Now let's write the data....
+    my $name = $data->{name};
+    my $existing = $self->find_one_record($database, 'treatments', {name => $name});
+    if (! defined($existing)) {
+      $existing = {
+        type => 'drug',
+        version => 1,
+        name => $name,
+        references => [],
+        sections => {}
+      };
+    }
+
+    my $new = expand_references($existing);
+    $new->{sections}->{drugbank} = {_format => "drugbank", @alert, data => $data};
+    my $resolved = resolve_references($new, $existing);
+
+    maybe_update_object($self, $resolved, $existing, $reference_id_cache, $database, 'treatments');
+  }
+
+  $self->close_database($database);
+}
+
+sub maybe_update_object {
+  my ($self, $resolved, $existing, $reference_id_cache, $database, $collection) = @_;
+
+  return if (deep_eq($resolved, $existing));
+
+  foreach my $reference (@{$resolved->{references}}) {
+    next if ($reference->{_id});
+
+    if (my $id = $reference_id_cache->{$reference->{ref}}->{$reference->{name}}) {
+      $reference->{_id} = $id;
+    } else {
+      my $collection = $reference->{ref};
+      if (my $existing = $self->find_one_record($database, $collection, {name => $reference->{name}})) {
+        $reference->{_id} = $existing->{_id};
+        $reference_id_cache->{$reference->{ref}}->{$reference->{name}} = $reference->{_id};
+      } else {
+        my $copy = clone($reference);
+        delete($copy->{ref});
+
+        $reference->{_id} = $self->save_record($database, $collection, $copy, {w => 1, j => 1});
+        $reference_id_cache->{$reference->{ref}}->{$reference->{name}} = $reference->{_id};
+      }
+    }
+    next;
+  }
+
+  say "Updating $resolved->{name}";
+  $resolved->{version} = $existing->{version} + 1;
+  $self->save_record($database, $collection, $resolved, {w => 1, j => 1});
 }
 
 1;
