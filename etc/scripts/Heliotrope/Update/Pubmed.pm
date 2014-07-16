@@ -17,14 +17,55 @@ use XML::LibXML::Reader;
 
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
+use Heliotrope::Util::XMLtoJSON;
 
 $| = 1;
 
 my $MAX_PROCESSES = 12;
 
+my $ELEMENT_LIST_ENTRIES = {
+  "/Article/AuthorList/Author" => 1,
+  "/Article/Abstract/AbstractText" => 1,
+  "/Article/PublicationTypeList/PublicationType" => 1,
+  "/Article/DataBankList/DataBank" => 1,
+  "/Article/DataBankList/DataBank/AccessionNumberList/AccessionNumber" => 1,
+  "/Article/Language" => 1,
+  "/Article/ELocationID" => 1,
+  "/ChemicalList/Chemical" => 1,
+  "/MeshHeadingList/MeshHeading" => 1,
+  "/MeshHeadingList/MeshHeading/QualifierName" => 1,
+  "/CitationSubset" => 1,
+  "/Article/GrantList/Grant" => 1,
+  "/OtherID" => 1,
+  "/CommentsCorrectionsList/CommentsCorrections" => 1,
+  "/KeywordList" => 1,
+  "/KeywordList/Keyword" => 1,
+  "/GeneralNote" => 1,
+  "/InvestigatorList/Investigator" => 1,
+  "/SupplMeshList/SupplMeshName" => 1,
+  "/PersonalNameSubjectList/PersonalNameSubject" => 1,
+  "/GeneSymbolList/GeneSymbol" => 1
+};
+
+my $OBJECT_LIST_ENTRIES = {
+  "/Article/Abstract/AbstractText" => 1
+};
+
+my $DATE_LIST_ENTRIES = {
+  "/DateCreated" => 1,
+  "/DateCompleted" => 1,
+  "/DateRevised" => 1,
+  "/Article/ArticleDate" => 1
+};
+
 sub BUILD {
     my ($self) = @_;
     $self->{name} = "pubmed";
+    $self->{xmltojson} = Heliotrope::Util::XMLtoJSON->new({
+      element_list_entries => $ELEMENT_LIST_ENTRIES,
+      object_list_entries => $OBJECT_LIST_ENTRIES,
+      date_list_entries => $DATE_LIST_ENTRIES
+    });
 }
 
 sub maybe_update {
@@ -49,7 +90,7 @@ sub _handle_file {
 
         # Skip to first entry element
         while($reader->read() && $reader->name() ne 'MedlineCitation') {};
-        
+
         do {
             if ($reader->name() eq 'MedlineCitation') {
                 entry($self, $collection, $reader)
@@ -89,7 +130,7 @@ sub _is_article {
         # Skip to first entry element
         say "$file";
         while($reader->read() && $reader->name() ne 'MedlineCitation') {};
-        
+
         do {
             if ($reader->name() eq 'MedlineCitation') {
                 entry($self, $collection, $reader);
@@ -108,15 +149,15 @@ sub _is_article {
 }
 
 sub entry {
-    my ($self, $collection, $reader) = @_; 
-    
-    my $xml = $reader->readOuterXml();    
+    my ($self, $collection, $reader) = @_;
+
+    my $xml = $reader->readOuterXml();
     my $dom = XML::LibXML->load_xml(string => $xml, clean_namespaces => 1);
     my $root = $dom->documentElement();
-    
+
     my $pmid = $root->findvalue('/MedlineCitation/PMID');
 
-    my $encoded = convert_document_to_json($root, "");
+    my $encoded = $self->{xmltojson}->convert_document_to_json($root);
     $encoded->STORE('PMID', "$pmid");
 
     my $query = {name => "pmid:$pmid"};
@@ -138,7 +179,7 @@ sub entry {
 
     my $existing_data =  $existing->{sections}->{pubmed}->{data};
     my $existing_date = $existing_data->{DateRevised} // $existing_data->{DateCompleted} // $existing_data->{DateCreated};
-    
+
     if (! $existing_date || ! $new_date) {
         carp("Can't resolve dates: $existing_date, $new_date");
     }
@@ -171,7 +212,7 @@ sub update {
 
     my $pm = new Parallel::ForkManager($MAX_PROCESSES);
     foreach my $file (@files) {
-        my $pid = $pm->start() and next; 
+        my $pid = $pm->start() and next;
         _handle_file($self, $file);
         $pm->finish();
     };
@@ -179,97 +220,9 @@ sub update {
     $pm->wait_all_children();
 }
 
-my $element_list_entries = {
-  "/Article/AuthorList/Author" => 1,
-  "/Article/Abstract/AbstractText" => 1,
-  "/Article/PublicationTypeList/PublicationType" => 1,
-  "/Article/DataBankList/DataBank" => 1,
-  "/Article/DataBankList/DataBank/AccessionNumberList/AccessionNumber" => 1,
-  "/Article/Language" => 1,
-  "/Article/ELocationID" => 1,
-  "/ChemicalList/Chemical" => 1,
-  "/MeshHeadingList/MeshHeading" => 1,
-  "/MeshHeadingList/MeshHeading/QualifierName" => 1,
-  "/CitationSubset" => 1,
-  "/Article/GrantList/Grant" => 1,
-  "/OtherID" => 1,
-  "/CommentsCorrectionsList/CommentsCorrections" => 1,
-  "/KeywordList" => 1,
-  "/KeywordList/Keyword" => 1,
-  "/GeneralNote" => 1,
-  "/InvestigatorList/Investigator" => 1,
-  "/SupplMeshList/SupplMeshName" => 1,
-  "/PersonalNameSubjectList/PersonalNameSubject" => 1,
-  "/GeneSymbolList/GeneSymbol" => 1
-};
-
-my $object_list_entries = {
-  "/Article/Abstract/AbstractText" => 1
-};
-
-my $date_list_entries = {
-  "/DateCreated" => 1,
-  "/DateCompleted" => 1,
-  "/DateRevised" => 1,
-  "/Article/ArticleDate" => 1
-};
-
-sub convert_document_to_json {
-    my ($element, $path) = @_;
-
-    my $result = Tie::IxHash->new();
-
-    my @children = $element->findnodes("*");
-    my @attributes = $element->findnodes("@*");
-    foreach my $child (@children) {
-
-        foreach my $attr (@attributes) {
-            $result->STORE($attr->nodeName(), $attr->getValue());
-        }
-
-        my $field = $child->nodeName();
-        my $new_path = $path . "/" . $field;
-        my $child_result = convert_document_to_json($child, $new_path);
-
-        if ($element_list_entries->{$new_path}) {
-            if (! $result->EXISTS($field)) {
-                $result->STORE($field, []);
-            }
-            my $list = $result->FETCH($field);
-            push @$list, $child_result;
-        } else {
-            if ($result->EXISTS($field)) {
-                carp("Duplicate entry in: $new_path, " . $element->toString());
-            }
-            $result->STORE($field, $child_result);
-        }
-        if ($date_list_entries->{$new_path}) {
-            my $date = $result->FETCH($field);
-            my $datetime = DateTime->new(year => $date->FETCH('Year'), month => $date->FETCH('Month'), day => $date->FETCH('Day'), time_zone => "UTC");
-            $result->STORE($field, $datetime);
-        }
-    }
-    if (! @children && defined($element->textContent())) {
-
-        if (@attributes || $object_list_entries->{$path}) {
-            foreach my $attr (@attributes) {
-                $result->STORE($attr->nodeName(), $attr->textContent());
-            }
-            $result->STORE('value', $element->textContent());
-        } else {
-            return $element->textContent();
-        }
-    } else {
-        foreach my $attr (@attributes) {
-            $result->STORE($attr->nodeName(), $attr->getValue());
-        }
-    }
-    return $result;
-}
-
 sub output {
 	my ($self, $registry) = @_;
-	
+
     my $database = $self->open_database();
     my $collection = $database->get_collection('pubmed');
 
