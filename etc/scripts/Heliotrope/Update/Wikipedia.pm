@@ -60,8 +60,8 @@ sub update {
     }
 
     # Now we have the page identifiers for all the gene pages. And titles too. We are now in a position
-    # where we can start to iterate through these pages and get the textual content, JSON representations, 
-    # and so on. 
+    # where we can start to iterate through these pages and get the textual content, JSON representations,
+    # and so on.
 
     my $database = $self->open_database();
     foreach my $gene_page (@gene_pages) {
@@ -89,7 +89,7 @@ sub _build_article {
     my $in_references = 0;
 
     my $template_handler = sub {
-        my ($self, $event, $tag, $body) = @_; 
+        my ($self, $event, $tag, $body) = @_;
         if ($tag eq 'PBB') {
             $box_page = $body;
             $box_page =~ s/\|geneid=(\d+)/Template:$tag\/$1/;
@@ -98,19 +98,19 @@ sub _build_article {
         } elsif ($tag eq 'refend') {
             $in_references = 0;
         } elsif ($tag eq 'PBB_Further_reading') {
-            $self->parse($body); 
+            $self->parse($body);
         } elsif ($tag eq 'cite') {
             my $props = $self->unpack_keys($body);
             push @citations, $props if ($in_references);
         }
     };
 
-    my $link_handler = sub { 
-        my ($self, $event, $text) = @_; 
+    my $link_handler = sub {
+        my ($self, $event, $text) = @_;
         push @body, $text;
     };
-    my $text_handler = sub { 
-        my ($self, $event, $text) = @_; 
+    my $text_handler = sub {
+        my ($self, $event, $text) = @_;
         push @body, $text;
     };
 
@@ -121,9 +121,9 @@ sub _build_article {
 
     say "$page_body";
 
-    # We don't need everything, but we do want the contents of the PBB template, as this 
+    # We don't need everything, but we do want the contents of the PBB template, as this
     # is provided by Protein Box Bot. This provides the Ensembl gene identifier and a bunch of
-    # other useful identifying values. 
+    # other useful identifying values.
 
     $query = {action => 'query', prop => 'revisions', format => 'json', rvprop => 'content|tags|timestamp', titles => $box_page};
     $url->query_form($query);
@@ -137,7 +137,7 @@ sub _build_article {
 
     my $box_body;
     my $gnf_template_handler = sub {
-        my ($self, $event, $tag, $body) = @_; 
+        my ($self, $event, $tag, $body) = @_;
         if ($tag eq 'GNF_Protein_box') {
             $box_body = $body;
         }
@@ -165,14 +165,14 @@ sub _build_article {
 
     # So now we have a gene record, and we can link to that effectively. That will enable
     # references to be resolved. That means we can now begin to assemble the additional
-    # gene information, which we can add to the gene page. 
+    # gene information, which we can add to the gene page.
 
     foreach my $citation (@citations) {
         my $doi = $citation->{doi};
         my $pmid = $citation->{pmid};
 
         # We can haz PMID. We can now go poke in the database to see if it matches our
-        # likely info. 
+        # likely info.
 
         say "Found PMID: $pmid";
         my $pubmed = $database->get_collection('pubmed')
@@ -187,9 +187,9 @@ sub _build_article {
 
 sub output {
 	my ($self, $registry) = @_;
-	
+
     my $cached_data = $self->get_data($registry);
-    
+
 }
 
 1;

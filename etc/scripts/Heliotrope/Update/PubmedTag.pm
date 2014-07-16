@@ -41,7 +41,7 @@ sub _is_article {
       $abstract = $abstract->{AbstractText}
     } else {
       my @fragments = @{$abstract->{AbstractText}};
-      my @texts = map { 
+      my @texts = map {
         my $body = $_->{value};
         my $label = exists($_->{Label}) ? "$_->{Label}. " : "";
         $label.$body;
@@ -72,7 +72,7 @@ sub _is_article {
     #     # Skip to first entry element
     #     say "$file";
     #     while($reader->read() && $reader->name() ne 'MedlineCitation') {};
-        
+
     #     do {
     #         if ($reader->name() eq 'MedlineCitation') {
     #             entry($self, $collection, $reader);
