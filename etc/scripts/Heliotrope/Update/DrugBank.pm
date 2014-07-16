@@ -25,6 +25,20 @@ use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 use Heliotrope::Util::XMLtoJSON;
 
+sub _handle_reference_text {
+  my ($self, $element, $path, $args, $text) = @_;
+  my @references = ();
+  while ($text =~ m{"Pubmed":http://www.ncbi.nlm.nih.gov/pubmed/(\d+)}sg) {
+    push @references, { publicationsRefx => "pmid:$1" };
+  }
+  return {value => $text, refs => \@references};
+}
+
+my $ELEMENT_HOOKS = {
+  "/targets/target/references" => \&_handle_reference_text,
+  "/general-references" => \&_handle_reference_text,
+};
+
 my $ELEMENT_LIST_ENTRIES = {
   "/drugbank-id" => 1,
   "/go-classifiers" => 1,
@@ -98,6 +112,7 @@ sub BUILD {
   my ($self) = @_;
   $self->{name} = "drugbank";
   $self->{xmltojson} = Heliotrope::Util::XMLtoJSON->new({
+    element_hooks => $ELEMENT_HOOKS,
     element_list_entries => $ELEMENT_LIST_ENTRIES,
     object_list_entries => $OBJECT_LIST_ENTRIES,
     date_list_entries => $DATE_LIST_ENTRIES,

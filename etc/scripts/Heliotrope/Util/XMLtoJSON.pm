@@ -9,14 +9,21 @@ use Tie::IxHash;
 use DateTime;
 use XML::LibXML;
 
+has element_hooks => (
+  is => 'rw',
+  default => sub { {} }
+);
 has element_list_entries => (
-  is => 'rw'
+  is => 'rw',
+  default => sub { {} }
 );
 has object_list_entries => (
-  is => 'rw'
+  is => 'rw',
+  default => sub { {} }
 );
 has date_list_entries => (
-  is => 'rw'
+  is => 'rw',
+  default => sub { {} }
 );
 has ordered_objects => (
   is => 'rw',
@@ -52,13 +59,21 @@ sub _fetch {
 
 sub convert_document_to_json {
   my ($self, $element, $path) = @_;
-  return _convert($self, $element, $path, $self->ordered_objects(), $self->element_list_entries(), $self->date_list_entries(), $self->object_list_entries());
+  my $args = {
+    ordered_objects => $self->ordered_objects(),
+    element_list_entries => $self->element_list_entries(),
+    date_list_entries => $self->date_list_entries(),
+    object_list_entries => $self->object_list_entries(),
+    element_hooks => $self->element_hooks(),
+  };
+  return _convert($self, $element, $path, $args);
 }
 
 sub _convert {
-  my ($self, $element, $path, $ordered, $element_list_entries, $date_list_entries, $object_list_entries) = @_;
+  my ($self, $element, $path, $args) = @_;
   $path //= "";
 
+  my $ordered = $args->{ordered};
   my $result = ($ordered) ? Tie::IxHash->new() : {};
 
   my @children = $element->findnodes("*");
@@ -71,9 +86,9 @@ sub _convert {
 
     my $field = $child->nodeName();
     my $new_path = $path . "/" . $field;
-    my $child_result = _convert($self, $child, $new_path, $ordered, $element_list_entries, $date_list_entries, $object_list_entries);
+    my $child_result = _convert($self, $child, $new_path, $args);
 
-    if ($element_list_entries->{$new_path}) {
+    if ($args->{element_list_entries}->{$new_path}) {
       if (! _exists($result, $ordered, $field)) {
         _store($result, $ordered, $field, [])
       }
@@ -85,7 +100,7 @@ sub _convert {
       }
       _store($result, $ordered, $field, $child_result)
     }
-    if ($self->date_list_entries()->{$new_path}) {
+    if ($args->{date_list_entries}->{$new_path}) {
       my $date = _fetch($result, $ordered, $field);
       my $year = _fetch($date, $ordered, 'Year');
       my $month = _fetch($date, $ordered, 'Month');
@@ -94,15 +109,19 @@ sub _convert {
       _store($result, $ordered, $field, $datetime);
     }
   }
-  if (! @children && defined($element->textContent())) {
+  my $text = $element->textContent();
+  if (defined($text) && exists($args->{element_hooks}->{$path})) {
+    my $hook = $args->{element_hooks}->{$path};
+    return &$hook($self, $element, $path, $args, $text);
+  } elsif (! @children && defined($text)) {
 
-    if (@attributes || $self->object_list_entries()->{$path}) {
+    if (@attributes || $args->{object_list_entries}->{$path}) {
       foreach my $attr (@attributes) {
         _store($result, $ordered, $attr->nodeName(), $attr->textContent());
       }
-      _store($result, $ordered, 'value', $element->textContent());
+      _store($result, $ordered, 'value', $text);
     } else {
-      return $element->textContent();
+      return $text;
     }
   } else {
     foreach my $attr (@attributes) {
