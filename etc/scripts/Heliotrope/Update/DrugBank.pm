@@ -90,6 +90,7 @@ my $ELEMENT_LIST_ENTRIES = {
   "/salts/salt" => 1,
 };
 my $OBJECT_LIST_ENTRIES = {
+  "/drugbank-id" => 1,
 };
 my $DATE_LIST_ENTRIES = {};
 
