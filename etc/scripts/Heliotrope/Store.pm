@@ -17,12 +17,12 @@ sub BUILD {
 
 sub open_database {
     my ($self, @args) = @_;
-    
+
     my $database_name = $ENV{HELIOTROPE_DATABASE_NAME} || "heliotrope";
     my $database_server = $ENV{HELIOTROPE_DATABASE_SERVER} || "localhost:27017";
     my $database_username = $ENV{HELIOTROPE_DATABASE_USERNAME};
     my $database_password = $ENV{HELIOTROPE_DATABASE_PASSWORD};
-    
+
     my @options = (@args, host => $database_server);
     push @options, username => $database_username if ($database_username);
     push @options, password => $database_password if ($database_password);
@@ -39,8 +39,8 @@ sub close_database {
   my ($self) = @_;
 }
 
-# Added extra safety to insert and update queries, as these are likely to die 
-# sometimes. 
+# Added extra safety to insert and update queries, as these are likely to die
+# sometimes.
 
 sub save_record {
 	my ($self, $database, $collection, $data, @options) = @_;
@@ -58,10 +58,10 @@ sub maybe_write_record {
   my $reference_id_cache = $self->{_reference_id_cache};
 
   if (! deep_eq($resolved, $existing)) {
-      
+
     foreach my $reference (@{$resolved->{references}}) {
       next if ($reference->{_id});
-      
+
       if (my $id = $reference_id_cache->{$reference->{ref}}->{$reference->{name}}) {
         $reference->{_id} = $id;
       } else {
@@ -78,9 +78,9 @@ sub maybe_write_record {
       }
       next;
     }
-    
+
     $resolved->{version} = $resolved->{version} + 1;
-    
+
     $self->save_record($database, $write_collection, $resolved, {w => 1, j => true});
   }
 }
@@ -115,7 +115,7 @@ Heliotrope::Store
 =head1 SYNOPSIS
 
   with 'Heliotrope::Store';
-  
+
   my $db = $self->open_database();
   ... Do some stuff
   $self->close_database($db);
@@ -123,13 +123,13 @@ Heliotrope::Store
 =head1 DESCRIPTION
 
 Encapsulates the code which opens a database connection to L<MongoDB>. This should
-make it much easier for anyone who wants to use a different database name. 
+make it much easier for anyone who wants to use a different database name.
 
 =head1 NOTES
 
 The C<close_database> doesn't actually do anything. It doesn't exist in MongoDB. The
 connection is closed when all references go out of scope. This module could proxy
-to do that, but meh. 
+to do that, but meh.
 
 =head1 AUTHOR
 
@@ -137,5 +137,5 @@ Stuart Watt E<lt>stuart.watt@oicr.on.caE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-This program is free software; you can redistribute it and/or modify it 
+This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
