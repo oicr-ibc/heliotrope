@@ -67,17 +67,17 @@ sub parse {
 
       if ($match_tag =~ m{^<!--}) {
         return '';
-      } elsif ($match_tag =~ m{^</\w+}) {
-        $self->handle_event('tag_end', $match_tag);
+      } elsif ($match_tag =~ m{^</(\w+)}) {
+        $self->handle_event('tag_end', lc($1), $match_tag);
         pop @$context;
-      } elsif ($match_tag =~ m{\w+/>$}) {
+      } elsif ($match_tag =~ m{^<(\w+).*/>$}) {
         push @$context, $match_tag;
-        $self->handle_event('tag_start', $match_tag);
-        $self->handle_event('tag_end', $match_tag);
+        $self->handle_event('tag_start', lc($1), $match_tag);
+        $self->handle_event('tag_end', lc($1), $match_tag);
         pop @$context;
-      } elsif ($match_tag =~ m{<\w+}) {
+      } elsif ($match_tag =~ m{<(\w+)}) {
         push @$context, $match_tag;
-        $self->handle_event('tag_start', $match_tag);
+        $self->handle_event('tag_start', lc($1), $match_tag);
       } else {
         die("Bad tag: $match_tag");
       }
@@ -100,6 +100,18 @@ sub unpack_keys {
 	  my $key = $1;
 	  my $value = $2;
 	  $value =~ s/\s+$//;
+    $result{$key} = $value;
+  }
+  return \%result;
+}
+
+sub unpack_attributes {
+  my ($self, $string) = @_;
+  my %result = ();
+  while($string =~ m{(\w+)\s*=\s*("[^"]*"|\w+)}gs) {
+    my $key = lc($1);
+    my $value = $2;
+    $value =~ s{^"(.*)"$}{$1};
     $result{$key} = $value;
   }
   return \%result;
