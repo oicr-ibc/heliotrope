@@ -231,6 +231,7 @@ sub output {
 
 
   $collection->ensure_index({"name" => 1}, { unique => 1, sparse => 1, safe => 1 });
+  $collection->ensure_index({"sections.drugbank.data.drugbank-id" => 1}, { unique => 1, safe => 1 });
 
   foreach my $compressed_json_string (@{$context->{drugs}}) {
     my $json_string  = "";
