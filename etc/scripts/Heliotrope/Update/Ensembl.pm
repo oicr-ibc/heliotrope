@@ -700,21 +700,25 @@ __ENDSQL__
     push @{$transcript->{refSeqId}}, $refseq_id;
   }
 
-  say "Finding OMIM identifiers.";
+  my $identifiers = { omim => 'MIM_GENE', hgnc => 'HGNC' };
+  while(my ($key, $value) = each %$identifiers) {
+    say "Finding external gene identifiers from $value.";
 
-  $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
-SELECT g.id, x.dbprimary_acc
-FROM external_db xdb
-CROSS JOIN interesting_genes g
-CROSS JOIN object_xref ox ON ox.ensembl_id = g.gene_id AND ox.ensembl_object_type = 'Gene'
-CROSS JOIN xref x on x.xref_id = ox.xref_id AND x.external_db_id = xdb.external_db_id
-WHERE xdb.db_name = 'MIM_GENE'
+    $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
+  SELECT g.id, x.dbprimary_acc
+  FROM external_db xdb
+  CROSS JOIN interesting_genes g
+  CROSS JOIN object_xref ox ON ox.ensembl_id = g.gene_id AND ox.ensembl_object_type = 'Gene'
+  CROSS JOIN xref x on x.xref_id = ox.xref_id AND x.external_db_id = xdb.external_db_id
+  WHERE xdb.db_name = ?
 __ENDSQL__
 
-  $statement->execute() or die($dbh->errstr());
-  while (my ($stable_id, $omim_id) = $statement->fetchrow_array()) {
-    croak if (! exists($gene_data->{$stable_id}));
-    my $transcript = $gene_data->{$stable_id}->{identifiers}->{omim} = $omim_id;
+    $statement->execute($value) or die($dbh->errstr());
+    while (my ($stable_id, $identifier_value) = $statement->fetchrow_array()) {
+      croak if (! exists($gene_data->{$stable_id}));
+      $gene_data->{$stable_id}->{identifiers} = [$gene_data->{$stable_id}->{identifiers}] if (! exists());
+      push @{$gene_data->{$stable_id}->{identifiers}}, {source => $key, ref => $identifier_value};
+    }
   }
 
   say "Finding domains.";
