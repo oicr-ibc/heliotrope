@@ -13,6 +13,7 @@ use Text::Balanced;
 sub BUILD {
 	my ($self, $args) = @_;
 	$self->{_handlers} = $args->{handlers} // {};
+  $self->{_context} = [];
 }
 
 sub set_handler {
@@ -20,19 +21,30 @@ sub set_handler {
 	$self->{_handlers}->{$event} = $code;
 }
 
+sub get_context {
+  my ($self) = @_;
+  return $self->{_context};
+}
+
 sub parse {
 	my ($self, $content) = @_;
 
-	my $templates = qr/(?:(\{\{(?:[^{}]++|(?-1))*+\}\})|(\[\[(?:[^\[\]]++|(?-1))*+\]\])|([^{}\[\]]*+))/;
+	my $templates = qr/(?:(?<TEMPLATE>\{\{(?:[^{}]++|(?-1))*+\}\})  |  # Find template calls
+                        (?<LINK>\[\[(?:[^\[\]]++|(?-1))*+\]\])    |  # Find wiki-style links
+                        (?<TAG><[^>]+>)                           |  # Find HTML-style tags
+                        (?<TEXT>[^{}\[\]\<\>]*+))/x;
+
+  my $context = $self->get_context();
 
 	while($content =~ m/$templates/g) {
-		my $match_template = $1;
-		my $match_link = $2;
-		my $match_text = $3;
+		my $match_template = $+{TEMPLATE};
+		my $match_link = $+{LINK};
+		my $match_tag = $+{TAG};
+    my $match_text = $+{TEXT};
 
 		if (defined($match_template)) {
 			# We have a template. We can now parse this recursively. Sort of. First of all,
-			# we should get the command. 
+			# we should get the command.
 
 
 			# We can trim off the first and last two characters straightforwardly.
@@ -50,11 +62,30 @@ sub parse {
 			$match_link = substr($match_link, 2, -2);
 			$self->handle_event('link', $match_link);
 
-		} elsif (defined($match_text)) {
-			# This is text. 
+		} elsif (defined($match_tag)) {
+      # This is a tag
+
+      if ($match_tag =~ m{^<!--}) {
+        return '';
+      } elsif ($match_tag =~ m{^</\w+}) {
+        $self->handle_event('tag_end', $match_tag);
+        pop @$context;
+      } elsif ($match_tag =~ m{\w+/>$}) {
+        push @$context, $match_tag;
+        $self->handle_event('tag_start', $match_tag);
+        $self->handle_event('tag_end', $match_tag);
+        pop @$context;
+      } elsif ($match_tag =~ m{<\w+}) {
+        push @$context, $match_tag;
+        $self->handle_event('tag_start', $match_tag);
+      } else {
+        die("Bad tag: $match_tag");
+      }
+    } elsif (defined($match_text)) {
+			# This is text.
 
 			$self->handle_event('text', $match_text);
-		} else {
+    } else {
 
 			die("Internal error");
 		}
