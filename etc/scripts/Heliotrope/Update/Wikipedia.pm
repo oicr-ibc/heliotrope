@@ -15,6 +15,7 @@ use File::Temp;
 use DateTime;
 use JSON qw(decode_json);
 use Carp;
+use Data::GUID;
 
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
@@ -87,6 +88,8 @@ sub _build_article {
     my @citations;
     my @body;
     my $in_references = 0;
+    my $named_citations = {};
+    my $current_citation;
 
     my $template_handler = sub {
         my ($self, $event, $tag, $body) = @_;
@@ -100,31 +103,89 @@ sub _build_article {
         } elsif ($tag eq 'PBB_Further_reading') {
             $self->parse($body);
         } elsif ($tag eq 'cite') {
-            my $props = $self->unpack_keys($body);
-            push @citations, $props if ($in_references);
+            my $citation = $self->unpack_keys($body);
+            my $pmid = $citation->{pmid};
+            $current_citation = {};
+            $current_citation->{pmid} = $pmid if (defined($pmid));
+            push @citations, $citation if ($in_references);
+            my $context = $self->get_context();
+            if (@$context) {
+              my $attributes = $self->unpack_attributes($context->[-1]);
+              my $name = $attributes->{name};
+              if (! defined($name)) {
+                $name = Data::GUID->new()->as_string();
+              }
+              $current_citation->{name} = $name;
+              # say "In context: $context->[-1] $name => ".($pmid // "undef");
+              # say "Writing named citation: $name";
+              $citation->{name} = $name;
+              $named_citations->{$name} = $citation;
+            }
         }
     };
 
     my $link_handler = sub {
         my ($self, $event, $text) = @_;
+        return if ($text =~ m{^\s*(?:File|Image):});
+        if ($text =~ m{\|(.+)$}s) {
+          $text = $1;
+        }
         push @body, $text;
     };
     my $text_handler = sub {
         my ($self, $event, $text) = @_;
         push @body, $text;
     };
+    my $tag_start_handler = sub {
+      my ($self, $event, $tag, $text) = @_;
+      # say "tag_start_handler, $text";
+      if ($tag eq 'ref') {
+        undef($current_citation);
+      } else {
+        push @body, $text;
+      }
+    };
+    my $tag_end_handler = sub {
+      my ($self, $event, $tag, $text) = @_;
+      # say "tag_end_handler, $text";
+      if ($tag eq 'ref') {
+        if (! $current_citation) {
+          my $attributes = $self->unpack_attributes($text);
+          if (! exists($attributes->{name})) {
+            return;
+          } else {
+            $current_citation = $named_citations->{$attributes->{name}};
+          }
+        }
+        if ($current_citation && $current_citation->{pmid}) {
+          push @body, qq{<ref refId="$current_citation->{name}"/>};
+          undef($current_citation);
+        }
+      } else {
+        push @body, $text;
+      }
+    };
 
-    my $parser = MediaWiki::Parser->new({handlers => {template => $template_handler, link => $link_handler, text => $text_handler}});
+    my $parser = MediaWiki::Parser->new({handlers => {
+      template => $template_handler,
+      link => $link_handler,
+      text => $text_handler,
+      tag_start => $tag_start_handler,
+      tag_end => $tag_end_handler,
+    }});
     $parser->parse($page_body);
 
     my $article = {};
-
-    say "$page_body";
 
     # We don't need everything, but we do want the contents of the PBB template, as this
     # is provided by Protein Box Bot. This provides the Ensembl gene identifier and a bunch of
     # other useful identifying values.
 
+    if (! $box_page) {
+        say "Missing box. Skipping record.";
+        return;
+    }
+    croak("Missing page: $box_page in $page_body") unless (defined($box_page));
     $query = {action => 'query', prop => 'revisions', format => 'json', rvprop => 'content|tags|timestamp', titles => $box_page};
     $url->query_form($query);
     $response = $mech->get($url);
@@ -133,7 +194,7 @@ sub _build_article {
 
     my $pages = $perl_scalar->{query}->{pages};
     my @pages = keys %{$pages};
-    $box_page_body = $pages->{$pages[0]}->{revisions}->[0]->{"*"};
+    my $box_page_body = $pages->{$pages[0]}->{revisions}->[0]->{"*"};
 
     my $box_body;
     my $gnf_template_handler = sub {
@@ -143,7 +204,7 @@ sub _build_article {
         }
     };
     $parser = MediaWiki::Parser->new({handlers => {template => $gnf_template_handler}});
-    $parser->parse($box_page_body);
+    $parser->parse($box_page_body) if (defined($box_page_body));
 
     # If there's no box body, quit, as we'll not be able to find an Ensembl ID
     if (! $box_body) {
@@ -170,25 +231,34 @@ sub _build_article {
     foreach my $citation (@citations) {
         my $doi = $citation->{doi};
         my $pmid = $citation->{pmid};
+        next unless (defined($pmid));
 
         # We can haz PMID. We can now go poke in the database to see if it matches our
         # likely info.
 
-        say "Found PMID: $pmid";
-        my $pubmed = $database->get_collection('pubmed')
+        # say "Found PMID: $pmid";
+        # my $pubmed = $database->get_collection('pubmed')
     }
 
+    my $body_text = join("", @body);
+    if ($body_text =~ m{==[ ]*Clinical significance[ ]*==\n(.*?)(?=[^=]==[^=]|$)}si) {
+      my $significance = $1;
+      say "Significance found for: $gene_id - $keys->{Symbol}";
+      say $significance;
 
-    my $new = expand_references($existing);
-    $new->{sections}->{wikipedia} = $wikipedia_data;
-    my $resolved = resolve_references($new, $existing);
-    $self->maybe_write_record($database, 'genes', $resolved, $existing);
+      my @references = ($body_text =~ m{<ref[^>]+>}g);
+    }
+
+    # my $new = expand_references($existing);
+    # $new->{sections}->{wikipedia} = $wikipedia_data;
+    # my $resolved = resolve_references($new, $existing);
+    # $self->maybe_write_record($database, 'genes', $resolved, $existing);
 }
 
 sub output {
 	my ($self, $registry) = @_;
 
-    my $cached_data = $self->get_data($registry);
+  my $cached_data = $self->get_data($registry);
 
 }
 
