@@ -228,31 +228,35 @@ sub _build_article {
     # references to be resolved. That means we can now begin to assemble the additional
     # gene information, which we can add to the gene page.
 
-    foreach my $citation (@citations) {
-        my $doi = $citation->{doi};
-        my $pmid = $citation->{pmid};
-        next unless (defined($pmid));
-
-        # We can haz PMID. We can now go poke in the database to see if it matches our
-        # likely info.
-
-        # say "Found PMID: $pmid";
-        # my $pubmed = $database->get_collection('pubmed')
-    }
-
     my $body_text = join("", @body);
     if ($body_text =~ m{==[ ]*Clinical significance[ ]*==\n(.*?)(?=[^=]==[^=]|$)}si) {
       my $significance = $1;
+
+      my @identifiers = ($significance =~ m{<ref refId="([^"]+)"/>}sg);
+      my %table = ();
+      @table{@identifiers} = map { $named_citations->{$_} } @identifiers;
+      foreach my $id (@identifiers) {
+        my $record = $table{$id};
+        $record->{publicationsRefx} = "pmid:$1";
+      }
+
       say "Significance found for: $gene_id - $keys->{Symbol}";
-      say $significance;
+      my @alert = (
+        _alerts => [{
+          level => "note",
+          author => "drugbank",
+          text => "This information has been updated in DrugBank",
+          date => DateTime->now()
+        }]
+      );
 
-      my @references = ($body_text =~ m{<ref[^>]+>}g);
+      my $wikipedia_data = {_format => "wikipedia", @alert, data => { significance => $significance, references => \%table}};
+
+      my $new = expand_references($existing);
+      $new->{sections}->{wikipedia} = $wikipedia_data;
+      my $resolved = resolve_references($new, $existing);
+      $self->maybe_write_record($database, 'genes', $resolved, $existing);
     }
-
-    # my $new = expand_references($existing);
-    # $new->{sections}->{wikipedia} = $wikipedia_data;
-    # my $resolved = resolve_references($new, $existing);
-    # $self->maybe_write_record($database, 'genes', $resolved, $existing);
 }
 
 sub output {
