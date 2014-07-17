@@ -3,6 +3,7 @@ package Heliotrope::Store;
 use Carp;
 use common::sense;
 use boolean;
+use Clone qw(clone);
 
 use Moose::Role;
 
