@@ -244,8 +244,8 @@ sub _build_article {
       my @alert = (
         _alerts => [{
           level => "note",
-          author => "drugbank",
-          text => "This information has been updated in DrugBank",
+          author => "wikipedia",
+          text => "This information has been updated from Wikipedia",
           date => DateTime->now()
         }]
       );
