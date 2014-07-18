@@ -58,7 +58,9 @@ angular
     result =
       restrict: "A"
       replace: false
-      template: '<span>{{reference.author | authorList}}. {{reference.title}}. ' +
+      template: '<span>{{reference.author | authorList}}. {{reference.title}}. <i>{{reference.journal}}</i> ' +
+                '<b ng-show="reference.volume">{{reference.volume}}</b><span ng-show="reference.issue">({{reference.issue}})</span>, ' +
+                '<span ng-show="reference.pages">pp.{{reference.pages}}, </span> {{reference.date}}' +
                 '  <a href="/publications/pmid/{{reference.pmid}}">PMID {{reference.pmid}}</a>' +
                 '</span>'
 
