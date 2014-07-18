@@ -33,3 +33,16 @@ a[rel="external"], .external {
 .nav-header {
   font-weight: bold;
 }
+
+ol.references {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+ol.references li:before {
+  content: "[" counter(section) "] ";
+}
+
+ol.references li {
+  counter-increment: section;
+}

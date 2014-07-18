@@ -98,3 +98,10 @@ angular
         input
       else
         value
+
+  .filter 'authorList', () ->
+    (input) ->
+      if input?
+        input.join(", ")
+      else
+        input

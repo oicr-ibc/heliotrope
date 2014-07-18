@@ -43,14 +43,24 @@ angular
               iElement.append element
             if Object.keys(references).length > 0
               iElement.append angular.element('<h4>References</h4>')
-              refList = angular.element('<ol></ol>')
+              refList = angular.element('<ol class="references"></ol>')
+              iElement.append(refList)
               for own key, reference of references
                 if reference.significant
-                  refElement = angular.element('<li></li>')
-                  refElement.append angular.element("<a href='/publications/pmid/#{reference.pmid}'>pmid:#{reference.pmid}</a>")
-                  refList.append(refElement)
-              iElement.append(refList)
+                  newScope = scope.$new(true)
+                  newScope.reference = reference
+                  template = angular.element('<li heli-bibliography-element></li>')
+                  linkFn = $compile(template)
+                  refList.append linkFn(newScope)
   ]
+
+  .directive 'heliBibliographyElement', () ->
+    result =
+      restrict: "A"
+      replace: false
+      template: '<span>{{reference.author | authorList}}. {{reference.title}}. ' +
+                '  <a href="/publications/pmid/{{reference.pmid}}">PMID {{reference.pmid}}</a>' +
+                '</span>'
 
   .directive 'heliValidate', () ->
     result =
