@@ -10,6 +10,9 @@ use Moose::Role;
 use MongoDB;
 
 use Heliotrope::Data qw(deep_eq);
+use Heliotrope::Logging qw(get_logger);
+
+our $log = get_logger();
 
 sub BUILD {
   my ($self) = @_;
@@ -29,6 +32,8 @@ sub open_database {
     push @options, password => $database_password if ($database_password);
     push @options, query_timeout => -1;
     push @options, auto_reconnect => 1;
+
+    $log->debugf("Connecting to MongoDB: host: %s, database: %s", $database_server, $database_name);
 
     my $conn = MongoDB::MongoClient->new(@options);
     $conn->connect();

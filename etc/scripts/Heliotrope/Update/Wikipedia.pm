@@ -17,10 +17,13 @@ use JSON qw(decode_json);
 use Carp;
 use Data::GUID;
 
+use Heliotrope::Logging qw(get_logger);
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 
 use MediaWiki::Parser;
+
+our $log = get_logger();
 
 sub BUILD {
 	my ($self) = @_;
@@ -35,7 +38,7 @@ sub maybe_update {
 sub update {
 	my ($self, $registry) = @_;
 
-    say "About to update.";
+    $log->info("About to update");
 
     my $mech = WWW::Mechanize->new();
 
@@ -46,11 +49,11 @@ sub update {
     $url->query_form($query);
 
     my @gene_pages = ();
-    while(my $response = $mech->get($url)) {
+    while($log->debugf("Requesting: %s", $url->as_string()), my $response = $mech->get($url)) {
         my $perl_scalar = decode_json($response->decoded_content());
         push @gene_pages, @{$perl_scalar->{query}->{categorymembers}};
         my $count = @gene_pages;
-        say "Found $count genes";
+        $log->debugf("Found %d genes", $count);
 
         if ($perl_scalar->{'query-continue'}->{categorymembers}->{cmcontinue}) {
             $query->{cmcontinue} = $perl_scalar->{'query-continue'}->{categorymembers}->{cmcontinue};
@@ -77,6 +80,7 @@ sub _build_article {
     my $url = $root->clone();
     my $query = {action => 'query', prop => 'revisions', format => 'json', rvprop => 'content|tags|timestamp', pageids => $gene_page->{pageid}};
     $url->query_form($query);
+    $log->debugf("Requesting: %s", $url->as_string());
     my $response = $mech->get($url);
     my $content = $response->decoded_content();
     my $perl_scalar = decode_json($response->decoded_content());
@@ -182,10 +186,9 @@ sub _build_article {
     # other useful identifying values.
 
     if (! $box_page) {
-        say "Missing box. Skipping record.";
+        $log->debugf("Missing gene details box. Skipping record");
         return;
     }
-    croak("Missing page: $box_page in $page_body") unless (defined($box_page));
     $query = {action => 'query', prop => 'revisions', format => 'json', rvprop => 'content|tags|timestamp', titles => $box_page};
     $url->query_form($query);
     $response = $mech->get($url);
@@ -208,7 +211,7 @@ sub _build_article {
 
     # If there's no box body, quit, as we'll not be able to find an Ensembl ID
     if (! $box_body) {
-        say "Missing box. Skipping record.";
+        $log->debugf("Missing protein details box. Skipping record");
         return;
     }
 
@@ -220,7 +223,7 @@ sub _build_article {
 
     my $existing = $self->find_one_record($database, 'genes', {"id" => $gene_id});
     if (! $existing) {
-        say "Can't find gene $gene_id. Skipping record.";
+        $log->debugf("Can't find gene %s. Skipping record.", $gene_id);
         return;
     }
 
@@ -228,6 +231,7 @@ sub _build_article {
     # references to be resolved. That means we can now begin to assemble the additional
     # gene information, which we can add to the gene page.
 
+    $log->debugf("Checking for clinical significance: %s - %s", $gene_id, $keys->{Symbol});
     my $body_text = join("", @body);
     if ($body_text =~ m{==[ ]*Clinical significance[ ]*==\n(.*?)(?=[^=]==[^=]|$)}si) {
       my $significance = $1;
@@ -240,7 +244,6 @@ sub _build_article {
         $record->{publicationsRefx} = "pmid:$1";
       }
 
-      say "Significance found for: $gene_id - $keys->{Symbol}";
       my @alert = (
         _alerts => [{
           level => "note",
@@ -255,6 +258,8 @@ sub _build_article {
       my $new = expand_references($existing);
       $new->{sections}->{wikipedia} = $wikipedia_data;
       my $resolved = resolve_references($new, $existing);
+
+      $log->debugf("Writing data if updated: %s - %s", $gene_id, $keys->{Symbol});
       $self->maybe_write_record($database, 'genes', $resolved, $existing);
     }
 }
