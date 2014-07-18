@@ -29,10 +29,13 @@ sub get_context {
 sub parse {
 	my ($self, $content) = @_;
 
-	my $templates = qr/(?:(?<TEMPLATE>\{\{(?:[^{}]++|(?-1))*+\}\})  |  # Find template calls
-                        (?<LINK>\[\[(?:[^\[\]]++|(?-1))*+\]\])    |  # Find wiki-style links
-                        (?<TAG><\w[^>]*>)                         |  # Find HTML-style tags
-                        (?<TEXT>[^{}\[\]\<\>]*+))/x;
+	my $templates = qr{
+                        (?:(?<TEMPLATE>\{\{(?:[^{}]++|(?-1))*+\}\})  |  # Find template calls
+                           (?<LINK>\[\[(?:[^\[\]]++|(?-1))*+\]\])    |  # Find wiki-style links
+                           (?<TAG></?\w[^>]*>)                       |  # Find HTML-style tags
+                           (?<TEXT>[^{}\[\]\<\>]*+))
+
+  }x;
 
   my $context = $self->get_context();
 
@@ -75,7 +78,7 @@ sub parse {
         $self->handle_event('tag_start', lc($1), $match_tag);
         $self->handle_event('tag_end', lc($1), $match_tag);
         pop @$context;
-      } elsif ($match_tag =~ m{<(\w+)}) {
+      } elsif ($match_tag =~ m{^<(\w+)}) {
         push @$context, $match_tag;
         $self->handle_event('tag_start', lc($1), $match_tag);
       } else {
@@ -95,7 +98,7 @@ sub parse {
 
 sub unpack_keys {
   my ($self, $string) = @_;
-  my %result = ();
+  my $result = {};
   while($string =~ m{\|                                      # identifies an attribute
                      [ ]*(\w+)[ ]*=[ ]*((?:[^{}\[\]|]+|      # followed by an attribute name
                      \{\{(?:[^\r\n{}]++|(?-1))*+\}\}|        # possibly a template
@@ -104,21 +107,21 @@ sub unpack_keys {
 	  my $key = $1;
 	  my $value = $2;
 	  $value =~ s/\s+$//;
-    $result{$key} = $value;
+    $result->{$key} = $value;
   }
-  return \%result;
+  return $result;
 }
 
 sub unpack_attributes {
   my ($self, $string) = @_;
-  my %result = ();
+  my $result = {};
   while($string =~ m{(\w+)\s*=\s*("[^"]*"|\w+)}gs) {
     my $key = lc($1);
     my $value = $2;
     $value =~ s{^"(.*)"$}{$1};
-    $result{$key} = $value;
+    $result->{$key} = $value;
   }
-  return \%result;
+  return $result;
 }
 
 sub handle_event {
