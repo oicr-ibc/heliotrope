@@ -12,15 +12,15 @@ use Sub::Exporter -setup => {
 # Checks to see if two structures are the same. This ignores private fields.
 # Note that a hash and a Tie::IxHash, even with the same fields and values,
 # will be found to be different. So only use hashes with this, at least for
-# now. 
+# now.
 
 sub expand_references_aux {
 	my ($document, $top) = @_;
-	
+
 	if (ref($document) eq 'ARRAY') {
 		return [ map { expand_references_aux($_, $top) } @$document ]
 	} elsif (ref($document) eq 'HASH') {
-		return { map { 
+		return { map {
 			my $key = $_;
 			my $value = $document->{$key};
 			my $tag = substr($key, -4);
@@ -48,7 +48,7 @@ sub expand_references {
 
 sub resolve_references {
 	my ($document, $original) = @_;
-	
+
 	my $table = {};
 	my $references = [];
 	if (exists($original->{references})) {
@@ -58,52 +58,57 @@ sub resolve_references {
 	    }
 	}
 	$table->{_}->{_} = {index => 0};
-	
+
 	my $result = resolve_references_aux($document, $references, $table);
-	
+
 	# Remove the indexes we used while building the table
 	foreach my $reference (@$references) {
 		delete($reference->{_index});
 	}
-	
+
 	# And add the filtered table back into the result
 	$result->{references} = $references;
 	return $result;
 }
 
+sub resolve_reference_key {
+  my ($document, $references, $table, $key) = @_;
+
+  my $value = (ref($document) eq 'HASH') ? $document->{$key} : $document->FETCH($key);
+  my $tag = substr($key, -4);
+  if ($tag eq 'Refx') {
+    my $collection = substr($key, 0, -4);
+    $collection =~ s/([a-z])([A-Z])/$1_\l$2/g;
+
+    my $reference;
+    if (exists($table->{$collection}->{$value})) {
+      $reference = $table->{$collection}->{$value};
+    } else {
+      $reference = {ref => $collection, name => $value};
+      $table->{$collection}->{$value} = $reference;
+    }
+
+    if (! exists($reference->{_index})) {
+      my $current = $table->{_}->{_};
+      push @$references, $reference;
+      $reference->{_index} = $current->{index}++;
+    }
+
+    (substr($key, 0, -4) . "Ridx", $reference->{_index});
+  } else {
+    ($key => resolve_references_aux($value, $references, $table));
+  }
+}
+
 sub resolve_references_aux {
     my ($document, $references, $table) = @_;
-    
+
     if (ref($document) eq 'ARRAY') {
         return [ map { resolve_references_aux($_, $references, $table) } @$document ]
     } elsif (ref($document) eq 'HASH') {
-        return { map { 
-            my $key = $_;
-            my $value = $document->{$key};
-            my $tag = substr($key, -4);
-            if ($tag eq 'Refx') {
-                my $collection = substr($key, 0, -4);
-                $collection =~ s/([a-z])([A-Z])/$1_\l$2/g;
-                
-                my $reference;
-                if (exists($table->{$collection}->{$value})) {
-                    $reference = $table->{$collection}->{$value};
-                } else {
-                	$reference = {ref => $collection, name => $value};
-                	$table->{$collection}->{$value} = $reference;
-                }
-                
-                if (! exists($reference->{_index})) {
-                	my $current = $table->{_}->{_};
-                	push @$references, $reference;
-                	$reference->{_index} = $current->{index}++;
-                }
-                
-                (substr($key, 0, -4) . "Ridx", $reference->{_index});
-            } else {
-                ($key => resolve_references_aux($value, $references, $table));
-            }
-        } sort keys %$document }
+        return { map { resolve_reference_key($document, $references, $table, $_); } sort keys %$document }
+    } elsif (ref($document) eq 'Tie::IxHash') {
+        return { map { resolve_reference_key($document, $references, $table, $_); } sort $document->Keys() }
     } else {
         return $document;
     }
@@ -111,7 +116,7 @@ sub resolve_references_aux {
 
 sub deep_eq {
     my ($a, $b) = @_;
-    
+
     if (not defined $a)        { return not defined $b }
     elsif (not defined $b)     { return 0 }
     elsif (not reftype($a))         { $a eq $b }
