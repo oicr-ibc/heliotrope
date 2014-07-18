@@ -10,7 +10,6 @@ var gulp = require('gulp'),
     stylish = require('jshint-stylish'),
     bower = require('./bower'),
     url = require('url'),
-    path = require('path'),
     proxy = require('proxy-middleware'),
     isWatching = false;
 

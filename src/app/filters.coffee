@@ -15,8 +15,7 @@ angular
       if value
         value.split(/,/)
       else
-        valuex
-
+        value
 
   .filter 'field', () ->
      (field) ->
