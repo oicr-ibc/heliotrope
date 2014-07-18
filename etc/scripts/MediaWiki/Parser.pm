@@ -96,7 +96,11 @@ sub parse {
 sub unpack_keys {
   my ($self, $string) = @_;
   my %result = ();
-  while($string =~ m{\|[ ]*(\w+)[ ]*=[ ]*((?:[^{}\[\]|]+|\{\{(?:[^\r\n{}]++|(?-1))*+\}\}|\[\[(?:[^\r\n\[\]]++|(?-1))*+\]\])*)}gs) {
+  while($string =~ m{\|                                      # identifies an attribute
+                     [ ]*(\w+)[ ]*=[ ]*((?:[^{}\[\]|]+|      # followed by an attribute name
+                     \{\{(?:[^\r\n{}]++|(?-1))*+\}\}|        # possibly a template
+                     \[\[(?:[^\r\n\[\]]++|(?-1))*+\]\])*)    # or a link
+                     }gsx) {
 	  my $key = $1;
 	  my $value = $2;
 	  $value =~ s/\s+$//;
