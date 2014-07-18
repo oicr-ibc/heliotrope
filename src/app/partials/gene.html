@@ -28,6 +28,12 @@
         </div>
       </div>
 
+      <div ng-show="entity.data.sections.wikipedia" heli-section body-id="significance" title="Clinical significance">
+        <div id="significance-table">
+          <div heli-dewikify text="entity.data.sections.wikipedia.data.significance" references="entity.data.sections.wikipedia.data.references"></div>
+        </div>
+      </div>
+
       <div ng-show="entity.data.sections.mutations" heli-section body-id="mutations" title="Mutations">
         <div id="mutations-list" class="section-end">
           <span class="inline-list">

@@ -23,6 +23,35 @@ angular
                 '<strong>{{alert.level | uppercase}}!</strong> {{alert.body}}' +
                 '</div>'
 
+  .directive 'heliDewikify', ['$compile', ($compile) ->
+    result =
+      restrict: "A"
+      replace: false
+      transclude: true
+      scope: { "text": '=', "references": '=' }
+      link: (scope, iElement, iAttrs) ->
+        scope.$watch 'text', (newValue, oldValue) ->
+          if newValue != undefined
+            paragraphs = newValue.split(/\n\n/)
+            references = if scope.references? then scope.references else {}
+            for paragraph in paragraphs
+              element = angular.element('<p></p>')
+              paragraph = paragraph.replace /<ref refId="([^"]+)"\/>/g, (match, p1) ->
+                found = references[p1]
+                "<a href='/publications/pmid/#{found.pmid}'>[pmid:#{found.pmid}]</a>"
+              element.html(paragraph)
+              iElement.append element
+            if Object.keys(references).length > 0
+              iElement.append angular.element('<h4>References</h4>')
+              refList = angular.element('<ol></ol>')
+              for own key, reference of references
+                if reference.significant
+                  refElement = angular.element('<li></li>')
+                  refElement.append angular.element("<a href='/publications/pmid/#{reference.pmid}'>pmid:#{reference.pmid}</a>")
+                  refList.append(refElement)
+              iElement.append(refList)
+  ]
+
   .directive 'heliValidate', () ->
     result =
       link: (scope, iElement, iAttrs) ->
