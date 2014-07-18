@@ -16,6 +16,7 @@ use DateTime;
 use JSON qw(decode_json);
 use Carp;
 use Data::GUID;
+use Tie::IxHash;
 
 use Heliotrope::Logging qw(get_logger);
 use Heliotrope::Registry;
@@ -92,14 +93,17 @@ sub _build_article {
     my @citations;
     my @body;
     my $in_references = 0;
-    my $named_citations = {};
     my $current_citation;
+    my $named_citations = Tie::IxHash->new();
 
     my $template_handler = sub {
         my ($self, $event, $tag, $body) = @_;
         if ($tag eq 'PBB') {
             $box_page = $body;
             $box_page =~ s/\|geneid=(\d+)/Template:$tag\/$1/;
+        } elsif ($tag eq 'SWL') {
+            my $link = $self->unpack_keys($body);
+            push @body, $link->{label} // $link->{target} // carp("Can't find link label");
         } elsif ($tag eq 'refbegin') {
             $in_references = 1;
         } elsif ($tag eq 'refend') {
@@ -108,23 +112,31 @@ sub _build_article {
             $self->parse($body);
         } elsif ($tag eq 'cite') {
             my $citation = $self->unpack_keys($body);
+
+            _clean_authorship($citation);
+
             my $pmid = $citation->{pmid};
-            $current_citation = {};
-            $current_citation->{pmid} = $pmid if (defined($pmid));
+            $current_citation = $citation;
             push @citations, $citation if ($in_references);
             my $context = $self->get_context();
+            my $name;
             if (@$context) {
               my $attributes = $self->unpack_attributes($context->[-1]);
-              my $name = $attributes->{name};
-              if (! defined($name)) {
-                $name = Data::GUID->new()->as_string();
-              }
-              $current_citation->{name} = $name;
-              # say "In context: $context->[-1] $name => ".($pmid // "undef");
-              # say "Writing named citation: $name";
-              $citation->{name} = $name;
-              $named_citations->{$name} = $citation;
+              $name = $attributes->{name};
             }
+            if (! defined($name)) {
+              $name = Data::GUID->new()->as_string();
+            }
+            $citation->{name} = $name;
+            # say "In context: $context->[-1] $name => ".($pmid // "undef");
+            # say "Writing named citation: $name";
+            if (@$context && $context->[-1] =~ m{<ref}i) {
+              $citation->{referenced} = true;
+            }
+            if ($named_citations->EXISTS($name)) {
+              $log->warnf("Overwriting citation: %s -> %s", $name, $citation);
+            }
+            $named_citations->STORE($name, $citation);
         }
     };
 
@@ -138,7 +150,28 @@ sub _build_article {
     };
     my $text_handler = sub {
         my ($self, $event, $text) = @_;
-        push @body, $text;
+        my $context = $self->get_context();
+        if (@$context && $context->[-1] =~ m{<ref}i) {
+          ## Text immediately inside a <ref> tag isn't included. Instead, we should probably skim for a
+          ## PMID, at least. Would be better still to parse the citation and extract a title and
+          ## authors, but this will do for a minimum version. After all, we'll eventually pair up with
+          ## the PubMed source for much of this.
+          my $name;
+          if ($text =~ m{PMID\s+(\d{6,})}) {
+            my $citation = {pmid => $1};
+            my $attributes = $self->unpack_attributes($context->[-1]);
+            $name = $attributes->{name} // Data::GUID->new()->as_string();
+            $citation->{referenced} = true;
+            $citation->{name} = $name;
+            if ($named_citations->EXISTS($name)) {
+              $log->warnf("Overwriting citation: %s -> %s", $name, $citation);
+            }
+            $named_citations->STORE($name, $citation);
+            $current_citation = $citation;
+          }
+        } else {
+          push @body, $text;
+        }
     };
     my $tag_start_handler = sub {
       my ($self, $event, $tag, $text) = @_;
@@ -158,7 +191,7 @@ sub _build_article {
           if (! exists($attributes->{name})) {
             return;
           } else {
-            $current_citation = $named_citations->{$attributes->{name}};
+            $current_citation = $named_citations->FETCH($attributes->{name});
           }
         }
         if ($current_citation && $current_citation->{pmid}) {
@@ -220,6 +253,7 @@ sub _build_article {
 
     # Okay, now at this stage we can start processing the links to other items.
     my $gene_id = $keys->{Hs_Ensembl};
+    $log->infof("Analyzing: %s - %s", $gene_id, $keys->{Symbol});
 
     my $existing = $self->find_one_record($database, 'genes', {"id" => $gene_id});
     if (! $existing) {
@@ -231,17 +265,32 @@ sub _build_article {
     # references to be resolved. That means we can now begin to assemble the additional
     # gene information, which we can add to the gene page.
 
-    $log->debugf("Checking for clinical significance: %s - %s", $gene_id, $keys->{Symbol});
+    # It's useful for now to have a list of headers.
     my $body_text = join("", @body);
-    if ($body_text =~ m{==[ ]*Clinical significance[ ]*==\n(.*?)(?=[^=]==[^=]|$)}si) {
+
+    # while($body_text =~ m{(?:\A|[^=])\K(===*[ ]*[\p{XPosixGraph} ]+[ ]*===*(?=\z|[^=]))}g) {
+    #   $log->debugf("Heading: %s", $1);
+    # }
+
+    if ($body_text =~ m{==[ ]*(?:clinical[\w ]+|[\w ]*disease[\w ]*|[\w ]*cancer[\w ]*)[ ]*==\n(.*?)(?=[^=]==[^=]|$)}si) {
       my $significance = $1;
+      my @deletable = ();
 
       my @identifiers = ($significance =~ m{<ref refId="([^"]+)"/>}sg);
-      my %table = ();
-      @table{@identifiers} = map { $named_citations->{$_} } @identifiers;
-      foreach my $id (@identifiers) {
-        my $record = $table{$id};
-        $record->{publicationsRefx} = "pmid:$1";
+      my %clinical_identifiers = ();
+      @clinical_identifiers{@identifiers} = @identifiers;
+      foreach my $id ($named_citations->Keys()) {
+        my $record = $named_citations->FETCH($id);
+        if (! exists($record->{pmid})) {
+          push @deletable, $id;
+          next;
+        }
+        $record->{publicationsRefx} = "pmid:$record->{pmid}";
+        $record->{significant} = true if ($clinical_identifiers{$id});
+      }
+
+      foreach my $id (@deletable) {
+        $named_citations->DELETE($id);
       }
 
       my @alert = (
@@ -253,15 +302,48 @@ sub _build_article {
         }]
       );
 
-      my $wikipedia_data = {_format => "wikipedia", @alert, data => { significance => $significance, references => \%table}};
+      my $wikipedia_data = {_format => "wikipedia", @alert, data => { significance => $significance, references => $named_citations}};
 
       my $new = expand_references($existing);
       $new->{sections}->{wikipedia} = $wikipedia_data;
       my $resolved = resolve_references($new, $existing);
 
-      $log->debugf("Writing data if updated: %s - %s", $gene_id, $keys->{Symbol});
+      $log->infof("Writing data if updated: %s - %s", $gene_id, $keys->{Symbol});
       $self->maybe_write_record($database, 'genes', $resolved, $existing);
     }
+}
+
+sub _clean_authorship {
+  my ($citation) = @_;
+  return if (! exists($citation->{author}));
+  my @authors = split(/,\s*/, $citation->{author});
+
+  my $index = 2;
+  while(1) {
+    my $author = "author".$index;
+    if (exists($citation->{$author})) {
+      push @authors, $citation->{$author};
+      delete $citation->{$author};
+      $index++;
+    } else {
+      last;
+    }
+  }
+
+  while(1) {
+    my $first = "first".$index;
+    my $last = "last".$index;
+    if (exists($citation->{$first}) && exists($citation->{$last})) {
+      push @authors, "$citation->{$last} $citation->{$first}";
+      delete $citation->{$last};
+      delete $citation->{$first};
+      $index++;
+    } else {
+      last;
+    }
+  }
+  $citation->{author} = \@authors;
+  return;
 }
 
 sub output {
