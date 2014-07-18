@@ -31,7 +31,7 @@ sub parse {
 
 	my $templates = qr/(?:(?<TEMPLATE>\{\{(?:[^{}]++|(?-1))*+\}\})  |  # Find template calls
                         (?<LINK>\[\[(?:[^\[\]]++|(?-1))*+\]\])    |  # Find wiki-style links
-                        (?<TAG><[^>]+>)                           |  # Find HTML-style tags
+                        (?<TAG><\w[^>]*>)                         |  # Find HTML-style tags
                         (?<TEXT>[^{}\[\]\<\>]*+))/x;
 
   my $context = $self->get_context();
