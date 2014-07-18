@@ -21,9 +21,12 @@ use URI;
 use JSON;
 use Clone qw(clone);
 
+use Heliotrope::Logging qw(get_logger);
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 use Heliotrope::Util::XMLtoJSON;
+
+our $log = get_logger();
 
 sub _handle_reference_text {
   my ($self, $element, $path, $args, $text) = @_;
@@ -162,7 +165,7 @@ sub update {
   my $context = {};
   $self->{_context} = $context;
 
-  say "About to update.";
+  $log->info("About to update");
   my $data_file = $self->get_target_file($registry, "drugbank.xml.zip");
   _scan_file($self, $data_file, $xc, $context, \&entry_pass_1);
 
@@ -288,7 +291,7 @@ sub maybe_update_object {
     next;
   }
 
-  say "Updating $resolved->{name}";
+  $log->infof("Updating %s", $resolved->{name});
   $resolved->{version} = $existing->{version} + 1;
   $self->save_record($database, $collection, $resolved, {w => 1, j => 1});
 }

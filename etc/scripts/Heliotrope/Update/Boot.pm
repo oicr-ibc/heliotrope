@@ -9,6 +9,10 @@ use MooseX::Singleton;
 with 'Heliotrope::Updater';
 with 'Heliotrope::Store';
 
+use Heliotrope::Logging qw(get_logger);
+
+our $log = get_logger();
+
 sub BUILD {
 	my ($self) = @_;
 	$self->{name} = "boot";
@@ -26,15 +30,15 @@ sub update {
 
 sub output {
 	my ($self, $registry) = @_;
-	
-	say "Initializing indexes";
-    my $dbh = $self->open_database();
-    
-    foreach my $collection ("genes", "variants", "tissue_types", "histology_types", "tumour_types") {
-        $self->ensure_index($dbh, $collection, Tie::IxHash->new("name" => 1), { unique => true, safe => true });
-    }
-    
-    $self->ensure_index($dbh, "genes", Tie::IxHash->new("id" => 1), { unique => true, safe => true });
+
+	$log->info("Initializing indexes");
+  my $dbh = $self->open_database();
+
+  foreach my $collection ("genes", "variants", "tissue_types", "histology_types", "tumour_types") {
+      $self->ensure_index($dbh, $collection, Tie::IxHash->new("name" => 1), { unique => true, safe => true });
+  }
+
+  $self->ensure_index($dbh, "genes", Tie::IxHash->new("id" => 1), { unique => true, safe => true });
 	$self->close_database($dbh);
 }
 

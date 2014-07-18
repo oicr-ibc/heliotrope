@@ -20,9 +20,11 @@ use File::Listing qw(parse_dir);
 use XML::LibXML;
 use XML::LibXML::Reader;
 
+use Heliotrope::Logging qw(get_logger);
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 
+our $log = get_logger();
 
 sub BUILD {
 	my ($self) = @_;
@@ -44,7 +46,7 @@ sub maybe_update {
 
     my $dt = DateTime->from_epoch(epoch => $record->[3]);
     my $normalized_date = $dt->format_cldr("yyyy-MM-dd");
-    say "Normalized: $normalized_date.";
+    $log->debugf("Normalized date: %s", $normalized_date);
 
     my $cached_data = $self->get_data($registry);
     my $existing = $self->get_target_file($registry, "Homo_sapiens.ags.gz");
@@ -54,16 +56,16 @@ sub maybe_update {
     }
 
     if (exists($cached_data->{date}) && $cached_data->{date} ge $normalized_date) {
-        say "Existing file is new.";
-        say "Skipping update.";
+        $log->info("Existing file is newer");
+        $log->info("Skipping update");
         return;
     }
 
     my $entrez_url = $base_url . "/ASN_BINARY/Mammalia/Homo_sapiens.ags.gz";
-    say "Downloading $entrez_url.";
+    $log->infof("Downloading: %s", $entrez_url);
     $req = HTTP::Request->new(GET => $entrez_url);
     ($result, $file) = $self->get_resource($registry, $req);
-    say "Download complete.";
+    $log->info("Download complete");
 
     # Now we can store the data file in the right place and update the cache
     $cached_data->{date} = $normalized_date;
@@ -78,7 +80,7 @@ sub maybe_update {
 sub update {
 	my ($self, $registry) = @_;
 
-    say "About to update.";
+    $log->info("About to update");
     $self->output($registry);
 }
 
@@ -140,6 +142,7 @@ sub entry {
     $changes->{'$set'}->{'sections.description.data.summary'} = $summary;
     $changes->{'$addToSet'}->{'sections.description._alerts'} = $entrez_alert;
 
+    $log->debugf("Updating: %s", $ensembl_id);
     my $result = $self->update_record($database, 'genes', {id => $ensembl_id}, $changes, {upsert => 0, multiple => 0, w => 1, j => true});
 }
 
