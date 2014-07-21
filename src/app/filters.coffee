@@ -102,6 +102,9 @@ angular
   .filter 'authorList', () ->
     (input) ->
       if input?
-        input.join(", ")
+        if input.length > 3
+          input[0] + " et al."
+        else
+          input.join(", ")
       else
         input
