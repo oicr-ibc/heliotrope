@@ -46,3 +46,9 @@ ol.references li:before {
 ol.references li {
   counter-increment: section;
 }
+
+.reference {
+    padding-left: 22px ;
+    text-indent: -22px ;
+}
+

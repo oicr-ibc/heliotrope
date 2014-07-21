@@ -38,7 +38,7 @@ angular
               element = angular.element('<p></p>')
               paragraph = paragraph.replace /<ref refId="([^"]+)"\/>/g, (match, p1) ->
                 found = references[p1]
-                "<a href='/publications/pmid/#{found.pmid}'>[pmid:#{found.pmid}]</a>"
+                "<a class='citation' href='/publications/pmid/#{found.pmid}'>[pmid:#{found.pmid}]</a>"
               element.html(paragraph)
               iElement.append element
             if Object.keys(references).length > 0
@@ -49,7 +49,7 @@ angular
                 if reference.significant
                   newScope = scope.$new(true)
                   newScope.reference = reference
-                  template = angular.element('<li heli-bibliography-element></li>')
+                  template = angular.element('<li class="reference" heli-bibliography-element></li>')
                   linkFn = $compile(template)
                   refList.append linkFn(newScope)
   ]
