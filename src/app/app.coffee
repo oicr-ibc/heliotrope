@@ -6,6 +6,7 @@ angular
     'heliotrope.services.tracker'
     'heliotrope.services.knowledge'
     'heliotrope.services.genomics'
+    'heliotrope.services.interceptor'
     'heliotrope.controllers.common'
     'heliotrope.controllers.knowledge'
     'heliotrope.controllers.tracker'
@@ -53,35 +54,7 @@ angular
   ]
 
   .config ['$httpProvider', ($httpProvider) ->
-
-    authenticationInterceptor = ($rootScope, $q) ->
-
-      success = (response) ->
-        $rootScope.$emit "event:stopSpinner"
-        ## console.log 'HTTP successful response: ', response
-        response
-
-      error = (response) ->
-        $rootScope.$emit "event:stopSpinner"
-        ## console.log 'HTTP failure response: ', response
-        status = response.status
-
-        if status == 401
-          deferred = $q.defer()
-          ## console.log "Remembering 401 request", response.config
-          if ! response.config.url.match(/^\/api\/authentication/)
-            req = {config: response.config, deferred: deferred}
-            $rootScope.requests401.push(req)
-          $rootScope.$broadcast 'event:loginRequired'
-          deferred.promise
-        else
-          $q.reject response
-
-      (promise) ->
-        $rootScope.$emit "event:startSpinner"
-        promise.then(success, error)
-
-    $httpProvider.responseInterceptors.push(authenticationInterceptor)
+    $httpProvider.interceptors.push 'httpInterceptor'
   ]
 
   .run ['$rootScope', '$http', '$location', '$timeout', (scope, $http, $location, $timeout) ->
@@ -118,15 +91,12 @@ angular
 
     scope.$on 'event:startSpinner', () ->
       if ! spinnerPromise
-        spinnerPromise = $timeout(
-          (() ->
-            if ! spinner
-              target = document.getElementById('spinner-container');
-              spinner = new Spinner({lines: 12})
-              spinner.spin(target)
-          ),
-          200
-        )
+        timeoutFn = () ->
+          if ! spinner
+            target = document.getElementById('spinner-container');
+            spinner = new Spinner({lines: 12})
+            spinner.spin(target)
+        spinnerPromise = $timeout timeoutFn, 100, false
 
     scope.$on 'event:stopSpinner', () ->
       if spinnerPromise
