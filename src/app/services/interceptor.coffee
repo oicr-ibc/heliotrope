@@ -4,7 +4,8 @@ angular
   .factory 'httpInterceptor', Array '$rootScope', '$q', ($rootScope, $q) ->
     result =
       request: (request) ->
-        $rootScope.$emit "event:startSpinner"
+        if ! request.url.match(/^\/api\/authentication/)
+          $rootScope.$emit "event:startSpinner"
         request
 
       response: (response) ->

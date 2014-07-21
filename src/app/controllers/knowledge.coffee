@@ -19,7 +19,6 @@ angular
   ]
 
   .controller 'PublicationController', ['$scope', '$routeParams', 'Publication', ($scope, $routeParams, Publication) ->
-    console.log('PublicationController')
     $scope.entity = Publication.get($routeParams
       (entity) ->
 

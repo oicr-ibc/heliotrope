@@ -121,7 +121,6 @@ angular
       scope.user = new User(user)
 
       retry = (req) ->
-        console.log "Retrying queued 401 request: #{req}"
         $http(req.config).then (response) ->
           req.deferred.resolve(response)
 
