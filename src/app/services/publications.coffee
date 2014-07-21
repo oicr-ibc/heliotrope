@@ -37,28 +37,34 @@ angular
 
       if !references?
         references = {}
+
       refList = undefined
 
       referenceIndexes = {}
       referenceIndex = 1
 
-      if Object.keys(references).length > 0
-        refList = angular.element('<ol class="references"></ol>')
-        for own key, reference of references
-          if reference.significant
-            referenceElement = angular.element('<li class="reference"></li>')
-            referenceElement.append bibiographyElement(reference)
-            refList.append referenceElement
-            referenceIndexes[key] = referenceIndex++
-
       for paragraph in paragraphs
         element = angular.element('<p></p>')
         paragraph = paragraph.replace /<ref refId="([^"]+)"\/>/g, (match, p1) ->
+          index = referenceIndexes[p1] or referenceIndexes[p1] = referenceIndex++
           found = references[p1]
-          "<a class='citation' href='/publications/pmid/#{found.pmid}'>#{'[' + referenceIndexes[p1] + ']'}</a>"
-        element.html(paragraph)
+          "<a class='citation' href='/publications/pmid/#{found.pmid}'>#{'[' + index + ']'}</a>"
+        element.html $sanitize(paragraph)
         iElement.append element
 
-      if refList?
+      if Object.keys(references).length > 0
+        refList = []
+        for own key, reference of references
+          if reference.significant
+            refList.push { index: referenceIndexes[key], body: bibiographyElement(reference) }
+        refList.sort (a, b) -> a.index - b.index
+
+      if refList and refList.length > 1
         iElement.append angular.element('<h4>References</h4>')
-        iElement.append(refList)
+        refListElement = angular.element('<ol class="references"></ol>')
+        for ref in refList
+          refElement = angular.element("<li class='reference' value='#{ref.index}''>#{ref.body}</li>")
+          refListElement.append refElement
+        iElement.append refListElement
+
+      iElement
