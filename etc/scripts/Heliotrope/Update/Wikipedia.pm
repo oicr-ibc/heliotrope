@@ -293,6 +293,9 @@ sub _build_article {
         $named_citations->DELETE($id);
       }
 
+      $DB::single = 1;
+      _ensure_details($self, $database, $named_citations);
+
       my @alert = (
         _alerts => [{
           level => "note",
@@ -311,6 +314,40 @@ sub _build_article {
       $log->infof("Writing data if updated: %s - %s", $gene_id, $keys->{Symbol});
       $self->maybe_write_record($database, 'genes', $resolved, $existing);
     }
+}
+
+sub _ensure_details {
+  my ($self, $database, $named_citations) = @_;
+  my @keys = $named_citations->Keys();
+  foreach my $key (@keys) {
+    my $citation = $named_citations->FETCH($key);
+    _ensure_citation_details($self, $database, $citation);
+  }
+}
+
+sub _ensure_citation_details {
+  my ($self, $database, $citation) = @_;
+  my @required_fields = qw(author title journal volume issue pages date);
+  return unless (grep { ! exists($citation->{$_}) } @required_fields);
+
+  my $name = "pmid:".$citation->{pmid};
+  $log->warnf("Missing publication details: checking against: $name");
+  my $existing = $self->find_one_record($database, 'publications', {"name" => $name});
+  if (! $existing) {
+    carp("Can't find publication: $name");
+    return;
+  }
+
+  my $publication = $existing->{sections}->{pubmed}->{data};
+  $citation->{author}  ||=  [ map { "$_->{LastName} $_->{Initials}" } @{$publication->{Article}->{AuthorList}->{Author}} ];
+  $citation->{title}   ||=  $publication->{ArticleTitle};
+  $citation->{journal} ||=  $publication->{Article}->{Journal}->{ISOAbbreviation};
+  $citation->{volume}  ||=  $publication->{Article}->{Journal}->{JournalIssue}->{Volume};
+  $citation->{issue}   ||=  $publication->{Article}->{Journal}->{JournalIssue}->{Issue};
+  $citation->{pages}   ||=  $publication->{Article}->{Pagination}->{MedlinePgn};
+  $citation->{date}    ||=  $publication->{Article}->{Journal}->{JournalIssue}->{PubDate}->{MedlineDate};
+
+  return;
 }
 
 sub _clean_authorship {
