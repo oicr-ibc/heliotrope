@@ -7,6 +7,7 @@ angular
     'heliotrope.services.knowledge'
     'heliotrope.services.genomics'
     'heliotrope.services.interceptor'
+    'heliotrope.services.publications'
     'heliotrope.controllers.common'
     'heliotrope.controllers.knowledge'
     'heliotrope.controllers.tracker'

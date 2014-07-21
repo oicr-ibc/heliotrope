@@ -23,7 +23,7 @@ angular
                 '<strong>{{alert.level | uppercase}}!</strong> {{alert.body}}' +
                 '</div>'
 
-  .directive 'heliDewikify', ['$compile', ($compile) ->
+  .directive 'heliDewikify', ['$compile', 'dewikifier', ($compile, dewikifier) ->
     result =
       restrict: "A"
       replace: false
@@ -32,26 +32,8 @@ angular
       link: (scope, iElement, iAttrs) ->
         scope.$watch 'text', (newValue, oldValue) ->
           if newValue != undefined
-            paragraphs = newValue.split(/\n\n/)
-            references = if scope.references? then scope.references else {}
-            for paragraph in paragraphs
-              element = angular.element('<p></p>')
-              paragraph = paragraph.replace /<ref refId="([^"]+)"\/>/g, (match, p1) ->
-                found = references[p1]
-                "<a class='citation' href='/publications/pmid/#{found.pmid}'>[pmid:#{found.pmid}]</a>"
-              element.html(paragraph)
-              iElement.append element
-            if Object.keys(references).length > 0
-              iElement.append angular.element('<h4>References</h4>')
-              refList = angular.element('<ol class="references"></ol>')
-              iElement.append(refList)
-              for own key, reference of references
-                if reference.significant
-                  newScope = scope.$new(true)
-                  newScope.reference = reference
-                  template = angular.element('<li class="reference" heli-bibliography-element></li>')
-                  linkFn = $compile(template)
-                  refList.append linkFn(newScope)
+            element = dewikifier(newValue, scope.references)
+            iElement.append(element)
   ]
 
   .directive 'heliBibliographyElement', () ->
