@@ -1,10 +1,10 @@
-<div class="row">
+<div class="row" ng-cloak ng-show="step.data">
   <div class="col-md-9">
     <div class="page-header">
-      <h1 ng-show="step.data.step._id">Step {{step.data.step.name}} <small>/ 
-        for: {{step.data.step.appliesTo}} / 
+      <h1 ng-show="step.data.step._id">Step {{step.data.step.name}} <small>/
+        for: {{step.data.step.appliesTo}} /
         in: <a href="/admin/studies/{{step.data.study.name}}">{{step.data.study.name}}</a></small></h1>
-      <h1 ng-hide="step.data.step._id">New Step <small>/ 
+      <h1 ng-hide="step.data.step._id">New Step <small>/
         in: <a href="/admin/studies/{{step.data.study.name}}">{{step.data.study.name}}</a></small></h1>
     </div>
 

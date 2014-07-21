@@ -6,12 +6,12 @@
         <h1>Search results</h1>
       </div>
     </div>
-    
-    <ul class="search">
+
+    <ul class="search" ng-show="search.data">
       <li ng-repeat="hit in search.data.results">
         <a ng-href="{{hit.url}}">{{hit.type | capitalize}}: {{hit.label}}</a>
       </li>
     </ul>
-    
+
   </div>
 </div>
