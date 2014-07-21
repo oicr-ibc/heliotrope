@@ -3,7 +3,7 @@
     [
         {
             "path": ".",
-            "folder_exclude_patterns": ["webapp/app/js", "webapp/app/img", "node_modules", "webapp/app/vendor", ".vagrant"],
+            "folder_exclude_patterns": ["webapp/app/js", "webapp/app/img", "node_modules", "bower_components", "webapp/app/vendor", ".vagrant", ".tmp"],
             "file_exclude_patterns": ["*.sublime-*"]
         }
     ],
