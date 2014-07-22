@@ -6,6 +6,7 @@ MongoClient =     mongo.MongoClient
 BSON =            mongo.BSONPure
 
 genomics =        require("./genomics")
+knowledgeCharts = require("./knowledgeCharts")
 
 module.exports.connected = (url, callback) ->
   (req, res) ->

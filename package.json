@@ -10,12 +10,14 @@
     "bcrypt": "^0.7.8",
     "connect-mongo": "^0.4.1",
     "express-session": "^1.6.4",
+    "glob": "^4.0.4",
     "ldapjs": "^0.7.1",
     "lru-cache": "^2.5.0",
     "morgan": "^1.1.1",
     "passport": "^0.2.0",
     "passport-local": "^1.0.0",
-    "passport-localapikey": "0.0.3"
+    "passport-localapikey": "0.0.3",
+    "temp": "^0.8.0"
   },
   "devDependencies": {
     "body-parser": "^1.4.3",

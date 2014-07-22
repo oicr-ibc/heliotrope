@@ -9,7 +9,11 @@ config = module.parent.exports.config
 base =   config["heliotrope"]["knowledgeUriBase"]
 logger = module.exports.logger
 
+temp =            require('temp')
+fs =              require("fs")
+
 ## Knowledge service implementation. Nothing much to see here, move along please.
+reporting =       require("./reporting")
 responders =      require("./responders")
 authentication =  require("./authentication")
 knowledge =       require("./knowledgeImplementation")
@@ -70,25 +74,29 @@ app.get base + '/variants/:id/report',
 
         doc["data"]["serviceUrl"] = req.url
         doc["data"]["config"] = res.locals.config if res.locals.config?
-        view = "index"
+        view = "index.jade"
         res.render view, doc, (err, html) ->
-          buffer = new Buffer(html)
+          if err
+            db.close()
+            res.send 500, err
+          else
+            buffer = new Buffer(html)
 
-          temp.open 'report', (err, info) ->
-            console.error("Failed to open file", err) if err
-
-            fs.write info.fd, buffer, 0, buffer.length, null, (err, written, buffer) ->
+            temp.open 'report', (err, info) ->
               console.error("Failed to open file", err) if err
 
-              fs.close info.fd, (err) ->
-                console.error("Failed to close file", err) if err
+              fs.write info.fd, buffer, 0, buffer.length, null, (err, written, buffer) ->
+                console.error("Failed to open file", err) if err
 
-                reporting.generatePdf info.path, (err, stream) ->
+                fs.close info.fd, (err) ->
+                  console.error("Failed to close file", err) if err
 
-                  db.close()
-                  res.header('Content-Type', 'application/pdf')
-                  res.header('Content-Disposition', 'attachment; filename="report.pdf"')
-                  stream.pipe(res)
+                  reporting.generatePdf info.path, (err, stream) ->
+
+                    db.close()
+                    res.header('Content-Type', 'application/pdf')
+                    res.header('Content-Disposition', 'attachment; filename="report.pdf"')
+                    stream.pipe(res)
     else
       knowledge.getVariantReport err, db, req, res, responders.sendViewResponse(req, res, 'index')
 
