@@ -4,6 +4,8 @@ angular
   .factory 'dewikifier', Array '$sanitize', ($sanitize) ->
     return (text, references) ->
 
+      text = text.replace /(?:===\n)(\w)/g, (match, p1) -> "===\n\n" + p1
+
       getAuthors = (reference) ->
         input = reference.author
         result =
@@ -44,7 +46,13 @@ angular
       referenceIndex = 1
 
       for paragraph in paragraphs
-        element = angular.element('<p></p>')
+        tag = 'p'
+        paragraph = paragraph.replace /^(====?)?(.*?)(====?)?$/, (match, p1, p2, p3) ->
+          switch p1
+            when '===' then tag = 'h4'
+            when '====' then tag = 'h5'
+          p2
+        element = angular.element("<#{tag}></#{tag}>")
         paragraph = paragraph.replace /<ref refId="([^"]+)"\/>/g, (match, p1) ->
           index = referenceIndexes[p1] or referenceIndexes[p1] = referenceIndex++
           found = references[p1]
