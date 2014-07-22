@@ -95,6 +95,13 @@ gulp.task('coffee-service', function () {
     .pipe(g.coffee())
     .pipe(gulp.dest('./.tmp/src/service'));
 });
+gulp.task('common', function() {
+return gulp.src([
+    './src/common/**/*.js'
+  ])
+    .pipe(gulp.dest('./.tmp/src/app'))
+    .pipe(gulp.dest('./.tmp/src/service'));
+});
 
 /**
  * Scripts
@@ -129,7 +136,7 @@ gulp.task('vendors', function () {
  * Index
  */
 gulp.task('index', index);
-gulp.task('build-all', ['styles', 'templates', 'coffee', 'coffee-service'], index);
+gulp.task('build-all', ['styles', 'templates', 'common', 'coffee', 'coffee-service'], index);
 
 function index () {
   var opt = {read: false};
