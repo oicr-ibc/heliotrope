@@ -72,8 +72,7 @@ function clientErrorHandler(err, req, res, next) {
 }
 
 function errorHandler(err, req, res, next) {
-  res.status(500);
-  res.render('error', { error: err });
+  res.send(500, { error: err });
 }
 
 app.configure(function(){
