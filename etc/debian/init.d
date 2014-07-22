@@ -138,8 +138,8 @@ do_start()
              [ "$RUNIDS" != "" ] && log_daemon_msg  "  --->  Daemon already running $DESC" "$INIT_SCRIPT_NAME_NOEXT"; return 1;
         fi
 
-        start-stop-daemon --start --quiet --chuid $NODEUSER --chdir $DAEMON_HOME --make-pidfile --pidfile $PIDFILE --background --exec $DAEMON -- \
-                $DAEMON_ARGS \
+        start-stop-daemon --start --quiet --chuid $NODEUSER --chdir $DAEMON_HOME --make-pidfile --pidfile $PIDFILE --no-close --background --exec $DAEMON -- \
+                $DAEMON_ARGS > /var/log/heliotrope/heliotrope.log 2>&1 \
                 || { [ "$VERBOSE" != no ] && log_daemon_msg  "  --->  could not be start $DESC" "$INIT_SCRIPT_NAME_NOEXT"; return 2; }
 
         # Add code here, if necessary, that waits for the process to be ready
