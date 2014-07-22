@@ -59,7 +59,7 @@ angular
             refList.push { index: referenceIndexes[key], body: bibiographyElement(reference) }
         refList.sort (a, b) -> a.index - b.index
 
-      if refList and refList.length > 1
+      if refList and refList.length > 0
         iElement.append angular.element('<h4>References</h4>')
         refListElement = angular.element('<ol class="references"></ol>')
         for ref in refList
