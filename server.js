@@ -34,7 +34,7 @@ nconf.defaults({
   'server:port': 3000,
   'server:address': "0.0.0.0",
   'debug': true,
-  'authenticate': false, 
+  'authenticate': true, 
   'heliotrope:knowledgeUriBase': '/knowledge/api',
   'heliotrope:trackerUriBase': '/tracker/api',
   'heliotrope:baseUrl': 'http://localhost:3000',
