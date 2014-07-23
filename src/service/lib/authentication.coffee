@@ -33,7 +33,6 @@ saltedPassword = (string) ->
 ## get in the way of that.
 
 config.ldap.log4js = module.parent.exports.log4js if module.parent.exports.log4js?
-ldap = new LdapAuth(config.ldap)
 
 ## The authenticator is provides a middleware component that can be used as a
 ## middleware in an endpoint. What it actually does, or how it does it, doesn't
@@ -124,7 +123,11 @@ heliotropeLocalStrategy = (username, password, done) ->
         userId = user[userField]
         deserializer(userId, done)
 
-    ldap.authenticate username, password, ldapCallback
+    ldap = new LdapAuth(config.ldap)
+    ldap.authenticate username, password, (err, user) ->
+      ldap.close (closeErr) ->
+        logger.error "Error closing LDAP client", closeErr if closeErr
+        ldapCallback(err, user)
 
   if config['ldap']['enabled']
     ldapAuthenticate()
