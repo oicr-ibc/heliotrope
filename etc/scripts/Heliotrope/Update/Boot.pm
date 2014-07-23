@@ -11,7 +11,7 @@ with 'Heliotrope::Store';
 
 use Heliotrope::Logging qw(get_logger);
 
-our $log = get_logger();
+my $log = get_logger();
 
 sub BUILD {
 	my ($self) = @_;

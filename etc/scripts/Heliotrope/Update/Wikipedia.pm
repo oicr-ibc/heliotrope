@@ -24,7 +24,7 @@ use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 
 use MediaWiki::Parser;
 
-our $log = get_logger();
+my $log = get_logger();
 
 sub BUILD {
 	my ($self) = @_;

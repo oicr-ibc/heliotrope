@@ -23,7 +23,7 @@ use Heliotrope::Logging qw(get_logger);
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 
-our $log = get_logger();
+my $log = get_logger();
 
 sub BUILD {
     my ($self) = @_;

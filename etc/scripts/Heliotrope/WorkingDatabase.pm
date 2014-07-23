@@ -4,7 +4,11 @@ use common::sense;
 
 use Moose::Role;
 
+use Heliotrope::Logging qw(get_logger);
+
 use DBI;
+
+my $log = get_logger();
 
 sub open_working_database {
 	my ($self, $registry) = @_;
@@ -12,13 +16,14 @@ sub open_working_database {
 	my $name = $self->name();
 	my $filename = $self->get_target_file($registry, "$name.db");
 
-    say "Creating database: $filename";
+    $log->infof("Creating database: %s", $filename);
 
     unlink($filename) if (-e $filename);
     my $dbh = DBI->connect("dbi:SQLite:$filename") or die DBI->errstr();
 
     $dbh->do(qq{PRAGMA locking_mode = EXCLUSIVE}) or die($dbh->errstr());
     $dbh->do(qq{PRAGMA synchronous = OFF}) or die($dbh->errstr());
+    $dbh->do(qq{PRAGMA cache_size = 10000}) or die($dbh->errstr());
 
     $self->{_dbh} = $dbh;
 
@@ -52,7 +57,7 @@ sub load_data {
 
     my $dbh = $self->{_dbh};
 
-    say "Loading from: $file.";
+    $log->infof("Loading from: %s", $file);
 
     my $fh = IO::Uncompress::Gunzip->new($self->get_target_file($registry, $file));
 
