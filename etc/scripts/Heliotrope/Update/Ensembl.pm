@@ -20,8 +20,11 @@ use IO::File;
 use IO::Uncompress::Gunzip;
 use List::MoreUtils qw(firstidx apply);
 
+use Heliotrope::Logging qw(get_logger);
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
+
+my $log = get_logger();
 
 has 'release' => (
   is => 'ro',
@@ -66,6 +69,7 @@ sub maybe_update {
 
   # First of all, we need to locate the right directory
   my $root_url = "ftp://ftp.ensembl.org/pub/release-$release/mysql/";
+  $log->infof("Requesting: %s", $root_url);
   $req = HTTP::Request->new(GET => $root_url);
   $req->header(Accept => "text/html, */*;q=0.1");
   ($result, $file) = $self->get_resource($registry, $req);
@@ -78,6 +82,7 @@ sub maybe_update {
 
   my $base_url = "$root_url/${directory}_${version}";
 
+  $log->infof("Requesting: %s", "$base_url/CHECKSUMS.gz");
   $req = HTTP::Request->new(GET => "$base_url/CHECKSUMS.gz");
   $req->header(Accept => "text/html, */*;q=0.1");
 
@@ -111,14 +116,14 @@ sub maybe_update {
     my $checksum = $checksums->{$file};
 
     if (exists($file_data->{checksum}) && $file_data->{checksum} eq $checksum) {
-      say "Existing file is fine: $file. Skipping update.";
+      $log->infof("Existing file is fine: %s. Skipping update", $file);
       next;
     }
 
     $req = HTTP::Request->new(GET => $url);
-    say "Downloading $url.";
+    $log->infof("Downloading $%s", $url);
     my ($req_result, $req_file) = $self->get_resource($registry, $req);
-    say "Download complete.";
+    $log->info("Download complete");
 
     # Now we can store the data file in the right place and update the cache
     $file_data->{checksum} = $checksum;
@@ -140,7 +145,7 @@ sub maybe_update {
 sub update {
   my ($self, $registry) = @_;
 
-  say "About to update.";
+  $log->infof("About to update");
 
   my $dbh = $self->open_working_database($registry);
 
@@ -441,7 +446,7 @@ sub output {
   # a Ensembl update note attached. This should inform people about when the
   # data was actually updated.
 
-  say "Writing data.";
+  $log->info("Writing data");
 
   my @alert = (
     _alerts => [{
@@ -471,7 +476,7 @@ sub output {
 
     my $new = expand_references($existing);
 
-    foreach my $block (qw(description location transcripts)) {
+    foreach my $block (qw(description location transcripts identifiers)) {
       my $existing_block = $existing->{sections}->{$block}->{data};
       my $new_block = $data->{$block};
       if (! deep_eq($existing_block, $new_block)) {
@@ -499,7 +504,7 @@ sub build_data {
   # Start with gene and chromosome stuff. This is a more complex query
   # as we need to remove the sequencing regions that aren't reference.
 
-  say "Finding genes.";
+  $log->info("Finding genes");
 
   $self->execute_delimited_sql(<<__ENDSQL__);
 DROP TABLE IF EXISTS interesting_genes;
@@ -562,7 +567,7 @@ __ENDSQL__
     };
   };
 
-  say "Finding synonyms.";
+  $log->info("Finding synonyms");
 
   # Now let's read the synonyms.
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
@@ -576,7 +581,7 @@ __ENDSQL__
     push @{$gene_data->{$stable_id}->{description}->{synonyms}}, $synonym if (exists($gene_data->{$stable_id}));
   }
 
-  say "Finding transcripts.";
+  $log->info("Finding transcripts");
 
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
 SELECT g.id, g.canonical_transcript_id = tr.transcript_id, tr.stable_id, tr.version, tl.stable_id, tl.version,
@@ -635,7 +640,7 @@ __ENDSQL__
   # to keep these offsets in the database and apply then at runtime, if we are getting different
   # coordinates against Ensembl transcripts than we would against refGene.txt coding segments.
 
-  say "Finding exons.";
+  $log->info("Finding exons");
 
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
 SELECT g.id, tr.stable_id, ext.rank,
@@ -664,7 +669,7 @@ __ENDSQL__
     $transcript->{length} += (1 + $end - $start);
   }
 
-  say "Removing Ensembl internal exon identifiers.";
+  $log->info("Removing Ensembl internal exon identifiers");
   foreach my $gene (keys %$gene_data) {
     my $transcripts = $gene_data->{$gene}->{transcripts};
     foreach my $transcript (keys %$transcripts) {
@@ -680,7 +685,7 @@ __ENDSQL__
     }
   }
 
-  say "Finding RefSeq identifiers.";
+  $log->info("Finding RefSeq identifiers");
 
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
 SELECT g.id, tr.stable_id, x.display_label
@@ -702,7 +707,7 @@ __ENDSQL__
 
   my $identifiers = { omim => 'MIM_GENE', hgnc => 'HGNC' };
   while(my ($key, $value) = each %$identifiers) {
-    say "Finding external gene identifiers from $value.";
+    $log->infof("Finding external gene identifiers from %s", $value);
 
     $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
   SELECT g.id, x.dbprimary_acc
@@ -716,12 +721,11 @@ __ENDSQL__
     $statement->execute($value) or die($dbh->errstr());
     while (my ($stable_id, $identifier_value) = $statement->fetchrow_array()) {
       croak if (! exists($gene_data->{$stable_id}));
-      $gene_data->{$stable_id}->{identifiers} = [$gene_data->{$stable_id}->{identifiers}] if (! exists());
-      push @{$gene_data->{$stable_id}->{identifiers}}, {source => $key, ref => $identifier_value};
+      push @{$gene_data->{$stable_id}->{identifiers}->{$key}}, $identifier_value;
     }
   }
 
-  say "Finding domains.";
+  $log->info("Finding domains");
 
   $statement = $dbh->prepare(<<__ENDSQL__) or die($dbh->errstr());
 SELECT g.id, tr.stable_id, pf.seq_start, pf.seq_end, pf.hit_name, pf.score, pf.evalue, pf.perc_ident, pf.external_data, a.gff_source, ip.interpro_ac, x.description
@@ -760,7 +764,7 @@ __ENDSQL__
   # post process, because using an associative array (aka hash) makes the Perl code very much
   # easier.
 
-  say "Finalizing transcripts.";
+  $log->info("Finalizing transcripts");
   foreach my $gene (keys %$gene_data) {
     my $transcripts = $gene_data->{$gene}->{transcripts};
     my @transcript_identifiers = sort { $transcripts->{$b}->{isCanonical} <=> $transcripts->{$a}->{isCanonical} || $a cmp $b } keys %$transcripts;

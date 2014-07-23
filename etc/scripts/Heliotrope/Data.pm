@@ -25,13 +25,13 @@ sub expand_references_aux {
 			my $value = $document->{$key};
 			my $tag = substr($key, -4);
 			if ($tag eq 'Ridx') {
-                my $collection = $key;
-                $collection =~ s/([a-z])([A-Z])/$1_\l$2/gr;
-                my $reference = $top->{references}->[$value];
-                (substr($key, 0, -4) . "Refx", $reference->{name});
-            } else {
-    			($key => expand_references_aux($value, $top));
-            }
+        my $collection = $key;
+        $collection =~ s{([a-z])([A-Z])}{$1_\l$2}gr;
+        my $reference = $top->{references}->[$value];
+        (substr($key, 0, -4) . "Refx", $reference->{name});
+      } else {
+		    ($key => expand_references_aux($value, $top));
+      }
 		} sort keys %$document }
 	} else {
 		return $document;

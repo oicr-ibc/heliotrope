@@ -50,7 +50,10 @@ class LdapAuth
       Cache = require('./cache')
       @userCache = new Cache(100, 300, this.log, 'user')
 
-    clientOpts = {url: @opts.url}
+    clientOpts = {
+      url: @opts.url
+      connectTimeout: parseInt(process.env.LDAP_CONNECT_TIMEOUT || 0, 10)
+    }
     if @opts.log4js && @opts.verbose
       clientOpts.log4js = @opts.log4js
 
