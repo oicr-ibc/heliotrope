@@ -84,7 +84,7 @@ angular
 
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-            linkBody("<select class='select-dropdown' heli-select-element ng-model='value'>" +
+            linkBody("<select class='select-dropdown' ng-model='value'>" +
                      "<option ng-repeat='alt in options | split' ng-selected='(alt == value)' value='{{alt}}'>{{alt | keywordToString:#{capitalize}}}</option>" +
                      "</select>")
           else
