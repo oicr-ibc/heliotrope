@@ -2,6 +2,7 @@
 'use strict';
 
 var gulp = require('gulp'),
+    fs = require('fs'),
     g = require('gulp-load-plugins')({lazy: false}),
     noop = g.util.noop,
     es = require('event-stream'),
@@ -18,10 +19,13 @@ var gulp = require('gulp'),
 // pick up immediately.
 var conditionalPushStateMiddleware = function(req, res, next) {
   var pathname = url.parse(req.url).pathname;
-  if (!pathname.match(/^\/api\//) && !pathname.match(/\.(jpe?g|png|css|js|html?|woff|ttf|svg|map)$/i)) {
-    req.url = '/';
+  if (req.url === '/') {
+    fs.createReadStream('.tmp/index.html').pipe(res);
+  } else if (!pathname.match(/^\/api\//) && !pathname.match(/\.(jpe?g|png|css|js|html?|woff|ttf|svg|map)$/i)) {
+    fs.createReadStream('.tmp/index.html').pipe(res);
+  } else {
+    next();
   }
-  next();
 };
 
 // Proxy for /api/ from 3000 -> 3001.
