@@ -37,7 +37,7 @@
       <div heli-section body-id="mutations" title="Mutations" when="entity.data.sections.mutations" >
         <div id="mutations-list" class="section-end">
           <span class="inline-list">
-            <span class="inline-item" ng-repeat="mutation in entity.data.sections.mutations.data"><a ng-href="{{mutation.url}}">{{mutation.name}}</a></span>
+            <span class="inline-item" ng-repeat="mutation in entity.data.sections.mutations.data | limitTo : 10"><a ng-href="/variants/{{mutation.variant}}">{{mutation.name}}</a></span>
           </span>
         </div>
       </div>

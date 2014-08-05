@@ -9,10 +9,21 @@ angular
     )
   ]
 
-  .controller 'GeneController', ['$scope', '$routeParams', 'Gene', ($scope, $routeParams, Gene) ->
+  .controller 'GeneController', ['$scope', '$routeParams', '$http', 'Gene', ($scope, $routeParams, $http, Gene) ->
+
+    addData = (url, options, callback) ->
+      $http {method: 'GET', url: url, params: options}
+        .success (data, status, headers, config) ->
+          callback null, data
+        .error (data, status, headers, config) ->
+          callback status, data
+
     $scope.entity = Gene.get($routeParams
       (entity) ->
         $scope.description = entity.data.sections.description.data
+        addData entity.data.mutationsUrl, {limit: 10}, (err, data) ->
+          if ! err?
+            entity.data.sections.mutations = data
       (error) ->
         console.log error
     )

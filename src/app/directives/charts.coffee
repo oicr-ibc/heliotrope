@@ -91,7 +91,7 @@ angular
               for element in nodes
                 result.push
                   name: element.name
-                  value: element.frequency.total
+                  value: element.frequency
               output =
                 children: result
 
