@@ -120,10 +120,10 @@ module.exports.getGene = (err, db, req, res, callback) ->
           for mutation in commonMutations
             mutation.url = "/variants/" + encodeURIComponent(mutation.gene + " " + mutation.shortMutation)
 
-          resolved = resolve(doc)
-          resolved.url = "/genes/" + name
-          result = new Object
-          result["data"] = resolved
+      resolved = resolve(doc)
+      resolved.url = "/genes/" + name
+      result = new Object
+      result["data"] = resolved
 
           mutations = new Object
           mutations["data"] = commonMutations
