@@ -63,12 +63,11 @@ angular
 
   .directive 'heliSection', () ->
     result =
-      priority: 1
       restrict: "A"
       replace: true
       transclude: true
-      scope: { title: '@title', id: '@bodyId' }
-      template: '<div class="row-fluid">' +
+      scope: { title: '@title', id: '@bodyId', when: '=when' }
+      template: '<div class="row-fluid ng-hide">' +
                 '<div class="tab-content">' +
                 '<div class="tab-pane active">' +
                 '<div class="row-fluid">' +
@@ -78,10 +77,11 @@ angular
                 '</div' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
+
         navElement = jQuery("#sidebar .nav-list")
         id = iAttrs["bodyId"]
         title = iAttrs["title"]
-        newElement = jQuery("<li><a class='nav-section' href='#" + id + "'>" + title + "</a></li>")
+        newElement = jQuery("<li class='ng-hide'><a class='nav-section' href='#" + id + "'>" + title + "</a></li>")
         newElement.appendTo(navElement)
         newElement.click (e) ->
           e.preventDefault()
@@ -90,3 +90,14 @@ angular
           offset = jQuery(target).offset().top - 150
           jQuery("body").animate({scrollTop: offset}, 'slow')
           true
+
+        ## If there's a when attribute, this is a conditional section. We should hide it
+        ## any time we get a false value. This includes the TOC entry, too.
+        if iAttrs.when?
+          scope.$watch 'when', (value) ->
+            newElement.toggleClass('ng-hide', !value?)
+            jQuery(iElement).toggleClass('ng-hide', !value?)
+
+        else
+          jQuery(iElement).toggleClass('ng-hide')
+          newElement.toggleClass('ng-hide')

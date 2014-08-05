@@ -28,13 +28,13 @@
         </div>
       </div>
 
-      <div ng-show="entity.data.sections.wikipedia" heli-section body-id="significance" title="Clinical significance">
+      <div heli-section body-id="significance" title="Clinical significance" when="entity.data.sections.wikipedia">
         <div id="significance-table">
           <div heli-dewikify text="entity.data.sections.wikipedia.data.significance" references="entity.data.sections.wikipedia.data.references"></div>
         </div>
       </div>
 
-      <div ng-show="entity.data.sections.mutations" heli-section body-id="mutations" title="Mutations">
+      <div heli-section body-id="mutations" title="Mutations" when="entity.data.sections.mutations" >
         <div id="mutations-list" class="section-end">
           <span class="inline-list">
             <span class="inline-item" ng-repeat="mutation in entity.data.sections.mutations.data"><a ng-href="{{mutation.url}}">{{mutation.name}}</a></span>
@@ -42,11 +42,11 @@
         </div>
       </div>
 
-      <div heli-section body-id="domains" title="Gene structure">
+      <div heli-section body-id="domains" title="Gene structure" when="entity.data.sections.transcripts">
         <div heli-structure-distribution></div>
       </div>
 
-      <div ng-show="entity.data.sections.gene_census_data" heli-section body-id="gene-census-info" title="Cancer gene census information">
+      <div heli-section body-id="gene-census-info" title="Cancer gene census information" when="entity.data.sections.gene_census_data" >
         <div id="cancer-gene-census-table">
           <dl>
             <dt>Full name</dt>
@@ -91,7 +91,7 @@
         </div>
       </div>
 
-      <div heli-section body-id="frequencies" title="Mutation frequencies">
+      <div heli-section body-id="frequencies" title="Mutation frequencies" when="entity.data.sections.mutations">
         <div id="frequencies-table">
           <div heli-frequencies></div>
         </div>
