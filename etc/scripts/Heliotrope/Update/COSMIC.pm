@@ -293,14 +293,6 @@ sub _handle_canonical_annotation {
   $csq_data->{HGVSporiginal} = $csq_data->{HGVSp}, $csq_data->{HGVSp} =~ s{^ENS[^:]+}{$gene} if (exists($csq_data->{HGVSp}));
   $csq_data->{HGVScoriginal} = $csq_data->{HGVSc}, $csq_data->{HGVSc} =~ s{^ENS[^:]+}{$gene} if (exists($csq_data->{HGVSc}));
 
-  if (exists($csq_data->{HGVSc})) {
-    $DB::single = 1 if ($csq_data->{HGVSc} =~ m{([cn]\.(?:\d|\*)+[^N]*)(N+)});
-    1;
-    # $csq_data->{HGVSc} =~ s{([cn]\.(?:\d|\*)+[^N]*)(N+)}{$1$reference};
-    # $csq_data->{_variant_allele} = $variant;
-    # $csq_data->{_reference_allele} = $reference;
-  }
-
   # Synonymous variants from VEP are coded oddly. We restore them to a more sensible format.
   if ($consequence =~ m{\bsynonymous_variant\b}) {
     if (exists($csq_data->{HGVSp}) && $csq_data->{HGVSp} =~ m{^ENS[^:]+:[^\(]+\(p\.=\)$}) {
