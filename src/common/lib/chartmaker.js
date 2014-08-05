@@ -490,7 +490,9 @@ ProteinStructureChart.prototype.display = function(element) {
 
   this.setChartScales();
   var chart = this.addChart();
-  this.addBackground();
+  if (this.data.background) {
+    this.addBackground();
+  }
   this.addAxes();
   this.addDomains();
   this.addValues();
