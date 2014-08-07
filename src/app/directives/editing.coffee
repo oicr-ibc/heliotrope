@@ -182,7 +182,7 @@ angular
       transclude: true
       scope:
         action: '='
-      template: '<div class="well well-sm">' +
+      template: '<div ng-class="{\'well well-sm\': editing}" >' +
                 '<form class="form-horizontal heli-editing-form" role="form">' +
 
                 '<div class="form-group">' +
