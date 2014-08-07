@@ -24,13 +24,40 @@
     font-size: 11px;
 }
 
-svg.proteinstructure .marker circle {
+g.marker.marker-unselected circle {
+  fill: #AAA;
+  opacity: 0.5;
+}
+g.marker.marker-selected circle {
   fill: #A00;
 }
-svg.proteinstructure .marker path {
+g.marker path {
   stroke: black;
 }
-svg.proteinstructure .domain-legend text, svg.proteinstructure .domain text {
+g.domain-legend text, svg.proteinstructure .domain text {
   font-size: 1.5ex;
 }
 
+g.marker circle {
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+g.marker path {
+   opacity: 0.75;
+}
+
+g.marker circle.high {
+   fill: #d44;
+   stroke: none;
+}
+
+g.marker circle.low {
+   fill: #4d4;
+   stroke: none;
+}
+
+g.marker circle.unknown {
+   fill: #bbb;
+   stroke: none;
+}

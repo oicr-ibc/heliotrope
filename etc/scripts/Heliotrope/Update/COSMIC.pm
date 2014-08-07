@@ -365,6 +365,7 @@ sub _handle_canonical_annotation {
   }
 
   $position->{position} = int($vcf_data->{pos});
+  $position->{genomicPositionStart} = int($vcf_data->{pos});
   $position->{referenceAllele} = $vcf_data->{ref};
   $position->{variantAllele} = $vcf_data->{alt};
 

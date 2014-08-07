@@ -24,6 +24,8 @@
 var reald3 = (typeof require === 'function') ? require("d3") : d3;
 var d3 = reald3;
 
+'use strict';
+
 // The expected data is as follows: this does not need to be modelled exactly, as it
 // can be generated on-demand. The data is an object with the following keys:
 // start: nnn
@@ -36,7 +38,7 @@ var d3 = reald3;
 /**
  * Primary definition of the data used.
  */
-var ProteinStructureChart = function(options, data) {
+var ProteinStructureChart = function (options, data) {
 
   /*
    * Configuration values explained:
@@ -53,35 +55,37 @@ var ProteinStructureChart = function(options, data) {
   var config = {};
 
   var default_config = {
-    tooltips: true,
     displayWidth: 700,
     valueHeight: 140,
     domainRowHeight: 15,
     domainBarHeight: 7,
     domainRowSeparation: 2,
-    domainLegendSeparation: 10,
-    domainLegendBarSize: 45,
-    domainLegendBarDescriptionOffset: 47,
-    domainBarLabels: ["pfam"],
+    domainBarLabels: ['pfam'],
     valueAxisWidth: 30,
     structureAxisHeight: 25,
     topMargin: 10,
     leftMargin: 10,
     rightMargin: 20,
-    bottomMargin: 5,
+    bottomMargin: 10,
     markerRadius: 4,
-    maximumLabelledDomains: 10,
-    domainTooltipHtmlFn: function(d) { return "<a href='#'>" + d.id + "</a><br>" + d.id; },
-    domainTooltipOptions: {container: "body", placement: "right", html: true},
-    markerTooltipHtmlFn: function(d) { return "Mutation: " + d.id; },
-    markerTooltipOptions: {container: "body", placement: "right", html: true},
-    markerClassFn: function(d) { return undefined; }
+    domainTooltipHtmlFn: function (d) {
+      return "<a href='#'>" + d.id + '</a><br>' + d.id;
+    },
+    domainTooltipOptions: {container: 'body', placement: 'bottom', html: true},
+    markerTooltipHtmlFn: function (d) {
+      return 'Mutation: ' + d.id;
+    },
+    markerTooltipOptions: {container: 'body', placement: 'right', html: true},
+    markerClassFn: function (d) {
+      return 'marker';
+    },
+    markerUrlFn: null
   };
 
-  Object.keys(default_config).forEach(function(key) {
+  Object.keys(default_config).forEach(function (key) {
     config[key] = default_config[key];
   });
-  Object.keys(options).forEach(function(key) {
+  Object.keys(options).forEach(function (key) {
     config[key] = options[key];
   });
 
@@ -96,24 +100,26 @@ var ProteinStructureChart = function(options, data) {
  * which isn't perfectly optimal, but not bad, especially since the data
  * will not be too tightly constrained.
  *
- * @return the number of bins required
+ * @return the number of bins required.
  */
-ProteinStructureChart.prototype.packRanges = function(data, rangeKey) {
+ProteinStructureChart.prototype.packRanges = function (data, rangeKey) {
   var index = 0;
-  var ranges = data.map(function(e) {
+  var ranges = data.map(function (e) {
     var range = rangeKey(e);
     return { index: index++, range: range, size: range[1] - range[0] };
   });
-  var sorted = ranges.sort(function(a, b) { return a.range[1] - b.range[1]; });
+  var sorted = ranges.sort(function (a, b) {
+    return a.range[1] - b.range[1];
+  });
 
   // Now we start.
   var length = data.length;
   var binRights = [];
   var binCount = 0;
-  sorted: for(var i = 0; i < length; i++) {
+  sorted: for (var i = 0; i < length; i++) {
     var next = sorted[i];
     var left = next.range[0];
-    for(var j = 0; j < binCount; j++) {
+    for (var j = 0; j < binCount; j++) {
       if (left > binRights[j]) {
         data[next.index].bin = j;
         binRights[j] = next.range[1];
@@ -128,257 +134,232 @@ ProteinStructureChart.prototype.packRanges = function(data, rangeKey) {
   return binCount;
 };
 
-ProteinStructureChart.prototype.addChartData = function(data) {
-
-  function xOffsetFunction(d, i) { return 10 * i; }
-  function yOffsetFunction(d) { return 10 + d; }
-  function widthFunction(d) { return 10; }
-  function heightFunction(d) { return 10; }
-
-  this.chart.selectAll("rect.value")
-    .data(data)
-    .enter()
-    .append("rect")
-    .attr("class", "value")
-    .attr("x", xOffsetFunction)
-    .attr("y", yOffsetFunction)
-    .attr("width", widthFunction)
-    .attr("height", heightFunction);
-};
-
-/**
- * This method adds a shaded background to the overall chart. This is also straight
- * use of d3. The background is assumed to be a table of values in a simple big
- * array.
- */
-ProteinStructureChart.prototype.addBackground = function() {
-  var chart = this._chart;
-  var values = this.data.background;
-  var maximum = this._maximumValue;
-
-  var tm = this.config.topMargin;
-  var vh = this.config.valueHeight;
-
-  var proteinScale = this._proteinScale;
-
-  var backgroundHorizontalScale = d3.scale.linear()
-    .domain([0, values.length])
-    .range(proteinScale.range());
-
-  var backgroundVerticalScale = d3.scale.linear()
-    .domain([maximum, 0])
-    .range([tm, tm + vh]);
-
-  function backgroundXFn(d, i) { return backgroundHorizontalScale(i); }
-  function backgroundYFn(d, i) { return backgroundVerticalScale(d) - 0.5; }
-  function backgroundWidthFn(d, i) { return backgroundHorizontalScale(i + 1) - backgroundHorizontalScale(i) + 0.5; }
-  function backgroundHeightFn(d, i) { return backgroundVerticalScale(0) - backgroundVerticalScale(d); }
-
-  var values = chart.selectAll("rect.shade")
-    .data(values)
-    .enter()
-    .append("rect")
-    .attr("class", "shade")
-    .attr("x", backgroundXFn)
-    .attr("y", backgroundYFn)
-    .attr("width", backgroundWidthFn)
-    .attr("height", backgroundHeightFn)
-    .attr("fill", "#ccc");
-};
-
 /**
  * This method adds the values to the overall chart. This is a fairly straight
  * use of d3.
  */
-ProteinStructureChart.prototype.addValues = function() {
+ProteinStructureChart.prototype.addValues = function () {
   var chart = this._chart;
-  var values = this.data.mutations;
-
-  if (! values)
-    return;
-
-  var tm = this.config.topMargin;
-  var vh = this.config.valueHeight;
-  var top = tm + (0.62 * vh);
+  var values = this.data.mutations || [];
 
   var proteinScale = this._proteinScale;
   var valueScale = this._valueScale;
-  var bottom = valueScale(0) - 0.5;
+  var bottom = valueScale(0);
   var markerRadius = this.config.markerRadius;
+  var bboxOffset = 2;
 
-  function markerCxFn(d, i) { return proteinScale(d.position); }
-  function valuePathFn(d, i) {
-    var x = proteinScale(d.position);
-    return "M" + x +"," + top + "L" + x + "," + bottom;
+  function markerCxFn(d, i) {
+    return proteinScale(d.position);
   }
 
-  var values = chart.selectAll("g.marker")
+  function markerCyFn(d, i) {
+    return valueScale(d.value);
+  }
+
+  function markerBBoxX(d, i) {
+    return markerCxFn(d, i) - (markerRadius + bboxOffset);
+  }
+
+  function markerBBoxY(d, i) {
+    return markerCyFn(d, i) - (markerRadius + bboxOffset);
+  }
+
+  function markerBBoxSize(d, i) {
+    return 2 * (markerRadius + bboxOffset);
+  }
+
+  function valuePathFn(d, i) {
+    var x = proteinScale(d.position);
+    var top = valueScale(d.value);
+    return 'M' + x + ',' + Math.min(top + markerRadius - 1, bottom) + 'L' + x + ',' + bottom;
+  }
+
+  values = chart.selectAll('g.marker')
     .data(values)
     .enter()
-    .append("g")
-    .attr("class", "marker");
+    .append('g')
+    .attr('class', this.config.markerClassFn);
 
-  values.append("path")
-    .attr("d", valuePathFn);
+  values.append('path')
+    .attr('d', valuePathFn);
 
-  values.append("circle")
-    .attr("class", this.config.markerClassFn)
-    .attr("cx", markerCxFn)
-    .attr("cy", top)
-    .attr("r", markerRadius)
-    .attr("rel", "tooltip")
-    .attr("title", this.config.markerTooltipHtmlFn);
+  values.append('circle')
+    .attr('cx', markerCxFn)
+    .attr('cy', markerCyFn)
+    .attr('r', markerRadius)
+    .attr('rel', 'tooltip')
+    .attr('title', this.config.markerTooltipHtmlFn)
+    .on('click', this.config.markerUrlFn);
+};
+
+/**
+ * This method returns the main chart element. It's useful for server-side
+ * work, where we need the element to render to text for embedding.
+ */
+ProteinStructureChart.prototype.getChartElement = function () {
+  return d3.select(this.element);
 };
 
 /**
  * This method adds the domain elements to the overall chart. It's a fairly straight
  * use of d3 against the scales we already have.
  */
-ProteinStructureChart.prototype.addDomains = function() {
-  var chart = this._chart;
+ProteinStructureChart.prototype.addDomains = function () {
   var domains = this.data.domains;
-  var domainCount = domains.length;
+  if (!domains || domains.length == 0) {
+    // No domains to render
+    return;
+  }
 
+  var chart = this._chart;
   var proteinScale = this._proteinScale;
   var domainRowScale = this._domainRowScale;
   var domainColourScale = this._domainColourScale;
-  var domainLegendRowScale = this._domainLegendRowScale;
-  var domainLegendColumnScale = this._domainLegendColumnScale;
   var drh = this.config.domainRowHeight;
-  var drs = this.config.domainRowSeparation;
+  // var drs = this.config.domainRowSeparation;
   var dbh = this.config.domainBarHeight;
   var dbl = this.config.domainBarLabels;
   var dbo = (drh - dbh) / 2;
-  var lm = this.config.leftMargin;
+  // var lm = this.config.leftMargin;
 
-  function domainXFn(d, i) { return proteinScale(d.start); }
-  function domainYFn(d, i) { return domainRowScale(d.bin); }
-  function domainWidthFn(d, i) { return proteinScale(d.stop) - proteinScale(d.start); }
-  function domainHeightFn(d, i) { return drh; }
-  function domainColourFn(d, i) { return domainColourScale(i); }
-  function domainLabelFn(d, i) { return d.id; }
-  function domainDescriptionFn(d, i) { return d.description; }
-  function domainRowLabelFn(d, i) { return d.label; }
-  function domainRowYFn(d, i) { return domainRowScale(d.row) + dbo; }
+  function domainXFn(d, i) {
+    return proteinScale(d.start);
+  }
 
-  var rowCount = 1 + Math.max.apply(null, [-1].concat(domains.map(function(d) { return d.bin; } )));
+  function domainYFn(d, i) {
+    return domainRowScale(d.bin);
+  }
+
+  function domainWidthFn(d, i) {
+    return proteinScale(d.stop) - proteinScale(d.start);
+  }
+
+  function domainHeightFn(d, i) {
+    return drh;
+  }
+
+  function domainColourFn(d, i) {
+    return domainColourScale(d.id);
+  }
+
+  function domainLabelFn(d, i) {
+    return d.id;
+  }
+
+  function domainRowLabelFn(d, i) {
+    return d.label;
+  }
+
+  function domainRowYFn(d, i) {
+    return domainRowScale(d.row) + dbo;
+  }
+
+  var rowCount = 1 + Math.max.apply(null, domains.map(function (d) {
+    return d.bin;
+  }));
   var rows = new Array(rowCount);
-  for(var r = 0; r < rowCount; r++) {
+  for (var r = 0; r < rowCount; r++) {
     rows[r] = {row: r, label: dbl[r]};
   }
   var rowScale = proteinScale.range();
 
-  var domainRows = chart.selectAll("g.domainRow")
+  var domainRows = chart.selectAll('g.domainRow')
     .data(rows)
     .enter()
-    .append("g")
-    .attr("class", "domainRow");
+    .append('g')
+    .attr('class', 'domainRow');
 
-  domainRows.append("rect")
-    .attr("x", rowScale[0])
-    .attr("y", domainRowYFn)
-    .attr("width", rowScale[1] - rowScale[0])
-    .attr("height", dbh)
-    .attr("fill", "#ccc");
+  domainRows.append('rect')
+    .attr('x', rowScale[0])
+    .attr('y', domainRowYFn)
+    .attr('width', rowScale[1] - rowScale[0])
+    .attr('height', dbh)
+    .attr('fill', '#ccc');
 
-  domainRows.append("text")
-    .attr("x", 1)
-    .attr("y", domainRowYFn)
-    .attr("dx", 1)
-    .attr("dy", dbh)
+  domainRows.append('text')
+    .attr('x', 1)
+    .attr('y', domainRowYFn)
+    .attr('dx', 1)
+    .attr('dy', dbh)
     .text(domainRowLabelFn)
-    .attr("fill", "black");
+    .attr('fill', 'black');
 
   // Add the domain groups
-  var domainGroups = chart.selectAll("g.domain")
+  var domainGroups = chart.selectAll('g.domain')
     .data(domains)
     .enter()
-    .append("g")
-    .attr("class", "domain");
+    .append('g')
+    .attr('class', 'domain');
 
-  domainGroups.attr("rel", "tooltip")
-    .attr("title", this.config.domainTooltipHtmlFn);
 
-  // Add the domain rectables
-  domainGroups.append("rect")
-    .attr("x", domainXFn)
-    .attr("y", domainYFn)
-    .attr("width", domainWidthFn)
-    .attr("height", domainHeightFn)
-    .attr("rx", 3)
-    .attr("ry", 3)
-    .attr("fill", domainColourFn);
-
-  if (domainCount > this.config.maximumLabelledDomains) {
-    return;
+  function highlightDomainFn(domain) {
+    domainGroups.selectAll('rect')
+      .filter(function (d) {
+        return domain.id !== d.id;
+      })
+      .transition()
+      .duration(250)
+      .style('opacity', 0.1);
   }
 
+  function unhighlightDomainFn(domain) {
+    domainGroups.selectAll('rect')
+      .transition()
+      .duration(250)
+      .style('opacity', 1.0);
+  }
+
+  domainGroups.attr('rel', 'tooltip')
+    .attr('title', this.config.domainTooltipHtmlFn);
+
+  // Add the domain rectables
+  domainGroups.append('rect')
+    .attr('x', domainXFn)
+    .attr('y', domainYFn)
+    .attr('width', domainWidthFn)
+    .attr('height', domainHeightFn)
+    .attr('rx', 5)
+    .attr('ry', 5)
+    .attr('fill', domainColourFn)
+    .style('opacity', 1.0)
+    .on('mouseover', highlightDomainFn)
+    .on('mouseout', unhighlightDomainFn);
+
   // Add labels. Actually, it is moot whether we ought to do this, especially for
-  // short domains. But it's good enough for now.
-  domainGroups.append("text")
-    .attr("x", domainXFn)
-    .attr("y", domainYFn)
-    .attr("dx", 3)
-    .attr("dy", drh - 4)
+  // short domains. But it's good enough for now
+  domainGroups.append('text')
+    .attr('x', domainXFn)
+    .attr('y', domainYFn)
+    .attr('dx', 3)
+    .attr('dy', drh - 4)
     .text(domainLabelFn)
-    .attr("fill", "black");
-
-  // Now we can add a domain legend.
-  var domainColumn = Math.ceil(domainCount / 2.0);
-
-  var domainLegendGroups = chart.selectAll("g.domain-legend")
-    .data(domains)
-    .enter()
-    .append("g")
-    .attr("class", "domain-legend");
-
-  var domainLegendBarSize = this.config.domainLegendBarSize;
-  var domainLegendBarIdOffset = 0;
-  var domainLegendBarDescriptionOffset = this.config.domainLegendBarDescriptionOffset;
-
-  function domainLegendYFn(d, i) { return domainLegendRowScale(i % domainColumn); }
-  function domainLegendXFn(d, i) { return domainLegendColumnScale(Math.floor(i / domainColumn)); }
-  function domainLegendLabelXFn(d, i) { return domainLegendColumnScale(Math.floor(i / domainColumn)) + domainLegendBarIdOffset; }
-  function domainLegendDescriptionXFn(d, i) { return domainLegendColumnScale(Math.floor(i / domainColumn)) + domainLegendBarDescriptionOffset; }
-
-  // Add the domain rectangles
-  domainLegendGroups.append("rect")
-    .attr("x", domainLegendXFn)
-    .attr("y", domainLegendYFn)
-    .attr("width", domainLegendBarSize)
-    .attr("height", drh)
-    .attr("rx", 3)
-    .attr("ry", 3)
-    .attr("fill", domainColourFn);
-
-  domainLegendGroups.append("text")
-    .attr("x", domainLegendLabelXFn)
-    .attr("y", domainLegendYFn)
-    .attr("dx", 3)
-    .attr("dy", drh - 4)
-    .text(domainLabelFn)
-    .attr("fill", "black");
-
-  domainLegendGroups.append("text")
-    .attr("x", domainLegendDescriptionXFn)
-    .attr("y", domainLegendYFn)
-    .attr("dx", 3)
-    .attr("dy", drh - 4)
-    .text(domainDescriptionFn)
-    .attr("fill", "black");
+    .attr('fill', 'black')
+    .on('mouseover', highlightDomainFn)
+    .on('mouseout', unhighlightDomainFn);
 };
 
 /**
  * Sets up the tooltips needed for the chart constituent elements. This is a Bootstrap/
  * jQuery level.
  */
-ProteinStructureChart.prototype.addTooltips = function() {
+ProteinStructureChart.prototype.addTooltips = function () {
+
+  // Bail out sans jQuery, we're probably server-side
+  if (typeof jQuery !== 'function') {
+    return;
+  }
+
   var element = this.element;
-  jQuery(element).find("g.marker circle").tooltip(this.config.markerTooltipOptions);
-  jQuery(element).find("g.domain").tooltip(this.config.domainTooltipOptions);
+  jQuery(element).find('g.marker circle').tooltip(this.config.markerTooltipOptions);
+  jQuery(element).find('g.marker circle').on('click', function () {
+    jQuery(this).tooltip('destroy');
+  });
+
+  jQuery(element).find('g.domain').tooltip(this.config.domainTooltipOptions);
 };
 
-ProteinStructureChart.prototype.setChartScales = function() {
+ProteinStructureChart.prototype.addChart = function () {
+
   // First calculate the overall chart dimensions
   var lm = this.config.leftMargin;
   var tm = this.config.topMargin;
@@ -389,17 +370,12 @@ ProteinStructureChart.prototype.setChartScales = function() {
   var vh = this.config.valueHeight;
   var mv = this._maximumValue;
   var dr = this._domainRows;
-  var dlr = this._domainLegendRows;
   var drh = this.config.domainRowHeight;
   var drs = this.config.domainRowSeparation;
-  var dls = this.config.domainLegendSeparation;
   var sah = this.config.structureAxisHeight;
 
-  this._height = tm + vh + bm + this.config.structureAxisHeight + (drh + drs) * dr - drs;
-  if (dlr > 0) {
-    this._height += dls + (drh + drs) * dlr;
-  }
-  this._width = lm + vaw + dw + rm;
+  var height = tm + vh + bm + this.config.structureAxisHeight + (drh + drs) * this._domainRows - drs;
+  var width = lm + vaw + dw + rm;
 
   // Now create a store the scales we need to transform data
   this._proteinScale = d3.scale.linear()
@@ -407,99 +383,121 @@ ProteinStructureChart.prototype.setChartScales = function() {
     .range([lm + vaw, lm + vaw + dw]);
   this._valueScale = d3.scale.linear()
     .domain([mv, 0])
-    .range([tm, tm + vh])
-    .nice();
+    .range([tm, tm + vh]);
   this._domainRowScale = d3.scale.linear()
     .domain([0, dr])
-    .range([tm + vh + sah, tm + vh + sah + (dr + dlr) * (drh + drs)]);
-  this._domainLegendRowScale = d3.scale.linear()
-    .domain([0, dlr])
-    .range([tm + vh + sah + dr * (drh + drs) + dls, tm + vh + sah + dr * (drh + drs) + dls + dlr * (drh + drs)]);
-  this._domainLegendColumnScale = d3.scale.linear()
-    .domain([0, 2])
-    .range([0, this._width]);
+    .range([tm + vh + sah, tm + vh + sah + dr * (drh + drs)]);
   this._domainColourScale = d3.scale.category10();
-};
-
-ProteinStructureChart.prototype.addChart = function() {
 
   // Now the chart
-  d3.select(this.element).html("");
+  d3.select(this.element).html('');
   var chart = d3.select(this.element)
-    .append("svg")
-    .attr("class", "proteinstructure")
-    .attr("width", this._width)
-    .attr("height", this._height);
-
-  this._chart = chart;
-  return d3.select(this.element);
-};
-
-ProteinStructureChart.prototype.addAxes = function() {
-
-  var chart = this._chart;
-
-  var tm = this.config.topMargin;
-  var vh = this.config.valueHeight;
-  var lm = this.config.leftMargin;
-  var vaw = this.config.valueAxisWidth;
+    .append('svg')
+    .attr('class', 'proteinstructure')
+    .attr('width', width)
+    .attr('height', height);
 
   // And the axes; first for the values
   var xAxis = d3.svg.axis();
   xAxis.scale(this._proteinScale);
-  xAxis.orient("bottom");
-  chart.append("g")
-    .attr("class", "axis")
-    .attr("transform", "translate(" + 0 + "," + (tm + vh - 0.5) + ")")
+  xAxis.orient('bottom');
+  chart.append('g')
+    .attr('class', 'axis')
+    .attr('transform', 'translate(' + 0 + ',' + (tm + vh - 0.5) + ')')
     .call(xAxis);
 
   // The second axis is the one for the protein coding space
-  var valueAxis = d3.svg.axis().ticks(6).tickFormat(d3.format("d")).tickSubdivide(0);
+  //var valueAxis = d3.svg.axis().ticks(6);
+  var valueAxis = d3.svg.axis().ticks(Math.min(6, mv));
+
+  // Supress decmials
+  valueAxis.tickFormat(d3.format('d'));
+
   valueAxis.scale(this._valueScale);
-  valueAxis.orient("left");
-  chart.append("g")
-    .attr("class", "axis")
-    .attr("transform", "translate(" + (lm + vaw) + "," + (- 0.5) + ")")
+  valueAxis.orient('left');
+  chart.append('g')
+    .attr('class', 'axis')
+    .attr('transform', 'translate(' + (lm + vaw) + ',' + (-0.5) + ')')
     .call(valueAxis);
 
-  chart.append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("class", "axis-label")
-    .attr("y", 0)
-    .attr("x", -(tm + vh/2))
-    .attr("dy", "2ex")
-    // .attr("dx", -(tm + vh/2))
-    .style("text-anchor", "middle")
-    .text("frequency in COSMIC");
+  chart.append('text')
+    .attr('transform', 'rotate(-90)')
+    .attr('class', 'axis-label')
+    .attr('y', 0)
+    .attr('x', -tm)
+    .attr('dy', '2ex')
+    .attr('dx', -vh / 2)
+    .style('text-anchor', 'middle')
+    .text('frequency in COSMIC');
+
+  // We can label the value axis.
+
+  this._chart = chart;
+  return chart;
 };
+
+/**
+ * Updates the values - they might arrive separately from the domains. Or not at all.
+ */
+ProteinStructureChart.prototype.setMutations = function (mutations) {
+  this.data.mutations = mutations;
+  this._maximumValue = Math.max.apply(null, this.data.mutations.map(function (e) {
+    return e.value;
+  }));
+
+  this._valueScale = d3.scale.linear()
+    .domain([this._maximumValue, 0])
+    .range([this.config.topMargin, this.config.topMargin + this.config.valueHeight]);
+
+  // The second axis is the one for the protein coding space
+  //var valueAxis = d3.svg.axis().ticks(6);
+  var valueAxis = d3.svg.axis().ticks(Math.min(6, this._maximumValue));
+
+  // Suppress decimals
+  valueAxis.tickFormat(d3.format('d'));
+
+  valueAxis.scale(this._valueScale);
+  valueAxis.orient('left');
+
+  var chart = this._chart;
+  chart.selectAll("g.y.axis")
+    .call(valueAxis);
+
+  // And now the values...
+  this.addValues();
+  this.addTooltips();
+}
 
 /**
  * Main display method sets up the chart.
  */
-ProteinStructureChart.prototype.display = function(element) {
+ProteinStructureChart.prototype.display = function (element) {
   this.element = element;
 
-  this._maximumValue = Math.max.apply(null, this.data.background);
+  var mutations = this.data.mutations || [];
+  this._maximumValue = Math.max.apply(null, mutations.map(function (e) {
+    return e.value;
+  }));
   this._domains = this.data.domains;
-  this._domainRows = this.packRanges(this.data.domains, function(e) { return [e.start, e.stop]; });
-  if (this.data.domains.length > this.config.maximumLabelledDomains) {
-    this._domainLegendRows = 0;
-  } else {
-    this._domainLegendRows = Math.ceil(this.data.domains.length / 2.0);
-  }
+  this._domainRows = this.packRanges(this.data.domains, function (e) {
+    return [e.start, e.stop];
+  });
 
-  this.setChartScales();
-  var chart = this.addChart();
-  if (this.data.background) {
-    this.addBackground();
-  }
-  this.addAxes();
+  this.addChart();
   this.addDomains();
   this.addValues();
-  if (this.config.tooltips) {
-    this.addTooltips();
-  }
-  return chart;
+  this.addTooltips();
+};
+
+
+ProteinStructureChart.prototype.displayError = function (element, errMsg) {
+  this.element = element;
+  d3.select(this.element).html('');
+  d3.select(this.element)
+    .append('div')
+    .classed('empty', true)
+    .append('h3')
+    .text(errMsg);
 };
 
 if (typeof require === 'function') {

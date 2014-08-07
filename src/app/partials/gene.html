@@ -34,16 +34,16 @@
         </div>
       </div>
 
-      <div heli-section body-id="mutations" title="Mutations" when="entity.data.sections.mutations" >
+      <div heli-section body-id="mutations" title="Mutations" when="mutations" >
         <div id="mutations-list" class="section-end">
           <span class="inline-list">
-            <span class="inline-item" ng-repeat="mutation in entity.data.sections.mutations.data | limitTo : 10"><a ng-href="/variants/{{mutation.variant}}">{{mutation.name}}</a></span>
+            <span class="inline-item" ng-repeat="mutation in mutations.data | limitTo : 10"><a ng-href="/variants/{{mutation.variant}}">{{mutation.name}}</a></span>
           </span>
         </div>
       </div>
 
       <div heli-section body-id="domains" title="Gene structure" when="entity.data.sections.transcripts">
-        <div heli-structure-distribution></div>
+        <div heli-structure-distribution transcript="entity.data.sections.transcripts.data.records[0]" mutations="mutations.data"></div>
       </div>
 
       <div heli-section body-id="gene-census-info" title="Cancer gene census information" when="entity.data.sections.gene_census_data" >
@@ -91,9 +91,9 @@
         </div>
       </div>
 
-      <div heli-section body-id="frequencies" title="Mutation frequencies" when="entity.data.sections.mutations">
+      <div heli-section body-id="frequencies" title="Mutation frequencies" when="frequencies">
         <div id="frequencies-table">
-          <div heli-frequencies></div>
+          <div heli-frequencies frequencies="frequencies.data"></div>
         </div>
       </div>
 

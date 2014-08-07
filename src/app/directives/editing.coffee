@@ -51,12 +51,14 @@ angular
                 tagsElement.val(tags).trigger('change')
 
           else
-            body = '<span ng-hide="editing" class="inline-list">' +
+            body = '<p class="form-control-static">' +
+                   '<span class="inline-list">' +
                    '<span ng-hide="references">none</span>' +
                    '<span ng-show="references" class="inline-item" ng-repeat="reference in references">' +
                    '<span heli-reference reference="reference"></span> ' +
                    '</span>' +
-                   '</span>'
+                   '</span>' +
+                   '</p>'
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
@@ -84,11 +86,12 @@ angular
 
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-            linkBody("<select class='select-dropdown' ng-model='value'>" +
-                     "<option ng-repeat='alt in options | split' ng-selected='(alt == value)' value='{{alt}}'>{{alt | keywordToString:#{capitalize}}}</option>" +
-                     "</select>")
+            control = linkBody("<select class='select-dropdown form-control' ng-model='value'>" +
+                               "<option ng-repeat='alt in options | split' ng-selected='(alt == value)' value='{{alt}}'>{{alt | keywordToString:#{capitalize}}}</option>" +
+                               "</select>")
+            jQuery(control).select2()
           else
-            linkBody("<span>{{value | keywordToString:#{capitalize}}}</span>")
+            linkBody("<p class='form-control-static'>{{value | keywordToString:#{capitalize}}}</p>")
   ]
 
   .directive 'heliEditTypeahead', ['$compile', ($compile) ->
@@ -117,7 +120,7 @@ angular
               console.log "Change", event
 
           else
-            body = "<b>{{value}}</b>"
+            body = "<p class='form-control-static'><b>{{value}}</b></p>"
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
@@ -135,13 +138,13 @@ angular
       link: (scope, iElement, iAttrs, controller) ->
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-            body = '<textarea class="comment" ng-model="value"></textarea>'
+            body = '<textarea class="comment form-control" ng-model="value"></textarea>'
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
           else
-            body = '<span class="comment">{{value}}</span>'
+            body = "<p class='form-control-static comment'>{{value}}</span>"
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
@@ -159,13 +162,13 @@ angular
       link: (scope, iElement, iAttrs, controller) ->
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-            body = '<input class="text" ng-model="value"></input>'
+            body = '<input class="text form-control" ng-model="value"></input>'
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
           else
-            body = "<span>{{value}}</span>"
+            body = "<p class='form-control-static'>{{value}}</p>"
             template = angular.element(body)
             linkFn = $compile(template)
             iElement.empty()
@@ -179,24 +182,37 @@ angular
       transclude: true
       scope:
         action: '='
-      template: '<div class="well well-small">' +
-                '<dl class="dl-horizontal">' +
-                '<dt>Mutation action</dt>' +
-                '<dd>' +
-                '<span ng-show="editing"><span heli-edit-dropdown value="action.type" options="activating,inactivating,other"></span></span>' +
-                '<span ng-hide="editing">{{action.type || &quot;unknown&quot;}}</span>' +
-                '</dd>' +
-                '<dt ng-show="editing || action.comment">Comment</dt>' +
-                '<dd ng-show="editing || action.comment"><div heli-edit-comment value="action.comment"></div></dd>' +
-                '<dt>Sources</dt>' +
-                '<dd><span heli-edit-references references="action.reference"></span></dd>' +
-                '</dl>' +
+      template: '<div class="well well-sm">' +
+                '<form class="form-horizontal heli-editing-form" role="form">' +
+
+                '<div class="form-group">' +
+                '<label for="actionType{{$index}}" class="col-sm-3 control-label">Mutation action</label>' +
+                '<div class="col-sm-9">' +
+                '<span heli-edit-dropdown id="actionType{{$index}}" value="action.type" options="activating,inactivating,other"></span>' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<label for="actionComment{{$index}}" class="col-sm-3 control-label">Comment</label>' +
+                '<div class="col-sm-9">' +
+                '<div heli-edit-comment id="actionComment{{$index}}" value="sig.comment"></div>' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<label for="actionSources{{$index}}" class="col-sm-3 control-label">References</label>' +
+                '<div class="col-sm-9">' +
+                '<span heli-edit-references id="actionSources{{$index}}" references="action.reference"></span>' +
+                '</div>' +
+                '</div>' +
+
+                '</form>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
         scope.$parent.$watch 'editing', (editing) ->
           scope.editing = editing
           if editing
-            iElement.attr("class", "well well-small editing-enabled")
+            iElement.attr("class", "editing-enabled")
           else
             iElement.attr("class", "")
 
@@ -208,29 +224,55 @@ angular
       scope:
         significance: '='
       controller: 'EditableSignificanceController'
-      template: '<div class="well well-small">' +
+      template: '<div>' +
                 '<p ng-hide="editing || significance">No information available</p>' +
-                '<div ng-repeat="sig in significance">' +
-                '<dl class="dl-horizontal">' +
-                '<dt>Tumour type</dt>' +
-                '<dd>' +
-                '<span heli-edit-typeahead value="sig.tumourType" options="tumourTypes"></span>' +
-                '<button ng-show="editing" class="btn btn-danger" ng-click="removeSignificance(sig)">Remove</button>' +
-                '</dd>' +
-                '<dt>Trial types</dt>' +
-                '<dd>' +
-                '<span heli-edit-dropdown value="sig.studyType" options="prospective,retrospective,preclinical,case,observational,other"></span>' +
-                '</dd>' +
-                '<dt>Comment</dt>' +
-                '<dd>' +
-                '<div heli-edit-comment value="sig.comment"></div>' +
-                '</dd>' +
-                '<dt>Sources</dt>' +
-                '<dd><span heli-edit-references references="sig.reference"></span></dd>' +
-                '<dt>Level of evidence</dt>' +
-                '<dd><span heli-edit-dropdown value="sig.levelOfEvidence" options="IA,IB,IIB,IIC,IIIC,IVD,VD"></span><dd>' +
-                '</dl>' +
+                '<div ng-class="{\'well well-sm\': editing}" ng-repeat="sig in significance">' +
+                '<form class="form-horizontal heli-editing-form" role="form">' +
+
+                '<div class="form-group">' +
+                '<label for="tumourType{{$index}}" class="col-sm-3 control-label">Tumour type</label>' +
+                '<div class="col-sm-9">' +
+                '<span heli-edit-text value="sig.tumourType" options="tumourTypes"></span>' +
                 '</div>' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<label for="trialType{{$index}}" class="col-sm-3 control-label">Trial type</label>' +
+                '<div class="col-sm-9">' +
+                '<span heli-edit-dropdown id="trialType{{$index}}" value="sig.studyType" options="prospective,retrospective,preclinical,case,observational,other"></span>' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<label for="comment{{$index}}" class="col-sm-3 control-label">Comment</label>' +
+                '<div class="col-sm-9">' +
+                '<div heli-edit-comment id="comment{{$index}}" value="sig.comment"></div>' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<label for="sources{{$index}}" class="col-sm-3 control-label">References</label>' +
+                '<div class="col-sm-9">' +
+                '<span heli-edit-references id="sources{{$index}}" references="sig.reference"></span>' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<label for="levelOfEvidence{{$index}}" class="col-sm-3 control-label">Level of evidence</label>' +
+                '<div class="col-sm-9">' +
+                '<span heli-edit-dropdown id="levelOfEvidence{{$index}}" value="sig.levelOfEvidence" options="IA,IB,IIB,IIC,IIIC,IVD,VD"></span>' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<div class="col-sm-offset-3 col-sm-9">' +
+                '<button ng-show="editing" type="submit" class="btn btn-danger">Remove</button>' +
+                '</div>' +
+                '</div>' +
+
+                '</form>' +
+                '</div>' +
+
                 '<button ng-show="editing" class="btn" ng-click="addSignificance()">Add study</button>' +
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
@@ -255,7 +297,7 @@ angular
         scope.$parent.$watch 'editing', (editing) ->
           scope.editing = editing
           if editing
-            iElement.attr("class", "well well-small editing-enabled")
+            iElement.attr("class", "editing-enabled")
           else
             iElement.attr("class", "")
 
@@ -268,25 +310,57 @@ angular
       scope:
         agents: '='
       controller: 'EditableAgentsController'
-      template: '<div class="well well-small">' +
-                '<div class="row-fluid" ng-hide="editing || agents">' +
-                '<p>No information available</p>' +
+      template: '<div>' +
+                '<p ng-hide="editing || agents">No information available</p>' +
+                '<div ng-class="{\'well well-sm\': editing}" ng-repeat="agent in agents">' +
+                '<form class="form-horizontal heli-editing-form" role="form">' +
+
+                '<div class="form-group">' +
+                '<label for="agentName{{$index}}" class="col-sm-3 control-label">Agent name</label>' +
+                '<div class="col-sm-9">' +
+                '<span heli-edit-text id="agentName{{$index}}" value="agent.name"></span>' +
                 '</div>' +
-                '<div class="row-fluid" ng-show="editing || agents">' +
-                '<div ng-show="agents" class="heli-dl dl-horizontal">' +
-                '<div ng-repeat="agent in agents">' +
-                '<div class="heli-dt"><span class="label-value dropdown-value" heli-edit-dropdown capitalize="true" value="agent.sensitivity" options="sensitivity,resistance,maybe_sensitivity,maybe_resistance"></span></div>' +
-                '<div class="heli-dd"><span class="labelled-value text-value" heli-edit-text value="agent.name"></span>' +
-                '<button ng-show="editing" class="btn btn-danger" ng-click="removeDrug(agent)">Remove</button></div>' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<label for="agentSensitivity{{$index}}" class="col-sm-3 control-label">Agent sensitivity</label>' +
+                '<div class="col-sm-9">' +
+                '<span heli-edit-dropdown id="agentSensitivity{{$index}}" value="agent.sensitivity" options="sensitivity,resistance,maybe_sensitivity,maybe_resistance"></span>' +
                 '</div>' +
                 '</div>' +
+
+
+                '<div class="form-group">' +
+                '<label for="agentComment{{$index}}" class="col-sm-3 control-label">Comment</label>' +
+                '<div class="col-sm-9">' +
+                '<div heli-edit-comment id="agentComment{{$index}}" value="agent.comment"></div>' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<label for="agentReferences{{$index}}" class="col-sm-3 control-label">References</label>' +
+                '<div class="col-sm-9">' +
+                '<span heli-edit-references id="agentReferences{{$index}}" value="agent.reference"></span>' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="form-group">' +
+                '<div class="col-sm-offset-3 col-sm-9">' +
+                '<button ng-show="editing" type="submit" class="btn btn-danger">Remove</button>' +
+                '</div>' +
+                '</div>' +
+
+                '</form>' +
+                '</div>' +
+
                 '<button ng-show="editing" class="btn" ng-click="addDrug()">Add drug</button>' +
+
                 '</div>'
       link: (scope, iElement, iAttrs, controller) ->
 
         scope.$parent.$watch 'editing', (editing) ->
           scope.editing = editing
           if editing
-            iElement.attr("class", "well well-small editing-enabled")
+            iElement.attr("class", "editing-enabled")
           else
             iElement.attr("class", "")

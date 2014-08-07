@@ -50,9 +50,9 @@ nconf.defaults
   'ldap:cache': true,
   'ldap:enabled': false,
   'ldap:verbose': true
-  'report:fop': "./etc/fop.jar"
-  'report:classpath': "./etc/fop/*.jar"
-  'report:xsl': "./etc/fop.xsl"
+  'report:fop': "./etc/reporting/fop.jar"
+  'report:classpath': "./etc/reporting/fop/*.jar"
+  'report:xsl': "./etc/reporting/fop.xsl"
 
 config = nconf.get()
 

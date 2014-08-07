@@ -94,7 +94,7 @@ angular
       restrict: "A"
       replace: true
       transclude: true
-      scope: false
+      scope: {frequencies: '='}
       template: '<table class="table table-bordered table-striped table-condensed">' +
                 '<thead>' +
                 '<tr>' +
@@ -106,16 +106,19 @@ angular
                 '</tbody>' +
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'entity.data.sections.frequencies.data.tumour', (newValue, oldValue) ->
+        scope.$watch 'frequencies', (newValue, oldValue) ->
+
           if (newValue && ! angular.equals(newValue, oldValue))
+            renderName = (x) ->
+              '%s %s'.format(x.type.site || 'N/S', x.type.hist || 'N/S')
             renderPercent = (x) ->
-              '<b>%0.2f%%</b> (%d of %d samples)'.format(x.frequency * 100.0, x.affected, x.total)
+              '<b>%0.2f%%</b> (%d of %d samples)'.format(x.frequency * 100.0, x.mutated, x.total)
             jQuery(iElement).dataTable(
               pagingType: "bs_normal"
               paging: true
               data: angular.copy(newValue)
               columns: [
-                { "title": "Tumour type", "orderable" : true, "className": "span8", "data": "tumourTypesRefx.name" }
+                { "title": "Tumour type", "orderable" : true, "className": "span8", "data": renderName }
                 { "title": "Frequency", "orderable" : true, "className": "span4", "data": renderPercent }
               ]
               order: [1, 'desc']

@@ -65,13 +65,13 @@ angular
         scope.$watch 'entity', (newValue, oldValue) ->
           if newValue
             iElement.on 'click', (e) ->
-              url = newValue.data.config.baseUrl + newValue.data.config.knowledgeUriBase + newValue.data.url + "/report?type=pdf"
+              url = newValue.url + "/report?mimeType=application/pdf"
               location.href = url
               e.stopPropagation()
               e.preventDefault()
 
 
-  .directive 'heliStepField', ['$compile', 'RelatedEntities', ($compile, RelatedEntities) ->
+  .directive 'heliStepField', Array '$compile', 'RelatedEntities', ($compile, RelatedEntities) ->
     result =
       restrict: "A"
       replace: true
@@ -242,6 +242,5 @@ angular
 
               else
                 console.log "Unknown control type", newValue
-  ]
 
 

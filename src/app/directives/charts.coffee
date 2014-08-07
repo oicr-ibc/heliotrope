@@ -1,9 +1,7 @@
 # Directives
 
 angular
-  .module 'heliotrope.directives.charts', [
-    'heliotrope.services.genomics'
-  ]
+  .module 'heliotrope.directives.charts', [ 'heliotrope.services.genomics' ]
 
   # Add the directive for the genome frequencies data, which has an optional marker
   # included for a current location. This depends on d3, and is therefore requiring an
@@ -12,55 +10,98 @@ angular
   # Note that a variant is a bit different, and we ought to handle it accordingly.
   # Genes can be displayed immediately.
 
-  .directive 'heliStructureDistribution', ['transformDomains', (transformDomains) ->
+  .directive 'heliStructureDistribution', Array 'transformDomains', '$location', (transformDomains, $location) ->
     result =
       restrict: "A"
       replace: true
       transclude: true
       scope: false
+      scope: { transcript: '=transcript', mutations: '=mutations' }
       template: '<div class="diagram"></div>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'entity.data', (entityData) ->
-          if (entityData)
+
+        chart = undefined
+        mutationsData = undefined
+
+        scope.$watch 'mutations', (mutations) ->
+          if mutations?
+            mutationsData = for m in mutations when m.codon
+              {id: m.name, position: m.codon , url: "/variants/#{m.variant}", value: m.frequency, selected: m.selected}
+
+            # Make sure selected markers are at the front. Don't use sort for this, no need. We can
+            # filter and concatenate in two passes.
+            mutationsSelected = mutationsData.filter (a) -> a.selected
+            mutationsUnselected = mutationsData.filter (a) -> !a.selected
+            mutationsData = [].concat(mutationsUnselected, mutationsSelected)
+
+            if chart?
+              chart.setMutations(mutationsData)
+
+
+        scope.$watch 'transcript', (transcript) ->
+          if transcript?
+            domains = (domain for domain in transcript["domains"] when domain["gffSource"] == "Pfam")
+
+            markerTooltipHtmlFn = (d) ->
+              'Mutation: ' + d.id + '<br>' +
+              'Number of samples: ' + d.value
+
+            markerUrlFn = (d) ->
+              jQuery(this).tooltip('hide')
+              scope.$apply () ->
+                $location.path(d.url)
+
+            markerClassFn = (d) ->
+              if d.selected then 'marker marker-selected' else 'marker marker-unselected'
+
+            transcriptData =
+              start: 1
+              stop: transcript["lengthAminoAcid"]
+              domains: transformDomains(domains)
 
             display = jQuery(iElement)
             chartWidth = 700
             chartHeight = 140
             element = display.get()[0]
 
-            charter = ProteinStructureChart
+            chartOptions =
+              tooltips: false
+              leftMargin: 30
+              markerRadius: 6
+              domainLegendBarSize: 55
+              domainLegendBarDescriptionOffset: 58
+              displayWidth: chartWidth
+              valueHeight: chartHeight
+              markerTooltipHtmlFn: markerTooltipHtmlFn
+              markerUrlFn: markerUrlFn
+              markerClassFn: markerClassFn
 
-            transcript = entityData.sections.transcripts.data.records[0]
-            domains = (domain for domain in transcript["domains"] when domain["gffSource"] == "Pfam")
-            domains = transformDomains(domains)
+            if mutationsData?
+              transcriptData['mutations'] = mutationsData
 
-            data =
-              start: 1,
-              stop: transcript["lengthAminoAcid"],
-              domains: domains
+            chart = new ProteinStructureChart(chartOptions, transcriptData)
+            chart.display(element)
 
-            if entityData.sections.positions
-              positions = entityData.sections.positions
-              codon = positions.data[0]["codon"]
-              position = codon && parseInt((codon).toString())
-              if ! isNaN(position)
-                data.mutations = [{id: entityData["shortMutation"], position: position, url: null, value: 4}]
 
-            if entityData.sections.distribution
-              data["background"] = entityData.sections.distribution["data"]
 
-            chart = new ProteinStructureChart({
-              tooltips: false,
-              leftMargin: 30,
-              markerRadius: 6,
-              domainLegendBarSize: 55,
-              domainLegendBarDescriptionOffset: 58,
-              displayWidth: chartWidth,
-              valueHeight: chartHeight},
-              data)
+            # domains = (domain for domain in transcript["domains"] when domain["gffSource"] == "Pfam")
+            # domains = transformDomains(domains)
 
-            result = chart.display(element)
-  ]
+            # data =
+            #   start: 1,
+            #   stop: transcript["lengthAminoAcid"],
+            #   domains: domains
+        # if entityData.sections.positions
+        #   positions = entityData.sections.positions
+        #   codon = positions.data[0]["codon"]
+        #   position = codon && parseInt((codon).toString())
+        #   if ! isNaN(position)
+        #     data.mutations = [{id: entityData["shortMutation"], position: position, url: null, value: 4}]
+
+        # if entityData.sections.distribution
+        #   data["background"] = entityData.sections.distribution["data"]
+
+
 
   .directive 'heliGeneFrequenciesBubble', () ->
     result =
