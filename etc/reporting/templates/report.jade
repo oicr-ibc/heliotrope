@@ -1,0 +1,118 @@
+// Abstraction for a list of references
+mixin references(references)
+  each reference, i in references
+    if i != 0
+      | ,
+    a(href="http://www.ncbi.nlm.nih.gov/pubmed/" + reference.id)
+      | #{reference.type}:#{reference.id}
+
+html(xmlns="http://www.w3.org/1999/xhtml")
+  head
+    title Mutation Report for #{variant.data.mutation} (#{variant.data.shortMutation}) in #{variant.data.gene}
+
+  body
+
+    h2 #{variant.data.gene} #{variant.data.mutation} Characteristics
+
+    if variant.data.sections.clinical
+      - var action = variant.data.sections.clinical.data.action
+
+      p
+        | The functional consequence of this mutation is: 
+        b #{action.type}
+        | .
+
+        if action.reference
+          | Reference (PMID):
+          +references(action.reference)
+
+      hr
+
+    else
+
+      p
+        | The functional consequence of this mutation is:
+        b unknown
+
+    h2 #{variant.data.mutation} in #{variant.data.gene} protein domain context
+
+    != chart
+
+    h2 Frequency of #{variant.data.mutation} mutation in #{variant.data.gene} in the top tumour types
+
+    - var variantFrequencies = frequencies.data
+    - var frequencyValues = {}
+    - variantFrequencies.forEach(function(frequency) { frequencyValues[frequency.type] = frequency.frequency; })
+    - var sortedTypes = Object.keys(frequencyValues).sort(function(a, b) { return frequencyValues[b] - frequencyValues[a]; })
+
+    table
+      thead
+        tr
+          th(width="300") Tumour
+          th(width="60") Frequency
+          th(width="100") Samples
+      tbody
+        each frequency, i in variantFrequencies
+          if frequency.total >= 40
+            tr
+              td #{frequency.type.site || 'unspecified'} #{frequency.type.hist || 'unspecified'}
+              td #{(frequency.frequency * 100).toFixed(2)}%
+              td (#{frequency.mutated}/#{frequency.total} samples)
+
+    hr
+
+    if gene.data.sections.description
+
+      h2 #{gene.data.name} - #{gene.data.sections.description.data.fullName}
+
+      if gene.data.sections.description.data.summary
+
+        p #{gene.data.sections.description.data.summary}
+
+      else
+
+        p No summary available
+
+      hr
+
+    h2 Clinical and Preclinical Studies
+
+    if variant.data.sections.clinical
+      - var significances = variant.data.sections.clinical.data.significance
+      each significance, i in significances
+        h3 #{significance.tumourType}
+        p
+          em
+            | In this tumour type, the clinical significance of this mutation has been examined by
+            | #{significance.studyType}
+            | clinical trials
+        p
+          | Comment:
+          | #{significance.comment}
+        p
+          | Reference (PMID):
+          +references(significance.reference)
+          | .
+          | Evidence:
+          | #{significance.levelOfEvidence}
+    else
+      p
+        | No studies recorded
+
+    hr
+
+    h2 Availability of Investigational Agents
+
+    if variant.data.sections.clinical
+      - var agents = variant.data.sections.clinical.data.agents
+      if agents.length > 0
+        each agent, i in agents
+          p
+            b #{agent.sensitivity}: 
+            | #{agent.name}
+    else
+      p
+        | No agents recorded
+
+    hr
+

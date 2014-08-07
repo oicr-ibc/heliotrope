@@ -172,8 +172,13 @@
           <xsl:attribute name="stroke-width"><xsl:text>0.5</xsl:text></xsl:attribute>
           <xsl:attribute name="fill"><xsl:text>none</xsl:text></xsl:attribute>
         </xsl:when>
-        <xsl:when test="normalize-space(concat($class, ' ', @class)) = 'marker'">
+        <xsl:when test="normalize-space(concat($class, ' ', @class)) = 'marker marker-selected'">
           <xsl:attribute name="stroke"><xsl:text>black</xsl:text></xsl:attribute>
+          <xsl:attribute name="stroke-width"><xsl:text>0.5</xsl:text></xsl:attribute>
+          <xsl:attribute name="fill"><xsl:text>none</xsl:text></xsl:attribute>
+        </xsl:when>
+        <xsl:when test="normalize-space(concat($class, ' ', @class)) = 'marker marker-unselected'">
+          <xsl:attribute name="stroke"><xsl:text>#aaa</xsl:text></xsl:attribute>
           <xsl:attribute name="stroke-width"><xsl:text>0.5</xsl:text></xsl:attribute>
           <xsl:attribute name="fill"><xsl:text>none</xsl:text></xsl:attribute>
         </xsl:when>
@@ -191,8 +196,11 @@
       <xsl:attribute name="r"><xsl:value-of select="sum(@r)"/><xsl:text>px</xsl:text></xsl:attribute>
       <xsl:attribute name="class"><xsl:value-of select="normalize-space(concat($class, ' ', @class))"/></xsl:attribute>
       <xsl:choose>
-        <xsl:when test="normalize-space(concat($class, ' ', @class)) = 'marker'">
+        <xsl:when test="normalize-space(concat($class, ' ', @class)) = 'marker marker-selected'">
           <xsl:attribute name="fill"><xsl:text>#a22</xsl:text></xsl:attribute>
+        </xsl:when>
+        <xsl:when test="normalize-space(concat($class, ' ', @class)) = 'marker marker-unselected'">
+          <xsl:attribute name="fill"><xsl:text>#aaa</xsl:text></xsl:attribute>
         </xsl:when>
       </xsl:choose>
       <xsl:apply-templates />
