@@ -77,7 +77,7 @@ html(xmlns="http://www.w3.org/1999/xhtml")
 
     h2 Clinical and Preclinical Studies
 
-    if variant.data.sections.clinical
+    if variant.data.sections.clinical && variant.data.sections.clinical.data.significance && variant.data.sections.clinical.data.significance.length > 0
       - var significances = variant.data.sections.clinical.data.significance
       each significance, i in significances
         h3 #{significance.tumourType}
@@ -103,7 +103,7 @@ html(xmlns="http://www.w3.org/1999/xhtml")
 
     h2 Availability of Investigational Agents
 
-    if variant.data.sections.clinical
+    if variant.data.sections.clinical && variant.data.sections.clinical.data.agents && variant.data.sections.clinical.data.agents.length > 0
       - var agents = variant.data.sections.clinical.data.agents
       if agents.length > 0
         each agent, i in agents
