@@ -27,5 +27,4 @@ if ($force) {
     $updater->maybe_update($reg);
 }
 
-
 1;
