@@ -67,9 +67,6 @@ app.get base + '/publications/:type/:id',
 
 ## PUT requests require authentication, and properly authorization too.
 app.put base + '/variants/:id', authentication.accessAuthenticator(), knowledgeMiddleware,  knowledge.putVariant
-  # knowledge.connected config["data"]["knowledgedb"], (err, db, req, res) ->
-  #   initializeResponse(res)
-  #   knowledge.putVariant err, db, req, res, responders.sendGetResponse(req, res)
 
 ## POST requests require authentication, and properly authorization too. This is
 ## not public, as it is primarily a service endpoint that can be used create a
@@ -81,44 +78,6 @@ app.post base + '/variants', authentication.apiAuthenticator(),
     knowledge.postVariant err, db, req, res, responders.sendPostResponse(req, res)
 
 app.get base + '/variants/:id/report', knowledgeMiddleware, knowledge.getVariantReport
-
-  # knowledge.connected config["data"]["knowledgedb"], (err, db, req, res) ->
-  #   initializeResponse(res)
-  #   if req.query && req.query["type"] == 'pdf'
-  #     knowledge.getVariantReport err, db, req, res, (db, err, doc, res, statusCode) ->
-  #       statusCode = 400 if statusCode == undefined
-
-  #       if err
-  #         res.header('Content-Type', 'application/json')
-  #         return res.send statusCode, {error: err, body: doc}
-
-  #       doc["data"]["serviceUrl"] = req.url
-  #       doc["data"]["config"] = res.locals.config if res.locals.config?
-  #       view = "index.jade"
-  #       res.render view, doc, (err, html) ->
-  #         if err
-  #           db.close()
-  #           res.send 500, err
-  #         else
-  #           buffer = new Buffer(html)
-
-  #           temp.open 'report', (err, info) ->
-  #             console.error("Failed to open file", err) if err
-
-  #             fs.write info.fd, buffer, 0, buffer.length, null, (err, written, buffer) ->
-  #               console.error("Failed to open file", err) if err
-
-  #               fs.close info.fd, (err) ->
-  #                 console.error("Failed to close file", err) if err
-
-  #                 reporting.generatePdf info.path, (err, stream) ->
-
-  #                   db.close()
-  #                   res.header('Content-Type', 'application/pdf')
-  #                   res.header('Content-Disposition', 'attachment; filename="report.pdf"')
-  #                   stream.pipe(res)
-  #   else
-  #     knowledge.getVariantReport err, db, req, res, responders.sendViewResponse(req, res, 'index')
 
 app.get base + '/search', knowledgeMiddleware, knowledge.executeSearch
 
