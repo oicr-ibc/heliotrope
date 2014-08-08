@@ -60,10 +60,7 @@ app.get base + '/variants/:id', knowledgeMiddleware, knowledge.getVariant
 
 app.get base + '/variants/:id/frequencies', knowledgeMiddleware, knowledge.getVariantFrequencies
 
-app.get base + '/publications/:type/:id',
-  knowledge.connected config["data"]["knowledgedb"], (err, db, req, res) ->
-    initializeResponse(res)
-    knowledge.getPublication err, db, req, res, responders.sendGetResponse(req, res)
+app.get base + '/publications/:type/:id', knowledgeMiddleware, knowledge.getPublication
 
 ## PUT requests require authentication, and properly authorization too.
 app.put base + '/variants/:id', authentication.accessAuthenticator(), knowledgeMiddleware,  knowledge.putVariant
@@ -72,10 +69,7 @@ app.put base + '/variants/:id', authentication.accessAuthenticator(), knowledgeM
 ## not public, as it is primarily a service endpoint that can be used create a
 ## bunch of variants from, e.g., VCF file parsing. The POST system needs to be
 ## idempotent and accessible over web access.
-app.post base + '/variants', authentication.apiAuthenticator(),
-  knowledge.connected config["data"]["knowledgedb"], (err, db, req, res) ->
-    initializeResponse(res)
-    knowledge.postVariant err, db, req, res, responders.sendPostResponse(req, res)
+app.post base + '/variants', authentication.apiAuthenticator(), knowledgeMiddleware, knowledge.postVariant
 
 app.get base + '/variants/:id/report', knowledgeMiddleware, knowledge.getVariantReport
 
