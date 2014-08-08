@@ -58,7 +58,7 @@ angular
       transclude: true
       scope: 'isolate'
       locals: { reference: 'bind' }
-      template: '<a href="/publications/{{reference.type}}/{{reference.id}}">{{reference.type}}:{{reference.id}}</a>'
+      template: '<a href="http://www.ncbi.nlm.nih.gov/pubmed/{{reference.id}}" rel="external">{{reference.type}}:{{reference.id}}</a>'
 
   .directive 'heliEnsemblGene', () ->
     result =
