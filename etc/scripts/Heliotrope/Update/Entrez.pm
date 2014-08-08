@@ -125,10 +125,10 @@ sub entry {
     	return;
     }
 
-    my $ensembl_id = $root->findvalue(qq{/Entrezgene-Set/Entrezgene/Entrezgene_gene/Gene-ref/Gene-ref_db/descendant-or-self::Object-id_str[string(../../../Dbtag_db) = 'Ensembl']});
+    my @ensembl_ids = $root->find(qq{/Entrezgene-Set/Entrezgene/Entrezgene_gene/Gene-ref/Gene-ref_db/descendant-or-self::Object-id_str[string(../../../Dbtag_db) = 'Ensembl']})->to_literal_list();
+    my @hgnc_ids = $root->find(qq{/Entrezgene-Set/Entrezgene/Entrezgene_gene/Gene-ref/Gene-ref_db/descendant-or-self::Object-id_id[string(../../../Dbtag_db) = 'HGNC']})->to_literal_list();
     my $summary = $root->findvalue(qq{/Entrezgene-Set/Entrezgene/Entrezgene_summary});
-    return unless $ensembl_id;
-#    say "$name, $ensembl_id: " . ($summary && "found summary");
+    return unless @ensembl_ids || @hgnc_ids;
 
     my $entrez_alert = {
         level => "note",
@@ -142,8 +142,16 @@ sub entry {
     $changes->{'$set'}->{'sections.description.data.summary'} = $summary;
     $changes->{'$addToSet'}->{'sections.description._alerts'} = $entrez_alert;
 
-    $log->debugf("Updating: %s", $ensembl_id);
-    my $result = $self->update_record($database, 'genes', {id => $ensembl_id}, $changes, {upsert => 0, multiple => 0, w => 1, j => true});
+    my $selector = {};
+    if (@ensembl_ids) {
+      $selector->{'id'} = {'$in' => \@ensembl_ids};
+      $log->debugf("Updating: Ensembl IDs: %s", join(', ', @ensembl_ids));
+    } elsif (@hgnc_ids) {
+      $selector->{'sections.identifiers.data.hgnc'} = {'$in' => \@hgnc_ids};
+      $log->debugf("Updating: HGNC IDs: %s", join(', ', @hgnc_ids));
+    }
+
+    my $result = $self->update_record($database, 'genes', $selector, $changes, {upsert => 0, multiple => 1, w => 1, j => true});
 }
 
 1;
