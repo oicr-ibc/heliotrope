@@ -99,6 +99,10 @@ gulp.task('coffee-service', function () {
     .pipe(g.coffee())
     .pipe(gulp.dest('./.tmp/src/service'));
 });
+gulp.task('service-dist', ['coffee-service'], function() {
+  return serviceFiles().pipe(gulp.dest('./dist'));
+});
+
 gulp.task('common', function() {
 return gulp.src([
     './src/common/**/*.js'
@@ -164,7 +168,7 @@ gulp.task('assets', function () {
 /**
  * Dist
  */
-gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist'], function () {
+gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'service-dist'], function () {
   return gulp.src('./src/app/index.html')
     .pipe(g.inject(gulp.src('./dist/vendors.min.{js,css}'), {ignorePath: 'dist', starttag: '<!-- inject:vendor:{{ext}} -->'}))
     .pipe(g.inject(gulp.src('./dist/' + bower.name + '.min.{js,css}'), {ignorePath: 'dist'}))
@@ -291,6 +295,13 @@ function appFiles () {
 function templateFiles (opt) {
   return gulp.src(['./src/app/**/*.html', '!./src/app/index.html'], opt)
     .pipe(opt && opt.min ? g.htmlmin(htmlminOpts) : noop());
+}
+
+/**
+ * The service files as a stream
+ */
+function serviceFiles() {
+  return gulp.src(['./package.json', './.tmp/src/service/**/*.js', '!./.tmp/src/service/**/*_test.js']);
 }
 
 /**

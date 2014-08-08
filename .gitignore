@@ -10,3 +10,4 @@
 /etc/scripts/*.err
 /bower_components
 !/bower_components/.gitkeep
+dist
