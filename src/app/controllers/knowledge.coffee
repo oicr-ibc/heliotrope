@@ -71,9 +71,11 @@ angular
         if clinical
           # Build a significance type list in the scope we can use to repeat and filter
           # the data accordingly.
+          significance = clinical.data.significance
+          significance ?= []
           types = {}
-          types[sig.tumourType] = [] for sig in clinical.data.significance
-          types[sig.tumourType].push(sig) for sig in clinical.data.significance
+          types[sig.tumourType] = [] for sig in significance
+          types[sig.tumourType].push(sig) for sig in significance
           $scope.classifiedSignifance = types
 
         $scope.originalSections = angular.copy(entity.data.sections) || {}

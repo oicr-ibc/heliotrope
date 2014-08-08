@@ -65,7 +65,10 @@ angular
             iElement.append linkFn(scope)
   ]
 
-  .directive 'heliEditDropdown', ['$compile', ($compile) ->
+  ## Handle a dropdown. Underneath, this is done using select2. That isn't completely
+  ## happy with Angular, so there is some bridging and validation logic required.
+
+  .directive 'heliEditDropdown', Array '$compile', ($compile) ->
     result =
       restrict: "A"
       replace: true
@@ -84,15 +87,33 @@ angular
           iElement.append linked
           linked
 
+        optionList = []
+
+        flagValidity = (control, validity) ->
+          jQuery(control).parents('.form-group').toggleClass('has-error', ! validity)
+
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-            control = linkBody("<select class='select-dropdown form-control' ng-model='value'>" +
-                               "<option ng-repeat='alt in options | split' ng-selected='(alt == value)' value='{{alt}}'>{{alt | keywordToString:#{capitalize}}}</option>" +
-                               "</select>")
-            jQuery(control).select2()
+            control = linkBody("<input type='hidden' class='form-control'>")
+            editor = jQuery(control).select2({data: []})
+
+            editor.on 'change', (e) ->
+              flagValidity(control, e.val in (k.id for k in optionList))
+              scope.$apply () ->
+                scope.value = e.val
+
+            scope.$watch 'options', (options) ->
+              optionList = for option in options.split(',')
+                {id: option, text: option}
+              jQuery(control).select2({data: optionList})
+
+            scope.$watch 'value', (val) ->
+              jQuery(control).select2("val", val)
+              flagValidity(control, val in (k.id for k in optionList))
+
           else
             linkBody("<p class='form-control-static'>{{value | keywordToString:#{capitalize}}}</p>")
-  ]
+
 
   .directive 'heliEditTypeahead', ['$compile', ($compile) ->
     result =
