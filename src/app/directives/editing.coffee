@@ -28,14 +28,16 @@ angular
               value = evt.val
               if value?
                 scope.$apply () ->
-                  scope.references = value.map (value) ->
-                    keys = value.split(":")
+                  references = value.map (value) ->
+                    keys = (v.trim() for v in value.split(":"))
                     { type: keys[0], id: keys[1] }
+                  scope['references'] = references
+              false
 
             tagsElement = iElement.find(".reference-tags")
             tagsElement.select2(
               tags: []
-              tokenSeparators: [",", " "]
+              tokenSeparators: [","]
             )
             tagsElement.bind 'change', changeHandler
 
