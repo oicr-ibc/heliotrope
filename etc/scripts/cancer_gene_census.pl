@@ -12,14 +12,14 @@ my $force;
 my $result = GetOptions("force" => \$force);
 
 use Heliotrope::Registry;
-use Heliotrope::Update::CGC;
+use Heliotrope::Update::CancerGeneCensus;
 
 my $reg = Heliotrope::Registry->instance();
 
 $reg->cache_root();
 $reg->data();
 
-my $updater = Heliotrope::Update::CGC->new();
+my $updater = Heliotrope::Update::CancerGeneCensus->new();
 
 if ($force) {
     $updater->update($reg);

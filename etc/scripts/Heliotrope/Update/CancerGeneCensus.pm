@@ -1,4 +1,4 @@
-package Heliotrope::Update::CGC;
+package Heliotrope::Update::CancerGeneCensus;
 
 use common::sense;
 
