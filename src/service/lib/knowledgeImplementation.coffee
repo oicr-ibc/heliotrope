@@ -535,6 +535,14 @@ module.exports.getVariantFrequencies = (req, res) ->
 ##
 ## @param req
 ## @param callback
+
+convertWildcardToRegex = (string) ->
+  escaped = string.replace /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"
+  if escaped == string
+    string
+  else
+    new RegExp("^" + escaped.replace(/\\\*/g, '.*').replace(/\\\?/g, '.'))
+
 module.exports.executeSearch = (req, res) ->
   db = res.locals.db
   query = req.query.q
@@ -549,7 +557,7 @@ module.exports.executeSearch = (req, res) ->
     db.collection "genes", (err, genes)->
       components = query.split(" ")
       if components.length >= 1
-        name = components[0].toUpperCase()
+        name = convertWildcardToRegex(components[0].toUpperCase())
         genes.find({name: name}).limit(1).toArray (err, docs) ->
           if docs.length < 1
             callback query, result
@@ -569,10 +577,11 @@ module.exports.executeSearch = (req, res) ->
     db.collection "variants", (err, variants) ->
       components = query.split(" ")
       if components.length >= 2
-        name = components[0]
+        name = convertWildcardToRegex(components[0])
         mutation = components[1]
         mutation = genomics.convertNamesToCodes(mutation)
         mutation = "p." + mutation if ! mutation.startsWith("p.")
+        mutation = convertWildcardToRegex(mutation)
 
         variants.find({gene: name, shortMutation: mutation}).limit(1).toArray (err, docs) ->
           if docs.length < 1
