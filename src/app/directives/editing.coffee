@@ -188,6 +188,12 @@ angular
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
+
+            scope.$watch 'value', (val) ->
+              if iAttrs.validation?
+                valid = scope.$eval iAttrs.validation
+                jQuery(iElement).parents('.form-group').toggleClass('has-error', ! valid)
+
           else
             body = "<p class='form-control-static'>{{value}}</p>"
             template = angular.element(body)
@@ -339,7 +345,7 @@ angular
                 '<div class="form-group">' +
                 '<label for="agentName{{$index}}" class="col-sm-3 control-label">Agent name</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-text id="agentName{{$index}}" value="agent.name"></span>' +
+                '<span heli-edit-text id="agentName{{$index}}" value="agent.name" validation="value && value.length > 0"></span>' +
                 '</div>' +
                 '</div>' +
 
