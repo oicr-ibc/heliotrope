@@ -18,3 +18,4 @@ export VEP_CACHE_DIRECTORY=
 perl boot.pl --force
 perl ensembl.pl --force
 perl cosmic.pl --force
+perl entrez.pl --force
