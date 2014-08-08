@@ -13,16 +13,17 @@ Vagrant.configure("2") do |config|
   # doesn't already exist on the user's system.
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
-  # Our bootstrapping
-  config.vm.provision :shell, :path => "etc/vagrant/bootstrap.sh"
-
   # Redirect networking from host to guest
   # Now you can navigate to https://localhost:8888/
   config.vm.network :forwarded_port, guest: 80, host: 8888
 
-  # For VirtualBox, set RAM availability. 
+  # For VirtualBox, set RAM availability.
   config.vm.provider "virtualbox" do |v|
     v.customize ["modifyvm", :id, "--memory", 1024]
   end
-  
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "provisioning.yml"
+  end
+
 end

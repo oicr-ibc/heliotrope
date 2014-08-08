@@ -1,0 +1,35 @@
+---
+- stat: path=/usr/local/bin/node
+  register: found_local_node
+
+- name: Node.js | Installing packages
+  apt: pkg={{ item.package }} state=present update_cache=yes cache_valid_time=3600
+  with_items:
+    - { package: 'build-essential' }
+  when: found_local_node.stat.exists == false
+
+- name: Node.js | Get Node.js
+  get_url:
+    dest: '/tmp/node-latest.tar.gz'
+    url: 'http://nodejs.org/dist/node-latest.tar.gz'
+  when: found_local_node.stat.exists == false
+
+- name: Node.js | Create directory
+  command: mkdir -p node-latest-install chdir=/tmp
+  when: found_local_node.stat.exists == false
+
+- name: Node.js | Unpack Node.js
+  command: tar -x -z --strip-components=1 -f /tmp/node-latest.tar.gz chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/configure
+  when: found_local_node.stat.exists == false
+
+- name: Node.js | Configure Node.js
+  command: ./configure chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/config.mk
+  when: found_local_node.stat.exists == false
+
+- name: Node.js | Build Node.js
+  command: make chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/out/Release/node
+  when: found_local_node.stat.exists == false
+
+- name: Node.js | Install Node.js
+  command: make install chdir=/tmp/node-latest-install creates=/usr/local/bin/node
+  when: found_local_node.stat.exists == false

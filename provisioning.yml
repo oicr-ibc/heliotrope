@@ -1,0 +1,16 @@
+---
+# file: global.yml
+
+# This play runs first, and gathers a complete set of properties for everything
+- hosts: all
+  sudo: True
+  tasks:
+    setup:
+      filter: '*'
+
+- hosts: all
+  sudo: True
+  roles:
+    - { role: database, tags: [ 'database' ] }
+    - { role: node, tags: [ 'node' ] }
+    - { role: webserver, tags: [ 'webserver' ] }
