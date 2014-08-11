@@ -14,3 +14,4 @@
     - { role: database, tags: [ 'database' ] }
     - { role: node, tags: [ 'node' ] }
     - { role: webserver, tags: [ 'webserver' ] }
+    - { role: webapp, tags: [ 'webapp' ] }

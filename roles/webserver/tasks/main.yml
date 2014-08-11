@@ -6,27 +6,6 @@
     - { package: 'nginx' }
     - { package: 'ssl-cert' }
 
-- name: Webapp | Create directories
-  shell: mkdir -p {{ item.path }} creates={{ item.path }}
-  with_items:
-    - { path: '/var/local' }
-    - { path: '/var/log/heliotrope' }
-    - { path: '/var/run/heliotrope' }
-
-- name: Webapp | Copy files
-  command: rsync -av /vagrant/dist/ /var/local/heliotrope
-
-- name: Webapp | Install dependencies
-  command: npm install --production chdir=/var/local/heliotrope creates=/var/local/heliotrope/node_modules
-
-- name: Webapp | Write configuration files
-  template: src={{ item.src }} dest={{ item.dest }}
-  notify:
-    - restart heliotrope
-  with_items:
-    - { src: 'heliotrope-config.j2', dest: '/etc/default/heliotrope' }
-    - { src: 'heliotrope-upstart.j2', dest: '/etc/init/heliotrope.conf' }
-
 - name: Webapp | Write nginx configuration files
   template: src={{ item.src }} dest={{ item.dest }}
   notify:
@@ -42,15 +21,6 @@
   file: state=link src=/etc/nginx/sites-available/heliotrope dest=/etc/nginx/sites-enabled/heliotrope
   notify:
     - restart nginx
-
-- name: Webapp | Create user heliotrope
-  user: name=heliotrope comment="heliotrope webapp" state=present
-
-- name: Webapp | Assign files to the heliotrope user
-  file: path={{ item.path }} recurse=yes owner=heliotrope group=adm mode=0750
-  with_items:
-    - { path: '/var/log/heliotrope' }
-    - { path: '/var/run/heliotrope' }
 
 - name: ensure nginx is running
   service: name=nginx state=started

@@ -1,0 +1,4 @@
+---
+# file: roles/webapp/handlers/main.yml
+- name: restart heliotrope
+  service: name=heliotrope state=restarted

@@ -1,7 +1,4 @@
 ---
-# file: roles/webapp/handlers/main.yml
-- name: restart heliotrope
-  service: name=heliotrope state=restarted
-
+# file: roles/webserver/handlers/main.yml
 - name: restart nginx
   service: name=nginx state=restarted
