@@ -12,7 +12,7 @@ module.exports.sendViewResponse = (req, res, view) ->
     if err
       res.header 'Content-Type', 'application/json'
       logger.error "Error body", err
-      res.send statusCode, {error: err, body: doc}
+      res.status(statusCode).send {error: err, body: doc}
     else
       doc["data"]["serviceUrl"] = req.url
       doc["data"]["config"] = res.locals.config if res.locals.config?
@@ -30,7 +30,7 @@ module.exports.sendGetResponse = (req, res) ->
       res.header 'Content-Type', 'application/json'
       doc["data"]["serviceUrl"] = req.url
       doc["data"]["config"] = res.locals.config if res.locals.config?
-      res.send statusCode, doc
+      res.status(statusCode).send doc
     db.close()
 
 module.exports.sendPostResponse = (req, res) ->

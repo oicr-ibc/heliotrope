@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
 
   # For VirtualBox, set RAM availability.
   config.vm.provider "virtualbox" do |v|
-    v.customize ["modifyvm", :id, "--memory", 1024]
+    v.customize ["modifyvm", :id, "--memory", 2048]
   end
 
   config.vm.provision "ansible" do |ansible|

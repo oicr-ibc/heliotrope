@@ -21,7 +21,7 @@ app.get '/api/authentication/ping', (req, res) ->
   response = new Object
   if req.user
     response["user"] = req.user
-  res.send 200, {data: response}
+  res.status(200).send {data: response}
 
 ## The authentication login endpoint doesn't do all that much. It returns the user (which should)
 ## have been deserialized from the session, and returns it in the response. The one key proviso
@@ -34,16 +34,16 @@ fakeFormValues = (req, res, next) ->
   next()
 
 app.post '/api/authentication/login', fakeFormValues, authentication.loginAuthenticator(), (req, res) ->
-  res.send 200, {data: {user: req.user}}
+  res.status(200).send {data: {user: req.user}}
 
 app.post '/api/authentication/logout', (req, res) ->
   req.logout()
-  res.send 200, {data: "Goodbye!"}
+  res.status(200).send {data: "Goodbye!"}
 
 app.get '/api/authentication/users', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), authentication.userRequest()
 app.get '/api/authentication/users/:user', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), authentication.userRequest()
 app.post '/api/authentication/users', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), authentication.userRequest()
 
 app.get '/api/authentication/*', (req, res) ->
-  res.send(404)
+  res.status(404).send()
 
