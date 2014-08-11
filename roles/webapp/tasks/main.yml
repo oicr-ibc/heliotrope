@@ -1,4 +1,4 @@
---
+---
 - name: Webapp | Create directories
   shell: mkdir -p {{ item.path }} creates={{ item.path }}
   with_items:
