@@ -9,4 +9,7 @@
     creates=/etc/apt/sources.list.d/10gen.list
 
 - name: MongoDB | Install latest MongoDB release
-  apt: pkg=mongodb-10gen state=present update_cache=yes
+  apt:
+    pkg: mongodb-org=2.6.4
+    state: present
+    update_cache: yes
