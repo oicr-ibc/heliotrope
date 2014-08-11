@@ -27,7 +27,7 @@
     "angular-route": "~1.2.19",
     "angular-resource": "~1.2.19",
     "angular-sanitize": "~1.2.19",
-    "bootstrap": "~3.1.1",
+    "bootstrap": "~3.2.0",
     "bootstrap-datepicker": "~1.3.0",
     "bootstrap-wysihtml5": "e577d45e48",
     "jqBootstrapValidation": "~1.3.7",
@@ -49,10 +49,15 @@
     },
     "select2-bootstrap3-css": {
       "main": "select2-bootstrap.css"
+    },
+    "bootstrap": {
+      "dependencies": {
+      },
+      "main": []
     }
   },
   "resolutions": {
     "angular": "1.2.19",
-    "select2-bootstrap3-css": "bootstrap3"
+    "bootstrap": "~3.2.0"
   }
 }
