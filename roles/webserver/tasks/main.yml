@@ -24,6 +24,3 @@
 
 - name: ensure nginx is running
   service: name=nginx state=started
-
-- name: ensure heliotrope is running
-  service: name=heliotrope state=started

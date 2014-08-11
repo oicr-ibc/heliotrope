@@ -10,6 +10,7 @@
   synchronize:
     src: './dist/'
     dest: '/var/local/heliotrope'
+    rsync_path: 'sudo rsync'
 
 - name: Webapp | Install dependencies
   command: npm install --production chdir=/var/local/heliotrope creates=/var/local/heliotrope/node_modules
