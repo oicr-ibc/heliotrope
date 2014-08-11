@@ -145,6 +145,7 @@ gulp.task('vendors', function () {
       bootstrapStream.pipe(g.rename({dirname: 'src/app/less'})).pipe(g.less({paths: lessPaths})),
       bowerStream.pipe(g.filter('**/*.css'))
     ).pipe(dist('css', 'vendors')),
+    bowerStream.pipe(g.filter('**/*.js')).pipe(dist('js', 'vendors')),
     fontsStream.pipe(gulp.dest('./dist/statics/fonts'))
   );
 });
@@ -158,7 +159,7 @@ gulp.task('build-all', ['styles', 'templates', 'common', 'coffee', 'coffee-servi
 function index () {
   var opt = {read: false};
   return gulp.src('./src/app/index.html')
-    .pipe(g.inject(gulp.src(mainBowerFiles(opt)), {ignorePath: 'bower_components', starttag: '<!-- inject:vendor:{{ext}} -->'}))
+    .pipe(g.inject(gulp.src(mainBowerFiles(opt), {read: false}), {ignorePath: 'bower_components', starttag: '<!-- inject:vendor:{{ext}} -->'}))
     .pipe(g.inject(es.merge(appFiles(), cssFiles(opt)), {ignorePath: ['.tmp', 'src/app']}))
     .pipe(gulp.dest('./src/app/'))
     .pipe(g.embedlr())
@@ -179,8 +180,8 @@ gulp.task('assets', function () {
  */
 gulp.task('dist', ['vendors', 'assets', 'styles-dist', 'scripts-dist', 'service-dist'], function () {
   return gulp.src('./src/app/index.html')
-    .pipe(g.inject(gulp.src('./dist/statics/vendors.min.{js,css}'), {ignorePath: 'dist', starttag: '<!-- inject:vendor:{{ext}} -->'}))
-    .pipe(g.inject(gulp.src('./dist/statics/' + bower.name + '.min.{js,css}'), {ignorePath: 'dist'}))
+    .pipe(g.inject(gulp.src('./dist/statics/vendors.min.{js,css}', {read: false}), {ignorePath: 'dist', starttag: '<!-- inject:vendor:{{ext}} -->'}))
+    .pipe(g.inject(gulp.src('./dist/statics/' + bower.name + '.min.{js,css}', {read: false}), {ignorePath: 'dist'}))
     .pipe(g.htmlmin(htmlminOpts))
     .pipe(gulp.dest('./dist/statics/'));
 });
