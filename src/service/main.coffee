@@ -19,13 +19,16 @@ app = express()
 logger = log4js.getLogger()
 
 ## Configure ourselves
-configFile = process.cwd() + "/config.json"
+options = require('optimist').argv
+configFile = options.config || process.cwd() + "/config.json"
 
 nconf
   .use('memory')
   .argv()
   .env()
   .file({ file: configFile })
+
+logger.info "Reading configuration file: #{configFile}"
 
 nconf.defaults
   'password:salt': '',

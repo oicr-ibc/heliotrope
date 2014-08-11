@@ -14,8 +14,8 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
   # Redirect networking from host to guest
-  # Now you can navigate to https://localhost:8888/
-  config.vm.network :forwarded_port, guest: 80, host: 8888
+  # Now you can navigate to https://localhost:8443/
+  config.vm.network :forwarded_port, host: 8443, guest: 443
 
   # For VirtualBox, set RAM availability.
   config.vm.provider "virtualbox" do |v|
@@ -24,6 +24,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "provisioning.yml"
+    ansible.verbose = "vvvv"
   end
 
 end

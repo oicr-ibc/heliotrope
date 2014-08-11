@@ -1,12 +1,12 @@
 ---
-- name: Webapp | Installing packages
+- name: Web server | Installing packages
   apt: pkg={{ item.package }} state=present update_cache=yes cache_valid_time=3600
   with_items:
     - { package: 'daemon' }
     - { package: 'nginx' }
     - { package: 'ssl-cert' }
 
-- name: Webapp | Write nginx configuration files
+- name: Web server | Write nginx configuration files
   template: src={{ item.src }} dest={{ item.dest }}
   notify:
     - restart nginx
@@ -14,13 +14,13 @@
     - { src: 'nginx-config.j2', dest: '/etc/nginx/sites-available/heliotrope' }
     - { src: 'nginx-upstart.j2', dest: '/etc/init/nginx.conf' }
 
-- name: Webapp | Remove default nginx site
+- name: Web server | Remove default nginx site
   file: state=absent path=/etc/nginx/sites-enabled/default
 
-- name: Webapp | Make nginx site link
+- name: Web server | Make nginx site link
   file: state=link src=/etc/nginx/sites-available/heliotrope dest=/etc/nginx/sites-enabled/heliotrope
   notify:
     - restart nginx
 
-- name: ensure nginx is running
+- name: Web server | ensure nginx is running
   service: name=nginx state=started

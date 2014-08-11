@@ -13,7 +13,7 @@
     rsync_path: 'sudo rsync'
 
 - name: Webapp | Install dependencies
-  command: npm install --production chdir=/var/local/heliotrope creates=/var/local/heliotrope/node_modules
+  command: npm install --production chdir=/var/local/heliotrope
 
 - name: Webapp | Write configuration files
   template: src={{ item.src }} dest={{ item.dest }}
@@ -32,3 +32,6 @@
     - { path: '/var/log/heliotrope' }
     - { path: '/var/run/heliotrope' }
 
+
+- name: Webapp | Ensure heliotrope is running
+  service: name=heliotrope state=started

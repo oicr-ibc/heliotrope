@@ -14,7 +14,7 @@ script
     echo $$ > /var/run/heliotrope.pid
 
     chdir /var/local/heliotrope
-    exec /usr/local/bin/node /var/local/heliotrope/main.js >> /var/log/heliotrope.log 2>&1
+    exec /usr/local/bin/node /var/local/heliotrope/main.js --config /etc/default/heliotrope >> /var/log/heliotrope.log 2>&1
 end script
 
 pre-start script
