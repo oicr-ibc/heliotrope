@@ -21,43 +21,40 @@ Heliotrope depends on these technologies:
 *  Java runtime -- used by the reporting system to generate PDF files (tested with Oracle Java 1.7.0_11)
 
 
-Quick Start
------------
+Installation
+------------
 
-To deploy heliotrope quickly, we recommend you use [Vagrant](http://www.vagrantup.com/‎) and [VirtualBox](https://www.virtualbox.org/‎).
-First install these components, then use the following commands:
+Before you install, you'll need fairly recent versions of [node.js](https//nodejs.org/) and
+[Vagrant](http://www.vagrantup.com/‎).
 
-```shell
-$ git clone git@github.com:oicr-ibc/heliotrope.git
-$ cd heliotrope
-$ vagrant up
-```
-
-This will automatically install all dependencies, and will assemble a local virtual machine with a complete
-knowledge base data package. You can then connect to this in your local browser at: https://localhost:8888/.
-An initial user is created with the username `admin` and password `admin` -- you can use this to create more
-users and configure studies as you choose, as well as to annotate the knowledge base.
-
-
-Manual Installation
--------------------
-
-If you don't want to use Vagrant and VirtualBox, you can install Heliotrope manually, but it is a little more work.
-First, install the dependencies (node.js, gulp, bower, MongoDB, Perl, and a Java runtime). This is better for a
-development system. Then you can check out Heliotrope using:
+*  Java
+*  [node.js](https//nodejs.org/)
 
 ```shell
 $ git clone git@github.com:oicr-ibc/heliotrope.git
 $ cd heliotrope
 $ npm install
 $ bower install
-$ gulp serve
+$ node_modules/gulp/bin/gulp serve
 ```
 
-This starts a command-line server, which you can deploy in an appropriate way. We recommend using a front-end
-proxy, such as nginx (this is set up automatically by the Vagrant deployment above) as this can manage secure
-communications to and from your server, and can also improve performance by serving the static files used by
-the front-end directly.
+For an easy start, use [VirtualBox](https://www.virtualbox.org/‎)
+to set up a quick virtual machine. You can also use [Ansible](http://www.ansible.com) to deploy to
+a virtual machine hosted elsewhere, either on your own local network, or using some cloud provider.
+
+*  [Vagrant](http://www.vagrantup.com/‎)
+*  [VirtualBox](https://www.virtualbox.org/‎)
+
+```shell
+$ node_modules/gulp/bin/gulp build-all
+$ node_modules/gulp/bin/gulp dist
+$ vagrant up
+```
+
+This will automatically install all dependencies, and will assemble a local virtual machine with a complete
+knowledge base data package. You can then connect to this in your local browser at: https://localhost:8443/.
+An initial user is created with the username `admin` and password `admin` -- you can use this to create more
+users and configure studies as you choose, as well as to annotate the knowledge base.
 
 
 Initializing the knowledge base

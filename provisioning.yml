@@ -14,4 +14,6 @@
     - { role: database, tags: [ 'database' ] }
     - { role: node, tags: [ 'node' ] }
     - { role: webserver, tags: [ 'webserver' ] }
+    - { role: java, tags: [ 'webapp' ] }
     - { role: webapp, tags: [ 'webapp' ] }
+    - { role: datapack, tags: [ 'datapack' ] }

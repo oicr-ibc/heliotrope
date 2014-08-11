@@ -1,0 +1,22 @@
+---
+
+# Peek at the database to see how many genes we have
+- name: Data download | Check to see whether we have any gene data
+  command: mongo --quiet --eval 'db.genes.stats()["count"]' heliotrope
+  register: found_genes
+
+- name: Data download | Get data
+  get_url:
+    dest: /tmp/heliotrope-dump-1.1.tar.bz2
+    url: https://googledrive.com/host/0B75vAAGHtrjaRGdaQV8wX3VrNVE/heliotrope-dump-1.1.tar.bz2
+  when: found_genes.stdout == "0"
+
+- name: Data download | Unpack data
+  command: tar xfj /tmp/heliotrope-dump-1.1.tar.bz2 chdir=/tmp creates=/tmp/heliotrope
+  when: found_genes.stdout == "0"
+
+- name: Data download | Restore data
+  command: mongorestore --db heliotrope /tmp/heliotrope
+  when: found_genes.stdout == "0"
+  async: 3600
+  poll: 60

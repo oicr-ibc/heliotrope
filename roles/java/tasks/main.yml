@@ -1,0 +1,10 @@
+---
+# file: roles/java/tasks/main.yml
+- name: Java | Install OpenJDK runtime
+  apt: pkg=openjdk-7-jre-headless state=present update_cache=yes cache_valid_time=3600
+
+- name: Java | Install IcedTea plugin
+  apt: pkg=icedtea-7-plugin state=present update_cache=yes cache_valid_time=3600
+
+- name: Java | Set default Java
+  shell: update-java-alternatives --set java-1.7.0-openjdk-amd64
