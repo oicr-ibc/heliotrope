@@ -2,14 +2,21 @@
 - name: Webapp | Create directories
   shell: mkdir -p {{ item.path }} creates={{ item.path }}
   with_items:
-    - { path: '/var/local' }
+    - { path: '/var/local/heliotrope' }
     - { path: '/var/log/heliotrope' }
     - { path: '/var/run/heliotrope' }
+    - { path: '/var/local/heliotrope/etc/reporting' }
 
 - name: Webapp | Copy files
   synchronize:
     src: './dist/'
     dest: '/var/local/heliotrope'
+    rsync_path: 'sudo rsync'
+
+- name: Webapp | Copy reporting files
+  synchronize:
+    src: './etc/reporting/'
+    dest: '/var/local/heliotrope/etc/reporting'
     rsync_path: 'sudo rsync'
 
 - name: Webapp | Install dependencies
