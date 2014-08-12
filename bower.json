@@ -49,11 +49,6 @@
     },
     "select2-bootstrap3-css": {
       "main": "select2-bootstrap.css"
-    },
-    "bootstrap": {
-      "dependencies": {
-      },
-      "main": []
     }
   },
   "resolutions": {

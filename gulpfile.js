@@ -136,8 +136,8 @@ gulp.task('templates-dist', function () {
  * Vendors
  */
 gulp.task('vendors', function () {
-  var bowerStream = gulp.src(mainBowerFiles());
-  var bootstrapStream = gulp.src('bower_components/bootstrap/less/bootstrap.less')
+  var bowerStream = gulp.src(mainBowerFiles()).pipe(g.ignore.exclude('bower_components/bootstrap/**/*.*'));
+  var bootstrapStream = gulp.src('bower_components/bootstrap/less/bootstrap.less');
   var fontsStream = gulp.src('bower_components/bootstrap/fonts/*.*');
   var lessPaths = [ 'src/app/less', 'bower_components/bootstrap/less' ];
   return es.merge(
