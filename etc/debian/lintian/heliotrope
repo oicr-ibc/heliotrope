@@ -1,0 +1,6 @@
+heliotrope binary: unstripped-binary-or-object
+heliotrope binary: python-script-but-no-python-dep
+heliotrope binary: executable-not-elf-or-script
+heliotrope binary: unusual-interpreter
+heliotrope binary: script-not-executable
+heliotrope binary: extra-license-file

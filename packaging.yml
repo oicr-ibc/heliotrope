@@ -30,6 +30,7 @@
         - { path: '/tmp/heliotrope-packaging' }
         - { path: '/tmp/heliotrope-packaging/usr/lib' }
         - { path: '/tmp/heliotrope-packaging/debian' }
+        - { path: '/tmp/heliotrope-packaging/etc/heliotrope' }
 
     - name: Packaging | Get nodejs
       get_url:
@@ -43,7 +44,7 @@
       command: tar -x -z --strip-components=1 -f /tmp/node-latest.tar.gz chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/configure
 
     - name: Packaging | Configure nodejs
-      command: ./configure --prefix=/usr/lib/heliotrope/node chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/config.mk
+      command: ./configure --shared-openssl --shared-zlib --prefix=/usr/lib/heliotrope/node chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/config.mk
 
     - name: Packaging | Build nodejs
       command: make chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/out/Release/node
@@ -66,6 +67,10 @@
     - name: Packaging | Install nodejs packages
       command: /usr/lib/heliotrope/node/bin/npm install --production chdir=/usr/lib/heliotrope creates=/usr/lib/heliotrope/node_modules
 
+    - name: Packaging | Clean nodejs modules
+      command: >
+        find -name '*.node' -exec chmod 0644 {} \; chdir=/usr/lib/heliotrope/node_modules
+
 # At this stage, we have a complete layout, with components installed in the
 # correct places and a complete node.js with all its production dependencies
 # correctly in place. That means we can now synchronize this to a packaging
@@ -75,6 +80,7 @@
       command: rsync -av {{ item.src }} {{ item.dest }}
       with_items:
         - { src: '/usr/lib/heliotrope/', dest: '/tmp/heliotrope-packaging/usr/lib' }
+        - { src: '/etc/heliotrope/', dest: '/tmp/heliotrope-packaging/etc/heliotrope' }
 
     - name: Packaging | Get packaging files
       synchronize:

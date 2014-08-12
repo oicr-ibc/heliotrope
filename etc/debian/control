@@ -7,9 +7,9 @@ Standards-Version: 3.8.4
 Homepage: https://github.com/oicr-ibc/heliotrope
 
 Package: heliotrope
-Architecture: all
+Architecture: amd64
 Pre-Depends: debconf, coreutils (>= 6.10)
-Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, daemon, psmisc
+Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, daemon, psmisc, libc
 Description: Integrated clinical genomics application.
  Developed as the next generation of our system for managing 
  clinical genomics trials.

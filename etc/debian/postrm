@@ -24,8 +24,8 @@ set -e
 case "$1" in
 	purge)
         userdel -f heliotrope || true
-        rm -rf /var/lib/heliotrope /var/log/heliotrope /var/run/heliotrope /etc/heliotrope /usr/share/heliotrope
-        ucf --purge /etc/heliotrope/heliotrope-config.groovy
+        rm -rf /usr/lib/heliotrope /var/log/heliotrope /var/run/heliotrope /etc/heliotrope /usr/share/heliotrope
+        ucf --purge /etc/heliotrope/config.json
     ;;
 
     remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
