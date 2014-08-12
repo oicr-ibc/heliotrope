@@ -20,3 +20,4 @@ perl ensembl.pl --force
 perl cosmic.pl --force
 perl entrez.pl --force
 perl cancer_gene_census.pl --force
+perl statistics.pl --force

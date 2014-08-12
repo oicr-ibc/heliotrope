@@ -141,23 +141,13 @@ module.exports.getGeneMutations = getGeneMutations
 module.exports.executeQuery = (req, res) ->
   name = req.params.query
   db = res.locals.db
-  db.collection "variantRecords", (err, variantRecords) ->
+  db.collection "statistics", (err, statistics) ->
     return res.status(500).send(err) if (err)
 
-    # Defines and returns the pipeline for the gene frequencies query. There is some room
-    # for performance tuning here, if we figure out what we actually want to return.
-    geneFrequenciesPipeline = [
-      { '$match' : {  'mutationId' : { '$ne' : null }}},
-      { '$group' : { '_id' : '$geneId', 'frequency' : { '$sum' : 1 }, 'geneSymbol' : { '$first' : '$geneSymbol' }}},
-      { '$project' : { 'name' : '$geneSymbol', 'frequency' : 1 }},
-      { '$sort' : { 'frequency' : -1 }}
-      { '$limit' : 250}
-    ]
-
-    variantRecords.aggregate geneFrequenciesPipeline, (err, commonGenes) ->
+    statistics.findOne {'tag' : name}, (err, commonGenes) ->
       return res.status(500).send(err) if (err)
       result = new Object
-      result['data'] = commonGenes
+      result['data'] = commonGenes.data
       result['config'] = res.locals.config
       res.send result
 
