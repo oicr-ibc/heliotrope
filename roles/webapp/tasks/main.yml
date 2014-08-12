@@ -6,6 +6,7 @@
     - { path: '/var/log/heliotrope' }
     - { path: '/var/run/heliotrope' }
     - { path: '/var/local/heliotrope/etc/reporting' }
+    - { path: '/etc/heliotrope' }
 
 - name: Webapp | Copy files
   synchronize:
@@ -27,7 +28,7 @@
   notify:
     - restart heliotrope
   with_items:
-    - { src: 'heliotrope-config.j2', dest: '/etc/default/heliotrope' }
+    - { src: 'heliotrope-config.j2', dest: '/etc/heliotrope/config.json' }
     - { src: 'heliotrope-upstart.j2', dest: '/etc/init/heliotrope.conf' }
 
 - name: Webapp | Create user heliotrope
