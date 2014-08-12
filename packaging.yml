@@ -1,0 +1,100 @@
+---
+# file: packaging.yml
+
+# This file is used to prepare a Debian package for the web application.
+# It is significantly different to the normal deployment process, because
+# the locations can be different. Also, there are fewer dependencies
+# needed, since we don't want a live system.
+
+- hosts: all
+  sudo: True
+  tasks:
+    setup:
+      filter: '*'
+
+- hosts: all
+  sudo: True
+  tasks:
+    - name: Packaging | Installing packages
+      apt: pkg={{ item.package }} state=present update_cache=yes cache_valid_time=3600
+      with_items:
+        - { package: 'build-essential' }
+        - { package: 'devscripts' }
+        - { package: 'debhelper' }
+
+    - name: Packaging | Create directories
+      shell: mkdir -p {{ item.path }} creates={{ item.path }}
+      with_items:
+        - { path: '/usr/lib/heliotrope' }
+        - { path: '/usr/lib/heliotrope/etc/reporting' }
+        - { path: '/tmp/heliotrope-packaging' }
+        - { path: '/tmp/heliotrope-packaging/usr/lib' }
+        - { path: '/tmp/heliotrope-packaging/debian' }
+
+    - name: Packaging | Get nodejs
+      get_url:
+        dest: '/tmp/node-latest.tar.gz'
+        url: 'http://nodejs.org/dist/node-latest.tar.gz'
+
+    - name: Packaging | Create directory
+      command: mkdir -p node-latest-install chdir=/tmp creates=/tmp/node-latest-install
+
+    - name: Packaging | Unpack nodejs
+      command: tar -x -z --strip-components=1 -f /tmp/node-latest.tar.gz chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/configure
+
+    - name: Packaging | Configure nodejs
+      command: ./configure --prefix=/usr/lib/heliotrope/node chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/config.mk
+
+    - name: Packaging | Build nodejs
+      command: make chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/out/Release/node
+
+    - name: Packaging | Install nodejs
+      command: make install chdir=/tmp/node-latest-install creates=/usr/lib/heliotrope/node
+
+    - name: Packaging | Copy files
+      synchronize:
+        src: './dist/'
+        dest: '/usr/lib/heliotrope'
+        rsync_path: 'sudo rsync'
+
+    - name: Packaging | Copy reporting files
+      synchronize:
+        src: './etc/reporting/'
+        dest: '/usr/lib/heliotrope/etc/reporting'
+        rsync_path: 'sudo rsync'
+
+    - name: Packaging | Install nodejs packages
+      command: /usr/lib/heliotrope/node/bin/npm install --production chdir=/usr/lib/heliotrope creates=/usr/lib/heliotrope/node_modules
+
+# At this stage, we have a complete layout, with components installed in the
+# correct places and a complete node.js with all its production dependencies
+# correctly in place. That means we can now synchronize this to a packaging
+# location and assemble the Debian.
+
+    - name: Packaging | Assemble files
+      command: rsync -av {{ item.src }} {{ item.dest }}
+      with_items:
+        - { src: '/usr/lib/heliotrope/', dest: '/tmp/heliotrope-packaging/usr/lib' }
+
+    - name: Packaging | Get packaging files
+      synchronize:
+        src: './etc/debian/'
+        dest: '/tmp/heliotrope-packaging/debian'
+        rsync_path: 'sudo rsync'
+
+    - name: Packaging | Discover the package.json contents
+      shell: cat /usr/lib/heliotrope/package.json
+      register: package_json
+
+    - name: Packaging | Discover the git commit date
+      sudo: False
+      local_action: command git log -n 1 --pretty=format:'%aD'
+      register: git_log_date
+
+    - name: Packaging | Get packaging files
+      template:
+        src: ./etc/debian-templates/changelog
+        dest: /tmp/heliotrope-packaging/debian/changelog
+
+    - name: Packaging | Build the package
+      command: debuild -b -us -uc chdir=/tmp/heliotrope-packaging

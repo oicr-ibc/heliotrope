@@ -5,12 +5,6 @@
 # pulled in from the init script; makes things easier.
 NAME=heliotrope
 
-# location of java
-JAVA=/usr/bin/java
-
-# arguments to pass to java
-JAVA_ARGS="-Xmx2048m -XX:MaxPermSize=256M -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled"
-
 # ulimit
 # Increase maximum open files for the heliotrope process
 # Comment this out to use the system default
@@ -23,10 +17,10 @@ HELIOTROPE_USER=heliotrope
 HELIOTROPE_DIST=/usr/share/heliotrope
 
 # heliotrope home location
-HELIOTROPE_HOME=/var/lib/heliotrope
+HELIOTROPE_HOME=/usr/lib/heliotrope
 
 # heliotrope log directory or syslog facility
 HELIOTROPE_LOG=/var/log/heliotrope
 
 # arguments to pass to heliotrope.
-HELIOTROPE_ARGS="--upgrade"
+HELIOTROPE_ARGS="--config=/etc/heliotrope/config.json"
