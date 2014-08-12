@@ -30,8 +30,9 @@ sub open_database {
     my @options = (@args, host => $database_server);
     push @options, username => $database_username if ($database_username);
     push @options, password => $database_password if ($database_password);
-    push @options, query_timeout => -1;
+    push @options, query_timeout => 120000;
     push @options, auto_reconnect => 1;
+    push @options, timeout => 10000;
 
     $log->debugf("Connecting to MongoDB: host: %s, database: %s", $database_server, $database_name);
 
