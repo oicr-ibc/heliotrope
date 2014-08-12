@@ -75,7 +75,7 @@ var ProteinStructureChart = function (options, data) {
     markerTooltipHtmlFn: function (d) {
       return 'Mutation: ' + d.id;
     },
-    markerTooltipOptions: {container: 'body', placement: 'right', html: true},
+    markerTooltipOptions: {container: 'body', placement: 'left', html: true},
     markerClassFn: function (d) {
       return 'marker';
     },
@@ -180,9 +180,6 @@ ProteinStructureChart.prototype.addValues = function () {
     .append('g')
     .attr('class', this.config.markerClassFn);
 
-  values.append('path')
-    .attr('d', valuePathFn);
-
   values.append('circle')
     .attr('cx', markerCxFn)
     .attr('cy', markerCyFn)
@@ -190,6 +187,10 @@ ProteinStructureChart.prototype.addValues = function () {
     .attr('rel', 'tooltip')
     .attr('title', this.config.markerTooltipHtmlFn)
     .on('click', this.config.markerUrlFn);
+
+  values.append('path')
+    .attr('d', valuePathFn);
+
 };
 
 /**
