@@ -1,5 +1,5 @@
 ---
-- stat: path=/usr/local/bin/node
+- stat: path=/usr/lib/heliotrope/node
   register: found_local_node
 
 - name: Node.js | Installing packages
@@ -23,7 +23,7 @@
   when: found_local_node.stat.exists == false
 
 - name: Node.js | Configure Node.js
-  command: ./configure chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/config.mk
+  command: ./configure --shared-openssl --shared-zlib --prefix=/usr/lib/heliotrope/node chdir=/tmp/node-latest-install creates=/tmp/node-latest-install/config.mk
   when: found_local_node.stat.exists == false
 
 - name: Node.js | Build Node.js
@@ -31,5 +31,5 @@
   when: found_local_node.stat.exists == false
 
 - name: Node.js | Install Node.js
-  command: make install chdir=/tmp/node-latest-install creates=/usr/local/bin/node
+  command: make install chdir=/tmp/node-latest-install creates=/usr/lib/heliotrope/node
   when: found_local_node.stat.exists == false

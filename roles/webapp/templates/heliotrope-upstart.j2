@@ -10,11 +10,11 @@ respawn limit 10 5
 
 script
     # Not sure why $HOME is needed, but we found that it is:
-    export HOME="/var/local/heliotrope"
+    export HOME="/usr/lib/heliotrope"
     echo $$ > /var/run/heliotrope.pid
 
-    chdir /var/local/heliotrope
-    exec /usr/local/bin/node /var/local/heliotrope/main.js --config /etc/heliotrope/config.json >> /var/log/heliotrope.log 2>&1
+    chdir /usr/lib/heliotrope
+    exec /usr/lib/heliotrope/node/bin/node /usr/lib/heliotrope/main.js --config /etc/heliotrope/config.json >> /var/log/heliotrope.log 2>&1
 end script
 
 pre-start script

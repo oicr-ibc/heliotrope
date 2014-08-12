@@ -2,26 +2,26 @@
 - name: Webapp | Create directories
   shell: mkdir -p {{ item.path }} creates={{ item.path }}
   with_items:
-    - { path: '/var/local/heliotrope' }
+    - { path: '/usr/lib/heliotrope' }
     - { path: '/var/log/heliotrope' }
     - { path: '/var/run/heliotrope' }
-    - { path: '/var/local/heliotrope/etc/reporting' }
+    - { path: '/usr/lib/heliotrope/etc/reporting' }
     - { path: '/etc/heliotrope' }
 
 - name: Webapp | Copy files
   synchronize:
     src: './dist/'
-    dest: '/var/local/heliotrope'
+    dest: '/usr/lib/heliotrope'
     rsync_path: 'sudo rsync'
 
 - name: Webapp | Copy reporting files
   synchronize:
     src: './etc/reporting/'
-    dest: '/var/local/heliotrope/etc/reporting'
+    dest: '/usr/lib/heliotrope/etc/reporting'
     rsync_path: 'sudo rsync'
 
 - name: Webapp | Install dependencies
-  command: npm install --production chdir=/var/local/heliotrope
+  command: npm install --production chdir=/usr/lib/heliotrope
 
 - name: Webapp | Write configuration files
   template: src={{ item.src }} dest={{ item.dest }}
