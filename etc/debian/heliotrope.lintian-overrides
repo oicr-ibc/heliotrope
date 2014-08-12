@@ -4,3 +4,6 @@ heliotrope binary: executable-not-elf-or-script
 heliotrope binary: unusual-interpreter
 heliotrope binary: script-not-executable
 heliotrope binary: extra-license-file
+heliotrope binary: wrong-path-for-interpreter
+heliotrope binary: image-file-in-usr-lib
+heliotrope binary: jar-not-in-usr-share

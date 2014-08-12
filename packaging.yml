@@ -67,9 +67,11 @@
     - name: Packaging | Install nodejs packages
       command: /usr/lib/heliotrope/node/bin/npm install --production chdir=/usr/lib/heliotrope creates=/usr/lib/heliotrope/node_modules
 
-    - name: Packaging | Clean nodejs modules
-      command: >
-        find -name '*.node' -exec chmod 0644 {} \; chdir=/usr/lib/heliotrope/node_modules
+    - name: Packaging | Set nodejs module binary execute permissions
+      command: find -name '*.node' -exec chmod 0644 {} \; chdir=/usr/lib/heliotrope/node_modules
+
+    - name: Packaging | Remove nodejs module CVS files
+      command: find -name '.git*' -exec rm {} \; chdir=/usr/lib/heliotrope/node_modules
 
 # At this stage, we have a complete layout, with components installed in the
 # correct places and a complete node.js with all its production dependencies
