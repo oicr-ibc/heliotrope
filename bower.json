@@ -52,7 +52,6 @@
     }
   },
   "resolutions": {
-    "angular": "1.2.19",
-    "bootstrap": "~3.2.0"
+    "datatables": "~1.10.0"
   }
 }
