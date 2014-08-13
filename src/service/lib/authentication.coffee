@@ -1,38 +1,27 @@
-module.exports.log4js = module.parent.exports.log4js
-module.exports.logger = module.parent.exports.logger
+log4js = require('log4js')
+logger = log4js.getLogger('authentication')
 
 sys =                  require("sys")
 passport =             require("passport")
 LocalStrategy =        require('passport-local').Strategy
 LocalAPIKeyStrategy =  require("passport-localapikey").Strategy
 crypto =               require('crypto')
+bcrypt =               require('bcrypt')
 mongo =                require("mongodb")
 
 shasum =               crypto.createHash('sha1')
 BSON =                 mongo.BSONPure
 MongoClient =          mongo.MongoClient
 
-## Local variables for easier access
-config =               module.parent.exports.config
-logger =               module.parent.exports.logger
-
 LdapAuth =             require("./ldapauth")
 
+## Use circular dependencies to get access to the app, and through that, to the
+## configuration in app.locals.config.
+app = require('./application')
+config = app.locals.config
 
 connected = (callback) ->
-  MongoClient.connect config['data']['userdb'], callback
-
-saltedPassword = (string) ->
-  shasum = crypto.createHash 'sha1'
-  shasum.update config["password"]["salt"]
-  shasum.update string
-  shasum.digest 'hex'
-
-## Define a setup for our configuration. This doesn't need to cache, as
-## we're using passport to establish session-based cookies. Caching will
-## get in the way of that.
-
-config.ldap.log4js = module.parent.exports.log4js if module.parent.exports.log4js?
+  MongoClient.connect config['data']['user']['store']['url'], callback
 
 ## The authenticator is provides a middleware component that can be used as a
 ## middleware in an endpoint. What it actually does, or how it does it, doesn't
@@ -52,7 +41,7 @@ module.exports.accessAuthenticator = (options) ->
       next()
     else
       res.set 'WWW-Authenticate', 'session'
-      res.send 401, "Unauthorized"
+      res.status(401).send "Unauthorized"
 
 ## Serializing a user to the session is fairly simple.
 serializer = (user, done) -> done(null, user.userId)
@@ -92,7 +81,6 @@ passport.deserializeUser deserializer
 
 heliotropeLocalStrategy = (username, password, done) ->
   databaseAuthenticate = () ->
-    hash = saltedPassword password
     connected (err, db) ->
       if err
         callback err, null
@@ -103,15 +91,17 @@ heliotropeLocalStrategy = (username, password, done) ->
 
         db.collection "users", (err, users) ->
           if err
-            databaseCallback(err, null)
+            databaseCallback err, null
           else
-            users.find({userId: username, password: hash}).toArray (err, users) ->
-              if err
-                databaseCallback(err, null)
-              else if users.length == 0 || users.length > 1
-                databaseCallback(null, null)
-              else
-                databaseCallback(null, users[0])
+            users.findOne {userId: username}, (err, user) ->
+              return databaseCallback(err, null) if err?
+              return databaseCallback(null, null) if users.length == 0 || users.length > 1
+              bcrypt.compare password, user.password, (err, res) ->
+                return databaseCallback(err, null) if err?
+                if !res
+                  databaseCallback null, null
+                else
+                  databaseCallback null, user
 
   ldapAuthenticate = () ->
 
@@ -143,8 +133,8 @@ heliotropeAPIKeyStrategy = (apikey, done) ->
 passport.use(new LocalStrategy(heliotropeLocalStrategy))
 passport.use(new LocalAPIKeyStrategy(heliotropeAPIKeyStrategy))
 
-module.exports.initialize = () ->
-  logger.info "Initializing authentication system"
+module.exports.initializeAdminUser = (userId, password) ->
+  logger.info "Adding admin user: #{userId}, password: #{password}"
   connected (err, db) ->
     if err
       throw new Error("Can't connect to user database!")
@@ -153,12 +143,14 @@ module.exports.initialize = () ->
         if err
           throw new Error("Can't get users collection!");
         else
-          users.update {"userId" : "admin"},
-                       {"$setOnInsert" : {"userId" : "admin", "password" : saltedPassword("admin"), "roles" : ["KB_EDITOR", "TRACKER_ADMIN"]}},
-                       {"upsert": true },
-                       (err, result) ->
-            if err
-              throw new Error("Failed to update user")
+          bcrypt.genSalt 10, (err, salt) ->
+            bcrypt.hash password, salt, (err, hash) ->
+              users.update {"userId" : userId},
+                           {"$setOnInsert" : {"userId" : userId, "password" : hash, "roles" : ["KB_EDITOR", "TRACKER_ADMIN"]}},
+                           {"upsert": true },
+                           (err, result) ->
+                if err
+                  throw new Error("Failed to update user")
 
 
 module.exports.userRequest = () ->

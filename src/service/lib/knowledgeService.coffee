@@ -1,24 +1,18 @@
 ## Knowledge service implementation. Nothing much to see here, move along please.
 
-module.exports.log4js = module.parent.exports.log4js
-module.exports.logger = module.parent.exports.logger
-module.exports.config = module.parent.exports.config
+log4js = require('log4js')
+logger = log4js.getLogger('knowledgeService')
 
-app =    module.parent.exports.app
-config = module.parent.exports.config
-base =   config["heliotrope"]["knowledgeUriBase"]
-logger = module.exports.logger
+app = require('./application')
+config = app.locals.config
+base = config["heliotrope"]["knowledgeUriBase"]
 
 temp =            require('temp')
 fs =              require("fs")
 
-mongo =           require("mongodb")
-MongoClient =     mongo.MongoClient
-BSON =            mongo.BSONPure
+MongoClient =     require("mongodb").MongoClient
 
 ## Knowledge service implementation. Nothing much to see here, move along please.
-reporting =       require("./reporting")
-responders =      require("./responders")
 authentication =  require("./authentication")
 knowledge =       require("./knowledgeImplementation")
 
@@ -26,8 +20,10 @@ knowledge.initialize()
 
 logger.info("Initializing knowledge base at: " + base)
 
-knowledgeMiddleware = (req, res, next) =>
+router = require('express').Router()
 
+## Add middleware to open a database connection, and clean up afterwards
+router.use (req, res, next) =>
   ## Allow bypass on content negotiation when the mimeType query parameter is set
   if req.query.mimeType?
     req.headers.accept = req.query.mimeType
@@ -43,37 +39,39 @@ knowledgeMiddleware = (req, res, next) =>
   res.locals.config = config["heliotrope"]
   res.locals.uriBase = base
 
-  MongoClient.connect config["data"]["knowledgedb"], (err, db) ->
+  MongoClient.connect config["data"]["knowledge"]['store'], (err, db) ->
     return next(err) if err?
     res.locals.db  = db
     next()
 
-app.get base + '/genes/:gene', knowledgeMiddleware, knowledge.getGene
+router.get '/genes/:gene', knowledge.getGene
 
-app.get base + '/genes/:gene/mutations', knowledgeMiddleware, knowledge.getGeneMutations
+router.get '/genes/:gene/mutations', knowledge.getGeneMutations
 
-app.get base + '/genes/:gene/frequencies', knowledgeMiddleware, knowledge.getGeneFrequencies
+router.get '/genes/:gene/frequencies', knowledge.getGeneFrequencies
 
-app.get base + '/queries/:query', knowledgeMiddleware, knowledge.executeQuery
+router.get '/queries/:query', knowledge.executeQuery
 
-app.get base + '/variants/:id', knowledgeMiddleware, knowledge.getVariant
+router.get '/variants/:id', knowledge.getVariant
 
-app.get base + '/variants/:id/frequencies', knowledgeMiddleware, knowledge.getVariantFrequencies
+router.get '/variants/:id/frequencies', knowledge.getVariantFrequencies
 
-app.get base + '/publications/:type/:id', knowledgeMiddleware, knowledge.getPublication
+router.get '/publications/:type/:id', knowledge.getPublication
 
 ## PUT requests require authentication, and properly authorization too.
-app.put base + '/variants/:id', authentication.accessAuthenticator(), knowledgeMiddleware,  knowledge.putVariant
+router.put '/variants/:id', authentication.accessAuthenticator(),  knowledge.putVariant
 
 ## POST requests require authentication, and properly authorization too. This is
 ## not public, as it is primarily a service endpoint that can be used create a
 ## bunch of variants from, e.g., VCF file parsing. The POST system needs to be
 ## idempotent and accessible over web access.
-app.post base + '/variants', authentication.apiAuthenticator(), knowledgeMiddleware, knowledge.postVariant
+router.post '/variants', authentication.apiAuthenticator(), knowledge.postVariant
 
-app.get base + '/variants/:id/report', knowledgeMiddleware, knowledge.getVariantReport
+router.get '/variants/:id/report', knowledge.getVariantReport
 
-app.get base + '/search', knowledgeMiddleware, knowledge.executeSearch
+router.get '/search', knowledge.executeSearch
 
-app.get base + '/*', (req, res) ->
+router.get '/*', (req, res) ->
   res.send(404)
+
+module.exports = router

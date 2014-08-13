@@ -1,136 +1,110 @@
-module.exports.log4js = module.parent.exports.log4js
-module.exports.logger = module.parent.exports.logger
+log4js = require('log4js')
+logger = log4js.getLogger('trackerService')
 
-app =    module.parent.exports.app
-config = module.parent.exports.config
+app = require('./application')
+config = app.locals.config
 base =   config["heliotrope"]["trackerUriBase"]
 
+MongoClient =     require("mongodb").MongoClient
+
 ## Knowledge service implementation. Nothing much to see here, move along please.
-responders =      require("./responders")
 tracker =         require("./trackerImplementation")
 authentication =  require("./authentication")
 
 tracker.initialize()
 
-initializeResponse = (res) ->
+logger.info "Initializing tracker at: " + base
+
+router = require('express').Router()
+
+## Add middleware to open a database connection, and clean up afterwards
+router.use (req, res, next) =>
+  ## Allow bypass on content negotiation when the mimeType query parameter is set
+
+  if req.query.mimeType?
+    req.headers.accept = req.query.mimeType
+    delete req.query.mimeType
+
+  originalEnd = res.end
+  res.end = (chunk, encoding) ->
+    res.end = originalEnd
+    res.end(chunk, encoding)
+    if res.locals.db?
+      res.locals.db.close()
+
   res.locals.config = config["heliotrope"]
   res.locals.uriBase = base
+
+  MongoClient.connect config['data']['tracker']['store']['url'], (err, db) ->
+    return next(err) if err?
+    res.locals.db  = db
+    next()
 
 ## Service endpoint for a list of studies. This is generally not authenticated, and
 ## should return a more public list of apparent information. Actually, it might well
 ## be authenticated a bit at some stage, but not now.
-app.get base + '/studies',
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.getStudies err, db, req, res, responders.sendGetResponse(req, res)
+router.get '/studies', tracker.getStudies
 
 ## Service endpoint for creating a new study. This will require editorial/admin
 ## authorization.
-app.post base + '/studies',
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.postStudies err, db, req, res, responders.sendPostResponse(req, res)
+router.post '/studies', tracker.postStudies
 
 ## Service endpoint for a single study. This is authenticated, and returns information
 ## about that study.
-app.get base + '/studies/:study', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.getStudy err, db, req, res, responders.sendGetResponse(req, res)
+router.get '/studies/:study', authentication.accessAuthenticator(), tracker.getStudy
 
 ## Service endpoint for a single study step. This is authenticated, and returns information
 ## about that study.
-app.get base + '/steps/:study/:role/:step', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.getStudyStep err, db, req, res, responders.sendGetResponse(req, res)
+# router.get '/steps/:study/:role/:step', authentication.accessAuthenticator(), tracker.getStudyStep
 
 ## Service endpoint for a single entity. This is authenticated, and returns information
 ## about that that entity, identified by role and identity string.
-app.get base + '/studies/:study/:role/:identity', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.getEntity err, db, req, res, responders.sendGetResponse(req, res)
+router.get '/studies/:study/:role/:identity', authentication.accessAuthenticator(), tracker.getEntity
 
 ## Service endpoint for a single entity step. This is authenticated, and returns information
 ## about that the step for that entity, identified by role and identity string, and by step
 ## name (possibly with an identifier).
-app.get base + '/studies/:study/:role/:identity/step/:step', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.getEntityStep err, db, req, res, responders.sendGetResponse(req, res)
+router.get '/studies/:study/:role/:identity/step/:step', authentication.accessAuthenticator(), tracker.getEntityStep
 
 ## Service endpoint for a set of entities related to a single entity. This is authenticated, and returns information
 ## about that the entity identified by role and identity string.
-app.get base + '/related/:study', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.getStudyRelatedEntities err, db, req, res, responders.sendGetResponse(req, res)
+# router.get '/related/:study', authentication.accessAuthenticator(), tracker.getStudyRelatedEntities
 
 ## Service endpoint for a set of entities within a study with a given role.
-app.get base + '/studies/:study/:role', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.getEntities err, db, req, res, responders.sendGetResponse(req, res)
+# router.get '/studies/:study/:role', authentication.accessAuthenticator(), tracker.getEntities
 
 ## Service endpoint for a set of views within a study for entities without any role specified.
-app.get base + '/views/:study', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.getViews err, db, req, res, responders.sendGetResponse(req, res)
+# router.get '/views/:study', authentication.accessAuthenticator(), tracker.getViews
 
 ## Service endpoint for a set of views within a study for entities with a given role.
-app.get base + '/views/:study/:role', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.getViews err, db, req, res, responders.sendGetResponse(req, res)
+router.get '/views/:study/:role', authentication.accessAuthenticator(), tracker.getViews
 
 ## Service endpoint for a set of views within a study for entities with a given role.
-app.get base + '/views/:study/:role/:view', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.getView err, db, req, res, responders.sendGetResponse(req, res)
+# router.get '/views/:study/:role/:view', authentication.accessAuthenticator(), tracker.getView
 
 ## Service endpoint to update a given step for a given entity, identified
 ## by role, entity identifier, and step name.
-app.post base + '/studies/:study/:role/:identity/step/:step', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.postEntityStep err, db, req, res, responders.sendPostResponse(req, res)
+router.post '/studies/:study/:role/:identity/step/:step', authentication.accessAuthenticator(), tracker.postEntityStep
 
 ## Service endpoint to push files for a given step for a given entity, identified
 ## by role, entity identifier, and step name. Files are handled in a separate
 ## request (that's just the way single-page apps have to do it).
-app.post base + '/studies/:study/:role/:identity/step/:step/files', authentication.accessAuthenticator(),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.postEntityStepFiles err, db, req, res, responders.sendGetResponse(req, res)
+# router.post '/studies/:study/:role/:identity/step/:step/files', authentication.accessAuthenticator(), tracker.postEntityStepFiles
 
 ## Administration endpoints, primarily for editing. These require administrative access.
 
 ## Service endpoint to update a step definition.
-app.post base + '/steps/:study', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.postStudyStep err, db, req, res, responders.sendPostResponse(req, res)
+# router.post '/steps/:study', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), tracker.postStudyStep
 
 ## Service endpoint to update a step definition, specified differently.
-app.post base + '/steps/:study/:role/:step', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.postStudyStep err, db, req, res, responders.sendPostResponse(req, res)
+# router.post '/steps/:study/:role/:step', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), tracker.postStudyStep
 
 ## Service endpoint to update a view definition.
-app.post base + '/views/:study', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.postStudyView err, db, req, res, responders.sendPostResponse(req, res)
+# router.post '/views/:study', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), tracker.postStudyView
 
 ## Service endpoint to update a view definition, specified differently.
-app.post base + '/views/:study/:role/:view', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}),
-  tracker.connected config["data"]["trackerdb"], (err, db, req, res) ->
-    initializeResponse res
-    tracker.postStudyView err, db, req, res, responders.sendPostResponse(req, res)
+# router.post '/views/:study/:role/:view', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), tracker.postStudyView
 
-app.get base + '/*', (req, res) ->
-  res.send(404)
+# router.get '/*', (req, res) -> res.status(404).send()
+
+module.exports = router

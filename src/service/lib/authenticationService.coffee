@@ -1,12 +1,7 @@
-module.exports.log4js = module.parent.exports.log4js
-module.exports.logger = module.parent.exports.logger
-module.exports.config = module.parent.exports.config
-
-app =    module.parent.exports.app
-config = module.parent.exports.config
+log4js = require('log4js')
+logger = log4js.getLogger('configuration')
 
 authentication = require("./authentication")
-authentication.initialize()
 
 ## The authentication ping endpoint simply sends back the deserialized user record. This isn't
 ## a massive security issue as it can't be filled with too much. Besides, the roles and other
@@ -17,7 +12,9 @@ authentication.initialize()
 ## It's arguably useless in Heliotrope, where much of the system is public, since using it
 ## provokes authentication.
 
-app.get '/api/authentication/ping', (req, res) ->
+router = require('express').Router()
+
+router.get '/ping', (req, res, next) ->
   response = new Object
   if req.user
     response["user"] = req.user
@@ -33,17 +30,18 @@ fakeFormValues = (req, res, next) ->
   req.query.password = 'unknown' if !req.query.password
   next()
 
-app.post '/api/authentication/login', fakeFormValues, authentication.loginAuthenticator(), (req, res) ->
+router.post '/login', fakeFormValues, authentication.loginAuthenticator(), (req, res) ->
   res.status(200).send {data: {user: req.user}}
 
-app.post '/api/authentication/logout', (req, res) ->
+router.post '/logout', (req, res) ->
   req.logout()
   res.status(200).send {data: "Goodbye!"}
 
-app.get '/api/authentication/users', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), authentication.userRequest()
-app.get '/api/authentication/users/:user', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), authentication.userRequest()
-app.post '/api/authentication/users', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), authentication.userRequest()
+router.get '/users', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), authentication.userRequest()
+router.get '/users/:user', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), authentication.userRequest()
+router.post '/users', authentication.accessAuthenticator({role: "TRACKER_ADMIN"}), authentication.userRequest()
 
-app.get '/api/authentication/*', (req, res) ->
+router.get '/*', (req, res) ->
   res.status(404).send()
 
+module.exports = router
