@@ -35,13 +35,16 @@ localize = (localizableData) ->
 
 module.exports.getStudies = (req, res) ->
   db = res.locals.db
+  config = res.app.locals.config
   db.collection "studies", (err, studies) ->
     return res.status(err.code).send(err.err) if err?
     studies.find({}).toArray (err, docs) ->
       return res.status(err.code).send(err.err) if err?
       results = {}
       for doc in docs
-        doc.url = "/studies/" + doc.name
+
+        config = res.app.locals.config
+        doc.url = config['baseUrl'] + config['trackerUriBase'] + "/studies/" + doc.name
         doc.statistics = {}
         doc.lastModified = ""
         results[doc._id.toString()] = doc
@@ -101,7 +104,8 @@ module.exports.postStudies = (err, db, req, res, callback) ->
 
       updates["$inc"] = {"version" : 1}
 
-      newUrl = "/studies/" + encodeURIComponent(body["data"]["name"])
+      config = res.app.locals.config
+      newUrl = config['baseUrl'] + config['trackerUriBase'] + "/studies/" + encodeURIComponent(body["data"]["name"])
 
       db.collection "studies", (err, studies) ->
         studies.update selector, updates, {"upsert" : true, "w" : 1, "fsync" : 1}, (err, result) ->
@@ -214,10 +218,10 @@ findStudy = (req, res, mode, callback) ->
     return callback({status: 500, error: err}, null) if err?
 
     selector = if (name.substr(0, 3) == "id;") then {"_id": new BSON.ObjectID(name.substring(3))} else {name: name}
-    studies.findOne selector, (err, doc) ->
+    studies.findOne selector, (err, study) ->
 
       return callback({status: 500, error: err}, null) if err?
-      return callback({status: 404, error: "Not Found"}, null) if !doc?
+      return callback({status: 404, error: "Not Found"}, null) if !study?
 
       # If we get a study back, but the requested user is not allowed access to it, then we
       # can simply refuse access. The callback needs to be subtle enough to distingish between
@@ -229,10 +233,11 @@ findStudy = (req, res, mode, callback) ->
       # As an exception, obviously, administrative users (e.g., me) can always get access. And that's
       # a user role.
 
-      doc.url = "/studies/" + doc.name
+      config = res.locals.config
+      study.url = config['baseUrl'] + config['trackerUriBase'] + "/studies/" + encodeURIComponent(study.name)
 
-      if checkAdminAccess(req, mode) || checkAccessList(req, accessList(doc), mode)
-        callback null, doc
+      if checkAdminAccess(req, mode) || checkAccessList(req, accessList(study), mode)
+        callback null, study
       else
         callback {status: 403, error: "Forbidden"}, null
 
@@ -421,12 +426,12 @@ module.exports.getEntity = (req, res, callback) ->
   identity = req.params.identity
   userId = req.user.userId
 
-  findStudy req, res, 'read', (err, doc) ->
+  findStudy req, res, 'read', (err, study) ->
 
-    if err || ! doc
-      return callback(db, err, doc, res, res.locals.statusCode || 404)
+    return res.status(500).send(err) if err?
+    return res.status(404).send("Not Found") if ! study?
 
-    studyId = new BSON.ObjectID(doc._id.toString())
+    studyId = new BSON.ObjectID(study._id.toString())
 
     findEntity req, res, studyId, role, identity, (err, entity) ->
 
@@ -435,9 +440,10 @@ module.exports.getEntity = (req, res, callback) ->
       else if entity == undefined
         return callback db, {err: "Missing entity: " + role + ", " + identity}, null, res
 
-      entity.study = doc
-      entity.notes = (doc.nodes && doc.notes[role]) || {}
-      entity.url = doc.url + "/" + role + "/" + identity
+      entity.study = study
+      entity.notes = (study.nodes && study.notes[role]) || {}
+
+      entity.url = study.url + "/" + encodeURIComponent(role) + "/" + encodeURIComponent(identity)
 
       # Find all the available steps
       stepSelector = {"studyId" : studyId, "appliesTo" : role}
@@ -447,7 +453,7 @@ module.exports.getEntity = (req, res, callback) ->
         steps.find(stepSelector).toArray (err, allStepsArray) ->
 
           stepsArray = allStepsArray.sort(compareViews)
-          stepsArray = (step for step in stepsArray when checkAdminAccess(req, 'read') || checkAccessList(req, accessList(step, doc), 'read'))
+          stepsArray = (step for step in stepsArray when checkAdminAccess(req, 'read') || checkAccessList(req, accessList(step, study), 'read'))
 
           # And finally, related entities.
           relatedSelector = buildRelatedEntitySelector(entity)
@@ -492,20 +498,18 @@ maybeInterceptedCallback = (plugin, db, err, result, req, res, callback) ->
 
 module.exports.getEntityStep = (req, res) ->
 
-  logger.info "Called getEntityStep"
-
   studyName = req.params.study
   role = req.params.role
   identity = req.params.identity
 
-  findStudy req, res, 'read', (err, doc) ->
+  findStudy req, res, 'read', (err, study) ->
     return res.status(500).send(err) if err?
-    return res.status(404).send("Not Found") if !doc?
+    return res.status(404).send("Not Found") if !study?
 
-    studyId = new BSON.ObjectID(doc._id.toString())
+    studyId = new BSON.ObjectID(study._id.toString())
     entityModifier = (entity) ->
-      entity.study = doc
-      entity.url = doc.url + "/" + role + "/" + identity
+      entity.study = study
+      entity.url = study.url + "/" + role + "/" + identity
       entity
 
     if identity == "id;new"
@@ -813,34 +817,37 @@ getSelectedDataBlock = (stepName, stepDefinition, stepDataBlocks) ->
 ## this needs to happen for a GET request, too, at least for display reasons)
 ## and then we can build a new entity and create the wee beauty.
 
-module.exports.postEntityStep = (err, db, req, res, callback) ->
+module.exports.postEntityStep = (req, res) ->
   studyName = req.params.study
   role = req.params.role
   identity = req.params.identity
   stepName = req.params.step
 
-  findStudy db, req, res, 'read', (err, doc) ->
+  findStudy req, res, 'read', (err, study) ->
 
     # If we have an error, respond appropriately.
-    if err || ! doc
-      return callback db, err, doc, res, res.locals.statusCode || 404
+    return res.status(500).send(err) if err?
+    return res.status(404).send("Not Found") if ! study?
 
-    studyId = new BSON.ObjectID(doc._id.toString())
+    studyId = new BSON.ObjectID(study._id.toString())
     stepSelector = getStepSelector studyId, role, stepName
+
+    db = res.locals.db
 
     # Find the referenced step
     db.collection "steps", (err, steps) ->
-      steps.find(stepSelector).toArray (err, stepsArray) ->
-        step = stepsArray[0]
+      return res.status(500).send(err) if err?
+
+      steps.findOne stepSelector, (err, step) ->
+        return res.status(500).send(err) if err?
 
         # Actually, to work with a step, we need read access to the study, and modify access
         # to the step. This means rejection. Although we have defined read access, here we don't
         # need to test for it, nor do we in reading steps either.
 
-        access = accessList(step, doc)
+        access = accessList(step, study)
         if ! (checkAdminAccess(req, 'modify') || checkAccessList(req, access, 'modify'))
-          res.locals.statusCode = 403
-          return callback db, {error: "Forbidden"}, null, res, 403
+          return res.status(403).send("Forbidden")
 
         # Handle repeating steps. When we have a repeating step with an identifier as part
         # of the step name, locate that step specifically. We can use that instead of the
@@ -877,16 +884,14 @@ module.exports.postEntityStep = (err, db, req, res, callback) ->
         initialUpdater["$set"]["steps.$.stepUser"] = (req.user && req.user.userId) || null
         initialUpdater["$set"]["lastModified"] = new Date()
 
-        findStepUpdater db, studyId, step, req.body.data.step.fields, {}, initialUpdater, (db, err, updater) ->
-
-          if err
-            return callback db, err, err.toString(), res, 400
+        findStepUpdater req, res, studyId, step, req.body.data.step.fields, {}, initialUpdater, (err, updater) ->
+          return res.status(400).send(err.toString()) if err?
 
           # OK. At this stage we have an updater. We can proceed to use it. Again, for a repeating step,
           # we get an identifier tagged on the end of the URL.
 
           newIdentity = updater["$set"]["identity"] || identity
-          newUrl = doc.url + "/" + role + "/" + newIdentity + "/step/" + stepName
+          newUrl = study.url + "/" + role + "/" + newIdentity + "/step/" + stepName
           if step["isRepeatable"]
             newUrl = newUrl + ";" + existingEntityStepSelector["steps.id"].toString()
 
@@ -895,8 +900,7 @@ module.exports.postEntityStep = (err, db, req, res, callback) ->
           db.collection "entities", (err, entities) ->
             entities.update existingEntityStepSelector, updater, updateOptions, (err, result) ->
 
-              if err
-                return callback db, err, newUrl, res, 400
+              return res.status(400).send(err) if err?
 
               # Now if result == 1 we changed something. If result == 0, we didn't, and
               # need to actually do something about it. That could mean that the step didn't exist,
@@ -940,19 +944,22 @@ module.exports.postEntityStep = (err, db, req, res, callback) ->
 
                 entities.update existingEntityStepSelector, updater, updateOptions, (err, result) ->
                   switch
-                    when err then         callback db, err, newUrl, res, 400
-                    when result == 0 then callback db, "Internal error inserting document", newUrl, res, 400
-                    else                  callback db, err, newUrl, res
+                    when err
+                      res.status(400).send(err)
+                    when result == 0
+                      res.status(400).send("Internal error inserting document")
+                    else
+                      res.redirect newUrl
 
               else
-                callback db, err, newUrl, res
+                res.redirect newUrl
 
 ## Given a set of objects, it returns an array of all the actual access
 ## objects present within them, omitting those that don't exist.
 accessList = (values...) ->
   (access["access"] for access in values when access["access"]?)
 
-findStepUpdater = (db, studyId, step, fields, errors, updater, callback) ->
+findStepUpdater = (req, res, studyId, step, fields, errors, updater, callback) ->
 
   remainingFields = if fields == undefined then [] else Object.keys(fields)
 
@@ -978,7 +985,7 @@ findStepUpdater = (db, studyId, step, fields, errors, updater, callback) ->
     if Object.keys(errors).length == 0
       errors = null
 
-    callback db, errors, updater
+    callback errors, updater
 
   else
 
@@ -989,7 +996,7 @@ findStepUpdater = (db, studyId, step, fields, errors, updater, callback) ->
 
     # Discard if it's not a step field
     if ! step.fields.hasOwnProperty(fieldName)
-      return findStepUpdater db, studyId, step, fields, errors, updater, callback
+      return findStepUpdater req, res, studyId, step, fields, errors, updater, callback
 
     # Otherwise, get the field definition.
     fieldDefinition = step.fields[fieldName]
@@ -1003,7 +1010,7 @@ findStepUpdater = (db, studyId, step, fields, errors, updater, callback) ->
         newField["identity"] = fieldValue["identity"]
         updater["$set"]["steps.$.fields"].push(newField)
         updater["$set"]["identity"] = newField["identity"]
-      return findStepUpdater db, studyId, step, fields, errors, updater, callback
+      return findStepUpdater req, res, studyId, step, fields, errors, updater, callback
 
     else if fieldDefinition.type == 'Reference' && fieldDefinition.hasOwnProperty('entity')
 
@@ -1016,7 +1023,7 @@ findStepUpdater = (db, studyId, step, fields, errors, updater, callback) ->
 
       if selector?
         # Shouldn't throw an error. Should really be a missing field. If it's required.
-        findStepUpdater db, studyId, step, fields, errors, updater, callback
+        findStepUpdater req, res, studyId, step, fields, errors, updater, callback
 
       else
 
@@ -1026,13 +1033,13 @@ findStepUpdater = (db, studyId, step, fields, errors, updater, callback) ->
               callback db, {err: err}, null
             else if docs.length == 0
               errors.missingObject = ["role", reference.toString()];
-              findStepUpdater db, studyId, step, fields, errors, updater, callback
+              findStepUpdater req, res, studyId, step, fields, errors, updater, callback
             else
               entity = docs[0]
               id = new BSON.ObjectID(entity._id.toString())
               newField["ref"] = id
               updater["$set"]["steps.$.fields"].push(newField)
-              findStepUpdater db, studyId, step, fields, errors, updater, callback
+              findStepUpdater req, res, studyId, step, fields, errors, updater, callback
 
     else if ! fieldDefinition.isIdentity
 
@@ -1043,7 +1050,7 @@ findStepUpdater = (db, studyId, step, fields, errors, updater, callback) ->
       if fieldDefinition.name
         updater["$set"]["name"] = newField["value"];
 
-      findStepUpdater db, studyId, step, fields, errors, updater, callback
+      findStepUpdater req, res, studyId, step, fields, errors, updater, callback
 
     else
       throw new Error("Should never get here!")
