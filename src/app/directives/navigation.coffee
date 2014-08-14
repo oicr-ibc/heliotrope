@@ -14,7 +14,7 @@ angular
       replace: true
       template: '<ul class="dropdown-menu">' +
                 '<li ng-repeat="step in entity.data.availableSteps">' +
-                '<a href="{{step.url}}">{{step.label}}</a>' +
+                '<a ng-href="/studies/{{entity.data.study.name | encodeURIComponent}}/{{entity.data.role | encodeURIComponent}}/{{entity.data.identity | encodeURIComponent}}/step/{{step.name}}">{{step.label}}</a>' +
                 '</li>' +
                 '</ul>'
 

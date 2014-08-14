@@ -604,6 +604,7 @@ buildEntityValues = (entity, related, stepsArray) ->
     stepDefinition._id = step._id
     stepDefinition.label = if step.redoLabel then localize(step.redoLabel) else localize(step.label)
     stepDefinition.description = localize(stepDefinition.description) if step.description?
+    stepDefinition.name = step.name
 
     if step.url
       stepDefinition.url = step.url.replace /\{\{([^}]+)\}\}/g, (match, m1) ->
