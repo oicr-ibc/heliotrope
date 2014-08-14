@@ -47,8 +47,8 @@ angular
               entity = newEntity()
               if entity
 
-                serviceUrl = entity.data.config.baseUrl + entity.data.config.knowledgeUriBase + "/variants/" + term
-                frontUrl = entity.data.config.baseUrl + "/variants/" + term
+                serviceUrl = entity.config.baseUrl + entity.config.knowledgeUriBase + "/variants/" + term
+                frontUrl = entity.config.baseUrl + "/variants/" + term
 
                 $http(
                   method: 'GET'

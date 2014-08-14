@@ -1,12 +1,10 @@
-module.exports.log4js = module.parent.exports.log4js
-module.exports.logger = module.parent.exports.logger
+log4js = require('log4js')
+logger = log4js.getLogger('trackerImplementation')
 
 sys =             require("sys")
 mongo =           require("mongodb")
 MongoClient =     mongo.MongoClient
 BSON =            mongo.BSONPure
-
-logger = module.exports.logger
 
 module.exports.initialize = () ->
   MongoClient.connect "mongodb://localhost:27017/tracker", (err, db) ->
@@ -16,11 +14,6 @@ module.exports.initialize = () ->
         index = indexes.shift()
         db.createIndex index["collection"], index["index"], addIndexes
     addIndexes()
-
-module.exports.connected = (url, callback) ->
-  (req, res) ->
-    MongoClient.connect url, (err, db) ->
-      callback(err, db, req, res)
 
 ## Used to manage localization from localizable server data blocks. Currently
 ## a stub as I18N is not a high priority task. This will eventually peek in the
@@ -40,41 +33,42 @@ localize = (localizableData) ->
 ## @param res - web response
 ## @param callback - function accepting (db, err, result, res, [status])
 
-module.exports.getStudies = (err, db, req, res, callback) ->
+module.exports.getStudies = (req, res) ->
+  db = res.locals.db
   db.collection "studies", (err, studies) ->
+    return res.status(err.code).send(err.err) if err?
     studies.find({}).toArray (err, docs) ->
-      if err
-        callback db, {err: err}, null, res
-      else
-        results = {}
-        for doc in docs
-          doc.url = "/studies/" + doc.name
-          doc.statistics = {}
-          doc.lastModified = ""
-          results[doc._id.toString()] = doc
+      return res.status(err.code).send(err.err) if err?
+      results = {}
+      for doc in docs
+        doc.url = "/studies/" + doc.name
+        doc.statistics = {}
+        doc.lastModified = ""
+        results[doc._id.toString()] = doc
 
-        # Now let's do a call on the entities, using aggregation to derive a more complete
-        # data count for each one.
+      # Now let's do a call on the entities, using aggregation to derive a more complete
+      # data count for each one.
 
-        statistics = [
-          {"$project" : {"studyId" : 1, "role" : 1, "lastModified" : 1}},
-          {"$group": {"_id": {"studyId": "$studyId", "role": "$role"}, "count": {"$sum" : 1}, "lastModified": {"$max" : "$lastModified"}}}
-        ]
+      statistics = [
+        {"$project" : {"studyId" : 1, "role" : 1, "lastModified" : 1}},
+        {"$group": {"_id": {"studyId": "$studyId", "role": "$role"}, "count": {"$sum" : 1}, "lastModified": {"$max" : "$lastModified"}}}
+      ]
 
-        db.collection "entities", (err, entities) ->
-          entities.aggregate statistics, (err, stats) ->
+      db.collection "entities", (err, entities) ->
+        return res.status(err.code).send(err.err) if err?
+        entities.aggregate statistics, (err, stats) ->
+          return res.status(err.code).send(err.err) if err?
+          for stat in stats
+            studyId = stat["_id"]["studyId"].toString()
+            role = stat["_id"]["role"]
+            delete stat["_id"]
+            results[studyId]["statistics"][role] = stat
+            results[studyId]["lastModified"] = stat["lastModified"] if !results[studyId]["lastModified"]
+            results[studyId]["lastModified"] = stat["lastModified"] if stat["lastModified"] > results[studyId]["lastModified"]
 
-            for stat in stats
-              studyId = stat["_id"]["studyId"].toString()
-              role = stat["_id"]["role"]
-              delete stat["_id"]
-              results[studyId]["statistics"][role] = stat
-              results[studyId]["lastModified"] = stat["lastModified"] if !results[studyId]["lastModified"]
-              results[studyId]["lastModified"] = stat["lastModified"] if stat["lastModified"] > results[studyId]["lastModified"]
-
-            result = new Object
-            result["data"] = (results[key] for own key of results)
-            callback db, err, result, res, 200
+          result = new Object
+          result["data"] = (results[key] for own key of results)
+          return res.send(result)
 
 ## Endpoint to create a new study, or update an existing study (depending on whether
 ## or not we have an identifier). The body is in approximately the right shape, so
@@ -154,52 +148,57 @@ queries = {
 ## related entities of all types.
 ## @param name - the name of the study
 ## @param callback - function accepting (err, doc, db)
-module.exports.getStudy = (err, db, req, res, callback) ->
-  findStudy db, req, res, 'read', (err, doc) ->
+module.exports.getStudy = (req, res) ->
+  db = res.locals.db
+  findStudy req, res, 'read', (err, doc) ->
 
-    if err || ! doc
-      callback db, err, doc, res, res.locals.statusCode || 404
+    return res.status(err.code).send(err.error) if err?
+
+    studyId = new BSON.ObjectID doc._id.toString()
+    studySelector = {"studyId": studyId}
+    fields = {"_id": 1, "role": 1, "identity" : 1, "lastModified" : 1, "steps.fields.$": 1}
+
+    # We will also want a bunch of useful queries to be run to complete
+    # the study. We can use the recursive callback model to do that, so we
+    # handle the JS asynchronicity as well as we can do. These could in
+    # theory be done as subrequests, but to do things like counting
+    # the number of participants and generating a summary of recent
+    # activity is moot whether we ought to do that.
+
+    if req["query"]?.q?
+
+      query = req["query"]
+      queryName = query["q"]
+      queryRecord = queries[queryName]
+
+      if queryRecord == undefined
+        res.status(404).send("Can't find query: " + name)
+      else
+        collectionName = queryRecord["collection"] || "entities"
+        pipeline = queryRecord["pipeline"]
+
+        query["studyId"] = studyId
+        modified = completePlaceholders(req, pipeline)
+
+        db.collection collectionName, (err, collection) ->
+          return res.status(500).send(err) if err?
+          collection.aggregate modified, (err, results) ->
+            return res.status(500).send(err) if err?
+            queryRecord["updater"](doc, results) if queryRecord["updater"] != undefined
+            result = {}
+            result['data'] = results
+            result['config'] = res.locals.config
+            res.send result
 
     else
-      studyId = new BSON.ObjectID doc._id.toString()
-      studySelector = {"studyId": studyId}
-      fields = {"_id": 1, "role": 1, "identity" : 1, "lastModified" : 1, "steps.fields.$": 1}
+      countsQuery = getCountsQuery(studySelector)
+      stepsQuery = getStepsQuery(studySelector)
 
-      # We will also want a bunch of useful queries to be run to complete
-      # the study. We can use the recursive callback model to do that, so we
-      # handle the JS asynchronicity as well as we can do. These could in
-      # theory be done as subrequests, but to do things like counting
-      # the number of participants and generating a summary of recent
-      # activity is moot whether we ought to do that.
-
-      if req["query"]?.q?
-
-        query = req["query"]
-        queryName = query["q"]
-        queryRecord = queries[queryName]
-
-        if queryRecord == undefined
-          callback db, "Can't find query: " + name, {"error" : "Can't find query: " + name}, res
-        else
-          collectionName = queryRecord["collection"] || "entities"
-          pipeline = queryRecord["pipeline"]
-
-          query["studyId"] = studyId
-          modified = completePlaceholders(req, pipeline)
-
-          db.collection collectionName, (err, collection) ->
-            collection.aggregate modified, (err, results) ->
-              queryRecord["updater"](doc, results) if queryRecord["updater"] != undefined
-              result = new Object
-              result["data"] = results
-              callback db, err, result, res, 200
-
-      else
-        countsQuery = getCountsQuery(studySelector)
-        stepsQuery = getStepsQuery(studySelector)
-
-        annotateEntity db, doc, [countsQuery, stepsQuery], (o) ->
-          callback db, err, {data: o}, res, 200
+      annotateEntity db, doc, [countsQuery, stepsQuery], (o) ->
+        result = {}
+        result['data'] = o
+        result['config'] = res.locals.config
+        res.send result
 
 ## Helper function to asynchronously find a study.
 ##
@@ -208,36 +207,34 @@ module.exports.getStudy = (err, db, req, res, callback) ->
 ## @param res - the response
 ## @param callback - a callback, taking an error status and the resulting study
 
-findStudy = (db, req, res, mode, callback) ->
+findStudy = (req, res, mode, callback) ->
   name = req.params.study
+  db = res.locals.db
   db.collection "studies", (err, studies) ->
+    return callback({status: 500, error: err}, null) if err?
 
     selector = if (name.substr(0, 3) == "id;") then {"_id": new BSON.ObjectID(name.substring(3))} else {name: name}
-    studies.find(selector).limit(1).toArray (err, docs) ->
+    studies.findOne selector, (err, doc) ->
 
-      switch
-        when err then callback err, null
-        when docs.length == 0 then callback {error: "Not Found"}, null
-        else
+      return callback({status: 500, error: err}, null) if err?
+      return callback({status: 404, error: "Not Found"}, null) if !doc?
 
-          # If we get a study back, but the requested user is not allowed access to it, then we
-          # can simply refuse access. The callback needs to be subtle enough to distingish between
-          # a status of 404 (not found) and 403 (forbidden). We do this by setting a local value for
-          # a status when it's forbidden. Note that an authorization error is not a 401 -- that's
-          # only for HTTP authorization and we are beyond that. For more information on that issue:
-          # http://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses
-          #
-          # As an exception, obviously, administrative users (e.g., me) can always get access. And that's
-          # a user role.
+      # If we get a study back, but the requested user is not allowed access to it, then we
+      # can simply refuse access. The callback needs to be subtle enough to distingish between
+      # a status of 404 (not found) and 403 (forbidden). We do this by setting a local value for
+      # a status when it's forbidden. Note that an authorization error is not a 401 -- that's
+      # only for HTTP authorization and we are beyond that. For more information on that issue:
+      # http://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses
+      #
+      # As an exception, obviously, administrative users (e.g., me) can always get access. And that's
+      # a user role.
 
-          doc = docs[0]
-          doc.url = "/studies/" + doc.name
+      doc.url = "/studies/" + doc.name
 
-          if checkAdminAccess(req, mode) || checkAccessList(req, accessList(doc), mode)
-            callback null, doc
-          else
-            res.locals.statusCode = 403;
-            callback {error: "Forbidden"}, null
+      if checkAdminAccess(req, mode) || checkAccessList(req, accessList(doc), mode)
+        callback null, doc
+      else
+        callback {status: 403, error: "Forbidden"}, null
 
 
 ## Helper function to asynchronously find an entity.
@@ -245,7 +242,8 @@ findStudy = (db, req, res, mode, callback) ->
 ## @param req
 ## @param callback
 
-findEntity = (db, studyId, role, identity, callback) ->
+findEntity = (req, res, studyId, role, identity, callback) ->
+  db = res.locals.db
   db.collection "entities", (err, entities) ->
 
     selector = {"studyId": studyId, "role" : role}
@@ -258,11 +256,11 @@ findEntity = (db, studyId, role, identity, callback) ->
     else
       selector["identity"] = identity
 
-    entities.find(selector).limit(1).toArray (err, docs) ->
+    entities.findOne selector, (err, doc) ->
       if err
         callback err, null
       else
-        callback null, docs[0]
+        callback null, doc
 
 ## Checks the current request against admin permissions, usually attached to
 ## a study or something similar.
@@ -379,52 +377,59 @@ compareViews = (a, b) ->
   bWeight = if b.weight == undefined then 1000000 else b.weight
   if aWeight < bWeight then -1 else if aWeight > bWeight then 1 else 0
 
-module.exports.getViews = (err, db, req, res, callback) ->
+module.exports.getViews = (req, res) ->
+  db = res.locals.db
   name = req.params.study
   role = req.params.role
 
-  findStudy db, req, res, 'read', (err, doc) ->
+  findStudy req, res, 'read', (err, doc) ->
+    return res.status(500).send(err) if err?
+    return res.status(404).send("Not Found") if ! doc?
 
-    if err || ! doc
-      callback(db, err, doc, res, res.locals.statusCode || 404)
-    else
-      selector = {"studyId": new BSON.ObjectID(doc._id.toString())}
-      selector["role"] = role if role
+    selector = {"studyId": new BSON.ObjectID(doc._id.toString())}
+    selector["role"] = role if role
 
-      db.collection "views", (err, views) ->
-        cursor = views.find(selector)
-        cursor.toArray (err, results) ->
-          results.sort(compareViews)
+    db.collection "views", (err, views) ->
+      views.find(selector).toArray (err, results) ->
+        return res.status(500).send(err) if err?
+        results.sort(compareViews)
 
-          # If we're not using a role, structure the response accordingly.
-          if role
-            callback db, err, {data: {study: doc, views: results}}, res, 200
-          else
-            result = {}
-            for view in results
-              result[view["role"]] = [] if ! result[view["role"]]?
-              result[view["role"]].push(view)
+        logger.info "Got views", results
+        responseData = {}
+        responseData['config'] = res.locals.config
 
-            callback db, err, {data: {study: doc, views: result}}, res, 200
+        # If we're not using a role, structure the response accordingly.
+        if role
+          responseData['data'] = {study: doc, views: results};
+          res.send responseData
+        else
+          result = {}
+          for view in results
+            result[view["role"]] = [] if ! result[view["role"]]?
+            result[view["role"]].push(view)
+
+          responseData['data'] = {study: doc, views: result}
+          res.send responseData
 
 ## Database endpoint to read a single entity.
 ## @param studyName
 ## @param role
 ## @param identity
 ## @param callback
-module.exports.getEntity = (err, db, req, res, callback) ->
+module.exports.getEntity = (req, res, callback) ->
+  db = res.locals.db
   role = req.params.role
   identity = req.params.identity
   userId = req.user.userId
 
-  findStudy db, req, res, 'read', (err, doc) ->
+  findStudy req, res, 'read', (err, doc) ->
 
     if err || ! doc
       return callback(db, err, doc, res, res.locals.statusCode || 404)
 
     studyId = new BSON.ObjectID(doc._id.toString())
 
-    findEntity db, studyId, role, identity, (err, entity) ->
+    findEntity req, res, studyId, role, identity, (err, entity) ->
 
       if err
         return callback db, {err: err}, null, res
@@ -449,7 +454,9 @@ module.exports.getEntity = (err, db, req, res, callback) ->
           relatedSelector = buildRelatedEntitySelector(entity)
           db.collection "entities", (err, entities) ->
             entities.find(relatedSelector).toArray (err, related) ->
-              result = {data: entity}
+              result = {}
+              result['data'] = entity
+              result['config'] = res.locals.config
 
               try
                 buildRelatedEntities(entity, related)
@@ -465,8 +472,13 @@ module.exports.getEntity = (err, db, req, res, callback) ->
                   result = null
 
               finally
-                plugin = entity.notes.readEntity
-                return maybeInterceptedCallback(plugin, db, err, result, req, res, callback)
+                if err?
+                  res.status(500).send(err)
+                else
+                  res.send(result)
+                # plugin = entity.notes.readEntity
+                # return maybeInterceptedCallback(plugin, db, err, result, req, res, callback)
+
 
 maybeInterceptedCallback = (plugin, db, err, result, req, res, callback) ->
   if plugin

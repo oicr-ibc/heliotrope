@@ -25,6 +25,7 @@ router = require('express').Router()
 ## Add middleware to open a database connection, and clean up afterwards
 router.use (req, res, next) =>
   ## Allow bypass on content negotiation when the mimeType query parameter is set
+
   if req.query.mimeType?
     req.headers.accept = req.query.mimeType
     delete req.query.mimeType
@@ -39,7 +40,7 @@ router.use (req, res, next) =>
   res.locals.config = config["heliotrope"]
   res.locals.uriBase = base
 
-  MongoClient.connect config["data"]["knowledge"]['store'], (err, db) ->
+  MongoClient.connect config['data']['knowledge']['store']['url'], (err, db) ->
     return next(err) if err?
     res.locals.db  = db
     next()

@@ -1,9 +1,7 @@
-module.exports.log4js = module.parent.exports.log4js
-module.exports.logger = module.parent.exports.logger
-module.exports.config = module.parent.exports.config
+log4js = require('log4js')
+logger = log4js.getLogger('knowledgeImplementation')
 
 config = module.exports.config
-logger = module.exports.logger
 
 async =           require("async")
 mongo =           require("mongodb")
@@ -80,8 +78,9 @@ resolve = (object) ->
   else
     object
 
-relativeUrl = (string) ->
-  config['heliotrope']['baseUrl'] + config['heliotrope']['knowledgeUriBase'] + string
+relativeUrl = (res, string) ->
+  config = res.locals.config
+  config['baseUrl'] + config['knowledgeUriBase'] + string
 
 ## Database endpoint to read a single gene. This should also read a set of the
 ## related entities of all types.
@@ -98,7 +97,7 @@ getGene = (req, res) ->
       return res.status(404).send({err: "no such object: " + name}) if ! doc?
 
       resolved = resolve(doc)
-      resolved.url = relativeUrl("/genes/" + name)
+      resolved.url = relativeUrl(res, "/genes/" + name)
       resolved.mutationsUrl = resolved.url + "/mutations"
       resolved.frequenciesUrl = resolved.url + "/frequencies"
 
@@ -178,8 +177,8 @@ getVariant = (req, res) ->
     resolved = resolve(doc)
     encodedName = encodeURIComponent(doc.shortName)
     encodedName = encodedName.replace(/%20/g, '+')
-    resolved.url = relativeUrl("/variants/" + encodedName)
-    resolved.geneUrl = relativeUrl("/genes/" + resolved.gene)
+    resolved.url = relativeUrl(res, "/variants/" + encodedName)
+    resolved.geneUrl = relativeUrl(res, "/genes/" + resolved.gene)
     resolved.frequenciesUrl = resolved.url + "/frequencies"
     resolved.mutationsUrl = resolved.geneUrl + "/mutations"
 
