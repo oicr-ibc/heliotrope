@@ -9,6 +9,7 @@ angular
     result =
       restrict: "A"
       replace: true
+      scope: true
       template: '<table class="table table-bordered table-striped table-condensed">' +
                 '<thead>' +
                 '<tr>' +
@@ -18,12 +19,15 @@ angular
                 '</tr>' +
                 '</thead>' +
                 '<tbody class="step-body">' +
+                '<tr ng-repeat="step in entitySteps">' +
+                '<td>{{ step.stepDate | date:"medium" }}</td>' +
+                '<td><a ng-href="{{ entity | trackerURL:&apos;entity&apos;}}/step/{{ step.name }}">{{ step.label }}</a></td>' +
+                '<td>{{ step.stepUser | default:"anonymous"}}</td>' +
                 '</tbody>' +
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
         scope.$watch 'entity', (entity) ->
           if entity
-            body = iElement.find(".step-body")
             steps = entity.data.steps.sort (a, b) ->
               b.stepDate.localeCompare(a.stepDate)
             availableSteps = entity.data.availableSteps
@@ -31,17 +35,22 @@ angular
             stepTable[step._id] = step for step in availableSteps
             for id, step in stepTable
               step['count'] = 0
+            rowData = []
             for step in steps
+              entityStep = angular.copy(step)
               stepData = stepTable[step.stepRef]
-              rowData = []
-              url = entity.data.url + "/step/" + stepData["name"]
+              entityStep.name = stepData.name
+              entityStep.label = stepData.label
               if stepData['count']++ > 1
-                url = url + ";" + stepData['count']
-              rowData.push(new Date(step["stepDate"]).toLocaleDateString())
-              rowData.push("<a href='" + step["url"] + "'>" + stepData["label"] + "</a>")
-              rowData.push(step["stepUser"] || "anonymous")
-              row = ("<td>" + element + "</td>" for element in rowData).join("")
-              jQuery("<tr>" + row + "</tr>").appendTo(body)
+                entityStep.name = entityStep.name + ";" + stepData['count']
+              rowData.push entityStep
+            scope.entitySteps = rowData
+
+              # rowData.push(new Date(step["stepDate"]).toLocaleDateString())
+              # rowData.push("<a href='" + step["url"] + "'>" + stepData["label"] + "</a>")
+              # rowData.push(step["stepUser"] || "anonymous")
+              # row = ("<td>" + element + "</td>" for element in rowData).join("")
+              # jQuery("<tr>" + row + "</tr>").appendTo(body)
 
 
   .directive 'heliStudyEntities', Array '$compile', 'Study', ($compile, Study) ->

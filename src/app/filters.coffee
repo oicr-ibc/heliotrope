@@ -122,7 +122,6 @@ angular
           when 'study'
             path.push 'studies', value.data.name
           when 'entity'
-            console.log "Value", value
             path.push 'studies', value.data.study.name, value.data.role, value.data.identity
 
       (encodeURIComponent(x) for x in path).join('/')
