@@ -394,7 +394,6 @@ module.exports.getViews = (req, res) ->
         return res.status(500).send(err) if err?
         results.sort(compareViews)
 
-        logger.info "Got views", results
         responseData = {}
         responseData['config'] = res.locals.config
 
@@ -491,14 +490,17 @@ maybeInterceptedCallback = (plugin, db, err, result, req, res, callback) ->
     callback db, err, result, res, 200
 
 
-module.exports.getEntityStep = (err, db, req, res, callback) ->
+module.exports.getEntityStep = (req, res) ->
+
+  logger.info "Called getEntityStep"
+
   studyName = req.params.study
   role = req.params.role
   identity = req.params.identity
 
-  findStudy db, req, res, 'read', (err, doc) ->
-    if err || ! doc
-      return callback db, err, doc, res, res.locals.statusCode || 404
+  findStudy req, res, 'read', (err, doc) ->
+    return res.status(500).send(err) if err?
+    return res.status(404).send("Not Found") if !doc?
 
     studyId = new BSON.ObjectID(doc._id.toString())
     entityModifier = (entity) ->
@@ -508,10 +510,10 @@ module.exports.getEntityStep = (err, db, req, res, callback) ->
 
     if identity == "id;new"
       entity = {}
-      findEntityStepWithEntity db, req, res, studyId, entityModifier(entity), callback
+      findEntityStepWithEntity req, res, studyId, entityModifier(entity)
     else
-      findEntity db, studyId, role, identity, (err, entity) ->
-        findEntityStepWithEntity db, req, res, studyId, entityModifier(entity), callback
+      findEntity req, res, studyId, role, identity, (err, entity) ->
+        findEntityStepWithEntity req, res, studyId, entityModifier(entity)
 
 ## There are two sets of related entities: those which have a "steps.fields.ref"
 ## that link back to me, and those which we have a link to from one of ours
@@ -657,32 +659,22 @@ buildEntityStepUrls = (entity, stepsArray) ->
 ## Woefully inadequate. This requires us to locate related entities, as usual, and we also ought to do all
 ## the field defaulting code just as we do for the entity as a whole.
 
-findEntityStepWithEntity = (db, req, res, studyId, entity, callback) ->
+findEntityStepWithEntity = (req, res, studyId, entity) ->
   role = req.params.role
   stepName = req.params.step
   query = req.query || {}
+  db = res.locals.db
 
   ## If the step name contains a semicolon, the part after the semicolon will be
   ## an ObjectId string we can use as a better way of locating repeated steps.
 
   stepSelector = getStepSelector(studyId, role, stepName)
-  #### logger.debug "Step selector", stepSelector
 
   ## Now locate the requested step.
   db.collection "steps", (err, steps) ->
-    steps.find(stepSelector).toArray (err, stepsArray) ->
-
-      #### logger.debug "Found steps", err, stepsArray
-
-      if err
-        return callback db, {err: err}, null, res
-      else if stepsArray.length == 0
-        return callback db, {err: "Missing step: " + stepName}, null, res
-
-      step = stepsArray[0]
-      stepDefinition = stepsArray[0]
-      if ! stepDefinition
-        return callback db, {err: "Missing step definition: " + stepName}, null, res
+    steps.findOne stepSelector, (err, stepDefinition) ->
+      return res.status(500).send(err) if err?
+      return res.status(404).send("Missing step: " + stepName) if ! stepDefinition?
 
       ## This is weird logic, and I wish I'd commented it when I wrote it. The
       ## steps contain all fields. This builds a set of all field values in
@@ -717,7 +709,10 @@ findEntityStepWithEntity = (db, req, res, studyId, entity, callback) ->
       relatedSelector = buildRelatedEntitySelector(entity, stepDefinition, query)
 
       db.collection "entities", (err, entities) ->
+        return res.status(500).send(err) if err?
+
         entities.find(relatedSelector).toArray (err, related) ->
+          return res.status(500).send(err) if err?
 
           buildRelatedEntities(entity, related)
 
@@ -767,7 +762,11 @@ findEntityStepWithEntity = (db, req, res, studyId, entity, callback) ->
           buildFieldsDisplayValues stepDefinition.fields, related
 
           entity.step = stepDefinition
-          callback db, err, {data: entity}, res, 200
+
+          responseData = {}
+          responseData['data'] = entity
+          responseData['config'] = res.locals.config
+          res.send responseData
 
 getStepSelector = (studyId, role, stepName) ->
   stepSelector = {"studyId" : studyId, "appliesTo" : role}
