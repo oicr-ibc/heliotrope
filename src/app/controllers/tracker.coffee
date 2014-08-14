@@ -13,23 +13,21 @@ angular
     )
   ]
 
-  .controller 'StudyController', ['$scope', '$routeParams', 'Study', ($scope, $routeParams, Study) ->
+  .controller 'StudyController', Array '$scope', '$routeParams', 'Study', ($scope, $routeParams, Study) ->
     $scope.study = Study.get($routeParams
       (study) ->
 
       (error) ->
         console.log error
     )
-  ]
 
-  .controller 'EntityController', ['$scope', '$routeParams', 'Entity', ($scope, $routeParams, Entity) ->
+  .controller 'EntityController', Array '$scope', '$routeParams', 'Entity', ($scope, $routeParams, Entity) ->
     $scope.entity = Entity.get($routeParams
       (entity) ->
 
       (error) ->
         console.log error
     )
-  ]
 
   .controller 'EntityStepController', ['$scope', '$routeParams', '$location', 'EntityStep', ($scope, $routeParams, $location, EntityStep) ->
     $scope.entity = EntityStep.get($routeParams

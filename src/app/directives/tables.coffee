@@ -44,47 +44,49 @@ angular
               jQuery("<tr>" + row + "</tr>").appendTo(body)
 
 
-  .directive 'heliStudyEntities', ['Study', (Study) ->
+  .directive 'heliStudyEntities', Array '$compile', 'Study', ($compile, Study) ->
     result =
       restrict: "A"
       replace: true
+      scope: true
       template: '<table class="table table-bordered table-striped table-condensed">' +
                 '<thead>' +
                 '<tr>' +
-                '<th class="step-headers">XXXX</th>' +
+                '<th class="step-headers">{{ label }}</th>' +
+                '<th ng-repeat="step in headersByRole">{{ step.label }}</th>' +
                 '</tr>' +
                 '</thead>' +
                 '<tbody class="step-body">' +
+                '<tr ng-repeat="entity in entitiesByRole">' +
+                '<td><a ng-href="{{study|trackerURL:&apos;study&apos;}}/{{entity.role | encodeURIComponent}}/{{entity.identity | encodeURIComponent}}">{{ entity.identity }}</a></td>' +
+                '<td ng-repeat="step in headersByRole"><span ng-show="stepCompleted(entity, step._id)" class="glyphicon glyphicon-ok"></span></td>' +
+                '</tr>' +
                 '</tbody>' +
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
+        scope.label = iAttrs.label
+        scope.stepCompleted = (record, stepId) ->
+          for recordStep in record.steps
+            return true if stepId == recordStep.stepRef && scope.stepTable.hasOwnProperty(recordStep.stepRef)
+          false
         scope.$watch 'study', (newValue, oldValue) ->
           if newValue
             role = iAttrs.role
-            label = iAttrs.label
             header = iElement.find(".step-headers")
             body = iElement.find(".step-body")
-            header.text(label)
             stepTable = {}
             stepIndex = 1
+            headersByRole = []
             for step in newValue.data.steps[role]
               if step.showSummary
                 stepTable[step._id] = stepIndex++
-                newHeader = jQuery("<th>" + step.label + "</th>")
-                header.after newHeader
-                header = newHeader
-            query = Study.get({study: newValue.data.name, q: 'getEntities', role: role}, () ->
+                headersByRole.push step
+            scope.headersByRole = headersByRole
+            scope.stepTable = stepTable
 
-              for record in query.data
-                row = ("" for i in [1..stepIndex])
-                row[0] = "<a href='" + record.url + " '>" + record.identity + "</a>"
-                for recordStep in record.steps
-                  index = stepTable[recordStep.stepRef]
-                  row[index] = '<span class="glyphicon glyphicon-ok"></span>' if index
-                row = ("<td>" + rowData + "</td>" for rowData in row).join("")
-                jQuery("<tr>" + row + "</tr>").appendTo(body)
-            )
-  ]
+            query = Study.get {study: newValue.data.name, q: 'getEntities', role: role}, () ->
+              scope.entitiesByRole = query.data
+
 
   # Add the directive for the data tables for frequencies. This could be parameterised, but encapsulates all the
   # primary logic for the frequencies table.

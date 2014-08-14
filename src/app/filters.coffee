@@ -112,3 +112,17 @@ angular
           input.join(", ")
       else
         input
+
+  .filter 'trackerURL', () ->
+    (value, type) ->
+      path = ['']
+      if value?.data?
+
+        switch type
+          when 'study'
+            path.push 'studies', value.data.name
+          when 'entity'
+            console.log "Value", value
+            path.push 'studies', value.data.study.name, value.data.role, value.data.identity
+
+      (encodeURIComponent(x) for x in path).join('/')

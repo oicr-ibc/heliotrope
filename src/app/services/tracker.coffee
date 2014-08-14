@@ -17,17 +17,16 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # Service to access the study information. This is usually the top level of the
   # data access for a given study.
 
-  .factory 'Study', ['$resource', ($resource) ->
-    $resource('/api/tracker/studies/:study', {},
+  .factory 'Study', Array '$resource', ($resource) ->
+    Study = $resource('/api/tracker/studies/:study', {},
       query:
         method: 'GET'
     )
     Study
-  ]
 
   # Service to access the properties and relationships of an entity within a study.
 
-  .factory 'Entity', ['$resource', ($resource) ->
+  .factory 'Entity', Array '$resource', ($resource) ->
     Entity = $resource('/api/tracker/studies/:study/:role/:identity', {},
       query:
         method: 'GET'
@@ -35,20 +34,18 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
     Entity.prototype.getField = (x) ->
       this.data.values[x]
     Entity
-  ]
 
   # Service to access the views for an entity role. Technically, the role is optional
 
-  .factory 'Views', ['$resource', ($resource) ->
+  .factory 'Views', Array '$resource', ($resource) ->
     $resource('/api/tracker/views/:study/:role', {},
       query:
         method: 'GET'
     )
-  ]
 
   # Service to access the data for a particular step for a given entity.
 
-  .factory 'EntityStep', ['$resource', ($resource) ->
+  .factory 'EntityStep', Array '$resource', ($resource) ->
     EntityStep = $resource('/api/tracker/studies/:study/:role/:identity/step/:step', {},
       query:
         method: 'GET'
@@ -56,49 +53,44 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
     EntityStep.prototype.getField = (x) ->
       this.data.values[x]
     EntityStep
-  ]
 
   # Service to access a list of all entities with a given role.
 
-  .factory 'Entities', ['$resource', ($resource) ->
+  .factory 'Entities', Array '$resource', ($resource) ->
     Entities = $resource('/api/tracker/studies/:study/:role', {},
       query:
         method: 'GET'
     )
     Entities
-  ]
 
   # Service to access a list of all entities related to a given entity. This will often be
   # filtered by a passed role query argument, although other filters may also be possible.
 
-  .factory 'RelatedEntities', ['$resource', ($resource) ->
+  .factory 'RelatedEntities', Array '$resource', ($resource) ->
     RelatedEntities = $resource('/api/tracker/related/:study/:role/:identity', {},
       query:
         method: 'GET'
     )
     RelatedEntities
-  ]
 
   # Service to access the data for a particular step for a given study. We're breaking away
   # from the resource structure convention here, largely so we don't break the use of a
   # role called step. That might seem frivolous and unlikely. It probably is.
 
-  .factory 'Step', ['$resource', ($resource) ->
+  .factory 'Step', Array '$resource', ($resource) ->
     Step = $resource('/api/tracker/steps/:study/:role/:step', {},
       query:
         method: 'GET'
     )
     Step
-  ]
 
   # Service to access the data for a particular view for a given study. We're breaking away
   # from the resource structure convention here, largely so we don't break the use of a
   # role called view. That might seem frivolous and unlikely. It probably is.
 
-  .factory 'View', ['$resource', ($resource) ->
+  .factory 'View', Array '$resource', ($resource) ->
     View = $resource('/api/tracker/views/:study/:role/:view', {},
       query:
         method: 'GET'
     )
     View
-  ]

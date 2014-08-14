@@ -22,7 +22,7 @@ angular
   # To display the study menu link, make a request and see what we get. This should
   # probably be done more elegantly in the root scope, and then handled from there.
 
-  .directive 'heliStudyMenuLink', ['StudyList', (StudyList) ->
+  .directive 'heliStudyMenuLink', Array 'StudyList', (StudyList) ->
     result =
       restrict: "A"
       replace: true
@@ -33,9 +33,8 @@ angular
           iElement.toggleClass("disabled")
           iElement.find('a').attr('href','/studies');
         )
-  ]
 
-  .directive 'heliKnowledgeBaseSearch', ['$http', ($http) ->
+  .directive 'heliKnowledgeBaseSearch', Array '$http', ($http) ->
     result =
       restrict: "A"
       scope: { term: '&', entity: '&entity' }
@@ -59,7 +58,6 @@ angular
                   jQuery(iElement).html("<span class='warn'>Not found in knowledge base</span>")
                 )
 
-  ]
 
   .directive 'heliSection', () ->
     result =
