@@ -7,12 +7,12 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
   # Service to access the study list. This is usually the top level of the
   # data access.
 
-  .factory 'StudyList', ['$resource', ($resource) ->
-    $resource('/api/tracker/studies', {},
+  .factory 'StudyList', Array '$resource', ($resource) ->
+    StudyList = $resource('/api/tracker/studies', {},
       query:
         method: 'GET'
     )
-  ]
+    StudyList
 
   # Service to access the study information. This is usually the top level of the
   # data access for a given study.
@@ -22,6 +22,7 @@ angular.module('heliotrope.services.tracker', ['ngResource'])
       query:
         method: 'GET'
     )
+    Study
   ]
 
   # Service to access the properties and relationships of an entity within a study.

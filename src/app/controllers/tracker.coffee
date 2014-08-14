@@ -40,11 +40,12 @@ angular
     )
 
     # This is where the step data is pushed back to the service.
-    $scope.update = (entity) =>
+    $scope.update = (entity) ->
+      entityUrl = '/studies/' + encodeURIComponent(entity.data.study.name) + '/' + encodeURIComponent(entity.data.role) + '/' + encodeURIComponent(entity.data.identity)
       entity.$save(
         {study: $routeParams.study, role: $routeParams.role, identity: $routeParams.identity, step: $routeParams.step},
-        (entityStep, responseHeaders) =>
-          $location.path(entityStep.data.url).replace()
+        (entityStep, responseHeaders) ->
+          $location.path(entityUrl).replace()
         (error) ->
           console.log "Error from $save", error
           $scope.error = error

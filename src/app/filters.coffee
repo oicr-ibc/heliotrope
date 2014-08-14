@@ -33,6 +33,10 @@ angular
        else
          "N/A"
 
+  .filter 'encodeURIComponent', () ->
+    (input) ->
+      encodeURIComponent(input)
+
   .filter 'capitalize', () ->
     (input) ->
       if input
