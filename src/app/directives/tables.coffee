@@ -150,20 +150,23 @@ angular
                 '</tbody>' +
                 '</table>'
       link: (scope, iElement, iAttrs, controller) ->
-        scope.$watch 'entity.data.related.observations', (newValue, oldValue) ->
+        scope.$watch 'entity', (newValue, oldValue) ->
           if (newValue)
+            entity = newValue
+            baseUrl = '/studies/' + encodeURIComponent(entity.data.study.name) + '/observations'
             jQuery(iElement).dataTable(
               pagingType: "bs_normal"
               paging: true
               lengthChange: false
               pageLength: 5
-              data: newValue
+              data: entity.data.related.observations
               columns: [
                 { "title": "Mutation", "className": "span4", "data": (data, type, val) ->
+                  url = baseUrl + '/' + encodeURIComponent(data.identity)
                   if type == undefined
                     data
                   else
-                    "<a href='" + data.url + "'>" + data.name + "</b>"
+                    "<a href='" + url + "'>" + data.name + "</b>"
                 }
               ]
             )
