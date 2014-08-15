@@ -52,6 +52,11 @@ case "$1" in
         DB_PASSWORD=$RET
         sed -i "s/_DBC_DBPASS_/$DB_PASSWORD/" /etc/heliotrope/config.json
 
+        # It's possible the username and password are both empty. We should
+        # clean the mongodb:// URLs to replace them out if so. Sorry for the
+        # leaning toothpick syndrome.
+        sed -i "s/mongodb:\/\/\:\@//" /etc/heliotrope/config.json
+
     	RET=""
         db_get heliotrope-server/admin_password
 
@@ -61,17 +66,23 @@ case "$1" in
             #adminpw=`echo -n $RET | sha256sum | cut -d ' ' -f 1`
             adminpw=$RET
             tfile=`mktemp`
+
 	        if [ ! -f "$tfile" ]; then
                return 1
-            fi
-			cat /etc/heliotrope/shiro.ini | sed \
-			  -e "s/^administrator\s*=.*,/administrator=$adminpw,/" \
-			  > $tfile && mv $tfile /etc/heliotrope/shiro.ini
+          fi
+
+        # This should set the admin password, if it is possible. We have a
+        # script to do that. Of course, it might fail to connect to the database...
+
+			# cat /etc/heliotrope/shiro.ini | sed \
+			#   -e "s/^administrator\s*=.*,/administrator=$adminpw,/" \
+			#   > $tfile && mv $tfile /etc/heliotrope/shiro.ini
+
         fi
 
     	# Create heliotrope user if it doesn't exist.
         if ! id heliotrope > /dev/null 2>&1 ; then
-            adduser --system --home /var/lib/heliotrope --no-create-home \
+            adduser --system --home /usr/lib/heliotrope --no-create-home \
 				 --disabled-password heliotrope
         fi
 

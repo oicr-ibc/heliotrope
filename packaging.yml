@@ -14,6 +14,12 @@
 
 - hosts: all
   sudo: True
+  vars:
+    mongodb_server: '_DBC_DBSERVER_'
+    mongodb_port: '_DBC_DBPORT_'
+    mongodb_name: '_DBC_DBNAME_'
+    mongodb_user: '_DBC_DBUSER_'
+    mongodb_password: '_DBC_DBPASS_'
   tasks:
     - name: Packaging | Installing required packages
       apt: pkg={{ item.package }} state=present update_cache=yes cache_valid_time=3600
@@ -81,8 +87,21 @@
     - name: Packaging | Assemble files
       command: rsync -av {{ item.src }} {{ item.dest }}
       with_items:
-        - { src: '/usr/lib/heliotrope/', dest: '/tmp/heliotrope-packaging/usr/lib' }
-        - { src: '/etc/heliotrope/', dest: '/tmp/heliotrope-packaging/etc/heliotrope' }
+        - { src: '/usr/lib/heliotrope/', dest: '/tmp/heliotrope-packaging/usr/lib/heliotrope' }
+
+    - name: Packaging | Copy upstart configuration file
+      template: src={{ item.src }} dest={{ item.dest }}
+      with_items:
+        - { src: 'roles/webapp/templates/upstart-heliotrope.conf.j2', dest: '/tmp/heliotrope-packaging/debian/heliotrope.upstart' }
+
+# Template the JSON config file. This time, we use special placeholders that are replaced by
+# the Debian package installation scripts. The only proviso is that a username and password
+# which are empty should be removed from the URLs.
+
+    - name: Packaging | Copy heliotrope configuration file
+      template: src={{ item.src }} dest={{ item.dest }}
+      with_items:
+        - { src: 'roles/webapp/templates/heliotrope-config.json.j2', dest: '/tmp/heliotrope-packaging/etc/heliotrope/config.json' }
 
     - name: Packaging | Get packaging files
       synchronize:
@@ -94,7 +113,8 @@
       shell: cat /usr/lib/heliotrope/package.json
       register: package_json
 
-    - shell: "{% set package_json_data = package_json.stdout|from_json %}echo {{package_json_data['version']}}"
+    - name: Packaging | Register the package version
+      shell: "{% set package_json_data = package_json.stdout|from_json %}echo {{package_json_data['version']}}"
       register: package_version
 
 # debuild is extremely sensitive about the date format. I'd recommend you don't change
