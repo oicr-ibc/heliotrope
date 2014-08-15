@@ -15,7 +15,7 @@
 - hosts: all
   sudo: True
   tasks:
-    - name: Packaging | Installing packages
+    - name: Packaging | Installing required packages
       apt: pkg={{ item.package }} state=present update_cache=yes cache_valid_time=3600
       with_items:
         - { package: 'build-essential' }
@@ -94,6 +94,12 @@
       shell: cat /usr/lib/heliotrope/package.json
       register: package_json
 
+    - shell: "{% set package_json_data = package_json.stdout|from_json %}echo {{package_json_data['version']}}"
+      register: package_version
+
+# debuild is extremely sensitive about the date format. I'd recommend you don't change
+# it unless you know what you're doing.
+
     - name: Packaging | Discover the git commit date
       sudo: False
       local_action: command git log -n 1 --pretty=format:'%aD'
@@ -104,5 +110,13 @@
         src: ./etc/debian-templates/changelog
         dest: /tmp/heliotrope-packaging/debian/changelog
 
+
     - name: Packaging | Build the package
-      command: debuild -b -us -uc chdir=/tmp/heliotrope-packaging
+      command: "debuild -b -us -uc chdir=/tmp/heliotrope-packaging creates=/tmp/heliotrope_{{package_version.stdout}}_amd64.deb"
+
+    - name: Packaging | Get the Debian package back
+      synchronize:
+        mode: pull
+        dest: './.tmp/'
+        src: "/tmp/heliotrope_{{package_version.stdout}}_amd64.deb"
+        rsync_path: 'sudo rsync'

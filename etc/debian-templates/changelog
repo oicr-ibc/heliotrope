@@ -1,5 +1,4 @@
-{% set package_json_data = package_json.stdout|from_json %}
-heliotrope ({{ package_json_data['version'] }}) unstable; urgency=low
+heliotrope ({{package_version.stdout}}) unstable; urgency=low
 
   * See https://github.com/oicr-ibc/heliotrope for more details.
 
