@@ -37,6 +37,7 @@
         - { path: '/tmp/heliotrope-packaging/usr/lib' }
         - { path: '/tmp/heliotrope-packaging/debian' }
         - { path: '/tmp/heliotrope-packaging/etc/heliotrope' }
+        - { path: '/tmp/heliotrope-packaging/etc/nginx/sites-available' }
 
     - name: Packaging | Get nodejs
       get_url:
@@ -93,6 +94,11 @@
       template: src={{ item.src }} dest={{ item.dest }}
       with_items:
         - { src: 'roles/webapp/templates/upstart-heliotrope.conf.j2', dest: '/tmp/heliotrope-packaging/debian/heliotrope.upstart' }
+
+    - name: Packaging | Copy nginx site file
+      template: src={{ item.src }} dest={{ item.dest }}
+      with_items:
+        - { src: 'roles/webserver/templates/nginx-config.j2', dest: '/tmp/heliotrope-packaging/etc/nginx/sites-available/heliotrope' }
 
 # Template the JSON config file. This time, we use special placeholders that are replaced by
 # the Debian package installation scripts. The only proviso is that a username and password

@@ -24,7 +24,7 @@ set -e
 case "$1" in
 	purge)
         userdel -f heliotrope || true
-        rm -rf /usr/lib/heliotrope /var/log/heliotrope /var/run/heliotrope /etc/heliotrope /usr/share/heliotrope
+        rm -rf /usr/lib/heliotrope /var/log/heliotrope /var/run/heliotrope /etc/heliotrope /usr/share/heliotrope /etc/nginx/sites-enabled/heliotrope
         ucf --purge /etc/heliotrope/config.json
     ;;
 
