@@ -1,0 +1,30 @@
+{
+  "server" : {
+    "port": "3000"
+  },
+  "data" : {
+    "knowledge" : {
+      "store" : {
+        "url" : "mongodb://{% if mongodb_user %}{{mongodb_user}}:{{mongodb_password}}@{% endif %}{{mongodb_server}}:{{mongodb_port}}/{{mongodb_name}}"
+      }
+    },
+    "tracker" : {
+      "store" : {
+        "url" : "mongodb://{% if mongodb_user %}{{mongodb_user}}:{{mongodb_password}}@{% endif %}{{mongodb_server}}:{{mongodb_port}}/tracker"
+      }
+    },
+    "session" : {
+      "store" : {
+        "url" : "mongodb://{% if mongodb_user %}{{mongodb_user}}:{{mongodb_password}}@{% endif %}{{mongodb_server}}:{{mongodb_port}}/session"
+      }
+    },
+    "user" : {
+      "store" : {
+        "url" : "mongodb://{% if mongodb_user %}{{mongodb_user}}:{{mongodb_password}}@{% endif %}{{mongodb_server}}:{{mongodb_port}}/user"
+      }
+    }
+  },
+  "heliotrope" : {
+     "baseUrl" : "https://localhost:8443"
+  }
+}

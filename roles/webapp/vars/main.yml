@@ -1,0 +1,6 @@
+---
+mongodb_server: 'localhost'
+mongodb_port: '27017'
+mongodb_name: 'heliotrope'
+mongodb_user: ''
+mongodb_password: ''

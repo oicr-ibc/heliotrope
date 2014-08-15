@@ -28,8 +28,8 @@
   notify:
     - restart heliotrope
   with_items:
-    - { src: 'heliotrope-config.j2', dest: '/etc/heliotrope/config.json' }
-    - { src: 'heliotrope-upstart.j2', dest: '/etc/init/heliotrope.conf' }
+    - { src: 'heliotrope-config.json.j2', dest: '/etc/heliotrope/config.json' }
+    - { src: 'upstart-heliotrope.conf.j2', dest: '/etc/init/heliotrope.conf' }
 
 - name: Webapp | Create user heliotrope
   user: name=heliotrope comment="heliotrope webapp" state=present
