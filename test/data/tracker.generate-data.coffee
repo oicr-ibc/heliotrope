@@ -1020,3 +1020,17 @@ for i in [1..numberOfParticipants]
 
 
   lastDate = participantDate
+
+
+## Now we can generate and dump out the various collections.
+collections = ['studies', 'steps', 'views', 'entities']
+for collection in collections
+  print "db.#{collection}.drop();"
+for collection in collections
+  print "db.createCollection('#{collection}');"
+
+for collection in collections
+  cursor = db.getCollection(collection).find()
+  cursor.forEach (element) ->
+    json = tojson(element)
+    print "db.#{collection}.insert(#{json});"
