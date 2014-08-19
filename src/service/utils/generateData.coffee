@@ -593,7 +593,7 @@ db.views.insert
     "  <thead></thead>\n" +
     "  <tbody>\n" +
     "    <tr ng-repeat='participant in entity.data.related.participants'>\n" +
-    "      <td><a href='{{participant.url}}'>{{participant.identity}}</a>\n" +
+    "      <td><a href='/studies/{{entity.data.study.name | encodeURIComponent}}/{{participant.role | encodeURIComponent}}/{{participant.identity | encodeURIComponent}}'>{{participant.identity}}</a>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +
     "</table>"
@@ -961,7 +961,7 @@ for i in [1..numberOfParticipants]
       "lastModified" : sampleDate
       "role" : "samples",
       "identity" : sampleIdentifier
-      "steps" :
+      "steps" : [{
         "id" : ObjectId(),
         "stepRef" : getId('step_sample')
         "stepDate" : sampleDate
@@ -979,6 +979,7 @@ for i in [1..numberOfParticipants]
           "key" : "type",
           "value" : "FFPE"
         }]
+      }]
 
     for mutation in observed
 
@@ -990,7 +991,7 @@ for i in [1..numberOfParticipants]
         "role" : "observations",
         "name" : mutation.gene + " " + mutationName
         "identity" : ObjectId().str
-        "steps" :
+        "steps" : [{
           "id" : ObjectId()
           "stepRef" : getId('step_observation')
           "stepDate" : sampleDate
@@ -1017,6 +1018,7 @@ for i in [1..numberOfParticipants]
             "key" : "transcriptId"
             "value" : mutation.transcriptId
           }]
+        }]
 
 
   lastDate = participantDate

@@ -652,18 +652,13 @@ buildEntityStepUrls = (entity, stepsArray) ->
 
   # At this late stage, we can filter out steps we don't want
 
-  stepFilter = (step) ->
+  steps = entity.steps || []
+  for step in steps
     stepDefinition = stepTable[step.stepRef.toString()]
     url = entity.url
     if stepDefinition
       step.url = url + "/step/" + stepDefinition.name
       step.url = step.url + ";" + step.id.toString() if stepDefinition.isRepeatable
-      true
-    else
-      false
-
-  steps = entity.steps || []
-  (step for step in steps when stepFilter(step))
 
 ## Woefully inadequate. This requires us to locate related entities, as usual, and we also ought to do all
 ## the field defaulting code just as we do for the entity as a whole.
