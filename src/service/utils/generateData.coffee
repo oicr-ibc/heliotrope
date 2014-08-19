@@ -531,7 +531,7 @@ db.views.insert
     "  <thead></thead>\n" +
     "  <tbody>\n" +
     "    <tr ng-repeat='sample in entity.data.related.samples'>\n" +
-    "      <td><a href='{{sample.url}}'>{{sample.identity}}</a>\n" +
+    "      <td><a href='/studies/{{entity.data.study.name | encodeURIComponent}}/{{sample.role | encodeURIComponent}}/{{sample.identity | encodeURIComponent}}'>{{sample.identity}}</a>\n" +
     "    </tr>\n" +
     "  <tbody>\n" +
     "</table>"

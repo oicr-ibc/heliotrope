@@ -21,7 +21,7 @@ angular
                 '<tbody class="step-body">' +
                 '<tr ng-repeat="step in entitySteps">' +
                 '<td>{{ step.stepDate | date:"medium" }}</td>' +
-                '<td><a ng-href="{{ entity | trackerURL:&apos;entity&apos;}}/step/{{ step.name }}">{{ step.label }}</a></td>' +
+                '<td><a ng-href="/studies/{{ entity.data.study.name | encodeURIComponent}}/{{ entity.data.role | encodeURIComponent}}/{{ entity.data.identity | encodeURIComponent}}/step/{{ step.name }}">{{ step.label }}</a></td>' +
                 '<td>{{ step.stepUser | default:"anonymous"}}</td>' +
                 '</tbody>' +
                 '</table>'
@@ -67,7 +67,7 @@ angular
                 '</thead>' +
                 '<tbody class="step-body">' +
                 '<tr ng-repeat="entity in entitiesByRole">' +
-                '<td><a ng-href="{{study|trackerURL:&apos;study&apos;}}/{{entity.role | encodeURIComponent}}/{{entity.identity | encodeURIComponent}}">{{ entity.identity }}</a></td>' +
+                '<td><a ng-href="/studies/{{ study.data.name | encodeURIComponent}}/{{entity.role | encodeURIComponent}}/{{entity.identity | encodeURIComponent}}">{{ entity.identity }}</a></td>' +
                 '<td ng-repeat="step in headersByRole"><span ng-show="stepCompleted(entity, step._id)" class="glyphicon glyphicon-ok"></span></td>' +
                 '</tr>' +
                 '</tbody>' +

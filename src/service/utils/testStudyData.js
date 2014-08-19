@@ -7,7 +7,7 @@ db.createCollection('steps');
 db.createCollection('views');
 db.createCollection('entities');
 db.studies.insert({
-	"_id" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8d7"),
 	"version" : 1,
 	"name" : "Test Study",
 	"access" : {
@@ -36,8 +36,8 @@ db.studies.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8d8"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "participants",
 	"weight" : 0,
 	"name" : "participant",
@@ -90,8 +90,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8d9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"weight" : 10,
 	"appliesTo" : "participants",
 	"name" : "enrolment",
@@ -122,8 +122,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8da"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "participants",
 	"weight" : 20,
 	"name" : "consent",
@@ -154,8 +154,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8db"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "participants",
 	"weight" : 30,
 	"name" : "biopsy",
@@ -194,8 +194,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8dc"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "participants",
 	"weight" : 40,
 	"name" : "pathology",
@@ -216,8 +216,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe84f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8dd"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "participants",
 	"weight" : 200,
 	"name" : "clinicalHistory",
@@ -241,8 +241,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe850"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8de"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "participants",
 	"weight" : 300,
 	"name" : "genomics",
@@ -263,8 +263,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe851"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8df"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "participants",
 	"name" : "addSample",
 	"showSummary" : false,
@@ -286,8 +286,8 @@ db.steps.insert({
 	"url" : "{{study.url}}/samples/id;new/step/sample?participantEntityRef={{identity}}"
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe852"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8e0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "participants",
 	"weight" : 500,
 	"name" : "expertPanel",
@@ -357,8 +357,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8e1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "samples",
 	"weight" : 0,
 	"stepOptions" : {
@@ -445,8 +445,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe854"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8e2"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "samples",
 	"weight" : 10,
 	"name" : "assessSample",
@@ -480,8 +480,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe855"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8e3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "samples",
 	"weight" : 20,
 	"name" : "markAsCollected",
@@ -495,8 +495,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe856"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8e4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "samples",
 	"weight" : 10,
 	"name" : "recordResults",
@@ -532,8 +532,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8e5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "observations",
 	"weight" : 0,
 	"name" : "observation",
@@ -643,8 +643,8 @@ db.steps.insert({
 	}
 });
 db.steps.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe858"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8e6"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"appliesTo" : "observations",
 	"weight" : 100,
 	"name" : "clinicallyVerified",
@@ -674,8 +674,8 @@ db.steps.insert({
 	}
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe859"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8e7"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "summary",
 	"role" : "studies",
 	"label" : {
@@ -685,8 +685,8 @@ db.views.insert({
 	"body" : "<dl>\n  <dt>Number of participants</dt>\n  <dd>{{study.data.counts.participants}}</dd>\n  <dt>Number of samples</dt>\n  <dd>{{study.data.counts.samples}}</dd>\n  <dt>Observed mutations</dt>\n  <dd>{{study.data.counts.observations}}</dd>\n</dl>\n"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe85a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8e8"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "participants",
 	"role" : "studies",
 	"label" : {
@@ -696,8 +696,8 @@ db.views.insert({
 	"body" : "<div heli-study-entities role='participants' label='Participants'>\n</div>\n<br>\n"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe85b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8e9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "samples",
 	"role" : "studies",
 	"label" : {
@@ -707,8 +707,8 @@ db.views.insert({
 	"body" : "<div heli-study-entities role='samples' label='Samples'>\n</div>\n<br>\n"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe85c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8ea"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "summary",
 	"role" : "participants",
 	"label" : {
@@ -718,8 +718,8 @@ db.views.insert({
 	"body" : "<dl>\n  <dt>Registered</dt>\n  <dd>{{entity.data.values.enrolmentDate | field}}</dd>\n  <dt>Consent</dt>\n  <dd>{{entity.data.values.consentDate | field}}</dd>\n  <dt>Biopsy</dt>\n  <dd>{{entity.data.values.biopsyDate | field}}</dd>\n  <dt>Pathology</dt>\n  <dd>{{entity.data.values.pathologyDate | field}}</dd>\n  <dt>Clinical lab</dt>\n  <dd>{{entity.data.values.clinicalLaboratoryDate | field}}</dd>\n  <dt>Research lab</dt>\n  <dd>{{entity.data.values.researchLaboratoryDate | field}}</dd>\n  <dt>Expert panel</dt>\n  <dd>{{entity.data.values.expertPanelDate | field}}</dd>\n</dl>\n"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe85d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8eb"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "enrolment",
 	"role" : "participants",
 	"label" : {
@@ -729,19 +729,19 @@ db.views.insert({
 	"body" : "<dl>\n  <dt>Registered</dt>\n  <dd>{{entity.data.values.enrolmentDate | field}}</dd>\n  <dt>Consent</dt>\n  <dd>{{entity.data.values.consentDate | field}}</dd>\n</dl>"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe85e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8ec"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "samples",
 	"role" : "participants",
 	"label" : {
 		"default" : "Samples"
 	},
 	"weight" : 200,
-	"body" : "<table>\n  <thead></thead>\n  <tbody>\n    <tr ng-repeat='sample in entity.data.related.samples'>\n      <td><a href='{{sample.url}}'>{{sample.identity}}</a>\n    </tr>\n  <tbody>\n</table>"
+	"body" : "<table>\n  <thead></thead>\n  <tbody>\n    <tr ng-repeat='sample in entity.data.related.samples'>\n      <td><a href='/studies/{{entity.data.study.name | encodeURIComponent}}/{{sample.role | encodeURIComponent}}/{{sample.identity | encodeURIComponent}}'>{{sample.identity}}</a>\n    </tr>\n  <tbody>\n</table>"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe85f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8ed"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "history",
 	"role" : "participants",
 	"label" : {
@@ -751,8 +751,8 @@ db.views.insert({
 	"body" : "<div>\n{{entity.data.values.clinicalHistory | field}}\n</div>"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe860"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8ee"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "observations",
 	"role" : "participants",
 	"label" : {
@@ -762,8 +762,8 @@ db.views.insert({
 	"body" : "<table heli-observations>\n</table>"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe861"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8ef"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "steps",
 	"role" : "participants",
 	"label" : {
@@ -773,8 +773,8 @@ db.views.insert({
 	"body" : "<div>\n<div heli-entity-steps></div>\n</div>"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe862"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8f0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "summary",
 	"role" : "samples",
 	"label" : {
@@ -784,8 +784,8 @@ db.views.insert({
 	"body" : "<dl>\n  <dt>Requires collection</dt>\n  <dd>{{entity.data.values.requiresCollection | field}}</dd>\n  <dt>DNA quality</dt>\n  <dd>{{entity.data.values.dnaQuality | field}}</dd>\n</dl>"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe863"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8f1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "participants",
 	"role" : "samples",
 	"label" : {
@@ -795,8 +795,8 @@ db.views.insert({
 	"body" : "<table>\n  <thead></thead>\n  <tbody>\n    <tr ng-repeat='participant in entity.data.related.participants'>\n      <td><a href='{{participant.url}}'>{{participant.identity}}</a>\n    </tr>\n  </tbody>\n</table>"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe864"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8f2"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "observations",
 	"role" : "samples",
 	"label" : {
@@ -806,8 +806,8 @@ db.views.insert({
 	"body" : "<table heli-observations>\n</table>"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe865"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8f3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "steps",
 	"role" : "samples",
 	"label" : {
@@ -817,8 +817,8 @@ db.views.insert({
 	"body" : "<div>\n<div heli-entity-steps></div>\n</div>"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe866"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8f4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "summary",
 	"role" : "observations",
 	"label" : {
@@ -828,8 +828,8 @@ db.views.insert({
 	"body" : "<dl>\n  <dt>Gene name</dt>\n  <dd>{{entity.data.values.geneName | field}}</dd>\n  <dt>Ensembl gene id</dt>\n  <dd><a href='http://useast.ensembl.org/Homo_sapiens/Gene/Summary?g={{entity.data.values.geneId | field}}' rel='external'>{{entity.data.values.geneId | field}}</a></dd>\n  <dt>Ensembl transcript id</dt>\n  <dd><a href='http://useast.ensembl.org/Homo_sapiens/Transcript/Summary?t={{entity.data.values.geneId | field}}' rel='external'>{{entity.data.values.transcriptId | field}}</a></dd>\n  <dt>Amino acid mutation</dt>\n  <dd ng-show='entity.data.values.aminoAcidMutation'>{{entity.data.values.aminoAcidMutation | field}}</dd>\n  <dd ng-hide='entity.data.values.aminoAcidMutation'>Not available</dd>\n  <dt>DNA mutation</dt>\n  <dd>{{entity.data.values.dnaMutation | field}}</dd>\n  <dt>Depth</dt>\n  <dd>{{entity.data.values.depth | field}}</dd>\n  <dt>Open in knowledge base</dt>\n  <dd heli-knowledge-base-search term='entity.data.values.geneName.value + &quot;+&quot; + (entity.data.values.aminoAcidMutation.value || entity.data.values.dnaMutation.value)' entity='entity'>Not available</dd>\n</dl>"
 });
 db.views.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe867"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
+	"_id" : ObjectId("53f37718d7db4984c320d8f5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
 	"name" : "steps",
 	"role" : "observations",
 	"label" : {
@@ -839,16 +839,16 @@ db.views.insert({
 	"body" : "<div>\n<div heli-entity-steps></div>\n</div>"
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe86d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-07-28T16:13:37.489Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d8fb"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-26T14:42:20.999Z"),
 	"role" : "participants",
 	"identity" : "TST-001",
 	"steps" : [
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe868"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-07-28T16:13:37.489Z"),
+			"id" : ObjectId("53f37718d7db4984c320d8f6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-07-26T14:42:20.999Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "identifier",
@@ -856,63 +856,63 @@ db.entities.insert({
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe869"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-07-28T16:13:37.489Z"),
+			"id" : ObjectId("53f37718d7db4984c320d8f7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-07-26T14:42:20.999Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "enrolmentDate",
-				"value" : "2014-07-28T16:13:37.489"
+				"value" : "2014-07-26T14:42:20.999"
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe86a"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-07-30T17:35:14.143Z"),
+			"id" : ObjectId("53f37718d7db4984c320d8f8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-07-29T20:05:33.214Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "consentDate",
-				"value" : "2014-07-30T17:35:14.143"
+				"value" : "2014-07-29T20:05:33.214"
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe86b"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-07-30T21:34:12.019Z"),
+			"id" : ObjectId("53f37718d7db4984c320d8f9"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-07-29T21:14:24.649Z"),
 			"stepUser" : "swatt",
 			"fields" : [
 				{
 					"key" : "biopsyDate",
-					"value" : "2014-07-30T21:34:12.019"
+					"value" : "2014-07-29T21:14:24.649"
 				},
 				{
 					"key" : "biopsyCores",
-					"value" : 5
+					"value" : 4
 				}
 			]
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe86c"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-08-01T19:46:03.723Z"),
+			"id" : ObjectId("53f37718d7db4984c320d8fa"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-07-30T19:14:28.905Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "pathologyDate",
-				"value" : "2014-08-01T19:46:03.723"
+				"value" : "2014-07-30T19:14:28.905"
 			}
 		}
 	]
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe86e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-01T21:45:12.168Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d8fc"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
 	"role" : "samples",
 	"identity" : "TST001BIOXPAR1",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe86f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-01T21:45:12.168Z"),
+		"id" : ObjectId("53f37718d7db4984c320d8fd"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
@@ -921,7 +921,7 @@ db.entities.insert({
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe86d")
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
 			},
 			{
 				"key" : "source",
@@ -935,59 +935,191 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe872"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-01T21:45:12.168Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d900"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
 	"role" : "observations",
-	"name" : "CTNNB1 p.Ser38Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebe870",
+	"name" : "FAM194B p.Glu136Lys",
+	"identity" : "53f37718d7db4984c320d8fe",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe871"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-01T21:45:12.168Z"),
+		"id" : ObjectId("53f37718d7db4984c320d8ff"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe86e")
+				"ref" : ObjectId("53f37718d7db4984c320d8fc")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe86d")
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Ser38Phe"
+				"value" : "p.Glu136Lys"
 			},
 			{
 				"key" : "geneName",
-				"value" : "CTNNB1"
+				"value" : "FAM194B"
 			},
 			{
 				"key" : "label",
-				"value" : "CTNNB1 p.Ser38Phe"
+				"value" : "FAM194B p.Glu136Lys"
 			},
 			{
 				"key" : "geneId",
-				"value" : "ENSG00000168036"
+				"value" : "ENSG00000165837"
 			},
 			{
 				"key" : "transcriptId",
-				"value" : "ENST00000349496"
+				"value" : "ENST00000298738"
 			}
 		]
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe873"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-01T21:45:12.168Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d903"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
+	"role" : "observations",
+	"name" : "TP53 p.His179Arg",
+	"identity" : "53f37718d7db4984c320d901",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d902"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d8fc")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.His179Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.His179Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d906"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu542Lys",
+	"identity" : "53f37718d7db4984c320d904",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d905"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d8fc")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu542Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu542Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d909"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
+	"role" : "observations",
+	"name" : "FRG1B p.Ala41Thr",
+	"identity" : "53f37718d7db4984c320d907",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d908"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d8fc")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala41Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Ala41Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d90a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
 	"role" : "samples",
 	"identity" : "TST001BIOXPAR2",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe874"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-01T21:45:12.168Z"),
+		"id" : ObjectId("53f37718d7db4984c320d90b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
@@ -996,7 +1128,7 @@ db.entities.insert({
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe86d")
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
 			},
 			{
 				"key" : "source",
@@ -1010,124 +1142,59 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe877"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-01T21:45:12.168Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d90e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
 	"role" : "observations",
-	"name" : "CTNNB1 p.Ser38Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebe875",
+	"name" : "PIK3CA p.Glu545Lys",
+	"identity" : "53f37718d7db4984c320d90c",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe876"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-01T21:45:12.168Z"),
+		"id" : ObjectId("53f37718d7db4984c320d90d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe873")
+				"ref" : ObjectId("53f37718d7db4984c320d90a")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe86d")
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Ser38Phe"
+				"value" : "p.Glu545Lys"
 			},
 			{
 				"key" : "geneName",
-				"value" : "CTNNB1"
+				"value" : "PIK3CA"
 			},
 			{
 				"key" : "label",
-				"value" : "CTNNB1 p.Ser38Phe"
+				"value" : "PIK3CA p.Glu545Lys"
 			},
 			{
 				"key" : "geneId",
-				"value" : "ENSG00000168036"
+				"value" : "ENSG00000121879"
 			},
 			{
 				"key" : "transcriptId",
-				"value" : "ENST00000349496"
+				"value" : "ENST00000263967"
 			}
 		]
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe87d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-01T13:26:22.427Z"),
-	"role" : "participants",
-	"identity" : "TST-002",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe878"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-08-01T13:26:22.427Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-002"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe879"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-08-01T13:26:22.427Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-08-01T13:26:22.427"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe87a"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-08-02T21:17:27.359Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-08-02T21:17:27.359"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe87b"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-08-02T21:59:39.188Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-08-02T21:59:39.188"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe87c"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-08-04T17:28:13.770Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-08-04T17:28:13.770"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe87e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-04T17:48:39.737Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d921"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-03T21:53:51.836Z"),
 	"role" : "samples",
 	"identity" : "TST002BIOXPAR1",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe87f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-04T17:48:39.737Z"),
+		"id" : ObjectId("53f37718d7db4984c320d922"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-03T21:53:51.836Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
@@ -1136,7 +1203,7 @@ db.entities.insert({
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87d")
+				"ref" : ObjectId("53f37718d7db4984c320d920")
 			},
 			{
 				"key" : "source",
@@ -1150,117 +1217,29 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe882"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-04T17:48:39.737Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d911"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
 	"role" : "observations",
-	"name" : "TP53 p.Gly245Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebe880",
+	"name" : "FAM194B p.Glu136Lys",
+	"identity" : "53f37718d7db4984c320d90f",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe881"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-04T17:48:39.737Z"),
+		"id" : ObjectId("53f37718d7db4984c320d910"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87e")
+				"ref" : ObjectId("53f37718d7db4984c320d90a")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87d")
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Gly245Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Gly245Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe885"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-04T17:48:39.737Z"),
-	"role" : "observations",
-	"name" : "KCNN3 p.Leu66His",
-	"identity" : "53f26ad5b5e8ab4d14ebe883",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe884"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-04T17:48:39.737Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87d")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Leu66His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KCNN3"
-			},
-			{
-				"key" : "label",
-				"value" : "KCNN3 p.Leu66His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000143603"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000271915"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe888"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-04T17:48:39.737Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Tyr139His",
-	"identity" : "53f26ad5b5e8ab4d14ebe886",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe887"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-04T17:48:39.737Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87d")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Tyr139His"
+				"value" : "p.Glu136Lys"
 			},
 			{
 				"key" : "geneName",
@@ -1268,7 +1247,7 @@ db.entities.insert({
 			},
 			{
 				"key" : "label",
-				"value" : "FAM194B p.Tyr139His"
+				"value" : "FAM194B p.Glu136Lys"
 			},
 			{
 				"key" : "geneId",
@@ -1282,15 +1261,256 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe889"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-04T17:48:39.737Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d914"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
+	"role" : "observations",
+	"name" : "TP53 p.His179Arg",
+	"identity" : "53f37718d7db4984c320d912",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d913"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d90a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.His179Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.His179Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d917"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu542Lys",
+	"identity" : "53f37718d7db4984c320d915",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d916"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d90a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu542Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu542Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d91a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-30T19:22:09.506Z"),
+	"role" : "observations",
+	"name" : "FRG1B p.Ala41Thr",
+	"identity" : "53f37718d7db4984c320d918",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d919"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-07-30T19:22:09.506Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d90a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d8fb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala41Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Ala41Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d920"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-07-28T17:26:58.058Z"),
+	"role" : "participants",
+	"identity" : "TST-002",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320d91b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-07-28T17:26:58.058Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-002"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d91c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-07-28T17:26:58.058Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-07-28T17:26:58.058"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d91d"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-01T17:44:55.158Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-08-01T17:44:55.158"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d91e"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-01T19:52:38.049Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-08-01T19:52:38.049"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d91f"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-08-03T20:12:43.156Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-08-03T20:12:43.156"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d925"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-03T21:53:51.836Z"),
+	"role" : "observations",
+	"name" : "EGFR p.Gly553Val",
+	"identity" : "53f37718d7db4984c320d923",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d924"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-03T21:53:51.836Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d921")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d920")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly553Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "EGFR"
+			},
+			{
+				"key" : "label",
+				"value" : "EGFR p.Gly553Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000146648"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000275493"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d926"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-03T21:53:51.836Z"),
 	"role" : "samples",
 	"identity" : "TST002BIOXPAR2",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe88a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-04T17:48:39.737Z"),
+		"id" : ObjectId("53f37718d7db4984c320d927"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-03T21:53:51.836Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
@@ -1299,7 +1519,7 @@ db.entities.insert({
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87d")
+				"ref" : ObjectId("53f37718d7db4984c320d920")
 			},
 			{
 				"key" : "source",
@@ -1313,148 +1533,60 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe88d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-04T17:48:39.737Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d92a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-03T21:53:51.836Z"),
 	"role" : "observations",
-	"name" : "TP53 p.Gly245Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebe88b",
+	"name" : "EGFR p.Gly553Val",
+	"identity" : "53f37718d7db4984c320d928",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe88c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-04T17:48:39.737Z"),
+		"id" : ObjectId("53f37718d7db4984c320d929"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-03T21:53:51.836Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe889")
+				"ref" : ObjectId("53f37718d7db4984c320d926")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87d")
+				"ref" : ObjectId("53f37718d7db4984c320d920")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Gly245Ser"
+				"value" : "p.Gly553Val"
 			},
 			{
 				"key" : "geneName",
-				"value" : "TP53"
+				"value" : "EGFR"
 			},
 			{
 				"key" : "label",
-				"value" : "TP53 p.Gly245Ser"
+				"value" : "EGFR p.Gly553Val"
 			},
 			{
 				"key" : "geneId",
-				"value" : "ENSG00000141510"
+				"value" : "ENSG00000146648"
 			},
 			{
 				"key" : "transcriptId",
-				"value" : "ENST00000269305"
+				"value" : "ENST00000275493"
 			}
 		]
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe890"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-04T17:48:39.737Z"),
-	"role" : "observations",
-	"name" : "KCNN3 p.Leu66His",
-	"identity" : "53f26ad5b5e8ab4d14ebe88e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe88f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-04T17:48:39.737Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe889")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87d")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Leu66His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KCNN3"
-			},
-			{
-				"key" : "label",
-				"value" : "KCNN3 p.Leu66His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000143603"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000271915"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe893"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-04T17:48:39.737Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Tyr139His",
-	"identity" : "53f26ad5b5e8ab4d14ebe891",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe892"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-04T17:48:39.737Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe889")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe87d")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Tyr139His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Tyr139His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe899"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-05T17:23:17.176Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d930"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-02T14:01:55.370Z"),
 	"role" : "participants",
 	"identity" : "TST-003",
 	"steps" : [
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe894"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-08-05T17:23:17.176Z"),
+			"id" : ObjectId("53f37718d7db4984c320d92b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-02T14:01:55.370Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "identifier",
@@ -1462,1764 +1594,34 @@ db.entities.insert({
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe895"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-08-05T17:23:17.176Z"),
+			"id" : ObjectId("53f37718d7db4984c320d92c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-02T14:01:55.370Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "enrolmentDate",
-				"value" : "2014-08-05T17:23:17.176"
+				"value" : "2014-08-02T14:01:55.370"
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe896"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-08-08T18:31:19.988Z"),
+			"id" : ObjectId("53f37718d7db4984c320d92d"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-05T18:20:15.581Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "consentDate",
-				"value" : "2014-08-08T18:31:19.988"
+				"value" : "2014-08-05T18:20:15.581"
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe897"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-08-08T21:41:55.288Z"),
+			"id" : ObjectId("53f37718d7db4984c320d92e"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-05T21:13:47.680Z"),
 			"stepUser" : "swatt",
 			"fields" : [
 				{
 					"key" : "biopsyDate",
-					"value" : "2014-08-08T21:41:55.288"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe898"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-08-10T21:03:07.365Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-08-10T21:03:07.365"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe89a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-10T21:13:19.205Z"),
-	"role" : "samples",
-	"identity" : "TST003BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe89b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-10T21:13:19.205Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST003BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe899")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe89e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-10T21:13:19.205Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.His1047Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebe89c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe89d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-10T21:13:19.205Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe89a")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe899")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His1047Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.His1047Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe89f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-10T21:13:19.205Z"),
-	"role" : "samples",
-	"identity" : "TST003BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8a0"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-10T21:13:19.205Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST003BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe899")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8a3"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-10T21:13:19.205Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.His1047Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebe8a1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8a2"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-10T21:13:19.205Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe89f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe899")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His1047Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.His1047Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8a9"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-08T20:15:59.560Z"),
-	"role" : "participants",
-	"identity" : "TST-004",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8a4"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-08-08T20:15:59.560Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-004"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8a5"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-08-08T20:15:59.560Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-08-08T20:15:59.560"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8a6"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-08-10T20:39:31.706Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-08-10T20:39:31.706"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8a7"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-08-10T21:39:21.502Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-08-10T21:39:21.502"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8a8"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-08-11T15:41:18.544Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-08-11T15:41:18.544"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8aa"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-11T18:01:49.998Z"),
-	"role" : "samples",
-	"identity" : "TST004BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8ab"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-11T18:01:49.998Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST004BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8a9")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8ae"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-11T18:01:49.998Z"),
-	"role" : "observations",
-	"name" : "HRAS p.Gln61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebe8ac",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8ad"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-11T18:01:49.998Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8aa")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8a9")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gln61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "HRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "HRAS p.Gln61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000174775"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000451590"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8b1"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-11T18:01:49.998Z"),
-	"role" : "observations",
-	"name" : "IDH1 p.Arg132Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe8af",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8b0"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-11T18:01:49.998Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8aa")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8a9")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg132Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "IDH1"
-			},
-			{
-				"key" : "label",
-				"value" : "IDH1 p.Arg132Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000138413"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000415913"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8b4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-11T18:01:49.998Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Gly320Glu",
-	"identity" : "53f26ad5b5e8ab4d14ebe8b2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8b3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-11T18:01:49.998Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8aa")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8a9")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly320Glu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Gly320Glu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8b5"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-11T18:01:49.998Z"),
-	"role" : "samples",
-	"identity" : "TST004BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8b6"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-11T18:01:49.998Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST004BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8a9")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8b9"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-11T18:01:49.998Z"),
-	"role" : "observations",
-	"name" : "HRAS p.Gln61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebe8b7",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8b8"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-11T18:01:49.998Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8b5")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8a9")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gln61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "HRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "HRAS p.Gln61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000174775"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000451590"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8bc"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-11T18:01:49.998Z"),
-	"role" : "observations",
-	"name" : "IDH1 p.Arg132Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe8ba",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8bb"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-11T18:01:49.998Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8b5")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8a9")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg132Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "IDH1"
-			},
-			{
-				"key" : "label",
-				"value" : "IDH1 p.Arg132Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000138413"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000415913"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8bf"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-11T18:01:49.998Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Gly320Glu",
-	"identity" : "53f26ad5b5e8ab4d14ebe8bd",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8be"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-11T18:01:49.998Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8b5")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8a9")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly320Glu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Gly320Glu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8c5"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-09T19:33:23.495Z"),
-	"role" : "participants",
-	"identity" : "TST-005",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8c0"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-08-09T19:33:23.495Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-005"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8c1"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-08-09T19:33:23.495Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-08-09T19:33:23.495"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8c2"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-08-13T16:18:09.405Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-08-13T16:18:09.405"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8c3"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-08-13T20:04:59.287Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-08-13T20:04:59.287"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8c4"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-08-15T17:54:26.819Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-08-15T17:54:26.819"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8c6"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-15T20:16:53.876Z"),
-	"role" : "samples",
-	"identity" : "TST005BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8c7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-15T20:16:53.876Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST005BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8c5")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8ca"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-15T20:16:53.876Z"),
-	"role" : "observations",
-	"name" : "NEFH p.Glu645Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebe8c8",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8c9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-15T20:16:53.876Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8c6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8c5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu645Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NEFH"
-			},
-			{
-				"key" : "label",
-				"value" : "NEFH p.Glu645Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000100285"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000310624"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8cb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-15T20:16:53.876Z"),
-	"role" : "samples",
-	"identity" : "TST005BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8cc"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-15T20:16:53.876Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST005BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8c5")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8cf"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-15T20:16:53.876Z"),
-	"role" : "observations",
-	"name" : "NEFH p.Glu645Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebe8cd",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8ce"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-15T20:16:53.876Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8cb")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8c5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu645Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NEFH"
-			},
-			{
-				"key" : "label",
-				"value" : "NEFH p.Glu645Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000100285"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000310624"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8d5"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-16T15:06:48.328Z"),
-	"role" : "participants",
-	"identity" : "TST-006",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8d0"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-08-16T15:06:48.328Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-006"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8d1"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-08-16T15:06:48.328Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-08-16T15:06:48.328"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8d2"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-08-18T21:01:13.301Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-08-18T21:01:13.301"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8d3"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-08-18T21:01:38.244Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-08-18T21:01:38.244"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 6
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8d4"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-08-20T15:53:42.962Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-08-20T15:53:42.962"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8d6"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-20T20:50:59.882Z"),
-	"role" : "samples",
-	"identity" : "TST006BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8d7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-20T20:50:59.882Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST006BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8d5")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8da"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-20T20:50:59.882Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebe8d8",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8d9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-20T20:50:59.882Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8d6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8d5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8dd"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-20T20:50:59.882Z"),
-	"role" : "observations",
-	"name" : "GPRIN2 p.Val241Met",
-	"identity" : "53f26ad5b5e8ab4d14ebe8db",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8dc"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-20T20:50:59.882Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8d6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8d5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val241Met"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GPRIN2"
-			},
-			{
-				"key" : "label",
-				"value" : "GPRIN2 p.Val241Met"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204175"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000374314"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8de"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-20T20:50:59.882Z"),
-	"role" : "samples",
-	"identity" : "TST006BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8df"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-20T20:50:59.882Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST006BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8d5")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8e2"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-20T20:50:59.882Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebe8e0",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8e1"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-20T20:50:59.882Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8de")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8d5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8e5"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-20T20:50:59.882Z"),
-	"role" : "observations",
-	"name" : "GPRIN2 p.Val241Met",
-	"identity" : "53f26ad5b5e8ab4d14ebe8e3",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8e4"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-20T20:50:59.882Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8de")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8d5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val241Met"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GPRIN2"
-			},
-			{
-				"key" : "label",
-				"value" : "GPRIN2 p.Val241Met"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204175"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000374314"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8eb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-18T19:50:40.722Z"),
-	"role" : "participants",
-	"identity" : "TST-007",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8e6"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-08-18T19:50:40.722Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-007"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8e7"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-08-18T19:50:40.722Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-08-18T19:50:40.722"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8e8"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-08-20T15:32:40.435Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-08-20T15:32:40.435"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8e9"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-08-20T17:14:58.537Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-08-20T17:14:58.537"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8ea"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-08-22T14:20:55.012Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-08-22T14:20:55.012"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8ec"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-22T15:30:06.797Z"),
-	"role" : "samples",
-	"identity" : "TST007BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8ed"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-22T15:30:06.797Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST007BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8eb")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8f0"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-22T15:30:06.797Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Ala337Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe8ee",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8ef"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-22T15:30:06.797Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8ec")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8eb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala337Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Ala337Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8f3"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-22T15:30:06.797Z"),
-	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe8f1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8f2"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-22T15:30:06.797Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8ec")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8eb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GSG2"
-			},
-			{
-				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000177602"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000325418"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8f4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-22T15:30:06.797Z"),
-	"role" : "samples",
-	"identity" : "TST007BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8f5"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-22T15:30:06.797Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST007BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8eb")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8f8"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-22T15:30:06.797Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Ala337Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe8f6",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8f7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-22T15:30:06.797Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8f4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8eb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala337Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Ala337Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe8fb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-22T15:30:06.797Z"),
-	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe8f9",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe8fa"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-22T15:30:06.797Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8f4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe8eb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GSG2"
-			},
-			{
-				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000177602"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000325418"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe901"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-21T18:01:43.750Z"),
-	"role" : "participants",
-	"identity" : "TST-008",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8fc"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-08-21T18:01:43.750Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-008"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8fd"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-08-21T18:01:43.750Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-08-21T18:01:43.750"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8fe"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-08-23T15:45:14.978Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-08-23T15:45:14.978"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe8ff"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-08-23T19:19:26.180Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-08-23T19:19:26.180"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 6
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe900"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-08-24T17:57:52.343Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-08-24T17:57:52.343"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe902"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-24T21:28:30.480Z"),
-	"role" : "samples",
-	"identity" : "TST008BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe903"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-24T21:28:30.480Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST008BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe901")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe906"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-24T21:28:30.480Z"),
-	"role" : "observations",
-	"name" : "EEF1B2 p.Ser43Gly",
-	"identity" : "53f26ad5b5e8ab4d14ebe904",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe905"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-24T21:28:30.480Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe902")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe901")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser43Gly"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EEF1B2"
-			},
-			{
-				"key" : "label",
-				"value" : "EEF1B2 p.Ser43Gly"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000114942"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000392222"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe90a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-24T21:28:30.480Z"),
-	"role" : "samples",
-	"identity" : "TST008BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe90b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-24T21:28:30.480Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST008BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe901")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe909"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-24T21:28:30.480Z"),
-	"role" : "observations",
-	"name" : "NOTCH2 p.Ala21Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebe907",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe908"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-24T21:28:30.480Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe902")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe901")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala21Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NOTCH2"
-			},
-			{
-				"key" : "label",
-				"value" : "NOTCH2 p.Ala21Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000134250"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256646"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe90e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-24T21:28:30.480Z"),
-	"role" : "observations",
-	"name" : "EEF1B2 p.Ser43Gly",
-	"identity" : "53f26ad5b5e8ab4d14ebe90c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe90d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-24T21:28:30.480Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe90a")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe901")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser43Gly"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EEF1B2"
-			},
-			{
-				"key" : "label",
-				"value" : "EEF1B2 p.Ser43Gly"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000114942"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000392222"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe911"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-24T21:28:30.480Z"),
-	"role" : "observations",
-	"name" : "NOTCH2 p.Ala21Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebe90f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe910"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-24T21:28:30.480Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe90a")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe901")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala21Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NOTCH2"
-			},
-			{
-				"key" : "label",
-				"value" : "NOTCH2 p.Ala21Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000134250"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256646"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe917"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-22T21:44:53.345Z"),
-	"role" : "participants",
-	"identity" : "TST-009",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe912"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-08-22T21:44:53.345Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-009"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe913"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-08-22T21:44:53.345Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-08-22T21:44:53.345"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe914"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-08-24T21:45:37.915Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-08-24T21:45:37.915"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe915"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-08-24T21:58:14.966Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-08-24T21:58:14.966"
+					"value" : "2014-08-05T21:13:47.680"
 				},
 				{
 					"key" : "biopsyCores",
@@ -3228,36 +1630,36 @@ db.entities.insert({
 			]
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe916"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-08-28T20:25:58.437Z"),
+			"id" : ObjectId("53f37718d7db4984c320d92f"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-08-06T20:41:07.385Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "pathologyDate",
-				"value" : "2014-08-28T20:25:58.437"
+				"value" : "2014-08-06T20:41:07.385"
 			}
 		}
 	]
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe918"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-28T20:50:55Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d931"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
 	"role" : "samples",
-	"identity" : "TST009BIOXPAR1",
+	"identity" : "TST003BIOXPAR1",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe919"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-28T20:50:55Z"),
+		"id" : ObjectId("53f37718d7db4984c320d932"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "identifier",
-				"identity" : "TST009BIOXPAR1"
+				"identity" : "TST003BIOXPAR1"
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe917")
+				"ref" : ObjectId("53f37718d7db4984c320d930")
 			},
 			{
 				"key" : "source",
@@ -3271,29 +1673,205 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe91c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-28T20:50:55Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d935"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
 	"role" : "observations",
-	"name" : "PIK3CA p.Glu545Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebe91a",
+	"name" : "FRG1B p.Leu87Ser",
+	"identity" : "53f37718d7db4984c320d933",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe91b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-28T20:50:55Z"),
+		"id" : ObjectId("53f37718d7db4984c320d934"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe918")
+				"ref" : ObjectId("53f37718d7db4984c320d931")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe917")
+				"ref" : ObjectId("53f37718d7db4984c320d930")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Glu545Lys"
+				"value" : "p.Leu87Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Leu87Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d938"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
+	"role" : "observations",
+	"name" : "NOTCH2 p.Ala21Thr",
+	"identity" : "53f37718d7db4984c320d936",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d937"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d931")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d930")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala21Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NOTCH2"
+			},
+			{
+				"key" : "label",
+				"value" : "NOTCH2 p.Ala21Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000134250"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256646"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d93b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gly",
+	"identity" : "53f37718d7db4984c320d939",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d93a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d931")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d930")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d93e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
+	"role" : "observations",
+	"name" : "PGM5 p.Ile98Val",
+	"identity" : "53f37718d7db4984c320d93c",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d93d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d931")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d930")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile98Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PGM5"
+			},
+			{
+				"key" : "label",
+				"value" : "PGM5 p.Ile98Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000154330"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000396396"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d941"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu542Lys",
+	"identity" : "53f37718d7db4984c320d93f",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d940"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d931")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d930")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu542Lys"
 			},
 			{
 				"key" : "geneName",
@@ -3301,7 +1879,7 @@ db.entities.insert({
 			},
 			{
 				"key" : "label",
-				"value" : "PIK3CA p.Glu545Lys"
+				"value" : "PIK3CA p.Glu542Lys"
 			},
 			{
 				"key" : "geneId",
@@ -3315,24 +1893,24 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe91d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-28T20:50:55Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d942"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
 	"role" : "samples",
-	"identity" : "TST009BIOXPAR2",
+	"identity" : "TST003BIOXPAR2",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe91e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-08-28T20:50:55Z"),
+		"id" : ObjectId("53f37718d7db4984c320d943"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "identifier",
-				"identity" : "TST009BIOXPAR2"
+				"identity" : "TST003BIOXPAR2"
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe917")
+				"ref" : ObjectId("53f37718d7db4984c320d930")
 			},
 			{
 				"key" : "source",
@@ -3346,29 +1924,205 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe921"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-28T20:50:55Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d946"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
 	"role" : "observations",
-	"name" : "PIK3CA p.Glu545Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebe91f",
+	"name" : "FRG1B p.Leu87Ser",
+	"identity" : "53f37718d7db4984c320d944",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe920"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-08-28T20:50:55Z"),
+		"id" : ObjectId("53f37718d7db4984c320d945"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe91d")
+				"ref" : ObjectId("53f37718d7db4984c320d942")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe917")
+				"ref" : ObjectId("53f37718d7db4984c320d930")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Glu545Lys"
+				"value" : "p.Leu87Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Leu87Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d949"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
+	"role" : "observations",
+	"name" : "NOTCH2 p.Ala21Thr",
+	"identity" : "53f37718d7db4984c320d947",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d948"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d942")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d930")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala21Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NOTCH2"
+			},
+			{
+				"key" : "label",
+				"value" : "NOTCH2 p.Ala21Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000134250"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256646"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d94c"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gly",
+	"identity" : "53f37718d7db4984c320d94a",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d94b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d942")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d930")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d94f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
+	"role" : "observations",
+	"name" : "PGM5 p.Ile98Val",
+	"identity" : "53f37718d7db4984c320d94d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d94e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d942")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d930")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile98Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PGM5"
+			},
+			{
+				"key" : "label",
+				"value" : "PGM5 p.Ile98Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000154330"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000396396"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d952"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-07T17:49:45.946Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu542Lys",
+	"identity" : "53f37718d7db4984c320d950",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d951"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-07T17:49:45.946Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d942")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d930")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu542Lys"
 			},
 			{
 				"key" : "geneName",
@@ -3376,7 +2130,7 @@ db.entities.insert({
 			},
 			{
 				"key" : "label",
-				"value" : "PIK3CA p.Glu545Lys"
+				"value" : "PIK3CA p.Glu542Lys"
 			},
 			{
 				"key" : "geneId",
@@ -3390,89 +2144,89 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe927"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-26T17:48:41.397Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d958"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-06T20:42:32.123Z"),
 	"role" : "participants",
-	"identity" : "TST-010",
+	"identity" : "TST-004",
 	"steps" : [
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe922"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-08-26T17:48:41.397Z"),
+			"id" : ObjectId("53f37718d7db4984c320d953"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-06T20:42:32.123Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "identifier",
-				"identity" : "TST-010"
+				"identity" : "TST-004"
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe923"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-08-26T17:48:41.397Z"),
+			"id" : ObjectId("53f37718d7db4984c320d954"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-06T20:42:32.123Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "enrolmentDate",
-				"value" : "2014-08-26T17:48:41.397"
+				"value" : "2014-08-06T20:42:32.123"
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe924"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-08-30T17:49:18.852Z"),
+			"id" : ObjectId("53f37718d7db4984c320d955"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-10T20:59:29.527Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "consentDate",
-				"value" : "2014-08-30T17:49:18.852"
+				"value" : "2014-08-10T20:59:29.527"
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe925"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-08-30T21:12:36.332Z"),
+			"id" : ObjectId("53f37718d7db4984c320d956"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-10T21:43:28.572Z"),
 			"stepUser" : "swatt",
 			"fields" : [
 				{
 					"key" : "biopsyDate",
-					"value" : "2014-08-30T21:12:36.332"
+					"value" : "2014-08-10T21:43:28.572"
 				},
 				{
 					"key" : "biopsyCores",
-					"value" : 5
+					"value" : 4
 				}
 			]
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe926"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-09-02T15:05:26.051Z"),
+			"id" : ObjectId("53f37718d7db4984c320d957"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-08-13T21:33:25.959Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "pathologyDate",
-				"value" : "2014-09-02T15:05:26.051"
+				"value" : "2014-08-13T21:33:25.959"
 			}
 		}
 	]
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe928"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-02T17:28:24.449Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d959"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
 	"role" : "samples",
-	"identity" : "TST010BIOXPAR1",
+	"identity" : "TST004BIOXPAR1",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe929"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-02T17:28:24.449Z"),
+		"id" : ObjectId("53f37718d7db4984c320d95a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "identifier",
-				"identity" : "TST010BIOXPAR1"
+				"identity" : "TST004BIOXPAR1"
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe927")
+				"ref" : ObjectId("53f37718d7db4984c320d958")
 			},
 			{
 				"key" : "source",
@@ -3486,328 +2240,69 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe92c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-02T17:28:24.449Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d95d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
 	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe92a",
+	"name" : "TP53 p.Tyr163Cys",
+	"identity" : "53f37718d7db4984c320d95b",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe92b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-02T17:28:24.449Z"),
+		"id" : ObjectId("53f37718d7db4984c320d95c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe928")
+				"ref" : ObjectId("53f37718d7db4984c320d959")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe927")
+				"ref" : ObjectId("53f37718d7db4984c320d958")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
+				"value" : "p.Tyr163Cys"
 			},
 			{
 				"key" : "geneName",
-				"value" : "GSG2"
+				"value" : "TP53"
 			},
 			{
 				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
+				"value" : "TP53 p.Tyr163Cys"
 			},
 			{
 				"key" : "geneId",
-				"value" : "ENSG00000177602"
+				"value" : "ENSG00000141510"
 			},
 			{
 				"key" : "transcriptId",
-				"value" : "ENST00000325418"
+				"value" : "ENST00000269305"
 			}
 		]
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe92d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-02T17:28:24.449Z"),
-	"role" : "samples",
-	"identity" : "TST010BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe92e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-02T17:28:24.449Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST010BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe927")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe931"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-02T17:28:24.449Z"),
-	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe92f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe930"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-02T17:28:24.449Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe92d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe927")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GSG2"
-			},
-			{
-				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000177602"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000325418"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe937"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-08-30T18:35:28.408Z"),
-	"role" : "participants",
-	"identity" : "TST-011",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe932"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-08-30T18:35:28.408Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-011"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe933"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-08-30T18:35:28.408Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-08-30T18:35:28.408"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe934"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-09-02T18:04:31.183Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-09-02T18:04:31.183"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe935"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-09-02T19:56:34.679Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-09-02T19:56:34.679"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe936"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-09-04T20:16:23.152Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-09-04T20:16:23.152"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe938"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "samples",
-	"identity" : "TST011BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe939"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST011BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe93c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Gly320Glu",
-	"identity" : "53f26ad5b5e8ab4d14ebe93a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe93b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe938")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly320Glu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Gly320Glu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe93f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "observations",
-	"name" : "TMPRSS13 p.Ala77Gly",
-	"identity" : "53f26ad5b5e8ab4d14ebe93d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe93e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe938")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala77Gly"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TMPRSS13"
-			},
-			{
-				"key" : "label",
-				"value" : "TMPRSS13 p.Ala77Gly"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000137747"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000524993"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe942"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d960"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
 	"role" : "observations",
 	"name" : "LATS2 p.Ala324Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe940",
+	"identity" : "53f37718d7db4984c320d95e",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe941"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
+		"id" : ObjectId("53f37718d7db4984c320d95f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe938")
+				"ref" : ObjectId("53f37718d7db4984c320d959")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
+				"ref" : ObjectId("53f37718d7db4984c320d958")
 			},
 			{
 				"key" : "aminoAcidMutation",
@@ -3833,69 +2328,3896 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe945"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d963"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
 	"role" : "observations",
-	"name" : "ADAD2 p.Gly44Glu",
-	"identity" : "53f26ad5b5e8ab4d14ebe943",
+	"name" : "PIK3CA p.Gly118Asp",
+	"identity" : "53f37718d7db4984c320d961",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe944"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
+		"id" : ObjectId("53f37718d7db4984c320d962"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe938")
+				"ref" : ObjectId("53f37718d7db4984c320d959")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
+				"ref" : ObjectId("53f37718d7db4984c320d958")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Gly44Glu"
+				"value" : "p.Gly118Asp"
 			},
 			{
 				"key" : "geneName",
-				"value" : "ADAD2"
+				"value" : "PIK3CA"
 			},
 			{
 				"key" : "label",
-				"value" : "ADAD2 p.Gly44Glu"
+				"value" : "PIK3CA p.Gly118Asp"
 			},
 			{
 				"key" : "geneId",
-				"value" : "ENSG00000140955"
+				"value" : "ENSG00000121879"
 			},
 			{
 				"key" : "transcriptId",
-				"value" : "ENST00000268624"
+				"value" : "ENST00000263967"
 			}
 		]
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe948"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
+	"_id" : ObjectId("53f37718d7db4984c320d966"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
 	"role" : "observations",
-	"name" : "FRG1B p.Leu87Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebe946",
+	"name" : "FRG1B p.Ile45Thr",
+	"identity" : "53f37718d7db4984c320d964",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe947"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
+		"id" : ObjectId("53f37718d7db4984c320d965"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe938")
+				"ref" : ObjectId("53f37718d7db4984c320d959")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile45Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Ile45Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d969"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
+	"role" : "observations",
+	"name" : "IDH1 p.Arg132His",
+	"identity" : "53f37718d7db4984c320d967",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d968"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d959")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg132His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IDH1"
+			},
+			{
+				"key" : "label",
+				"value" : "IDH1 p.Arg132His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000138413"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000415913"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d96c"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Glu136Lys",
+	"identity" : "53f37718d7db4984c320d96a",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d96b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d959")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu136Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Glu136Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d96f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Asp",
+	"identity" : "53f37718d7db4984c320d96d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d96e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d959")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d970"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
+	"role" : "samples",
+	"identity" : "TST004BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d971"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST004BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d974"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
+	"role" : "observations",
+	"name" : "LATS2 p.Ala324Val",
+	"identity" : "53f37718d7db4984c320d972",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d973"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d970")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala324Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "LATS2"
+			},
+			{
+				"key" : "label",
+				"value" : "LATS2 p.Ala324Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000150457"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382592"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d977"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Gly118Asp",
+	"identity" : "53f37718d7db4984c320d975",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d976"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d970")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly118Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Gly118Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d97a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
+	"role" : "observations",
+	"name" : "FRG1B p.Ile45Thr",
+	"identity" : "53f37718d7db4984c320d978",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d979"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d970")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile45Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Ile45Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d97d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
+	"role" : "observations",
+	"name" : "IDH1 p.Arg132His",
+	"identity" : "53f37718d7db4984c320d97b",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d97c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d970")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg132His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IDH1"
+			},
+			{
+				"key" : "label",
+				"value" : "IDH1 p.Arg132His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000138413"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000415913"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d980"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Glu136Lys",
+	"identity" : "53f37718d7db4984c320d97e",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d97f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d970")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu136Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Glu136Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d983"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:51:19.430Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Asp",
+	"identity" : "53f37718d7db4984c320d981",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d982"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:51:19.430Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d970")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d958")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d989"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-06T21:01:54.088Z"),
+	"role" : "participants",
+	"identity" : "TST-005",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320d984"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-06T21:01:54.088Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-005"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d985"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-06T21:01:54.088Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-08-06T21:01:54.088"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d986"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-09T13:48:17.238Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-08-09T13:48:17.238"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d987"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-09T16:29:16.893Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-08-09T16:29:16.893"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 5
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d988"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-08-12T18:31:20.421Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-08-12T18:31:20.421"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d98a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-12T21:22:55.737Z"),
+	"role" : "samples",
+	"identity" : "TST005BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d98b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-12T21:22:55.737Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST005BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d989")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d98e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-12T21:22:55.737Z"),
+	"role" : "observations",
+	"name" : "OPRD1 p.Cys27Phe",
+	"identity" : "53f37718d7db4984c320d98c",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d98d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-12T21:22:55.737Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d98a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d989")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Cys27Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OPRD1"
+			},
+			{
+				"key" : "label",
+				"value" : "OPRD1 p.Cys27Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000116329"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000234961"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d991"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-12T21:22:55.737Z"),
+	"role" : "observations",
+	"name" : "CHEK2 p.Lys344Glu",
+	"identity" : "53f37718d7db4984c320d98f",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d990"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-12T21:22:55.737Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d98a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d989")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Lys344Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CHEK2"
+			},
+			{
+				"key" : "label",
+				"value" : "CHEK2 p.Lys344Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000183765"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382580"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d994"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-12T21:22:55.737Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Pro323His",
+	"identity" : "53f37718d7db4984c320d992",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d993"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-12T21:22:55.737Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d98a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d989")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Pro323His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Pro323His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d997"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-12T21:22:55.737Z"),
+	"role" : "observations",
+	"name" : "KCNN3 p.Leu66His",
+	"identity" : "53f37718d7db4984c320d995",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d996"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-12T21:22:55.737Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d98a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d989")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Leu66His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KCNN3"
+			},
+			{
+				"key" : "label",
+				"value" : "KCNN3 p.Leu66His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000143603"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000271915"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d998"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-12T21:22:55.737Z"),
+	"role" : "samples",
+	"identity" : "TST005BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d999"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-12T21:22:55.737Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST005BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d989")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d99c"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-12T21:22:55.737Z"),
+	"role" : "observations",
+	"name" : "OPRD1 p.Cys27Phe",
+	"identity" : "53f37718d7db4984c320d99a",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d99b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-12T21:22:55.737Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d998")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d989")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Cys27Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OPRD1"
+			},
+			{
+				"key" : "label",
+				"value" : "OPRD1 p.Cys27Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000116329"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000234961"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d99f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-12T21:22:55.737Z"),
+	"role" : "observations",
+	"name" : "CHEK2 p.Lys344Glu",
+	"identity" : "53f37718d7db4984c320d99d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d99e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-12T21:22:55.737Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d998")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d989")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Lys344Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CHEK2"
+			},
+			{
+				"key" : "label",
+				"value" : "CHEK2 p.Lys344Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000183765"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382580"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9a2"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-12T21:22:55.737Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Pro323His",
+	"identity" : "53f37718d7db4984c320d9a0",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9a1"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-12T21:22:55.737Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d998")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d989")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Pro323His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Pro323His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9a5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-12T21:22:55.737Z"),
+	"role" : "observations",
+	"name" : "KCNN3 p.Leu66His",
+	"identity" : "53f37718d7db4984c320d9a3",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9a4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-12T21:22:55.737Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d998")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d989")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Leu66His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KCNN3"
+			},
+			{
+				"key" : "label",
+				"value" : "KCNN3 p.Leu66His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000143603"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000271915"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9ab"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-10T20:37:01.324Z"),
+	"role" : "participants",
+	"identity" : "TST-006",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9a6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-10T20:37:01.324Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-006"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9a7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-10T20:37:01.324Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-08-10T20:37:01.324"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9a8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-11T20:34:05.079Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-08-11T20:34:05.079"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9a9"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-11T21:00:20.066Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-08-11T21:00:20.066"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9aa"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-08-13T20:07:34.952Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-08-13T20:07:34.952"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9ac"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:11:26.633Z"),
+	"role" : "samples",
+	"identity" : "TST006BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9ad"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-13T21:11:26.633Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST006BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9ab")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9b0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:11:26.633Z"),
+	"role" : "observations",
+	"name" : "ZNF837 p.Ala242Thr",
+	"identity" : "53f37718d7db4984c320d9ae",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9af"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:11:26.633Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9ac")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9ab")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala242Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF837"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF837 p.Ala242Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000152475"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000427624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9b1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:11:26.633Z"),
+	"role" : "samples",
+	"identity" : "TST006BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9b2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-13T21:11:26.633Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST006BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9ab")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9b5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-13T21:11:26.633Z"),
+	"role" : "observations",
+	"name" : "ZNF837 p.Ala242Thr",
+	"identity" : "53f37718d7db4984c320d9b3",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9b4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-13T21:11:26.633Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9b1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9ab")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala242Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF837"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF837 p.Ala242Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000152475"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000427624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9bb"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-11T18:54:43.525Z"),
+	"role" : "participants",
+	"identity" : "TST-007",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9b6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-11T18:54:43.525Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-007"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9b7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-11T18:54:43.525Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-08-11T18:54:43.525"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9b8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-13T15:35:50.645Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-08-13T15:35:50.645"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9b9"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-13T21:23:02.811Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-08-13T21:23:02.811"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9ba"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-08-14T21:46:47.848Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-08-14T21:46:47.848"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9bc"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-15T14:35:58.780Z"),
+	"role" : "samples",
+	"identity" : "TST007BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9bd"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-15T14:35:58.780Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST007BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9bb")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9c0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-15T14:35:58.780Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Ile102Thr",
+	"identity" : "53f37718d7db4984c320d9be",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9bf"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-15T14:35:58.780Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9bc")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9bb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile102Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Ile102Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9c1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-15T14:35:58.780Z"),
+	"role" : "samples",
+	"identity" : "TST007BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9c2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-15T14:35:58.780Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST007BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9bb")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9c5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-15T14:35:58.780Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Ile102Thr",
+	"identity" : "53f37718d7db4984c320d9c3",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9c4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-15T14:35:58.780Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9c1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9bb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile102Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Ile102Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9cb"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-15T21:49:46.420Z"),
+	"role" : "participants",
+	"identity" : "TST-008",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9c6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-15T21:49:46.420Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-008"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9c7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-15T21:49:46.420Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-08-15T21:49:46.420"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9c8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-16T17:49:25.627Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-08-16T17:49:25.627"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9c9"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-16T21:15:23.119Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-08-16T21:15:23.119"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9ca"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-08-18T13:51:05.479Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-08-18T13:51:05.479"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9cc"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "samples",
+	"identity" : "TST008BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9cd"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST008BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9d0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "EEF1B2 p.Ser43Gly",
+	"identity" : "53f37718d7db4984c320d9ce",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9cf"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cc")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser43Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "EEF1B2"
+			},
+			{
+				"key" : "label",
+				"value" : "EEF1B2 p.Ser43Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000114942"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000392222"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9d3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "NRAS p.Gln61Lys",
+	"identity" : "53f37718d7db4984c320d9d1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9d2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cc")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "NRAS p.Gln61Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000213281"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000369535"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9d6"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Arg322Lys",
+	"identity" : "53f37718d7db4984c320d9d4",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9d5"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cc")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg322Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Arg322Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9d9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "FEZ2 p.Pro50Leu",
+	"identity" : "53f37718d7db4984c320d9d7",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9d8"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cc")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Pro50Leu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FEZ2"
+			},
+			{
+				"key" : "label",
+				"value" : "FEZ2 p.Pro50Leu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171055"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000379245"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9dc"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Ala",
+	"identity" : "53f37718d7db4984c320d9da",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9db"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cc")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Ala"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Ala"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9df"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Glu135Gly",
+	"identity" : "53f37718d7db4984c320d9dd",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9de"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cc")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu135Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Glu135Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9e0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "samples",
+	"identity" : "TST008BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9e1"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST008BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9e4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "EEF1B2 p.Ser43Gly",
+	"identity" : "53f37718d7db4984c320d9e2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9e3"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9e0")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser43Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "EEF1B2"
+			},
+			{
+				"key" : "label",
+				"value" : "EEF1B2 p.Ser43Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000114942"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000392222"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9e7"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "NRAS p.Gln61Lys",
+	"identity" : "53f37718d7db4984c320d9e5",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9e6"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9e0")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "NRAS p.Gln61Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000213281"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000369535"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9ea"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Arg322Lys",
+	"identity" : "53f37718d7db4984c320d9e8",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9e9"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9e0")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg322Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Arg322Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9ed"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "FEZ2 p.Pro50Leu",
+	"identity" : "53f37718d7db4984c320d9eb",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9ec"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9e0")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Pro50Leu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FEZ2"
+			},
+			{
+				"key" : "label",
+				"value" : "FEZ2 p.Pro50Leu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171055"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000379245"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9f0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Ala",
+	"identity" : "53f37718d7db4984c320d9ee",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9ef"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9e0")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Ala"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Ala"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9f3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-18T17:44:16.037Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Glu135Gly",
+	"identity" : "53f37718d7db4984c320d9f1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9f2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-18T17:44:16.037Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9e0")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9cb")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu135Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Glu135Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9f9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-17T19:51:18.779Z"),
+	"role" : "participants",
+	"identity" : "TST-009",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9f4"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-17T19:51:18.779Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-009"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9f5"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-17T19:51:18.779Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-08-17T19:51:18.779"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9f6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-19T20:44:00.324Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-08-19T20:44:00.324"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9f7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-19T21:28:41.997Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-08-19T21:28:41.997"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320d9f8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-08-21T20:41:37.842Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-08-21T20:41:37.842"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9fa"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "samples",
+	"identity" : "TST009BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9fb"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST009BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320d9fe"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "GSG2 p.Arg82Cys",
+	"identity" : "53f37718d7db4984c320d9fc",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320d9fd"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9fa")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg82Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "GSG2"
+			},
+			{
+				"key" : "label",
+				"value" : "GSG2 p.Arg82Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000177602"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000325418"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da01"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "IDH1 p.Arg132His",
+	"identity" : "53f37718d7db4984c320d9ff",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da00"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9fa")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg132His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IDH1"
+			},
+			{
+				"key" : "label",
+				"value" : "IDH1 p.Arg132His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000138413"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000415913"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da04"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu726Lys",
+	"identity" : "53f37718d7db4984c320da02",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da03"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9fa")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu726Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu726Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da07"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "FBXW7 p.Arg347Cys",
+	"identity" : "53f37718d7db4984c320da05",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da06"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9fa")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg347Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FBXW7"
+			},
+			{
+				"key" : "label",
+				"value" : "FBXW7 p.Arg347Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000109670"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000281708"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da0a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg175His",
+	"identity" : "53f37718d7db4984c320da08",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da09"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9fa")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg175His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg175His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da0b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "samples",
+	"identity" : "TST009BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da0c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST009BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da0f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "ARHGAP5 p.Val474Ala",
+	"identity" : "53f37718d7db4984c320da0d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da0e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da0b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val474Ala"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ARHGAP5"
+			},
+			{
+				"key" : "label",
+				"value" : "ARHGAP5 p.Val474Ala"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000100852"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000345122"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da12"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "GSG2 p.Arg82Cys",
+	"identity" : "53f37718d7db4984c320da10",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da11"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da0b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg82Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "GSG2"
+			},
+			{
+				"key" : "label",
+				"value" : "GSG2 p.Arg82Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000177602"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000325418"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da15"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "IDH1 p.Arg132His",
+	"identity" : "53f37718d7db4984c320da13",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da14"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da0b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg132His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IDH1"
+			},
+			{
+				"key" : "label",
+				"value" : "IDH1 p.Arg132His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000138413"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000415913"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da18"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu726Lys",
+	"identity" : "53f37718d7db4984c320da16",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da17"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da0b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu726Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu726Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da1b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "FBXW7 p.Arg347Cys",
+	"identity" : "53f37718d7db4984c320da19",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da1a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da0b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg347Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FBXW7"
+			},
+			{
+				"key" : "label",
+				"value" : "FBXW7 p.Arg347Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000109670"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000281708"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da1e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-22T13:50:46.093Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg175His",
+	"identity" : "53f37718d7db4984c320da1c",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da1d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-22T13:50:46.093Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da0b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320d9f9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg175His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg175His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da24"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-20T19:48:29.605Z"),
+	"role" : "participants",
+	"identity" : "TST-010",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320da1f"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-20T19:48:29.605Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-010"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da20"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-20T19:48:29.605Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-08-20T19:48:29.605"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da21"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-22T19:16:44.734Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-08-22T19:16:44.734"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da22"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-22T20:11:12.956Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-08-22T20:11:12.956"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da23"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-08-25T18:46:57.860Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-08-25T18:46:57.860"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da25"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-25T21:01:00.103Z"),
+	"role" : "samples",
+	"identity" : "TST010BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da26"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-25T21:01:00.103Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST010BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da24")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da29"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-25T21:01:00.103Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Cys",
+	"identity" : "53f37718d7db4984c320da27",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da28"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-25T21:01:00.103Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da25")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da24")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da2c"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-25T21:01:00.103Z"),
+	"role" : "observations",
+	"name" : "MTX1 p.Thr63Ser",
+	"identity" : "53f37718d7db4984c320da2a",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da2b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-25T21:01:00.103Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da25")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da24")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Thr63Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "MTX1"
+			},
+			{
+				"key" : "label",
+				"value" : "MTX1 p.Thr63Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000173171"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000368376"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da2d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-25T21:01:00.103Z"),
+	"role" : "samples",
+	"identity" : "TST010BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da2e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-25T21:01:00.103Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST010BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da24")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da31"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-25T21:01:00.103Z"),
+	"role" : "observations",
+	"name" : "MTX1 p.Thr63Ser",
+	"identity" : "53f37718d7db4984c320da2f",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da30"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-25T21:01:00.103Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da2d")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da24")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Thr63Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "MTX1"
+			},
+			{
+				"key" : "label",
+				"value" : "MTX1 p.Thr63Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000173171"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000368376"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da37"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-23T13:43:29.741Z"),
+	"role" : "participants",
+	"identity" : "TST-011",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320da32"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-23T13:43:29.741Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-011"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da33"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-23T13:43:29.741Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-08-23T13:43:29.741"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da34"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-24T17:12:38.894Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-08-24T17:12:38.894"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da35"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-24T21:03:03.680Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-08-24T21:03:03.680"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 6
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da36"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-08-26T18:41:22.256Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-08-26T18:41:22.256"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da38"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-26T21:39:21.100Z"),
+	"role" : "samples",
+	"identity" : "TST011BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da39"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-26T21:39:21.100Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST011BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da37")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da3c"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-26T21:39:21.100Z"),
+	"role" : "observations",
+	"name" : "EEF1B2 p.Ser43Gly",
+	"identity" : "53f37718d7db4984c320da3a",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da3b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-26T21:39:21.100Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da38")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da37")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser43Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "EEF1B2"
+			},
+			{
+				"key" : "label",
+				"value" : "EEF1B2 p.Ser43Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000114942"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000392222"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da3d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-26T21:39:21.100Z"),
+	"role" : "samples",
+	"identity" : "TST011BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da3e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-08-26T21:39:21.100Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST011BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da37")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da41"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-26T21:39:21.100Z"),
+	"role" : "observations",
+	"name" : "EEF1B2 p.Ser43Gly",
+	"identity" : "53f37718d7db4984c320da3f",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da40"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-08-26T21:39:21.100Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da3d")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da37")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser43Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "EEF1B2"
+			},
+			{
+				"key" : "label",
+				"value" : "EEF1B2 p.Ser43Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000114942"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000392222"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da47"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-29T21:22:38.138Z"),
+	"role" : "participants",
+	"identity" : "TST-012",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320da42"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-29T21:22:38.138Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-012"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da43"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-29T21:22:38.138Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-08-29T21:22:38.138"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da44"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-08-31T15:01:14.588Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-08-31T15:01:14.588"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da45"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-08-31T18:29:00.608Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-08-31T18:29:00.608"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da46"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-09-01T21:34:29.351Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-09-01T21:34:29.351"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da48"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "samples",
+	"identity" : "TST012BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da49"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST012BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da4c"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Gly118Asp",
+	"identity" : "53f37718d7db4984c320da4a",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da4b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da48")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly118Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Gly118Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da4f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "observations",
+	"name" : "HRAS p.Gln61Arg",
+	"identity" : "53f37718d7db4984c320da4d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da4e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da48")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "HRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "HRAS p.Gln61Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000174775"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000451590"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da52"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg155Gln",
+	"identity" : "53f37718d7db4984c320da50",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da51"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da48")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg155Gln"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg155Gln"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da55"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "observations",
+	"name" : "LATS2 p.Gly363Ser",
+	"identity" : "53f37718d7db4984c320da53",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da54"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da48")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly363Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "LATS2"
+			},
+			{
+				"key" : "label",
+				"value" : "LATS2 p.Gly363Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000150457"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382592"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da58"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "observations",
+	"name" : "CTNNB1 p.Ser37Phe",
+	"identity" : "53f37718d7db4984c320da56",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da57"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da48")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser37Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CTNNB1"
+			},
+			{
+				"key" : "label",
+				"value" : "CTNNB1 p.Ser37Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168036"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000349496"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da59"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "samples",
+	"identity" : "TST012BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da5a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST012BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da5d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Gly118Asp",
+	"identity" : "53f37718d7db4984c320da5b",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da5c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da59")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly118Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Gly118Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da60"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "observations",
+	"name" : "HRAS p.Gln61Arg",
+	"identity" : "53f37718d7db4984c320da5e",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da5f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da59")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "HRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "HRAS p.Gln61Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000174775"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000451590"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da63"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg155Gln",
+	"identity" : "53f37718d7db4984c320da61",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da62"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da59")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg155Gln"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg155Gln"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da66"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "observations",
+	"name" : "LATS2 p.Gly363Ser",
+	"identity" : "53f37718d7db4984c320da64",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da65"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da59")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly363Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "LATS2"
+			},
+			{
+				"key" : "label",
+				"value" : "LATS2 p.Gly363Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000150457"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382592"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da69"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-01T21:58:29.554Z"),
+	"role" : "observations",
+	"name" : "CTNNB1 p.Ser37Phe",
+	"identity" : "53f37718d7db4984c320da67",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da68"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-01T21:58:29.554Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da59")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da47")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser37Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CTNNB1"
+			},
+			{
+				"key" : "label",
+				"value" : "CTNNB1 p.Ser37Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168036"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000349496"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da6f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-08-31T20:12:39.099Z"),
+	"role" : "participants",
+	"identity" : "TST-013",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320da6a"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-08-31T20:12:39.099Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-013"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da6b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-08-31T20:12:39.099Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-08-31T20:12:39.099"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da6c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-09-02T18:07:32.192Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-09-02T18:07:32.192"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da6d"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-09-02T21:54:25.070Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-09-02T21:54:25.070"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da6e"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-09-04T21:05:49.838Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-09-04T21:05:49.838"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da70"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-05T15:31:41.784Z"),
+	"role" : "samples",
+	"identity" : "TST013BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da71"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-05T15:31:41.784Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST013BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da6f")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da74"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-05T15:31:41.784Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Glu138Gly",
+	"identity" : "53f37718d7db4984c320da72",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da73"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-05T15:31:41.784Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da70")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da6f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu138Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Glu138Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da77"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-05T15:31:41.784Z"),
+	"role" : "observations",
+	"name" : "FRG1B p.Leu87Ser",
+	"identity" : "53f37718d7db4984c320da75",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da76"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-05T15:31:41.784Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da70")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da6f")
 			},
 			{
 				"key" : "aminoAcidMutation",
@@ -3921,200 +6243,68 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe94b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
+	"_id" : ObjectId("53f37718d7db4984c320da7a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-05T15:31:41.784Z"),
 	"role" : "observations",
-	"name" : "ANKLE1 p.Leu83Gln",
-	"identity" : "53f26ad5b5e8ab4d14ebe949",
+	"name" : "UBBP4 p.Arg73Leu",
+	"identity" : "53f37718d7db4984c320da78",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe94a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
+		"id" : ObjectId("53f37718d7db4984c320da79"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-05T15:31:41.784Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe938")
+				"ref" : ObjectId("53f37718d7db4984c320da70")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
+				"ref" : ObjectId("53f37718d7db4984c320da6f")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Leu83Gln"
+				"value" : "p.Arg73Leu"
 			},
 			{
 				"key" : "geneName",
-				"value" : "ANKLE1"
+				"value" : "UBBP4"
 			},
 			{
 				"key" : "label",
-				"value" : "ANKLE1 p.Leu83Gln"
+				"value" : "UBBP4 p.Arg73Leu"
 			},
 			{
 				"key" : "geneId",
-				"value" : "ENSG00000160117"
+				"value" : "ENSG00000263563"
 			},
 			{
 				"key" : "transcriptId",
-				"value" : "ENST00000394458"
+				"value" : "ENST00000578713"
 			}
 		]
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe94e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe94c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe94d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe938")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe951"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Asn345Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebe94f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe950"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe938")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Asn345Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Asn345Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe954"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "observations",
-	"name" : "EGFR p.Gly553Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe952",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe953"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe938")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly553Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EGFR"
-			},
-			{
-				"key" : "label",
-				"value" : "EGFR p.Gly553Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000146648"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000275493"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe955"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
+	"_id" : ObjectId("53f37718d7db4984c320da7b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-05T15:31:41.784Z"),
 	"role" : "samples",
-	"identity" : "TST011BIOXPAR2",
+	"identity" : "TST013BIOXPAR2",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe956"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
+		"id" : ObjectId("53f37718d7db4984c320da7c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-05T15:31:41.784Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "identifier",
-				"identity" : "TST011BIOXPAR2"
+				"identity" : "TST013BIOXPAR2"
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
+				"ref" : ObjectId("53f37718d7db4984c320da6f")
 			},
 			{
 				"key" : "source",
@@ -4128,69 +6318,903 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe959"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
+	"_id" : ObjectId("53f37718d7db4984c320da7f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-05T15:31:41.784Z"),
 	"role" : "observations",
-	"name" : "ZNF814 p.Gly320Glu",
-	"identity" : "53f26ad5b5e8ab4d14ebe957",
+	"name" : "FAM194B p.Glu138Gly",
+	"identity" : "53f37718d7db4984c320da7d",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe958"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
+		"id" : ObjectId("53f37718d7db4984c320da7e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-05T15:31:41.784Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe955")
+				"ref" : ObjectId("53f37718d7db4984c320da7b")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
+				"ref" : ObjectId("53f37718d7db4984c320da6f")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Gly320Glu"
+				"value" : "p.Glu138Gly"
 			},
 			{
 				"key" : "geneName",
-				"value" : "ZNF814"
+				"value" : "FAM194B"
 			},
 			{
 				"key" : "label",
-				"value" : "ZNF814 p.Gly320Glu"
+				"value" : "FAM194B p.Glu138Gly"
 			},
 			{
 				"key" : "geneId",
-				"value" : "ENSG00000204514"
+				"value" : "ENSG00000165837"
 			},
 			{
 				"key" : "transcriptId",
-				"value" : "ENST00000435989"
+				"value" : "ENST00000298738"
 			}
 		]
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe95c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
+	"_id" : ObjectId("53f37718d7db4984c320da82"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-05T15:31:41.784Z"),
 	"role" : "observations",
-	"name" : "TMPRSS13 p.Ala77Gly",
-	"identity" : "53f26ad5b5e8ab4d14ebe95a",
+	"name" : "FRG1B p.Leu87Ser",
+	"identity" : "53f37718d7db4984c320da80",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe95b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
+		"id" : ObjectId("53f37718d7db4984c320da81"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-05T15:31:41.784Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe955")
+				"ref" : ObjectId("53f37718d7db4984c320da7b")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
+				"ref" : ObjectId("53f37718d7db4984c320da6f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Leu87Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Leu87Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da88"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-05T14:47:56.078Z"),
+	"role" : "participants",
+	"identity" : "TST-014",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320da83"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-09-05T14:47:56.078Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-014"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da84"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-09-05T14:47:56.078Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-09-05T14:47:56.078"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da85"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-09-06T20:24:00.859Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-09-06T20:24:00.859"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da86"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-09-06T21:04:00.776Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-09-06T21:04:00.776"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320da87"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-09-07T21:32:06.571Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-09-07T21:32:06.571"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da89"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-08T13:44:55.614Z"),
+	"role" : "samples",
+	"identity" : "TST014BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da8a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-08T13:44:55.614Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST014BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da88")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da8d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-08T13:44:55.614Z"),
+	"role" : "observations",
+	"name" : "GLTPD2 p.Asp209Glu",
+	"identity" : "53f37718d7db4984c320da8b",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da8c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-08T13:44:55.614Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da89")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da88")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Asp209Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "GLTPD2"
+			},
+			{
+				"key" : "label",
+				"value" : "GLTPD2 p.Asp209Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000182327"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000331264"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da90"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-08T13:44:55.614Z"),
+	"role" : "observations",
+	"name" : "TP53 p.His179Arg",
+	"identity" : "53f37718d7db4984c320da8e",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da8f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-08T13:44:55.614Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da89")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da88")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.His179Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.His179Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da93"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-08T13:44:55.614Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu542Lys",
+	"identity" : "53f37718d7db4984c320da91",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da92"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-08T13:44:55.614Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da89")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da88")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu542Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu542Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da96"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-08T13:44:55.614Z"),
+	"role" : "observations",
+	"name" : "HRAS p.Gln61Arg",
+	"identity" : "53f37718d7db4984c320da94",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da95"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-08T13:44:55.614Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da89")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da88")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "HRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "HRAS p.Gln61Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000174775"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000451590"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da97"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-08T13:44:55.614Z"),
+	"role" : "samples",
+	"identity" : "TST014BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da98"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-08T13:44:55.614Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST014BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da88")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da9b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-08T13:44:55.614Z"),
+	"role" : "observations",
+	"name" : "GLTPD2 p.Asp209Glu",
+	"identity" : "53f37718d7db4984c320da99",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da9a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-08T13:44:55.614Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da97")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da88")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Asp209Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "GLTPD2"
+			},
+			{
+				"key" : "label",
+				"value" : "GLTPD2 p.Asp209Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000182327"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000331264"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320da9e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-08T13:44:55.614Z"),
+	"role" : "observations",
+	"name" : "TP53 p.His179Arg",
+	"identity" : "53f37718d7db4984c320da9c",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320da9d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-08T13:44:55.614Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da97")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da88")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.His179Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.His179Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daa1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-08T13:44:55.614Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu542Lys",
+	"identity" : "53f37718d7db4984c320da9f",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320daa0"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-08T13:44:55.614Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da97")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da88")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu542Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu542Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daa4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-08T13:44:55.614Z"),
+	"role" : "observations",
+	"name" : "HRAS p.Gln61Arg",
+	"identity" : "53f37718d7db4984c320daa2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320daa3"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-08T13:44:55.614Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da97")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320da88")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "HRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "HRAS p.Gln61Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000174775"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000451590"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daaa"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-11T14:36:02.879Z"),
+	"role" : "participants",
+	"identity" : "TST-015",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320daa5"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-09-11T14:36:02.879Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-015"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320daa6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-09-11T14:36:02.879Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-09-11T14:36:02.879"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320daa7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-09-13T17:41:56.639Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-09-13T17:41:56.639"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320daa8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-09-13T21:22:28.323Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-09-13T21:22:28.323"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 3
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320daa9"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-09-15T18:29:51.587Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-09-15T18:29:51.587"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daab"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-15T21:32:32.056Z"),
+	"role" : "samples",
+	"identity" : "TST015BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320daac"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-15T21:32:32.056Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST015BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daaa")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daaf"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-15T21:32:32.056Z"),
+	"role" : "observations",
+	"name" : "KLHL30 p.Ala195Val",
+	"identity" : "53f37718d7db4984c320daad",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320daae"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-15T21:32:32.056Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daab")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daaa")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala195Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KLHL30"
+			},
+			{
+				"key" : "label",
+				"value" : "KLHL30 p.Ala195Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168427"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000409223"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dab0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-15T21:32:32.056Z"),
+	"role" : "samples",
+	"identity" : "TST015BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dab1"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-15T21:32:32.056Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST015BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daaa")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dab4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-15T21:32:32.056Z"),
+	"role" : "observations",
+	"name" : "KLHL30 p.Ala195Val",
+	"identity" : "53f37718d7db4984c320dab2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dab3"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-15T21:32:32.056Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dab0")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daaa")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala195Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KLHL30"
+			},
+			{
+				"key" : "label",
+				"value" : "KLHL30 p.Ala195Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168427"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000409223"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daba"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-12T17:34:53.658Z"),
+	"role" : "participants",
+	"identity" : "TST-016",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dab5"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-09-12T17:34:53.658Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-016"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dab6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-09-12T17:34:53.658Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-09-12T17:34:53.658"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dab7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-09-13T14:14:13.439Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-09-13T14:14:13.439"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dab8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-09-13T19:18:40.964Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-09-13T19:18:40.964"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dab9"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-09-15T14:43:08.073Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-09-15T14:43:08.073"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dabb"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-15T20:08:58.851Z"),
+	"role" : "samples",
+	"identity" : "TST016BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dabc"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-15T20:08:58.851Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST016BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daba")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dabf"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-15T20:08:58.851Z"),
+	"role" : "observations",
+	"name" : "TMPRSS13 p.Ala77Gly",
+	"identity" : "53f37718d7db4984c320dabd",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dabe"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-15T20:08:58.851Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dabb")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daba")
 			},
 			{
 				"key" : "aminoAcidMutation",
@@ -4216,25 +7240,1843 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe95f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "observations",
-	"name" : "ADAD2 p.Gly44Glu",
-	"identity" : "53f26ad5b5e8ab4d14ebe95d",
+	"_id" : ObjectId("53f37718d7db4984c320dac0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-15T20:08:58.851Z"),
+	"role" : "samples",
+	"identity" : "TST016BIOXPAR2",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe95e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
+		"id" : ObjectId("53f37718d7db4984c320dac1"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-15T20:08:58.851Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST016BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daba")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dac4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-15T20:08:58.851Z"),
+	"role" : "observations",
+	"name" : "TMPRSS13 p.Ala77Gly",
+	"identity" : "53f37718d7db4984c320dac2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dac3"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-15T20:08:58.851Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe955")
+				"ref" : ObjectId("53f37718d7db4984c320dac0")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
+				"ref" : ObjectId("53f37718d7db4984c320daba")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala77Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TMPRSS13"
+			},
+			{
+				"key" : "label",
+				"value" : "TMPRSS13 p.Ala77Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000137747"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000524993"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daca"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-14T20:36:24.350Z"),
+	"role" : "participants",
+	"identity" : "TST-017",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dac5"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-09-14T20:36:24.350Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-017"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dac6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-09-14T20:36:24.350Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-09-14T20:36:24.350"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dac7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-09-17T18:11:05.559Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-09-17T18:11:05.559"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dac8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-09-17T21:31:46.848Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-09-17T21:31:46.848"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dac9"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-09-18T17:42:32.418Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-09-18T17:42:32.418"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dacb"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-18T18:36:40.381Z"),
+	"role" : "samples",
+	"identity" : "TST017BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dacc"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-18T18:36:40.381Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST017BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daca")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dacf"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-18T18:36:40.381Z"),
+	"role" : "observations",
+	"name" : "FRG1B p.Ile45Thr",
+	"identity" : "53f37718d7db4984c320dacd",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dace"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-18T18:36:40.381Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dacb")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daca")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile45Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Ile45Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dad0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-18T18:36:40.381Z"),
+	"role" : "samples",
+	"identity" : "TST017BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dad1"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-18T18:36:40.381Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST017BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daca")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dad4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-18T18:36:40.381Z"),
+	"role" : "observations",
+	"name" : "FRG1B p.Ile45Thr",
+	"identity" : "53f37718d7db4984c320dad2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dad3"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-18T18:36:40.381Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dad0")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daca")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile45Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Ile45Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dada"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-16T21:17:36.682Z"),
+	"role" : "participants",
+	"identity" : "TST-018",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dad5"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-09-16T21:17:36.682Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-018"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dad6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-09-16T21:17:36.682Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-09-16T21:17:36.682"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dad7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-09-18T15:33:24.215Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-09-18T15:33:24.215"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dad8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-09-18T15:49:04.143Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-09-18T15:49:04.143"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dad9"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-09-21T16:47:02.264Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-09-21T16:47:02.264"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dadb"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-21T21:14:25.089Z"),
+	"role" : "samples",
+	"identity" : "TST018BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dadc"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-21T21:14:25.089Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST018BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dada")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dadf"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-21T21:14:25.089Z"),
+	"role" : "observations",
+	"name" : "OTUD4 p.Thr974Ile",
+	"identity" : "53f37718d7db4984c320dadd",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dade"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-21T21:14:25.089Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dadb")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dada")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Thr974Ile"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OTUD4"
+			},
+			{
+				"key" : "label",
+				"value" : "OTUD4 p.Thr974Ile"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000164164"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000454497"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dae2"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-21T21:14:25.089Z"),
+	"role" : "observations",
+	"name" : "NEFH p.Glu645Lys",
+	"identity" : "53f37718d7db4984c320dae0",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dae1"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-21T21:14:25.089Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dadb")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dada")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu645Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NEFH"
+			},
+			{
+				"key" : "label",
+				"value" : "NEFH p.Glu645Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000100285"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000310624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dae5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-21T21:14:25.089Z"),
+	"role" : "observations",
+	"name" : "DOT1L p.Gly266Ser",
+	"identity" : "53f37718d7db4984c320dae3",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dae4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-21T21:14:25.089Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dadb")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dada")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly266Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "DOT1L"
+			},
+			{
+				"key" : "label",
+				"value" : "DOT1L p.Gly266Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000104885"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000398665"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dae6"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-21T21:14:25.089Z"),
+	"role" : "samples",
+	"identity" : "TST018BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dae7"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-21T21:14:25.089Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST018BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dada")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daea"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-21T21:14:25.089Z"),
+	"role" : "observations",
+	"name" : "PCDHA7 p.Leu352Ile",
+	"identity" : "53f37718d7db4984c320dae8",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dae9"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-21T21:14:25.089Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dae6")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dada")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Leu352Ile"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PCDHA7"
+			},
+			{
+				"key" : "label",
+				"value" : "PCDHA7 p.Leu352Ile"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204963"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000525929"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daed"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-21T21:14:25.089Z"),
+	"role" : "observations",
+	"name" : "OTUD4 p.Thr974Ile",
+	"identity" : "53f37718d7db4984c320daeb",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320daec"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-21T21:14:25.089Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dae6")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dada")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Thr974Ile"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OTUD4"
+			},
+			{
+				"key" : "label",
+				"value" : "OTUD4 p.Thr974Ile"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000164164"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000454497"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daf0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-21T21:14:25.089Z"),
+	"role" : "observations",
+	"name" : "NEFH p.Glu645Lys",
+	"identity" : "53f37718d7db4984c320daee",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320daef"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-21T21:14:25.089Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dae6")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dada")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu645Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NEFH"
+			},
+			{
+				"key" : "label",
+				"value" : "NEFH p.Glu645Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000100285"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000310624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daf3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-21T21:14:25.089Z"),
+	"role" : "observations",
+	"name" : "DOT1L p.Gly266Ser",
+	"identity" : "53f37718d7db4984c320daf1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320daf2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-21T21:14:25.089Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dae6")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dada")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly266Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "DOT1L"
+			},
+			{
+				"key" : "label",
+				"value" : "DOT1L p.Gly266Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000104885"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000398665"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320daf9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-19T13:01:31.341Z"),
+	"role" : "participants",
+	"identity" : "TST-019",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320daf4"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-09-19T13:01:31.341Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-019"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320daf5"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-09-19T13:01:31.341Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-09-19T13:01:31.341"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320daf6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-09-21T16:10:14.841Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-09-21T16:10:14.841"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320daf7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-09-21T17:56:15.037Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-09-21T17:56:15.037"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 3
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320daf8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-09-25T17:49:08.643Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-09-25T17:49:08.643"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dafa"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-25T18:05:13.281Z"),
+	"role" : "samples",
+	"identity" : "TST019BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dafb"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-25T18:05:13.281Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST019BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daf9")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dafe"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-25T18:05:13.281Z"),
+	"role" : "observations",
+	"name" : "BRAF p.Val600Glu",
+	"identity" : "53f37718d7db4984c320dafc",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dafd"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-25T18:05:13.281Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dafa")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daf9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val600Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "BRAF"
+			},
+			{
+				"key" : "label",
+				"value" : "BRAF p.Val600Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000157764"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000288602"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db01"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-25T18:05:13.281Z"),
+	"role" : "observations",
+	"name" : "TMPRSS13 p.Ala77Gly",
+	"identity" : "53f37718d7db4984c320daff",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db00"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-25T18:05:13.281Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dafa")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daf9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala77Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TMPRSS13"
+			},
+			{
+				"key" : "label",
+				"value" : "TMPRSS13 p.Ala77Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000137747"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000524993"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db02"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-25T18:05:13.281Z"),
+	"role" : "samples",
+	"identity" : "TST019BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db03"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-25T18:05:13.281Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST019BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daf9")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db06"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-25T18:05:13.281Z"),
+	"role" : "observations",
+	"name" : "BRAF p.Val600Glu",
+	"identity" : "53f37718d7db4984c320db04",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db05"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-25T18:05:13.281Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db02")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daf9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val600Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "BRAF"
+			},
+			{
+				"key" : "label",
+				"value" : "BRAF p.Val600Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000157764"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000288602"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db09"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-25T18:05:13.281Z"),
+	"role" : "observations",
+	"name" : "TMPRSS13 p.Ala77Gly",
+	"identity" : "53f37718d7db4984c320db07",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db08"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-25T18:05:13.281Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db02")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320daf9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala77Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TMPRSS13"
+			},
+			{
+				"key" : "label",
+				"value" : "TMPRSS13 p.Ala77Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000137747"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000524993"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db0f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-22T17:48:08.978Z"),
+	"role" : "participants",
+	"identity" : "TST-020",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320db0a"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-09-22T17:48:08.978Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-020"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db0b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-09-22T17:48:08.978Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-09-22T17:48:08.978"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db0c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-09-24T19:45:55.295Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-09-24T19:45:55.295"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db0d"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-09-24T19:58:20.887Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-09-24T19:58:20.887"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 5
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db0e"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-09-24T21:58:48.496Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-09-24T21:58:48.496"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db10"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-25T15:58:58.920Z"),
+	"role" : "samples",
+	"identity" : "TST020BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db11"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-25T15:58:58.920Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST020BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db0f")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db14"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-25T15:58:58.920Z"),
+	"role" : "observations",
+	"name" : "CTNNB1 p.Ser33Cys",
+	"identity" : "53f37718d7db4984c320db12",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db13"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-25T15:58:58.920Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db10")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db0f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser33Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CTNNB1"
+			},
+			{
+				"key" : "label",
+				"value" : "CTNNB1 p.Ser33Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168036"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000349496"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db15"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-25T15:58:58.920Z"),
+	"role" : "samples",
+	"identity" : "TST020BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db16"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-25T15:58:58.920Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST020BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db0f")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db19"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-25T15:58:58.920Z"),
+	"role" : "observations",
+	"name" : "CTNNB1 p.Ser33Cys",
+	"identity" : "53f37718d7db4984c320db17",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db18"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-25T15:58:58.920Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db15")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db0f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser33Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CTNNB1"
+			},
+			{
+				"key" : "label",
+				"value" : "CTNNB1 p.Ser33Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168036"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000349496"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db1f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-26T20:21:43.837Z"),
+	"role" : "participants",
+	"identity" : "TST-021",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320db1a"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-09-26T20:21:43.837Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-021"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db1b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-09-26T20:21:43.837Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-09-26T20:21:43.837"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db1c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-09-28T14:40:21.313Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-09-28T14:40:21.313"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db1d"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-09-28T21:32:52.622Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-09-28T21:32:52.622"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db1e"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-09-30T21:10:21.633Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-09-30T21:10:21.633"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db20"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-30T21:55:19.746Z"),
+	"role" : "samples",
+	"identity" : "TST021BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db21"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-30T21:55:19.746Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST021BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db1f")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db24"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-30T21:55:19.746Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gln",
+	"identity" : "53f37718d7db4984c320db22",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db23"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-30T21:55:19.746Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db20")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db1f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gln"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gln"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db27"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-30T21:55:19.746Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Glu138Gly",
+	"identity" : "53f37718d7db4984c320db25",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db26"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-30T21:55:19.746Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db20")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db1f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu138Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Glu138Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db2a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-30T21:55:19.746Z"),
+	"role" : "observations",
+	"name" : "ARHGAP5 p.Val474Ala",
+	"identity" : "53f37718d7db4984c320db28",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db29"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-30T21:55:19.746Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db20")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db1f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val474Ala"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ARHGAP5"
+			},
+			{
+				"key" : "label",
+				"value" : "ARHGAP5 p.Val474Ala"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000100852"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000345122"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db2d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-30T21:55:19.746Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Asp404Glu",
+	"identity" : "53f37718d7db4984c320db2b",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db2c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-30T21:55:19.746Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db20")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db1f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Asp404Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Asp404Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db2e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-30T21:55:19.746Z"),
+	"role" : "samples",
+	"identity" : "TST021BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db2f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-09-30T21:55:19.746Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST021BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db1f")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db32"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-30T21:55:19.746Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gln",
+	"identity" : "53f37718d7db4984c320db30",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db31"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-30T21:55:19.746Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db2e")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db1f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gln"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gln"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db35"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-30T21:55:19.746Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Glu138Gly",
+	"identity" : "53f37718d7db4984c320db33",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db34"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-30T21:55:19.746Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db2e")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db1f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu138Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Glu138Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db38"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-09-30T21:55:19.746Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Asp404Glu",
+	"identity" : "53f37718d7db4984c320db36",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db37"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-09-30T21:55:19.746Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db2e")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db1f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Asp404Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Asp404Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db3e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-02T16:25:01.171Z"),
+	"role" : "participants",
+	"identity" : "TST-022",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320db39"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-10-02T16:25:01.171Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-022"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db3a"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-10-02T16:25:01.171Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-10-02T16:25:01.171"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db3b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-10-03T20:02:01.166Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-10-03T20:02:01.166"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db3c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-10-03T20:10:53.569Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-10-03T20:10:53.569"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 6
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db3d"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-10-05T20:49:32.055Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-10-05T20:49:32.055"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db3f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-05T21:57:04.216Z"),
+	"role" : "samples",
+	"identity" : "TST022BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db40"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-05T21:57:04.216Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST022BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db3e")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db43"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-05T21:57:04.216Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Cys83Phe",
+	"identity" : "53f37718d7db4984c320db41",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db42"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-05T21:57:04.216Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db3f")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db3e")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Cys83Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Cys83Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db46"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-05T21:57:04.216Z"),
+	"role" : "observations",
+	"name" : "ADAD2 p.Gly44Glu",
+	"identity" : "53f37718d7db4984c320db44",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db45"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-05T21:57:04.216Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db3f")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db3e")
 			},
 			{
 				"key" : "aminoAcidMutation",
@@ -4260,4813 +9102,59 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe962"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
+	"_id" : ObjectId("53f37718d7db4984c320db49"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-05T21:57:04.216Z"),
 	"role" : "observations",
-	"name" : "FRG1B p.Leu87Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebe960",
+	"name" : "PTPLA p.Val35Phe",
+	"identity" : "53f37718d7db4984c320db47",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe961"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
+		"id" : ObjectId("53f37718d7db4984c320db48"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-05T21:57:04.216Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe955")
+				"ref" : ObjectId("53f37718d7db4984c320db3f")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
+				"ref" : ObjectId("53f37718d7db4984c320db3e")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Leu87Ser"
+				"value" : "p.Val35Phe"
 			},
 			{
 				"key" : "geneName",
-				"value" : "FRG1B"
+				"value" : "PTPLA"
 			},
 			{
 				"key" : "label",
-				"value" : "FRG1B p.Leu87Ser"
+				"value" : "PTPLA p.Val35Phe"
 			},
 			{
 				"key" : "geneId",
-				"value" : "ENSG00000149531"
+				"value" : "ENSG00000165996"
 			},
 			{
 				"key" : "transcriptId",
-				"value" : "ENST00000278882"
+				"value" : "ENST00000361271"
 			}
 		]
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe965"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "observations",
-	"name" : "ANKLE1 p.Leu83Gln",
-	"identity" : "53f26ad5b5e8ab4d14ebe963",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe964"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe955")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Leu83Gln"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ANKLE1"
-			},
-			{
-				"key" : "label",
-				"value" : "ANKLE1 p.Leu83Gln"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000160117"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000394458"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe968"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe966",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe967"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe955")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe96b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Asn345Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebe969",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe96a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe955")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Asn345Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Asn345Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe96e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-04T21:46:34.556Z"),
-	"role" : "observations",
-	"name" : "EGFR p.Gly553Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe96c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe96d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-04T21:46:34.556Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe955")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe937")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly553Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EGFR"
-			},
-			{
-				"key" : "label",
-				"value" : "EGFR p.Gly553Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000146648"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000275493"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe974"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-03T18:10:05.283Z"),
-	"role" : "participants",
-	"identity" : "TST-012",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe96f"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-09-03T18:10:05.283Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-012"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe970"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-09-03T18:10:05.283Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-09-03T18:10:05.283"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe971"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-09-05T20:09:55.683Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-09-05T20:09:55.683"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe972"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-09-05T21:56:42.107Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-09-05T21:56:42.107"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe973"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-09-07T14:22:59.893Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-09-07T14:22:59.893"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe975"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-07T18:03:45.436Z"),
-	"role" : "samples",
-	"identity" : "TST012BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe976"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-07T18:03:45.436Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST012BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe974")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe979"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-07T18:03:45.436Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser38Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebe977",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe978"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-07T18:03:45.436Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe975")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe974")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser38Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser38Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe97c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-07T18:03:45.436Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.His1047Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebe97a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe97b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-07T18:03:45.436Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe975")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe974")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His1047Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.His1047Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe97f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-07T18:03:45.436Z"),
-	"role" : "observations",
-	"name" : "BRAF p.Val600Glu",
-	"identity" : "53f26ad5b5e8ab4d14ebe97d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe97e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-07T18:03:45.436Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe975")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe974")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val600Glu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "BRAF"
-			},
-			{
-				"key" : "label",
-				"value" : "BRAF p.Val600Glu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000157764"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000288602"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe982"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-07T18:03:45.436Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly13Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebe980",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe981"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-07T18:03:45.436Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe975")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe974")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly13Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly13Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe983"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-07T18:03:45.436Z"),
-	"role" : "samples",
-	"identity" : "TST012BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe984"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-07T18:03:45.436Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST012BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe974")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe987"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-07T18:03:45.436Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser38Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebe985",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe986"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-07T18:03:45.436Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe983")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe974")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser38Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser38Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe98a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-07T18:03:45.436Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.His1047Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebe988",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe989"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-07T18:03:45.436Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe983")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe974")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His1047Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.His1047Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe98d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-07T18:03:45.436Z"),
-	"role" : "observations",
-	"name" : "BRAF p.Val600Glu",
-	"identity" : "53f26ad5b5e8ab4d14ebe98b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe98c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-07T18:03:45.436Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe983")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe974")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val600Glu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "BRAF"
-			},
-			{
-				"key" : "label",
-				"value" : "BRAF p.Val600Glu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000157764"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000288602"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe990"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-07T18:03:45.436Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly13Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebe98e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe98f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-07T18:03:45.436Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe983")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe974")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly13Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly13Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe996"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-06T18:06:16.102Z"),
-	"role" : "participants",
-	"identity" : "TST-013",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe991"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-09-06T18:06:16.102Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-013"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe992"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-09-06T18:06:16.102Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-09-06T18:06:16.102"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe993"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-09-07T17:19:47.590Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-09-07T17:19:47.590"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe994"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-09-07T19:12:11.032Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-09-07T19:12:11.032"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe995"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-09-09T21:46:43.549Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-09-09T21:46:43.549"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe997"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-10T14:03:52.692Z"),
-	"role" : "samples",
-	"identity" : "TST013BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe998"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-10T14:03:52.692Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST013BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe996")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe99b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-10T14:03:52.692Z"),
-	"role" : "observations",
-	"name" : "EGFR p.Gly553Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe999",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe99a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-10T14:03:52.692Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe997")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe996")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly553Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EGFR"
-			},
-			{
-				"key" : "label",
-				"value" : "EGFR p.Gly553Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000146648"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000275493"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe99e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-10T14:03:52.692Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Tyr220Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe99c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe99d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-10T14:03:52.692Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe997")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe996")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Tyr220Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Tyr220Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9a1"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-10T14:03:52.692Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser37Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe99f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9a0"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-10T14:03:52.692Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe997")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe996")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser37Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser37Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9a2"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-10T14:03:52.692Z"),
-	"role" : "samples",
-	"identity" : "TST013BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9a3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-10T14:03:52.692Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST013BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe996")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9a6"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-10T14:03:52.692Z"),
-	"role" : "observations",
-	"name" : "EGFR p.Gly553Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe9a4",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9a5"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-10T14:03:52.692Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9a2")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe996")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly553Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EGFR"
-			},
-			{
-				"key" : "label",
-				"value" : "EGFR p.Gly553Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000146648"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000275493"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9a9"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-10T14:03:52.692Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Tyr220Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe9a7",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9a8"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-10T14:03:52.692Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9a2")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe996")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Tyr220Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Tyr220Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9ac"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-10T14:03:52.692Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser37Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe9aa",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9ab"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-10T14:03:52.692Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9a2")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe996")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser37Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser37Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9b2"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-09T15:27:50.402Z"),
-	"role" : "participants",
-	"identity" : "TST-014",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9ad"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-09-09T15:27:50.402Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-014"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9ae"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-09-09T15:27:50.402Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-09-09T15:27:50.402"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9af"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-09-11T16:19:30.128Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-09-11T16:19:30.128"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9b0"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-09-11T21:50:39.865Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-09-11T21:50:39.865"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 3
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9b1"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-09-13T20:57:03.944Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-09-13T20:57:03.944"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9b3"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "samples",
-	"identity" : "TST014BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9b4"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST014BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9b7"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg155Trp",
-	"identity" : "53f26ad5b5e8ab4d14ebe9b5",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9b6"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b3")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg155Trp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg155Trp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9ba"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "observations",
-	"name" : "GPRIN2 p.Val241Met",
-	"identity" : "53f26ad5b5e8ab4d14ebe9b8",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9b9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b3")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val241Met"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GPRIN2"
-			},
-			{
-				"key" : "label",
-				"value" : "GPRIN2 p.Val241Met"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204175"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000374314"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9bd"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "observations",
-	"name" : "IDH1 p.Arg132Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe9bb",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9bc"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b3")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg132Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "IDH1"
-			},
-			{
-				"key" : "label",
-				"value" : "IDH1 p.Arg132Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000138413"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000415913"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9c0"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg273Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe9be",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9bf"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b3")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg273Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg273Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9c3"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "observations",
-	"name" : "KLHL30 p.Ala195Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe9c1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9c2"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b3")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala195Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KLHL30"
-			},
-			{
-				"key" : "label",
-				"value" : "KLHL30 p.Ala195Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168427"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000409223"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9c4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "samples",
-	"identity" : "TST014BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9c5"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST014BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9c8"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg155Trp",
-	"identity" : "53f26ad5b5e8ab4d14ebe9c6",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9c7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9c4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg155Trp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg155Trp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9cb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "observations",
-	"name" : "GPRIN2 p.Val241Met",
-	"identity" : "53f26ad5b5e8ab4d14ebe9c9",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9ca"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9c4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val241Met"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GPRIN2"
-			},
-			{
-				"key" : "label",
-				"value" : "GPRIN2 p.Val241Met"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204175"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000374314"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9ce"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "observations",
-	"name" : "IDH1 p.Arg132Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe9cc",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9cd"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9c4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg132Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "IDH1"
-			},
-			{
-				"key" : "label",
-				"value" : "IDH1 p.Arg132Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000138413"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000415913"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9d1"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg273Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe9cf",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9d0"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9c4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg273Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg273Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9d4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-14T15:36:09.290Z"),
-	"role" : "observations",
-	"name" : "KLHL30 p.Ala195Val",
-	"identity" : "53f26ad5b5e8ab4d14ebe9d2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9d3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-14T15:36:09.290Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9c4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9b2")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala195Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KLHL30"
-			},
-			{
-				"key" : "label",
-				"value" : "KLHL30 p.Ala195Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168427"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000409223"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9da"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-12T18:52:21.841Z"),
-	"role" : "participants",
-	"identity" : "TST-015",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9d5"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-09-12T18:52:21.841Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-015"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9d6"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-09-12T18:52:21.841Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-09-12T18:52:21.841"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9d7"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-09-14T19:46:24.760Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-09-14T19:46:24.760"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9d8"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-09-14T21:53:32.696Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-09-14T21:53:32.696"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9d9"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-09-16T18:53:29.986Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-09-16T18:53:29.986"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9db"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-17T16:05:59.700Z"),
-	"role" : "samples",
-	"identity" : "TST015BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9dc"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-17T16:05:59.700Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST015BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9da")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9df"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-17T16:05:59.700Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Tyr220Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe9dd",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9de"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-17T16:05:59.700Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9db")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9da")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Tyr220Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Tyr220Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9e2"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-17T16:05:59.700Z"),
-	"role" : "observations",
-	"name" : "FEZ2 p.Pro50Leu",
-	"identity" : "53f26ad5b5e8ab4d14ebe9e0",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9e1"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-17T16:05:59.700Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9db")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9da")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro50Leu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FEZ2"
-			},
-			{
-				"key" : "label",
-				"value" : "FEZ2 p.Pro50Leu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000171055"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000379245"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9e3"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-17T16:05:59.700Z"),
-	"role" : "samples",
-	"identity" : "TST015BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9e4"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-17T16:05:59.700Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST015BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9da")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9e7"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-17T16:05:59.700Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Tyr220Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebe9e5",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9e6"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-17T16:05:59.700Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9e3")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9da")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Tyr220Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Tyr220Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9ea"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-17T16:05:59.700Z"),
-	"role" : "observations",
-	"name" : "FEZ2 p.Pro50Leu",
-	"identity" : "53f26ad5b5e8ab4d14ebe9e8",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9e9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-17T16:05:59.700Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9e3")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9da")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro50Leu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FEZ2"
-			},
-			{
-				"key" : "label",
-				"value" : "FEZ2 p.Pro50Leu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000171055"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000379245"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9f0"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-16T17:13:31.572Z"),
-	"role" : "participants",
-	"identity" : "TST-016",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9eb"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-09-16T17:13:31.572Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-016"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9ec"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-09-16T17:13:31.572Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-09-16T17:13:31.572"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9ed"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-09-17T21:43:19.007Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-09-17T21:43:19.007"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9ee"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-09-17T21:57:20.229Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-09-17T21:57:20.229"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9ef"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-09-18T21:29:51.773Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-09-18T21:29:51.773"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9f1"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-19T14:22:39.754Z"),
-	"role" : "samples",
-	"identity" : "TST016BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9f2"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-19T14:22:39.754Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST016BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9f0")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9f5"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-19T14:22:39.754Z"),
-	"role" : "observations",
-	"name" : "RGPD8 p.Pro1620Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebe9f3",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9f4"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-19T14:22:39.754Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9f1")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9f0")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro1620Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "RGPD8"
-			},
-			{
-				"key" : "label",
-				"value" : "RGPD8 p.Pro1620Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000169629"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000302558"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9f6"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-19T14:22:39.754Z"),
-	"role" : "samples",
-	"identity" : "TST016BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9f7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-19T14:22:39.754Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST016BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9f0")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebe9fa"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-19T14:22:39.754Z"),
-	"role" : "observations",
-	"name" : "RGPD8 p.Pro1620Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebe9f8",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebe9f9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-19T14:22:39.754Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9f6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebe9f0")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro1620Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "RGPD8"
-			},
-			{
-				"key" : "label",
-				"value" : "RGPD8 p.Pro1620Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000169629"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000302558"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea00"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-17T15:15:15.635Z"),
-	"role" : "participants",
-	"identity" : "TST-017",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9fb"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-09-17T15:15:15.635Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-017"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9fc"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-09-17T15:15:15.635Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-09-17T15:15:15.635"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9fd"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-09-19T16:03:20.753Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-09-19T16:03:20.753"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9fe"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-09-19T19:42:14.405Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-09-19T19:42:14.405"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebe9ff"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-09-21T20:46:06.407Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-09-21T20:46:06.407"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea01"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-21T20:54:10.520Z"),
-	"role" : "samples",
-	"identity" : "TST017BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea02"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-21T20:54:10.520Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST017BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea00")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea05"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-21T20:54:10.520Z"),
-	"role" : "observations",
-	"name" : "NRAS p.Gln61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebea03",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea04"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-21T20:54:10.520Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea01")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea00")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gln61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "NRAS p.Gln61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000213281"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000369535"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea08"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-21T20:54:10.520Z"),
-	"role" : "observations",
-	"name" : "ARHGAP5 p.Val474Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebea06",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea07"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-21T20:54:10.520Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea01")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea00")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val474Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ARHGAP5"
-			},
-			{
-				"key" : "label",
-				"value" : "ARHGAP5 p.Val474Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000100852"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000345122"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea09"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-21T20:54:10.520Z"),
-	"role" : "samples",
-	"identity" : "TST017BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea0a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-21T20:54:10.520Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST017BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea00")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea0d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-21T20:54:10.520Z"),
-	"role" : "observations",
-	"name" : "NRAS p.Gln61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebea0b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea0c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-21T20:54:10.520Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea09")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea00")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gln61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "NRAS p.Gln61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000213281"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000369535"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea10"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-21T20:54:10.520Z"),
-	"role" : "observations",
-	"name" : "ARHGAP5 p.Val474Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebea0e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea0f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-21T20:54:10.520Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea09")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea00")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val474Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ARHGAP5"
-			},
-			{
-				"key" : "label",
-				"value" : "ARHGAP5 p.Val474Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000100852"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000345122"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea16"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-22T14:49:45.964Z"),
-	"role" : "participants",
-	"identity" : "TST-018",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea11"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-09-22T14:49:45.964Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-018"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea12"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-09-22T14:49:45.964Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-09-22T14:49:45.964"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea13"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-09-25T13:45:07.712Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-09-25T13:45:07.712"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea14"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-09-25T16:30:55.649Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-09-25T16:30:55.649"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea15"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-09-26T13:17:33.391Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-09-26T13:17:33.391"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea17"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "samples",
-	"identity" : "TST018BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea18"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST018BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea1b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "NTSR2 p.Ala54Val",
-	"identity" : "53f26ad5b5e8ab4d14ebea19",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea1a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea17")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala54Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NTSR2"
-			},
-			{
-				"key" : "label",
-				"value" : "NTSR2 p.Ala54Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000169006"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000306928"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea1e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "NOTCH2 p.Ala21Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebea1c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea1d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea17")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala21Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NOTCH2"
-			},
-			{
-				"key" : "label",
-				"value" : "NOTCH2 p.Ala21Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000134250"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256646"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea21"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His179Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebea1f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea20"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea17")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His179Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His179Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea24"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "HRAS p.Gln61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebea22",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea23"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea17")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gln61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "HRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "HRAS p.Gln61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000174775"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000451590"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea27"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Glu542Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebea25",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea26"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea17")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu542Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Glu542Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea2a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "ABCA7 p.Ala2045Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebea28",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea29"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea17")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala2045Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ABCA7"
-			},
-			{
-				"key" : "label",
-				"value" : "ABCA7 p.Ala2045Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000064687"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263094"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea2d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Gly245Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebea2b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea2c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea17")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly245Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Gly245Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea2e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "samples",
-	"identity" : "TST018BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea2f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST018BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea32"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "NTSR2 p.Ala54Val",
-	"identity" : "53f26ad5b5e8ab4d14ebea30",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea31"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea2e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala54Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NTSR2"
-			},
-			{
-				"key" : "label",
-				"value" : "NTSR2 p.Ala54Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000169006"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000306928"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea35"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "NOTCH2 p.Ala21Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebea33",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea34"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea2e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala21Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NOTCH2"
-			},
-			{
-				"key" : "label",
-				"value" : "NOTCH2 p.Ala21Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000134250"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256646"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea38"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His179Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebea36",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea37"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea2e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His179Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His179Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea3b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "HRAS p.Gln61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebea39",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea3a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea2e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gln61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "HRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "HRAS p.Gln61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000174775"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000451590"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea3e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Glu542Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebea3c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea3d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea2e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu542Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Glu542Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea41"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "ABCA7 p.Ala2045Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebea3f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea40"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea2e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala2045Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ABCA7"
-			},
-			{
-				"key" : "label",
-				"value" : "ABCA7 p.Ala2045Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000064687"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263094"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea44"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T13:27:51.913Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Gly245Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebea42",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea43"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-26T13:27:51.913Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea2e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea16")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly245Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Gly245Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea4a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-26T14:25:11.118Z"),
-	"role" : "participants",
-	"identity" : "TST-019",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea45"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-09-26T14:25:11.118Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-019"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea46"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-09-26T14:25:11.118Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-09-26T14:25:11.118"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea47"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-09-28T18:04:59.230Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-09-28T18:04:59.230"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea48"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-09-28T20:33:23.955Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-09-28T20:33:23.955"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea49"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-09-30T20:28:37.963Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-09-30T20:28:37.963"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea4b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "samples",
-	"identity" : "TST019BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea4c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST019BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea4f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "NTSR2 p.Ala54Val",
-	"identity" : "53f26ad5b5e8ab4d14ebea4d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea4e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4b")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala54Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NTSR2"
-			},
-			{
-				"key" : "label",
-				"value" : "NTSR2 p.Ala54Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000169006"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000306928"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea52"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "FEZ2 p.Pro50Leu",
-	"identity" : "53f26ad5b5e8ab4d14ebea50",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea51"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4b")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro50Leu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FEZ2"
-			},
-			{
-				"key" : "label",
-				"value" : "FEZ2 p.Pro50Leu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000171055"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000379245"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea55"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "ANKLE1 p.Leu83Gln",
-	"identity" : "53f26ad5b5e8ab4d14ebea53",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea54"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4b")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Leu83Gln"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ANKLE1"
-			},
-			{
-				"key" : "label",
-				"value" : "ANKLE1 p.Leu83Gln"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000160117"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000394458"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea58"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "GPRIN2 p.Val241Met",
-	"identity" : "53f26ad5b5e8ab4d14ebea56",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea57"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4b")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val241Met"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GPRIN2"
-			},
-			{
-				"key" : "label",
-				"value" : "GPRIN2 p.Val241Met"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204175"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000374314"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea5b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser37Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebea59",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea5a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4b")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser37Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser37Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea5e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.His1047Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebea5c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea5d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4b")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His1047Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.His1047Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea5f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "samples",
-	"identity" : "TST019BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea60"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST019BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea63"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "NTSR2 p.Ala54Val",
-	"identity" : "53f26ad5b5e8ab4d14ebea61",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea62"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea5f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala54Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NTSR2"
-			},
-			{
-				"key" : "label",
-				"value" : "NTSR2 p.Ala54Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000169006"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000306928"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea66"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "FEZ2 p.Pro50Leu",
-	"identity" : "53f26ad5b5e8ab4d14ebea64",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea65"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea5f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro50Leu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FEZ2"
-			},
-			{
-				"key" : "label",
-				"value" : "FEZ2 p.Pro50Leu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000171055"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000379245"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea69"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "ANKLE1 p.Leu83Gln",
-	"identity" : "53f26ad5b5e8ab4d14ebea67",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea68"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea5f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Leu83Gln"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ANKLE1"
-			},
-			{
-				"key" : "label",
-				"value" : "ANKLE1 p.Leu83Gln"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000160117"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000394458"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea6c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "GPRIN2 p.Val241Met",
-	"identity" : "53f26ad5b5e8ab4d14ebea6a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea6b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea5f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val241Met"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GPRIN2"
-			},
-			{
-				"key" : "label",
-				"value" : "GPRIN2 p.Val241Met"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204175"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000374314"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea6f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser37Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebea6d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea6e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea5f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser37Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser37Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea72"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-30T21:35:06.848Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.His1047Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebea70",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea71"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-09-30T21:35:06.848Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea5f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea4a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His1047Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.His1047Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea78"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-09-29T18:50:51.780Z"),
-	"role" : "participants",
-	"identity" : "TST-020",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea73"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-09-29T18:50:51.780Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-020"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea74"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-09-29T18:50:51.780Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-09-29T18:50:51.780"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea75"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-10-01T15:36:49.043Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-10-01T15:36:49.043"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea76"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-10-01T16:13:13.773Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-10-01T16:13:13.773"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea77"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-10-04T18:18:41.379Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-10-04T18:18:41.379"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea79"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-04T21:26:26.979Z"),
-	"role" : "samples",
-	"identity" : "TST020BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea7a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-04T21:26:26.979Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST020BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea78")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea7d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-04T21:26:26.979Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser37Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebea7b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea7c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-04T21:26:26.979Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea79")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea78")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser37Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser37Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea80"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-04T21:26:26.979Z"),
-	"role" : "observations",
-	"name" : "NBPF10 p.Glu3455Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebea7e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea7f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-04T21:26:26.979Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea79")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea78")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu3455Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NBPF10"
-			},
-			{
-				"key" : "label",
-				"value" : "NBPF10 p.Glu3455Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000163386"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000342960"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea83"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-04T21:26:26.979Z"),
-	"role" : "observations",
-	"name" : "EEF1B2 p.Ser43Gly",
-	"identity" : "53f26ad5b5e8ab4d14ebea81",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea82"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-04T21:26:26.979Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea79")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea78")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser43Gly"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EEF1B2"
-			},
-			{
-				"key" : "label",
-				"value" : "EEF1B2 p.Ser43Gly"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000114942"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000392222"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea84"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-04T21:26:26.979Z"),
-	"role" : "samples",
-	"identity" : "TST020BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea85"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-04T21:26:26.979Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST020BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea78")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea88"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-04T21:26:26.979Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser37Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebea86",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea87"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-04T21:26:26.979Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea84")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea78")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser37Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser37Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea8b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-04T21:26:26.979Z"),
-	"role" : "observations",
-	"name" : "NBPF10 p.Glu3455Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebea89",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea8a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-04T21:26:26.979Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea84")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea78")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu3455Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NBPF10"
-			},
-			{
-				"key" : "label",
-				"value" : "NBPF10 p.Glu3455Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000163386"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000342960"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea8e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-04T21:26:26.979Z"),
-	"role" : "observations",
-	"name" : "EEF1B2 p.Ser43Gly",
-	"identity" : "53f26ad5b5e8ab4d14ebea8c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea8d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-04T21:26:26.979Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea84")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea78")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser43Gly"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EEF1B2"
-			},
-			{
-				"key" : "label",
-				"value" : "EEF1B2 p.Ser43Gly"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000114942"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000392222"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea94"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-01T13:27:57.302Z"),
-	"role" : "participants",
-	"identity" : "TST-021",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea8f"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-10-01T13:27:57.302Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-021"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea90"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-10-01T13:27:57.302Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-10-01T13:27:57.302"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea91"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-10-03T18:57:19.426Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-10-03T18:57:19.426"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea92"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-10-03T18:58:23.277Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-10-03T18:58:23.277"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebea93"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-10-07T19:16:08.406Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-10-07T19:16:08.406"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea95"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-07T21:32:04.755Z"),
-	"role" : "samples",
-	"identity" : "TST021BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea96"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-07T21:32:04.755Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST021BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea94")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea99"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-07T21:32:04.755Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg150Trp",
-	"identity" : "53f26ad5b5e8ab4d14ebea97",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea98"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-07T21:32:04.755Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea95")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea94")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg150Trp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg150Trp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea9c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-07T21:32:04.755Z"),
-	"role" : "observations",
-	"name" : "FBXW7 p.Arg347Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebea9a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea9b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-07T21:32:04.755Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea95")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea94")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg347Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FBXW7"
-			},
-			{
-				"key" : "label",
-				"value" : "FBXW7 p.Arg347Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000109670"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000281708"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebea9f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-07T21:32:04.755Z"),
-	"role" : "observations",
-	"name" : "ZNF837 p.Ala242Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebea9d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebea9e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-07T21:32:04.755Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea95")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea94")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala242Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF837"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF837 p.Ala242Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000152475"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000427624"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeaa0"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-07T21:32:04.755Z"),
-	"role" : "samples",
-	"identity" : "TST021BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeaa1"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-07T21:32:04.755Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST021BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea94")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeaa4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-07T21:32:04.755Z"),
-	"role" : "observations",
-	"name" : "FBXW7 p.Arg347Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebeaa2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeaa3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-07T21:32:04.755Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaa0")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea94")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg347Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FBXW7"
-			},
-			{
-				"key" : "label",
-				"value" : "FBXW7 p.Arg347Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000109670"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000281708"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeaa7"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-07T21:32:04.755Z"),
-	"role" : "observations",
-	"name" : "ZNF837 p.Ala242Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebeaa5",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeaa6"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-07T21:32:04.755Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaa0")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebea94")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala242Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF837"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF837 p.Ala242Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000152475"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000427624"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeaad"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-05T14:12:03.729Z"),
-	"role" : "participants",
-	"identity" : "TST-022",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeaa8"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-10-05T14:12:03.729Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-022"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeaa9"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-10-05T14:12:03.729Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-10-05T14:12:03.729"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeaaa"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-10-07T13:16:56.348Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-10-07T13:16:56.348"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeaab"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-10-07T14:02:04.215Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-10-07T14:02:04.215"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeaac"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-10-09T13:30:16.186Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-10-09T13:30:16.186"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeaae"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-09T20:49:38.441Z"),
-	"role" : "samples",
-	"identity" : "TST022BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeaaf"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-09T20:49:38.441Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST022BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaad")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeab2"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-09T20:49:38.441Z"),
-	"role" : "observations",
-	"name" : "DOT1L p.Gly266Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebeab0",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeab1"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-09T20:49:38.441Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaae")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaad")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly266Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "DOT1L"
-			},
-			{
-				"key" : "label",
-				"value" : "DOT1L p.Gly266Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000104885"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000398665"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeab5"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-09T20:49:38.441Z"),
-	"role" : "observations",
-	"name" : "NOTCH2 p.Ala21Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebeab3",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeab4"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-09T20:49:38.441Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaae")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaad")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala21Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NOTCH2"
-			},
-			{
-				"key" : "label",
-				"value" : "NOTCH2 p.Ala21Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000134250"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256646"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeab6"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-09T20:49:38.441Z"),
+	"_id" : ObjectId("53f37718d7db4984c320db4a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-05T21:57:04.216Z"),
 	"role" : "samples",
 	"identity" : "TST022BIOXPAR2",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeab7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-09T20:49:38.441Z"),
+		"id" : ObjectId("53f37718d7db4984c320db4b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-05T21:57:04.216Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
@@ -9075,7 +9163,7 @@ db.entities.insert({
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaad")
+				"ref" : ObjectId("53f37718d7db4984c320db3e")
 			},
 			{
 				"key" : "source",
@@ -9089,104 +9177,148 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeaba"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-09T20:49:38.441Z"),
+	"_id" : ObjectId("53f37718d7db4984c320db4e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-05T21:57:04.216Z"),
 	"role" : "observations",
-	"name" : "DOT1L p.Gly266Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebeab8",
+	"name" : "TP53 p.Cys83Phe",
+	"identity" : "53f37718d7db4984c320db4c",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeab9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-09T20:49:38.441Z"),
+		"id" : ObjectId("53f37718d7db4984c320db4d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-05T21:57:04.216Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeab6")
+				"ref" : ObjectId("53f37718d7db4984c320db4a")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaad")
+				"ref" : ObjectId("53f37718d7db4984c320db3e")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Gly266Ser"
+				"value" : "p.Cys83Phe"
 			},
 			{
 				"key" : "geneName",
-				"value" : "DOT1L"
+				"value" : "TP53"
 			},
 			{
 				"key" : "label",
-				"value" : "DOT1L p.Gly266Ser"
+				"value" : "TP53 p.Cys83Phe"
 			},
 			{
 				"key" : "geneId",
-				"value" : "ENSG00000104885"
+				"value" : "ENSG00000141510"
 			},
 			{
 				"key" : "transcriptId",
-				"value" : "ENST00000398665"
+				"value" : "ENST00000269305"
 			}
 		]
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeabd"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-09T20:49:38.441Z"),
+	"_id" : ObjectId("53f37718d7db4984c320db51"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-05T21:57:04.216Z"),
 	"role" : "observations",
-	"name" : "NOTCH2 p.Ala21Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebeabb",
+	"name" : "ADAD2 p.Gly44Glu",
+	"identity" : "53f37718d7db4984c320db4f",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeabc"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-09T20:49:38.441Z"),
+		"id" : ObjectId("53f37718d7db4984c320db50"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-05T21:57:04.216Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeab6")
+				"ref" : ObjectId("53f37718d7db4984c320db4a")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaad")
+				"ref" : ObjectId("53f37718d7db4984c320db3e")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.Ala21Thr"
+				"value" : "p.Gly44Glu"
 			},
 			{
 				"key" : "geneName",
-				"value" : "NOTCH2"
+				"value" : "ADAD2"
 			},
 			{
 				"key" : "label",
-				"value" : "NOTCH2 p.Ala21Thr"
+				"value" : "ADAD2 p.Gly44Glu"
 			},
 			{
 				"key" : "geneId",
-				"value" : "ENSG00000134250"
+				"value" : "ENSG00000140955"
 			},
 			{
 				"key" : "transcriptId",
-				"value" : "ENST00000256646"
+				"value" : "ENST00000268624"
 			}
 		]
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeac3"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-06T18:56:56.987Z"),
+	"_id" : ObjectId("53f37718d7db4984c320db54"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-05T21:57:04.216Z"),
+	"role" : "observations",
+	"name" : "PTPLA p.Val35Phe",
+	"identity" : "53f37718d7db4984c320db52",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db53"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-05T21:57:04.216Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db4a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db3e")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val35Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTPLA"
+			},
+			{
+				"key" : "label",
+				"value" : "PTPLA p.Val35Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165996"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000361271"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db5a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-07T19:00:45.428Z"),
 	"role" : "participants",
 	"identity" : "TST-023",
 	"steps" : [
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeabe"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-10-06T18:56:56.987Z"),
+			"id" : ObjectId("53f37718d7db4984c320db55"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-10-07T19:00:45.428Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "identifier",
@@ -9194,34 +9326,34 @@ db.entities.insert({
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeabf"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-10-06T18:56:56.987Z"),
+			"id" : ObjectId("53f37718d7db4984c320db56"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-10-07T19:00:45.428Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "enrolmentDate",
-				"value" : "2014-10-06T18:56:56.987"
+				"value" : "2014-10-07T19:00:45.428"
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeac0"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-10-08T13:11:08.385Z"),
+			"id" : ObjectId("53f37718d7db4984c320db57"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-10-09T14:40:36.966Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "consentDate",
-				"value" : "2014-10-08T13:11:08.385"
+				"value" : "2014-10-09T14:40:36.966"
 			}
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeac1"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-10-08T15:36:49.443Z"),
+			"id" : ObjectId("53f37718d7db4984c320db58"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-10-09T17:29:36.360Z"),
 			"stepUser" : "swatt",
 			"fields" : [
 				{
 					"key" : "biopsyDate",
-					"value" : "2014-10-08T15:36:49.443"
+					"value" : "2014-10-09T17:29:36.360"
 				},
 				{
 					"key" : "biopsyCores",
@@ -9230,27 +9362,27 @@ db.entities.insert({
 			]
 		},
 		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeac2"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-10-11T15:05:25.551Z"),
+			"id" : ObjectId("53f37718d7db4984c320db59"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-10-11T21:52:56.914Z"),
 			"stepUser" : "swatt",
 			"fields" : {
 				"key" : "pathologyDate",
-				"value" : "2014-10-11T15:05:25.551"
+				"value" : "2014-10-11T21:52:56.914"
 			}
 		}
 	]
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeac4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T17:11:29.122Z"),
+	"_id" : ObjectId("53f37718d7db4984c320db5b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-12T15:23:06.402Z"),
 	"role" : "samples",
 	"identity" : "TST023BIOXPAR1",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeac5"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-11T17:11:29.122Z"),
+		"id" : ObjectId("53f37718d7db4984c320db5c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-12T15:23:06.402Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
@@ -9259,7 +9391,7 @@ db.entities.insert({
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac3")
+				"ref" : ObjectId("53f37718d7db4984c320db5a")
 			},
 			{
 				"key" : "source",
@@ -9273,9069 +9405,25 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeac8"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T17:11:29.122Z"),
-	"role" : "observations",
-	"name" : "EGFR p.Gly553Val",
-	"identity" : "53f26ad5b5e8ab4d14ebeac6",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeac7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-11T17:11:29.122Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly553Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EGFR"
-			},
-			{
-				"key" : "label",
-				"value" : "EGFR p.Gly553Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000146648"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000275493"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeacb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T17:11:29.122Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebeac9",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeaca"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-11T17:11:29.122Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeace"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T17:11:29.122Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Gly245Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebeacc",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeacd"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-11T17:11:29.122Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly245Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Gly245Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeacf"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T17:11:29.122Z"),
-	"role" : "samples",
-	"identity" : "TST023BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebead0"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-11T17:11:29.122Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST023BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac3")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebead3"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T17:11:29.122Z"),
-	"role" : "observations",
-	"name" : "EGFR p.Gly553Val",
-	"identity" : "53f26ad5b5e8ab4d14ebead1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebead2"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-11T17:11:29.122Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeacf")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly553Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EGFR"
-			},
-			{
-				"key" : "label",
-				"value" : "EGFR p.Gly553Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000146648"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000275493"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebead6"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T17:11:29.122Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebead4",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebead5"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-11T17:11:29.122Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeacf")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebead9"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T17:11:29.122Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Gly245Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebead7",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebead8"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-11T17:11:29.122Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeacf")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeac3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly245Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Gly245Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeadf"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-07T16:53:42.087Z"),
-	"role" : "participants",
-	"identity" : "TST-024",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeada"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-10-07T16:53:42.087Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-024"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeadb"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-10-07T16:53:42.087Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-10-07T16:53:42.087"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeadc"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-10-09T18:21:59.824Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-10-09T18:21:59.824"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeadd"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-10-09T18:55:46.406Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-10-09T18:55:46.406"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeade"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-10-11T18:16:04.267Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-10-11T18:16:04.267"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeae0"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T21:57:06.935Z"),
-	"role" : "samples",
-	"identity" : "TST024BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeae1"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-11T21:57:06.935Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST024BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeadf")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeae4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T21:57:06.935Z"),
-	"role" : "observations",
-	"name" : "NBPF10 p.Glu3455Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebeae2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeae3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-11T21:57:06.935Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeae0")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeadf")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu3455Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NBPF10"
-			},
-			{
-				"key" : "label",
-				"value" : "NBPF10 p.Glu3455Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000163386"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000342960"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeae7"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T21:57:06.935Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Thr34Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebeae5",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeae6"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-11T21:57:06.935Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeae0")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeadf")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Thr34Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Thr34Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeae8"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T21:57:06.935Z"),
-	"role" : "samples",
-	"identity" : "TST024BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeae9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-11T21:57:06.935Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST024BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeadf")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeaec"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T21:57:06.935Z"),
-	"role" : "observations",
-	"name" : "NBPF10 p.Glu3455Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebeaea",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeaeb"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-11T21:57:06.935Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeae8")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeadf")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu3455Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NBPF10"
-			},
-			{
-				"key" : "label",
-				"value" : "NBPF10 p.Glu3455Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000163386"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000342960"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeaef"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T21:57:06.935Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Thr34Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebeaed",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeaee"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-11T21:57:06.935Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeae8")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeadf")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Thr34Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Thr34Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeaf5"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-11T15:23:10.381Z"),
-	"role" : "participants",
-	"identity" : "TST-025",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeaf0"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-10-11T15:23:10.381Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-025"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeaf1"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-10-11T15:23:10.381Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-10-11T15:23:10.381"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeaf2"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-10-13T15:11:38.413Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-10-13T15:11:38.413"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeaf3"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-10-13T15:54:20.901Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-10-13T15:54:20.901"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 3
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeaf4"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-10-14T13:12:47.682Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-10-14T13:12:47.682"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeaf6"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "samples",
-	"identity" : "TST025BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeaf7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST025BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeafa"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "NBPF10 p.Glu3455Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebeaf8",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeaf9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu3455Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NBPF10"
-			},
-			{
-				"key" : "label",
-				"value" : "NBPF10 p.Glu3455Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000163386"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000342960"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeafd"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebeafb",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeafc"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GSG2"
-			},
-			{
-				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000177602"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000325418"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb00"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Asp404Glu",
-	"identity" : "53f26ad5b5e8ab4d14ebeafe",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeaff"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Asp404Glu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Asp404Glu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb03"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Arg88Gln",
-	"identity" : "53f26ad5b5e8ab4d14ebeb01",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb02"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg88Gln"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Arg88Gln"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb06"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebeb04",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb05"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GSG2"
-			},
-			{
-				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000177602"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000325418"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb09"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Cys83Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebeb07",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb08"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Cys83Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Cys83Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb0c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly13Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebeb0a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb0b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly13Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly13Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb0f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "FRG1B p.Ala41Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebeb0d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb0e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala41Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FRG1B"
-			},
-			{
-				"key" : "label",
-				"value" : "FRG1B p.Ala41Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000149531"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000278882"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb12"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "EGFR p.Gly553Val",
-	"identity" : "53f26ad5b5e8ab4d14ebeb10",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb11"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf6")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly553Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EGFR"
-			},
-			{
-				"key" : "label",
-				"value" : "EGFR p.Gly553Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000146648"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000275493"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb13"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "samples",
-	"identity" : "TST025BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb14"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST025BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb17"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "NBPF10 p.Glu3455Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebeb15",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb16"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb13")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu3455Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NBPF10"
-			},
-			{
-				"key" : "label",
-				"value" : "NBPF10 p.Glu3455Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000163386"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000342960"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb1a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebeb18",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb19"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb13")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GSG2"
-			},
-			{
-				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000177602"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000325418"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb1d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Asp404Glu",
-	"identity" : "53f26ad5b5e8ab4d14ebeb1b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb1c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb13")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Asp404Glu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Asp404Glu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb20"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Arg88Gln",
-	"identity" : "53f26ad5b5e8ab4d14ebeb1e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb1f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb13")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg88Gln"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Arg88Gln"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb23"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Cys83Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebeb21",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb22"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb13")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Cys83Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Cys83Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb26"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly13Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebeb24",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb25"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb13")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly13Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly13Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb29"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "FRG1B p.Ala41Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebeb27",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb28"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb13")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala41Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FRG1B"
-			},
-			{
-				"key" : "label",
-				"value" : "FRG1B p.Ala41Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000149531"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000278882"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb2c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-14T19:38:33.106Z"),
-	"role" : "observations",
-	"name" : "EGFR p.Gly553Val",
-	"identity" : "53f26ad5b5e8ab4d14ebeb2a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb2b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-14T19:38:33.106Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb13")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeaf5")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly553Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EGFR"
-			},
-			{
-				"key" : "label",
-				"value" : "EGFR p.Gly553Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000146648"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000275493"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb32"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-17T20:36:03.026Z"),
-	"role" : "participants",
-	"identity" : "TST-026",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb2d"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-10-17T20:36:03.026Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-026"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb2e"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-10-17T20:36:03.026Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-10-17T20:36:03.026"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb2f"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-10-19T15:53:55.763Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-10-19T15:53:55.763"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb30"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-10-19T20:33:51.872Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-10-19T20:33:51.872"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb31"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-10-21T14:06:57.590Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-10-21T14:06:57.590"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb33"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-21T17:25:25.267Z"),
-	"role" : "samples",
-	"identity" : "TST026BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb34"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-21T17:25:25.267Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST026BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb32")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb35"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-21T17:25:25.267Z"),
-	"role" : "samples",
-	"identity" : "TST026BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb36"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-21T17:25:25.267Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST026BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb32")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb39"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-21T17:25:25.267Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebeb37",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb38"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-21T17:25:25.267Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb35")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb32")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb3f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-23T16:36:19.819Z"),
-	"role" : "participants",
-	"identity" : "TST-027",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb3a"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-10-23T16:36:19.819Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-027"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb3b"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-10-23T16:36:19.819Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-10-23T16:36:19.819"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb3c"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-10-24T21:12:54.437Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-10-24T21:12:54.437"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb3d"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-10-24T21:46:00.292Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-10-24T21:46:00.292"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 6
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb3e"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-10-26T14:28:55.779Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-10-26T14:28:55.779"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb40"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-26T21:06:19.080Z"),
-	"role" : "samples",
-	"identity" : "TST027BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb41"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-26T21:06:19.080Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST027BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb3f")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb44"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-26T21:06:19.080Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser33Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebeb42",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb43"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-26T21:06:19.080Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb40")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb3f")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser33Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser33Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb47"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-26T21:06:19.080Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Tyr139His",
-	"identity" : "53f26ad5b5e8ab4d14ebeb45",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb46"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-26T21:06:19.080Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb40")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb3f")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Tyr139His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Tyr139His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb48"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-26T21:06:19.080Z"),
-	"role" : "samples",
-	"identity" : "TST027BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb49"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-26T21:06:19.080Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST027BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb3f")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb4c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-26T21:06:19.080Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser33Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebeb4a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb4b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-26T21:06:19.080Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb48")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb3f")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser33Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser33Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb4f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-26T21:06:19.080Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Tyr139His",
-	"identity" : "53f26ad5b5e8ab4d14ebeb4d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb4e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-26T21:06:19.080Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb48")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb3f")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Tyr139His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Tyr139His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb55"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-25T20:31:28.749Z"),
-	"role" : "participants",
-	"identity" : "TST-028",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb50"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-10-25T20:31:28.749Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-028"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb51"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-10-25T20:31:28.749Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-10-25T20:31:28.749"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb52"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-10-27T15:40:31.676Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-10-27T15:40:31.676"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb53"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-10-27T19:49:58.891Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-10-27T19:49:58.891"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb54"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-10-29T17:41:17.674Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-10-29T17:41:17.674"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb56"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-29T19:40:23.633Z"),
-	"role" : "samples",
-	"identity" : "TST028BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb57"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-29T19:40:23.633Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST028BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb55")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb5a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-29T19:40:23.633Z"),
-	"role" : "observations",
-	"name" : "GPRIN2 p.Val241Met",
-	"identity" : "53f26ad5b5e8ab4d14ebeb58",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb59"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-29T19:40:23.633Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb56")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb55")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val241Met"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GPRIN2"
-			},
-			{
-				"key" : "label",
-				"value" : "GPRIN2 p.Val241Met"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204175"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000374314"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb5b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-29T19:40:23.633Z"),
-	"role" : "samples",
-	"identity" : "TST028BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb5c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-10-29T19:40:23.633Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST028BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb55")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb5f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-29T19:40:23.633Z"),
-	"role" : "observations",
-	"name" : "GPRIN2 p.Val241Met",
-	"identity" : "53f26ad5b5e8ab4d14ebeb5d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb5e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-10-29T19:40:23.633Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb5b")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb55")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val241Met"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GPRIN2"
-			},
-			{
-				"key" : "label",
-				"value" : "GPRIN2 p.Val241Met"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204175"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000374314"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb65"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-10-30T21:52:18.464Z"),
-	"role" : "participants",
-	"identity" : "TST-029",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb60"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-10-30T21:52:18.464Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-029"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb61"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-10-30T21:52:18.464Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-10-30T21:52:18.464"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb62"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-10-31T17:26:05.136Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-10-31T17:26:05.136"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb63"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-10-31T20:57:54.902Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-10-31T20:57:54.902"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 3
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb64"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-11-01T20:49:06.672Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-11-01T20:49:06.672"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb66"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "samples",
-	"identity" : "TST029BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb67"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST029BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb6a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His179Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebeb68",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb69"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb66")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His179Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His179Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb6d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "SP5 p.Ala75Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebeb6b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb6c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb66")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala75Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SP5"
-			},
-			{
-				"key" : "label",
-				"value" : "SP5 p.Ala75Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204335"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000375281"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb70"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebeb6e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb6f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb66")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GSG2"
-			},
-			{
-				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000177602"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000325418"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb73"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Asn345Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebeb71",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb72"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb66")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Asn345Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Asn345Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb76"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "SP5 p.Ala75Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebeb74",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb75"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb66")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala75Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SP5"
-			},
-			{
-				"key" : "label",
-				"value" : "SP5 p.Ala75Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204335"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000375281"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb79"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "SBK2 p.Ala298Pro",
-	"identity" : "53f26ad5b5e8ab4d14ebeb77",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb78"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb66")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala298Pro"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SBK2"
-			},
-			{
-				"key" : "label",
-				"value" : "SBK2 p.Ala298Pro"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000187550"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000413299"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb7c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "NTSR2 p.Ala54Val",
-	"identity" : "53f26ad5b5e8ab4d14ebeb7a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb7b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb66")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala54Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NTSR2"
-			},
-			{
-				"key" : "label",
-				"value" : "NTSR2 p.Ala54Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000169006"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000306928"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb7d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "samples",
-	"identity" : "TST029BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb7e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST029BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb81"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His179Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebeb7f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb80"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb7d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His179Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His179Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb84"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "SP5 p.Ala75Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebeb82",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb83"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb7d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala75Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SP5"
-			},
-			{
-				"key" : "label",
-				"value" : "SP5 p.Ala75Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204335"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000375281"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb87"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebeb85",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb86"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb7d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GSG2"
-			},
-			{
-				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000177602"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000325418"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb8a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Asn345Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebeb88",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb89"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb7d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Asn345Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Asn345Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb8d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "SP5 p.Ala75Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebeb8b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb8c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb7d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala75Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SP5"
-			},
-			{
-				"key" : "label",
-				"value" : "SP5 p.Ala75Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204335"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000375281"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb90"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "SBK2 p.Ala298Pro",
-	"identity" : "53f26ad5b5e8ab4d14ebeb8e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb8f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb7d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala298Pro"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SBK2"
-			},
-			{
-				"key" : "label",
-				"value" : "SBK2 p.Ala298Pro"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000187550"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000413299"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb93"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-01T21:53:27.434Z"),
-	"role" : "observations",
-	"name" : "NTSR2 p.Ala54Val",
-	"identity" : "53f26ad5b5e8ab4d14ebeb91",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb92"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-01T21:53:27.434Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb7d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb65")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala54Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NTSR2"
-			},
-			{
-				"key" : "label",
-				"value" : "NTSR2 p.Ala54Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000169006"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000306928"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb99"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-03T18:59:54.840Z"),
-	"role" : "participants",
-	"identity" : "TST-030",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb94"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-11-03T18:59:54.840Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-030"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb95"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-11-03T18:59:54.840Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-11-03T18:59:54.840"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb96"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-11-06T17:06:59.641Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-11-06T17:06:59.641"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb97"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-11-06T21:58:38.067Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-11-06T21:58:38.067"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 3
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebeb98"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-11-09T18:26:55.363Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-11-09T18:26:55.363"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb9a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-09T20:21:29.320Z"),
-	"role" : "samples",
-	"identity" : "TST030BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb9b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-09T20:21:29.320Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST030BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb99")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeb9e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-09T20:21:29.320Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg150Trp",
-	"identity" : "53f26ad5b5e8ab4d14ebeb9c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeb9d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-09T20:21:29.320Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb9a")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb99")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg150Trp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg150Trp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeba1"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-09T20:21:29.320Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg175His",
-	"identity" : "53f26ad5b5e8ab4d14ebeb9f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeba0"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-09T20:21:29.320Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb9a")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb99")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg175His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg175His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeba2"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-09T20:21:29.320Z"),
-	"role" : "samples",
-	"identity" : "TST030BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeba3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-09T20:21:29.320Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST030BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb99")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeba6"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-09T20:21:29.320Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg150Trp",
-	"identity" : "53f26ad5b5e8ab4d14ebeba4",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeba5"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-09T20:21:29.320Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeba2")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb99")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg150Trp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg150Trp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeba9"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-09T20:21:29.320Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg175His",
-	"identity" : "53f26ad5b5e8ab4d14ebeba7",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeba8"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-09T20:21:29.320Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeba2")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeb99")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg175His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg175His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebaf"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-09T14:25:34.709Z"),
-	"role" : "participants",
-	"identity" : "TST-031",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebaa"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-11-09T14:25:34.709Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-031"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebab"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-11-09T14:25:34.709Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-11-09T14:25:34.709"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebac"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-11-12T16:31:29.450Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-11-12T16:31:29.450"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebad"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-11-12T20:07:19.933Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-11-12T20:07:19.933"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebae"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-11-15T18:17:14.293Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-11-15T18:17:14.293"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebb0"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-15T19:20:43.394Z"),
-	"role" : "samples",
-	"identity" : "TST031BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebb1"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-15T19:20:43.394Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST031BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebaf")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebb4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-15T19:20:43.394Z"),
-	"role" : "observations",
-	"name" : "NEFH p.Glu645Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebebb2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebb3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-15T19:20:43.394Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebb0")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebaf")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu645Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NEFH"
-			},
-			{
-				"key" : "label",
-				"value" : "NEFH p.Glu645Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000100285"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000310624"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebb7"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-15T19:20:43.394Z"),
-	"role" : "observations",
-	"name" : "NRAS p.Gln61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebebb5",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebb6"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-15T19:20:43.394Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebb0")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebaf")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gln61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "NRAS p.Gln61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000213281"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000369535"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebba"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-15T19:20:43.394Z"),
-	"role" : "observations",
-	"name" : "OPRD1 p.Cys27Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebebb8",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebb9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-15T19:20:43.394Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebb0")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebaf")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Cys27Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "OPRD1"
-			},
-			{
-				"key" : "label",
-				"value" : "OPRD1 p.Cys27Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000116329"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000234961"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebbb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-15T19:20:43.394Z"),
-	"role" : "samples",
-	"identity" : "TST031BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebbc"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-15T19:20:43.394Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST031BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebaf")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebbf"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-15T19:20:43.394Z"),
-	"role" : "observations",
-	"name" : "NEFH p.Glu645Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebebbd",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebbe"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-15T19:20:43.394Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebbb")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebaf")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu645Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NEFH"
-			},
-			{
-				"key" : "label",
-				"value" : "NEFH p.Glu645Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000100285"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000310624"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebc2"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-15T19:20:43.394Z"),
-	"role" : "observations",
-	"name" : "NRAS p.Gln61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebebc0",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebc1"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-15T19:20:43.394Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebbb")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebaf")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gln61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "NRAS p.Gln61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000213281"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000369535"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebc5"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-15T19:20:43.394Z"),
-	"role" : "observations",
-	"name" : "OPRD1 p.Cys27Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebebc3",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebc4"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-15T19:20:43.394Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebbb")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebaf")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Cys27Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "OPRD1"
-			},
-			{
-				"key" : "label",
-				"value" : "OPRD1 p.Cys27Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000116329"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000234961"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebcb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-14T17:45:55.131Z"),
-	"role" : "participants",
-	"identity" : "TST-032",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebc6"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-11-14T17:45:55.131Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-032"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebc7"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-11-14T17:45:55.131Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-11-14T17:45:55.131"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebc8"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-11-15T15:28:07.952Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-11-15T15:28:07.952"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebc9"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-11-15T18:41:03.244Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-11-15T18:41:03.244"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 3
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebca"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-11-17T15:58:53.119Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-11-17T15:58:53.119"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebcc"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "samples",
-	"identity" : "TST032BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebcd"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST032BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebd0"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "observations",
-	"name" : "FRG1B p.Ile45Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebebce",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebcf"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcc")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ile45Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FRG1B"
-			},
-			{
-				"key" : "label",
-				"value" : "FRG1B p.Ile45Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000149531"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000278882"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebd3"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg175His",
-	"identity" : "53f26ad5b5e8ab4d14ebebd1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebd2"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcc")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg175His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg175His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebd6"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg150Trp",
-	"identity" : "53f26ad5b5e8ab4d14ebebd4",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebd5"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcc")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg150Trp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg150Trp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebd9"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebebd7",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebd8"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcc")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GSG2"
-			},
-			{
-				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000177602"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000325418"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebdc"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "observations",
-	"name" : "LATS2 p.Gly363Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebebda",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebdb"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcc")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly363Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "LATS2"
-			},
-			{
-				"key" : "label",
-				"value" : "LATS2 p.Gly363Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000150457"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000382592"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebdd"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "samples",
-	"identity" : "TST032BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebde"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST032BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebe1"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "observations",
-	"name" : "FRG1B p.Ile45Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebebdf",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebe0"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebdd")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ile45Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FRG1B"
-			},
-			{
-				"key" : "label",
-				"value" : "FRG1B p.Ile45Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000149531"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000278882"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebe4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg175His",
-	"identity" : "53f26ad5b5e8ab4d14ebebe2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebe3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebdd")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg175His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg175His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebe7"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg150Trp",
-	"identity" : "53f26ad5b5e8ab4d14ebebe5",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebe6"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebdd")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg150Trp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg150Trp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebea"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "observations",
-	"name" : "GSG2 p.Arg82Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebebe8",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebe9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebdd")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg82Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "GSG2"
-			},
-			{
-				"key" : "label",
-				"value" : "GSG2 p.Arg82Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000177602"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000325418"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebed"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-17T19:10:49.299Z"),
-	"role" : "observations",
-	"name" : "LATS2 p.Gly363Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebebeb",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebec"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-17T19:10:49.299Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebdd")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebcb")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly363Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "LATS2"
-			},
-			{
-				"key" : "label",
-				"value" : "LATS2 p.Gly363Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000150457"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000382592"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebf3"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-18T20:14:38.551Z"),
-	"role" : "participants",
-	"identity" : "TST-033",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebee"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-11-18T20:14:38.551Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-033"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebef"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-11-18T20:14:38.551Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-11-18T20:14:38.551"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebf0"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-11-21T15:08:59.686Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-11-21T15:08:59.686"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebf1"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-11-21T19:20:56.784Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-11-21T19:20:56.784"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebebf2"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-11-23T21:05:53.024Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-11-23T21:05:53.024"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebf4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T22:01:01.642Z"),
-	"role" : "samples",
-	"identity" : "TST033BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebf5"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-23T22:01:01.642Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST033BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf3")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebf8"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T22:01:01.642Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Asn345Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebebf6",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebf7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-23T22:01:01.642Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Asn345Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Asn345Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebfb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T22:01:01.642Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly13Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebebf9",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebfa"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-23T22:01:01.642Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly13Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly13Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebebfe"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T22:01:01.642Z"),
-	"role" : "observations",
-	"name" : "ARHGAP5 p.Val474Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebebfc",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebebfd"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-23T22:01:01.642Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val474Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ARHGAP5"
-			},
-			{
-				"key" : "label",
-				"value" : "ARHGAP5 p.Val474Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000100852"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000345122"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec01"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T22:01:01.642Z"),
-	"role" : "observations",
-	"name" : "NEFH p.Glu645Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebebff",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec00"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-23T22:01:01.642Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf4")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu645Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NEFH"
-			},
-			{
-				"key" : "label",
-				"value" : "NEFH p.Glu645Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000100285"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000310624"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec02"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T22:01:01.642Z"),
-	"role" : "samples",
-	"identity" : "TST033BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec03"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-23T22:01:01.642Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST033BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf3")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec06"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T22:01:01.642Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Asn345Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebec04",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec05"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-23T22:01:01.642Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec02")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Asn345Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Asn345Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec09"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T22:01:01.642Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly13Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebec07",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec08"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-23T22:01:01.642Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec02")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly13Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly13Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec0c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T22:01:01.642Z"),
-	"role" : "observations",
-	"name" : "ARHGAP5 p.Val474Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebec0a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec0b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-23T22:01:01.642Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec02")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val474Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ARHGAP5"
-			},
-			{
-				"key" : "label",
-				"value" : "ARHGAP5 p.Val474Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000100852"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000345122"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec0f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T22:01:01.642Z"),
-	"role" : "observations",
-	"name" : "NEFH p.Glu645Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebec0d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec0e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-23T22:01:01.642Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec02")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebebf3")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu645Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "NEFH"
-			},
-			{
-				"key" : "label",
-				"value" : "NEFH p.Glu645Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000100285"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000310624"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec15"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-23T19:05:45.972Z"),
-	"role" : "participants",
-	"identity" : "TST-034",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec10"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-11-23T19:05:45.972Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-034"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec11"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-11-23T19:05:45.972Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-11-23T19:05:45.972"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec12"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-11-28T16:34:17.972Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-11-28T16:34:17.972"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec13"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-11-28T18:45:24.324Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-11-28T18:45:24.324"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 6
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec14"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-11-30T16:01:44.628Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-11-30T16:01:44.628"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec16"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "samples",
-	"identity" : "TST034BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec17"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST034BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec1a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser37Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebec18",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec19"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec16")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser37Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser37Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec1d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "SBK2 p.Ala298Pro",
-	"identity" : "53f26ad5b5e8ab4d14ebec1b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec1c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec16")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala298Pro"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SBK2"
-			},
-			{
-				"key" : "label",
-				"value" : "SBK2 p.Ala298Pro"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000187550"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000413299"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec20"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Glu138Gly",
-	"identity" : "53f26ad5b5e8ab4d14ebec1e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec1f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec16")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu138Gly"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Glu138Gly"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec23"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly13Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebec21",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec22"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec16")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly13Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly13Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec26"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "DOT1L p.Gly266Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebec24",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec25"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec16")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly266Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "DOT1L"
-			},
-			{
-				"key" : "label",
-				"value" : "DOT1L p.Gly266Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000104885"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000398665"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec29"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser38Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebec27",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec28"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec16")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser38Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser38Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec2c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Glu542Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebec2a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec2b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec16")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu542Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Glu542Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec2f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebec2d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec2e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec16")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec32"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg175His",
-	"identity" : "53f26ad5b5e8ab4d14ebec30",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec31"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec16")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg175His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg175His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec35"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Glu135Gly",
-	"identity" : "53f26ad5b5e8ab4d14ebec33",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec34"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec16")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu135Gly"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Glu135Gly"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec36"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "samples",
-	"identity" : "TST034BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec37"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST034BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec3a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser37Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebec38",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec39"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec36")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser37Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser37Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec3d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Glu138Gly",
-	"identity" : "53f26ad5b5e8ab4d14ebec3b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec3c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec36")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu138Gly"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Glu138Gly"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec40"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly13Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebec3e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec3f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec36")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly13Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly13Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec43"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "DOT1L p.Gly266Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebec41",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec42"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec36")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly266Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "DOT1L"
-			},
-			{
-				"key" : "label",
-				"value" : "DOT1L p.Gly266Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000104885"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000398665"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec46"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser38Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebec44",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec45"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec36")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser38Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser38Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec49"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Glu542Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebec47",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec48"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec36")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu542Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Glu542Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec4c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebec4a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec4b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec36")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec4f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg175His",
-	"identity" : "53f26ad5b5e8ab4d14ebec4d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec4e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec36")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg175His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg175His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec52"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-30T21:06:06.659Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Glu135Gly",
-	"identity" : "53f26ad5b5e8ab4d14ebec50",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec51"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-30T21:06:06.659Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec36")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec15")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu135Gly"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Glu135Gly"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec58"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-25T19:25:40.027Z"),
-	"role" : "participants",
-	"identity" : "TST-035",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec53"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-11-25T19:25:40.027Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-035"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec54"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-11-25T19:25:40.027Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-11-25T19:25:40.027"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec55"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-11-26T20:15:13.428Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-11-26T20:15:13.428"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec56"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-11-26T22:43:38.260Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-11-26T22:43:38.260"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec57"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-11-27T19:56:23.063Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-11-27T19:56:23.063"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec59"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T22:49:42.631Z"),
-	"role" : "samples",
-	"identity" : "TST035BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec5a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-27T22:49:42.631Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST035BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec58")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec5d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T22:49:42.631Z"),
-	"role" : "observations",
-	"name" : "KLHL30 p.Ala195Val",
-	"identity" : "53f26ad5b5e8ab4d14ebec5b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec5c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-27T22:49:42.631Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec59")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec58")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala195Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KLHL30"
-			},
-			{
-				"key" : "label",
-				"value" : "KLHL30 p.Ala195Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168427"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000409223"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec60"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T22:49:42.631Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Glu542Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebec5e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec5f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-27T22:49:42.631Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec59")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec58")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu542Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Glu542Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec63"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T22:49:42.631Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Glu136Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebec61",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec62"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-27T22:49:42.631Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec59")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec58")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu136Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Glu136Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec66"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T22:49:42.631Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebec64",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec65"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-27T22:49:42.631Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec59")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec58")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec67"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T22:49:42.631Z"),
-	"role" : "samples",
-	"identity" : "TST035BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec68"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-11-27T22:49:42.631Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST035BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec58")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec6b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T22:49:42.631Z"),
-	"role" : "observations",
-	"name" : "KLHL30 p.Ala195Val",
-	"identity" : "53f26ad5b5e8ab4d14ebec69",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec6a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-27T22:49:42.631Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec67")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec58")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala195Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KLHL30"
-			},
-			{
-				"key" : "label",
-				"value" : "KLHL30 p.Ala195Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168427"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000409223"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec6e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T22:49:42.631Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Glu542Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebec6c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec6d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-27T22:49:42.631Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec67")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec58")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu542Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Glu542Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec71"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T22:49:42.631Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Glu136Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebec6f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec70"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-27T22:49:42.631Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec67")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec58")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu136Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Glu136Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec74"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T22:49:42.631Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His61Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebec72",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec73"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-11-27T22:49:42.631Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec67")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec58")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His61Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His61Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec7a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-27T18:16:06.134Z"),
-	"role" : "participants",
-	"identity" : "TST-036",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec75"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-11-27T18:16:06.134Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-036"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec76"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-11-27T18:16:06.134Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-11-27T18:16:06.134"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec77"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-11-29T16:47:28.019Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-11-29T16:47:28.019"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec78"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-11-29T17:31:14.610Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-11-29T17:31:14.610"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 3
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec79"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-12-02T20:26:51.972Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-12-02T20:26:51.972"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec7b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-02T22:39:15.397Z"),
-	"role" : "samples",
-	"identity" : "TST036BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec7c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-02T22:39:15.397Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST036BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7a")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec7f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-02T22:39:15.397Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Pro323His",
-	"identity" : "53f26ad5b5e8ab4d14ebec7d",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec7e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-02T22:39:15.397Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7b")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro323His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Pro323His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec82"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-02T22:39:15.397Z"),
-	"role" : "observations",
-	"name" : "FBXW7 p.Arg347Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebec80",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec81"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-02T22:39:15.397Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7b")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg347Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FBXW7"
-			},
-			{
-				"key" : "label",
-				"value" : "FBXW7 p.Arg347Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000109670"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000281708"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec85"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-02T22:39:15.397Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Gly118Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebec83",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec84"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-02T22:39:15.397Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7b")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly118Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Gly118Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec86"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-02T22:39:15.397Z"),
-	"role" : "samples",
-	"identity" : "TST036BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec87"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-02T22:39:15.397Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST036BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7a")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec8a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-02T22:39:15.397Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Pro323His",
-	"identity" : "53f26ad5b5e8ab4d14ebec88",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec89"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-02T22:39:15.397Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec86")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro323His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Pro323His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec8d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-02T22:39:15.397Z"),
-	"role" : "observations",
-	"name" : "FBXW7 p.Arg347Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebec8b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec8c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-02T22:39:15.397Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec86")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg347Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FBXW7"
-			},
-			{
-				"key" : "label",
-				"value" : "FBXW7 p.Arg347Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000109670"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000281708"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec90"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-02T22:39:15.397Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Gly118Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebec8e",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec8f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-02T22:39:15.397Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec86")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec7a")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly118Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Gly118Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec96"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-11-29T22:58:07.368Z"),
-	"role" : "participants",
-	"identity" : "TST-037",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec91"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-11-29T22:58:07.368Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-037"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec92"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-11-29T22:58:07.368Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-11-29T22:58:07.368"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec93"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-11-30T15:13:40.069Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-11-30T15:13:40.069"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec94"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-11-30T16:56:02.791Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-11-30T16:56:02.791"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 3
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebec95"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-12-04T14:59:54.329Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-12-04T14:59:54.329"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec97"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "samples",
-	"identity" : "TST037BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec98"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST037BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec9b"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "EGFR p.Gly553Val",
-	"identity" : "53f26ad5b5e8ab4d14ebec99",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec9a"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec97")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly553Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EGFR"
-			},
-			{
-				"key" : "label",
-				"value" : "EGFR p.Gly553Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000146648"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000275493"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebec9e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "SP5 p.Ala75Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebec9c",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebec9d"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec97")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala75Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SP5"
-			},
-			{
-				"key" : "label",
-				"value" : "SP5 p.Ala75Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204335"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000375281"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeca1"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Glu542Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebec9f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeca0"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec97")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu542Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Glu542Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeca4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Arg322Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebeca2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeca3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec97")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg322Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Arg322Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeca7"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "PTPLA p.Glu29Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebeca5",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeca6"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec97")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu29Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PTPLA"
-			},
-			{
-				"key" : "label",
-				"value" : "PTPLA p.Glu29Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165996"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000361271"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecaa"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Tyr139His",
-	"identity" : "53f26ad5b5e8ab4d14ebeca8",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeca9"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec97")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Tyr139His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Tyr139His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecad"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.His1047Leu",
-	"identity" : "53f26ad5b5e8ab4d14ebecab",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecac"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec97")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His1047Leu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.His1047Leu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecae"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "samples",
-	"identity" : "TST037BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecaf"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST037BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecb2"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "EGFR p.Gly553Val",
-	"identity" : "53f26ad5b5e8ab4d14ebecb0",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecb1"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecae")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly553Val"
-			},
-			{
-				"key" : "geneName",
-				"value" : "EGFR"
-			},
-			{
-				"key" : "label",
-				"value" : "EGFR p.Gly553Val"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000146648"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000275493"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecb5"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "SP5 p.Ala75Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebecb3",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecb4"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecae")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala75Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SP5"
-			},
-			{
-				"key" : "label",
-				"value" : "SP5 p.Ala75Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204335"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000375281"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecb8"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "LATS2 p.Gly363Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebecb6",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecb7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecae")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly363Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "LATS2"
-			},
-			{
-				"key" : "label",
-				"value" : "LATS2 p.Gly363Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000150457"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000382592"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecbb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.Glu542Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebecb9",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecba"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecae")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu542Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.Glu542Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecbe"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Arg322Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebecbc",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecbd"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecae")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg322Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Arg322Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecc1"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "FAM194B p.Tyr139His",
-	"identity" : "53f26ad5b5e8ab4d14ebecbf",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecc0"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecae")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Tyr139His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "FAM194B"
-			},
-			{
-				"key" : "label",
-				"value" : "FAM194B p.Tyr139His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165837"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000298738"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecc4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T18:29:35.036Z"),
-	"role" : "observations",
-	"name" : "PIK3CA p.His1047Leu",
-	"identity" : "53f26ad5b5e8ab4d14ebecc2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecc3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-04T18:29:35.036Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecae")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebec96")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His1047Leu"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PIK3CA"
-			},
-			{
-				"key" : "label",
-				"value" : "PIK3CA p.His1047Leu"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000121879"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000263967"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecca"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-03T21:37:42.265Z"),
-	"role" : "participants",
-	"identity" : "TST-038",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecc5"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-12-03T21:37:42.265Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-038"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecc6"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-12-03T21:37:42.265Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-12-03T21:37:42.265"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecc7"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-12-05T22:10:33.677Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-12-05T22:10:33.677"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecc8"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-12-05T22:20:58.868Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-12-05T22:20:58.868"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecc9"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-12-08T18:14:57.014Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-12-08T18:14:57.014"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeccb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-08T22:23:27.846Z"),
-	"role" : "samples",
-	"identity" : "TST038BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeccc"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-08T22:23:27.846Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST038BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecca")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeccf"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-08T22:23:27.846Z"),
-	"role" : "observations",
-	"name" : "SBK2 p.Ala298Pro",
-	"identity" : "53f26ad5b5e8ab4d14ebeccd",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecce"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-08T22:23:27.846Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebeccb")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecca")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala298Pro"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SBK2"
-			},
-			{
-				"key" : "label",
-				"value" : "SBK2 p.Ala298Pro"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000187550"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000413299"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecd0"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-08T22:23:27.846Z"),
-	"role" : "samples",
-	"identity" : "TST038BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecd1"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-08T22:23:27.846Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST038BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecca")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecd4"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-08T22:23:27.846Z"),
-	"role" : "observations",
-	"name" : "SBK2 p.Ala298Pro",
-	"identity" : "53f26ad5b5e8ab4d14ebecd2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecd3"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-08T22:23:27.846Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecd0")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecca")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala298Pro"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SBK2"
-			},
-			{
-				"key" : "label",
-				"value" : "SBK2 p.Ala298Pro"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000187550"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000413299"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecda"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-04T20:47:10.586Z"),
-	"role" : "participants",
-	"identity" : "TST-039",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecd5"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-12-04T20:47:10.586Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-039"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecd6"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-12-04T20:47:10.586Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-12-04T20:47:10.586"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecd7"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-12-06T19:43:09.531Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-12-06T19:43:09.531"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecd8"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-12-06T22:20:26.089Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-12-06T22:20:26.089"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecd9"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-12-09T16:31:54.458Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-12-09T16:31:54.458"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecdb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "samples",
-	"identity" : "TST039BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecdc"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST039BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecdf"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebecdd",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecde"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecdb")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebece2"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "observations",
-	"name" : "PTPLA p.Glu29Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebece0",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebece1"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecdb")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu29Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PTPLA"
-			},
-			{
-				"key" : "label",
-				"value" : "PTPLA p.Glu29Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165996"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000361271"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebece5"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Pro323His",
-	"identity" : "53f26ad5b5e8ab4d14ebece3",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebece4"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecdb")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro323His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Pro323His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebece8"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "observations",
-	"name" : "LATS2 p.Gly363Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebece6",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebece7"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecdb")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly363Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "LATS2"
-			},
-			{
-				"key" : "label",
-				"value" : "LATS2 p.Gly363Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000150457"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000382592"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebeceb"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "observations",
-	"name" : "PTPLA p.Val35Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebece9",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecea"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecdb")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val35Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PTPLA"
-			},
-			{
-				"key" : "label",
-				"value" : "PTPLA p.Val35Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165996"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000361271"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecec"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "samples",
-	"identity" : "TST039BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebeced"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST039BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecf0"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Asp",
-	"identity" : "53f26ad5b5e8ab4d14ebecee",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecef"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecec")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Asp"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Asp"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecf3"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "observations",
-	"name" : "PTPLA p.Glu29Lys",
-	"identity" : "53f26ad5b5e8ab4d14ebecf1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecf2"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecec")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Glu29Lys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PTPLA"
-			},
-			{
-				"key" : "label",
-				"value" : "PTPLA p.Glu29Lys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165996"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000361271"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecf6"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "observations",
-	"name" : "ZNF814 p.Pro323His",
-	"identity" : "53f26ad5b5e8ab4d14ebecf4",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecf5"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecec")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro323His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "ZNF814"
-			},
-			{
-				"key" : "label",
-				"value" : "ZNF814 p.Pro323His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204514"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000435989"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecf9"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "observations",
-	"name" : "LATS2 p.Gly363Ser",
-	"identity" : "53f26ad5b5e8ab4d14ebecf7",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecf8"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecec")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly363Ser"
-			},
-			{
-				"key" : "geneName",
-				"value" : "LATS2"
-			},
-			{
-				"key" : "label",
-				"value" : "LATS2 p.Gly363Ser"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000150457"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000382592"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebecfc"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-09T19:01:20.215Z"),
-	"role" : "observations",
-	"name" : "PTPLA p.Val35Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebecfa",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebecfb"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-09T19:01:20.215Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecec")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebecda")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val35Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PTPLA"
-			},
-			{
-				"key" : "label",
-				"value" : "PTPLA p.Val35Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165996"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000361271"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed02"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-10T22:52:23.749Z"),
-	"role" : "participants",
-	"identity" : "TST-040",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecfd"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-12-10T22:52:23.749Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-040"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecfe"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-12-10T22:52:23.749Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-12-10T22:52:23.749"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebecff"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-12-13T16:39:08.957Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-12-13T16:39:08.957"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed00"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-12-13T22:19:52.138Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-12-13T22:19:52.138"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed01"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-12-16T16:53:57.732Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-12-16T16:53:57.732"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed03"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-16T20:50:01.733Z"),
-	"role" : "samples",
-	"identity" : "TST040BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed04"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-16T20:50:01.733Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST040BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed02")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed07"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-16T20:50:01.733Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebed05",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed06"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-16T20:50:01.733Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed03")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed02")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed0a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-16T20:50:01.733Z"),
-	"role" : "observations",
-	"name" : "SP5 p.Ala75Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebed08",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed09"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-16T20:50:01.733Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed03")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed02")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala75Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SP5"
-			},
-			{
-				"key" : "label",
-				"value" : "SP5 p.Ala75Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204335"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000375281"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed0d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-16T20:50:01.733Z"),
-	"role" : "observations",
-	"name" : "PTPLA p.Val35Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebed0b",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed0c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-16T20:50:01.733Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed03")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed02")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val35Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PTPLA"
-			},
-			{
-				"key" : "label",
-				"value" : "PTPLA p.Val35Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165996"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000361271"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed0e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-16T20:50:01.733Z"),
-	"role" : "samples",
-	"identity" : "TST040BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed0f"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-16T20:50:01.733Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST040BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed02")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed12"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-16T20:50:01.733Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebed10",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed11"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-16T20:50:01.733Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed0e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed02")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed15"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-16T20:50:01.733Z"),
-	"role" : "observations",
-	"name" : "SP5 p.Ala75Thr",
-	"identity" : "53f26ad5b5e8ab4d14ebed13",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed14"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-16T20:50:01.733Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed0e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed02")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ala75Thr"
-			},
-			{
-				"key" : "geneName",
-				"value" : "SP5"
-			},
-			{
-				"key" : "label",
-				"value" : "SP5 p.Ala75Thr"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000204335"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000375281"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed18"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-16T20:50:01.733Z"),
-	"role" : "observations",
-	"name" : "PTPLA p.Val35Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebed16",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed17"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-16T20:50:01.733Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed0e")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed02")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Val35Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "PTPLA"
-			},
-			{
-				"key" : "label",
-				"value" : "PTPLA p.Val35Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000165996"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000361271"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed1e"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-14T18:29:13.671Z"),
-	"role" : "participants",
-	"identity" : "TST-041",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed19"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-12-14T18:29:13.671Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-041"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed1a"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-12-14T18:29:13.671Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-12-14T18:29:13.671"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed1b"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-12-19T21:22:07.004Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-12-19T21:22:07.004"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed1c"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-12-19T21:51:22.642Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-12-19T21:51:22.642"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 4
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed1d"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-12-20T16:58:46.273Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-12-20T16:58:46.273"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed1f"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-20T22:25:42.437Z"),
-	"role" : "samples",
-	"identity" : "TST041BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed20"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-20T22:25:42.437Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST041BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1e")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed23"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-20T22:25:42.437Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebed21",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed22"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-20T22:25:42.437Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1e")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed26"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-20T22:25:42.437Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser37Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebed24",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed25"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-20T22:25:42.437Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1e")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser37Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser37Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed29"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-20T22:25:42.437Z"),
-	"role" : "observations",
-	"name" : "RGPD8 p.Pro1620Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebed27",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed28"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-20T22:25:42.437Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1e")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro1620Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "RGPD8"
-			},
-			{
-				"key" : "label",
-				"value" : "RGPD8 p.Pro1620Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000169629"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000302558"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed2c"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-20T22:25:42.437Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg175His",
-	"identity" : "53f26ad5b5e8ab4d14ebed2a",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed2b"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-20T22:25:42.437Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1f")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1e")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg175His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg175His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed2d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-20T22:25:42.437Z"),
-	"role" : "samples",
-	"identity" : "TST041BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed2e"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-20T22:25:42.437Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST041BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1e")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed31"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-20T22:25:42.437Z"),
-	"role" : "observations",
-	"name" : "KRAS p.Gly12Cys",
-	"identity" : "53f26ad5b5e8ab4d14ebed2f",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed30"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-20T22:25:42.437Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed2d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1e")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Gly12Cys"
-			},
-			{
-				"key" : "geneName",
-				"value" : "KRAS"
-			},
-			{
-				"key" : "label",
-				"value" : "KRAS p.Gly12Cys"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000133703"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000256078"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed34"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-20T22:25:42.437Z"),
-	"role" : "observations",
-	"name" : "CTNNB1 p.Ser37Phe",
-	"identity" : "53f26ad5b5e8ab4d14ebed32",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed33"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-20T22:25:42.437Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed2d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1e")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Ser37Phe"
-			},
-			{
-				"key" : "geneName",
-				"value" : "CTNNB1"
-			},
-			{
-				"key" : "label",
-				"value" : "CTNNB1 p.Ser37Phe"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000168036"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000349496"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed37"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-20T22:25:42.437Z"),
-	"role" : "observations",
-	"name" : "RGPD8 p.Pro1620Ala",
-	"identity" : "53f26ad5b5e8ab4d14ebed35",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed36"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-20T22:25:42.437Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed2d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1e")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Pro1620Ala"
-			},
-			{
-				"key" : "geneName",
-				"value" : "RGPD8"
-			},
-			{
-				"key" : "label",
-				"value" : "RGPD8 p.Pro1620Ala"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000169629"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000302558"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed3a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-20T22:25:42.437Z"),
-	"role" : "observations",
-	"name" : "TP53 p.Arg175His",
-	"identity" : "53f26ad5b5e8ab4d14ebed38",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed39"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-20T22:25:42.437Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed2d")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed1e")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.Arg175His"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.Arg175His"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed40"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-18T21:02:07.374Z"),
-	"role" : "participants",
-	"identity" : "TST-042",
-	"steps" : [
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed3b"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84a"),
-			"stepDate" : ISODate("2014-12-18T21:02:07.374Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "identifier",
-				"identity" : "TST-042"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed3c"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84b"),
-			"stepDate" : ISODate("2014-12-18T21:02:07.374Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "enrolmentDate",
-				"value" : "2014-12-18T21:02:07.374"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed3d"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84c"),
-			"stepDate" : ISODate("2014-12-21T14:36:04.752Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "consentDate",
-				"value" : "2014-12-21T14:36:04.752"
-			}
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed3e"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84d"),
-			"stepDate" : ISODate("2014-12-21T15:43:23.337Z"),
-			"stepUser" : "swatt",
-			"fields" : [
-				{
-					"key" : "biopsyDate",
-					"value" : "2014-12-21T15:43:23.337"
-				},
-				{
-					"key" : "biopsyCores",
-					"value" : 5
-				}
-			]
-		},
-		{
-			"id" : ObjectId("53f26ad5b5e8ab4d14ebed3f"),
-			"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe84e"),
-			"stepDate" : ISODate("2014-12-21T18:50:21.573Z"),
-			"stepUser" : "swatt",
-			"fields" : {
-				"key" : "pathologyDate",
-				"value" : "2014-12-21T18:50:21.573"
-			}
-		}
-	]
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed41"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-21T21:50:26.845Z"),
-	"role" : "samples",
-	"identity" : "TST042BIOXPAR1",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed42"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-21T21:50:26.845Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST042BIOXPAR1"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed40")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed45"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-21T21:50:26.845Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His179Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebed43",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed44"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-21T21:50:26.845Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed41")
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed40")
-			},
-			{
-				"key" : "aminoAcidMutation",
-				"value" : "p.His179Arg"
-			},
-			{
-				"key" : "geneName",
-				"value" : "TP53"
-			},
-			{
-				"key" : "label",
-				"value" : "TP53 p.His179Arg"
-			},
-			{
-				"key" : "geneId",
-				"value" : "ENSG00000141510"
-			},
-			{
-				"key" : "transcriptId",
-				"value" : "ENST00000269305"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed46"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-21T21:50:26.845Z"),
-	"role" : "samples",
-	"identity" : "TST042BIOXPAR2",
-	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed47"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe853"),
-		"stepDate" : ISODate("2014-12-21T21:50:26.845Z"),
-		"stepUser" : "swatt",
-		"fields" : [
-			{
-				"key" : "identifier",
-				"identity" : "TST042BIOXPAR2"
-			},
-			{
-				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed40")
-			},
-			{
-				"key" : "source",
-				"value" : "Biopsy"
-			},
-			{
-				"key" : "type",
-				"value" : "FFPE"
-			}
-		]
-	}
-});
-db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed4a"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-21T21:50:26.845Z"),
+	"_id" : ObjectId("53f37718d7db4984c320db5f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-12T15:23:06.402Z"),
 	"role" : "observations",
 	"name" : "IRF5 p.Arg175Gln",
-	"identity" : "53f26ad5b5e8ab4d14ebed48",
+	"identity" : "53f37718d7db4984c320db5d",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed49"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-21T21:50:26.845Z"),
+		"id" : ObjectId("53f37718d7db4984c320db5e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-12T15:23:06.402Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed46")
+				"ref" : ObjectId("53f37718d7db4984c320db5b")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed40")
+				"ref" : ObjectId("53f37718d7db4984c320db5a")
 			},
 			{
 				"key" : "aminoAcidMutation",
@@ -18361,29 +9449,762 @@ db.entities.insert({
 	}
 });
 db.entities.insert({
-	"_id" : ObjectId("53f26ad5b5e8ab4d14ebed4d"),
-	"studyId" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
-	"lastModified" : ISODate("2014-12-21T21:50:26.845Z"),
-	"role" : "observations",
-	"name" : "TP53 p.His179Arg",
-	"identity" : "53f26ad5b5e8ab4d14ebed4b",
+	"_id" : ObjectId("53f37718d7db4984c320db60"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-12T15:23:06.402Z"),
+	"role" : "samples",
+	"identity" : "TST023BIOXPAR2",
 	"steps" : {
-		"id" : ObjectId("53f26ad5b5e8ab4d14ebed4c"),
-		"stepRef" : ObjectId("53f26ad5b5e8ab4d14ebe857"),
-		"stepDate" : ISODate("2014-12-21T21:50:26.845Z"),
+		"id" : ObjectId("53f37718d7db4984c320db61"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-12T15:23:06.402Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST023BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db5a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db64"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-12T15:23:06.402Z"),
+	"role" : "observations",
+	"name" : "IRF5 p.Arg175Gln",
+	"identity" : "53f37718d7db4984c320db62",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db63"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-12T15:23:06.402Z"),
 		"stepUser" : "swatt",
 		"fields" : [
 			{
 				"key" : "sampleEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed46")
+				"ref" : ObjectId("53f37718d7db4984c320db60")
 			},
 			{
 				"key" : "participantEntityRef",
-				"ref" : ObjectId("53f26ad5b5e8ab4d14ebed40")
+				"ref" : ObjectId("53f37718d7db4984c320db5a")
 			},
 			{
 				"key" : "aminoAcidMutation",
-				"value" : "p.His179Arg"
+				"value" : "p.Arg175Gln"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IRF5"
+			},
+			{
+				"key" : "label",
+				"value" : "IRF5 p.Arg175Gln"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000128604"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000357234"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db6a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-11T21:54:38.005Z"),
+	"role" : "participants",
+	"identity" : "TST-024",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320db65"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-10-11T21:54:38.005Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-024"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db66"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-10-11T21:54:38.005Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-10-11T21:54:38.005"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db67"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-10-14T19:09:46.537Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-10-14T19:09:46.537"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db68"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-10-14T21:51:15.986Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-10-14T21:51:15.986"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db69"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-10-18T17:39:23.405Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-10-18T17:39:23.405"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db6b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-18T17:43:08.064Z"),
+	"role" : "samples",
+	"identity" : "TST024BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db6c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-18T17:43:08.064Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST024BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db6a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db6f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-18T17:43:08.064Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu545Lys",
+	"identity" : "53f37718d7db4984c320db6d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db6e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-18T17:43:08.064Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db6b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db6a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu545Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu545Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db70"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-18T17:43:08.064Z"),
+	"role" : "samples",
+	"identity" : "TST024BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db71"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-18T17:43:08.064Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST024BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db6a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db74"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-18T17:43:08.064Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu545Lys",
+	"identity" : "53f37718d7db4984c320db72",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db73"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-18T17:43:08.064Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db70")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db6a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu545Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu545Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db7a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-16T16:50:58.264Z"),
+	"role" : "participants",
+	"identity" : "TST-025",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320db75"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-10-16T16:50:58.264Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-025"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db76"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-10-16T16:50:58.264Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-10-16T16:50:58.264"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db77"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-10-18T15:10:45.677Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-10-18T15:10:45.677"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db78"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-10-18T20:25:22.741Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-10-18T20:25:22.741"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db79"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-10-20T15:12:03.539Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-10-20T15:12:03.539"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db7b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-20T19:23:33.331Z"),
+	"role" : "samples",
+	"identity" : "TST025BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db7c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-20T19:23:33.331Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST025BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db7a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db7f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-20T19:23:33.331Z"),
+	"role" : "observations",
+	"name" : "OPRD1 p.Cys27Phe",
+	"identity" : "53f37718d7db4984c320db7d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db7e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-20T19:23:33.331Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db7b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db7a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Cys27Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OPRD1"
+			},
+			{
+				"key" : "label",
+				"value" : "OPRD1 p.Cys27Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000116329"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000234961"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db82"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-20T19:23:33.331Z"),
+	"role" : "observations",
+	"name" : "HRAS p.Gln61Arg",
+	"identity" : "53f37718d7db4984c320db80",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db81"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-20T19:23:33.331Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db7b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db7a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "HRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "HRAS p.Gln61Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000174775"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000451590"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db83"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-20T19:23:33.331Z"),
+	"role" : "samples",
+	"identity" : "TST025BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db84"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-20T19:23:33.331Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST025BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db7a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db87"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-20T19:23:33.331Z"),
+	"role" : "observations",
+	"name" : "OPRD1 p.Cys27Phe",
+	"identity" : "53f37718d7db4984c320db85",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db86"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-20T19:23:33.331Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db83")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db7a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Cys27Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OPRD1"
+			},
+			{
+				"key" : "label",
+				"value" : "OPRD1 p.Cys27Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000116329"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000234961"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db91"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T21:08:50.786Z"),
+	"role" : "samples",
+	"identity" : "TST026BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db92"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-25T21:08:50.786Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST026BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db90")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db8a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-20T19:23:33.331Z"),
+	"role" : "observations",
+	"name" : "HRAS p.Gln61Arg",
+	"identity" : "53f37718d7db4984c320db88",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db89"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-20T19:23:33.331Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db83")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db7a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "HRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "HRAS p.Gln61Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000174775"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000451590"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db90"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-20T19:18:42.706Z"),
+	"role" : "participants",
+	"identity" : "TST-026",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320db8b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-10-20T19:18:42.706Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-026"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db8c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-10-20T19:18:42.706Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-10-20T19:18:42.706"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db8d"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-10-22T18:40:25.609Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-10-22T18:40:25.609"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db8e"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-10-22T20:39:00.901Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-10-22T20:39:00.901"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320db8f"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-10-25T16:22:53.946Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-10-25T16:22:53.946"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db95"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T21:08:50.786Z"),
+	"role" : "observations",
+	"name" : "FEZ2 p.Pro50Leu",
+	"identity" : "53f37718d7db4984c320db93",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db94"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-25T21:08:50.786Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db91")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db90")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Pro50Leu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FEZ2"
+			},
+			{
+				"key" : "label",
+				"value" : "FEZ2 p.Pro50Leu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171055"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000379245"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db98"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T21:08:50.786Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg273Cys",
+	"identity" : "53f37718d7db4984c320db96",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db97"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-25T21:08:50.786Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db91")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db90")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg273Cys"
 			},
 			{
 				"key" : "geneName",
@@ -18391,7 +10212,7 @@ db.entities.insert({
 			},
 			{
 				"key" : "label",
-				"value" : "TP53 p.His179Arg"
+				"value" : "TP53 p.Arg273Cys"
 			},
 			{
 				"key" : "geneId",
@@ -18400,6 +10221,8141 @@ db.entities.insert({
 			{
 				"key" : "transcriptId",
 				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db9b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T21:08:50.786Z"),
+	"role" : "observations",
+	"name" : "NBPF10 p.Glu3455Lys",
+	"identity" : "53f37718d7db4984c320db99",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db9a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-25T21:08:50.786Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db91")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db90")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu3455Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NBPF10"
+			},
+			{
+				"key" : "label",
+				"value" : "NBPF10 p.Glu3455Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000163386"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000342960"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db9e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T21:08:50.786Z"),
+	"role" : "observations",
+	"name" : "NBPF10 p.Glu3455Lys",
+	"identity" : "53f37718d7db4984c320db9c",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320db9d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-25T21:08:50.786Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db91")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db90")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu3455Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NBPF10"
+			},
+			{
+				"key" : "label",
+				"value" : "NBPF10 p.Glu3455Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000163386"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000342960"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320db9f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T21:08:50.786Z"),
+	"role" : "samples",
+	"identity" : "TST026BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dba0"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-25T21:08:50.786Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST026BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db90")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dba3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T21:08:50.786Z"),
+	"role" : "observations",
+	"name" : "FEZ2 p.Pro50Leu",
+	"identity" : "53f37718d7db4984c320dba1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dba2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-25T21:08:50.786Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db9f")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db90")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Pro50Leu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FEZ2"
+			},
+			{
+				"key" : "label",
+				"value" : "FEZ2 p.Pro50Leu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171055"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000379245"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dba6"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T21:08:50.786Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg273Cys",
+	"identity" : "53f37718d7db4984c320dba4",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dba5"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-25T21:08:50.786Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db9f")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db90")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg273Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg273Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dba9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T21:08:50.786Z"),
+	"role" : "observations",
+	"name" : "NBPF10 p.Glu3455Lys",
+	"identity" : "53f37718d7db4984c320dba7",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dba8"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-25T21:08:50.786Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db9f")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db90")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu3455Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NBPF10"
+			},
+			{
+				"key" : "label",
+				"value" : "NBPF10 p.Glu3455Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000163386"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000342960"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbac"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T21:08:50.786Z"),
+	"role" : "observations",
+	"name" : "NBPF10 p.Glu3455Lys",
+	"identity" : "53f37718d7db4984c320dbaa",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbab"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-25T21:08:50.786Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db9f")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320db90")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu3455Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NBPF10"
+			},
+			{
+				"key" : "label",
+				"value" : "NBPF10 p.Glu3455Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000163386"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000342960"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbb2"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-25T20:40:58.401Z"),
+	"role" : "participants",
+	"identity" : "TST-027",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dbad"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-10-25T20:40:58.401Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-027"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dbae"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-10-25T20:40:58.401Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-10-25T20:40:58.401"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dbaf"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-10-27T18:42:52.692Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-10-27T18:42:52.692"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dbb0"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-10-27T19:22:21.045Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-10-27T19:22:21.045"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 5
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dbb1"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-10-30T19:12:27.077Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-10-30T19:12:27.077"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbb3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-30T21:47:02.351Z"),
+	"role" : "samples",
+	"identity" : "TST027BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbb4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-30T21:47:02.351Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST027BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb2")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbb7"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-30T21:47:02.351Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Ile102Thr",
+	"identity" : "53f37718d7db4984c320dbb5",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbb6"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-30T21:47:02.351Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb3")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb2")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile102Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Ile102Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbba"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-30T21:47:02.351Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Ile102Thr",
+	"identity" : "53f37718d7db4984c320dbb8",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbb9"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-30T21:47:02.351Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb3")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb2")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile102Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Ile102Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbbd"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-30T21:47:02.351Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Ala",
+	"identity" : "53f37718d7db4984c320dbbb",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbbc"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-30T21:47:02.351Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb3")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb2")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Ala"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Ala"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbc0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-30T21:47:02.351Z"),
+	"role" : "observations",
+	"name" : "ADAD2 p.Gly44Glu",
+	"identity" : "53f37718d7db4984c320dbbe",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbbf"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-30T21:47:02.351Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb3")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb2")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly44Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ADAD2"
+			},
+			{
+				"key" : "label",
+				"value" : "ADAD2 p.Gly44Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000140955"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000268624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbc1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-30T21:47:02.351Z"),
+	"role" : "samples",
+	"identity" : "TST027BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbc2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-10-30T21:47:02.351Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST027BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb2")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbc5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-30T21:47:02.351Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Ile102Thr",
+	"identity" : "53f37718d7db4984c320dbc3",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbc4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-30T21:47:02.351Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbc1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb2")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile102Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Ile102Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbc8"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-30T21:47:02.351Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Ile102Thr",
+	"identity" : "53f37718d7db4984c320dbc6",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbc7"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-30T21:47:02.351Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbc1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb2")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile102Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Ile102Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbcb"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-30T21:47:02.351Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Ala",
+	"identity" : "53f37718d7db4984c320dbc9",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbca"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-30T21:47:02.351Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbc1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb2")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Ala"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Ala"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbce"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-30T21:47:02.351Z"),
+	"role" : "observations",
+	"name" : "ADAD2 p.Gly44Glu",
+	"identity" : "53f37718d7db4984c320dbcc",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbcd"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-10-30T21:47:02.351Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbc1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbb2")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly44Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ADAD2"
+			},
+			{
+				"key" : "label",
+				"value" : "ADAD2 p.Gly44Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000140955"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000268624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbd4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-10-31T16:22:36.811Z"),
+	"role" : "participants",
+	"identity" : "TST-028",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dbcf"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-10-31T16:22:36.811Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-028"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dbd0"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-10-31T16:22:36.811Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-10-31T16:22:36.811"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dbd1"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-11-01T20:25:19.769Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-11-01T20:25:19.769"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dbd2"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-11-01T21:33:38.640Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-11-01T21:33:38.640"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 5
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dbd3"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-11-04T16:52:59.905Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-11-04T16:52:59.905"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbd5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "samples",
+	"identity" : "TST028BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbd6"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST028BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbd9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg155Trp",
+	"identity" : "53f37718d7db4984c320dbd7",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbd8"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg155Trp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg155Trp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbdc"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg155Trp",
+	"identity" : "53f37718d7db4984c320dbda",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbdb"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg155Trp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg155Trp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbdf"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "TMPRSS13 p.Ala77Gly",
+	"identity" : "53f37718d7db4984c320dbdd",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbde"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala77Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TMPRSS13"
+			},
+			{
+				"key" : "label",
+				"value" : "TMPRSS13 p.Ala77Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000137747"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000524993"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbe2"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Tyr139His",
+	"identity" : "53f37718d7db4984c320dbe0",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbe1"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Tyr139His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Tyr139His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbe5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Ile102Thr",
+	"identity" : "53f37718d7db4984c320dbe3",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbe4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile102Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Ile102Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbe8"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly13Asp",
+	"identity" : "53f37718d7db4984c320dbe6",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbe7"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly13Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly13Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbeb"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "HRAS p.Gln61Arg",
+	"identity" : "53f37718d7db4984c320dbe9",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbea"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "HRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "HRAS p.Gln61Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000174775"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000451590"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbec"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "samples",
+	"identity" : "TST028BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbed"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST028BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbf0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg155Trp",
+	"identity" : "53f37718d7db4984c320dbee",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbef"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbec")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg155Trp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg155Trp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbf3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg155Trp",
+	"identity" : "53f37718d7db4984c320dbf1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbf2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbec")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg155Trp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg155Trp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbf6"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "TMPRSS13 p.Ala77Gly",
+	"identity" : "53f37718d7db4984c320dbf4",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbf5"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbec")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala77Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TMPRSS13"
+			},
+			{
+				"key" : "label",
+				"value" : "TMPRSS13 p.Ala77Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000137747"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000524993"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbf9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Tyr139His",
+	"identity" : "53f37718d7db4984c320dbf7",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbf8"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbec")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Tyr139His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Tyr139His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbfc"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "KCNN3 p.Leu66His",
+	"identity" : "53f37718d7db4984c320dbfa",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbfb"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbec")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Leu66His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KCNN3"
+			},
+			{
+				"key" : "label",
+				"value" : "KCNN3 p.Leu66His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000143603"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000271915"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dbff"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Ile102Thr",
+	"identity" : "53f37718d7db4984c320dbfd",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dbfe"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbec")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile102Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Ile102Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc02"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly13Asp",
+	"identity" : "53f37718d7db4984c320dc00",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc01"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbec")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly13Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly13Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc05"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-04T18:35:28.271Z"),
+	"role" : "observations",
+	"name" : "HRAS p.Gln61Arg",
+	"identity" : "53f37718d7db4984c320dc03",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc04"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-04T18:35:28.271Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbec")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dbd4")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "HRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "HRAS p.Gln61Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000174775"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000451590"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc0b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-02T17:24:35.857Z"),
+	"role" : "participants",
+	"identity" : "TST-029",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc06"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-11-02T17:24:35.857Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-029"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc07"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-11-02T17:24:35.857Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-11-02T17:24:35.857"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc08"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-11-04T14:00:17.451Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-11-04T14:00:17.451"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc09"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-11-04T17:59:01.590Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-11-04T17:59:01.590"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc0a"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-11-06T21:49:51.953Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-11-06T21:49:51.953"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc0c"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T22:24:02.471Z"),
+	"role" : "samples",
+	"identity" : "TST029BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc0d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-06T22:24:02.471Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST029BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0b")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc10"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T22:24:02.471Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gly",
+	"identity" : "53f37718d7db4984c320dc0e",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc0f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-06T22:24:02.471Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0c")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0b")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc13"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T22:24:02.471Z"),
+	"role" : "observations",
+	"name" : "NBPF10 p.Glu3455Lys",
+	"identity" : "53f37718d7db4984c320dc11",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc12"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-06T22:24:02.471Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0c")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0b")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu3455Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NBPF10"
+			},
+			{
+				"key" : "label",
+				"value" : "NBPF10 p.Glu3455Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000163386"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000342960"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc16"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T22:24:02.471Z"),
+	"role" : "observations",
+	"name" : "FBXW7 p.Arg347Cys",
+	"identity" : "53f37718d7db4984c320dc14",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc15"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-06T22:24:02.471Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0c")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0b")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg347Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FBXW7"
+			},
+			{
+				"key" : "label",
+				"value" : "FBXW7 p.Arg347Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000109670"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000281708"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc19"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T22:24:02.471Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu726Lys",
+	"identity" : "53f37718d7db4984c320dc17",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc18"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-06T22:24:02.471Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0c")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0b")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu726Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu726Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc1a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T22:24:02.471Z"),
+	"role" : "samples",
+	"identity" : "TST029BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc1b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-06T22:24:02.471Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST029BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0b")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc1e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T22:24:02.471Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gly",
+	"identity" : "53f37718d7db4984c320dc1c",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc1d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-06T22:24:02.471Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc1a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0b")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc21"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T22:24:02.471Z"),
+	"role" : "observations",
+	"name" : "NBPF10 p.Glu3455Lys",
+	"identity" : "53f37718d7db4984c320dc1f",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc20"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-06T22:24:02.471Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc1a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0b")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu3455Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NBPF10"
+			},
+			{
+				"key" : "label",
+				"value" : "NBPF10 p.Glu3455Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000163386"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000342960"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc24"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T22:24:02.471Z"),
+	"role" : "observations",
+	"name" : "FBXW7 p.Arg347Cys",
+	"identity" : "53f37718d7db4984c320dc22",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc23"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-06T22:24:02.471Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc1a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0b")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg347Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FBXW7"
+			},
+			{
+				"key" : "label",
+				"value" : "FBXW7 p.Arg347Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000109670"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000281708"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc27"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T22:24:02.471Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu726Lys",
+	"identity" : "53f37718d7db4984c320dc25",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc26"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-06T22:24:02.471Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc1a")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc0b")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu726Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu726Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc2d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-06T16:22:02.113Z"),
+	"role" : "participants",
+	"identity" : "TST-030",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc28"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-11-06T16:22:02.113Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-030"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc29"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-11-06T16:22:02.113Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-11-06T16:22:02.113"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc2a"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-11-09T18:02:55.947Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-11-09T18:02:55.947"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc2b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-11-09T20:03:11.804Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-11-09T20:03:11.804"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 3
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc2c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-11-11T19:57:58.276Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-11-11T19:57:58.276"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc2e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T21:59:17.036Z"),
+	"role" : "samples",
+	"identity" : "TST030BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc2f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-11T21:59:17.036Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST030BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2d")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc32"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T21:59:17.036Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Arg",
+	"identity" : "53f37718d7db4984c320dc30",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc31"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-11T21:59:17.036Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2e")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2d")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc35"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T21:59:17.036Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Arg",
+	"identity" : "53f37718d7db4984c320dc33",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc34"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-11T21:59:17.036Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2e")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2d")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc38"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T21:59:17.036Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gln",
+	"identity" : "53f37718d7db4984c320dc36",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc37"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-11T21:59:17.036Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2e")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2d")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gln"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gln"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc39"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T21:59:17.036Z"),
+	"role" : "samples",
+	"identity" : "TST030BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc3a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-11T21:59:17.036Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST030BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2d")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc3d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T21:59:17.036Z"),
+	"role" : "observations",
+	"name" : "CTNNB1 p.Ser37Cys",
+	"identity" : "53f37718d7db4984c320dc3b",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc3c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-11T21:59:17.036Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc39")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2d")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser37Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CTNNB1"
+			},
+			{
+				"key" : "label",
+				"value" : "CTNNB1 p.Ser37Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168036"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000349496"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc40"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T21:59:17.036Z"),
+	"role" : "observations",
+	"name" : "NEFH p.Glu645Lys",
+	"identity" : "53f37718d7db4984c320dc3e",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc3f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-11T21:59:17.036Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc39")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2d")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu645Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NEFH"
+			},
+			{
+				"key" : "label",
+				"value" : "NEFH p.Glu645Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000100285"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000310624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc43"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T21:59:17.036Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Arg",
+	"identity" : "53f37718d7db4984c320dc41",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc42"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-11T21:59:17.036Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc39")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2d")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc46"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T21:59:17.036Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Arg",
+	"identity" : "53f37718d7db4984c320dc44",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc45"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-11T21:59:17.036Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc39")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2d")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc49"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T21:59:17.036Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gln",
+	"identity" : "53f37718d7db4984c320dc47",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc48"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-11T21:59:17.036Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc39")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc2d")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gln"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gln"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc4f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-11T22:08:44.998Z"),
+	"role" : "participants",
+	"identity" : "TST-031",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc4a"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-11-11T22:08:44.998Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-031"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc4b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-11-11T22:08:44.998Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-11-11T22:08:44.998"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc4c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-11-13T22:02:22.216Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-11-13T22:02:22.216"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc4d"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-11-13T22:18:54.642Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-11-13T22:18:54.642"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 5
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc4e"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-11-15T16:48:52.197Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-11-15T16:48:52.197"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc50"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "samples",
+	"identity" : "TST031BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc51"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST031BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc54"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Asp404Glu",
+	"identity" : "53f37718d7db4984c320dc52",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc53"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc50")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Asp404Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Asp404Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc57"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "FRG1B p.Ile45Thr",
+	"identity" : "53f37718d7db4984c320dc55",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc56"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc50")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile45Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Ile45Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc5a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "ZNF837 p.Ala242Thr",
+	"identity" : "53f37718d7db4984c320dc58",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc59"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc50")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala242Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF837"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF837 p.Ala242Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000152475"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000427624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc5d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Asp",
+	"identity" : "53f37718d7db4984c320dc5b",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc5c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc50")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc60"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "PTPLA p.Val35Phe",
+	"identity" : "53f37718d7db4984c320dc5e",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc5f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc50")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val35Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTPLA"
+			},
+			{
+				"key" : "label",
+				"value" : "PTPLA p.Val35Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165996"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000361271"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc61"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "samples",
+	"identity" : "TST031BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc62"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST031BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc65"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Asp404Glu",
+	"identity" : "53f37718d7db4984c320dc63",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc64"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc61")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Asp404Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Asp404Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc68"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "FRG1B p.Ile45Thr",
+	"identity" : "53f37718d7db4984c320dc66",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc67"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc61")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile45Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FRG1B"
+			},
+			{
+				"key" : "label",
+				"value" : "FRG1B p.Ile45Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000149531"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000278882"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc6b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "ZNF837 p.Ala242Thr",
+	"identity" : "53f37718d7db4984c320dc69",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc6a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc61")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala242Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF837"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF837 p.Ala242Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000152475"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000427624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc6e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Asp",
+	"identity" : "53f37718d7db4984c320dc6c",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc6d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc61")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc71"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Cys",
+	"identity" : "53f37718d7db4984c320dc6f",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc70"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc61")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc74"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T19:52:36.543Z"),
+	"role" : "observations",
+	"name" : "PTPLA p.Val35Phe",
+	"identity" : "53f37718d7db4984c320dc72",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc73"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-15T19:52:36.543Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc61")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc4f")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val35Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTPLA"
+			},
+			{
+				"key" : "label",
+				"value" : "PTPLA p.Val35Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165996"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000361271"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc7a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-15T15:34:10.934Z"),
+	"role" : "participants",
+	"identity" : "TST-032",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc75"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-11-15T15:34:10.934Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-032"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc76"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-11-15T15:34:10.934Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-11-15T15:34:10.934"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc77"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-11-18T16:10:40.721Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-11-18T16:10:40.721"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc78"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-11-18T22:09:13.488Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-11-18T22:09:13.488"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 5
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc79"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-11-20T15:48:04.885Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-11-20T15:48:04.885"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc7b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-20T17:56:16.007Z"),
+	"role" : "samples",
+	"identity" : "TST032BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc7c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-20T17:56:16.007Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST032BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc7a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc7f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-20T17:56:16.007Z"),
+	"role" : "observations",
+	"name" : "NRAS p.Gln61Lys",
+	"identity" : "53f37718d7db4984c320dc7d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc7e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-20T17:56:16.007Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc7b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc7a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "NRAS p.Gln61Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000213281"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000369535"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc80"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-20T17:56:16.007Z"),
+	"role" : "samples",
+	"identity" : "TST032BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc81"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-20T17:56:16.007Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST032BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc7a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc84"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-20T17:56:16.007Z"),
+	"role" : "observations",
+	"name" : "NRAS p.Gln61Lys",
+	"identity" : "53f37718d7db4984c320dc82",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc83"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-20T17:56:16.007Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc80")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc7a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "NRAS p.Gln61Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000213281"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000369535"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc8a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-16T22:44:22.088Z"),
+	"role" : "participants",
+	"identity" : "TST-033",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc85"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-11-16T22:44:22.088Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-033"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc86"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-11-16T22:44:22.088Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-11-16T22:44:22.088"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc87"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-11-17T16:50:51.183Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-11-17T16:50:51.183"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc88"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-11-17T17:44:09.504Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-11-17T17:44:09.504"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc89"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-11-19T17:57:18.373Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-11-19T17:57:18.373"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc8b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-20T16:22:50.190Z"),
+	"role" : "samples",
+	"identity" : "TST033BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc8c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-20T16:22:50.190Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST033BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc8a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc8f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-20T16:22:50.190Z"),
+	"role" : "observations",
+	"name" : "OTUD4 p.Thr974Ile",
+	"identity" : "53f37718d7db4984c320dc8d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc8e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-20T16:22:50.190Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc8b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc8a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Thr974Ile"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OTUD4"
+			},
+			{
+				"key" : "label",
+				"value" : "OTUD4 p.Thr974Ile"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000164164"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000454497"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc92"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-20T16:22:50.190Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Glu138Gly",
+	"identity" : "53f37718d7db4984c320dc90",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc91"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-20T16:22:50.190Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc8b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc8a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu138Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Glu138Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc93"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-20T16:22:50.190Z"),
+	"role" : "samples",
+	"identity" : "TST033BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc94"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-20T16:22:50.190Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST033BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc8a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc97"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-20T16:22:50.190Z"),
+	"role" : "observations",
+	"name" : "OTUD4 p.Thr974Ile",
+	"identity" : "53f37718d7db4984c320dc95",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc96"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-20T16:22:50.190Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc93")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc8a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Thr974Ile"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OTUD4"
+			},
+			{
+				"key" : "label",
+				"value" : "OTUD4 p.Thr974Ile"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000164164"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000454497"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dc9a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-20T16:22:50.190Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Glu138Gly",
+	"identity" : "53f37718d7db4984c320dc98",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dc99"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-20T16:22:50.190Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc93")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dc8a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu138Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Glu138Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dca0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-21T14:46:45.362Z"),
+	"role" : "participants",
+	"identity" : "TST-034",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc9b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-11-21T14:46:45.362Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-034"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc9c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-11-21T14:46:45.362Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-11-21T14:46:45.362"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc9d"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-11-24T16:10:36.299Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-11-24T16:10:36.299"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc9e"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-11-24T19:34:12.965Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-11-24T19:34:12.965"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dc9f"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-11-26T17:39:38.018Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-11-26T17:39:38.018"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dca1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-26T22:47:03.379Z"),
+	"role" : "samples",
+	"identity" : "TST034BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dca2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-26T22:47:03.379Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST034BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dca0")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dca5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-26T22:47:03.379Z"),
+	"role" : "observations",
+	"name" : "PCDHA7 p.Leu352Ile",
+	"identity" : "53f37718d7db4984c320dca3",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dca4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-26T22:47:03.379Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dca1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dca0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Leu352Ile"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PCDHA7"
+			},
+			{
+				"key" : "label",
+				"value" : "PCDHA7 p.Leu352Ile"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204963"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000525929"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dca8"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-26T22:47:03.379Z"),
+	"role" : "observations",
+	"name" : "KCNN3 p.Leu66His",
+	"identity" : "53f37718d7db4984c320dca6",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dca7"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-26T22:47:03.379Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dca1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dca0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Leu66His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KCNN3"
+			},
+			{
+				"key" : "label",
+				"value" : "KCNN3 p.Leu66His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000143603"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000271915"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcab"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-26T22:47:03.379Z"),
+	"role" : "observations",
+	"name" : "CHEK2 p.Lys344Glu",
+	"identity" : "53f37718d7db4984c320dca9",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcaa"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-26T22:47:03.379Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dca1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dca0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Lys344Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CHEK2"
+			},
+			{
+				"key" : "label",
+				"value" : "CHEK2 p.Lys344Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000183765"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382580"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcac"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-26T22:47:03.379Z"),
+	"role" : "samples",
+	"identity" : "TST034BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcad"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-26T22:47:03.379Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST034BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dca0")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcb0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-26T22:47:03.379Z"),
+	"role" : "observations",
+	"name" : "KCNN3 p.Leu66His",
+	"identity" : "53f37718d7db4984c320dcae",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcaf"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-26T22:47:03.379Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcac")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dca0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Leu66His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KCNN3"
+			},
+			{
+				"key" : "label",
+				"value" : "KCNN3 p.Leu66His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000143603"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000271915"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcb3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-26T22:47:03.379Z"),
+	"role" : "observations",
+	"name" : "CHEK2 p.Lys344Glu",
+	"identity" : "53f37718d7db4984c320dcb1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcb2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-26T22:47:03.379Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcac")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dca0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Lys344Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CHEK2"
+			},
+			{
+				"key" : "label",
+				"value" : "CHEK2 p.Lys344Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000183765"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382580"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcb9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-23T19:47:30.418Z"),
+	"role" : "participants",
+	"identity" : "TST-035",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dcb4"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-11-23T19:47:30.418Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-035"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dcb5"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-11-23T19:47:30.418Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-11-23T19:47:30.418"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dcb6"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-11-26T14:52:35.514Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-11-26T14:52:35.514"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dcb7"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-11-26T17:08:10.381Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-11-26T17:08:10.381"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 5
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dcb8"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-11-28T15:57:05.176Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-11-28T15:57:05.176"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcba"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "samples",
+	"identity" : "TST035BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcbb"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST035BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcbe"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "OTUD4 p.Thr974Ile",
+	"identity" : "53f37718d7db4984c320dcbc",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcbd"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Thr974Ile"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OTUD4"
+			},
+			{
+				"key" : "label",
+				"value" : "OTUD4 p.Thr974Ile"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000164164"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000454497"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcc1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gly",
+	"identity" : "53f37718d7db4984c320dcbf",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcc0"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcc4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "GSG2 p.Arg82Cys",
+	"identity" : "53f37718d7db4984c320dcc2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcc3"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg82Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "GSG2"
+			},
+			{
+				"key" : "label",
+				"value" : "GSG2 p.Arg82Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000177602"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000325418"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcc7"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Gly320Glu",
+	"identity" : "53f37718d7db4984c320dcc5",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcc6"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly320Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Gly320Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcca"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Tyr139His",
+	"identity" : "53f37718d7db4984c320dcc8",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcc9"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Tyr139His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Tyr139His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dccd"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "IDH1 p.Arg132His",
+	"identity" : "53f37718d7db4984c320dccb",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dccc"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg132His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IDH1"
+			},
+			{
+				"key" : "label",
+				"value" : "IDH1 p.Arg132His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000138413"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000415913"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcd0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "OPRD1 p.Cys27Phe",
+	"identity" : "53f37718d7db4984c320dcce",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dccf"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Cys27Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OPRD1"
+			},
+			{
+				"key" : "label",
+				"value" : "OPRD1 p.Cys27Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000116329"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000234961"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcd3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "ARHGAP5 p.Val474Ala",
+	"identity" : "53f37718d7db4984c320dcd1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcd2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val474Ala"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ARHGAP5"
+			},
+			{
+				"key" : "label",
+				"value" : "ARHGAP5 p.Val474Ala"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000100852"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000345122"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcd6"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "SF3B1 p.Lys700Glu",
+	"identity" : "53f37718d7db4984c320dcd4",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcd5"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Lys700Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "SF3B1"
+			},
+			{
+				"key" : "label",
+				"value" : "SF3B1 p.Lys700Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000115524"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000335508"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcd9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Gly118Asp",
+	"identity" : "53f37718d7db4984c320dcd7",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcd8"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly118Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Gly118Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcdc"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Ala",
+	"identity" : "53f37718d7db4984c320dcda",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcdb"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Ala"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Ala"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcdf"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PGM5 p.Ile98Val",
+	"identity" : "53f37718d7db4984c320dcdd",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcde"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile98Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PGM5"
+			},
+			{
+				"key" : "label",
+				"value" : "PGM5 p.Ile98Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000154330"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000396396"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dce2"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "CHEK2 p.Lys344Glu",
+	"identity" : "53f37718d7db4984c320dce0",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dce1"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Lys344Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CHEK2"
+			},
+			{
+				"key" : "label",
+				"value" : "CHEK2 p.Lys344Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000183765"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382580"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dce5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "BRAF p.Val600Glu",
+	"identity" : "53f37718d7db4984c320dce3",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dce4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val600Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "BRAF"
+			},
+			{
+				"key" : "label",
+				"value" : "BRAF p.Val600Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000157764"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000288602"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dce8"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg150Trp",
+	"identity" : "53f37718d7db4984c320dce6",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dce7"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg150Trp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg150Trp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dceb"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gly",
+	"identity" : "53f37718d7db4984c320dce9",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcea"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcee"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu542Lys",
+	"identity" : "53f37718d7db4984c320dcec",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dced"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu542Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu542Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcf1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "IDH1 p.Arg132Cys",
+	"identity" : "53f37718d7db4984c320dcef",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcf0"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg132Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IDH1"
+			},
+			{
+				"key" : "label",
+				"value" : "IDH1 p.Arg132Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000138413"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000415913"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcf4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "ABCA7 p.Ala2045Ser",
+	"identity" : "53f37718d7db4984c320dcf2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcf3"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcba")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala2045Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ABCA7"
+			},
+			{
+				"key" : "label",
+				"value" : "ABCA7 p.Ala2045Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000064687"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263094"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcf5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "samples",
+	"identity" : "TST035BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcf6"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST035BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcf9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "NBPF10 p.Glu3455Lys",
+	"identity" : "53f37718d7db4984c320dcf7",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcf8"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu3455Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NBPF10"
+			},
+			{
+				"key" : "label",
+				"value" : "NBPF10 p.Glu3455Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000163386"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000342960"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcfc"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "OTUD4 p.Thr974Ile",
+	"identity" : "53f37718d7db4984c320dcfa",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcfb"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Thr974Ile"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OTUD4"
+			},
+			{
+				"key" : "label",
+				"value" : "OTUD4 p.Thr974Ile"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000164164"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000454497"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dcff"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gly",
+	"identity" : "53f37718d7db4984c320dcfd",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dcfe"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd02"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "GSG2 p.Arg82Cys",
+	"identity" : "53f37718d7db4984c320dd00",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd01"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg82Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "GSG2"
+			},
+			{
+				"key" : "label",
+				"value" : "GSG2 p.Arg82Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000177602"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000325418"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd05"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Gly320Glu",
+	"identity" : "53f37718d7db4984c320dd03",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd04"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly320Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Gly320Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd08"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "FAM194B p.Tyr139His",
+	"identity" : "53f37718d7db4984c320dd06",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd07"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Tyr139His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "FAM194B"
+			},
+			{
+				"key" : "label",
+				"value" : "FAM194B p.Tyr139His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000165837"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000298738"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd0b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "IDH1 p.Arg132His",
+	"identity" : "53f37718d7db4984c320dd09",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd0a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg132His"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IDH1"
+			},
+			{
+				"key" : "label",
+				"value" : "IDH1 p.Arg132His"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000138413"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000415913"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd0e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "OPRD1 p.Cys27Phe",
+	"identity" : "53f37718d7db4984c320dd0c",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd0d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Cys27Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "OPRD1"
+			},
+			{
+				"key" : "label",
+				"value" : "OPRD1 p.Cys27Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000116329"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000234961"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd11"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "ARHGAP5 p.Val474Ala",
+	"identity" : "53f37718d7db4984c320dd0f",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd10"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val474Ala"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ARHGAP5"
+			},
+			{
+				"key" : "label",
+				"value" : "ARHGAP5 p.Val474Ala"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000100852"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000345122"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd14"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "SF3B1 p.Lys700Glu",
+	"identity" : "53f37718d7db4984c320dd12",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd13"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Lys700Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "SF3B1"
+			},
+			{
+				"key" : "label",
+				"value" : "SF3B1 p.Lys700Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000115524"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000335508"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd17"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Gly118Asp",
+	"identity" : "53f37718d7db4984c320dd15",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd16"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly118Asp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Gly118Asp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd1a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PGM5 p.Ile98Val",
+	"identity" : "53f37718d7db4984c320dd18",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd19"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ile98Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PGM5"
+			},
+			{
+				"key" : "label",
+				"value" : "PGM5 p.Ile98Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000154330"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000396396"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd1d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "CHEK2 p.Lys344Glu",
+	"identity" : "53f37718d7db4984c320dd1b",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd1c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Lys344Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CHEK2"
+			},
+			{
+				"key" : "label",
+				"value" : "CHEK2 p.Lys344Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000183765"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382580"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd20"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "BRAF p.Val600Glu",
+	"identity" : "53f37718d7db4984c320dd1e",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd1f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Val600Glu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "BRAF"
+			},
+			{
+				"key" : "label",
+				"value" : "BRAF p.Val600Glu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000157764"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000288602"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd23"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "TP53 p.Arg150Trp",
+	"identity" : "53f37718d7db4984c320dd21",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd22"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg150Trp"
+			},
+			{
+				"key" : "geneName",
+				"value" : "TP53"
+			},
+			{
+				"key" : "label",
+				"value" : "TP53 p.Arg150Trp"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000141510"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000269305"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd26"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PARG p.Ala99Thr",
+	"identity" : "53f37718d7db4984c320dd24",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd25"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala99Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PARG"
+			},
+			{
+				"key" : "label",
+				"value" : "PARG p.Ala99Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000227345"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000402038"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd29"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PTEN p.Arg130Gly",
+	"identity" : "53f37718d7db4984c320dd27",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd28"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg130Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PTEN"
+			},
+			{
+				"key" : "label",
+				"value" : "PTEN p.Arg130Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000171862"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000371953"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd2c"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu542Lys",
+	"identity" : "53f37718d7db4984c320dd2a",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd2b"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu542Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu542Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd2f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "IDH1 p.Arg132Cys",
+	"identity" : "53f37718d7db4984c320dd2d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd2e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg132Cys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IDH1"
+			},
+			{
+				"key" : "label",
+				"value" : "IDH1 p.Arg132Cys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000138413"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000415913"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd32"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T17:59:23.729Z"),
+	"role" : "observations",
+	"name" : "ABCA7 p.Ala2045Ser",
+	"identity" : "53f37718d7db4984c320dd30",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd31"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-11-28T17:59:23.729Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcf5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dcb9")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala2045Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ABCA7"
+			},
+			{
+				"key" : "label",
+				"value" : "ABCA7 p.Ala2045Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000064687"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263094"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd38"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-11-28T16:29:39.682Z"),
+	"role" : "participants",
+	"identity" : "TST-036",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd33"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-11-28T16:29:39.682Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-036"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd34"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-11-28T16:29:39.682Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-11-28T16:29:39.682"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd35"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-12-01T21:07:39.955Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-12-01T21:07:39.955"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd36"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-12-01T21:15:51.513Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-12-01T21:15:51.513"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd37"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-12-03T22:12:27.693Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-12-03T22:12:27.693"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd39"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-04T19:40:22.940Z"),
+	"role" : "samples",
+	"identity" : "TST036BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd3a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-04T19:40:22.940Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST036BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd38")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd3d"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-04T19:40:22.940Z"),
+	"role" : "observations",
+	"name" : "IDH1 p.Arg132Gly",
+	"identity" : "53f37718d7db4984c320dd3b",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd3c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-04T19:40:22.940Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd39")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd38")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg132Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IDH1"
+			},
+			{
+				"key" : "label",
+				"value" : "IDH1 p.Arg132Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000138413"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000415913"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd40"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-04T19:40:22.940Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Ala337Val",
+	"identity" : "53f37718d7db4984c320dd3e",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd3f"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-04T19:40:22.940Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd39")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd38")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala337Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Ala337Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd43"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-04T19:40:22.940Z"),
+	"role" : "observations",
+	"name" : "LATS2 p.Gly363Ser",
+	"identity" : "53f37718d7db4984c320dd41",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd42"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-04T19:40:22.940Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd39")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd38")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly363Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "LATS2"
+			},
+			{
+				"key" : "label",
+				"value" : "LATS2 p.Gly363Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000150457"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382592"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd46"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-04T19:40:22.940Z"),
+	"role" : "observations",
+	"name" : "UBBP4 p.Arg73Leu",
+	"identity" : "53f37718d7db4984c320dd44",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd45"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-04T19:40:22.940Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd39")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd38")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg73Leu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "UBBP4"
+			},
+			{
+				"key" : "label",
+				"value" : "UBBP4 p.Arg73Leu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000263563"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000578713"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd47"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-04T19:40:22.940Z"),
+	"role" : "samples",
+	"identity" : "TST036BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd48"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-04T19:40:22.940Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST036BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd38")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd4b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-04T19:40:22.940Z"),
+	"role" : "observations",
+	"name" : "IDH1 p.Arg132Gly",
+	"identity" : "53f37718d7db4984c320dd49",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd4a"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-04T19:40:22.940Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd47")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd38")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg132Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "IDH1"
+			},
+			{
+				"key" : "label",
+				"value" : "IDH1 p.Arg132Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000138413"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000415913"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd4e"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-04T19:40:22.940Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Ala337Val",
+	"identity" : "53f37718d7db4984c320dd4c",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd4d"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-04T19:40:22.940Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd47")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd38")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala337Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Ala337Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd51"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-04T19:40:22.940Z"),
+	"role" : "observations",
+	"name" : "LATS2 p.Gly363Ser",
+	"identity" : "53f37718d7db4984c320dd4f",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd50"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-04T19:40:22.940Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd47")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd38")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly363Ser"
+			},
+			{
+				"key" : "geneName",
+				"value" : "LATS2"
+			},
+			{
+				"key" : "label",
+				"value" : "LATS2 p.Gly363Ser"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000150457"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000382592"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd54"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-04T19:40:22.940Z"),
+	"role" : "observations",
+	"name" : "UBBP4 p.Arg73Leu",
+	"identity" : "53f37718d7db4984c320dd52",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd53"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-04T19:40:22.940Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd47")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd38")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg73Leu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "UBBP4"
+			},
+			{
+				"key" : "label",
+				"value" : "UBBP4 p.Arg73Leu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000263563"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000578713"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd5a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-03T20:54:54.241Z"),
+	"role" : "participants",
+	"identity" : "TST-037",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd55"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-12-03T20:54:54.241Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-037"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd56"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-12-03T20:54:54.241Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-12-03T20:54:54.241"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd57"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-12-07T20:25:47.658Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-12-07T20:25:47.658"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd58"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-12-07T22:02:29.618Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-12-07T22:02:29.618"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 3
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd59"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-12-09T18:59:14.132Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-12-09T18:59:14.132"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd5b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-09T21:24:05.810Z"),
+	"role" : "samples",
+	"identity" : "TST037BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd5c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-09T21:24:05.810Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST037BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd5a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd5f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-09T21:24:05.810Z"),
+	"role" : "observations",
+	"name" : "UBBP4 p.Arg73Leu",
+	"identity" : "53f37718d7db4984c320dd5d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd5e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-09T21:24:05.810Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd5b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd5a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg73Leu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "UBBP4"
+			},
+			{
+				"key" : "label",
+				"value" : "UBBP4 p.Arg73Leu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000263563"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000578713"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd60"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-09T21:24:05.810Z"),
+	"role" : "samples",
+	"identity" : "TST037BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd61"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-09T21:24:05.810Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST037BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd5a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd64"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-09T21:24:05.810Z"),
+	"role" : "observations",
+	"name" : "UBBP4 p.Arg73Leu",
+	"identity" : "53f37718d7db4984c320dd62",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd63"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-09T21:24:05.810Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd60")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd5a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg73Leu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "UBBP4"
+			},
+			{
+				"key" : "label",
+				"value" : "UBBP4 p.Arg73Leu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000263563"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000578713"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd6a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-06T19:00:19.591Z"),
+	"role" : "participants",
+	"identity" : "TST-038",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd65"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-12-06T19:00:19.591Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-038"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd66"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-12-06T19:00:19.591Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-12-06T19:00:19.591"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd67"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-12-07T17:09:04.485Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-12-07T17:09:04.485"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd68"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-12-07T19:35:51.983Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-12-07T19:35:51.983"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 5
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd69"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-12-09T22:08:56.263Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-12-09T22:08:56.263"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd6b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-09T22:46:43.334Z"),
+	"role" : "samples",
+	"identity" : "TST038BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd6c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-09T22:46:43.334Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST038BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd6a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd6f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-09T22:46:43.334Z"),
+	"role" : "observations",
+	"name" : "CTNNB1 p.Ser38Phe",
+	"identity" : "53f37718d7db4984c320dd6d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd6e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-09T22:46:43.334Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd6b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd6a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser38Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CTNNB1"
+			},
+			{
+				"key" : "label",
+				"value" : "CTNNB1 p.Ser38Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168036"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000349496"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd70"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-09T22:46:43.334Z"),
+	"role" : "samples",
+	"identity" : "TST038BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd71"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-09T22:46:43.334Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST038BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd6a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd74"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-09T22:46:43.334Z"),
+	"role" : "observations",
+	"name" : "CTNNB1 p.Ser38Phe",
+	"identity" : "53f37718d7db4984c320dd72",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd73"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-09T22:46:43.334Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd70")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd6a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser38Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CTNNB1"
+			},
+			{
+				"key" : "label",
+				"value" : "CTNNB1 p.Ser38Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168036"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000349496"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd7a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-06T19:02:48.806Z"),
+	"role" : "participants",
+	"identity" : "TST-039",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd75"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-12-06T19:02:48.806Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-039"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd76"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-12-06T19:02:48.806Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-12-06T19:02:48.806"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd77"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-12-08T14:17:07.652Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-12-08T14:17:07.652"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd78"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-12-08T21:26:49.974Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-12-08T21:26:49.974"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 6
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd79"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-12-09T19:07:04.957Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-12-09T19:07:04.957"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd7b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-10T15:08:42.497Z"),
+	"role" : "samples",
+	"identity" : "TST039BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd7c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-10T15:08:42.497Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST039BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd7a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd7f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-10T15:08:42.497Z"),
+	"role" : "observations",
+	"name" : "NEFH p.Glu645Lys",
+	"identity" : "53f37718d7db4984c320dd7d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd7e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-10T15:08:42.497Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd7b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd7a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu645Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NEFH"
+			},
+			{
+				"key" : "label",
+				"value" : "NEFH p.Glu645Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000100285"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000310624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd80"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-10T15:08:42.497Z"),
+	"role" : "samples",
+	"identity" : "TST039BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd81"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-10T15:08:42.497Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST039BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd7a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd84"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-10T15:08:42.497Z"),
+	"role" : "observations",
+	"name" : "NEFH p.Glu645Lys",
+	"identity" : "53f37718d7db4984c320dd82",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd83"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-10T15:08:42.497Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd80")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd7a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu645Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "NEFH"
+			},
+			{
+				"key" : "label",
+				"value" : "NEFH p.Glu645Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000100285"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000310624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd8a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-12T19:28:29.714Z"),
+	"role" : "participants",
+	"identity" : "TST-040",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd85"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-12-12T19:28:29.714Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-040"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd86"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-12-12T19:28:29.714Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-12-12T19:28:29.714"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd87"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-12-16T19:54:16.483Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-12-16T19:54:16.483"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd88"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-12-16T20:57:40.099Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-12-16T20:57:40.099"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 4
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd89"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-12-19T18:38:19.760Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-12-19T18:38:19.760"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd8b"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-19T18:55:56.638Z"),
+	"role" : "samples",
+	"identity" : "TST040BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd8c"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-19T18:55:56.638Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST040BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd8a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd8f"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-19T18:55:56.638Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Val",
+	"identity" : "53f37718d7db4984c320dd8d",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd8e"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-19T18:55:56.638Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd8b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd8a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd92"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-19T18:55:56.638Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.His1047Leu",
+	"identity" : "53f37718d7db4984c320dd90",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd91"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-19T18:55:56.638Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd8b")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd8a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.His1047Leu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.His1047Leu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd93"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-19T18:55:56.638Z"),
+	"role" : "samples",
+	"identity" : "TST040BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd94"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-19T18:55:56.638Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST040BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd8a")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd97"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-19T18:55:56.638Z"),
+	"role" : "observations",
+	"name" : "KRAS p.Gly12Val",
+	"identity" : "53f37718d7db4984c320dd95",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd96"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-19T18:55:56.638Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd93")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd8a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gly12Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "KRAS p.Gly12Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000133703"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000256078"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dd9a"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-19T18:55:56.638Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.His1047Leu",
+	"identity" : "53f37718d7db4984c320dd98",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dd99"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-19T18:55:56.638Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd93")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dd8a")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.His1047Leu"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.His1047Leu"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dda0"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-18T22:57:41.818Z"),
+	"role" : "participants",
+	"identity" : "TST-041",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd9b"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-12-18T22:57:41.818Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-041"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd9c"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-12-18T22:57:41.818Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-12-18T22:57:41.818"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd9d"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-12-20T16:32:45.152Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-12-20T16:32:45.152"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd9e"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-12-20T20:28:23.773Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-12-20T20:28:23.773"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 5
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320dd9f"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-12-22T22:01:34.350Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-12-22T22:01:34.350"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dda1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "samples",
+	"identity" : "TST041BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dda2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST041BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dda5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu545Lys",
+	"identity" : "53f37718d7db4984c320dda3",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dda4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu545Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu545Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320dda8"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "HRAS p.Gln61Arg",
+	"identity" : "53f37718d7db4984c320dda6",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320dda7"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "HRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "HRAS p.Gln61Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000174775"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000451590"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddab"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "KLHL30 p.Ala195Val",
+	"identity" : "53f37718d7db4984c320dda9",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddaa"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala195Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KLHL30"
+			},
+			{
+				"key" : "label",
+				"value" : "KLHL30 p.Ala195Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168427"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000409223"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddae"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Arg322Lys",
+	"identity" : "53f37718d7db4984c320ddac",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddad"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg322Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Arg322Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddb1"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "EEF1B2 p.Ser43Gly",
+	"identity" : "53f37718d7db4984c320ddaf",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddb0"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser43Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "EEF1B2"
+			},
+			{
+				"key" : "label",
+				"value" : "EEF1B2 p.Ser43Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000114942"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000392222"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddb4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "ZNF837 p.Ala242Thr",
+	"identity" : "53f37718d7db4984c320ddb2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddb3"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda1")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala242Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF837"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF837 p.Ala242Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000152475"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000427624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddb5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "samples",
+	"identity" : "TST041BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddb6"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST041BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddb9"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "PIK3CA p.Glu545Lys",
+	"identity" : "53f37718d7db4984c320ddb7",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddb8"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddb5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Glu545Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "PIK3CA"
+			},
+			{
+				"key" : "label",
+				"value" : "PIK3CA p.Glu545Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000121879"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000263967"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddbc"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "HRAS p.Gln61Arg",
+	"identity" : "53f37718d7db4984c320ddba",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddbb"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddb5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Gln61Arg"
+			},
+			{
+				"key" : "geneName",
+				"value" : "HRAS"
+			},
+			{
+				"key" : "label",
+				"value" : "HRAS p.Gln61Arg"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000174775"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000451590"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddbf"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "KLHL30 p.Ala195Val",
+	"identity" : "53f37718d7db4984c320ddbd",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddbe"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddb5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala195Val"
+			},
+			{
+				"key" : "geneName",
+				"value" : "KLHL30"
+			},
+			{
+				"key" : "label",
+				"value" : "KLHL30 p.Ala195Val"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168427"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000409223"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddc2"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "ZNF814 p.Arg322Lys",
+	"identity" : "53f37718d7db4984c320ddc0",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddc1"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddb5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Arg322Lys"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF814"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF814 p.Arg322Lys"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000204514"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000435989"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddc5"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "EEF1B2 p.Ser43Gly",
+	"identity" : "53f37718d7db4984c320ddc3",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddc4"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddb5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser43Gly"
+			},
+			{
+				"key" : "geneName",
+				"value" : "EEF1B2"
+			},
+			{
+				"key" : "label",
+				"value" : "EEF1B2 p.Ser43Gly"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000114942"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000392222"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddc8"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-22T22:11:37.775Z"),
+	"role" : "observations",
+	"name" : "ZNF837 p.Ala242Thr",
+	"identity" : "53f37718d7db4984c320ddc6",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddc7"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-22T22:11:37.775Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddb5")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320dda0")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ala242Thr"
+			},
+			{
+				"key" : "geneName",
+				"value" : "ZNF837"
+			},
+			{
+				"key" : "label",
+				"value" : "ZNF837 p.Ala242Thr"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000152475"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000427624"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddce"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-24T15:29:11.853Z"),
+	"role" : "participants",
+	"identity" : "TST-042",
+	"steps" : [
+		{
+			"id" : ObjectId("53f37718d7db4984c320ddc9"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d8"),
+			"stepDate" : ISODate("2014-12-24T15:29:11.853Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "identifier",
+				"identity" : "TST-042"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320ddca"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8d9"),
+			"stepDate" : ISODate("2014-12-24T15:29:11.853Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "enrolmentDate",
+				"value" : "2014-12-24T15:29:11.853"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320ddcb"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8da"),
+			"stepDate" : ISODate("2014-12-26T15:08:52.949Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "consentDate",
+				"value" : "2014-12-26T15:08:52.949"
+			}
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320ddcc"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8db"),
+			"stepDate" : ISODate("2014-12-26T22:56:17.504Z"),
+			"stepUser" : "swatt",
+			"fields" : [
+				{
+					"key" : "biopsyDate",
+					"value" : "2014-12-26T22:56:17.504"
+				},
+				{
+					"key" : "biopsyCores",
+					"value" : 5
+				}
+			]
+		},
+		{
+			"id" : ObjectId("53f37718d7db4984c320ddcd"),
+			"stepRef" : ObjectId("53f37718d7db4984c320d8dc"),
+			"stepDate" : ISODate("2014-12-27T20:45:28.265Z"),
+			"stepUser" : "swatt",
+			"fields" : {
+				"key" : "pathologyDate",
+				"value" : "2014-12-27T20:45:28.265"
+			}
+		}
+	]
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddcf"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-28T15:17:39.331Z"),
+	"role" : "samples",
+	"identity" : "TST042BIOXPAR1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddd0"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-28T15:17:39.331Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST042BIOXPAR1"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddce")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddd3"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-28T15:17:39.331Z"),
+	"role" : "observations",
+	"name" : "CTNNB1 p.Ser37Phe",
+	"identity" : "53f37718d7db4984c320ddd1",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddd2"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-28T15:17:39.331Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddcf")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddce")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser37Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CTNNB1"
+			},
+			{
+				"key" : "label",
+				"value" : "CTNNB1 p.Ser37Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168036"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000349496"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddd4"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-28T15:17:39.331Z"),
+	"role" : "samples",
+	"identity" : "TST042BIOXPAR2",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddd5"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e1"),
+		"stepDate" : ISODate("2014-12-28T15:17:39.331Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "identifier",
+				"identity" : "TST042BIOXPAR2"
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddce")
+			},
+			{
+				"key" : "source",
+				"value" : "Biopsy"
+			},
+			{
+				"key" : "type",
+				"value" : "FFPE"
+			}
+		]
+	}
+});
+db.entities.insert({
+	"_id" : ObjectId("53f37718d7db4984c320ddd8"),
+	"studyId" : ObjectId("53f37718d7db4984c320d8d7"),
+	"lastModified" : ISODate("2014-12-28T15:17:39.331Z"),
+	"role" : "observations",
+	"name" : "CTNNB1 p.Ser37Phe",
+	"identity" : "53f37718d7db4984c320ddd6",
+	"steps" : {
+		"id" : ObjectId("53f37718d7db4984c320ddd7"),
+		"stepRef" : ObjectId("53f37718d7db4984c320d8e5"),
+		"stepDate" : ISODate("2014-12-28T15:17:39.331Z"),
+		"stepUser" : "swatt",
+		"fields" : [
+			{
+				"key" : "sampleEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddd4")
+			},
+			{
+				"key" : "participantEntityRef",
+				"ref" : ObjectId("53f37718d7db4984c320ddce")
+			},
+			{
+				"key" : "aminoAcidMutation",
+				"value" : "p.Ser37Phe"
+			},
+			{
+				"key" : "geneName",
+				"value" : "CTNNB1"
+			},
+			{
+				"key" : "label",
+				"value" : "CTNNB1 p.Ser37Phe"
+			},
+			{
+				"key" : "geneId",
+				"value" : "ENSG00000168036"
+			},
+			{
+				"key" : "transcriptId",
+				"value" : "ENST00000349496"
 			}
 		]
 	}

@@ -7,7 +7,7 @@
     </div>
 
     <div ng-repeat="study in studies.data">
-      <h3><a ng-href="{{study.url}}">{{study.name}}</a></h3>
+      <h3><a ng-href="/studies/{{study.name | encodeURIComponent}}">{{study.name}}</a></h3>
       <p>
         <span class="inline-list">
           <span class="inline-item" ng-repeat="(key, value) in study.statistics">{{key | capitalize}}: {{value.count}}</span>
