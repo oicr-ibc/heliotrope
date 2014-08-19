@@ -85,27 +85,27 @@ heliotropeLocalStrategy = (username, password, done) ->
       if err
         callback err, null
       else
-        databaseCallback = (err, user) ->
+        databaseCallback = (err, user, message) ->
           db.close()
-          done(err, user)
+          done(err, user, message)
 
         db.collection "users", (err, users) ->
           if err
             databaseCallback err, null
           else
             users.findOne {userId: username}, (err, user) ->
-              return databaseCallback(err, null) if err?
-              return databaseCallback(null, null) if users.length == 0 || users.length > 1
+              return databaseCallback(err) if err?
+              return databaseCallback(null, false, { message: 'Incorrect username' }) if users.length == 0 || users.length > 1
               bcrypt.compare password, user.password, (err, res) ->
-                return databaseCallback(err, null) if err?
+                return databaseCallback(err) if err?
                 if !res
-                  databaseCallback null, null
+                  databaseCallback null, false, { message: 'Incorrect password' }
                 else
                   databaseCallback null, user
 
   ldapAuthenticate = () ->
 
-    ldapCallback = (err, user) ->
+    ldapCallback = (err, user, message) ->
       if err || !user
         databaseAuthenticate()
       else
@@ -114,10 +114,10 @@ heliotropeLocalStrategy = (username, password, done) ->
         deserializer(userId, done)
 
     ldap = new LdapAuth(config.ldap)
-    ldap.authenticate username, password, (err, user) ->
+    ldap.authenticate username, password, (err, user, message) ->
       ldap.close (closeErr) ->
         logger.error "Error closing LDAP client", closeErr if closeErr
-        ldapCallback(err, user)
+        ldapCallback(err, user, message)
 
   if config['ldap']['enabled']
     ldapAuthenticate()

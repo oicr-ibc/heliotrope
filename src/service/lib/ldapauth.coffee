@@ -140,12 +140,12 @@ class LdapAuth
         if err
           callback(err)
         else if !user
-          callback(format('no such user: "%s"', username))
+          callback(null, false, {message: format('no such user: "%s"', username)})
         else
           self._userClient.bind user.dn, password, (err) ->
             if err
               self.log && self.log.trace('ldap authenticate: bind error: %s', err)
-              callback(err)
+              callback(null, false, {message: err})
             else if self.opts.cache
               bcrypt.hash password, self._salt, (err, hash) ->
                 self.userCache.set username, {password: hash, user: user}
