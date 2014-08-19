@@ -15,6 +15,7 @@ var gulp = require('gulp'),
     debug = require('gulp-debug'),
     url = require('url'),
     proxy = require('proxy-middleware'),
+    gulpif = require('gulp-if'),
     isWatching = false;
 
 // When we have a URL that matches ^/api/, wejust forward, otherwise we
@@ -97,12 +98,12 @@ gulp.task('coffee', function () {
 });
 gulp.task('coffee-service', function () {
   return gulp.src([
-    './src/service/**/*.*coffee'
+    './src/service/**/*.*'
   ])
-    .pipe(g.coffee())
+    .pipe(gulpif(/[.]coffee$/, g.coffee()))
     .pipe(gulp.dest('./.tmp/src/service'));
 });
-gulp.task('service-dist', ['coffee-service'], function() {
+gulp.task('service-dist', function() {
   return serviceFiles().pipe(gulp.dest('./dist'));
 });
 

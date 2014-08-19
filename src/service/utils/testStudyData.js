@@ -9,7 +9,7 @@ db.createCollection('entities');
 db.studies.insert({
 	"_id" : ObjectId("53f26ad4b5e8ab4d14ebe849"),
 	"version" : 1,
-	"name" : "GPS",
+	"name" : "Test Study",
 	"access" : {
 		"modify" : [
 			"swatt",

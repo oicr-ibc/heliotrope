@@ -31,7 +31,7 @@ numberOfParticipants = 42
 db.studies.insert
   "_id" : getId('study')
   "version": 1
-  "name": "GPS"
+  "name": "Test Study"
   "access" :
     "modify" : ["swatt", "acavender"]
     "read": ["oloudon", "mweisner", "sboon"]

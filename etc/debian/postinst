@@ -61,22 +61,13 @@ case "$1" in
         db_get heliotrope-server/admin_password
 
         if [ "$RET" != "" ] ; then
-            echo Updating administrator password.
-            # We should really hash the password instead of storing in clear-text
-            #adminpw=`echo -n $RET | sha256sum | cut -d ' ' -f 1`
-            adminpw=$RET
-            tfile=`mktemp`
 
-	        if [ ! -f "$tfile" ]; then
-               return 1
-          fi
+          echo Updating administrator password.
+          DB_ADMIN_PASSWORD=$RET
 
-        # This should set the admin password, if it is possible. We have a
-        # script to do that. Of course, it might fail to connect to the database...
-
-			# cat /etc/heliotrope/shiro.ini | sed \
-			#   -e "s/^administrator\s*=.*,/administrator=$adminpw,/" \
-			#   > $tfile && mv $tfile /etc/heliotrope/shiro.ini
+          # This should set the admin password, if it is possible. We have a
+          # script to do that. Of course, it might fail to connect to the database...
+          /usr/bin/heliotrope/node/bin/node /usr/bin/heliotrope/dist/utils/addAdminUser.js --username "admin" --password "$DB_ADMIN_PASSWORD"
 
         fi
 
@@ -98,6 +89,16 @@ case "$1" in
 
         chown -R heliotrope:adm /var/log/heliotrope /etc/heliotrope
         chmod -R 750      /var/log/heliotrope /etc/heliotrope
+
+        # Also, if we're installing, we ought to add the test data. This is
+        # something we can do directly in the shell.
+
+        MONGO_USER_OPTIONS=
+        if [ "$DB_USER" != "" ] ; then
+          MONGO_USER_OPTIONS='--username "$DB_USER" --password "$DB_PASSWORD"'
+        fi
+
+        mongo "$DB_HOST:$DB_PORT/$DB_NAME" $MONGO_USER_OPTIONS </usr/bin/heliotrope/dist/utils/testStudyData.js >/dev/null
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
