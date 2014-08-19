@@ -67,7 +67,7 @@ case "$1" in
 
           # This should set the admin password, if it is possible. We have a
           # script to do that. Of course, it might fail to connect to the database...
-          /usr/bin/heliotrope/node/bin/node /usr/bin/heliotrope/dist/utils/addAdminUser.js --username "admin" --password "$DB_ADMIN_PASSWORD"
+          /usr/lib/heliotrope/node/bin/node /usr/lib/heliotrope/utils/addAdminUser.js --username "admin" --password "$DB_ADMIN_PASSWORD"
 
         fi
 
@@ -98,7 +98,7 @@ case "$1" in
           MONGO_USER_OPTIONS='--username "$DB_USER" --password "$DB_PASSWORD"'
         fi
 
-        mongo "$DB_HOST:$DB_PORT/$DB_NAME" $MONGO_USER_OPTIONS </usr/bin/heliotrope/dist/utils/testStudyData.js >/dev/null
+        mongo "$DB_HOST:$DB_PORT/tracker" $MONGO_USER_OPTIONS </usr/lib/heliotrope/utils/testStudyData.js >/dev/null
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
