@@ -16,7 +16,7 @@ password = argv['password']
 
 config = require('../lib/configuration').getConfiguration()
 
-logger.info "Adding admin user: #{username}, password: #{password}"
+logger.info "Connecting to #{config['data']['user']['store']['url']}"
 MongoClient.connect config['data']['user']['store']['url'], (err, db) ->
   if err
     throw new Error("Can't connect to user database!")
@@ -25,6 +25,7 @@ MongoClient.connect config['data']['user']['store']['url'], (err, db) ->
       if err
         throw new Error("Can't get users collection!");
       else
+        logger.info "Adding admin user: #{username}, password: #{password}"
         bcrypt.genSalt 10, (err, salt) ->
           bcrypt.hash password, salt, (err, hash) ->
             users.update {"userId" : username},

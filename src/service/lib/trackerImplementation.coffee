@@ -43,7 +43,7 @@ module.exports.getStudies = (req, res) ->
       results = {}
       for doc in docs
 
-        config = res.app.locals.config
+        config = res.locals.config
         doc.url = config['baseUrl'] + config['trackerUriBase'] + "/studies/" + doc.name
         doc.statistics = {}
         doc.lastModified = ""
@@ -156,7 +156,7 @@ module.exports.getStudy = (req, res) ->
   db = res.locals.db
   findStudy req, res, 'read', (err, doc) ->
 
-    return res.status(err.code).send(err.error) if err?
+    return res.status(err.status).send(err.error) if err?
 
     studyId = new BSON.ObjectID doc._id.toString()
     studySelector = {"studyId": studyId}
@@ -651,7 +651,8 @@ buildEntityStepUrls = (entity, stepsArray) ->
     stepTable[step._id.toString()] = step
 
   # At this late stage, we can filter out steps we don't want
-  entity.steps.filter (step) ->
+
+  stepFilter = (step) ->
     stepDefinition = stepTable[step.stepRef.toString()]
     url = entity.url
     if stepDefinition
@@ -660,6 +661,9 @@ buildEntityStepUrls = (entity, stepsArray) ->
       true
     else
       false
+
+  steps = entity.steps || []
+  (step for step in steps when stepFilter(step))
 
 ## Woefully inadequate. This requires us to locate related entities, as usual, and we also ought to do all
 ## the field defaulting code just as we do for the entity as a whole.
