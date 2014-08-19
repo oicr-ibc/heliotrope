@@ -1,5 +1,5 @@
 // This file is loaded when running the test suite. Really, we should use a test database
-// containing a minimal set of objects which we can use to test out the service. 
+// containing a minimal set of objects which we can use to test out the service.
 
 db.entities.drop();
 db.createCollection("entities");
@@ -28,7 +28,7 @@ db.entities.insert({
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "stepUser" : "swatt",
     "fields" : [{
-      "key" : "identifier", 
+      "key" : "identifier",
       "identity" : "TST-001"
     }]
   }, {
@@ -140,14 +140,14 @@ db.entities.insert({
 // The uniqueness (identity) of an observation is different. We don't
 // always have one. In this case, therefore, we need to model out a
 // way of handling the reference to the observation and its related
-// data. There is possibly a very good case for denormalization here, 
+// data. There is possibly a very good case for denormalization here,
 // with an identity top-level field which we can use to enforce
 // uniqueness, independent of an identity field value. The identity
 // field value is still useful, as it provides a hook for setting the
-// top-level field. 
+// top-level field.
 //
 // The label field offers an alternative to an identity for presentation
-// purposes, but isn't enforced as unique. 
+// purposes, but isn't enforced as unique.
 
 db.entities.insert({
   "studyId" : study_id,
@@ -161,20 +161,20 @@ db.entities.insert({
     "stepDate" : new Date(2012, 10, 12, 11, 45),
     "stepUser" : "swatt",
     "fields": [{
-      "key" : "sampleEntityRef", 
+      "key" : "sampleEntityRef",
       "ref" : get_entity_id(study_id, "samples", "TST001BIOXPAR1")
     }, {
-      "key" : "participantEntityRef", 
+      "key" : "participantEntityRef",
       "ref" : get_entity_id(study_id, "participants", "TST-001")
     }, {
-      "key" : "aminoAcidMutation", 
+      "key" : "aminoAcidMutation",
       "value" : "p.Gly12Asp"
     }, {
-      "key" : "geneName", 
-      "value" : "KRAS"      
+      "key" : "geneName",
+      "value" : "KRAS"
     }, {
-      "key" : "label", 
-      "value" : "KRAS p.Gly12Asp"      
+      "key" : "label",
+      "value" : "KRAS p.Gly12Asp"
     }, {
       "key" : "geneId",
       "value" : "ENSG00000133703"

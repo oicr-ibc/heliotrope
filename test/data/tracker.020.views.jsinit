@@ -11,7 +11,7 @@ db.views.insert({
   "role" : "studies",
   "label" : { "default" : "Summary" },
   "weight" : 0,
-  "body" : 
+  "body" :
 "<dl>\n" +
 "  <dt>Number of participants</dt>\n" +
 "  <dd>{{study.data.counts.participants}}</dd>\n" +
@@ -28,9 +28,9 @@ db.views.insert({
   "role" : "studies",
   "label" : { "default" : "Participants" },
   "weight" : 100,
-  "body" : 
+  "body" :
 "<div heli-study-entities role='participants' label='Participants'>\n" +
-"</div>\n" + 
+"</div>\n" +
 "<br>\n"
 });
 
@@ -40,9 +40,9 @@ db.views.insert({
   "role" : "studies",
   "label" : { "default" : "Samples" },
   "weight" : 200,
-  "body" : 
+  "body" :
 "<div heli-study-entities role='samples' label='Samples'>\n" +
-"</div>\n" + 
+"</div>\n" +
 "<br>\n"
 });
 
@@ -52,7 +52,7 @@ db.views.insert({
   "role" : "participants",
   "label" : { "default" : "Summary" },
   "weight" : 0,
-  "body" : 
+  "body" :
 "<dl>\n" +
 "  <dt>Registered</dt>\n" +
 "  <dd>{{entity.data.values.enrolmentDate | field}}</dd>\n" +
@@ -77,7 +77,7 @@ db.views.insert({
   "role" : "participants",
   "label" : { "default" : "Enrolment" },
   "weight" : 100,
-  "body" : 
+  "body" :
 "<dl>\n" +
 "  <dt>Registered</dt>\n" +
 "  <dd>{{entity.data.values.enrolmentDate | field}}</dd>\n" +
@@ -92,11 +92,11 @@ db.views.insert({
   "role" : "participants",
   "label" : { "default" : "Samples" },
   "weight" : 200,
-  "body" : 
+  "body" :
 "<table>\n" +
 "  <thead></thead>\n" +
 "  <tbody>\n" +
-"    <tr ng-repeat='sample in entity.data.related.samples'>\n" + 
+"    <tr ng-repeat='sample in entity.data.related.samples'>\n" +
 "      <td><a href='{{sample.url}}'>{{sample.identity}}</a>\n" +
 "    </tr>\n" +
 "  <tbody>\n" +
@@ -109,7 +109,7 @@ db.views.insert({
   "role" : "participants",
   "label" : { "default" : "Clinical history" },
   "weight" : 300,
-  "body" : 
+  "body" :
 "<div>\n" +
 "{{entity.data.values.clinicalHistory | field}}\n" +
 "</div>"
@@ -121,7 +121,7 @@ db.views.insert({
   "role" : "participants",
   "label" : { "default" : "Observations" },
   "weight" : 400,
-  "body" : 
+  "body" :
 "<table heli-observations>\n" +
 "</table>"
 });
@@ -132,7 +132,7 @@ db.views.insert({
   "role" : "participants",
   "label" : { "default" : "Steps" },
   "weight" : 500,
-  "body" : 
+  "body" :
 "<div>\n" +
 "<div heli-entity-steps></div>\n" +
 "</div>"
@@ -144,7 +144,7 @@ db.views.insert({
   "role" : "samples",
   "label" : { "default" : "Summary" },
   "weight" : 0,
-  "body" : 
+  "body" :
 "<dl>\n" +
 "  <dt>Requires collection</dt>\n" +
 "  <dd>{{entity.data.values.requiresCollection | field}}</dd>\n" +
@@ -159,11 +159,11 @@ db.views.insert({
   "role" : "samples",
   "label" : { "default" : "Participant" },
   "weight" : 100,
-  "body" : 
+  "body" :
 "<table>\n" +
 "  <thead></thead>\n" +
 "  <tbody>\n" +
-"    <tr ng-repeat='participant in entity.data.related.participants'>\n" + 
+"    <tr ng-repeat='participant in entity.data.related.participants'>\n" +
 "      <td><a href='{{participant.url}}'>{{participant.identity}}</a>\n" +
 "    </tr>\n" +
 "  </tbody>\n" +
@@ -176,7 +176,7 @@ db.views.insert({
   "role" : "samples",
   "label" : { "default" : "Observations" },
   "weight" : 400,
-  "body" : 
+  "body" :
 "<table heli-observations>\n" +
 "</table>"
 });
@@ -187,7 +187,7 @@ db.views.insert({
   "role" : "samples",
   "label" : { "default" : "Steps" },
   "weight" : 500,
-  "body" : 
+  "body" :
 "<div>\n" +
 "<div heli-entity-steps></div>\n" +
 "</div>"
@@ -199,7 +199,7 @@ db.views.insert({
   "role" : "observations",
   "label" : { "default" : "Summary" },
   "weight" : 0,
-  "body" : 
+  "body" :
 "<dl>\n" +
 "  <dt>Gene name</dt>\n" +
 "  <dd>{{entity.data.values.geneName | field}}</dd>\n" +
@@ -225,7 +225,7 @@ db.views.insert({
   "role" : "observations",
   "label" : { "default" : "Steps" },
   "weight" : 500,
-  "body" : 
+  "body" :
 "<div>\n" +
 "<div heli-entity-steps></div>\n" +
 "</div>"

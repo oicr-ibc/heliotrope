@@ -1,9 +1,9 @@
 // Test JavaScript code. Use this to initialize the database before each test, and get a database
-// connection you can use. 
+// connection you can use.
 //
-// In an ideal world, we would script this imaginatively. In this world, we grab a bunch of 
+// In an ideal world, we would script this imaginatively. In this world, we grab a bunch of
 // JS files, turn them into a concatenated string, and throw it into eval. We can't use load
-// as it doesn't exist server-side. 
+// as it doesn't exist server-side.
 
 var fs = require('fs'),
     mongo = require("mongodb"),
@@ -34,7 +34,7 @@ function withDB(database, callback) {
 					console.error(err);
 					return;
 				}
-	      db.eval(data.join("\n"), [], 
+	      db.eval(data.join("\n"), [],
 	        function(err, result) {
 	        	if (err) {
 	        		console.error(err);

@@ -22,12 +22,12 @@ describe('GET request', function() {
   describe('/steps/GPS/participants/participant', function() {
     it('should retrieve a step definition', function(done) {
       db.close();
-      
+
       var request = {"params": {"study" : "GPS", "role" : "participants", "step" : "participant"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getStudyStep(null, db, request, response, function(db, err, result, res) {
         db.close();
-        
+
         should.not.exist(err);
         should.exist(result);
         should.exist(result.data);
@@ -41,12 +41,12 @@ describe('GET request', function() {
   describe('/steps/GPS/participants/enrolment', function() {
     it('should retrieve a step definition', function(done) {
       db.close();
-      
+
       var request = {"params": {"study" : "GPS", "role" : "participants", "step" : "enrolment"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getStudyStep(null, db, request, response, function(db, err, result, res) {
         db.close();
-        
+
         should.not.exist(err);
         should.exist(result);
         should.exist(result.data);
@@ -60,12 +60,12 @@ describe('GET request', function() {
   describe('/views/GPS/participants/summary', function() {
     it('should retrieve a view definition', function(done) {
       db.close();
-      
+
       var request = {"params": {"study" : "GPS", "role" : "participants", "view" : "summary"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       tracker.getStudyView(null, db, request, response, function(db, err, result, res) {
         db.close();
-        
+
         should.not.exist(err);
         should.exist(result);
         should.exist(result.data);
@@ -75,7 +75,7 @@ describe('GET request', function() {
         result.data.view.name.should.equal("summary");
         result.data.view.role.should.equal("participants");
         should.exist(result.data.view.body);
-        
+
         res.locals.passthrough.should.equal("value");
         done();
       });
@@ -97,7 +97,7 @@ describe('POST request', function() {
   describe('/steps/GPS', function() {
     it('should create a step definition', function(done) {
       db.close();
-      
+
       var request = {"params": {"study" : "GPS"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       request["body"] = {
@@ -123,7 +123,7 @@ describe('POST request', function() {
 
       tracker.postStudyStep(null, db, request, response, function(db, err, result, res) {
         db.close();
-        
+
         should.not.exist(err);
         should.exist(result);
         result.should.equal("/steps/GPS/participants/interviewing");
@@ -138,7 +138,7 @@ describe('POST request', function() {
   describe('/views/GPS', function() {
     it('should create a view definition', function(done) {
       db.close();
-      
+
       var request = {"params": {"study" : "GPS"}, "user": {"userId": "swatt"}};
       var response = {locals: {passthrough: "value"}};
       request["body"] = {
@@ -155,7 +155,7 @@ describe('POST request', function() {
 
       tracker.postStudyView(null, db, request, response, function(db, err, result, res) {
         db.close();
-        
+
         should.not.exist(err);
         should.exist(result);
         result.should.equal("/views/GPS/participants/report");

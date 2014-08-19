@@ -208,7 +208,7 @@ db.steps.insert({
       "type" : "Reference",
       "isRequired" : true,
       "isReadonly" : false,
-      "label" : { "default" : "Observation" }      
+      "label" : { "default" : "Observation" }
     },
     "reportable" : {
       "controlType" : "checkbox",
@@ -216,14 +216,14 @@ db.steps.insert({
       "default" : false,
       "isRequired" : true,
       "label" : { "default" : "Reportable" }
-    }, 
+    },
     "actionable" : {
       "controlType" : "checkbox",
       "type" : "Boolean",
       "default" : false,
       "isRequired" : true,
       "label" : { "default" : "Actionable" }
-    }, 
+    },
     "expertPanelDate" : {
       "controlType" : "date",
       "type" : "Date",
@@ -446,7 +446,7 @@ db.steps.insert({
       "controlType" : "text",
       "type" : "String",
       "isRequired" : true,
-      "label" : { "default" : "Depth" }      
+      "label" : { "default" : "Depth" }
     }
   }
 });
@@ -466,7 +466,7 @@ db.steps.insert({
       "default" : false,
       "isRequired" : true,
       "label" : { "default" : "Verified" }
-    }, 
+    },
     "frequency" : {
       "controlType" : "integer",
       "type" : "Integer",

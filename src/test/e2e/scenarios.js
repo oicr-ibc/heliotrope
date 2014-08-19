@@ -9,34 +9,34 @@ describe('heliotrope', function() {
   });
 
   describe('participant page', function() {
-    
+
     beforeEach(function() {
       browser().navigateTo('/studies/GPS/participants/TST-001');
     });
-    
+
     it('should render the participant page', function() {
       expect(element('h1:first').text()).toMatch("TST-001");
     });
   });
 
   describe('study page', function() {
-    
+
     beforeEach(function() {
       browser().navigateTo('/studies/GPS');
     });
-    
+
     it('should render the study page', function() {
       expect(element('h1:first').text()).toMatch("GPS");
     });
   });
 
   describe('variant page', function() {
-    
+
     beforeEach(function() {
       browser().navigateTo('/genes/KRAS');
       element('#mutations-list a:first', 'p.Gly12Asp').click();
     });
-    
+
     it('should render the variant page', function() {
       expect(element('h1:first').text()).toMatch("KRAS p.Gly12Asp");
       expect(element('#summary').text()).toMatch("missense_variant");
@@ -51,7 +51,7 @@ describe('heliotrope', function() {
       expect(element('h1:first').text()).toMatch("KRAS");
     });
   });
-  
+
 
   describe('gene page', function() {
 
@@ -62,7 +62,7 @@ describe('heliotrope', function() {
     it('should render KRAS page when user navigates to /genes/KRAS', function() {
       expect(element('h1:first').text()).toMatch("KRAS");
     });
-    
+
     it('should be able to navigate from KRAS page to a variant page', function() {
       expect(element('#mutations-list a:first').text()).toMatch("p.Gly12Asp");
       element('#mutations-list a:first', 'p.Gly12Asp').click();
@@ -86,6 +86,6 @@ describe('heliotrope', function() {
       expect(element('#gene-frequencies-tab svg').text()).toMatch("KRAS");
     });
   });
-  
-  
+
+
 });
