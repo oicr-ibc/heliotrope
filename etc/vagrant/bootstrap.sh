@@ -11,7 +11,7 @@ git clone https://github.com/oicr-ibc/heliotrope.git /usr/lib/heliotrope
 
 # Download and install the node.js stuff
 pushd /tmp
-wget http://nodejs.org/dist/node-latest.tar.gz
+wget -q http://nodejs.org/dist/node-latest.tar.gz
 mkdir node-latest-install
 cd node-latest-install
 tar xz --strip-components=1 < ../node-latest.tar.gz
