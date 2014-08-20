@@ -4,10 +4,12 @@
 sudo apt-get update
 sudo apt-get install -y ssl-cert adduser daemon psmisc nginx-light libc6 build-essential pkg-config git
 
+sudo adduser --system --home /usr/lib/heliotrope --no-create-home --disabled-password heliotrope
 sudo mkdir -p /usr/lib/heliotrope
 sudo mkdir -p /etc/heliotrope
-sudo chown vagrant:vagrant /usr/lib/heliotrope
-git clone https://github.com/oicr-ibc/heliotrope.git /usr/lib/heliotrope
+sudo chown -R heliotrope:adm /usr/lib/heliotrope
+
+sudo -u heliotrope git clone https://github.com/oicr-ibc/heliotrope.git /usr/lib/heliotrope
 
 # Download and install the node.js stuff
 pushd /tmp
@@ -16,7 +18,9 @@ mkdir node-latest-install
 cd node-latest-install
 tar xz --strip-components=1 < ../node-latest.tar.gz
 ./configure --shared-openssl --shared-zlib --prefix=/usr/lib/heliotrope/node
-make && make install
+make
+sudo make install
+sudo chown -R heliotrope:adm /usr/lib/heliotrope/node
 popd
 rm -rf /tmp/node-latest.tar.gz node-latest-install
 
@@ -29,19 +33,9 @@ sudo apt-get install -y mongodb-org=2.6.4
 # We also need a JRE
 sudo apt-get install -y openjdk-7-jre
 
-# Now install the required components
-pushd /usr/lib/heliotrope
-node/bin/npm install
-node/bin/npm install bower
-node/bin/npm install gulp
-node/bin/node node_modules/bower/bin/bower install --config.interactive=false
-node/bin/node node_modules/gulp/bin/gulp build-all
-node/bin/node node_modules/gulp/bin/gulp dist
-popd
-
 # Get the data
 pushd /tmp
-wget -q -O "https://googledrive.com/host/0B75vAAGHtrjaRGdaQV8wX3VrNVE/heliotrope-dump-1.1.tar.bz2"
+wget -q -O "heliotrope-dump-1.1.tar.bz2" "https://googledrive.com/host/0B75vAAGHtrjaRGdaQV8wX3VrNVE/heliotrope-dump-1.1.tar.bz2"
 mkdir dump
 pushd dump
 tar xvfj ../heliotrope-dump-1.1.tar.bz2
@@ -49,7 +43,19 @@ popd
 
 # Stuff the data into the MongoDB database
 mongorestore --db heliotrope dump/heliotrope
-rm -rf heliotrope-dump-1.0.tar.xz dump/heliotrope
+rm -rf heliotrope-dump-1.1.tar.bz2 dump/heliotrope
+
+# Now install the required components
+pushd /usr/lib/heliotrope
+sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/npm install
+sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/npm install bower
+sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/npm install gulp
+sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/node node_modules/bower/bin/bower install --config.interactive=false
+sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/node node_modules/gulp/bin/gulp build-all
+sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/node node_modules/gulp/bin/gulp dist
+sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/npm rebuild
+sudo -u heliotrope node/bin/node dist/utils/addAdminUser.js --username "admin" --password "admin"
+popd
 
 # Also load the sample tracker data
 mongo tracker </usr/lib/heliotrope/src/service/utils/testStudyData.js
@@ -67,17 +73,13 @@ sudo sed -i "s/{{mongodb_server}}/localhost/" /etc/heliotrope/config.json
 sudo sed -i "s/{{mongodb_port}}/27017/" /etc/heliotrope/config.json
 sudo sed -i "s/{{mongodb_name}}/heliotrope/" /etc/heliotrope/config.json
 sudo sed -i "s/mongodb:\/\/\:\@/mongodb:\/\//" /etc/heliotrope/config.json
-/usr/lib/heliotrope/node/bin/node /usr/lib/heliotrope/dist/utils/addAdminUser.js --username "admin" --password "admin"
 
 sudo cp /usr/lib/heliotrope/roles/webapp/templates/upstart-heliotrope.conf.j2 /etc/init/heliotrope.conf
 sudo sed -i "s/\/usr\/lib\/heliotrope/\/usr\/lib\/heliotrope\/dist/g" /etc/init/heliotrope.conf
 sudo sed -i "s/\/usr\/lib\/heliotrope\/dist\/node/\/usr\/lib\/heliotrope\/node/g" /etc/init/heliotrope.conf
 
-sudo adduser --system --home /usr/lib/heliotrope --no-create-home --disabled-password heliotrope
-sudo chown -R heliotrope:adm /usr/lib/heliotrope
-sudo chown -R heliotrope:adm /etc/heliotrope
-
 sudo service heliotrope start
 
-# # We're done if we get here
-# echo "All done :-)"
+# We're done if we get here
+echo "All done :-)"
+
