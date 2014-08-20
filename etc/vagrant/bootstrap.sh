@@ -1,88 +1,83 @@
 #!/usr/bin/env bash
 
-# Download and install the node.js stuff
-apt-get update
-apt-get install -y python-software-properties python g++ make xz-utils
-add-apt-repository -y ppa:nginx/stable
-apt-get update
-apt-get install -y ssl-cert
+# Download and install the prerequisites
+sudo apt-get update
+sudo apt-get install -y ssl-cert adduser daemon psmisc nginx-light libc6 build-essential pkg-config git
 
-# Install node.js from the latest release file. 
-cd
+sudo mkdir -p /usr/lib/heliotrope
+sudo mkdir -p /etc/heliotrope
+sudo chown vagrant:vagrant /usr/lib/heliotrope
+git clone https://github.com/oicr-ibc/heliotrope.git /usr/lib/heliotrope
+
+# Download and install the node.js stuff
+pushd /tmp
 wget http://nodejs.org/dist/node-latest.tar.gz
 mkdir node-latest-install
 cd node-latest-install
 tar xz --strip-components=1 < ../node-latest.tar.gz
-./configure
-make && sudo make install
-cd ..
-rm -rf node-latest.tar.gz node-latest-install
-
-npm install -g coffee-script
+./configure --shared-openssl --shared-zlib --prefix=/usr/lib/heliotrope/node
+make && make install
+popd
+rm -rf /tmp/node-latest.tar.gz node-latest-install
 
 # Now for MongoDB
-apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
-echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' | tee /etc/apt/sources.list.d/10gen.list
-apt-get update
-apt-get install -y mongodb-10gen
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+sudo echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/10gen.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org=2.6.4
 
-# We also need a JRE and nginx
-apt-get install -y openjdk-7-jre nginx
+# We also need a JRE
+sudo apt-get install -y openjdk-7-jre
 
-# Now let's get the stuff where we need it. Note that we need to make a copy
-# because node_modules will contain binary shit. 
-rm -rf /var/local/heliotrope
-cp -rf /vagrant /var/local/heliotrope
+# Now install the required components
+pushd /usr/lib/heliotrope
+node/bin/npm install
+node/bin/npm install bower
+node/bin/npm install gulp
+node/bin/node node_modules/bower/bin/bower install --config.interactive=false
+node/bin/node node_modules/gulp/bin/gulp build-all
+node/bin/node node_modules/gulp/bin/gulp dist
+popd
 
-# Remove node_modules, which likely contains garbage synced here
-rm -rf /var/local/heliotrope/node_modules
-
-# Remove config.json if we have one (synced from host) and put in the deployment one
-rm -f /var/local/heliotrope/config.json
-cp -f /vagrant/etc/vagrant/heliotrope-config.json /var/local/heliotrope/config.json
-
-# And set up the server configuration
-cp /vagrant/etc/vagrant/nginx-heliotrope.conf /etc/nginx/sites-available/heliotrope
-cp /vagrant/etc/vagrant/upstart-nginx.conf /etc/init/nginx.conf
-cp /vagrant/etc/vagrant/upstart-heliotrope.conf /etc/init/heliotrope.conf
-
-# Replace the default site
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/heliotrope /etc/nginx/sites-enabled/heliotrope
-
-# Build
-cd /var/local/heliotrope
-npm install 
-cake build
-
-# Start daemons
-initctl start nginx
-initctl start heliotrope
-
-# Run from the command line
-# cd /var/www
-# npm install
-# cake build
-# cake server
-
-# Now let's get and install the database - this is a compressed pre-built data dump
-# hosted on Google Drive. The build process is documented in "knowledge.sh", but it takes
-# more than a few hours to run. The uncompressed BSON is about 1.5Gb, but compressed it's
-# an 80Mb file which is fine to host from Google Drive. For now. 
-wget -q -O heliotrope-dump-1.0.tar.xz "https://googledrive.com/host/0B75vAAGHtrjaRGdaQV8wX3VrNVE/heliotrope-dump-1.0.tar.xz"
+# Get the data
+pushd /tmp
+wget -q -O "https://googledrive.com/host/0B75vAAGHtrjaRGdaQV8wX3VrNVE/heliotrope-dump-1.1.tar.bz2"
 mkdir dump
 pushd dump
-xzcat ../heliotrope-dump-1.0.tar.xz | tar xvf -
+tar xvfj ../heliotrope-dump-1.1.tar.bz2
 popd
 
 # Stuff the data into the MongoDB database
 mongorestore --db heliotrope dump/heliotrope
 rm -rf heliotrope-dump-1.0.tar.xz dump/heliotrope
 
-# Now at this stage it would also be right to boot up the test data. These are in 
-# the .jsinit files, and we need to load them into the right databases. 
-cat /var/local/heliotrope/test/data/user.*.jsinit | mongo user
-cat /var/local/heliotrope/test/data/tracker.*.jsinit | mongo tracker
+# Also load the sample tracker data
+mongo tracker </usr/lib/heliotrope/src/service/utils/testStudyData.js
 
-# We're done if we get here
-echo "All done :-)"
+# Now set up the nginx site
+sudo cp /usr/lib/heliotrope/roles/webserver/templates/nginx-config.j2 /etc/nginx/sites-available/heliotrope
+sudo ln -s /etc/nginx/sites-available/heliotrope /etc/nginx/sites-enabled/heliotrope
+sudo sed -i "s/root \/usr\/lib\/heliotrope;/root \/usr\/lib\/heliotrope\/dist;/" /etc/nginx/sites-available/heliotrope
+sudo service nginx restart
+
+# And finally, set up the heliotrope service, and then start it
+sudo cp /usr/lib/heliotrope/roles/webapp/templates/heliotrope-config.json.j2 /etc/heliotrope/config.json
+sudo sed -i "s/{% if mongodb_user %}{{mongodb_user}}:{{mongodb_password}}@{% endif %}//" /etc/heliotrope/config.json
+sudo sed -i "s/{{mongodb_server}}/localhost/" /etc/heliotrope/config.json
+sudo sed -i "s/{{mongodb_port}}/27017/" /etc/heliotrope/config.json
+sudo sed -i "s/{{mongodb_name}}/heliotrope/" /etc/heliotrope/config.json
+sudo sed -i "s/mongodb:\/\/\:\@/mongodb:\/\//" /etc/heliotrope/config.json
+/usr/lib/heliotrope/node/bin/node /usr/lib/heliotrope/dist/utils/addAdminUser.js --username "admin" --password "admin"
+
+sudo cp /usr/lib/heliotrope/roles/webapp/templates/upstart-heliotrope.conf.j2 /etc/init/heliotrope.conf
+sudo sed -i "s/\/usr\/lib\/heliotrope/\/usr\/lib\/heliotrope\/dist/g" /etc/init/heliotrope.conf
+sudo sed -i "s/\/usr\/lib\/heliotrope\/dist\/node/\/usr\/lib\/heliotrope\/node/g" /etc/init/heliotrope.conf
+
+sudo adduser --system --home /usr/lib/heliotrope --no-create-home --disabled-password heliotrope
+sudo chown -R heliotrope:adm /usr/lib/heliotrope
+sudo chown -R heliotrope:adm /etc/heliotrope
+
+sudo service heliotrope start
+
+# # We're done if we get here
+# echo "All done :-)"
