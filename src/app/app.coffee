@@ -148,19 +148,15 @@ angular
         username: username
         password: password
 
-      success = (data) ->
-        ## console.log "Calling event:loginApproved with #{data}"
-        scope.$broadcast 'event:loginApproved', data.data.user
-        scope.$emit 'event:loginConfirmed', data.data.user
-
-      error = (data) ->
-        ## console.log "Calling event:loginDenied with #{data}"
-        scope.$broadcast 'event:loginDenied', data.data.user
-
       $http
         .post '/api/authentication/login', payload, config
-        .success success
-        .error error
+
+        .success (data, status) ->
+          scope.$broadcast 'event:loginApproved', data.data.user
+          scope.$emit 'event:loginConfirmed', data.data.user
+
+        .error (data, status) ->
+          scope.$broadcast 'event:loginDenied', data
 
     scope.$on 'event:logoutRequest', () ->
       ## console.log 'Called event:logoutRequest'

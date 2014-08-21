@@ -43,8 +43,19 @@ connected = (callback) ->
 ## hugely matter. This is generated as a function, as there is likely to be
 ## different under some circumstances.
 
-module.exports.loginAuthenticator = (options) -> passport.authenticate('local')
-module.exports.apiAuthenticator = (options) -> passport.authenticate('localapikey')
+module.exports.loginAuthenticator = (options) ->
+  (req, res, next) ->
+    handler = passport.authenticate 'local', (err, user, info) ->
+      return next(err) if err?
+      return res.status(401).send(info) if ! user
+      req.logIn user, (err) ->
+        return next(err) if err?
+        return next()
+
+    handler(req, res, next)
+
+module.exports.apiAuthenticator = (options) ->
+  passport.authenticate 'localapikey'
 
 ## Access sometimes requires authorization. This checks that we do have a user,
 ## and returns the appropriate challenge if not.
@@ -110,7 +121,7 @@ heliotropeLocalStrategy = (username, password, done) ->
           else
             users.findOne {userId: username}, (err, user) ->
               return databaseCallback(err) if err?
-              return databaseCallback(null, false, { message: 'Incorrect username' }) if users.length == 0 || users.length > 1
+              return databaseCallback(null, false, { message: 'Incorrect username' }) if ! user?
               bcrypt.compare password, user.password, (err, res) ->
                 return databaseCallback(err) if err?
                 if !res

@@ -34,6 +34,7 @@ authentication system.
         result =
           restrict: "A"
           replace: true
+          scope: true
           template: '<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">' +
                     '  <div class="modal-dialog">' +
                     '    <div class="modal-content">' +
@@ -42,6 +43,7 @@ authentication system.
                     '        <h4 id="loginModal">Login</h4>' +
                     '      </div>' +
                     '      <div class="modal-body">' +
+                    '        <div class="alert alert-danger" ng-show="message">{{message}}</div>' +
                     '        <form class="form-horizontal" style="padding-top: 1em">' +
                     '          <div class="form-group">' +
                     '            <label class="control-label col-sm-3" for="inputUsername">Username</label>' +
@@ -67,9 +69,14 @@ authentication system.
           link: (scope, iElement, iAttrs, controller) ->
 
             scope.$on 'event:loginRequired', () ->
+              scope.message = undefined
               ## console.log 'Starting modal'
               iElement.modal('show')
 
             scope.$on 'event:loginApproved', () ->
               ## console.log 'Closing modal'
               iElement.modal('hide')
+
+            scope.$on 'event:loginDenied', (evt, data) ->
+              scope.message = data.message
+

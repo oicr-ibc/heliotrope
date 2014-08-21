@@ -33,10 +33,12 @@ angular
 
         if status == 401
           deferred = $q.defer()
-          if ! response.config.url.match(/^\/api\/authentication/)
+          if response.config.url.match(/^\/api\/authentication/)
+            return $q.reject response
+          else
             req = {config: response.config, deferred: deferred}
             $rootScope.requests401.push(req)
-          $rootScope.$broadcast 'event:loginRequired'
-          deferred.promise
+            $rootScope.$broadcast 'event:loginRequired'
+            deferred.promise
         else
           $q.reject response
