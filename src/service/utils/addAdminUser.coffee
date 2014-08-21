@@ -16,9 +16,6 @@
 log4js =         require('log4js')
 logger =         log4js.getLogger()
 
-module.exports.logger =   logger
-module.exports.log4js =   log4js
-
 bcrypt =         require('bcrypt')
 mongo =          require('mongodb')
 BSON =           mongo.BSONPure

@@ -21,16 +21,15 @@
 ## This was a good bit easier in Grails, where we could manage the dependencies so
 ## much better.
 
-module.exports.log4js = module.parent.exports.log4js
-module.exports.logger = module.parent.exports.logger
-module.exports.config = module.parent.exports.config
+log4js = require('log4js')
+logger = log4js.getLogger('reporting')
 
 fs = require('fs')
 glob = require('glob')
 spawn = require('child_process').spawn
 
-logger = module.exports.logger
-config = module.exports.config
+app = require('./application')
+config = app.locals.config
 
 ## Note that this does depend on Java, and on having headless support. This is not
 ## totally trivial, but there is nothing in node.js capable of building that kind of
