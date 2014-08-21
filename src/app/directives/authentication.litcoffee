@@ -44,15 +44,15 @@ authentication system.
                     '      <div class="modal-body">' +
                     '        <form class="form-horizontal" style="padding-top: 1em">' +
                     '          <div class="form-group">' +
-                    '            <label class="control-label" for="inputUsername">Username</label>' +
-                    '            <div class="controls">' +
-                    '              <input type="text" id="inputUsername" placeholder="Username" ng-model="username">' +
+                    '            <label class="control-label col-sm-3" for="inputUsername">Username</label>' +
+                    '            <div class="col-sm-9">' +
+                    '              <input type="text" class="form-control" id="inputUsername" placeholder="Username" ng-model="username">' +
                     '            </div>' +
                     '          </div>' +
                     '          <div class="form-group">' +
-                    '            <label class="control-label" for="inputPassword">Password</label>' +
-                    '            <div class="controls">' +
-                    '              <input type="password" id="inputPassword" placeholder="Password" ng-model="password">' +
+                    '            <label class="control-label col-sm-3" for="inputPassword">Password</label>' +
+                    '            <div class="col-sm-9">' +
+                    '              <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="password">' +
                     '            </div>' +
                     '          </div> ' +
                     '        </form>' +
