@@ -466,7 +466,7 @@ module.exports.getPDFVariantReport = (req, res) ->
                   res.header('Content-Disposition', 'attachment; filename="report.pdf"')
                   stream.pipe(res)
   else
-    knowledge.getVariantReport err, db, req, res, responders.sendViewResponse(req, res, 'index')
+    knowledge.getVariantReport req, res
 
 
 module.exports.getGeneFrequencies = (req, res) ->
