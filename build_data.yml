@@ -10,6 +10,22 @@ heliotrope_cache_root: '__ENV(HOME)__/.heliotrope'
 
 vep_home: ''
 vep_cache_directory: ''
+vep_fork_limit: 8
+vep_options:
+  - "--format"
+  - "vcf"
+  - "--vcf"
+  - "--offline"
+  - "--no_progress"
+  - "--canonical"
+  - "--check_existing"
+  - "--force_overwrite"
+  - "--numbers"
+  - "--hgvs"
+  - "--sift"
+  - "b"
+  - "--polyphen"
+  - "b"
 
 ## Use these to connect to COSMIC, which now requires authentication
 cosmic_email: 'foo@bar'
