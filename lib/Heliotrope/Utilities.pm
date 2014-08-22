@@ -16,6 +16,7 @@ package Heliotrope::Utilities;
 ## WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 use common::sense;
+use Carp;
 
 use Sub::Exporter -setup => {
     exports => [ qw(convert_names_to_codes convert_codes_to_names convert_sequence trim eq_deeply merge_into_deeply) ],
@@ -115,7 +116,8 @@ sub merge_into_deeply {
     }
   } else {
     croak("Can't merge: $obj1 and $obj2");
-  }
+  };
+  return $obj1;
 }
 
 1;
