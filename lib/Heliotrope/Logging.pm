@@ -15,14 +15,29 @@ package Heliotrope::Logging;
 ## WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
 ## WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+use feature "state";
+
 use Log::Log4perl;
 use Log::Any::Adapter;
+use File::Spec;
+
+state $CONFIG_PATH = do {
+  my $found = 'log4perl.conf';
+  foreach my $path (@INC) {
+    my $full = File::Spec->rel2abs($found, $path);
+    if (-f $full) {
+      $found = $full;
+      last;
+    }
+  }
+  $found;
+};
 
 use Sub::Exporter -setup => {
   exports => [ qw(get_logger) ],
 };
 
-Log::Log4perl::init('log4perl.conf');
+Log::Log4perl::init($CONFIG_PATH);
 Log::Any::Adapter->set('Log4perl');
 
 use Log::Any qw($log);
