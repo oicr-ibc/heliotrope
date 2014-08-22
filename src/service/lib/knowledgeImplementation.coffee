@@ -152,6 +152,11 @@ getGeneMutations = (req, res) ->
 
 module.exports.getGeneMutations = getGeneMutations
 
+
+module.exports.getGeneAnnotation = (req, res) ->
+  res.status(500).send("Not yet implemented")
+
+
 module.exports.executeQuery = (req, res) ->
   name = req.params.query
   db = res.locals.db
@@ -497,6 +502,13 @@ module.exports.getGeneFrequencies = (req, res) ->
           result['data'] = variantFrequencies
           result['config'] = res.locals.config
           res.send result
+
+module.exports.getVariantAnnotation = (req, res) ->
+  return res.status(500).send("Not yet implemented")
+
+  db = res.locals.db
+  db.collection "annotations", (err, annotations) ->
+    return res.status(500).send(err) if (err)
 
 ## Retrieves variant frequencies.
 ## @param req

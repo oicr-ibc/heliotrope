@@ -72,10 +72,16 @@ router.get '/variants/:id', knowledge.getVariant
 
 router.get '/variants/:id/frequencies', knowledge.getVariantFrequencies
 
+router.get '/genes/:gene/annotation', knowledge.getGeneAnnotation
+router.get '/genes/:gene/annotation/:type', knowledge.getGeneAnnotation
+
+router.get '/variants/:id/annotation', knowledge.getVariantAnnotation
+router.get '/variants/:id/annotation/:type', knowledge.getVariantAnnotation
+
 router.get '/publications/:type/:id', knowledge.getPublication
 
 ## PUT requests require authentication, and properly authorization too.
-router.put '/variants/:id', authentication.accessAuthenticator(),  knowledge.putVariant
+router.put '/variants/:id', authentication.accessAuthenticator(), knowledge.putVariant
 
 ## POST requests require authentication, and properly authorization too. This is
 ## not public, as it is primarily a service endpoint that can be used create a
