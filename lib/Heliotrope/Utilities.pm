@@ -43,7 +43,7 @@ my $amino_acid_codes = {
     Trp => "W",
     Tyr => "Y",
     Val => "V",
-    Ter => "Q"
+    Ter => "X"
 };
 
 my $amino_acid_names = { reverse %$amino_acid_codes };
