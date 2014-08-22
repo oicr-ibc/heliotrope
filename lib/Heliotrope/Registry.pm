@@ -22,6 +22,7 @@ use File::HomeDir;
 use CHI;
 
 use MooseX::Singleton;
+use Heliotrope::Config;
 
 has data => (
     is      => 'ro',
@@ -32,7 +33,7 @@ has cache_root => (
     is      => 'ro',
     isa     => 'Str',
     default => sub {
-        $ENV{HELIOTROPE_CACHE_ROOT} // File::Spec->catfile(File::HomeDir->my_home, '.heliotrope');
+      Heliotrope::Config::get_config()->{heliotrope_cache_root} // File::Spec->catfile(File::HomeDir->my_home, '.heliotrope');
     },
 );
 

@@ -11,3 +11,4 @@
 /bower_components
 !/bower_components/.gitkeep
 dist
+build_data_local.yml

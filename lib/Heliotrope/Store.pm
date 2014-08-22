@@ -24,6 +24,7 @@ use Moose::Role;
 
 use MongoDB;
 
+use Heliotrope::Config;
 use Heliotrope::Data qw(deep_eq);
 use Heliotrope::Logging qw(get_logger);
 
@@ -37,10 +38,12 @@ sub BUILD {
 sub open_database {
     my ($self, @args) = @_;
 
-    my $database_name = $ENV{HELIOTROPE_DATABASE_NAME} || "heliotrope";
-    my $database_server = $ENV{HELIOTROPE_DATABASE_SERVER} || "localhost:27017";
-    my $database_username = $ENV{HELIOTROPE_DATABASE_USERNAME};
-    my $database_password = $ENV{HELIOTROPE_DATABASE_PASSWORD};
+    my $config = Heliotrope::Config::get_config();
+
+    my $database_name = $config->{heliotrope_database_name} || "heliotrope";
+    my $database_server = $config->{heliotrope_database_server} || "localhost:27017";
+    my $database_username = $config->{heliotrope_database_username};
+    my $database_password = $config->{heliotrope_database_password};
 
     my @options = (@args, host => $database_server);
     push @options, username => $database_username if ($database_username);

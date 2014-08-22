@@ -1,0 +1,12 @@
+---
+tmpdir: '__ENV(TMPDIR)__'
+
+heliotrope_database_name: 'heliotrope'
+heliotrope_database_server: 'localhost:27017'
+heliotrope_database_username: ''
+heliotrope_database_password: ''
+
+heliotrope_cache_root: '__ENV(HOME)__/.heliotrope'
+
+vep_home: ''
+vep_cache_directory: ''
