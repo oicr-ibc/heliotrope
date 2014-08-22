@@ -20,7 +20,7 @@ use common::sense;
 use Getopt::Long;
 use FindBin;
 
-use lib "$FindBin::Bin";
+use lib "$FindBin::Bin/../lib";
 
 my $force;
 my $output_only;
