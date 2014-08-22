@@ -534,7 +534,7 @@ sub annotate_phase {
 
     my $database = $self->open_database();
 
-    my $out_vcf_filename = "foo";
+    my $out_vcf_filename = $self->get_target_file($registry, "CosmicCodingMuts.vcf.gz");
     my $engine = Heliotrope::AnnotationEngine->new({annotation_filename => $out_vcf_filename});
     $engine->get_annotations(sub {
       my ($fh, $this) = @_;
