@@ -175,6 +175,8 @@ sub load_phase {
   my $file = $self->get_target_file($registry, "CosmicCompleteExport.tsv.gz");
   my $fh = IO::Uncompress::Gunzip->new($file) or croak("Can't open $file: $!");
   my $headers = <$fh>;
+  chomp($headers);
+  my @headers = map { $_ = lc($_); s{ }{_}gr; } split("\t", $headers, -1);
 
   state $warned = {};
   state $gene_records = {};
@@ -185,56 +187,62 @@ sub load_phase {
 
   while(my $line = <$fh>) {
     chomp($line);
-    my ($gene_name, $accession, $hgnc, $sample_name, $id_sample, $id_tumour, $primary_site, $site_subtype, $primary_hist, $hist_subtype,
-        $genome_wide_screen, $mutation_id, $mutation_cds, $mutation_aa, $mutation_description, $mutation_zygosity, $ncbi36_position,
-        $ncbi36_strand, $grch37_position, $grch37_strand, $somatic_status, $pubmed, $sample_type, $sample_source, $stage) = split("\t", $line, -1);
+    my $data = {};
+    @{$data}{@headers} = split("\t", $line, -1);
 
-    $primary_hist = $hist_subtype if ($primary_hist eq "other");
+    ## Various normalizations to handle possible field name changes
+    $data->{accession} = delete $data->{accession_number};
+    $data->{primary_hist} = delete $data->{primary_histology};
+    $data->{hist_subtype} = delete $data->{histology_subtype};
+    $data->{pubmed} = delete $data->{pubmed_pmid};
 
-    $primary_site =~ s{_}{ }g;
-    $site_subtype =~ s{_}{ }g;
-    $primary_hist =~ s{_}{ }g;
-    $hist_subtype =~ s{_}{ }g;
+    ## Now continue to analyze the data
+    $data->{primary_hist} = $data->{hist_subtype} if ($data->{primary_hist} eq "other");
 
-    if ($primary_hist =~ m{(?:\b(?:adenoma|normal|nevus|in\ssitu|polyp|keratosis|cyst|wart|mole|hamartoma|ameloblastoma|
+    $data->{primary_site} =~ s{_}{ }g;
+    $data->{site_subtype} =~ s{_}{ }g;
+    $data->{primary_hist} =~ s{_}{ }g;
+    $data->{hist_subtype} =~ s{_}{ }g;
+
+    if ($data->{primary_hist} =~ m{(?:\b(?:adenoma|normal|nevus|in\ssitu|polyp|keratosis|cyst|wart|mole|hamartoma|ameloblastoma|
                                    chondroma|chordoma|endometriosis|pterygium|leiomyoma|thrombosis|aberrant\scrypt\sfoci|
                                    crohn\sdisease|low\smalignant\spotential|barrett\soesophagus|spitzoid\stumour|keratoacanthoma|
                                    lentigo|ns)\b|
                                \berythro|
                                (?:plasia|itis)$)}xi) {
-      $mutation_id = 0;
+      $data->{mutation_id} = 0;
     }
 
-    $primary_site = undef if ($primary_site eq 'NS');
-    $site_subtype = undef if ($site_subtype eq 'NS');
-    $primary_hist = undef if ($primary_hist eq 'NS');
-    $hist_subtype = undef if ($hist_subtype eq 'NS');
+    $data->{primary_site} = undef if ($data->{primary_site} eq 'NS');
+    $data->{site_subtype} = undef if ($data->{site_subtype} eq 'NS');
+    $data->{primary_hist} = undef if ($data->{primary_hist} eq 'NS');
+    $data->{hist_subtype} = undef if ($data->{hist_subtype} eq 'NS');
 
-    $accession =~ s{_v\d+}{};
+    $data->{accession} =~ s{_v\d+}{};
 
     my $gene_record;
-    if (exists($gene_records->{$accession})) {
-      $gene_record = $gene_records->{$accession};
+    if (exists($gene_records->{$data->{accession}})) {
+      $gene_record = $gene_records->{$data->{accession}};
     } else {
-      $gene_record = $database->get_collection('genes')->find_one({"sections.transcripts.data.records.id" => $accession});
-      $gene_records->{$accession} = $gene_record;
+      $gene_record = $database->get_collection('genes')->find_one({"sections.transcripts.data.records.id" => $data->{accession}});
+      $gene_records->{$data->{accession}} = $gene_record;
     }
     if (! defined($gene_record)) {
-      $log->warnf("%s %s: can't find gene for transcript: %s, skipping", $gene_name, $mutation_aa // "null", $accession) unless ($warned->{$accession});
-      $DB::single = 1 unless ($warned->{$accession});
-      $warned->{$accession} = 1;
+      $log->warnf("%s %s: can't find gene for transcript: %s, %s, skipping", $data->{gene_name}, $data->{mutation_aa} // "null", $data->{accession}) unless ($warned->{$data->{accession}});
+      $DB::single = 1 unless ($warned->{$data->{accession}});
+      $warned->{$data->{accession}} = 1;
       next;
     }
     my $mutation_record;
     my $mutation_codon;
     my $mutation_name;
-    if ($mutation_id) {
-      my $cosmic_id = "COSM".$mutation_id;
+    if ($data->{mutation_id}) {
+      my $cosmic_id = "COSM".$data->{mutation_id};
       $mutation_record = $database->get_collection('variants')->find_one({"sections.identifiers.data.cosmic" => $cosmic_id});
 
-      if (! defined($mutation_record) && $mutation_cds eq 'c.?' && $mutation_aa ne 'p.?') {
+      if (! defined($mutation_record) && $data->{mutation_cds} eq 'c.?' && $data->{mutation_aa} ne 'p.?') {
         my $real_gene_name = $gene_record->{name};
-        my $variant = convert_codes_to_names($mutation_aa);
+        my $variant = convert_codes_to_names($data->{mutation_aa});
         my $variant_name = "$real_gene_name $variant";
         $mutation_record = $database->get_collection('variants')->find_one({"name" => $variant_name});
       }
@@ -244,20 +252,20 @@ sub load_phase {
         $mutation_name = $mutation_record->{mutation};
       }
 
-      $log->warnf("%s %s: can't find mutation: %s", $gene_name, $mutation_aa // "null", $cosmic_id) unless ($mutation_record);
+      $log->warnf("%s %s: can't find mutation: %s", $data->{gene_name}, $data->{mutation_aa} // "null", $cosmic_id) unless ($mutation_record);
     }
 
     my $record_query = {};
     my $record_update = {};
     $record_query->{geneId} = $gene_record->{_id};
     $record_query->{geneSymbol} = $gene_record->{name};
-    $record_query->{sampleId} = int($id_sample);
+    $record_query->{sampleId} = int($data->{id_sample});
     $record_query->{mutationId} = $mutation_record && $mutation_record->{_id};  ## undef is important here
-    $record_update->{pmid} = $pubmed;
-    $record_update->{primarySite} = $primary_site;
-    $record_update->{siteSubtype} = $site_subtype;
-    $record_update->{primaryHist} = $primary_hist;
-    $record_update->{histSubtype} = $hist_subtype;
+    $record_update->{pmid} = $data->{pubmed};
+    $record_update->{primarySite} = $data->{primary_site};
+    $record_update->{siteSubtype} = $data->{site_subtype};
+    $record_update->{primaryHist} = $data->{primary_hist};
+    $record_update->{histSubtype} = $data->{hist_subtype};
     $record_update->{mutationCodon} = $mutation_codon && int($mutation_codon);
     $record_update->{mutationName} = $mutation_name;
     $bulk->find($record_query)->upsert()->update({'$set' => $record_update});
