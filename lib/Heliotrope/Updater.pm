@@ -24,10 +24,19 @@ use File::Spec;
 use File::Path;
 use File::Copy;
 use LWP::UserAgent;
+use HTTP::Cookies;
 
 has 'name' => (
-    is  => 'ro',
-    isa => 'Str',
+  is  => 'ro',
+  isa => 'Str',
+);
+has 'user_agent' => (
+  is => 'ro',
+  default => sub {
+    my $cookie_file = tmpnam();
+    my $cookie_jar = HTTP::Cookies->new(file => $cookie_file);
+    LWP::UserAgent->new(cookie_jar => $cookie_jar);
+  },
 );
 
 requires 'update';
@@ -53,7 +62,7 @@ sub get_resource {
     my $tmp = File::Temp->new(UNLINK => 0, SUFFIX => '.dat');
     my $filename = $tmp->filename;
 
-    my $ua = LWP::UserAgent->new();
+    my $ua = $self->user_agent();
 
     my $response = $ua->request($req, $filename);
     return ($response, $filename);

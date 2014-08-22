@@ -25,7 +25,9 @@ with 'Heliotrope::WorkingDatabase';
 
 use boolean;
 use HTTP::Request;
-use URI::Escape::XS qw(decodeURIComponent);
+use HTTP::Cookies;
+use HTML::TreeBuilder;
+use URI::Escape::XS qw(decodeURIComponent encodeURIComponent);
 use File::Slurp;
 use File::Temp;
 use File::Listing qw(parse_dir);
@@ -40,6 +42,7 @@ use Storable;
 use List::MoreUtils qw(all);
 
 use Heliotrope::Logging qw(get_logger);
+use Heliotrope::Config;
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 use Heliotrope::Utilities qw(convert_sequence convert_names_to_codes convert_codes_to_names);
@@ -59,57 +62,94 @@ sub maybe_update {
 
     my ($req, $result, $file);
 
-    my $base_url = "ftp://ftp.sanger.ac.uk/pub/CGP/cosmic/data_export/";
-    $log->infof("Requesting: %s", $base_url);
-    $req = HTTP::Request->new(GET => $base_url);
-    $req->header(Accept => "text/ftp-dir-listing, */*;q=0.1");
-    ($result, $file) = $self->get_resource($registry, $req);
-    my $listing = read_file($file);
-
-    my @records = parse_dir($listing);
-    my ($cosmic) = grep { $_->[0] =~ m{^CosmicCompleteExport_v} } @records;
-
-    my $dt = DateTime->from_epoch(epoch => $cosmic->[3]);
-    my $normalized_date = $dt->format_cldr("yyyy-MM-dd");
-    $log->infof("Normalized: %s", $normalized_date);
-
-    # In COSMIC, we can use the file name as an indication of the date
-    # and the version, as it is all encoded there.
-
-    my ($release) = ($listing =~ m{CosmicCompleteExport_v(\d+)}sp);
-    if (! $release) {
-        croak("Failed to find CosmicCompleteExport file");
-    }
-    my $filename = $cosmic->[0];
-
     my $cached_data = $self->get_data($registry);
     my $existing = $self->get_target_file($registry, "CosmicCompleteExport.tsv.gz");
-
     if (! -e $existing) {
         $cached_data = {};
     }
 
-    # If the cache entry exists and says the file is older, or the cache entry
-    # does not exist, we should continue to download the file.
+    ## COSMIC now requires authentication, so we need a cookie jar.
+    my $ua = $self->user_agent();
 
-    if (exists($cached_data->{date}) && $cached_data->{date} ge $normalized_date) {
+    my $config = Heliotrope::Config::get_config();
+
+    $log->info("Logging in to COSMIC");
+    my $response = $ua->post('https://cancer.sanger.ac.uk/cosmic/login',
+      Content => {email => $config->{cosmic_email}, password => $config->{cosmic_password}});
+
+    ## https://cancer.sanger.ac.uk/files/cosmic/
+    ## https://cancer.sanger.ac.uk/files/cosmic/current_release/CosmicCompleteExport.tsv.gz
+    ## https://cancer.sanger.ac.uk/files/cosmic/current_release/VCF/CosmicCodingMuts.vcf.gz
+
+    $log->info("Read list of files");
+    my $base_url = "https://cancer.sanger.ac.uk/files/cosmic/";
+    $req = HTTP::Request->new(GET => $base_url);
+    $req->header(Accept => "text/ftp-dir-listing, */*;q=0.1");
+    ($result, $file) = $self->get_resource($registry, $req);
+
+    ## Cuts out the <pre> tag and naively processes it as a list of versions and dates
+    my $tree = HTML::TreeBuilder->new();
+    $tree->parse_file($file);
+    my ($element) = $tree->find_by_tag_name('pre');
+    if (! $element) {
+      $log->error("Failed to get list of files, probably failed to login or something...");
+      return;
+    }
+    my $string = $element->as_text();
+    my @lines = map { [ split(/  +/, $_) ] } split("\n", $string);
+
+    my $parser = DateTime::Format::Natural->new();
+    my $versions = {};
+    foreach my $line (@lines) {
+      $versions->{$line->[0]} = $parser->parse_datetime($line->[1])->format_cldr("yyyy-MM-dd");
+    }
+
+    my $current = $versions->{'current_release/'};
+    my $version = undef;
+    delete $versions->{'current_release/'};
+    delete $versions->{Name};
+    foreach my $key (keys %$versions) {
+      if ($versions->{$key} eq $current) {
+        $version = $key;
+        last;
+      }
+    }
+
+    my $version_date = $versions->{$version};
+    my $version_string = ($version =~ s{\W}{}gr);
+    $log->infof("Detected version: %s", $version_string);
+    $log->infof("Detected date: %s", $version_date);
+
+    if (exists($cached_data->{date}) && $cached_data->{date} ge $version_date) {
         $log->info("Existing file is new; skipping update");
         return;
     }
 
-    my $cosmic_url = $base_url . $filename;
-    $log->infof("Downloading %s", $cosmic_url);
-    $req = HTTP::Request->new(GET => $cosmic_url);
-    ($result, $file) = $self->get_resource($registry, $req);
+    $DB::single = 1;
+
+    my $export_url = $base_url . "$version_string/CosmicCompleteExport.tsv.gz";
+    $log->infof("Downloading %s", $export_url);
+    $req = HTTP::Request->new(GET => $export_url);
+    my ($export_result, $export_file) = $self->get_resource($registry, $req);
     $log->info("Download complete");
 
-    # Now we can store the data file in the right place and update the cache
-    $cached_data->{date} = $normalized_date;
-    $cached_data->{url} = $cosmic_url;
+    my $vcf_url = $base_url . "$version_string/VCF/CosmicCodingMuts.vcf.gz";
+    $log->infof("Downloading %s", $vcf_url);
+    $req = HTTP::Request->new(GET => $vcf_url);
+    my ($vcf_result, $vcf_file) = $self->get_resource($registry, $req);
+    $log->info("Download complete");
+
+    # If the cache entry exists and says the file is older, or the cache entry
+    # does not exist, we should continue to download the file.
+
+    $cached_data->{date} = $version_date;
+    $cached_data->{url} = $export_url;
     $cached_data->{download_time} = DateTime->now()->iso8601();
-    $cached_data->{version} = $release;
-    $self->relocate_file($registry, $file, "CosmicCompleteExport.tsv.gz");
+    $cached_data->{version} = $version_string;
     $self->set_data($registry, $cached_data);
+
+    $self->relocate_file($registry, $export_file, "CosmicCompleteExport.tsv.gz");
+    $self->relocate_file($registry, $vcf_file, "CosmicCodingMuts.vcf.gz");
 
     $self->update($registry);
 }

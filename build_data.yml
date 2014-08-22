@@ -10,3 +10,7 @@ heliotrope_cache_root: '__ENV(HOME)__/.heliotrope'
 
 vep_home: ''
 vep_cache_directory: ''
+
+## Use these to connect to COSMIC, which now requires authentication
+cosmic_email: 'foo@bar'
+cosmic_password: 'bar'
