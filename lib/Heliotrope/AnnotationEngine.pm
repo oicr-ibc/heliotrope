@@ -105,6 +105,9 @@ sub get_annotations {
 sub _variant_effect_predictor {
   my ($self, $var_filename) = @_;
 
+  my $output_filename = "$var_filename.out.vcf";
+  return $output_filename if (-e $output_filename);
+
   my $stdout;
   my $stderr;
   my $status;
@@ -128,7 +131,7 @@ sub _variant_effect_predictor {
                  "--compress", $self->vep_decompress(),
                  "--dir_cache", $cache_dir,
                  "--input_file", "$var_filename",
-                 "--output_file", "$var_filename.out.vcf",
+                 "--output_file", "$output_filename",
                  "--fork", $self->vep_fork_limit() ];
 
   $log->info("Executing: ".$executable." ".join(" ", map { qq{"$_"}; } @$command));
@@ -139,6 +142,8 @@ sub _variant_effect_predictor {
     $status = $?;
   } \$stdout, \$stderr, "$var_filename.stdout", "$var_filename.stderr";
   $status == 0 || croak("variant_effect_predictor.pl failed: exit status: $status; output: $stdout; error: $stderr");
+
+  return $output_filename;
 }
 
 1;

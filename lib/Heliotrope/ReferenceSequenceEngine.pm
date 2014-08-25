@@ -24,6 +24,8 @@ use File::HomeDir;
 use File::Temp;
 use IO::CaptureOutput qw(capture);
 
+use Heliotrope::Config;
+
 use Bio::DB::Fasta;
 
 has reference_fh => (
@@ -34,14 +36,16 @@ has reference_requests => (
     is  => 'rw'
 );
 
-has fasta_directory => (
+has fasta_path => (
     is  => 'rw'
 );
 
 sub clear {
     my ($self) = @_;
+    my $config = Heliotrope::Config::get_config();
     $self->reference_requests([]);
-    $self->fasta_directory($ENV{HELIOTROPE_FASTA_DIRECTORY} || File::Spec->rel2abs("fasta", File::HomeDir->my_home()));
+    my $path = $config->{fasta_path} || File::Spec->rel2abs("fasta", File::HomeDir->my_home());
+    $self->fasta_path($path);
 }
 
 sub BUILD {
@@ -56,8 +60,8 @@ sub add_reference_sequence_request {
 
 sub get_reference_sequences {
     my ($self, $callback) = @_;
-    
-    my $fasta_dir = $self->fasta_directory();
+
+    my $fasta_dir = $self->fasta_path();
     my $db = Bio::DB::Fasta->new($fasta_dir);
 
     foreach my $request (@{$self->reference_requests()}) {
