@@ -104,15 +104,24 @@ sub maybe_update {
       $versions->{$line->[0]} = $parser->parse_datetime($line->[1])->format_cldr("yyyy-MM-dd");
     }
 
-    my $current = $versions->{'current_release/'};
+    ## Allow a version to be specified through the config file
+    $DB::single = 1;
+    my $release_directory = $config->{cosmic_release} // 'current_release';
+    $release_directory .= '/';
+    my $current = $versions->{$release_directory};
     my $version = undef;
-    delete $versions->{'current_release/'};
+    my $original = delete $versions->{$release_directory};
     delete $versions->{Name};
     foreach my $key (keys %$versions) {
       if ($versions->{$key} eq $current) {
         $version = $key;
         last;
       }
+    }
+
+    if (! defined($version)) {
+      $version = $release_directory;
+      $versions->{$release_directory} = $original;
     }
 
     my $version_date = $versions->{$version};
@@ -257,6 +266,7 @@ sub load_phase {
 
     my $record_query = {};
     my $record_update = {};
+    $DB::single = 1 if ($data->{id_sample} =~ m{\D});
     $record_query->{geneId} = $gene_record->{_id};
     $record_query->{geneSymbol} = $gene_record->{name};
     $record_query->{sampleId} = int($data->{id_sample});
@@ -519,6 +529,7 @@ sub _handle_canonical_annotation {
   }
 
   if (! deep_eq($new, $existing)) {
+    $DB::single = 1;
     $self->save_record($database, $collection, $new);
   }
 
