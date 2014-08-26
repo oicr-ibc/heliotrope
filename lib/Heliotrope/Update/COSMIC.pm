@@ -22,6 +22,7 @@ use MooseX::Singleton;
 with 'Heliotrope::Updater';
 with 'Heliotrope::Store';
 with 'Heliotrope::WorkingDatabase';
+with 'Heliotrope::Update::COSMICAccess';
 
 use boolean;
 use HTTP::Request;
@@ -73,61 +74,8 @@ sub maybe_update {
 
     my $config = Heliotrope::Config::get_config();
 
-    $log->info("Logging in to COSMIC");
-    my $response = $ua->post('https://cancer.sanger.ac.uk/cosmic/login',
-      Content => {email => $config->{cosmic_email}, password => $config->{cosmic_password}});
-
-    ## https://cancer.sanger.ac.uk/files/cosmic/
-    ## https://cancer.sanger.ac.uk/files/cosmic/current_release/CosmicCompleteExport.tsv.gz
-    ## https://cancer.sanger.ac.uk/files/cosmic/current_release/VCF/CosmicCodingMuts.vcf.gz
-
-    $log->info("Read list of files");
-    my $base_url = "https://cancer.sanger.ac.uk/files/cosmic/";
-    $req = HTTP::Request->new(GET => $base_url);
-    $req->header(Accept => "text/ftp-dir-listing, */*;q=0.1");
-    ($result, $file) = $self->get_resource($registry, $req);
-
-    ## Cuts out the <pre> tag and naively processes it as a list of versions and dates
-    my $tree = HTML::TreeBuilder->new();
-    $tree->parse_file($file);
-    my ($element) = $tree->find_by_tag_name('pre');
-    if (! $element) {
-      $log->error("Failed to get list of files, probably failed to login or something...");
-      return;
-    }
-    my $string = $element->as_text();
-    my @lines = map { [ split(/  +/, $_) ] } split("\n", $string);
-
-    my $parser = DateTime::Format::Natural->new();
-    my $versions = {};
-    foreach my $line (@lines) {
-      $versions->{$line->[0]} = $parser->parse_datetime($line->[1])->format_cldr("yyyy-MM-dd");
-    }
-
-    ## Allow a version to be specified through the config file
-    $DB::single = 1;
-    my $release_directory = $config->{cosmic_release} // 'current_release';
-    $release_directory .= '/';
-    my $current = $versions->{$release_directory};
-    my $version = undef;
-    my $original = delete $versions->{$release_directory};
-    delete $versions->{Name};
-    foreach my $key (keys %$versions) {
-      if ($versions->{$key} eq $current) {
-        $version = $key;
-        last;
-      }
-    }
-
-    if (! defined($version)) {
-      $version = $release_directory;
-      $versions->{$release_directory} = $original;
-    }
-
-    my $version_date = $versions->{$version};
-    my $version_string = ($version =~ s{\W}{}gr);
-    $log->infof("Detected version: %s", $version_string);
-    $log->infof("Detected date: %s", $version_date);
+    $self->login($registry);
+    my ($version_string, $version_date) = $self->get_cosmic_version_date($registry);
 
     if (exists($cached_data->{date}) && $cached_data->{date} ge $version_date) {
         $log->info("Existing file is new; skipping update");
@@ -162,7 +110,6 @@ sub maybe_update {
 
     $self->update($registry);
 }
-
 sub update {
     my ($self, $registry) = @_;
 

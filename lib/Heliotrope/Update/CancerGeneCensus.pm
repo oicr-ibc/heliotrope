@@ -21,6 +21,7 @@ use MooseX::Singleton;
 
 with 'Heliotrope::Updater';
 with 'Heliotrope::Store';
+with 'Heliotrope::Update::COSMICAccess';
 
 use boolean;
 use DBI;
@@ -35,6 +36,7 @@ use IO::Uncompress::Gunzip;
 use File::Listing qw(parse_dir);
 
 use Heliotrope::Logging qw(get_logger);
+use Heliotrope::Config;
 use Heliotrope::Registry;
 use Heliotrope::Data qw(resolve_references expand_references deep_eq);
 
@@ -57,20 +59,10 @@ sub maybe_update {
 
     my ($req, $result, $file);
 
-    # First of all, we need to locate the right directory
-    my $base_url = "ftp://ftp.sanger.ac.uk/pub/CGP/cosmic/data_export/";
-    $log->infof("Requesting: %s", $base_url);
-    $req = HTTP::Request->new(GET => $base_url);
-    $req->header(Accept => "text/ftp-dir-listing, */*;q=0.1");
-    ($result, $file) = $self->get_resource($registry, $req);
-    my $listing = read_file($file);
+    my $config = Heliotrope::Config::get_config();
 
-    my @records = parse_dir($listing);
-    my ($census) = grep { $_->[0] eq 'cancer_gene_census.xls' } @records;
-
-    my $dt = DateTime->from_epoch(epoch => $census->[3]);
-    my $normalized_date = $dt->format_cldr("yyyy-MM-dd");
-    say "Normalized: $normalized_date.";
+    $self->login($registry);
+    my ($version_string, $version_date) = $self->get_cosmic_version_date($registry);
 
     my $cached_data = $self->get_data($registry);
     my $existing = $self->get_target_file($registry, "cancer_gene_census.xls");
@@ -79,20 +71,21 @@ sub maybe_update {
         $cached_data = {};
     }
 
-    if (exists($cached_data->{date}) && $cached_data->{date} ge $normalized_date) {
+    if (exists($cached_data->{date}) && $cached_data->{date} ge $version_date) {
         say "Existing file is new.";
         say "Skipping update.";
         return;
     }
 
-    my $cgc_url = $base_url . "cancer_gene_census.xls";
-    $log->infof("Downloading: %s", $$cgc_url);
+    my $base_url = $self->base_url();
+    my $cgc_url = $base_url . "$version_string/cancer_gene_census.xls";
+    $log->infof("Downloading %s", $cgc_url);
     $req = HTTP::Request->new(GET => $cgc_url);
-    ($result, $file) = $self->get_resource($registry, $req);
+    my ($cgc_result, $cgc_file) = $self->get_resource($registry, $req);
     $log->info("Download complete");
 
     # Now we can store the data file in the right place and update the cache
-    $cached_data->{date} = $normalized_date;
+    $cached_data->{date} = $version_date;
     $cached_data->{url} = $cgc_url;
     $cached_data->{download_time} = DateTime->now()->iso8601();
     $self->relocate_file($registry, $file, "cancer_gene_census.xls");
