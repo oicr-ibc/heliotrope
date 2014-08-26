@@ -30,6 +30,11 @@ use Heliotrope::Logging qw(get_logger);
 
 our $log = get_logger();
 
+has 'database' => (
+  is => 'rw',
+  clearer => 'clear_database',
+);
+
 sub BUILD {
   my ($self) = @_;
   $self->{_reference_id_cache} = {};
@@ -57,11 +62,13 @@ sub open_database {
     my $conn = MongoDB::MongoClient->new(@options);
     $conn->connect();
     my $database = $conn->get_database($database_name);
+    $self->database($database);
     return $database;
 }
 
 sub close_database {
   my ($self) = @_;
+  $self->clear_database();
 }
 
 # Added extra safety to insert and update queries, as these are likely to die
