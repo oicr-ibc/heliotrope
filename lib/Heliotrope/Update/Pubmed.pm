@@ -121,48 +121,6 @@ sub _handle_file {
     $self->close_database($database);
 }
 
-sub _is_article {
-    my ($root) = @_;
-
-    my ($article) = ($root->findnodes('/MedlineCitation/Article'));
-    return 0 unless ($article);
-    return 0 unless ($article->exists("Abstract"));
-
-    my $title = $article->findvalue("ArticleTitle");
-    my $abstract = $article->findvalue("Abstract");
-    my $title_abstract = "$title\n$abstract";
-
-    my @publication_types = $article->findnodes("PublicationTypeList/*");
-    my @mesh_terms = $article->findnodes("MeshHeadingList/*");
-
-    eval {
-        my $fh = IO::Uncompress::Gunzip->new($file);
-        my $reader = XML::LibXML::Reader->new(IO => $fh);
-        $self->{_element_count} = 0;
-        $self->{_count} = 0;
-        $self->{_skip_count} = 0;
-
-        # Skip to first entry element
-        say "$file";
-        while($reader->read() && $reader->name() ne 'MedlineCitation') {};
-
-        do {
-            if ($reader->name() eq 'MedlineCitation') {
-                entry($self, $collection, $reader);
-                $self->{_element_count}++;
-            }
-        } while($reader->nextSibling());
-
-        close($fh);
-        say "$file: loaded $self->{_count} items, skipped $self->{_skip_count} items";
-    };
-
-    if ($@) {
-        carp "$@";
-    }
-    return 0;
-}
-
 sub entry {
     my ($self, $collection, $reader) = @_;
 
@@ -200,7 +158,7 @@ sub entry {
     }
     if (DateTime->compare($existing_date, $new_date) == -1) {
     	$collection->update($query, $action, {w => 1, j => true});
-        say "Updating: pmid:$pmid";
+      say "Updating: pmid:$pmid";
     	$self->{_count}++;
     	return;
     } else {
