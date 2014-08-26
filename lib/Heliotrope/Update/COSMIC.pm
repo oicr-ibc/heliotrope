@@ -237,7 +237,7 @@ sub load_phase {
       $gene_records->{$data->{accession}} = $gene_record;
     }
     if (! defined($gene_record)) {
-      $log->warnf("%s %s: can't find gene for transcript: %s, %s, skipping", $data->{gene_name}, $data->{mutation_aa} // "null", $data->{accession}) unless ($warned->{$data->{accession}});
+      $log->warnf("%s %s: can't find gene for transcript: %, skipping", $data->{gene_name}, $data->{mutation_aa} // "null", $data->{accession}) unless ($warned->{$data->{accession}});
       $DB::single = 1 unless ($warned->{$data->{accession}});
       $warned->{$data->{accession}} = 1;
       next;
