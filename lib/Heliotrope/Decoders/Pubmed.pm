@@ -45,13 +45,14 @@ has element_list_entries => (
     "/SupplMeshList/SupplMeshName" => 1,
     "/PersonalNameSubjectList/PersonalNameSubject" => 1,
     "/GeneSymbolList/GeneSymbol" => 1
-  } };
-)
+  } }
+);
 
 has object_list_entries => (
   is => 'rw',
   default => sub { {"/Article/Abstract/AbstractText" => 1} }
 );
+
 has date_list_entries => (
   is => 'rw',
   default => sub { {
@@ -60,6 +61,11 @@ has date_list_entries => (
     "/DateRevised" => 1,
     "/Article/ArticleDate" => 1
   } }
+);
+
+has ordered => (
+  is => 'rw',
+  default => sub { 1; },
 );
 
 1;

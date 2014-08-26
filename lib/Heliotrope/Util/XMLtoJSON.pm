@@ -44,6 +44,10 @@ has ordered_objects => (
   is => 'rw',
   default => sub { 1; }
 );
+has ordered => (
+  is => 'rw',
+  default => sub { 0; }
+);
 
 sub _store {
   my ($hash, $ordered, $key, $value) = @_;
@@ -80,6 +84,7 @@ sub convert_document_to_json {
     date_list_entries => $self->date_list_entries(),
     object_list_entries => $self->object_list_entries(),
     element_hooks => $self->element_hooks(),
+    ordered => $self->ordered(),
   };
   return _convert($self, $element, $path, $args);
 }
