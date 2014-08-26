@@ -21,6 +21,7 @@ use MooseX::Singleton;
 
 with 'Heliotrope::Updater';
 with 'Heliotrope::Store';
+with 'Heliotrope::Update::PubmedService';
 
 use boolean;
 use WWW::Mechanize;
@@ -289,46 +290,92 @@ sub _build_article {
 
     if ($body_text =~ m{==[ ]*(?:clinical[\w ]+|[\w ]*disease[\w ]*|[\w ]*cancer[\w ]*)[ ]*==\n(.*?)(?=[^=]==[^=]|$)}si) {
       my $significance = $1;
-      my @deletable = ();
+      my @ids = ();
 
-      my @identifiers = ($significance =~ m{<ref refId="([^"]+)"/>}sg);
-      my %clinical_identifiers = ();
-      @clinical_identifiers{@identifiers} = @identifiers;
-      foreach my $id ($named_citations->Keys()) {
+      $significance =~ s{<ref refId="([^"]+)"/>}{
+        my $id = $1;
         my $record = $named_citations->FETCH($id);
         if (! exists($record->{pmid})) {
-          push @deletable, $id;
-          next;
+          "";
+        } else {
+          my $ref = "pmid:$record->{pmid}";
+          push @ids, $ref;
+          qq{<ref refId="$ref"/>};
         }
-        $record->{publicationsRefx} = "pmid:$record->{pmid}";
-        $record->{significant} = true if ($clinical_identifiers{$id});
-      }
 
-      foreach my $id (@deletable) {
-        $named_citations->DELETE($id);
-      }
+      }eg;
 
-      $DB::single = 1;
-      _ensure_details($self, $database, $named_citations);
+      my $target = {collection => 'genes', query => {id => $gene_id}, role => 'wikipedia', name => $keys->{Symbol}};
+      $self->write_annotation($database, $target, $significance, @ids);
 
-      my @alert = (
-        _alerts => [{
-          level => "note",
-          author => "wikipedia",
-          text => "This information has been updated from Wikipedia",
-          date => DateTime->now()
-        }]
-      );
+      # _ensure_details($self, $database, $named_citations);
 
-      my $wikipedia_data = {_format => "wikipedia", @alert, data => { significance => $significance, references => $named_citations}};
+      # my @alert = (
+      #   _alerts => [{
+      #     level => "note",
+      #     author => "wikipedia",
+      #     text => "This information has been updated from Wikipedia",
+      #     date => DateTime->now()
+      #   }]
+      # );
 
-      my $new = expand_references($existing);
-      $new->{sections}->{wikipedia} = $wikipedia_data;
-      my $resolved = resolve_references($new, $existing);
+      # my $wikipedia_data = {_format => "wikipedia", @alert, data => { significance => $significance, references => $named_citations}};
 
-      $log->infof("Writing data if updated: %s - %s", $gene_id, $keys->{Symbol});
-      $self->maybe_write_record($database, 'genes', $resolved, $existing);
+      # my $new = expand_references($existing);
+      # $new->{sections}->{wikipedia} = $wikipedia_data;
+      # my $resolved = resolve_references($new, $existing);
+
+      # $log->infof("Writing data if updated: %s - %s", $gene_id, $keys->{Symbol});
+      # $self->maybe_write_record($database, 'genes', $resolved, $existing);
     }
+}
+
+sub write_annotation {
+  my ($self, $database, $target, $significance, @identifiers) = @_;
+
+  my $alert = [
+    level => "note",
+    author => "wikipedia",
+    text => "This information has been updated from Wikipedia",
+    date => DateTime->now()
+  ];
+
+  my @citations = ();
+  foreach my $identifier (@identifiers) {
+    $DB::single = 1;
+    my $publication = $self->get_publication($identifier);
+
+    my $citation = {};
+    $citation->{author}  =  [ map { "$_->{LastName} $_->{Initials}" } @{$publication->{Article}->{AuthorList}->{Author}} ];
+    $citation->{title}   =  $publication->{Article}->{ArticleTitle};
+    $citation->{journal} =  $publication->{Article}->{Journal}->{ISOAbbreviation};
+    $citation->{volume}  =  $publication->{Article}->{Journal}->{JournalIssue}->{Volume};
+    $citation->{issue}   =  $publication->{Article}->{Journal}->{JournalIssue}->{Issue};
+    $citation->{pages}   =  $publication->{Article}->{Pagination}->{MedlinePgn};
+    $citation->{date}    =  $publication->{Article}->{Journal}->{JournalIssue}->{PubDate};
+    $citation->{identifier} = $identifier;
+
+    push @citations, $citation;
+  }
+
+  # my $wikipedia_data = {_format => "wikipedia", @alert, data => { significance => $significance, references => $named_citations}};
+
+  ## First find the source identifier...
+  my $collection = $database->get_collection($target->{collection});
+  my $found = $collection->find_one($target->{query});
+  if (! $found) {
+    $log->warnf("Failed to find record to annotate: %s", $target->{name});
+    return;
+  }
+
+  my $annotation_collection = $database->get_collection('annotations');
+  my $annotation_query = {ref => $found->{_id}, role => $target->{role}};
+  my $annotation_body = {};
+  $annotation_body->{annotation} = $significance;
+  $annotation_body->{citations} = \@citations;
+  $annotation_body->{alert} = $alert;
+  $annotation_collection->update($annotation_query, {'$set' => $annotation_body}, {"upsert" => 1, "multiple" => 0});
+  $log->infof("Writing annotation: %s", $target->{name});
 }
 
 sub _ensure_details {

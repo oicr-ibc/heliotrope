@@ -65,7 +65,7 @@ has date_list_entries => (
 
 has ordered => (
   is => 'rw',
-  default => sub { 1; },
+  default => sub { 0; },
 );
 
 1;
