@@ -29,9 +29,14 @@ angular
           else
             ''
         result = result.trim()
-        return if result then $sanitize(result + ". ") else result
+        result = result + "." if ! /[!?.]$/.test(result)
+        return if result then $sanitize(result) else result
 
-      getTitle = (reference) -> $sanitize(reference.title)
+      getTitle = (reference) ->
+        title = reference.title.trim()
+        title = title + "." if ! /[!?.]$/.test(title)
+        $sanitize(title)
+
       getJournal = (reference) -> '<i>' + $sanitize(reference.journal) + '</i>'
       getVolume = (reference) ->
         if reference.volume?
@@ -46,7 +51,7 @@ angular
         "<a href='#{reference.externalUrl}' rel='external'>#{reference.identifier}</a>"
 
       bibiographyElement = (reference) ->
-        "<span>#{getAuthors(reference)}#{getTitle(reference)}. #{getJournal(reference)} " +
+        "<span>#{getAuthors(reference)} #{getTitle(reference)} #{getJournal(reference)} " +
         "#{getVolume(reference)}#{getIssue(reference)}, #{getPages(reference)}#{getLink(reference)}<span>"
 
       iElement = angular.element('<div></div>')
