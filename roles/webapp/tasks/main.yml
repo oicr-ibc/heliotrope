@@ -36,7 +36,7 @@
     rsync_path: 'sudo rsync'
 
 - name: Webapp | Install dependencies
-  command: npm install --production chdir=/usr/lib/heliotrope
+  command: /usr/lib/heliotrope/node/bin/npm install --production chdir=/usr/lib/heliotrope
 
 - name: Webapp | Write configuration files
   template: src={{ item.src }} dest={{ item.dest }}
@@ -48,6 +48,9 @@
 
 - name: Webapp | Create user heliotrope
   user: name=heliotrope comment="heliotrope webapp" state=present
+
+- name: Webapp | Setting admin password
+  command: sudo -u heliotrope node/bin/node utils/addAdminUser.js --username "admin" --password "admin" chdir=/usr/lib/heliotrope
 
 - name: Webapp | Assign files to the heliotrope user
   file: path={{ item.path }} recurse=yes owner=heliotrope group=adm mode=0750
