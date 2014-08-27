@@ -42,8 +42,8 @@ angular
       getIssue = (reference) -> if reference.issue? then "(" + $sanitize(reference.issue) + ")" else ''
       getPages = (reference) -> if reference.pages? then "pp." + $sanitize(reference.pages) + ", " else ''
       getLink = (reference) ->
-        encoded = encodeURIComponent(reference.pmid)
-        "<a href='/publications/pmid/#{encoded}'>PMID #{encoded}</a>"
+        encoded = encodeURIComponent(reference.identifier)
+        "<a href='#{reference.externalUrl}' rel='external'>#{reference.identifier}</a>"
 
       bibiographyElement = (reference) ->
         "<span>#{getAuthors(reference)}#{getTitle(reference)}. #{getJournal(reference)} " +
@@ -59,6 +59,7 @@ angular
 
       referenceIndexes = {}
       referenceIndex = 1
+      foundReferences = {}
 
       for paragraph in paragraphs
         tag = 'p'
@@ -71,14 +72,15 @@ angular
         paragraph = paragraph.replace /<ref refId="([^"]+)"\/>/g, (match, p1) ->
           index = referenceIndexes[p1] or referenceIndexes[p1] = referenceIndex++
           found = references[p1]
-          "<a class='citation' href='/publications/pmid/#{found.pmid}'>#{'[' + index + ']'}</a>"
+          foundReferences[found.identifier] = true
+          "<a class='citation' href='#{found.externalUrl}'>#{'[' + index + ']'}</a>"
         element.html $sanitize(paragraph)
         iElement.append element
 
       if Object.keys(references).length > 0
         refList = []
         for own key, reference of references
-          if reference.significant
+          if foundReferences[reference.identifier]
             refList.push { index: referenceIndexes[key], body: bibiographyElement(reference) }
         refList.sort (a, b) -> a.index - b.index
 

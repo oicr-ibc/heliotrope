@@ -115,6 +115,7 @@ getGene = (req, res) ->
       resolved.url = relativeUrl(res, "/genes/" + name)
       resolved.mutationsUrl = resolved.url + "/mutations"
       resolved.frequenciesUrl = resolved.url + "/frequencies"
+      resolved.annotationUrl = resolved.url + "/annotation"
 
       result = new Object
       result['data'] = resolved
@@ -153,6 +154,14 @@ getGeneMutations = (req, res) ->
 module.exports.getGeneMutations = getGeneMutations
 
 
+getExternalUrl = (citation) ->
+  unpacked = citation.identifier.split ':', 2
+  switch unpacked[0]
+    when 'pmid'
+      "http://www.ncbi.nlm.nih.gov/pubmed/#{encodeURIComponent(unpacked[1])}"
+    else
+      undefined
+
 module.exports.getGeneAnnotation = (req, res) ->
   name = req.params.gene
   db = res.locals.db
@@ -176,10 +185,11 @@ module.exports.getGeneAnnotation = (req, res) ->
           result['data'] = {}
           for doc in docs
             role = doc.role
-            result['data'][role] = [] if ! result['data'][role]?
+            result['data'][role] ?= []
             citations = {}
             for citation in doc.citations
               citations[citation.identifier] = citation
+              citation.externalUrl ?= getExternalUrl(citation)
             doc.citations = citations
             result['data'][role].push doc
           result['url'] = req.url
@@ -231,6 +241,7 @@ getVariant = (req, res) ->
     resolved.geneUrl = relativeUrl(res, "/genes/" + resolved.gene)
     resolved.frequenciesUrl = resolved.url + "/frequencies"
     resolved.mutationsUrl = resolved.geneUrl + "/mutations"
+    resolved.annotationUrl = resolved.url + "/annotation"
 
     result = new Object
     result['data'] = resolved

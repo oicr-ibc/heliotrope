@@ -47,6 +47,10 @@ angular
           if ! err?
             $scope.frequencies = frequenciesData
 
+        addData entity.data.annotationUrl, {}, (err, annotationData) ->
+          if ! err?
+            $scope.annotation = annotationData
+
       (error) ->
         console.log error
     )
