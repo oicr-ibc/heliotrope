@@ -333,16 +333,16 @@ sub _build_article {
 sub write_annotation {
   my ($self, $database, $target, $significance, @identifiers) = @_;
 
-  my $alert = [
+  my $alert = {
     level => "note",
     author => "wikipedia",
+    source => {name => "Wikipedia", url => "http://en.wikipedia.org"},
     text => "This information has been updated from Wikipedia",
     date => DateTime->now()
-  ];
+  };
 
   my @citations = ();
   foreach my $identifier (@identifiers) {
-    $DB::single = 1;
     my $publication = $self->get_publication($identifier);
 
     my $citation = {};

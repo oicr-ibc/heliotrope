@@ -79,12 +79,12 @@ angular
       restrict: "A"
       replace: true
       transclude: true
-      scope: { title: '@title', id: '@bodyId', when: '=when' }
+      scope: { title: '@title', id: '@bodyId', source: '=source', when: '=when' }
       template: '<div class="row-fluid ng-hide">' +
                 '<div class="tab-content">' +
                 '<div class="tab-pane active">' +
                 '<div class="row-fluid">' +
-                '<h3 id="{{id}}">{{title}}</h3>' +
+                '<h3 id="{{id}}">{{title}} <small class="source ng-hide"></small></h3>' +
                 '</div>' +
                 '<div class="body" ng-transclude></div>' +
                 '</div' +
@@ -110,6 +110,13 @@ angular
           scope.$watch 'when', (value) ->
             newElement.toggleClass('ng-hide', !value?)
             jQuery(iElement).toggleClass('ng-hide', !value?)
+
+        if iAttrs.source?
+          scope.$watch 'source', (source) ->
+            if source?
+              sourceElement = iElement.find(".source")
+              sourceElement.append 'Source: <a href="' + source.url + '" rel="external">' + source.name + '</a'
+              jQuery(sourceElement).toggleClass('ng-hide', !source?)
 
         else
           jQuery(iElement).toggleClass('ng-hide')
