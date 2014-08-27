@@ -23,6 +23,7 @@ use Carp;
 use Tie::IxHash;
 use DateTime;
 use XML::LibXML;
+use Scalar::Util qw(looks_like_number);
 
 has element_hooks => (
   is => 'rw',
@@ -89,6 +90,21 @@ sub convert_document_to_json {
   return _convert($self, $element, $path, $args);
 }
 
+my $month_numbers = {
+  jan => 1,
+  feb => 2,
+  mar => 3,
+  apr => 4,
+  may => 5,
+  jun => 6,
+  jul => 7,
+  aug => 8,
+  sep => 9,
+  oct => 10,
+  nov => 11,
+  dec => 12,
+};
+
 sub _convert {
   my ($self, $element, $path, $args) = @_;
   $path //= "";
@@ -125,6 +141,9 @@ sub _convert {
       my $year = _fetch($date, $ordered, 'Year');
       my $month = _fetch($date, $ordered, 'Month');
       my $day = _fetch($date, $ordered, 'Day');
+      if (! looks_like_number($month)) {
+        $month = $month_numbers->{lc(substr($month, 0, 3))} // croak "Failed to parse month: $month";
+      }
       my $datetime = DateTime->new(year => $year, month => $month, day => $day, time_zone => "UTC");
       _store($result, $ordered, $field, $datetime);
     }
