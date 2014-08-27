@@ -154,7 +154,37 @@ module.exports.getGeneMutations = getGeneMutations
 
 
 module.exports.getGeneAnnotation = (req, res) ->
-  res.status(500).send("Not yet implemented")
+  name = req.params.gene
+  db = res.locals.db
+  db.collection "genes", (err, genes) ->
+    return res.status(500).send(err) if (err)
+
+    genes.findOne {name: name}, (err, gene) ->
+      return res.status(500).send(err) if (err)
+      return res.status(404).send("Not found") if ! gene?
+
+      db.collection "annotations", (err, annotations) ->
+        return res.status(500).send(err) if (err)
+
+        annotations.find({ref: gene._id}).toArray (err, docs) ->
+          return res.status(500).send(err) if (err)
+
+          ## A small amount of client-side decoding, this translates some array items
+          ## (best for MongoDB indexing) to object keys (best for the client)
+
+          result = {}
+          result['data'] = {}
+          for doc in docs
+            role = doc.role
+            result['data'][role] = [] if ! result['data'][role]?
+            citations = {}
+            for citation in doc.citations
+              citations[citation.identifier] = citation
+            doc.citations = citations
+            result['data'][role].push doc
+          result['url'] = req.url
+
+          res.send result
 
 
 module.exports.executeQuery = (req, res) ->
@@ -504,6 +534,20 @@ module.exports.getGeneFrequencies = (req, res) ->
           res.send result
 
 module.exports.getVariantAnnotation = (req, res) ->
+  selector = getVariantSelector(req)
+
+  db = res.locals.db
+  db.collection "variants", (err, variants) ->
+    return res.status(500).send(err) if (err)
+
+    variants.findOne selector, (err, variant) ->
+      return res.status(500).send(err) if (err)
+      return res.status(404).send({err: "no such object: " + selector.toString()}) if (! variant?)
+
+      db.collection "annotations", (err, annotations) ->
+        annotations.find {}
+
+
   return res.status(500).send("Not yet implemented")
 
   db = res.locals.db
