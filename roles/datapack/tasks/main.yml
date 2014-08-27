@@ -32,5 +32,5 @@
 - name: Data download | Restore data
   command: mongorestore --db heliotrope /tmp/heliotrope
   when: ! found_genes.stdout
-  async: 3600
+  async: 7200
   poll: 60
