@@ -21,12 +21,12 @@
 
 - name: Data download | Get data
   get_url:
-    dest: /tmp/heliotrope-dump-1.1.tar.bz2
-    url: https://googledrive.com/host/0B75vAAGHtrjaRGdaQV8wX3VrNVE/heliotrope-dump-1.1.tar.bz2
+    dest: "/tmp/heliotrope-dump-{{ heliotrope_datapack_version }}.tar.bz2"
+    url: "{{ heliotrope_datapack_base }}/heliotrope-dump-{{ heliotrope_datapack_version }}.tar.bz2"
   when: found_genes.stdout == "0"
 
 - name: Data download | Unpack data
-  command: tar xfj /tmp/heliotrope-dump-1.1.tar.bz2 chdir=/tmp creates=/tmp/heliotrope
+  command: tar xfj /tmp/heliotrope-dump-{{ heliotrope_datapack_version }}.tar.bz2 chdir=/tmp creates=/tmp/heliotrope
   when: found_genes.stdout == "0"
 
 - name: Data download | Restore data
