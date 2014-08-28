@@ -21,14 +21,34 @@ Heliotrope depends on these technologies:
 *  Java runtime -- used by the reporting system to generate PDF files (tested with Oracle Java 1.7.0_11)
 
 
-Installation
-------------
+Quick Start
+-----------
 
-Before you install, you'll need fairly recent versions of [node.js](https//nodejs.org/) and
-[Vagrant](http://www.vagrantup.com/‎).
+The fastest way to get a running version of Heliotrope is to use the auxiliary repository with
+[Vagrant](http://www.vagrantup.com/‎) and [VirtualBox](https://www.virtualbox.org/‎). No other
+dependencies are required. Simply use the following commands:
+
+```shell
+$ git clone https://github.com/oicr-ibc/heliotrope-vagrant-demo.git
+$ cd heliotrope-vagrant-demo
+$ vagrant box add precise64 http://files.vagrantup.com/precise64.box
+$ vagrant up
+```
+
+This may take a while to complete. When it is done, connect your browser to: https://localhost:8443/.
+This includes a recent database and test data.
+
+
+Development installation
+------------------------
+
+To run Heliotrope in development mode, you'll need fairly recent versions of:
 
 *  Java
 *  [node.js](https//nodejs.org/)
+*  [MongoDB](http://www.mongodb.org/)
+
+Then you can start a running (empty, development) system as follows:
 
 ```shell
 $ git clone git@github.com:oicr-ibc/heliotrope.git
@@ -38,12 +58,25 @@ $ bower install
 $ node_modules/gulp/bin/gulp serve
 ```
 
-For an easy start, use [VirtualBox](https://www.virtualbox.org/‎)
+Deployment on a local server
+----------------------------
+
+Along with [node.js](https//nodejs.org/), you can use [Vagrant](http://www.vagrantup.com/‎) and
+[Ansible](http://www.ansible.com) to deploy onto a server, either directly onto a remote server
+such as one from a cloud provider such as AWS or Digital Ocean, or you can use
+[VirtualBox](https://www.virtualbox.org/‎) or another virtual machine platform. For this you'll
+need:
+
+For an easy start, use [Vagrant](http://www.vagrantup.com/‎) and [VirtualBox](https://www.virtualbox.org/‎)
 to set up a quick virtual machine. You can also use [Ansible](http://www.ansible.com) to deploy to
 a virtual machine hosted elsewhere, either on your own local network, or using some cloud provider.
 
+*  [node.js](https//nodejs.org/)
+*  [Bower](http://bower.io/)
 *  [Vagrant](http://www.vagrantup.com/‎)
-*  [VirtualBox](https://www.virtualbox.org/‎)
+*  [Ansible](http://www.ansible.com)
+*  [MongoDB](http://www.mongodb.org/)
+*  [VirtualBox](https://www.virtualbox.org/‎) (or equivalent)
 
 ```shell
 $ git clone git@github.com:oicr-ibc/heliotrope.git
@@ -60,9 +93,20 @@ knowledge base data package. You can then connect to this in your local browser 
 An initial user is created with the username `admin` and password `admin` -- you can use this to create more
 users and configure studies as you choose, as well as to annotate the knowledge base.
 
+Building a Debian package
+-------------------------
+
 It's also fairly simply to build a Debian package. Again, this uses [Ansible](http://www.ansible.com). There is
 a second playbook that provisions a minimal setup and prepares a Debian package, then copies that package
-back to the current directory. The commands needed to build a Debian package are:
+back to the current directory. For this you'll need:
+
+*  [node.js](https//nodejs.org/)
+*  [Bower](http://bower.io/)
+*  [Vagrant](http://www.vagrantup.com/‎)
+*  [Ansible](http://www.ansible.com)
+*  [VirtualBox](https://www.virtualbox.org/‎)
+
+The commands needed to build a Debian package are:
 
 ```shell
 $ git clone git@github.com:oicr-ibc/heliotrope.git
@@ -112,10 +156,12 @@ its knowledge base:
 *  COSMIC -- used to calculate variant frequencies
 *  Entrez -- used as a source for gene descriptions
 *  Sanger Cancer Gene Census -- cancer-specific gene-level annotation
+*  Wikipedia -- clinical gene-level commentary with references
+*  PubMed -- when referenced from Wikipedia
 
-Note that COSMIC and the Sanger Cancer Gene Census now requires authentication to access the data, and the
-previous automated download processes no longer work. Instead, COSMIC and Sanger Cancer Gene Census files
-need to be downloaded manually. This part of the knowledge base construction is a work in progress.
+Note that COSMIC and the Sanger Cancer Gene Census now requires authentication to access the data, and usernames
+and passwords need to be set using the `cosmic_email` and `cosmic_password` settings in the `build_data_local.yml` file to
+log into the COSMIC file site.
 
 
 Security
