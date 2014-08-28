@@ -31,7 +31,6 @@ dependencies are required. Simply use the following commands:
 ```shell
 $ git clone https://github.com/oicr-ibc/heliotrope-vagrant-demo.git
 $ cd heliotrope-vagrant-demo
-$ vagrant box add precise64 http://files.vagrantup.com/precise64.box
 $ vagrant up
 ```
 
