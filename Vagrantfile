@@ -32,9 +32,10 @@ Vagrant.configure("2") do |config|
   # Now you can navigate to https://localhost:8443/
   config.vm.network :forwarded_port, host: 8443, guest: 443
 
-  # For VirtualBox, set RAM availability.
+  # For VirtualBox, set RAM availability, and use two CPUs.
   config.vm.provider "virtualbox" do |v|
-    v.customize ["modifyvm", :id, "--memory", 2048]
+    v.memory = 2048
+    v.cpus = 2
   end
 
   config.vm.provision "ansible" do |ansible|
