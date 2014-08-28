@@ -68,6 +68,7 @@ angular
 
       for paragraph in paragraphs
         tag = 'p'
+        paragraph = paragraph.trim()
         paragraph = paragraph.replace /^(====?)?(.*?)(====?)?$/, (match, p1, p2, p3) ->
           switch p1
             when '===' then tag = 'h4'
