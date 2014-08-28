@@ -235,7 +235,7 @@ getVariant = (req, res) ->
     return res.status(err.code).send(err.err) if err?
 
     resolved = resolve(doc)
-    encodedName = encodeURIComponent(doc.shortName)
+    encodedName = encodeURIComponent(doc.name)
     encodedName = encodedName.replace(/%20/g, '+')
     resolved.url = relativeUrl(res, "/variants/" + encodedName)
     resolved.geneUrl = relativeUrl(res, "/genes/" + resolved.gene)
@@ -553,17 +553,31 @@ module.exports.getVariantAnnotation = (req, res) ->
 
     variants.findOne selector, (err, variant) ->
       return res.status(500).send(err) if (err)
-      return res.status(404).send({err: "no such object: " + selector.toString()}) if (! variant?)
+      return res.status(404).send("Not found") if ! variant?
 
       db.collection "annotations", (err, annotations) ->
-        annotations.find {}
+        return res.status(500).send(err) if (err)
 
+        annotations.find({ref: variant._id}).toArray (err, docs) ->
+          return res.status(500).send(err) if (err)
 
-  return res.status(500).send("Not yet implemented")
+          ## A small amount of client-side decoding, this translates some array items
+          ## (best for MongoDB indexing) to object keys (best for the client)
 
-  db = res.locals.db
-  db.collection "annotations", (err, annotations) ->
-    return res.status(500).send(err) if (err)
+          result = {}
+          result['data'] = {}
+          for doc in docs
+            role = doc.role
+            result['data'][role] ?= []
+            citations = {}
+            for citation in doc.citations
+              citations[citation.identifier] = citation
+              citation.externalUrl ?= getExternalUrl(citation)
+            doc.citations = citations
+            result['data'][role].push doc
+          result['url'] = req.url
+
+          res.send result
 
 ## Retrieves variant frequencies.
 ## @param req

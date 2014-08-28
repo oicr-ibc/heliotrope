@@ -66,7 +66,7 @@ angular
           callback status, data
 
     # Store a copy of the original data here
-    $scope.originalSections = undefined
+    # $scope.originalSections = undefined
 
     $scope.entity = Variant.get($routeParams
       (entity) ->
@@ -86,18 +86,10 @@ angular
           if ! err?
             $scope.frequencies = frequenciesData
 
-        clinical = entity.data.sections.clinical
-        if clinical
-          # Build a significance type list in the scope we can use to repeat and filter
-          # the data accordingly.
-          significance = clinical.data.significance
-          significance ?= []
-          types = {}
-          types[sig.tumourType] = [] for sig in significance
-          types[sig.tumourType].push(sig) for sig in significance
-          $scope.classifiedSignifance = types
+        addData entity.data.annotationUrl, {}, (err, annotationData) ->
+          if ! err?
+            $scope.annotation = annotationData
 
-        $scope.originalSections = angular.copy(entity.data.sections) || {}
       (error) ->
         console.log error
     )
