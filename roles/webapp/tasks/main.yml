@@ -58,6 +58,13 @@
     - { path: '/var/log/heliotrope' }
     - { path: '/var/run/heliotrope' }
 
+- name: Webapp | Check to see whether we have any tracker data
+  command: mongo --quiet --eval 'db.studies.stats()["count"]' tracker
+  register: found_studies
+
+- name: Data download | Restore data
+  shell: mongo tracker < utils/testStudyData.js chdir=/usr/lib/heliotrope
+  when: found_studies.stdout == "" or found_studies.stdout == "0"
 
 - name: Webapp | Ensure heliotrope is running
   service: name=heliotrope state=started
