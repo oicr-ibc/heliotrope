@@ -139,7 +139,6 @@ sub load_phase {
   my $line_number = 0;
 
   my $bulk = $database->get_collection('variantRecords')->initialize_ordered_bulk_op();
-  $database->get_collection('variantRecords')->ensure_index(Tie::IxHash->new(geneId=> 1, mutationId => 1, sampleId => 1));
 
   while(my $line = <$fh>) {
     chomp($line);
