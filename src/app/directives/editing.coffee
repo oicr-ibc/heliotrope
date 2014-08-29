@@ -16,7 +16,7 @@
 angular
   .module 'heliotrope.directives.editing', []
 
-  .directive 'heliEditReferences', ['$compile', ($compile) ->
+  .directive 'heliEditReferences', Array '$compile', ($compile) ->
     result =
       restrict: "A"
       replace: true
@@ -28,12 +28,6 @@ angular
 
         scope.$parent.$watch 'editing', (editing) ->
           if editing
-
-            body = '<div heli-reference-tags references="references"><div>'
-            template = angular.element(body)
-            linkFn = $compile(template)
-            iElement.empty()
-            iElement.append linkFn(scope)
 
             body = '<input type="text" class="reference-tags" value=""></input>'
             iElement.empty()
@@ -80,7 +74,6 @@ angular
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
-  ]
 
   ## Handle a dropdown. Underneath, this is done using select2. That isn't completely
   ## happy with Angular, so there is some bridging and validation logic required.
@@ -132,7 +125,7 @@ angular
             linkBody("<p class='form-control-static'>{{value | keywordToString:#{capitalize}}}</p>")
 
 
-  .directive 'heliEditTypeahead', ['$compile', ($compile) ->
+  .directive 'heliEditTypeahead', Array '$compile', ($compile) ->
     result =
       restrict: "A"
       replace: true
@@ -163,9 +156,8 @@ angular
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
-  ]
 
-  .directive 'heliEditComment', ['$compile', ($compile) ->
+  .directive 'heliEditComment', Array '$compile', ($compile) ->
     result =
       restrict: "A"
       replace: true
@@ -187,9 +179,8 @@ angular
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
-  ]
 
-  .directive 'heliEditText', ['$compile', ($compile) ->
+  .directive 'heliEditText', Array '$compile', ($compile) ->
     result =
       restrict: "A"
       replace: true
@@ -217,7 +208,6 @@ angular
             linkFn = $compile(template)
             iElement.empty()
             iElement.append linkFn(scope)
-  ]
 
   .directive 'heliEditableActionAnnotation', () ->
     result =
