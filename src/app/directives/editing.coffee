@@ -16,6 +16,59 @@
 angular
   .module 'heliotrope.directives.editing', []
 
+  .directive 'heliEditTags', Array '$compile', ($compile) ->
+    result =
+      restrict: "A"
+      replace: true
+      transclude: false
+      scope:
+        tags: '='
+      template: '<span></span>'
+
+      link: (scope, iElement, iAttrs, controller) ->
+
+        scope.$parent.$watch 'editing', (editing) ->
+          if editing
+
+            body = '<input type="text" class="label-tags form-control" value=""></input>'
+            iElement.empty()
+            iElement.append(jQuery(body))
+
+            changeHandler = (evt) ->
+              value = evt.val
+              if value?
+                scope.$apply () ->
+                  scope['tags'] = value
+              false
+
+            tagsElement = iElement.find(".label-tags")
+            tagsElement.select2
+              ajax:
+                url: '/api/knowledge/tags'
+                dataType: 'json'
+                data: (term, page) ->
+                  result =
+                    q: term + "*"
+                    page: page
+                results: (data, page) ->
+                  results =
+                    results: ({id: v.name, text: v.name} for v in data.data)
+                    more: false
+              tags: []
+            tagsElement.bind 'change', changeHandler
+          else
+            body = '<p class="form-control-static">' +
+                   '<span class="inline-list">' +
+                   '<span ng-hide="tags">none</span>' +
+                   '<span ng-show="tags" class="inline-item" ng-repeat="tag in tags">{{tag}}</span>' +
+                   '</span>' +
+                   '</p>'
+            template = angular.element(body)
+            linkFn = $compile(template)
+            iElement.empty()
+            iElement.append linkFn(scope)
+
+
   .directive 'heliEditReferences', Array '$compile', ($compile) ->
     result =
       restrict: "A"
@@ -277,7 +330,7 @@ angular
                 '<div class="form-group">' +
                 '<label for="tumourType{{$index}}" class="col-sm-3 control-label">Tumour type</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-text value="sig.tumourType" options="tumourTypes"></span>' +
+                '<span heli-edit-tags id="identity{{$index}}" tags="sig.identity"></span>' +
                 '</div>' +
                 '</div>' +
 
