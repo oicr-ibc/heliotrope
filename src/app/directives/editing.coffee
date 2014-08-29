@@ -29,7 +29,7 @@ angular
         scope.$parent.$watch 'editing', (editing) ->
           if editing
 
-            body = '<input type="text" class="reference-tags" value=""></input>'
+            body = '<input type="text" class="reference-tags form-control" value=""></input>'
             iElement.empty()
             iElement.append(jQuery(body))
 
