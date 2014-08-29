@@ -250,7 +250,7 @@ angular
                 '<div class="form-group">' +
                 '<label for="actionSources{{$index}}" class="col-sm-3 control-label">References</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-references id="actionSources{{$index}}" references="annotation.data.action[0].reference"></span>' +
+                '<span heli-edit-references id="actionSources{{$index}}" references="annotation.data.action[0].citations"></span>' +
                 '</div>' +
                 '</div>' +
 
@@ -274,7 +274,7 @@ angular
 
         $scope.addSignificance = () ->
           $scope.annotation.data.significance ?= []
-          $scope.annotation.data.significance.push({tumourType: "", studyType: "", comment: "", reference: [], levelOfEvidence: ""})
+          $scope.annotation.data.significance.push({tumourType: "", studyType: "", comment: "", citations: [], levelOfEvidence: ""})
         $scope.removeSignificance = (significance) ->
           $scope.annotation.data.significance = $scope.annotation.data.significance.filter (other) ->
             other != significance
@@ -308,7 +308,7 @@ angular
                 '<div class="form-group">' +
                 '<label for="sources{{$index}}" class="col-sm-3 control-label">References</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-references id="sources{{$index}}" references="sig.reference"></span>' +
+                '<span heli-edit-references id="sources{{$index}}" references="sig.citations"></span>' +
                 '</div>' +
                 '</div>' +
 
@@ -366,7 +366,7 @@ angular
 
         $scope.addDrug = () ->
           $scope.annotation.data.agents ?= []
-          $scope.annotation.data.agents.push({sensitivity: "", name: "", reference: []})
+          $scope.annotation.data.agents.push({sensitivity: "", name: "", citations: []})
 
         $scope.removeDrug = (agent) ->
           $scope.annotation.data.agents = $scope.annotation.data.agents.filter (other) ->
@@ -402,7 +402,7 @@ angular
                 '<div class="form-group">' +
                 '<label for="agentReferences{{$index}}" class="col-sm-3 control-label">References</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-references id="agentReferences{{$index}}" references="agent.reference"></span>' +
+                '<span heli-edit-references id="agentReferences{{$index}}" references="agent.citations"></span>' +
                 '</div>' +
                 '</div>' +
 
