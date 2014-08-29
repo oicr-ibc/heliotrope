@@ -68,19 +68,21 @@
         </div>
       </div>
 
-      <div heli-section body-id="clinical-action" title="Clinical summary" when="editing || entity.data.sections.clinical">
+      <div heli-section body-id="clinical-action" title="Clinical summary" when="editing || annotation.data.action[0]">
         <div class="row-fluid">
-          <div heli-editable-action action="entity.data.sections.clinical.data.action"></div>
+          <div heli-editable-action-annotation></div>
         </div>
       </div>
 
-      <div heli-section body-id="clinical-significance" title="Clinical significance" when="editing || entity.data.sections.clinical">
-        <div heli-editable-significances significance="entity.data.sections.clinical.data.significance"></div>
+      <div heli-section body-id="clinical-significance" title="Clinical significance" when="editing || annotation.data.clinical">
+        <div heli-editable-significances significance="annotation.data.clinical"></div>
       </div>
 
-      <div heli-section body-id="drugs" title="Druggability" when="editing || entity.data.sections.clinical">
-        <div heli-editable-agents agents="entity.data.sections.clinical.data.agents"></div>
+      <div heli-section body-id="drugs" title="Druggability" when="editing || annotation.data.druggability[0]">
+        <div heli-editable-agents-annotation></div>
       </div>
+
+      {{annotation}}
 
       <div heli-section body-id="genomics" title="Genomics">
         <div id="genomics-table">

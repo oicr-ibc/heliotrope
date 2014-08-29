@@ -219,34 +219,38 @@ angular
             iElement.append linkFn(scope)
   ]
 
-  .directive 'heliEditableAction', () ->
+  .directive 'heliEditableActionAnnotation', () ->
     result =
       restrict: "A"
       replace: true
-      transclude: true
-      scope:
-        action: '='
+
+      controller: Array '$scope', ($scope) ->
+        $scope.$watch 'annotation', (annotation) ->
+          if annotation?
+            annotation.data ?= {}
+            annotation.data.action ?= [{}]
+
       template: '<div ng-class="{\'well well-sm\': editing}" >' +
                 '<form class="form-horizontal heli-editing-form" role="form">' +
 
                 '<div class="form-group">' +
                 '<label for="actionType{{$index}}" class="col-sm-3 control-label">Mutation action</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-dropdown id="actionType{{$index}}" value="action.type" options="activating,inactivating,other"></span>' +
+                '<span heli-edit-dropdown id="actionType{{$index}}" value="annotation.data.action[0].type" options="activating,inactivating,other"></span>' +
                 '</div>' +
                 '</div>' +
 
                 '<div class="form-group">' +
                 '<label for="actionComment{{$index}}" class="col-sm-3 control-label">Comment</label>' +
                 '<div class="col-sm-9">' +
-                '<div heli-edit-comment id="actionComment{{$index}}" value="sig.comment"></div>' +
+                '<div heli-edit-comment id="actionComment{{$index}}" value="annotation.data.action[0].comment"></div>' +
                 '</div>' +
                 '</div>' +
 
                 '<div class="form-group">' +
                 '<label for="actionSources{{$index}}" class="col-sm-3 control-label">References</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-references id="actionSources{{$index}}" references="action.reference"></span>' +
+                '<span heli-edit-references id="actionSources{{$index}}" references="annotation.data.action[0].reference"></span>' +
                 '</div>' +
                 '</div>' +
 
@@ -265,12 +269,19 @@ angular
       restrict: "A"
       replace: true
       transclude: true
-      scope:
-        significance: '='
-      controller: 'EditableSignificanceController'
+
+      controller: Array '$scope', ($scope) ->
+
+        $scope.addSignificance = () ->
+          $scope.annotation.data.significance ?= []
+          $scope.annotation.data.significance.push({tumourType: "", studyType: "", comment: "", reference: [], levelOfEvidence: ""})
+        $scope.removeSignificance = (significance) ->
+          $scope.annotation.data.significance = $scope.annotation.data.significance.filter (other) ->
+            other != significance
+
       template: '<div>' +
                 '<p ng-hide="editing || significance">No information available</p>' +
-                '<div ng-class="{\'well well-sm\': editing}" ng-repeat="sig in significance">' +
+                '<div ng-class="{\'well well-sm\': editing}" ng-repeat="sig in annotation.data.significance">' +
                 '<form class="form-horizontal heli-editing-form" role="form">' +
 
                 '<div class="form-group">' +
@@ -346,17 +357,24 @@ angular
             iElement.attr("class", "")
 
 
-  .directive 'heliEditableAgents', () ->
+  .directive 'heliEditableAgentsAnnotation', () ->
     result =
       restrict: "A"
       replace: true
-      transclude: true
-      scope:
-        agents: '='
-      controller: 'EditableAgentsController'
+
+      controller: Array '$scope', ($scope) ->
+
+        $scope.addDrug = () ->
+          $scope.annotation.data.agents ?= []
+          $scope.annotation.data.agents.push({sensitivity: "", name: "", reference: []})
+
+        $scope.removeDrug = (agent) ->
+          $scope.annotation.data.agents = $scope.annotation.data.agents.filter (other) ->
+            other.name != agent.name || other.sensitivity != agent.sensitivity
+
       template: '<div>' +
                 '<p ng-hide="editing || agents">No information available</p>' +
-                '<div ng-class="{\'well well-sm\': editing}" ng-repeat="agent in agents">' +
+                '<div ng-class="{\'well well-sm\': editing}" ng-repeat="agent in annotation.data.agents">' +
                 '<form class="form-horizontal heli-editing-form" role="form">' +
 
                 '<div class="form-group">' +
@@ -384,7 +402,7 @@ angular
                 '<div class="form-group">' +
                 '<label for="agentReferences{{$index}}" class="col-sm-3 control-label">References</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-references id="agentReferences{{$index}}" value="agent.reference"></span>' +
+                '<span heli-edit-references id="agentReferences{{$index}}" references="agent.reference"></span>' +
                 '</div>' +
                 '</div>' +
 
