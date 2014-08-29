@@ -64,6 +64,9 @@ sub output {
   ## Indexes for the variantRecords collection
   $self->ensure_index($dbh, "variantRecords", Tie::IxHash->new("geneId" => 1, "sampleId" => 1, "mutationId" => 1), { unique => true, safe => true });
 
+  ## Indexes for the annotations collection
+  $self->ensure_index($dbh, "annotations", Tie::IxHash->new("role" => 1, "identity" => 1), { unique => true, safe => true });
+
 	$self->close_database($dbh);
 }
 
