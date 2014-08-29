@@ -120,26 +120,6 @@ angular
     )
   ]
 
-  .controller 'EditableAgentsController', ['$scope', '$routeParams', ($scope, $routeParams, $timeout) ->
-    $scope.addDrug = () ->
-      if ! $scope.agents?
-        $scope.agents = []
-      $scope.agents.push({sensitivity: "", name: ""})
-    $scope.removeDrug = (agent) ->
-      $scope.agents = $scope.agents.filter (other) ->
-        other.name != agent.name || other.sensitivity != agent.sensitivity
-  ]
-
-  .controller 'EditableSignificanceController', ['$scope', '$routeParams', 'Variant', ($scope, $routeParams, Variant) ->
-    $scope.addSignificance = () ->
-      if ! $scope.significance?
-        $scope.significance = []
-      $scope.significance.push({tumourType: "", studyType: "", comment: "", reference: [], levelOfEvidence: ""})
-    $scope.removeSignificance = (significance) ->
-      $scope.significance = $scope.significance.filter (other) ->
-        other != significance
-  ]
-
   .controller 'SearchFormController', ['$scope', '$routeParams', '$location', 'Search', ($scope, $routeParams, $location, Search) ->
     $scope.q = '';
     $scope.submit = () ->
