@@ -1,0 +1,400 @@
+---
+tags:
+  - 'abdomen'
+  - 'acetabulum'
+  - 'acral'
+  - 'adrenal gland'
+  - 'ampulla of Vater'
+  - 'ankle'
+  - 'anorectal'
+  - 'anus'
+  - 'appendical mesentery'
+  - 'appendix'
+  - 'arm'
+  - 'atlas'
+  - 'auditory meatus'
+  - 'autonomic ganglia'
+  - 'axilla'
+  - 'back'
+  - 'Bartholin gland'
+  - 'basal ganglia'
+  - 'bile duct'
+  - 'biliary tract'
+  - 'bladder'
+  - 'blood vessel'
+  - 'bone'
+  - 'brain'
+  - 'brainstem'
+  - 'breast'
+  - 'breast inframammary'
+  - 'broad ligament'
+  - 'bronchus'
+  - 'buccal'
+  - 'buccal mucosa'
+  - 'buttock'
+  - 'caecum'
+  - 'calcaneus'
+  - 'caudate nucleus'
+  - 'central nervous system'
+  - 'cerebellum'
+  - 'cerebral cortex'
+  - 'cerebral hemisphere'
+  - 'cerebrum'
+  - 'cervical'
+  - 'cervix'
+  - 'chest'
+  - 'chest wall'
+  - 'chiasm'
+  - 'choroid plexus'
+  - 'chronically sun exposed site'
+  - 'cingulate gyrus'
+  - 'clavicle'
+  - 'coccyx'
+  - 'colon'
+  - 'conjunctiva'
+  - 'corpus callosum'
+  - 'craniopharyngeal duct'
+  - 'cranium'
+  - 'cuboidal'
+  - 'diencephalon'
+  - 'duodenum'
+  - 'ear'
+  - 'ear canal'
+  - 'elbow'
+  - 'endometrium'
+  - 'epiglottis'
+  - 'extraadrenal'
+  - 'extragonadal'
+  - 'extramammary'
+  - 'extranodal'
+  - 'extraocular'
+  - 'extrapancreatic'
+  - 'extrarenal'
+  - 'extraskeletal'
+  - 'extremity'
+  - 'eye'
+  - 'face'
+  - 'fallopian tube'
+  - 'fat'
+  - 'female genital tract (site indeterminate)'
+  - 'femur'
+  - 'fibrous tissue and uncertain origin'
+  - 'fibula'
+  - 'filum'
+  - 'flank'
+  - 'foot'
+  - 'forearm'
+  - 'fourth ventricle'
+  - 'frontal'
+  - 'frontal lobe'
+  - 'frontobasal'
+  - 'frontoparietal'
+  - 'frontotemporal'
+  - 'gallbladder'
+  - 'gastrointestinal tract'
+  - 'site indeterminate'
+  - 'genital'
+  - 'genital tract'
+  - 'groin'
+  - 'haematopoietic and lymphoid tissue'
+  - 'hand'
+  - 'head neck'
+  - 'heart'
+  - 'hip'
+  - 'humerus'
+  - 'hypothalamus'
+  - 'ileum'
+  - 'infratentorial'
+  - 'intermittently sun exposed site'
+  - 'intraventricular'
+  - 'ischium'
+  - 'jejunum'
+  - 'kidney'
+  - 'knee'
+  - 'labia'
+  - 'labia major'
+  - 'lacrimal gland'
+  - 'large intestine'
+  - 'larynx'
+  - 'lateral ventricle'
+  - 'left'
+  - 'left bronchus'
+  - 'left hemisphere'
+  - 'left lower lobe'
+  - 'left upper lobe'
+  - 'leg'
+  - 'lingula'
+  - 'lip'
+  - 'liver'
+  - 'lower back'
+  - 'lower extremity'
+  - 'lower leg'
+  - 'lower lobe'
+  - 'lower third'
+  - 'lung'
+  - 'lymph node'
+  - 'major'
+  - 'mandible'
+  - 'mastoid'
+  - 'maxilla'
+  - 'maxillary sinus'
+  - 'mediastinum'
+  - 'medulla'
+  - 'medullocerebellar'
+  - 'meninges'
+  - 'metacarpus'
+  - 'midbrain'
+  - 'middle ear'
+  - 'middle lobe'
+  - 'middle third'
+  - 'midline organs'
+  - 'minor'
+  - 'mouth'
+  - 'mouth floor'
+  - 'mouth roof'
+  - 'mucosal'
+  - 'muscle'
+  - 'muscle and neural differentiation'
+  - 'nasal cavity'
+  - 'nasopharynx'
+  - 'neck'
+  - 'nerve sheath'
+  - 'nipple'
+  - 'non-salivary gland'
+  - 'non chronically sun exposed site'
+  - 'occipital lobe'
+  - 'ocular adnexa'
+  - 'oesophagus'
+  - 'optic nerve'
+  - 'orbit'
+  - 'orbital'
+  - 'ovary'
+  - 'pancreas'
+  - 'paracentral'
+  - 'paranasal sinus'
+  - 'parapharyngeal'
+  - 'paraspinal'
+  - 'paratesticular tissues'
+  - 'parathyroid'
+  - 'parietal lobe'
+  - 'parietooccipital'
+  - 'parotid'
+  - 'patella'
+  - 'pelvis'
+  - 'penis'
+  - 'pericardium'
+  - 'perineum'
+  - 'peritoneum'
+  - 'phalanx'
+  - 'pharynx'
+  - 'pineal gland'
+  - 'pituitary'
+  - 'placenta'
+  - 'pleura'
+  - 'posterior fossa'
+  - 'prostate'
+  - 'pterigomandibular'
+  - 'pterygopalatine fossa'
+  - 'pubis'
+  - 'radius'
+  - 'rectum'
+  - 'renal pelvis'
+  - 'retina'
+  - 'retromolar'
+  - 'retromolar trigone'
+  - 'retroperitoneum'
+  - 'rib'
+  - 'right'
+  - 'right bronchus'
+  - 'right lower lobe'
+  - 'right middle lobe'
+  - 'right upper lobe'
+  - 'sacrum'
+  - 'salivary gland'
+  - 'scalp'
+  - 'scapula'
+  - 'scrotum'
+  - 'sella turcica'
+  - 'septum pellucidum'
+  - 'shoulder'
+  - 'sinonasal and nasal cavity'
+  - 'skin'
+  - 'skull'
+  - 'small intestine'
+  - 'smooth muscle'
+  - 'soft tissue'
+  - 'sole'
+  - 'sphenoid sinus'
+  - 'spinal cord'
+  - 'spleen'
+  - 'sternum'
+  - 'stomach'
+  - 'striated muscle'
+  - 'subcorticoparamedial'
+  - 'sublingual'
+  - 'submandibular'
+  - 'submaxillary'
+  - 'subungual'
+  - 'sulcus'
+  - 'sun exposed site'
+  - 'sun unexposed site'
+  - 'supratentorial'
+  - 'synovium'
+  - 'talus'
+  - 'tectum'
+  - 'temporal fossa'
+  - 'temporal lobe'
+  - 'temporobasal'
+  - 'temporooccipital'
+  - 'temporoparietal'
+  - 'testis'
+  - 'thalamus'
+  - 'third ventricle'
+  - 'thoraco-abdomen'
+  - 'thymus'
+  - 'thyroid'
+  - 'tibia'
+  - 'tongue'
+  - 'tonsil'
+  - 'trachea'
+  - 'trigone'
+  - 'trunk'
+  - 'tunica vaginalis'
+  - 'ulna'
+  - 'upper aerodigestive tract'
+  - 'upper arm'
+  - 'upper back'
+  - 'upper extremity'
+  - 'upper leg'
+  - 'upper lobe'
+  - 'upper third'
+  - 'upper urinary tract'
+  - 'ureter'
+  - 'urinary tract'
+  - 'uterus'
+  - 'uveal tract'
+  - 'vagina'
+  - 'vertebrae'
+  - 'vocal cord'
+  - 'vulva'
+
+  - "acute"
+  - "adenoma"
+  - "adrenocortical carcinoma"
+  - "adult"
+  - "AIDS-related"
+  - "astrocytoma"
+  - "basal-cell carcinoma"
+  - "Burkitt's lymphoma"
+  - "cancer"
+  - "carcinoid"
+  - "carcinoma"
+  - "central nervous system lymphoma"
+  - "cerebellar astrocytoma"
+  - "cerebral astrocytoma"
+  - "cervical cancer"
+  - "childhood"
+  - "chronic"
+  - "chronic myelogenous leukemia"
+  - "chronic myeloproliferative disorders"
+  - "chronic obstructive pulmonary disease"
+  - "colon cancer"
+  - "cutaneous t-cell lymphoma"
+  - "desmoplastic small round cell tumor"
+  - "emphysema"
+  - "endometrial cancer"
+  - "ependymoma"
+  - "esophageal cancer"
+  - "Ewing's sarcoma"
+  - "extragonadal germ cell tumor"
+  - "extrahepatic bile duct cancer"
+  - "gallbladder cancer"
+  - "gastric carcinoid"
+  - "gastrointestinal"
+  - "germ cell"
+  - "gestational trophoblastic tumor"
+  - "glioma"
+  - "hairy cell leukemia"
+  - "Hodgkin's lymphoma"
+  - "hypopharyngeal cancer"
+  - "intraocular melanoma"
+  - "islet cell carcinoma"
+  - "Kaposi sarcoma"
+  - "laryngeal cancer"
+  - "leukemia"
+  - "liposarcoma"
+  - "lymphoblastic leukemia"
+  - "lymphocytic leukemia"
+  - "lymphoma"
+  - "male breast cancer"
+  - "malignant fibrous histiocytoma of bone/osteosarcoma"
+  - "malignant glioma"
+  - "medulloblastoma"
+  - "melanoma"
+  - "Merkel cell cancer"
+  - "Merkel cell carcinoma"
+  - "mesothelioma"
+  - "metastatic squamous neck cancer with occult primary"
+  - "mouth cancer"
+  - "multiple endocrine neoplasia syndrome, childhood"
+  - "multiple myeloma"
+  - "multiple myeloma/plasma cell neoplasm"
+  - "mycosis fungoides"
+  - "myelodysplastic syndromes"
+  - "myelodysplastic/myeloproliferative diseases"
+  - "myelogenous leukemia"
+  - "myeloid leukemia"
+  - "myeloproliferative disorders, chronic"
+  - "nasal cavity and paranasal sinus cancer"
+  - "nasopharyngeal carcinoma"
+  - "neuroblastoma"
+  - "non-Hodgkin's lymphoma"
+  - "non-small cell lung cancer"
+  - "oropharyngeal cancer"
+  - "osteosarcoma"
+  - "ovarian cancer"
+  - "ovarian epithelial cancer"
+  - "ovarian germ cell tumor"
+  - "ovarian low malignant potential tumor"
+  - "pancreatic cancer"
+  - "paranasal sinus and nasal cavity cancer"
+  - "parathyroid cancer"
+  - "pharyngeal cancer"
+  - "pheochromocytoma"
+  - "pineal astrocytoma"
+  - "pineal germinoma"
+  - "pineoblastoma and supratentorial primitive neuroectodermal tumors, childhood"
+  - "pituitary adenoma"
+  - "plasma cell neoplasia"
+  - "pleuropulmonary blastoma"
+  - "primary central nervous system lymphoma"
+  - "renal cell carcinoma"
+  - "retinoblastoma"
+  - "rhabdomyosarcoma"
+  - "salivary gland cancer"
+  - "skin cancer"
+  - "small cell lung cancer"
+  - "small intestine cancer"
+  - "soft tissue sarcoma"
+  - "squamous cell carcinoma"
+  - "stomach cancer"
+  - "stromal"
+  - "supratentorial primitive neuroectodermal tumor"
+  - "Sézary syndrome"
+  - "t-cell lymphoma"
+  - "testicular cancer"
+  - "throat cancer"
+  - "thymoma"
+  - "thymic carcinoma"
+  - "thyroid cancer"
+  - "transitional cell cancer"
+  - "trophoblastic tumor"
+  - "tumor"
+  - "unknown primary site"
+  - "urethral cancer"
+  - "uterine sarcoma"
+  - "vaginal cancer"
+  - "visual pathway and hypothalamic glioma"
+  - "vulvar cancer"
+  - "Waldenström macroglobulinemia"
+  - "Wilms tumor"
