@@ -91,6 +91,8 @@ router.post '/variants', authentication.apiAuthenticator(), knowledge.postVarian
 
 router.get '/variants/:id/report', knowledge.getVariantReport
 
+router.get '/tags', knowledge.getTags
+
 router.get '/search', knowledge.executeSearch
 
 router.get '/*', (req, res) ->

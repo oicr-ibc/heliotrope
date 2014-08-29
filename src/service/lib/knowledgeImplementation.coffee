@@ -279,6 +279,24 @@ getVariantGeneMutations = (req, res) ->
     req.params.gene = doc.gene
     getGeneMutations(req, res)
 
+
+module.exports.getTags = (req, res) ->
+  query = req.query.q || "*"
+
+  escaped = query.replace /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"
+
+  query = if escaped == query
+    query
+  else
+    new RegExp("^" + escaped.replace(/\\\*/g, '.*').replace(/\\\?/g, '.'), 'i')
+
+  db = res.locals.db
+  db.collection "tags", (err, tags) ->
+    tags.find({name: query}, {_id: 0, name: 1}).sort([['name', 1]]).toArray (err, tags) ->
+      return res.status(500).send(err) if err?
+      res.send({data: tags})
+
+
 ## Updates a variant. This is used to save updates from the front end.
 ##
 ## @param req
