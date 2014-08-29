@@ -79,7 +79,7 @@ router.get '/variants/:id/annotation', knowledge.getVariantAnnotation
 router.get '/publications/:type/:id', knowledge.getPublication
 
 ## PUT requests require authentication, and properly authorization too.
-router.put '/variants/:id', authentication.accessAuthenticator(), knowledge.putVariant
+router.put '/variants/:id/annotation', authentication.accessAuthenticator(), knowledge.putVariantAnnotation
 
 ## POST requests require authentication, and properly authorization too. This is
 ## not public, as it is primarily a service endpoint that can be used create a

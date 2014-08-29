@@ -302,17 +302,15 @@ module.exports.getTags = (req, res) ->
 ## @param req
 ## @param callback
 
-module.exports.putVariant = (req, res) ->
+module.exports.putVariantAnnotation = (req, res) ->
   selector = getVariantSelector(req)
   body = req.body
 
   db = res.locals.db
-  db.collection "variants", (err, variants) ->
+  db.collection "annotations", (err, annotations) ->
 
-    # We don't need to update everything, but we should replace certain sections, and primarily
-    # everything clinical, since that's typically been annotated. We could be sloppy and just replace
-    # the whole darned thing, but that's possibly risky if someone messes about with the client
-    # data somehow.
+    ## This shold write potentially multiple documents, each with a role.
+
     update = {}
     update["$set"] = {}
     update["$set"]["sections.clinical.data.action"] = body.data.sections.clinical.data.action
