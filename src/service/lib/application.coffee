@@ -25,6 +25,7 @@ morgan =         require('morgan')
 session =        require('express-session')
 MongoStore =     require('connect-mongo')(session)
 bodyParser =     require('body-parser')
+busboy =         require('connect-busboy')
 
 ## Initialize logging
 logger = log4js.getLogger('main')
@@ -45,6 +46,7 @@ app.use bodyParser.urlencoded(extended: true)
 app.use bodyParser.json()
 app.use cookieParser()
 app.use morgan('short')
+app.use busboy()
 
 # See: http://stackoverflow.com/questions/22698661/mongodb-error-setting-ttl-index-on-collection-sessions
 sessionStore = new MongoStore config["data"]["session"]["store"], (err) ->
