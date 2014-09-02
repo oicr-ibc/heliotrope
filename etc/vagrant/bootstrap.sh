@@ -17,7 +17,7 @@
 
 # Download and install the prerequisites
 sudo apt-get update
-sudo apt-get install -y ssl-cert adduser daemon psmisc nginx-light libc6 build-essential pkg-config git
+sudo apt-get install -y ssl-cert adduser daemon psmisc nginx-light libc6 libssl-dev build-essential pkg-config git
 
 sudo adduser --system --home /usr/lib/heliotrope --no-create-home --disabled-password heliotrope
 sudo mkdir -p /usr/lib/heliotrope
