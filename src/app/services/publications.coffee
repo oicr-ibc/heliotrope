@@ -75,6 +75,8 @@ angular
             when '====' then tag = 'h5'
           p2
         element = angular.element("<#{tag}></#{tag}>")
+        paragraph = paragraph.replace /''([^']+)''/g, (match, p1) ->
+          "<i>" + p1 + "</i>"
         paragraph = paragraph.replace /<ref refId="([^"]+)"\/>/g, (match, p1) ->
           index = referenceIndexes[p1] or referenceIndexes[p1] = referenceIndex++
           found = references[p1]
