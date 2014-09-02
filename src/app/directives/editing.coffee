@@ -262,6 +262,10 @@ angular
             iElement.empty()
             iElement.append linkFn(scope)
 
+  ## handling the action is a little complicated, as there might be zero or one elements to
+  ## the annotation. We don't really want to do too much to the scope, as adding an action
+  ## element might create something we don't want to see.
+
   .directive 'heliEditableActionAnnotation', () ->
     result =
       restrict: "A"

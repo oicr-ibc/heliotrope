@@ -18,13 +18,12 @@ angular
     'heliotrope.services.knowledge'
   ]
 
-  .controller 'HomeController', ['$scope', '$routeParams', 'GeneFrequencies', ($scope, $routeParams, GeneFrequencies) ->
+  .controller 'HomeController', Array '$scope', '$routeParams', 'GeneFrequencies', ($scope, $routeParams, GeneFrequencies) ->
     $scope.gene = GeneFrequencies.get({},
       (frequencies) ->
     )
-  ]
 
-  .controller 'GeneController', ['$scope', '$routeParams', '$http', 'Gene', ($scope, $routeParams, $http, Gene) ->
+  .controller 'GeneController', Array '$scope', '$routeParams', '$http', 'Gene', ($scope, $routeParams, $http, Gene) ->
 
     addData = (url, options, callback) ->
       $http {method: 'GET', url: url, params: options}
@@ -54,9 +53,8 @@ angular
       (error) ->
         console.log error
     )
-  ]
 
-  .controller 'VariantController', ['$scope', '$routeParams', '$http', 'Variant', ($scope, $routeParams, $http, Variant) ->
+  .controller 'VariantController', Array '$scope', '$routeParams', '$http', 'Variant', ($scope, $routeParams, $http, Variant) ->
 
     addData = (url, options, callback) ->
       $http {method: 'GET', url: url, params: options}
@@ -65,8 +63,8 @@ angular
         .error (data, status, headers, config) ->
           callback status, data
 
-    # Store a copy of the original data here
-    # $scope.originalSections = undefined
+    # Store a copy of the original anotation data here
+    $scope.originalAnnotations = undefined
 
     $scope.entity = Variant.get($routeParams
       (entity) ->
@@ -88,7 +86,9 @@ angular
 
         addData entity.data.annotationUrl, {}, (err, annotationData) ->
           if ! err?
+            console.log "Got", annotationData
             $scope.annotation = annotationData
+            $scope.originalAnnotations = angular.copy(annotationData) || {}
 
       (error) ->
         console.log error
@@ -96,8 +96,8 @@ angular
 
     # Copy back the original data, assuming we have it
     $scope.reset = () ->
-      if $scope.originalSections
-        $scope.entity.data.sections = angular.copy($scope.originalSections)
+      if $scope.originalAnnotations
+        $scope.annotation = angular.copy($scope.originalAnnotations)
 
     $scope.startEditing = () ->
       $scope.editing = true
@@ -107,31 +107,33 @@ angular
       $scope.editing = false
 
     $scope.saveChanges = () ->
-      $scope.entity.$save()
+      $http {method: 'PUT', url: $scope.entity.data.annotationUrl, data: $scope.annotation}
+        .success (data, status, headers, config) ->
+          console.log "Success writing", data, status
+          callback null, data
+        .error (data, status, headers, config) ->
+          console.log "Error writing", data, status
+          callback status, data
       $scope.editing = false
-  ]
 
-  .controller 'PublicationController', ['$scope', '$routeParams', 'Publication', ($scope, $routeParams, Publication) ->
+  .controller 'PublicationController', Array '$scope', '$routeParams', 'Publication', ($scope, $routeParams, Publication) ->
     $scope.entity = Publication.get($routeParams
       (entity) ->
 
       (error) ->
         console.log error
     )
-  ]
 
-  .controller 'SearchFormController', ['$scope', '$routeParams', '$location', 'Search', ($scope, $routeParams, $location, Search) ->
+  .controller 'SearchFormController', Array '$scope', '$routeParams', '$location', 'Search', ($scope, $routeParams, $location, Search) ->
     $scope.q = '';
     $scope.submit = () ->
       $location.path("search")
       $location.search("q", $scope.q)
-  ]
 
-  .controller 'SearchController', ['$scope', '$routeParams', 'Search', ($scope, $routeParams, Search) ->
+  .controller 'SearchController', Array '$scope', '$routeParams', 'Search', ($scope, $routeParams, Search) ->
     $scope.search = Search.get($routeParams
       (entity) ->
 
       (error) ->
 
     )
-  ]
