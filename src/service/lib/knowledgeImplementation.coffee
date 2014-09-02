@@ -307,26 +307,28 @@ module.exports.putVariantAnnotation = (req, res) ->
   body = req.body
 
   db = res.locals.db
-  db.collection "annotations", (err, annotations) ->
+  db.collection "variants", (err, variants) ->
+    return res.status(500).send(err) if (err)
 
-    ## This shold write potentially multiple documents, each with a role.
-
-    update = {}
-    update["$set"] = {}
-    update["$set"]["sections.clinical.data.action"] = body.data.sections.clinical.data.action
-    update["$set"]["sections.clinical.data.agents"] = body.data.sections.clinical.data.agents
-    update["$set"]["sections.clinical.data.significance"] = body.data.sections.clinical.data.significance
-
-    update["$push"] = {}
-    update["$push"]["sections.clinical.data.history"] = {
-      "modifiedDate" : new Date(),
-      "modifiedBy" : req.user || "anonymous"
-    }
-
-    variants.update selector, update, {upsert:false, multi: false, w: 1}, (err, result) ->
+    variants.findOne selector, (err, variant) ->
       return res.status(500).send(err) if (err)
-      return res.status(500).send({err: "Internal error: failed to update: " + selector.toString()}) if (result != 1)
-      getVariant req, res
+      return res.status(404).send("Not found") if ! variant?
+
+      db.collection "annotations", (err, annotations) ->
+
+        toWrite = []
+        for own k, v of body.data
+          for element in v
+            toWrite.push {role: k, annotation: element}
+
+        async.each toWrite,
+          (e, done) ->
+            delete e.annotation["_id"]
+            annotations.update {ref: variant._id, role: e.role}, {$set : e.annotation}, {"upsert" : true}, (err, result) ->
+              done(err)
+          (err) ->
+            return res.status(500).send(err) if (err)
+            module.exports.getVariantAnnotation req, res
 
 
 ## Retrieves a variant report. The endpoint also looks up a little gene information and implants
@@ -583,13 +585,15 @@ module.exports.getVariantAnnotation = (req, res) ->
           result = {}
           result['data'] = {}
           for doc in docs
+            delete doc.ref
             role = doc.role
             result['data'][role] ?= []
-            citations = {}
-            for citation in doc.citations
-              citations[citation.identifier] = citation
-              citation.externalUrl ?= getExternalUrl(citation)
-            doc.citations = citations
+            if doc.citations?
+              citations = {}
+              for citation in doc.citations
+                citations[citation.identifier] = citation
+                citation.externalUrl ?= getExternalUrl(citation)
+              doc.citations = citations
             result['data'][role].push doc
           result['url'] = req.url
 

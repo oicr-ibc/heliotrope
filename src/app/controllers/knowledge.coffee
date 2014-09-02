@@ -86,7 +86,6 @@ angular
 
         addData entity.data.annotationUrl, {}, (err, annotationData) ->
           if ! err?
-            console.log "Got", annotationData
             $scope.annotation = annotationData
             $scope.originalAnnotations = angular.copy(annotationData) || {}
 
@@ -108,12 +107,11 @@ angular
 
     $scope.saveChanges = () ->
       $http {method: 'PUT', url: $scope.entity.data.annotationUrl, data: $scope.annotation}
-        .success (data, status, headers, config) ->
-          console.log "Success writing", data, status
-          callback null, data
+        .success (annotationData, status, headers, config) ->
+          $scope.annotation = annotationData
+          $scope.originalAnnotations = angular.copy(annotationData) || {}
         .error (data, status, headers, config) ->
-          console.log "Error writing", data, status
-          callback status, data
+
       $scope.editing = false
 
   .controller 'PublicationController', Array '$scope', '$routeParams', 'Publication', ($scope, $routeParams, Publication) ->
