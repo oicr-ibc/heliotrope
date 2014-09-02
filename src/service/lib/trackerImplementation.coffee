@@ -784,6 +784,9 @@ findEntityStepWithEntity = (req, res, studyId, entity) ->
 
           responseData = {}
           responseData['data'] = entity
+          responseData['data']['url'] = entity['url'] + "/step/" + stepDefinition.name
+          responseData['data']['url'] = responseData['data']['url'] + ";" + step.id.toString() if stepDefinition.isRepeatable
+
           responseData['config'] = res.locals.config
           res.send responseData
 
@@ -848,16 +851,12 @@ storeEntityFile = (db, tags, file, callback) ->
 
 
 module.exports.postEntityStepFiles = (req, res) ->
+  db = res.locals.db
+
   studyName = req.params.study
   role = req.params.role
   identity = req.params.identity
   stepName = req.params.step
-
-  tags =
-    "studyId" : studyId
-    "role" : role
-    "identity" : identity
-    "step" : stepName
 
   findStudy req, res, 'read', (err, study) ->
 
@@ -865,7 +864,13 @@ module.exports.postEntityStepFiles = (req, res) ->
     return res.status(500).send(err) if err?
     return res.status(404).send("Not Found") if ! study?
 
-    studyId = new BSON.ObjectID(doc._id.toString())
+    studyId = new BSON.ObjectID(study._id.toString())
+
+    tags =
+      "studyId" : studyId
+      "role" : role
+      "identity" : identity
+      "step" : stepName
 
     db.collection "steps", (err, steps) ->
       return res.status(500).send(err) if err?
@@ -875,7 +880,7 @@ module.exports.postEntityStepFiles = (req, res) ->
         return res.status(500).send(err) if err?
         return res.status(404).send("Not Found") if ! step?
 
-        access = if step.access != undefined then [step.access, doc.access] else [doc.access]
+        access = if step.access != undefined then [step.access, study.access] else [study.access]
         return res.status(403).send("Forbidden") if ! (checkAdminAccess(req, 'modify') || checkAccessList(req, access, 'modify'))
 
         finalize = (err, data) ->
