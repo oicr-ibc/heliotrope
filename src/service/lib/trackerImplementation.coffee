@@ -824,6 +824,90 @@ getSelectedDataBlock = (stepName, stepDefinition, stepDataBlocks) ->
 
   selectedStepDataBlock
 
+
+storeEntityFile = (db, tags, file, callback) ->
+
+  logger.debug "Called storeEntityFile: %s", file
+
+  identifier = new BSON.ObjectID()
+  filename = identifier.toHexString() + ".dat"
+  metadata =
+    "name": file.name
+    "size" : file.size
+    "lastModifiedDate" : file.lastModifiedDate
+    "storeDate" : new Date()
+
+  for own k, v of tags
+    metadata[k] = v
+
+  gridStore = new GridStore(db, identifier, filename, "w", { "content_type" : file.type, "metadata" : metadata })
+  gridStore.writeFile file.path, (err, doc) ->
+    return callback(err) if err?
+    gridStore.close callback
+
+
+
+module.exports.postEntityStepFiles = (req, res) ->
+  studyName = req.params.study
+  role = req.params.role
+  identity = req.params.identity
+  stepName = req.params.step
+
+  tags =
+    "studyId" : studyId
+    "role" : role
+    "identity" : identity
+    "step" : stepName
+
+  findStudy req, res, 'read', (err, study) ->
+
+    # If we have an error, respond appropriately.
+    return res.status(500).send(err) if err?
+    return res.status(404).send("Not Found") if ! study?
+
+    studyId = new BSON.ObjectID(doc._id.toString())
+
+    db.collection "steps", (err, steps) ->
+      return res.status(500).send(err) if err?
+
+      stepSelector = {"studyId" : studyId, "appliesTo" : role, "name" : stepName}
+      steps.findOne stepSelector, (err, step) ->
+        return res.status(500).send(err) if err?
+        return res.status(404).send("Not Found") if ! step?
+
+        access = if step.access != undefined then [step.access, doc.access] else [doc.access]
+        return res.status(403).send("Forbidden") if ! (checkAdminAccess(req, 'modify') || checkAccessList(req, access, 'modify'))
+
+        finalize = (err, data) ->
+          if step.plugin?
+            module = step.plugin.module
+            method = step.plugin.method
+            loadedModule = require("./plugins/" + module)
+            method = loadedModule[method]
+            method req, res, data
+          else
+            res.send data
+
+        req.form.on 'error', (err) ->
+          logger.error "Some error encountered: %s", err
+
+        req.form.on 'aborted', () ->
+          logger.warn "Request cancelled"
+
+        req.form.on 'end', () ->
+          async.map req.files.files,
+            (file, done) -> storeEntityFile db, tags, file, done
+            (err, identifiers) ->
+              data["files"] = identifiers
+              finalize err, data
+
+        req.form.on 'progress', (bytesReceived, bytesExpected) ->
+          logger.info "Progress: %d%% uploaded", (bytesReceived / bytesExpected)*100
+
+        if req.form.ended && Object.keys(req.files).length > 0
+          req.form.emit 'end'
+
+
 ## Now we can handle some of the additional logic in handling a POST
 ## request. We have to handle entities as we do with a GET request. The
 ## special cases involve the handling of the stepOptions field. That tells

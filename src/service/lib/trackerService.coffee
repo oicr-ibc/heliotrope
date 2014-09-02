@@ -104,7 +104,7 @@ router.post '/studies/:study/:role/:identity/step/:step', authentication.accessA
 ## Service endpoint to push files for a given step for a given entity, identified
 ## by role, entity identifier, and step name. Files are handled in a separate
 ## request (that's just the way single-page apps have to do it).
-# router.post '/studies/:study/:role/:identity/step/:step/files', authentication.accessAuthenticator(), tracker.postEntityStepFiles
+router.post '/studies/:study/:role/:identity/step/:step/files', authentication.accessAuthenticator(), tracker.postEntityStepFiles
 
 ## Administration endpoints, primarily for editing. These require administrative access.
 
