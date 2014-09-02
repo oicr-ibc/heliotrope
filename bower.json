@@ -38,7 +38,8 @@
     "wysihtml5": "~0.3.0",
     "datatables": "~1.10.0",
     "datatables-bootstrap3": "376895df7f",
-    "select2-bootstrap3-css": "b6ce130a21"
+    "select2-bootstrap3-css": "b6ce130a21",
+    "jquery-file-upload": "~9.7.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.14"
@@ -49,6 +50,14 @@
     },
     "select2-bootstrap3-css": {
       "main": "select2-bootstrap.css"
+    },
+    "jquery-file-upload": {
+      "dependencies": null,
+      "main": [
+        "js/vendor/jquery.ui.widget.js",
+        "js/jquery.iframe-transport.js",
+        "js/jquery.fileupload.js"
+      ]
     }
   },
   "resolutions": {

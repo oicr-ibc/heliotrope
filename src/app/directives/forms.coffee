@@ -138,7 +138,7 @@ angular
                 linkBody('<input type="checkbox" class="form-control" ng-model="fieldValue.value" id="{{fieldKey}}">')
               when "file"
                 body = '<div>' +
-                       '<input type="file" class="form-control" id="{{fieldKey}}" style="display: none">' +
+                       '<input type="file" class="form-control file-control" id="{{fieldKey}}" style="display: none">' +
                        '<div class="input-append">' +
                        '<input id="{{fieldKey}}-text" class="input-large file-display" class="form-control" type="text">' +
                        '<a class="btn">Browse</a>' +
@@ -148,8 +148,8 @@ angular
                 iElement.append linked
 
                 iElement.find(".btn").click (e) ->
-                  iElement.find(".control").click()
-                iElement.find(".control").change (e) ->
+                  iElement.find(".file-control").click()
+                iElement.find(".file-control").change (e) ->
                   iElement.find(".file-display").val jQuery(this).val()
                 form = iElement.parents("form")
 
@@ -164,9 +164,11 @@ angular
                 # for these cases. That involves removing the current click handler for
                 # the submit button.
 
+                console.log "Form", form, scope.entity.data
+
                 form.fileupload
                   dataType: 'json'
-                  url: scope.entity.data.serviceUrl + "/files"
+                  url: scope.entity.data.url + "/files"
 
                   add: (e, data) =>
                     fileCount = data.files.length
