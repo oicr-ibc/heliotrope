@@ -19,6 +19,7 @@ logger = log4js.getLogger('trackerImplementation')
 sys =             require("sys")
 mongo =           require("mongodb")
 MongoClient =     mongo.MongoClient
+GridStore =       mongo.GridStore
 BSON =            mongo.BSONPure
 
 appEvents = require('./events')
@@ -877,33 +878,49 @@ module.exports.postEntityStepFiles = (req, res) ->
         return res.status(403).send("Forbidden") if ! (checkAdminAccess(req, 'modify') || checkAccessList(req, access, 'modify'))
 
         finalize = (err, data) ->
-          if step.plugin?
-            module = step.plugin.module
-            method = step.plugin.method
-            loadedModule = require("./plugins/" + module)
-            method = loadedModule[method]
-            method req, res, data
-          else
-            res.send data
+          evt =
+            data: data
+            db: db
+            callback: (data) -> res.send data
 
-        req.form.on 'error', (err) ->
-          logger.error "Some error encountered: %s", err
+          logger.info "Trying plugin event", "step:#{role}:#{stepName}"
+          if ! appEvents.emit "step:#{role}:#{stepName}", evt
+            logger.info "Using default action", "step:#{role}:#{stepName}"
+            res.send evt.data
 
-        req.form.on 'aborted', () ->
-          logger.warn "Request cancelled"
+        identifiers = {}
+        pending = {}
+        error = null
+        finished = false
 
-        req.form.on 'end', () ->
-          async.map req.files.files,
-            (file, done) -> storeEntityFile db, tags, file, done
-            (err, identifiers) ->
-              data["files"] = identifiers
-              finalize err, data
+        req.busboy.on 'file', (fieldname, file, filename, encoding, mimetype) ->
+          logger.debug "Handling busboy.file", fieldname, file, filename, encoding, mimetype
+          identifier = new BSON.ObjectID()
+          identifiers[filename] = identifier
+          pending[filename] = true
+          metadata =
+            name: filename
+            "storeDate" : new Date()
 
-        req.form.on 'progress', (bytesReceived, bytesExpected) ->
-          logger.info "Progress: %d%% uploaded", (bytesReceived / bytesExpected)*100
+          ## Actually write the data. This is asynchronous, so will likely complete way after we
+          ## have handled the form. If we have finished the form and no more files are in progress,
+          ## only then should we finalize the form.
+          gridStore = new GridStore(db, identifier, filename, "w", { "content_type" : mimetype, "metadata" : metadata })
+          gridStore.on "close", (err) ->
+            delete pending[filename]
+            error = err if ! error && err
+            logger.info "Done writing", err, filename, identifier
 
-        if req.form.ended && Object.keys(req.files).length > 0
-          req.form.emit 'end'
+            if finished && Object.keys(pending).length == 0
+              finalize error, {identifiers: identifiers}
+
+          file.pipe(gridStore)
+
+        req.busboy.on 'finish', () ->
+          logger.debug "Handling busboy.finish"
+          finished = true
+
+        req.pipe(req.busboy)
 
 
 ## Now we can handle some of the additional logic in handling a POST
