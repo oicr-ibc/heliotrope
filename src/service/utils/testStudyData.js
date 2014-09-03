@@ -517,10 +517,6 @@ db.steps.insert({
 			"oloudon"
 		]
 	},
-	"plugin" : {
-		"module" : "vcf",
-		"method" : "handleVcf"
-	},
 	"fields" : {
 		"dataFile" : {
 			"controlType" : "file",
