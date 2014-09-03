@@ -13,8 +13,8 @@
 ## WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
 ## WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-module.exports.log4js = module.parent.exports.log4js
-module.exports.logger = module.parent.exports.logger
+log4js = require("log4js")
+logger = log4js.getLogger('genomics')
 
 ## Some stuff of general usefulness in handling genomics data. This is important when handling some of
 ## the more data-rich aspects of genomic data, for example.
