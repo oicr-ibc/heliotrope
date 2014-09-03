@@ -2,6 +2,7 @@ server {
   listen       443 ssl;
   access_log   /var/log/heliotrope.access.log  combined;
 
+  ssl on;
   ssl_certificate      /etc/ssl/certs/ssl-cert-snakeoil.pem;
   ssl_certificate_key  /etc/ssl/private/ssl-cert-snakeoil.key;
 
