@@ -21,14 +21,7 @@ mongo =           require("mongodb")
 MongoClient =     mongo.MongoClient
 BSON =            mongo.BSONPure
 
-module.exports.initialize = () ->
-  MongoClient.connect "mongodb://localhost:27017/tracker", (err, db) ->
-    indexes = []
-    addIndexes = () ->
-      if indexes.length > 0
-        index = indexes.shift()
-        db.createIndex index["collection"], index["index"], addIndexes
-    addIndexes()
+appEvents = require('./events')
 
 ## Used to manage localization from localizable server data blocks. Currently
 ## a stub as I18N is not a high priority task. This will eventually peek in the

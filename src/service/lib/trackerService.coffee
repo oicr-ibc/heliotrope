@@ -26,8 +26,6 @@ MongoClient =     require("mongodb").MongoClient
 tracker =         require("./trackerImplementation")
 authentication =  require("./authentication")
 
-tracker.initialize()
-
 logger.info "Initializing tracker at: " + base
 
 router = require('express').Router()
