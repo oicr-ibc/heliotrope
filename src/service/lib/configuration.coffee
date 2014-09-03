@@ -44,6 +44,9 @@ module.exports.getConfiguration = () ->
     'server:address': "0.0.0.0",
     'debug': true,
     'plugins': 'src/service/plugins'
+    'plugin:vcf:vep_home': "#{process.env.HOME}/ensembl-tools/scripts/variant_effect_predictor",
+    'plugin:vcf:fasta_path': "#{process.env.HOME}/.vep/homo_sapiens/75/Homo_sapiens.GRCh37.75.dna.primary_assembly.fa",
+    'plugin:vcf:vep_cache_directory': "#{process.env.HOME}/.vep",
     'authenticate': false,
     'heliotrope:knowledgeUriBase': '/api/knowledge',
     'heliotrope:trackerUriBase': '/api/tracker',
