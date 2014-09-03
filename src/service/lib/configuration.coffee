@@ -43,6 +43,7 @@ module.exports.getConfiguration = () ->
     'server:port': 3001,
     'server:address': "0.0.0.0",
     'debug': true,
+    'plugins': 'src/service/plugins'
     'authenticate': false,
     'heliotrope:knowledgeUriBase': '/api/knowledge',
     'heliotrope:trackerUriBase': '/api/tracker',

@@ -34,6 +34,9 @@ logger = log4js.getLogger('main')
 ## Note we export immediately, allowing circular dependencies
 app = module.exports = express()
 
+## Start the plugin system
+require('./plugins')
+
 ## Write the configuration into the application locals
 config = require('./configuration').getConfiguration()
 app.locals.config = config
