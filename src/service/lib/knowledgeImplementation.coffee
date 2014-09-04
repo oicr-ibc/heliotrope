@@ -186,11 +186,10 @@ module.exports.getGeneAnnotation = (req, res) ->
           for doc in docs
             role = doc.role
             result['data'][role] ?= []
-            citations = {}
+
             for citation in doc.citations
-              citations[citation.identifier] = citation
               citation.externalUrl ?= getExternalUrl(citation)
-            doc.citations = citations
+
             result['data'][role].push doc
           result['url'] = req.url
 
@@ -321,10 +320,16 @@ module.exports.putVariantAnnotation = (req, res) ->
           for element in v
             toWrite.push {role: k, annotation: element}
 
-        async.each toWrite,
+        async.eachSeries toWrite,
           (e, done) ->
+
+            finder = if e.annotation["_id"]
+              {_id: new BSON.ObjectID(e.annotation["_id"])}
+            else
+              {ref: variant._id, role: e.role, identity: e.annotation["identity"]}
             delete e.annotation["_id"]
-            annotations.update {ref: variant._id, role: e.role}, {$set : e.annotation}, {"upsert" : true}, (err, result) ->
+
+            annotations.update finder, {$set : e.annotation}, {"upsert" : true}, (err, result) ->
               done(err)
           (err) ->
             return res.status(500).send(err) if (err)
@@ -588,12 +593,11 @@ module.exports.getVariantAnnotation = (req, res) ->
             delete doc.ref
             role = doc.role
             result['data'][role] ?= []
+
             if doc.citations?
-              citations = {}
               for citation in doc.citations
-                citations[citation.identifier] = citation
                 citation.externalUrl ?= getExternalUrl(citation)
-              doc.citations = citations
+
             result['data'][role].push doc
           result['url'] = req.url
 

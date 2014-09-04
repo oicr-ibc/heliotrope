@@ -55,7 +55,16 @@ angular
                     results: ({id: v.name, text: v.name} for v in data.data)
                     more: false
               tags: []
+              initSelection: (element, callback) ->
+                data = ({id: v, text: v} for v in element.val().split(","))
+                callback(data)
             tagsElement.bind 'change', changeHandler
+
+            # Establish a watcher to write values into the tags editor
+            scope.$watch 'tags', (tags) ->
+              if ! angular.equals(tags, tagsElement.val().split(","))
+                tagsElement.val(tags).trigger('change')
+
           else
             body = '<p class="form-control-static">' +
                    '<span class="inline-list">' +
@@ -105,7 +114,7 @@ angular
 
             # Establish a watcher to write values into the tags editor
             scope.$watch 'citations', (citations) ->
-              tags = (id for own id, citation of citations)
+              tags = (citation.identifier for citation in citations)
               if ! angular.equals(tags, tagsElement.val().split(","))
                 tagsElement.val(tags).trigger('change')
 
@@ -322,7 +331,7 @@ angular
             other != significance
 
       template: '<div>' +
-                '<p ng-hide="editing || significance">No information available</p>' +
+                '<p ng-hide="editing || annotation.data.significance">No information available</p>' +
                 '<div ng-class="{\'well well-sm\': editing}" ng-repeat="sig in annotation.data.significance">' +
                 '<form class="form-horizontal heli-editing-form" role="form">' +
 

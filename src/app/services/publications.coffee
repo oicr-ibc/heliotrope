@@ -17,12 +17,12 @@ angular
   .module 'heliotrope.services.publications', ['ngSanitize']
 
   .factory 'dewikifier', Array '$sanitize', ($sanitize) ->
-    return (text, references) ->
+    return (text, citations) ->
 
       text = text.replace /(?:===\n)(\w)/g, (match, p1) -> "===\n\n" + p1
 
-      getAuthors = (reference) ->
-        input = reference.author
+      getAuthors = (citation) ->
+        input = citation.author
         result =
           if input.length
             if input.length > 3 then input[0] + " et al." else input.join(", ")
@@ -32,39 +32,43 @@ angular
         result = result + "." if ! /[!?.]$/.test(result)
         return if result then $sanitize(result) else result
 
-      getTitle = (reference) ->
-        title = reference.title.trim()
+      getTitle = (citation) ->
+        title = citation.title.trim()
         title = title + "." if ! /[!?.]$/.test(title)
         $sanitize(title)
 
-      getJournal = (reference) -> '<i>' + $sanitize(reference.journal) + '</i>'
-      getVolume = (reference) ->
-        if reference.volume?
-          '<b>' + $sanitize(reference.volume) + '</b>'
+      getJournal = (citation) -> '<i>' + $sanitize(citation.journal) + '</i>'
+      getVolume = (citation) ->
+        if citation.volume?
+          '<b>' + $sanitize(citation.volume) + '</b>'
         else
           ''
 
-      getIssue = (reference) -> if reference.issue? then "(" + $sanitize(reference.issue) + ")" else ''
-      getPages = (reference) -> if reference.pages? then "pp." + $sanitize(reference.pages) + ", " else ''
-      getLink = (reference) ->
-        encoded = encodeURIComponent(reference.identifier)
-        "<a href='#{reference.externalUrl}' rel='external'>#{reference.identifier}</a>"
+      getIssue = (citation) -> if citation.issue? then "(" + $sanitize(citation.issue) + ")" else ''
+      getPages = (citation) -> if citation.pages? then "pp." + $sanitize(citation.pages) + ", " else ''
+      getLink = (citation) ->
+        encoded = encodeURIComponent(citation.identifier)
+        "<a href='#{citation.externalUrl}' rel='external'>#{citation.identifier}</a>"
 
-      bibiographyElement = (reference) ->
-        "<span>#{getAuthors(reference)} #{getTitle(reference)} #{getJournal(reference)} " +
-        "#{getVolume(reference)}#{getIssue(reference)}, #{getPages(reference)}#{getLink(reference)}<span>"
+      bibiographyElement = (citation) ->
+        "<span>#{getAuthors(citation)} #{getTitle(citation)} #{getJournal(citation)} " +
+        "#{getVolume(citation)}#{getIssue(citation)}, #{getPages(citation)}#{getLink(citation)}<span>"
 
       iElement = angular.element('<div></div>')
       paragraphs = text.split(/\n\n/)
 
-      if !references?
-        references = {}
+      if !citations?
+        citations = []
 
-      refList = undefined
+      citationIds = {}
+      for citation in citations
+        citationIds[citation.identifier] = citation
 
-      referenceIndexes = {}
-      referenceIndex = 1
-      foundReferences = {}
+      citationList = undefined
+
+      citationIndexes = {}
+      citationIndex = 1
+      foundCitations = {}
 
       for paragraph in paragraphs
         tag = 'p'
@@ -78,26 +82,26 @@ angular
         paragraph = paragraph.replace /''([^']+)''/g, (match, p1) ->
           "<i>" + p1 + "</i>"
         paragraph = paragraph.replace /<ref refId="([^"]+)"\/>/g, (match, p1) ->
-          index = referenceIndexes[p1] or referenceIndexes[p1] = referenceIndex++
-          found = references[p1]
-          foundReferences[found.identifier] = true
+          index = citationIndexes[p1] or citationIndexes[p1] = citationIndex++
+          found = citationIds[p1]
+          foundCitations[found.identifier] = true
           "<a class='citation' href='#{found.externalUrl}'>#{'[' + index + ']'}</a>"
         element.html $sanitize(paragraph)
         iElement.append element
 
-      if Object.keys(references).length > 0
-        refList = []
-        for own key, reference of references
-          if foundReferences[reference.identifier]
-            refList.push { index: referenceIndexes[key], body: bibiographyElement(reference) }
-        refList.sort (a, b) -> a.index - b.index
+      if citations.length > 0
+        citationList = []
+        for own key, citation of citations
+          if foundCitations[citation.identifier]
+            citationList.push { index: citationIndexes[key], body: bibiographyElement(citation) }
+        citationList.sort (a, b) -> a.index - b.index
 
-      if refList and refList.length > 0
+      if citationList and citationList.length > 0
         iElement.append angular.element('<h4>References</h4>')
-        refListElement = angular.element('<ol class="references"></ol>')
-        for ref in refList
-          refElement = angular.element("<li class='reference' value='#{ref.index}''>#{ref.body}</li>")
-          refListElement.append refElement
-        iElement.append refListElement
+        citationListElement = angular.element('<ol class="citations"></ol>')
+        for ref in citationList
+          citationElement = angular.element("<li class='citation' value='#{ref.index}''>#{ref.body}</li>")
+          citationListElement.append citationElement
+        iElement.append citationListElement
 
       iElement
