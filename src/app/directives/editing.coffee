@@ -291,7 +291,7 @@ angular
                 '</div>' +
                 '</div>' +
 
-                '<div class="form-group">' +
+                '<div class="form-group" ng-show="editing || annotation.data.action[0].comment">' +
                 '<label for="actionComment{{$index}}" class="col-sm-3 control-label">Comment</label>' +
                 '<div class="col-sm-9">' +
                 '<div heli-edit-comment id="actionComment{{$index}}" value="annotation.data.action[0].comment"></div>' +
@@ -349,7 +349,7 @@ angular
                 '</div>' +
                 '</div>' +
 
-                '<div class="form-group">' +
+                '<div class="form-group" ng-show="editing || sig.comment">' +
                 '<label for="comment{{$index}}" class="col-sm-3 control-label">Comment</label>' +
                 '<div class="col-sm-9">' +
                 '<div heli-edit-comment id="comment{{$index}}" value="sig.comment"></div>' +
@@ -442,8 +442,7 @@ angular
                 '</div>' +
                 '</div>' +
 
-
-                '<div class="form-group">' +
+                '<div class="form-group" ng-show="editing || agent.comment">' +
                 '<label for="agentComment{{$index}}" class="col-sm-3 control-label">Comment</label>' +
                 '<div class="col-sm-9">' +
                 '<div heli-edit-comment id="agentComment{{$index}}" value="agent.comment"></div>' +
