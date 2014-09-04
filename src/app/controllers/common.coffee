@@ -35,7 +35,7 @@ angular
     $scope.password = undefined
 
     $scope.login = (username, password) ->
-      ## console.log "Calling event:loginRequest with #{username} and #{password}"
+      # console.log "Calling AuthenticationController event:loginRequest with #{username} and #{password}"
       $scope.$emit "event:loginRequest", username, password
 
     $scope.cancelLogin = () ->

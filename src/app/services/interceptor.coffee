@@ -19,7 +19,7 @@ angular
   .factory 'httpInterceptor', Array '$rootScope', '$q', ($rootScope, $q) ->
     result =
       request: (request) ->
-        if ! request.url.match(/^\/api\/authentication/)
+        if ! request.url.match(/^\/api\/authentication\b/)
           $rootScope.$emit "event:startSpinner"
         request
 
@@ -32,12 +32,14 @@ angular
         status = response.status
 
         if status == 401
+          # console.log "Got 401", response.config.url
           deferred = $q.defer()
-          if response.config.url.match(/^\/api\/authentication/)
+          if response.config.url.match(/^\/api\/authentication\b/)
             return $q.reject response
           else
             req = {config: response.config, deferred: deferred}
             $rootScope.requests401.push(req)
+            # console.log "$rootScope.$broadcast 'event:loginRequired'"
             $rootScope.$broadcast 'event:loginRequired'
             deferred.promise
         else

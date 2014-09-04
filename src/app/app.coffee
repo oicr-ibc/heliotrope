@@ -124,16 +124,16 @@ angular
         spinner = false
 
     scope.$on 'event:loginCancelled', () ->
-      ## console.log 'Called event:loginCancelled'
+      # console.log 'Called rootScope event:loginCancelled'
       $location.path('/')
 
     scope.$on 'event:logoutConfirmed', () ->
-      ## console.log 'Called event:logoutConfirmed'
+      # console.log 'Called rootScope event:logoutConfirmed'
       scope.user = undefined
       $location.path('/')
 
     scope.$on 'event:loginConfirmed', (event, user) ->
-      ## console.log 'Called event:loginConfirmed'
+      # console.log 'Called rootScope event:loginConfirmed'
       scope.user = new User(user)
 
       retry = (req) ->
@@ -143,7 +143,8 @@ angular
       retry(request) for request in scope.requests401
 
     scope.$on 'event:loginRequest', (event, username, password) ->
-      ## console.log "Called event:loginRequest with #{username} #{password}"
+      # console.log "Called rootScope event:loginRequest with #{username} #{password}"
+
       payload = jQuery.param
         username: username
         password: password
@@ -159,7 +160,7 @@ angular
           scope.$broadcast 'event:loginDenied', data
 
     scope.$on 'event:logoutRequest', () ->
-      ## console.log 'Called event:logoutRequest'
+      # console.log 'Called rootScope event:logoutRequest'
       $http.post('/api/authentication/logout', {}, config).success (data) ->
         scope.$broadcast 'event:logoutConfirmed'
 

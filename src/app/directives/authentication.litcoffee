@@ -68,15 +68,25 @@ authentication system.
                     '</div>'
           link: (scope, iElement, iAttrs, controller) ->
 
+            shown = false
+
             scope.$on 'event:loginRequired', () ->
               scope.message = undefined
-              ## console.log 'Starting modal'
               iElement.modal('show')
 
             scope.$on 'event:loginApproved', () ->
-              ## console.log 'Closing modal'
               iElement.modal('hide')
 
             scope.$on 'event:loginDenied', (evt, data) ->
-              scope.message = data.message
+              if ! shown
+                scope.$emit 'event:loginRequired'
+              else
+                scope.message = data.message
 
+            iElement.on 'show.bs.modal', (evt) ->
+              shown = true
+              true
+
+            iElement.on 'hide.bs.modal', (evt) ->
+              shown = false
+              true
