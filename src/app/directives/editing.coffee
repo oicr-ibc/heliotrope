@@ -69,20 +69,20 @@ angular
             iElement.append linkFn(scope)
 
 
-  .directive 'heliEditReferences', Array '$compile', ($compile) ->
+  .directive 'heliEditCitations', Array '$compile', ($compile) ->
     result =
       restrict: "A"
       replace: true
       transclude: false
       scope:
-        references: '='
+        citations: '='
       template: '<span></span>'
       link: (scope, iElement, iAttrs, controller) ->
 
         scope.$parent.$watch 'editing', (editing) ->
           if editing
 
-            body = '<input type="text" class="reference-tags form-control" value=""></input>'
+            body = '<input type="text" class="citation-tags form-control" value=""></input>'
             iElement.empty()
             iElement.append(jQuery(body))
 
@@ -90,13 +90,13 @@ angular
               value = evt.val
               if value?
                 scope.$apply () ->
-                  references = value.map (value) ->
-                    keys = (v.trim() for v in value.split(":"))
-                    { type: keys[0], id: keys[1] }
-                  scope['references'] = references
+                  citations = value.map (entry) ->
+                    tokens = (t.trim() for t in entry.split(":", 2))
+                    { identifier: tokens[0] + ":" + tokens[1] }
+                  scope['citations'] = citations
               false
 
-            tagsElement = iElement.find(".reference-tags")
+            tagsElement = iElement.find(".citation-tags")
             tagsElement.select2(
               tags: []
               tokenSeparators: [","]
@@ -104,22 +104,17 @@ angular
             tagsElement.bind 'change', changeHandler
 
             # Establish a watcher to write values into the tags editor
-            scope.$watch 'references', (references) ->
-
-              references ||= []
-              referenceString = (ref) ->
-                ref.type + ":" + ref.id
-              tags = references.map(referenceString)
-
+            scope.$watch 'citations', (citations) ->
+              tags = (id for own id, citation of citations)
               if ! angular.equals(tags, tagsElement.val().split(","))
                 tagsElement.val(tags).trigger('change')
 
           else
             body = '<p class="form-control-static">' +
                    '<span class="inline-list">' +
-                   '<span ng-hide="references">none</span>' +
-                   '<span ng-show="references" class="inline-item" ng-repeat="reference in references">' +
-                   '<span heli-reference reference="reference"></span> ' +
+                   '<span ng-hide="citations">none</span>' +
+                   '<span ng-show="citations" class="inline-item" ng-repeat="citation in citations|keys">' +
+                   '<span heli-citation citation="citations[citation]"></span>' +
                    '</span>' +
                    '</span>' +
                    '</p>'
@@ -297,7 +292,7 @@ angular
                 '<div class="form-group">' +
                 '<label for="actionSources{{$index}}" class="col-sm-3 control-label">References</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-references id="actionSources{{$index}}" references="annotation.data.action[0].citations"></span>' +
+                '<span heli-edit-citations id="actionSources{{$index}}" citations="annotation.data.action[0].citations"></span>' +
                 '</div>' +
                 '</div>' +
 
@@ -355,7 +350,7 @@ angular
                 '<div class="form-group">' +
                 '<label for="sources{{$index}}" class="col-sm-3 control-label">References</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-references id="sources{{$index}}" references="sig.citations"></span>' +
+                '<span heli-edit-citations id="sources{{$index}}" citations="sig.citations"></span>' +
                 '</div>' +
                 '</div>' +
 
@@ -447,9 +442,9 @@ angular
                 '</div>' +
 
                 '<div class="form-group">' +
-                '<label for="agentReferences{{$index}}" class="col-sm-3 control-label">References</label>' +
+                '<label for="agentCitations{{$index}}" class="col-sm-3 control-label">References</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-references id="agentReferences{{$index}}" references="agent.citations"></span>' +
+                '<span heli-edit-citations id="agentCitations{{$index}}" citations="agent.citations"></span>' +
                 '</div>' +
                 '</div>' +
 

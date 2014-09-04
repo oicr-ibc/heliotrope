@@ -71,6 +71,13 @@ angular
       else
         input
 
+  .filter 'keys', () ->
+    (input) ->
+      if input
+        Object.keys(input)
+      else
+        input
+
   .filter 'uniqueKeys', () ->
     (input, property) ->
       if input
