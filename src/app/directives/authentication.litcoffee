@@ -14,7 +14,7 @@
 > WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Authentication directives
-=========================
+-------------------------
 
 This module provides the directives needed to support authentication. These are invoked in a scope
 managed by the `AuthenticationController`.
