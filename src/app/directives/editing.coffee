@@ -424,14 +424,14 @@ angular
             other.name != agent.name || other.sensitivity != agent.sensitivity
 
       template: '<div>' +
-                '<p ng-hide="editing || agents">No information available</p>' +
+                '<p ng-hide="editing || annotation.data.agents">No information available</p>' +
                 '<div ng-class="{\'well well-sm\': editing}" ng-repeat="agent in annotation.data.agents">' +
                 '<form class="form-horizontal heli-editing-form" role="form">' +
 
                 '<div class="form-group">' +
                 '<label for="agentName{{$index}}" class="col-sm-3 control-label">Agent name</label>' +
                 '<div class="col-sm-9">' +
-                '<span heli-edit-text id="agentName{{$index}}" value="agent.name" validation="value && value.length > 0"></span>' +
+                '<span heli-edit-text id="agentName{{$index}}" value="agent.identity" validation="value && value.length > 0"></span>' +
                 '</div>' +
                 '</div>' +
 
