@@ -14,8 +14,8 @@
 > WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-Administration directives
--------------------------
+Common controllers
+------------------
 
 This module provides the controllers used for navigation and authentication, and which are common
 to both the tracker and the knowledge base.
