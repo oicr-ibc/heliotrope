@@ -63,30 +63,72 @@ createVariantRecordRequest = (studyId, block) ->
 
   HGVSc = block["VARIANT"]["HGVSc"].replace(/^ENS\w[0-9\.]+:/, "")
   HGVSp = block["VARIANT"]["HGVSp"].replace(/^ENS\w[0-9\.]+:/, "")
+  HGVSpr = genomics.convertNamesToCodes(HGVSp)
+  gene = block["VARIANT"]["SYMBOL"]
   pos = parseInt(block["POS"])
+
+  position =
+    transcript: block["VARIANT"]["Feature"]
+    chromosome: block["#CHROM"].replace(/^chr/, "")
+    HGVSc: HGVSc
+    HGVSp: HGVSp
+    HGVSpr: HGVSpr
+    position: pos
+    referenceAllele: block["REF"]
+    variantAllele: block["ALT"]
+    geneSymbol: gene
+    gene: block["VARIANT"]["Gene"]
+
+  if found = block["VARIANT"]["Protein_position"]?.match(/^(\d+)(?:-(\d+))?$/)
+    position["codonStart"] = parseInt(found[1])
+    position["codonEnd"] = parseInt(found[2] || found[1])
+
+  if found = block["VARIANT"]["CDS_position"]?.match(/^(\d+)(?:-(\d+))?$/)
+    position["cdsPositionStart"] = parseInt(found[1])
+    position["cdsPositionEnd"] = parseInt(found[2] || found[1])
+
+  if found = block["VARIANT"]["EXON"]?.match(/^(\d+)/)
+    position["exon"] = parseInt(found[1])
+
+  position['strand'] = parseInt(block["VARIANT"]["STRAND"]) if block["VARIANT"]["STRAND"]?
+  position['genomicPositionStart'] = position['position']
 
   result =
     body:
       data:
         variantType: "mutation"
-        consequence: block["VARIANT"]["Consequence"]
         type: "variant"
-        gene: block["VARIANT"]["HGNC"]
+        gene: gene
         geneId: block["VARIANT"]["Gene"]
 
         ## There might not be a protein-level variant; if so, use a DNA-level name
         mutation: HGVSp || HGVSc
+        shortMutation: HGVSpr || HGVSc
 
-        transcript: block["VARIANT"]["Feature"]
-        chromosome: block["#CHROM"].replace(/^chr/, "")
-        cdsPosition: block["VARIANT"]["CDS_position"]
-        codon: block["VARIANT"]["Protein_position"]
-        start: pos + 1
-        stop: pos + block["REF"].length
-        HGVSc: HGVSc
+        name: gene + " " + (HGVSp || HGVSc)
+        shortName: gene + " " + (HGVSpr || HGVSc)
 
-        originStudyId: studyId
-        originSample: block["SAMPLE"]
+        positions:
+          data: [position]
+
+        # cdsPosition: block["VARIANT"]["CDS_position"]
+        # codon: block["VARIANT"]["Protein_position"]
+        # start: pos + 1
+        # stop: pos + block["REF"].length
+
+  if found = block["VARIANT"]["SIFT"]?.match(/^(\w+)\(([0-9\.]+)\)/)
+    result.body.data.sift = {level: found[1], score: parseFloat(found[2])}
+
+  if found = block["VARIANT"]["PolyPhen"]?.match(/^(\w+)\(([0-9\.]+)\)/)
+    result.body.data.polyphen = {level: found[1], score: parseFloat(found[2])}
+
+  if found = block["VARIANT"]["Consequence"]
+    result.body.data.consequence = found
+
+  if found = block["VARIANT"]["CLIN_SIG"]
+    result.body.data.significance = found
+
+  result
 
 
 unpackInfoString = (string) ->
