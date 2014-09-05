@@ -1,10 +1,10 @@
-// Abstraction for a list of references
-mixin references(references)
-  each reference, i in references
+// Abstraction for a list of citations
+mixin citations(citations)
+  each citation, i in citations
     if i != 0
-      | ,
-    a(href="http://www.ncbi.nlm.nih.gov/pubmed/" + reference.id)
-      | #{reference.type}:#{reference.id}
+      | , 
+    a(href=citation.externalUrl)
+      | #{citation.identifier}
 
 html(xmlns="http://www.w3.org/1999/xhtml")
   head
@@ -14,17 +14,21 @@ html(xmlns="http://www.w3.org/1999/xhtml")
 
     h2 #{variant.data.gene} #{variant.data.mutation} Characteristics
 
-    if variant.data.sections.clinical
-      - var action = variant.data.sections.clinical.data.action
+    if annotation.data.action[0]
+      - var action = annotation.data.action[0]
 
       p
         | The functional consequence of this mutation is: 
         b #{action.type}
-        | .
+        | . 
 
-        if action.reference
-          | Reference (PMID):
-          +references(action.reference)
+        if action.comment
+          action.comment
+          | . 
+
+        if action.citations
+          | References:
+          +citations(action.citations)
 
       hr
 
@@ -33,6 +37,7 @@ html(xmlns="http://www.w3.org/1999/xhtml")
       p
         | The functional consequence of this mutation is:
         b unknown
+        | . 
 
     h2 #{variant.data.mutation} in #{variant.data.gene} protein domain context
 
@@ -77,21 +82,22 @@ html(xmlns="http://www.w3.org/1999/xhtml")
 
     h2 Clinical and Preclinical Studies
 
-    if variant.data.sections.clinical && variant.data.sections.clinical.data.significance && variant.data.sections.clinical.data.significance.length > 0
-      - var significances = variant.data.sections.clinical.data.significance
+    if annotation.data.significance && annotation.data.significance.length > 0
+      - var significances = annotation.data.significance
       each significance, i in significances
-        h3 #{significance.tumourType}
+        - var title = significance.identity.join(' ')
+        h3
+          | #{ title.charAt(0).toUpperCase() + title.slice(1) }
         p
           em
             | In this tumour type, the clinical significance of this mutation has been examined by
             | #{significance.studyType}
             | clinical trials
         p
-          | Comment:
           | #{significance.comment}
         p
-          | Reference (PMID):
-          +references(significance.reference)
+          | References:
+          +citations(significance.citations)
           | .
           | Evidence:
           | #{significance.levelOfEvidence}
@@ -103,13 +109,27 @@ html(xmlns="http://www.w3.org/1999/xhtml")
 
     h2 Availability of Investigational Agents
 
-    if variant.data.sections.clinical && variant.data.sections.clinical.data.agents && variant.data.sections.clinical.data.agents.length > 0
-      - var agents = variant.data.sections.clinical.data.agents
+    if annotation.data.agents && annotation.data.agents.length > 0
+      - var agents = annotation.data.agents
       if agents.length > 0
         each agent, i in agents
           p
-            b #{agent.sensitivity}: 
-            | #{agent.name}
+            case agent.sensitivity
+              when 'maybe_sensitivity'
+                | There may be sensitivity to 
+              when 'sensitivity'
+                | There is evidence of sensitivity to 
+              when 'maybe_resistance'
+                | There may be resistance to 
+              when 'resistance'
+                | There is evidence of resistance to 
+              default
+                | #{agent.sensitivity} to 
+            b #{agent.identity}. 
+            if agent.citations && agent.citations.length > 0
+              | References:
+              +citations(agent.citations)
+
     else
       p
         | No agents recorded

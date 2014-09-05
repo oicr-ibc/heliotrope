@@ -363,6 +363,7 @@ getVariantReportData = (req, res, callback) ->
     'frequencies': module.exports.getVariantFrequencies
     'gene': getVariantGene
     'mutations': getVariantGeneMutations
+    'annotation': module.exports.getVariantAnnotation
   }
 
   result = {}
