@@ -27,7 +27,7 @@ html(xmlns="http://www.w3.org/1999/xhtml")
           | . 
 
         if action.citations
-          | References:
+          | References: 
           +citations(action.citations)
 
       hr
@@ -96,10 +96,10 @@ html(xmlns="http://www.w3.org/1999/xhtml")
         p
           | #{significance.comment}
         p
-          | References:
+          | References: 
           +citations(significance.citations)
           | .
-          | Evidence:
+          | Level of evidence:
           | #{significance.levelOfEvidence}
     else
       p
@@ -127,7 +127,7 @@ html(xmlns="http://www.w3.org/1999/xhtml")
                 | #{agent.sensitivity} to 
             b #{agent.identity}. 
             if agent.citations && agent.citations.length > 0
-              | References:
+              | References: 
               +citations(agent.citations)
 
     else
