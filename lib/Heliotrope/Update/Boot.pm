@@ -56,6 +56,7 @@ sub output {
   ## Indexes for the genes collection
   $self->ensure_index($dbh, "genes", Tie::IxHash->new("id" => 1), { unique => true, safe => true });
   $self->ensure_index($dbh, "genes", Tie::IxHash->new("sections.transcripts.data.records.id" => 1), { unique => true, safe => true, sparse => true });
+  $self->ensure_index($dbh, "genes", Tie::IxHash->new("sections.frequencies.data.all.total" => 1), { safe => true });
 
   ## Indexes for the variants collection
   $self->ensure_index($dbh, "variants", Tie::IxHash->new("gene" => 1, "shortMutation" => 1), { unique => true, safe => true });

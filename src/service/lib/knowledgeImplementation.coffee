@@ -32,31 +32,6 @@ knowledgeCharts = require("./knowledgeCharts")
 reporting =       require("./reporting")
 ChartMaker =      require("./chartmaker")
 
-module.exports.connected = (url, callback) ->
-  (req, res) ->
-    MongoClient.connect url, (err, db) ->
-      callback err, db, req, res
-
-module.exports.initialize = () ->
-  MongoClient.connect "mongodb://localhost:27017/heliotrope", (err, db) ->
-    indexes = [
-      {"collection" : "variants", "index" : { "shortMutation" : 1 }}
-      {"collection" : "variants", "index" : { "name" : 1 }, "options" : {"unique" : true }}
-      {"collection" : "variants", "index" : { "gene" : 1 }}
-      {"collection" : "genes",    "index" : { "sections.frequencies.data.all.total" : 1 }}
-    ]
-
-    addIndexes = () ->
-      if indexes.length > 0
-        index = indexes.shift()
-        if index["options"]
-          db.ensureIndex index["collection"], index["index"], index["options"], addIndexes
-        else
-          db.ensureIndex index["collection"], index["index"], addIndexes
-
-    addIndexes()
-
-
 ## Object resolution functions. These walk an object and convert from indexed
 ## to embedded relation references. This happens server-side.
 resolveRelation = (offset, relations) ->

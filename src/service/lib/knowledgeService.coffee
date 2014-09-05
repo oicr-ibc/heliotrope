@@ -31,8 +31,6 @@ MongoClient =     require("mongodb").MongoClient
 authentication =  require("./authentication")
 knowledge =       require("./knowledgeImplementation")
 
-knowledge.initialize()
-
 logger.info("Initializing knowledge base at: " + base)
 
 router = require('express').Router()
