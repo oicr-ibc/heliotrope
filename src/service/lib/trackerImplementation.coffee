@@ -881,7 +881,10 @@ module.exports.postEntityStepFiles = (req, res) ->
           evt =
             data: data
             db: db
-            callback: (data) -> res.send data
+            callback: (err, data) ->
+              console.log "Got response", err, data
+              res.status(500).send(err) if err?
+              res.send(data)
 
           logger.info "Trying plugin event", "step:#{role}:#{stepName}"
           if ! appEvents.emit "step:#{role}:#{stepName}", evt
