@@ -196,6 +196,7 @@ these is handled as a different control type.
                         form.find(".submit").on 'click', (e) =>
                           e.preventDefault()
                           e.stopPropagation()
+                          scope.beginUpdate()
                           data.submit()
                           false
 

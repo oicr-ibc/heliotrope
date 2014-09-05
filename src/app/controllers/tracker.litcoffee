@@ -59,9 +59,10 @@ Controller for a single entity, i.e., a participant, sample, or even observation
         )
 
 
-Controller for a single entity step.
+Controller for a single entity step. It provides an update action that writes the data back through
+a web service.
 
-      .controller 'EntityStepController', ['$scope', '$routeParams', '$location', 'EntityStep', ($scope, $routeParams, $location, EntityStep) ->
+      .controller 'EntityStepController', Array '$scope', '$rootScope', '$routeParams', '$location', 'EntityStep', ($scope, $rootScope, $routeParams, $location, EntityStep) ->
         $scope.entity = EntityStep.get($routeParams
           (entityStep) ->
 
@@ -69,18 +70,23 @@ Controller for a single entity step.
             console.log error
         )
 
+        $scope.beginUpdate = () ->
+          $rootScope.$emit "event:startSpinner"
+
         # This is where the step data is pushed back to the service.
         $scope.update = (entity) ->
+          console.log "Calling update"
           entityUrl = '/studies/' + encodeURIComponent(entity.data.study.name) + '/' + encodeURIComponent(entity.data.role) + '/' + encodeURIComponent(entity.data.identity)
           entity.$save(
             {study: $routeParams.study, role: $routeParams.role, identity: $routeParams.identity, step: $routeParams.step},
             (entityStep, responseHeaders) ->
+              $rootScope.$emit "event:stopSpinner"
               $location.path(entityUrl).replace()
             (error) ->
+              $rootScope.$emit "event:stopSpinner"
               console.log "Error from $save", error
               $scope.error = error
           )
-      ]
 
 
 Controller for administering a set of studies.
