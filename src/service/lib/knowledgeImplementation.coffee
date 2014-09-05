@@ -241,6 +241,7 @@ getVariant = (req, res) ->
     resolved.frequenciesUrl = resolved.url + "/frequencies"
     resolved.mutationsUrl = resolved.geneUrl + "/mutations"
     resolved.annotationUrl = resolved.url + "/annotation"
+    resolved.reportUrl = resolved.url + "/report?mimeType=application/pdf"
 
     result = new Object
     result['data'] = resolved
@@ -476,27 +477,23 @@ module.exports.getVariantReport = (req, res) ->
     try
       data['chart'] = getVariantChartSVG(data)
     catch error
-      console.error "Error", error
+      logger.error "Error", error
       return res.status(500).send(error)
 
     html = undefined
     try
       html = jade.renderFile 'etc/reporting/templates/report.jade', data
     catch error
-      console.error "Error", error
+      logger.error "Error", error
       return res.status(500).send(error)
-
-    console.log "Types", req.accepts(['application/pdf', 'text/html']), req.accepted
 
     res.format
 
       'application/pdf': () ->
-        console.log "Sending", 'application/pdf'
         res.header('Content-Disposition', 'attachment; filename="report.pdf"')
         respondWithPDF html, res
 
       'text/html': () ->
-        console.log "Sending", 'text/html'
         res.send html
 
 

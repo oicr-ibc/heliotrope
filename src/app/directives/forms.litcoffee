@@ -95,8 +95,7 @@ A download form button element, which provides a PDF download button.
             scope.$watch 'entity', (newValue, oldValue) ->
               if newValue
                 iElement.on 'click', (e) ->
-                  url = newValue.data.url + "/report?mimeType=application/pdf"
-                  location.href = url
+                  location.href = newValue.data.reportUrl
                   e.stopPropagation()
                   e.preventDefault()
 
