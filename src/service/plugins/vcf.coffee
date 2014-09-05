@@ -10,6 +10,7 @@ GridStore =       mongo.GridStore
 spawn =           require("child_process").spawn
 
 config = require('../lib/configuration').getConfiguration()
+genomics = require('../lib/genomics')
 
 appEvents = require('../lib/events')
 logger = log4js.getLogger('vcf')
@@ -47,15 +48,15 @@ createObservationRecord = (studyId, block) ->
       data:
         step:
           fields:
-            label: {"value" : block["VARIANT"]["HGNC"] + " " + (HGVSp || HGVSc)}
-            genomicPosition: {"value" : block["#CHROM"].substring(3) + ":" + block["POS"] + "-" + (parseInt(block["POS"]) + block["REF"].length)}
+            label: {"value" : block["VARIANT"]["SYMBOL"] + " " + (HGVSp || HGVSc)}
+            genomicPosition: {"value" : block["#CHROM"].replace(/^chr/, "") + ":" + block["POS"] + "-" + (parseInt(block["POS"]) + block["REF"].length)}
             genomicChange: {"value" : block["REF"] + "/" + block["ALT"]}
-            geneName: {"value" : block["VARIANT"]["HGNC"]}
+            geneName: {"value" : block["VARIANT"]["SYMBOL"]}
             geneId: {"value" : block["VARIANT"]["Gene"]}
             transcriptId: {"value" : block["VARIANT"]["Feature"]}
             aminoAcidMutation: {"value" : HGVSp}
             dnaMutation: {"value" : HGVSc}
-            depth: {"value" : block["QUAL"]}
+            depth: {"value" : parseFloat(block["QUAL"])}
 
 
 createVariantRecordRequest = (studyId, block) ->
