@@ -257,8 +257,7 @@ annotateVariants = (gridStore, callback) ->
       lazy.map(String).forEach(handleLine)
 
       annotated.on 'end', () ->
-        console.log "Blocks", blocks
-        callback(null)
+        callback(null, blocks)
 
   gridStore.pipe(temporaryFile)
 
@@ -269,12 +268,29 @@ buildCommand = (input, output) ->
    '--fasta', "#{config.plugin.vcf.fasta_path}",
    '--format', 'vcf', '--vcf', '--hgvs', '--offline', '--compress', 'gzcat',
    "--no_progress", "--canonical", "--check_existing", "--check_alleles",
-   "--check_ref", "--force_overwrite", "--numbers", "--domains", "--cache",
+   "--check_ref", "--force_overwrite", "--numbers", "--symbol", "--domains", "--cache",
    "--hgvs", "--pubmed", "--sift", "b", "--polyphen", "b"]
 
 
+recordVariants = (evt, variants, callback) ->
+
+  async.map variants,
+    (item, done) ->
+      recordVariant(evt, item, done)
+    (err, results) ->
+      callback(err, results)
+
+
+recordVariant = (evt, item, callback) ->
+
+  console.log "Found variant", evt, item
+
+  record = createVariantRecordRequest(null, item)
+  console.log "Record", record.body.data
+  console.log "Record", record.body.data.positions.data[0]
+  callback(null, item)
+
 appEvents.on 'step:samples:recordResults', (evt) ->
-  logger.info "Handling step:samples:recordResults", evt
 
   db = evt.db
   callback = evt.callback
@@ -284,7 +300,9 @@ appEvents.on 'step:samples:recordResults', (evt) ->
     gridStore.open (err, gs) ->
       return callback(err) if err?
 
-      annotateVariants gridStore, callback
+      annotateVariants gridStore, (err, variants) ->
+        callback(err, null) if err?
+        recordVariants evt, variants, callback
 
   files = (v for own k, v of evt.data.identifiers)
   async.each files, recordVcfResults, (err) ->
