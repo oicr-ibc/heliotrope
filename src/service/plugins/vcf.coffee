@@ -197,7 +197,6 @@ annotateVariants = (gridStore, callback) ->
   temporaryFile = temp.createWriteStream()
 
   temporaryFile.on 'finish', () ->
-    logger.info "Closed", temporaryFile
     inputPath = temporaryFile.path
     outputPath = inputPath + ".out.vcf"
 
@@ -208,7 +207,7 @@ annotateVariants = (gridStore, callback) ->
     vep = spawn executable, options
     vep.on 'close', (code) ->
 
-      logger.info "Result status", code
+      logger.info "Command status", code
 
       annotated = fs.createReadStream(outputPath)
       lazy = Lazy(annotated).lines
@@ -240,7 +239,6 @@ appEvents.on 'step:samples:recordResults', (evt) ->
   recordVcfResults = (identifier, callback) ->
     gridStore = new GridStore(db, identifier, "r")
     gridStore.open (err, gs) ->
-      logger.debug "gridStore.open", err, gs
       return callback(err) if err?
 
       annotateVariants gridStore, callback
