@@ -40,6 +40,7 @@ aminoAcidCodes = {
   "Trp" : "W",
   "Tyr" : "Y",
   "Val" : "V",
+  "Ter" : "X"
 };
 
 aminoAcidNames = {}
