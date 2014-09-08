@@ -30,7 +30,7 @@ the current working directory. This is a JSON file, and is parsed to provide a w
 the application. Default values are set here, and in many cases, the default values are sensible.
 
 The module exports a function `getConfiguration` which returns the generated configuration. Although this could be
-called repatedly, that would involve parsing the file repeatedly. It is better to use this once to get the
+called repeatedly, that would involve parsing the file repeatedly. It is better to use this once to get the
 configuration and store it, say in `app.locals`, where it can be accessed everywhere it is needed.
 
     ## Configure ourselves
