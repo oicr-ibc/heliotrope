@@ -23,7 +23,6 @@ List::MoreUtils
 Log::Any
 Log::Any::Adapter
 Log::Log4perl
-MediaWiki::Parser
 MongoDB
 Moose
 MooseX::Singleton

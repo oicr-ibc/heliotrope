@@ -1,0 +1,106 @@
+---
+## Copyright 2014(c) The Ontario Institute for Cancer Research. All rights reserved.
+##
+## This program and the accompanying materials are made available under the terms of the GNU Public
+## License v3.0. You should have received a copy of the GNU General Public License along with this
+## program. If not, see <http://www.gnu.org/licenses/>.
+##
+## THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+## IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+## FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+## CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+## DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+## DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+## WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+## WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+- stat: path=/usr/local/bin/perl
+  register: found_local_perl
+
+- name: Perl | Get Perl
+  get_url:
+    dest: '/tmp/perl-latest.tar.gz'
+    url: 'http://www.cpan.org/src/5.0/perl-{{perl_version}}.tar.gz'
+  when: found_local_perl.stat.exists == false
+
+- name: Perl | Create directory
+  command: mkdir -p perl-latest-install chdir=/tmp
+  when: found_local_perl.stat.exists == false
+
+- name: Perl | Unpack Perl
+  command: tar -x -z --strip-components=1 -f /tmp/perl-latest.tar.gz chdir=/tmp/perl-latest-install creates=/tmp/perl-latest-install/Configure
+  when: found_local_perl.stat.exists == false
+
+- name: Perl | Configure Perl
+  command: sh Configure -de chdir=/tmp/perl-latest-install creates=/tmp/perl-latest-install/Makefile
+  when: found_local_perl.stat.exists == false
+
+- name: Perl | Build Perl
+  command: make chdir=/tmp/perl-latest-install
+  when: found_local_perl.stat.exists == false
+
+- name: Perl | Install Perl
+  command: make install chdir=/tmp/perl-latest-install
+  when: found_local_perl.stat.exists == false
+
+- name: Perl | Install cpanm
+  shell: wget -q -O - http://cpanmin.us | perl - --sudo App::cpanminus
+  when: found_local_perl.stat.exists == false
+
+- name: Perl | Installing modules
+  command: cpanm {{ item }}
+  with_items:
+    - 'File::Listing'
+    - 'LWP::Simple'
+    - 'DBI'
+
+- name: Perl | Installing modules
+  command: cpanm {{ item }}
+  with_items:
+    - 'File::Listing'
+    - 'LWP::Simple'
+    - 'DBI'
+
+- name: Perl | Installing more modules
+  command: cpanm {{ item }}
+  with_items:
+    - 'boolean'
+    - 'common::sense'
+    - 'Bio::DB::Fasta'
+    - 'CHI'
+    - 'Clone'
+    - 'Convert::Scalar'
+    - 'Data::Dump'
+    - 'Data::GUID'
+    - 'DateTime'
+    - 'DateTime::Format::Natural'
+    - 'DateTime::Tiny'
+    - 'Exporter::Easy'
+    - 'File::HomeDir'
+    - 'File::Slurp'
+    - 'Graph'
+    - 'HTTP::Request'
+    - 'IO::CaptureOutput'
+    - 'JSON'
+    - 'Lingua::Stem::Snowball'
+    - 'Lingua::StopWords'
+    - 'List::MoreUtils'
+    - 'Log::Any'
+    - 'Log::Any::Adapter'
+    - 'Log::Log4perl'
+    - 'MongoDB'
+    - 'Moose'
+    - 'MooseX::Singleton'
+    - 'PDL'
+    - 'Parallel::ForkManager'
+    - 'Spreadsheet::ParseExcel'
+    - 'Sub::Exporter'
+    - 'Text::CSV'
+    - 'Text::Unidecode'
+    - 'Tie::IxHash'
+    - 'Try::Tiny'
+    - 'URI::Escape::XS'
+    - 'URI'
+    - 'WWW::Mechanize'
+    - 'XML::LibXML'
+
