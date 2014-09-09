@@ -114,7 +114,7 @@ gulp.task('coffee-service', function () {
   return gulp.src([
     './src/service/**/*.*'
   ])
-    .pipe(gulpif(/[.]coffee$/, g.coffee()))
+    .pipe(gulpif(/[.](?:lit)?coffee$/, g.coffee()))
     .pipe(gulp.dest('./.tmp/src/service'));
 });
 gulp.task('service-dist', function() {
