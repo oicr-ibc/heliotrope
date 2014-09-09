@@ -86,6 +86,7 @@ related entities of all types.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     getGene = (req, res) ->
       name = req.params.gene
@@ -116,6 +117,7 @@ related entities of all types.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     getGeneMutations = (req, res) ->
       name = req.params.gene
@@ -160,6 +162,7 @@ Database endpoint to read the annotation associated with a single gene.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     module.exports.getGeneAnnotation = (req, res) ->
       name = req.params.gene
@@ -200,6 +203,7 @@ script run when building a knowledge base, mainly for performance in some comple
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     module.exports.executeQuery = (req, res) ->
       name = req.params.query
@@ -219,6 +223,7 @@ Returns a query object that can be used to find a variant within the database, b
 the incoming request.
 
 * req - Express request
+<!-- -->
 
     getVariantSelector = (req) ->
       id = req.params.id.replace(/\+/, " ")
@@ -239,6 +244,7 @@ that into the response where appropriate.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     getVariant = (req, res) ->
 
@@ -271,6 +277,7 @@ gene information and implants that into the response where appropriate.
 * req - Express request
 * res - Express response
 * callback - function(err, variant)
+<!-- -->
 
     getVariantData = (req, res, callback) ->
       selector = getVariantSelector(req)
@@ -290,7 +297,7 @@ Given a variant, returns the gene information associated with that variant.
 
 * req - Express request
 * res - Express response
-
+<!-- -->
     getVariantGene = (req, res) ->
       getVariantData req, res, (err, doc) ->
         return res.status(err.code).send(err.err) if err?
@@ -303,6 +310,7 @@ Given a variant, returns the gene mutations associated with that variant.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     getVariantGeneMutations = (req, res) ->
       getVariantData req, res, (err, doc) ->
@@ -317,6 +325,7 @@ tag completion for cancer types, for example.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     module.exports.getTags = (req, res) ->
       query = req.query.q || "*"
@@ -339,6 +348,7 @@ Updates a variant. This is used to save updates from the front end.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     module.exports.putVariantAnnotation = (req, res) ->
       selector = getVariantSelector(req)
@@ -383,6 +393,7 @@ rendering.
 * req - Express request
 * res - Express response
 * callback - function(err, variant)
+<!-- -->
 
     getVariantReportData = (req, res, callback) ->
 
@@ -424,6 +435,7 @@ PDF and return it through the response.
 
 * html - HTML text
 * res - Express response
+<!-- -->
 
     respondWithPDF = (html, res) ->
       buffer = new Buffer(html)
@@ -527,6 +539,7 @@ a PDF for sending.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     module.exports.getVariantReport = (req, res) ->
       getVariantReportData req, res, (err, data) ->
@@ -564,6 +577,7 @@ a PDF for sending.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     module.exports.getPDFVariantReport = (req, res) ->
       if req.query && req.query["type"] == 'pdf'
@@ -604,10 +618,11 @@ a PDF for sending.
 
 
 Calculates the gene frequencies for a variant. This is not precalculated, but is done dynamically
-using the aggregation framework. 
+using the aggregation framework.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     module.exports.getGeneFrequencies = (req, res) ->
       name = req.params.gene
@@ -643,6 +658,7 @@ Finds and returns the annotations for a variant.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     module.exports.getVariantAnnotation = (req, res) ->
       selector = getVariantSelector(req)
@@ -685,6 +701,7 @@ Retrieves variant frequencies.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     module.exports.getVariantFrequencies = (req, res) ->
       selector = getVariantSelector(req)
@@ -725,6 +742,7 @@ result is tagged for display using some kind of a directive.
 
 * req - Express request
 * res - Express response
+<!-- -->
 
     convertWildcardToRegex = (string) ->
       escaped = string.replace /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"
@@ -852,6 +870,7 @@ Parameters:
 * req the request
 * res the response
 * callback
+<!-- -->
 
     module.exports.postVariant = (err, db, req, res, callback) ->
       body = req.body
