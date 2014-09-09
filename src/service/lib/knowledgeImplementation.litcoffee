@@ -84,10 +84,6 @@ to embedded relation references. This happens server-side.
 Database endpoint to read a single gene. This should also read a set of the
 related entities of all types.
 
-* req - Express request
-* res - Express response
-<!-- -->
-
     getGene = (req, res) ->
       name = req.params.gene
       db = res.locals.db
@@ -114,10 +110,6 @@ related entities of all types.
 
 Database endpoint to read the mutations associated with a single gene. This should also read a set of the
 related entities of all types.
-
-* req - Express request
-* res - Express response
-<!-- -->
 
     getGeneMutations = (req, res) ->
       name = req.params.gene
@@ -160,10 +152,6 @@ Generates and returns the external URL associated with a citation
 
 Database endpoint to read the annotation associated with a single gene.
 
-* req - Express request
-* res - Express response
-<!-- -->
-
     module.exports.getGeneAnnotation = (req, res) ->
       name = req.params.gene
       db = res.locals.db
@@ -201,10 +189,6 @@ Database endpoint to read the annotation associated with a single gene.
 Database endpoint to execute a query. Queries are now pre-calculated during the statistics
 script run when building a knowledge base, mainly for performance in some complex cases.
 
-* req - Express request
-* res - Express response
-<!-- -->
-
     module.exports.executeQuery = (req, res) ->
       name = req.params.query
       db = res.locals.db
@@ -222,9 +206,6 @@ script run when building a knowledge base, mainly for performance in some comple
 Returns a query object that can be used to find a variant within the database, based on
 the incoming request.
 
-* req - Express request
-<!-- -->
-
     getVariantSelector = (req) ->
       id = req.params.id.replace(/\+/, " ")
       components = id.split(" ")
@@ -241,10 +222,6 @@ the incoming request.
 
 Retrieves a variant. The endpoint also looks up a little gene information and implants
 that into the response where appropriate.
-
-* req - Express request
-* res - Express response
-<!-- -->
 
     getVariant = (req, res) ->
 
@@ -274,11 +251,6 @@ that into the response where appropriate.
 Retrieves variant data and hands it to a callback. The endpoint also looks up a little
 gene information and implants that into the response where appropriate.
 
-* req - Express request
-* res - Express response
-* callback - function(err, variant)
-<!-- -->
-
     getVariantData = (req, res, callback) ->
       selector = getVariantSelector(req)
 
@@ -295,9 +267,6 @@ gene information and implants that into the response where appropriate.
 
 Given a variant, returns the gene information associated with that variant.
 
-* req - Express request
-* res - Express response
-<!-- -->
     getVariantGene = (req, res) ->
       getVariantData req, res, (err, doc) ->
         return res.status(err.code).send(err.err) if err?
@@ -307,10 +276,6 @@ Given a variant, returns the gene information associated with that variant.
 
 
 Given a variant, returns the gene mutations associated with that variant.
-
-* req - Express request
-* res - Express response
-<!-- -->
 
     getVariantGeneMutations = (req, res) ->
       getVariantData req, res, (err, doc) ->
@@ -322,10 +287,6 @@ Given a variant, returns the gene mutations associated with that variant.
 
 Given a partial tag query, returns a list of matching tags. This is used to implement the
 tag completion for cancer types, for example.
-
-* req - Express request
-* res - Express response
-<!-- -->
 
     module.exports.getTags = (req, res) ->
       query = req.query.q || "*"
@@ -345,10 +306,6 @@ tag completion for cancer types, for example.
 
 
 Updates a variant. This is used to save updates from the front end.
-
-* req - Express request
-* res - Express response
-<!-- -->
 
     module.exports.putVariantAnnotation = (req, res) ->
       selector = getVariantSelector(req)
@@ -390,11 +347,6 @@ that into the response where appropriate. This requires a different strategy tha
 endpoints, in that we want to merge data from several endpoints into a single data block for
 rendering.
 
-* req - Express request
-* res - Express response
-* callback - function(err, variant)
-<!-- -->
-
     getVariantReportData = (req, res, callback) ->
 
       # We are going to be a bit cunning here. We're going to mock a response for
@@ -432,10 +384,6 @@ rendering.
 
 Given some HTML, runs that through the reporting component to transform it into
 PDF and return it through the response.
-
-* html - HTML text
-* res - Express response
-<!-- -->
 
     respondWithPDF = (html, res) ->
       buffer = new Buffer(html)
@@ -537,10 +485,6 @@ Generates the report for a variant. This involves building the model, translatin
 HTML with jade, building any charts needed, and finally (if needed) translating it all into
 a PDF for sending.
 
-* req - Express request
-* res - Express response
-<!-- -->
-
     module.exports.getVariantReport = (req, res) ->
       getVariantReportData req, res, (err, data) ->
         return res.status(500).send(err) if err?
@@ -574,10 +518,6 @@ a PDF for sending.
 Generates a PDF report for a variant. This involves building the model, translating it into
 HTML with jade, building any charts needed, and finally (if needed) translating it all into
 a PDF for sending.
-
-* req - Express request
-* res - Express response
-<!-- -->
 
     module.exports.getPDFVariantReport = (req, res) ->
       if req.query && req.query["type"] == 'pdf'
@@ -620,10 +560,6 @@ a PDF for sending.
 Calculates the gene frequencies for a variant. This is not precalculated, but is done dynamically
 using the aggregation framework.
 
-* req - Express request
-* res - Express response
-<!-- -->
-
     module.exports.getGeneFrequencies = (req, res) ->
       name = req.params.gene
       db = res.locals.db
@@ -655,10 +591,6 @@ using the aggregation framework.
 
 
 Finds and returns the annotations for a variant.
-
-* req - Express request
-* res - Express response
-<!-- -->
 
     module.exports.getVariantAnnotation = (req, res) ->
       selector = getVariantSelector(req)
@@ -699,10 +631,6 @@ Finds and returns the annotations for a variant.
 
 Retrieves variant frequencies.
 
-* req - Express request
-* res - Express response
-<!-- -->
-
     module.exports.getVariantFrequencies = (req, res) ->
       selector = getVariantSelector(req)
 
@@ -739,10 +667,6 @@ Handler for the search API. This accepts a single string and returns a set of
 hits. The principle is fairly simple, we want to look to see if there is a
 space in the string, and if so, we behave a little differently. Each returned
 result is tagged for display using some kind of a directive.
-
-* req - Express request
-* res - Express response
-<!-- -->
 
     convertWildcardToRegex = (string) ->
       escaped = string.replace /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"
@@ -829,6 +753,7 @@ result is tagged for display using some kind of a directive.
           result["data"] = doc
           callback db, err, result, res, 200
 
+
 Updates/creates a variant. This is used to store new variants created from VCF files.
 There is a significant amount of basic data needed for a single variant. Each must include, at
 a minimum, the fields below. All of these can be derived from a properly managed use of the
@@ -863,14 +788,7 @@ The core issue is how we RESTfully sensibly allow multiple items to be created.
 * exon - e.g., "29"
 * start - e.g., "36317520"
 
-Parameters:
-
-* err error flag from the database connection
-* db the database connection
-* req the request
-* res the response
-* callback
-<!-- -->
+Other values might well be added over time.
 
     module.exports.postVariant = (err, db, req, res, callback) ->
       body = req.body
