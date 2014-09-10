@@ -50,15 +50,15 @@ sudo apt-get install -y openjdk-7-jre
 
 # Get the data
 pushd /tmp
-wget -q -O "heliotrope-dump-1.2.tar.bz2" "https://googledrive.com/host/0B75vAAGHtrjaRGdaQV8wX3VrNVE/heliotrope-dump-1.2.tar.bz2"
+wget -q -O "heliotrope-dump-1.3.tar.bz2" "https://googledrive.com/host/0B75vAAGHtrjaRGdaQV8wX3VrNVE/heliotrope-dump-1.3.tar.bz2"
 mkdir dump
 pushd dump
-tar xvfj ../heliotrope-dump-1.2.tar.bz2
+tar xvfj ../heliotrope-dump-1.3.tar.bz2
 popd
 
 # Stuff the data into the MongoDB database
 mongorestore --db heliotrope dump/heliotrope
-rm -rf heliotrope-dump-1.2.tar.bz2 dump/heliotrope
+rm -rf heliotrope-dump-1.3.tar.bz2 dump/heliotrope
 
 # Now install the required components
 pushd /usr/lib/heliotrope
