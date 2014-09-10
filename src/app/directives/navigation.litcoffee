@@ -14,8 +14,8 @@
 > WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-Naivation directives
---------------------
+Navigation directives
+---------------------
 
 This module provides the directives which implement navigation in the application.
 
