@@ -14,8 +14,8 @@
 > WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-Charts for the knowledge base
------------------------------
+Knowledge base service
+----------------------
 
 Knowledge service implementation. The primary export from this is a router that can be
 connected into the express server with the right URL prefix.
