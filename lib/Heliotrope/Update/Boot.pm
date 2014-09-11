@@ -49,7 +49,7 @@ sub output {
 	$log->info("Initializing indexes");
   my $dbh = $self->open_database();
 
-  foreach my $collection ("genes", "variants", "tissue_types", "histology_types", "tumour_types") {
+  foreach my $collection ("genes", "variants") {
       $self->ensure_index($dbh, $collection, Tie::IxHash->new("name" => 1), { unique => true, safe => true });
   }
 
