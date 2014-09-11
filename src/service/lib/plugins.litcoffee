@@ -17,7 +17,7 @@
 Plugins
 ----------------------
 
-	path = require("path")
+    path = require("path")
     glob = require("glob")
     async = require("async")
     log4js = require("log4js")
