@@ -153,7 +153,7 @@ svg enabled browser.
                   for element in nodes
                     result.push
                       name: element.name
-                      value: element.frequency
+                      value: Math.sqrt(element.frequency)
                   output =
                     children: result
 
