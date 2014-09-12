@@ -91,12 +91,12 @@ an appropriate heading and entry for navigation in the sidebar.
           restrict: "A"
           replace: true
           transclude: true
-          scope: { title: '@title', id: '@bodyId', source: '=source', when: '=when' }
+          scope: { heading: '@heading', id: '@bodyId', source: '=source', when: '=when' }
           template: '<div class="row-fluid ng-hide">' +
                     '<div class="tab-content">' +
                     '<div class="tab-pane active">' +
                     '<div class="row-fluid">' +
-                    '<h3 id="{{id}}">{{title}} <small class="source ng-hide"></small></h3>' +
+                    '<h3 id="{{id}}">{{heading}} <small class="source ng-hide"></small></h3>' +
                     '</div>' +
                     '<div class="body" ng-transclude></div>' +
                     '</div' +
@@ -105,8 +105,8 @@ an appropriate heading and entry for navigation in the sidebar.
 
             navElement = jQuery("#sidebar .nav-list")
             id = iAttrs["bodyId"]
-            title = iAttrs["title"]
-            newElement = jQuery("<li class='ng-hide'><a class='nav-section' href='#" + id + "'>" + title + "</a></li>")
+            heading = iAttrs["heading"]
+            newElement = jQuery("<li class='ng-hide'><a class='nav-section' href='#" + id + "'>" + heading + "</a></li>")
             newElement.appendTo(navElement)
             newElement.click (e) ->
               e.preventDefault()

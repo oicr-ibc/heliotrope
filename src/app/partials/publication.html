@@ -9,7 +9,7 @@
     </div>
     <div id="page-body">
 
-      <div heli-section body-id="source" title="Source">
+      <div heli-section body-id="source" heading="Source">
 
         <p>
           <em>{{entity.data.sections.pubmed.data.Article.Journal.ISOAbbreviation}}</em>,
@@ -34,7 +34,7 @@
 
       </div>
 
-      <div heli-section body-id="abstract" title="Abstract">
+      <div heli-section body-id="abstract" heading="Abstract">
 
         <p>
           <span ng-repeat="segment in entity.data.sections.pubmed.data.Article.Abstract.AbstractText">
@@ -44,7 +44,7 @@
         </p>
       </div>
 
-      <div heli-section body-id="keywords" title="Keywords">
+      <div heli-section body-id="keywords" heading="Keywords">
 
         <h4>Substances</h4>
         <ul>

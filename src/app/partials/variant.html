@@ -18,7 +18,7 @@
 
       <div ng-form>
 
-        <div heli-section body-id="summary" title="Summary">
+        <div heli-section body-id="summary" heading="Summary">
           <div id="summary-table">
             <dl class="dl-horizontal">
               <dt>Mutation</dt>
@@ -58,31 +58,31 @@
         </div>
       </div>
 
-      <div heli-section body-id="domains" title="Gene structure" when="geneTranscripts">
+      <div heli-section body-id="domains" heading="Gene structure" when="geneTranscripts">
         <div heli-structure-distribution transcript="geneTranscripts.data.records[0]" mutations="mutations.data"></div>
       </div>
 
-      <div heli-section body-id="frequencies" title="Mutation frequencies" when="frequencies">
+      <div heli-section body-id="frequencies" heading="Mutation frequencies" when="frequencies">
         <div id="frequencies-table">
           <div heli-frequencies frequencies="frequencies.data"></div>
         </div>
       </div>
 
-      <div heli-section body-id="clinical-action" title="Clinical summary" when="editing || annotation.data.action[0].type">
+      <div heli-section body-id="clinical-action" heading="Clinical summary" when="editing || annotation.data.action[0].type">
         <div class="row-fluid">
           <div heli-editable-action-annotation></div>
         </div>
       </div>
 
-      <div heli-section body-id="clinical-significance" title="Clinical significance" when="editing || annotation.data.significance">
+      <div heli-section body-id="clinical-significance" heading="Clinical significance" when="editing || annotation.data.significance">
         <div heli-editable-significances significance="annotation.data.significance"></div>
       </div>
 
-      <div heli-section body-id="drugs" title="Druggability" when="editing || annotation.data.agents">
+      <div heli-section body-id="drugs" heading="Druggability" when="editing || annotation.data.agents">
         <div heli-editable-agents-annotation></div>
       </div>
 
-      <div heli-section body-id="genomics" title="Genomics">
+      <div heli-section body-id="genomics" heading="Genomics">
         <div id="genomics-table">
           <dl class="dl-horizontal">
             <dt>Chromosome</dt>

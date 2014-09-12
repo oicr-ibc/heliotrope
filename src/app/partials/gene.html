@@ -11,7 +11,7 @@
 
     <div id="page-body">
 
-      <div heli-section body-id="summary" title="Summary">
+      <div heli-section body-id="summary" heading="Summary">
         <div id="subjects-table">
           <dl>
             <dt>Full name</dt>
@@ -28,13 +28,13 @@
         </div>
       </div>
 
-      <div heli-section body-id="significance" title="Clinical significance" source="annotation.data.wikipedia[0].alert.source" when="annotation.data.wikipedia">
+      <div heli-section body-id="significance" heading="Clinical significance" source="annotation.data.wikipedia[0].alert.source" when="annotation.data.wikipedia">
         <div id="significance-table">
           <div heli-dewikify text="annotation.data.wikipedia[0].annotation" references="annotation.data.wikipedia[0].citations"></div>
         </div>
       </div>
 
-      <div heli-section body-id="mutations" title="Mutations" when="mutations" >
+      <div heli-section body-id="mutations" heading="Mutations" when="mutations" >
         <div id="mutations-list" class="section-end">
           <span class="inline-list">
             <span class="inline-item" ng-repeat="mutation in mutations.data | limitTo : 10"><a ng-href="/variants/{{mutation.variant}}">{{mutation.name}}</a></span>
@@ -42,11 +42,11 @@
         </div>
       </div>
 
-      <div heli-section body-id="domains" title="Gene structure" when="entity.data.sections.transcripts">
+      <div heli-section body-id="domains" heading="Gene structure" when="entity.data.sections.transcripts">
         <div heli-structure-distribution transcript="entity.data.sections.transcripts.data.records[0]" mutations="mutations.data"></div>
       </div>
 
-      <div heli-section body-id="gene-census-info" title="Cancer gene census information" when="entity.data.sections.gene_census_data" >
+      <div heli-section body-id="gene-census-info" heading="Cancer gene census information" when="entity.data.sections.gene_census_data" >
         <div id="cancer-gene-census-table">
           <dl>
             <dt>Full name</dt>
@@ -91,13 +91,13 @@
         </div>
       </div>
 
-      <div heli-section body-id="frequencies" title="Mutation frequencies" when="frequencies">
+      <div heli-section body-id="frequencies" heading="Mutation frequencies" when="frequencies">
         <div id="frequencies-table">
           <div heli-frequencies frequencies="frequencies.data"></div>
         </div>
       </div>
 
-      <div heli-section body-id="genomics" title="Genomics">
+      <div heli-section body-id="genomics" heading="Genomics">
         <div id="genomics-table">
           <dl>
             <dt>Chromosome</dt>
