@@ -184,6 +184,6 @@ svg enabled browser.
                 links.append("text")
                   .attr("dy", ".3em")
                   .style("text-anchor", "middle")
-                  .style("font-size", (d) -> d.r / 2)
+                  .style("font-size", (d) -> (d.r / 2).toString() + "px")
                   .text((d) -> d.name)
 
