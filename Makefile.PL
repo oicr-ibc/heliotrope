@@ -1,0 +1,61 @@
+use strict;
+use warnings;
+
+use ExtUtils::MakeMaker;
+
+WriteMakefile(
+    NAME            => 'Heliotrope',
+    VERSION_FROM    => 'lib/Heliotrope.pm',
+    ABSTRACT_FROM   => 'lib/Heliotrope.pm',
+    AUTHOR          => 'Stuart Watt <stuart@morungos.com>',
+    PMLIBDIRS       => ['lib'],
+    PREREQ_PM       => {
+        'Config' => 0,
+        'Config::Any' => 0,
+        'Cwd' => 0,
+        'boolean' => 0,
+        'common::sense' => 0,
+        'Bio::DB::Fasta' => 0,
+        'CHI' => 0,
+        'Clone' => 0,
+        'Convert::Scalar' => 0,
+        'DBI' => 0,
+        'DBD::SQLite' => 0,
+        'Data::Dump' => 0,
+        'Data::GUID' => 0,
+        'DateTime' => 0,
+        'DateTime::Format::Natural' => 0,
+        'DateTime::Tiny' => 0,
+        'Exporter::Easy' => 0,
+        'File::HomeDir' => 0,
+        'File::Slurp' => 0,
+        'Graph' => 0,
+        'HTTP::Request' => 0,
+        'IO::CaptureOutput' => 0,
+        'JSON' => 0,
+        'Lingua::Stem::Snowball' => 0,
+        'Lingua::StopWords' => 0,
+        'List::MoreUtils' => 0,
+        'Log::Any' => 0,
+        'Log::Any::Adapter' => 0,
+        'Log::Any::Adapter::Log4perl' => 0,
+        'Log::Log4perl' => 0,
+        'MongoDB' => 0,
+        'Moose' => 0,
+        'MooseX::Singleton' => 0,
+        'PDL' => 0,
+        'Parallel::ForkManager' => 0,
+        'Spreadsheet::ParseExcel' => 0,
+        'Sub::Exporter' => 0,
+        'Text::CSV' => 0,
+        'Text::Unidecode' => 0,
+        'Tie::IxHash' => 0,
+        'Try::Tiny' => 0,
+        'URI::Escape::XS' => 0,
+        'URI' => 0,
+        'WWW::Mechanize' => 0,
+        'XML::LibXML' => 0,
+    }
+);
+
+1;
