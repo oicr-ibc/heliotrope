@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "async": "^0.9.0",
-    "bcrypt": "^0.7.8",
+    "bcrypt": "^0.8.5",
     "body-parser": "^1.4.3",
     "connect-busboy": "0.0.1",
     "connect-mongo": "^0.4.1",
