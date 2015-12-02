@@ -28,22 +28,22 @@ sudo -u heliotrope git clone https://github.com/oicr-ibc/heliotrope.git /usr/lib
 
 # Download and install the node.js stuff
 pushd /tmp
-wget -q http://nodejs.org/dist/node-latest.tar.gz
+wget -q https://nodejs.org/download/release/v0.12.8/node-v0.12.8.tar.gz
 mkdir node-latest-install
 cd node-latest-install
-tar xz --strip-components=1 < ../node-latest.tar.gz
+tar xz --strip-components=1 < ../../node-v0.12.8.tar.gz
 ./configure --shared-openssl --shared-zlib --prefix=/usr/lib/heliotrope/node
 make
 sudo make install
 sudo chown -R heliotrope:adm /usr/lib/heliotrope/node
 popd
-rm -rf /tmp/node-latest.tar.gz node-latest-install
+rm -rf /tmp/node-v0.12.8.tar.gz node-latest-install
 
 # Now for MongoDB
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
 sudo echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/10gen.list
 sudo apt-get update
-sudo apt-get install -y mongodb-org=2.6.4
+sudo apt-get install -y mongodb-org=2.6.11
 
 # We also need a JRE
 sudo apt-get install -y openjdk-7-jre
@@ -62,13 +62,13 @@ rm -rf heliotrope-dump-1.3.tar.bz2 dump/heliotrope
 
 # Now install the required components
 pushd /usr/lib/heliotrope
-sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/npm install
-sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/npm install bower
-sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/npm install gulp
-sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/node node_modules/bower/bin/bower install --config.interactive=false
-sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/node node_modules/gulp/bin/gulp build-all
-sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/node node_modules/gulp/bin/gulp dist
-sudo -u heliotrope HOME=/usr/lib/heliotrope node/bin/npm rebuild
+sudo -u heliotrope HOME=/usr/lib/heliotrope PATH=/usr/lib/heliotrope/node/bin:$PATH node/bin/npm install
+sudo -u heliotrope HOME=/usr/lib/heliotrope PATH=/usr/lib/heliotrope/node/bin:$PATH node/bin/npm install bower
+sudo -u heliotrope HOME=/usr/lib/heliotrope PATH=/usr/lib/heliotrope/node/bin:$PATH node/bin/npm install gulp
+sudo -u heliotrope HOME=/usr/lib/heliotrope PATH=/usr/lib/heliotrope/node/bin:$PATH node/bin/node node_modules/bower/bin/bower install --config.interactive=false
+sudo -u heliotrope HOME=/usr/lib/heliotrope PATH=/usr/lib/heliotrope/node/bin:$PATH node/bin/node node_modules/gulp/bin/gulp build-all
+sudo -u heliotrope HOME=/usr/lib/heliotrope PATH=/usr/lib/heliotrope/node/bin:$PATH node/bin/node node_modules/gulp/bin/gulp dist
+sudo -u heliotrope HOME=/usr/lib/heliotrope PATH=/usr/lib/heliotrope/node/bin:$PATH node/bin/npm rebuild
 sudo -u heliotrope node/bin/node dist/utils/addAdminUser.js --username "admin" --password "admin"
 popd
 
@@ -97,4 +97,3 @@ sudo service heliotrope start
 
 # We're done if we get here
 echo "All done :-)"
-
