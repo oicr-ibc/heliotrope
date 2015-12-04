@@ -159,6 +159,11 @@ sub load_phase {
     $data->{primary_hist} =~ s{_}{ }g;
     $data->{hist_subtype} =~ s{_}{ }g;
 
+    ## This hasn't been documented anywhere, yet it should be. This is a pattern that
+    ## is used to filter out some of the non-cancer tumour types, so they aren't
+    ## included in frequency estimates. Mostly they're they're benign or precancerous
+    ## or explicit normal controls.
+
     if ($data->{primary_hist} =~ m{(?:\b(?:adenoma|normal|nevus|in\ssitu|polyp|keratosis|cyst|wart|mole|hamartoma|ameloblastoma|
                                    chondroma|chordoma|endometriosis|pterygium|leiomyoma|thrombosis|aberrant\scrypt\sfoci|
                                    crohn\sdisease|low\smalignant\spotential|barrett\soesophagus|spitzoid\stumour|keratoacanthoma|
