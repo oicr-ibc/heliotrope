@@ -41,6 +41,8 @@ use IO::CaptureOutput qw(capture);
 use Clone qw(clone);
 use Storable;
 use List::MoreUtils qw(all);
+use Net::SFTP;
+use IO::Compress::Gzip qw(gzip $GzipError);
 
 use Heliotrope::Logging qw(get_logger);
 use Heliotrope::Config;
@@ -59,42 +61,81 @@ sub BUILD {
 }
 
 sub maybe_update {
+    
     my ($self, $registry, %options) = @_;
 
     my ($req, $result, $file);
 
     my $cached_data = $self->get_data($registry);
+    
+    #J These lines seems a bit cryptic
     my $existing = $self->get_target_file($registry, "CosmicCompleteExport.tsv.gz");
+    
     if (! -e $existing) {
         $cached_data = {};
     }
 
     ## COSMIC now requires authentication, so we need a cookie jar.
     my $ua = $self->user_agent();
-
+    
     my $config = Heliotrope::Config::get_config();
 
-    $self->login($registry);
-    my ($version_string, $version_date) = $self->get_cosmic_version_date($registry);
-
-    if (exists($cached_data->{date}) && $cached_data->{date} ge $version_date) {
-        $log->info("Existing file is new; skipping update");
-        return;
-    }
-
+    #$self->login($registry);
+    #my $version_string;
+    #my $version_date;  
+    #my ($version_string, $version_date) = $self->get_cosmic_version_date($registry);
+    
+    #if (exists($cached_data->{date}) && $cached_data->{date} ge $version_date) {
+    #    $log->info("Existing file is new; skipping update");
+    #    return;
+    #}
+    
+    #J Finding ftp-dir on COSMIC was not working, seems they may have 
+    #J switched to sftp 
     $DB::single = 1;
+    use Net::SFTP::Foreign;
+    my $host = "sftp-cancer.sanger.ac.uk";
+    my %args = (
+    "user"     => "jcook04\@uoguelph.ca",
+    "password" => "H34rth1ng",
+    "port"     => "22" ) ;
+     
+    my $sftp = Net::SFTP::Foreign->new($host, %args);
 
-    my $export_url = $base_url . "$version_string/CosmicCompleteExport.tsv.gz";
-    $log->infof("Downloading %s", $export_url);
-    $req = HTTP::Request->new(GET => $export_url);
-    my ($export_result, $export_file) = $self->get_resource($registry, $req);
-    $log->info("Download complete");
+    $log->infof("Downloading CosmicCompleteTargetedScreensMutantExport.tsv.gz");
+    my $remote = "/files/grch38/cosmic/v79/CosmicCompleteTargetedScreensMutantExport.tsv.gz";
+    my $locale = "../../../../.heliotrope/cosmic/CosmicCompleteTargetedScreensMutantExport.tsv.gz";
+    #$sftp->get($remote, $locale) or die "No TargetedScreens\n";
 
-    my $vcf_url = $base_url . "$version_string/VCF/CosmicCodingMuts.vcf.gz";
-    $log->infof("Downloading %s", $vcf_url);
-    $req = HTTP::Request->new(GET => $vcf_url);
-    my ($vcf_result, $vcf_file) = $self->get_resource($registry, $req);
-    $log->info("Download complete");
+    $log->infof("Downloading CosmicCompleteGenomeScreensMutantExport.tsv.gz");
+    $remote = "/files/grch38/cosmic/v79/CosmicGenomeScreensMutantExport.tsv.gz";
+    $locale = "../../../../.heliotrope/cosmic/CosmicGenomeScreensMutantExport.tsv.gz";
+    #$sftp->get($remote, $locale) or die "No GenomeScreens\n";
+
+    $log->infof("Downloading CosmicCodingMuts.vcf.gz");
+    $remote = "/files/grch38/cosmic/v79/VCF/CosmicCodingMuts.vcf.gz";
+    $locale = "../../../../.heliotrope/cosmic/CosmicCodingMuts.vcf.gz";
+    #$sftp->get($remote, $locale) or die "No CodingMuts\n";
+    
+    
+    #J variable graveyard
+    my $export_url;
+    my $export_file;
+    my $vcf_file;
+    my $version_date;
+    my $version_string;
+    #my $export_url = "sftp://sftp-cancer.sanger.ac.uk//files/grch38/cosmic/v79/CosmicCompleteTargetedScreensMutantExport.tsv.gz";
+    #$log->infof("Downloading %s", $export_url);
+    #$req = HTTP::Request->new(GET => $export_url);
+    #my ($export_result, $export_file) = $self->get_resource($registry, $req);
+    #$log->info("Download complete");
+    
+    
+    #my $vcf_url = $base_url . "$version_string/VCF/CosmicCodingMuts.vcf.gz";
+    #$log->infof("Downloading %s", $vcf_url);
+    #$req = HTTP::Request->new(GET => $vcf_url);
+    #my ($vcf_result, $vcf_file) = $self->get_resource($registry, $req);
+    #$log->info("Download complete");
 
     # If the cache entry exists and says the file is older, or the cache entry
     # does not exist, we should continue to download the file.
@@ -111,6 +152,7 @@ sub maybe_update {
     $self->update($registry);
 }
 sub update {
+    
     my ($self, $registry) = @_;
 
     say "About to update.";
@@ -119,7 +161,7 @@ sub update {
 
 sub load_phase {
   my ($self, $registry) = @_;
-
+ 
   my $database = $self->open_database();
 
   # When loading, we ought to invert the var_allele for the -ve strand, as this
@@ -128,8 +170,77 @@ sub load_phase {
   # around this issue. Fortunately, at this stage, we can fairly quickly get this
   # information out of MongoDB.
 
-  my $file = $self->get_target_file($registry, "CosmicCompleteExport.tsv.gz");
-  my $fh = IO::Uncompress::Gunzip->new($file) or croak("Can't open $file: $!");
+  # To recreate CosmicCompleteExport.tsv.gz, we need to concatenate GenomeScreens and TargetedScreens. 
+  # The files are structured the same except for the addition of the Resistance column at Col 26,
+  # meaning we need to add this column into GenomeScreens and populate each line with 'null' before
+  # joining the files together.
+
+  my $file_genome = $self->get_target_file($registry, "CosmicGenomeScreensMutantExport.tsv.gz");
+  my $file_targeted = $self->get_target_file($registry, "CosmicCompleteTargetedScreensMutantExport.tsv.gz");
+  my $fh_genome = IO::Uncompress::Gunzip->new($file_genome) or croak("Can't open $file_genome: $!");
+  my $fh_targeted = IO::Uncompress::Gunzip->new($file_targeted) or croack ("Can't open $file_targeted: $!");
+  
+  my $headers_genome = <$fh_genome>;
+  my $headers_targeted = <$fh_targeted>;
+    
+  # Adding Resistance column to GenomeScreens.tsv file
+  # Splice seemed like the best function choice for the addition of a column. 
+  $log->infof("Adding 'null' Resistance column to CosmicGenomeScreensMutantExport.tsv.gz");
+  my @genome_screens;
+  my $count = 0;
+  while (<$fh_genome>) {
+  	my @splitarray = split ("\t", $_);
+	splice @splitarray, 26, 0, 'null';
+        my $string = join("\t", @splitarray);
+        push @genome_screens, $string;
+        $count++;
+        if (($count % 1000000) == 0) { $log->infof("$count lines processed"); }	
+ }
+  $log->infof("Completed");
+
+  # Replacing '-' with 'null' in TargetedScreens.tsv file
+  $log->infof("Replacing '-' with 'null' in CosmicCompleteTargetedScreensMutantExport.tsv.gz");
+  my @targeted_screens;
+  while (<$fh_targeted>){
+	my @splitarray = split ("\t", $_);
+	if ($splitarray[26] eq "-") {
+		splice @splitarray, 26, 1, 'null';
+	}
+	my $string = join("\t", @splitarray);
+	push @targeted_screens, $string;
+ }
+  $log->infof("Completed");
+ 
+  # Joining modified TargetedScreens and GenomeScreens to recreate CosmicCompleteExport.tsv.gz
+  
+  unshift @genome_screens, $headers_targeted;
+  push(@genome_screens, @targeted_screens);
+     
+  $log->infof("Creating CosmicCompleteExport.tsv.gz");
+  my $filename = "CosmicCompleteExport.tsv";
+  
+  open (my $fh_body, '>', $filename) or die "Could not create $filename\n";
+  my $line_count = 0;
+  foreach my $element (@genome_screens) {
+	print $fh_body "$element"; 
+        $line_count++;
+	if (($line_count % 1000000) == 0) { $log->infof("$line_count lines processed"); }
+	}
+ close $fh_body;
+ 
+ # Compressing CompleteExport so that it fits nicely with previous code
+ $log->infof("Compressing and Moving CosmicCompleteExport.tsv");
+ my $file_complete = "CosmicCompleteExport.tsv";
+ gzip $file_complete => "$file_complete.gz" or die "gzip failed: $GzipError\n";
+ $self->relocate_file($registry, "CosmicCompleteExport.tsv.gz", "CosmicCompleteExport.tsv.gz");
+ unlink $file_complete;
+ $log->infof("Completed");
+
+  # Back to normal
+
+  my $file_completed = $self->get_target_file($registry, "CosmicCompleteExport.tsv.gz");
+  my $fh = IO::Uncompress::Gunzip->new($file_completed) or croak("Can't open $file_complete: $!");
+  
   my $headers = <$fh>;
   chomp($headers);
   my @headers = map { $_ = lc($_); s{ }{_}gr; } split("\t", $headers, -1);
@@ -148,9 +259,9 @@ sub load_phase {
     ## Various normalizations to handle possible field name changes
     $data->{accession} = delete $data->{accession_number};
     $data->{primary_hist} = delete $data->{primary_histology};
-    $data->{hist_subtype} = delete $data->{histology_subtype};
+    $data->{hist_subtype} = delete $data->{histology_subtype_1}; # Added _1 
     $data->{pubmed} = delete $data->{pubmed_pmid};
-
+    $data->{site_subtype} = delete $data->{site_subtype_1}; # Added this line to account for changed header
     ## Now continue to analyze the data
     $data->{primary_hist} = $data->{hist_subtype} if ($data->{primary_hist} eq "other");
 
@@ -197,7 +308,7 @@ sub load_phase {
     my $mutation_codon;
     my $mutation_name;
     if ($data->{mutation_id}) {
-      my $cosmic_id = "COSM".$data->{mutation_id};
+      my $cosmic_id = $data->{mutation_id}; #J Removed ""COSM"." - ID now contains it
       $mutation_record = $database->get_collection('variants')->find_one({"sections.identifiers.data.cosmic" => $cosmic_id});
 
       if (! defined($mutation_record) && $data->{mutation_cds} eq 'c.?' && $data->{mutation_aa} ne 'p.?') {
@@ -258,7 +369,7 @@ my $duplicates = {};
 
 sub _handle_annotations {
   my ($self, $fh, $database) = @_;
-
+  
   my $vcf = Vcf->new(fh => $fh);
   $vcf->parse_header();
   my @fields = qw(chrom pos id ref alt qual filter info);
@@ -327,6 +438,7 @@ sub _handle_canonical_annotation {
     }
   }
 
+ #J HGVSfallback is no longer included in CSQ
   if ($consequence =~ m{\btranscript_ablation\b} || ($consequence =~ m{\b5_prime_UTR_variant\b} && $consequence =~ m{\bfeature_truncation\b})) {
     $csq_data->{HGVSfallback} = 'p.0';
   } elsif (($consequence =~ m{\b3_prime_UTR_variant\b} && $consequence =~ m{\bfeature_truncation\b})) {
@@ -350,8 +462,11 @@ sub _handle_canonical_annotation {
     'referenceAllele' => "$vcf_data->{ref}",
     'variantAllele' => "$vcf_data->{alt}"
   };
-  my $existing = $self->find_one_record($database, $collection, {'sections.positions.data' => {'$elemMatch' => $position_query}});
 
+  # Current source of bottleneck is the following index. Commented out to improve speed but not able to accept site duplicate entries
+
+  #my $existing = $self->find_one_record($database, $collection, {'sections.positions.data' => {'$elemMatch' => $position_query}});
+  my $existing;
   ## This merely tells is whether there is an existing variant which is genomically identical. If there is, we should make sure
   ## the COSMIC identifier is present and then quit. if not, we need to add it to the existing variant by name. This leaves us
   ## with an interesting question: if we have multiple genomic variants which are the same at the variant name level but genomically
@@ -462,6 +577,8 @@ sub _handle_canonical_annotation {
   $existing->{gene} = $gene_symbol unless (exists($existing->{gene}));
   $existing->{name} = "$existing->{gene} $existing->{mutation}" unless (exists($existing->{name}));
   $existing->{shortName} = "$existing->{gene} $existing->{shortMutation}" unless (exists($existing->{shortName}));
+
+  # genesRidx doesnt appear to exist anymore
   if (! exists($existing->{genesRidx})) {
     $existing->{genesRidx} = $#{$existing->{references}} + 1;
     push @{$existing->{references}}, {ref => "genes", name => $existing_gene->{name}, _id => $existing_gene->{_id}};

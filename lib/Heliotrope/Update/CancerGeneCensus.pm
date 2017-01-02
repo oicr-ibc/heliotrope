@@ -35,6 +35,14 @@ use IO::File;
 use IO::Uncompress::Gunzip;
 use File::Listing qw(parse_dir);
 
+use Net::SFTP::Foreign;
+use HTML::TreeBuilder;
+use LWP::Simple;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+use Text::CSV_PP;
+use Data::Dumper;
+
 use Heliotrope::Logging qw(get_logger);
 use Heliotrope::Config;
 use Heliotrope::Registry;
@@ -61,11 +69,16 @@ sub maybe_update {
 
     my $config = Heliotrope::Config::get_config();
 
-    $self->login($registry);
-    my ($version_string, $version_date) = $self->get_cosmic_version_date($registry);
+    #$self->login($registry);
+    #my ($version_string, $version_date) = $self->get_cosmic_version_date($registry);
 
     my $cached_data = $self->get_data($registry);
     my $existing = $self->get_target_file($registry, "cancer_gene_census.xls");
+
+    #my $cached_data;
+    #my $existing;
+    my $version_date;
+    my $cgc_url;
 
     if (! -e $existing) {
         $cached_data = {};
@@ -76,20 +89,35 @@ sub maybe_update {
         say "Skipping update.";
         return;
     }
+    # COSMIC now offers the Cancer Gene Census in .csv format so
+    # that file will be downloaded from their SFTP server
+    use Net::SFTP::Foreign;
+    my $host = "sftp-cancer.sanger.ac.uk";
+    my %args = (
+	"user"     => "jcook04\@uoguelph.ca",
+	"password" => "H34rth1ng",
+	"port"	   => "22" ) ;
 
-    my $base_url = $self->base_url();
-    my $cgc_url = $base_url . "$version_string/cancer_gene_census.xls";
-    $log->infof("Downloading %s", $cgc_url);
-    $req = HTTP::Request->new(GET => $cgc_url);
-    my ($cgc_result, $cgc_file) = $self->get_resource($registry, $req);
-    $log->info("Download complete");
+    my $sftp = Net::SFTP::Foreign->new($host, %args);
+
+    $log->infof("Downloading cancer_gene_census.csv");
+    my $remote = "/files/grch38/cosmic/v79/cancer_gene_census.csv";
+    my $locale = "../../../../.heliotrope/cancer_gene_census/cancer_gene_census.csv";
+    $sftp->get($remote, $locale) or die "Unable to download cancer_gene_census.csv\n";
+
+    #my $base_url = $self->base_url();
+    #my $cgc_url = $base_url . "$version_string/cancer_gene_census.xls";
+    #$log->infof("Downloading %s", $cgc_url);
+    #$req = HTTP::Request->new(GET => $cgc_url);
+    #my ($cgc_result, $cgc_file) = $self->get_resource($registry, $req);
+    #$log->info("Download complete");
 
     # Now we can store the data file in the right place and update the cache
     $cached_data->{date} = $version_date;
     $cached_data->{url} = $cgc_url;
     $cached_data->{download_time} = DateTime->now()->iso8601();
-    $self->relocate_file($registry, $file, "cancer_gene_census.xls");
-    $self->set_data($registry, $cached_data);
+    #$self->relocate_file($registry, $file, "cancer_gene_census.xls");
+    #$self->set_data($registry, $cached_data);
 
     $self->update($registry);
 
@@ -107,53 +135,77 @@ sub output {
 
 	my $cached_data = $self->get_data($registry);
 
-	my ($data_file) = $self->get_target_file($registry, "cancer_gene_census.xls");
-  my $parser   = Spreadsheet::ParseExcel->new();
-  my $workbook = $parser->parse($data_file);
+	my ($data_file) = $self->get_target_file($registry, "cancer_gene_census.csv");
 
+  # Since the Gene Census is now offered in CSV format, the abbreviations
+  # will have to be acquired from the website directly
+  open (my $fh, '<', $data_file) or die "Unable to open cancer_gene_census.csv\n";
   my $abbreviations = {};
-  my $abbreviations_worksheet = $workbook->worksheet('Abbreviations');
 
+  # Turn HTML source into string
+  my $url = "https://cancer.sanger.ac.uk/census/abbreviations";
+  my $t = HTML::TreeBuilder->new_from_url($url);
+  my $tree = $t->as_HTML;
+
+  # Defining abbreviation dictionary
   my $get_abbreviation = sub {
-    my ($value) = @_;
-    $abbreviations->{$value} || $value;
+      my ($value) = @_;
+      $abbreviations->{$value} || $value;
   };
 
-  my ($row_min, $row_max) = $abbreviations_worksheet->row_range();
-  $row_min++;
-  for my $row ( $row_min .. $row_max ) {
-    my $key = trim($abbreviations_worksheet->get_cell($row, 0)->unformatted());
-    my $value = trim($abbreviations_worksheet->get_cell($row, 1)->unformatted());
-    $abbreviations->{$key} = $value;
+  #J Creating Abbreviation-Term Hash
+  #J Each row of the table has the string class="c", so I split based on this
+  my $pattern = "class=\"c\"";
+  my @rows = split /$pattern/, $tree;
+  shift @rows; #J Removing headers
+
+  foreach(@rows) {
+          my $string = $_;
+          my @strings;
+          $string =~ /<td>(\N+)<\/td><td>(\N+)<\/td>/g;
+	  my $key = $1;
+	  my $value = $2;
+
+	  $abbreviations->{$key} = $value;
   }
 
-  my $worksheet = $workbook->worksheet('List');
-  ($row_min, $row_max) = $worksheet->row_range();
-  my ($col_min, $col_max) = $worksheet->col_range();
+  ##J Get headers
 
-  my @headers = map {
-    my $cell = $worksheet->get_cell($row_min, $_);
-    (defined($cell) ? $cell->unformatted() : "");
-  } ($col_min .. $col_max);
-  @headers = map { my $in = lc($_); $in = trim($in); $in =~ s/[()]//g; $in =~ s/(?:\b\s+\b|\/)/_/gr; } @headers;
-  shift(@headers);
+ my $headers = <$fh>;
+ my @headers = split /,/, $headers;
 
-  $row_min++;
-  my $data = {};
-  for my $row ($row_min .. $row_max) {
-    my @values = map { my $cell = $worksheet->get_cell($row, $_); trim(($cell && $cell->unformatted()) || '');  } ($col_min .. $col_max);
-    my $gene = shift(@values);
-    my %block = ();
-    @block{@headers} = @values;
-    $data->{$gene} = \%block;
-  }
+ @headers = map { my $in = lc($_); $in = trim($in); $in =~ s/[()]//g; $in =~ s/(?:\b\s+\b|\/)/_/gr; } @headers;
+ shift(@headers); #J GeneID column used on its own, header not needed
+
+ #foreach my $element (@headers) { print "$element\n"; } #J Uncomment this to see all headers after this line of code
+
+ #my $worksheet = $workbook->worksheet('List');
+ my $data = {};
+
+ # Puts all values into @values array, making sure to account for commas found within double quotes and replacing spaces with _ using trim() function
+ # Takes the gene symbol and makes the gene symbol the key for the rest of its line
+ while (<$fh>) {
+  my $parser = Text::CSV_PP->new();
+  my $string = $_;
+  $parser->parse($string);
+  my @value = $parser->fields();
+  @value = map { trim($_); } @value;
+  my $gene = shift(@value);
+  my %block = ();
+  @block{@headers} = @value;
+  $data->{$gene} = \%block;
+  #print Dumper \%block; #J Uncomment this to see how the hash of arrays is structured
+}
+
+# Data now structured the same as it was with original code
+# This is as far as it goes to organize values
 
   my $database = $self->open_database();
 
   my $reference_id_cache = {};
 
   my $date = $cached_data->{date};
-
+  my $count = 0;
   foreach my $gene (sort keys %$data) {
     my $gene_data = $data->{$gene};
 
@@ -162,7 +214,6 @@ sub output {
       carp("Can't locate: $gene");
       next;
     }
-
     $existing->{name} = $gene unless (exists($existing->{name}));
     $existing->{version} = 1 unless (exists($existing->{version}));
 
@@ -171,20 +222,20 @@ sub output {
       _alerts => [{
         level => "note",
         author => "sanger",
-        text => "This information has been updated in the Sanger Cancer Gene Census dated: $date",
+        text => "This information has been updated in the Sanger Cancer Gene Census dated:", #J The value $date was here, obtained from cache?
         date => DateTime->now()
       }],
       data => {}
     };
-
-    $gene_census_data->{data}->{somatic} = ($gene_data->{cancer_somatic_mut} eq 'yes' ? boolean::true : boolean::false);
-    $gene_census_data->{data}->{germline} = ($gene_data->{cancer_germline_mut} eq 'yes' ? boolean::true : boolean::false);
+# Some of the headers had to be changed to match the files headers
+    $gene_census_data->{data}->{somatic} = ($gene_data->{somatic} eq 'yes' ? boolean::true : boolean::false);
+    $gene_census_data->{data}->{germline} = ($gene_data->{germline} eq 'yes' ? boolean::true : boolean::false);
     $gene_census_data->{data}->{chromosome_band} = $gene_data->{chr_band};
-    $gene_census_data->{data}->{mutation_types} = [ map { &$get_abbreviation($_); } split(/\s*,\s+/, $gene_data->{mutation_type}) ];
+    $gene_census_data->{data}->{mutation_types} = [ map { &$get_abbreviation($_); } split(/\s*,\s+/, $gene_data->{mutation_types}) ];
     $gene_census_data->{data}->{tissue_types} = [ map { &$get_abbreviation($_); } split(/\s*,\s+/, $gene_data->{tissue_type}) ];
-    $gene_census_data->{data}->{tumour_types_germline} = [ map { &$get_abbreviation($_); } split(/\s*,\s+/, $gene_data->{tumour_types_germline_mutations}) ];
-    $gene_census_data->{data}->{tumour_types_somatic} = [ map { &$get_abbreviation($_); } split(/\s*,\s+/, $gene_data->{tumour_types_somatic_mutations}) ];
-    $gene_census_data->{data}->{molecular_genetics} = &$get_abbreviation($gene_data->{cancer_molecular_genetics} || '');
+    $gene_census_data->{data}->{tumour_types_germline} = [ map { &$get_abbreviation($_); } split(/\s*,\s+/, $gene_data->{tumour_typesgermline}) ];
+    $gene_census_data->{data}->{tumour_types_somatic} = [ map { &$get_abbreviation($_); } split(/\s*,\s+/, $gene_data->{tumour_typessomatic}) ];
+    $gene_census_data->{data}->{molecular_genetics} = &$get_abbreviation($gene_data->{molecular_genetics} || '');
     $gene_census_data->{data}->{name} = $gene_data->{name};
     $gene_census_data->{data}->{translocation_partners} = [ split(/\s*,\s+/, $gene_data->{translocation_partner}) ];
 
@@ -201,11 +252,12 @@ sub output {
     if (! deep_eq($resolved, $existing)) {
 
       foreach my $reference (@{$resolved->{references}}) {
-        next if ($reference->{_id});
+         next if ($reference->{_id});
 
         if (my $id = $reference_id_cache->{$reference->{ref}}->{$reference->{name}}) {
           $reference->{_id} = $id;
         } else {
+
           my $collection = $reference->{ref};
           if (my $existing = $self->find_one_record($database, $collection, {name => $reference->{name}})) {
             $reference->{_id} = $existing->{_id};

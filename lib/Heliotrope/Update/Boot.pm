@@ -62,10 +62,13 @@ sub output {
   $self->ensure_index($dbh, "variants", Tie::IxHash->new("gene" => 1, "shortMutation" => 1), { unique => true, safe => true });
   $self->ensure_index($dbh, "variants", Tie::IxHash->new("sections.identifiers.data.cosmic" => 1), { unique => true, safe => true });
 
+  # This is the missing index from COSMIC.pl - As of yet it doesn't work with current code
+  $self->ensure_index($dbh, "variants", Tie::IxHash->new("sections.positions.data" => 1), {unique => true, safe =>true});
   ## Indexes for the variantRecords collection
   $self->ensure_index($dbh, "variantRecords", Tie::IxHash->new("geneId" => 1, "sampleId" => 1, "mutationId" => 1), { unique => true, safe => true });
 
   ## Indexes for the annotations collection
+  # Identity might need to get changed to ref
   $self->ensure_index($dbh, "annotations", Tie::IxHash->new("role" => 1, "identity" => 1), { unique => true, safe => true });
 
 	$self->close_database($dbh);
