@@ -35,5 +35,5 @@ vep_options:
   - "b"
 
 ## Use these to connect to COSMIC, which now requires authentication
-cosmic_email: 'Justin.Cook@oicr.on.ca'
-cosmic_password: 'D34thkn1ght'
+cosmic_email: 'foo@bar.com'
+cosmic_password: 'bar'
