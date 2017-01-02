@@ -33,6 +33,7 @@ use JSON qw(decode_json);
 use Carp;
 use Data::GUID;
 use Tie::IxHash;
+use Data::Dumper;
 
 use Heliotrope::Logging qw(get_logger);
 use Heliotrope::Registry;
@@ -62,19 +63,22 @@ sub update {
     my $root = URI->new("http://en.wikipedia.org/w/api.php");
 
     my $url = $root->clone();
-    my $query = {action => 'query', format => 'json', list => 'categorymembers', cmtitle => 'Category:Human proteins', cmlimit => 'max'};
+   # Added the continue parameter to the query
+    my $query = {action => 'query', format => 'json', list => 'categorymembers', cmtitle => 'Category:Human proteins', cmlimit => '500', cmcontinue => ''};
     $url->query_form($query);
-
+    
     my @gene_pages = ();
     while($log->debugf("Requesting: %s", $url->as_string()), my $response = $mech->get($url)) {
-        my $perl_scalar = decode_json($response->decoded_content());
+        my $perl_scalar = decode_json($response->decoded_content()); #J Source of malformed JSON string error
         push @gene_pages, @{$perl_scalar->{query}->{categorymembers}};
         my $count = @gene_pages;
-        $log->debugf("Found %d genes", $count);
+	$log->debugf("Found %d genes", $count);
+        #print Dumper $perl_scalar;	
 
-        if ($perl_scalar->{'query-continue'}->{categorymembers}->{cmcontinue}) {
-            $query->{cmcontinue} = $perl_scalar->{'query-continue'}->{categorymembers}->{cmcontinue};
-            $url->query_form($query);
+    # Adapted code to new format for continuing queries
+        if ($perl_scalar->{continue}) {
+           $query->{cmcontinue} = $perl_scalar->{continue}->{cmcontinue};
+           $url->query_form($query);
         } else {
             last;
         }
@@ -83,27 +87,32 @@ sub update {
     # Now we have the page identifiers for all the gene pages. And titles too. We are now in a position
     # where we can start to iterate through these pages and get the textual content, JSON representations,
     # and so on.
-
+     
     my $database = $self->open_database();
     foreach my $gene_page (@gene_pages) {
+    # decoded_content sometimes causes program to terminate based on malformed json string error
+    # Put an eval function around it so that the program can continue should the error occur
+    eval {
         _build_article($self, $database, $mech, $root, $gene_page);
+	}
     }
     $self->close_database($database);
 }
 
 sub _build_article {
+    
     my ($self, $database, $mech, $root, $gene_page) = @_;
-
+    
     my $url = $root->clone();
     my $query = {action => 'query', prop => 'revisions', format => 'json', rvprop => 'content|tags|timestamp', pageids => $gene_page->{pageid}};
     $url->query_form($query);
     $log->debugf("Requesting: %s", $url->as_string());
     my $response = $mech->get($url);
     my $content = $response->decoded_content();
-    my $perl_scalar = decode_json($response->decoded_content());
+    my $perl_scalar = decode_json($response->decoded_content()); #J Source of malformed JSON string error
 
     my $page_body = $perl_scalar->{query}->{pages}->{$gene_page->{pageid}}->{revisions}->[0]->{"*"};
-
+    
     # And we're into the Wikipedia handling logic here. This is all getting quote domain-specific.
     my $box_page;
     my @citations;
@@ -111,13 +120,35 @@ sub _build_article {
     my $in_references = 0;
     my $current_citation;
     my $named_citations = Tie::IxHash->new();
-
+    
+    
     my $template_handler = sub {
+	 
         my ($self, $event, $tag, $body) = @_;
-        if ($tag eq 'PBB') {
-            $box_page = $body;
-            $box_page =~ s/\|geneid=(\d+)/Template:$tag\/$1/;
-        } elsif ($tag eq 'SWL') {
+              
+     # The PBB tag has been changed to PDB. I found that the PBB tag 
+     # appeared much less frequently then the NCBI 'web cite' tag that contained the
+     # numerical code for the gene. Once the code has been switched to the
+     # human genes pages, I will look again and change if needed. 
+     
+      # This grabs the gene id from the 'cite web' tag     	
+	if ($tag =~ /[Cc]ite/ && $body =~ /^\sweb/) {
+	        if ($body =~ /ncbi/) {
+			if ($body =~ /TermToSearch\=(\d+)/) { 
+				$box_page = "Template:PBB\/$1";
+			} elsif ($body =~ /\/gene\/(\d+)/)  {
+				$box_page = "Template:PBB\/$1"; 
+			} elsif ($body =~ /list_uids\=(\d+)/) {
+				$box_page = "Template:PBB\/$1";
+			}
+
+
+	    #$box_page = $body;
+            #$box_page =~ s/\|geneid=(\d+)/Template:$tag\/$1/;
+	  } else { print ""; }  
+}  	
+ # Not sure if SWL tag exists either
+	if ($tag eq 'SWL') {
             my $link = $self->unpack_keys($body);
             push @body, $link->{label} // $link->{target} // carp("Can't find link label");
         } elsif ($tag eq 'refbegin') {
@@ -125,20 +156,23 @@ sub _build_article {
         } elsif ($tag eq 'refend') {
             $in_references = 0;
         } elsif ($tag eq 'PBB_Further_reading') {
-            $self->parse($body);
+	    $self->parse($body);
         } elsif ($tag eq 'cite') {
             my $citation = $self->unpack_keys($body);
-
+            
             _clean_authorship($citation);
-
+            
             my $pmid = $citation->{pmid};
+            
             $current_citation = $citation;
             push @citations, $citation if ($in_references);
             my $context = $self->get_context();
+            
             my $name;
             if (@$context) {
               my $attributes = $self->unpack_attributes($context->[-1]);
               $name = $attributes->{name};
+  	       
             }
             if (! defined($name)) {
               $name = Data::GUID->new()->as_string();
@@ -153,21 +187,24 @@ sub _build_article {
               $log->warnf("Overwriting citation: %s -> %s", $name, $citation);
             }
             $named_citations->STORE($name, $citation);
-        }
+	}        
     };
 
     my $link_handler = sub {
+         
         my ($self, $event, $text) = @_;
         return if ($text =~ m{^\s*(?:File|Image):});
         if ($text =~ m{\|(.+)$}s) {
           $text = $1;
         }
         push @body, $text;
+        
     };
     my $text_handler = sub {
         my ($self, $event, $text) = @_;
         my $context = $self->get_context();
-        if (@$context && $context->[-1] =~ m{<ref}i) {
+        
+	if (@$context && $context->[-1] =~ m{<ref}i) {
           ## Text immediately inside a <ref> tag isn't included. Instead, we should probably skim for a
           ## PMID, at least. Would be better still to parse the citation and extract a title and
           ## authors, but this will do for a minimum version. After all, we'll eventually pair up with
@@ -192,10 +229,12 @@ sub _build_article {
     my $tag_start_handler = sub {
       my ($self, $event, $tag, $text) = @_;
       # say "tag_start_handler, $text";
+      
       if ($tag eq 'ref') {
         undef($current_citation);
       } else {
         push @body, $text;
+	
       }
     };
     my $tag_end_handler = sub {
@@ -218,7 +257,7 @@ sub _build_article {
         push @body, $text;
       }
     };
-
+    
     my $parser = MediaWiki::Parser->new({handlers => {
       template => $template_handler,
       link => $link_handler,
@@ -233,11 +272,13 @@ sub _build_article {
     # We don't need everything, but we do want the contents of the PBB template, as this
     # is provided by Protein Box Bot. This provides the Ensembl gene identifier and a bunch of
     # other useful identifying values.
-
+    
     if (! $box_page) {
+	
         $log->debugf("Missing gene details box. Skipping record");
         return;
     }
+    
     $query = {action => 'query', prop => 'revisions', format => 'json', rvprop => 'content|tags|timestamp', titles => $box_page};
     $url->query_form($query);
     $response = $mech->get($url);
@@ -251,8 +292,9 @@ sub _build_article {
     my $box_body;
     my $gnf_template_handler = sub {
         my ($self, $event, $tag, $body) = @_;
-        if ($tag eq 'GNF_Protein_box') {
+	if ($tag eq 'GNF_Protein_box') {
             $box_body = $body;
+	    
         }
     };
     $parser = MediaWiki::Parser->new({handlers => {template => $gnf_template_handler}});
@@ -263,12 +305,13 @@ sub _build_article {
         $log->debugf("Missing protein details box. Skipping record");
         return;
     }
-
+    
     $box_body =~ s/^\s*\|\s*//s;
     my $keys = $parser->unpack_keys($box_body);
 
     # Okay, now at this stage we can start processing the links to other items.
     my $gene_id = $keys->{Hs_Ensembl};
+    
     $log->infof("Analyzing: %s - %s", $gene_id, $keys->{Symbol});
 
     my $existing = $self->find_one_record($database, 'genes', {"id" => $gene_id});
@@ -287,8 +330,9 @@ sub _build_article {
     # while($body_text =~ m{(?:\A|[^=])\K(===*[ ]*[\p{XPosixGraph} ]+[ ]*===*(?=\z|[^=]))}g) {
     #   $log->debugf("Heading: %s", $1);
     # }
-
+   
     if ($body_text =~ m{==[ ]*(?:clinical[\w ]+|[\w ]*disease[\w ]*|[\w ]*cancer[\w ]*)[ ]*==\n(.*?)(?=[^=]==[^=]|$)}si) {
+       
       my $significance = $1;
       my @ids = ();
 
@@ -307,7 +351,7 @@ sub _build_article {
 
       my $target = {collection => 'genes', query => {id => $gene_id}, role => 'wikipedia', name => $keys->{Symbol}};
       $self->write_annotation($database, $target, $significance, @ids);
-
+      
       # _ensure_details($self, $database, $named_citations);
 
       # my @alert = (
@@ -344,7 +388,7 @@ sub write_annotation {
   my @citations = ();
   foreach my $identifier (@identifiers) {
     my $publication = $self->get_publication($identifier);
-
+    
     my $citation = {};
     $citation->{author}  =  [ map { "$_->{LastName} $_->{Initials}" } @{$publication->{Article}->{AuthorList}->{Author}} ];
     $citation->{title}   =  $publication->{Article}->{ArticleTitle};
@@ -354,7 +398,7 @@ sub write_annotation {
     $citation->{pages}   =  $publication->{Article}->{Pagination}->{MedlinePgn};
     $citation->{date}    =  $publication->{Article}->{Journal}->{JournalIssue}->{PubDate};
     $citation->{identifier} = $identifier;
-
+    
     push @citations, $citation;
   }
 
@@ -374,10 +418,12 @@ sub write_annotation {
   $annotation_body->{annotation} = $significance;
   $annotation_body->{citations} = \@citations;
   $annotation_body->{alert} = $alert;
+  # This wasn't working until replaced identity with ref in annotation index in Boot.pm  
   $annotation_collection->update($annotation_query, {'$set' => $annotation_body}, {"upsert" => 1, "multiple" => 0});
+  
   $log->infof("Writing annotation: %s", $target->{name});
 }
-
+ 
 sub _ensure_details {
   my ($self, $database, $named_citations) = @_;
   my @keys = $named_citations->Keys();
@@ -412,15 +458,22 @@ sub _ensure_citation_details {
   return;
 }
 
+# Managed to capture most authors under the vauthors tag.
+# Need to implement second loop for 'authors' as well as for authors3+. Maybe retry a REGEX
 sub _clean_authorship {
+  my @authors;
   my ($citation) = @_;
-  return if (! exists($citation->{author}));
-  my @authors = split(/,\s*/, $citation->{author});
+  if (exists($citation->{author})) {
+         @authors = split(/,\s*/, $citation->{author});
+} elsif (exists($citation->{vauthors})) {
+         @authors = split(/,\s*/, $citation->{vauthors});
+} else { return; }
 
-  my $index = 2;
+  my $index = 2; # Not sure if author3+ is captured due to it all being one string rather then a new tag
   while(1) {
     my $author = "author".$index;
     if (exists($citation->{$author})) {
+      
       push @authors, $citation->{$author};
       delete $citation->{$author};
       $index++;
@@ -432,7 +485,7 @@ sub _clean_authorship {
   while(1) {
     my $first = "first".$index;
     my $last = "last".$index;
-    if (exists($citation->{$first}) && exists($citation->{$last})) {
+    if (exists($citation->{$first}) || exists($citation->{$last})) {
       push @authors, "$citation->{$last} $citation->{$first}";
       delete $citation->{$last};
       delete $citation->{$first};

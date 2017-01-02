@@ -121,6 +121,9 @@ sub _variant_effect_predictor {
   # and fork simply crashes. There is a performance issue here, but there isn't much we can do about
   # it.
 
+  # Changed --compress to "gzip -dc", my machine was acting odd with gzcat
+  # Changed --fork to 2 to again accomodate my machine
+  
   my $vep_dir = $self->vep_home();
   my $cache_dir = $self->vep_cache_directory();
   my $options = $self->vep_options();
@@ -128,11 +131,11 @@ sub _variant_effect_predictor {
   my $command = ["-X", "$vep_dir/variant_effect_predictor.pl",
                  @$options,
                  "--buffer_size", $self->vep_fork_buffer_size(),
-                 "--compress", $self->vep_decompress(),
+                 "--compress", "gzip -dc",
                  "--dir_cache", $cache_dir,
                  "--input_file", "$var_filename",
                  "--output_file", "$output_filename",
-                 "--fork", $self->vep_fork_limit() ];
+                 "--fork", "2" ];
 
   $log->info("Executing: ".$executable." ".join(" ", map { qq{"$_"}; } @$command));
 

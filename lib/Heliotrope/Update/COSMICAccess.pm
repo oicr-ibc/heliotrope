@@ -19,7 +19,10 @@ use common::sense;
 
 use Moose::Role;
 
+
 use HTTP::Request;
+use HTTP::Request::Common;
+use LWP::UserAgent;
 use HTML::TreeBuilder;
 use DateTime;
 use DateTime::Format::Natural;
@@ -30,38 +33,60 @@ use Heliotrope::Config;
 
 my $log = get_logger();
 
+# Changed url
 sub base_url {
   my ($self) = @_;
-  return "https://cancer.sanger.ac.uk/files/cosmic/";
+  return "http://cancer.sanger.ac.uk/cosmic/files";
 }
 
+# This component of the program has been phased out for now - COSMIC doesn't 
+# need more than the one login using SFTP servers that I do within COSMIC.pl 
+# and CancerGeneCensus.pl. The version date component isn't functional yet
+# but will be implemented soon for sake of automation.
+
+# Changed authentication code, used HTTP::Request::Common method instead. 
 sub login {
   my ($self, $registry) = @_;
+  
+  my $ua = LWP::UserAgent->new();
+  
+  $log->info("Authenticating COSMIC credentials");
+  my $request = GET 'https://cancer.sanger.ac.uk/cosmic/login';
+  
+  $request->authorization_basic('jcook04\@uoguelph.ca', 'H34rth1ng');
 
-  my $ua = $self->user_agent();
-  my $config = Heliotrope::Config::get_config();
+# Add a condition to kill program if authentication doesn't succeed
+  my $response = $ua->request($request);
+  say $response->status_line;  
+  
 
-  $log->info("Logging in to COSMIC");
-  my $response = $ua->post('https://cancer.sanger.ac.uk/cosmic/login',
-    Content => {email => $config->{cosmic_email}, password => $config->{cosmic_password}});
+  #my $ua = $self->user_agent();
+  #my $config = Heliotrope::Config::get_config();
+
+  #$log->info("Logging in to COSMIC");
+  #my $response = $ua->post('https://cancer.sanger.ac.uk/cosmic/login',
+  #  Content => {email => $config->{"jcook04\@uoguelph.ca"}, password => $config->{"H34rth1ng"}});
+     
 }
-
 sub get_cosmic_version_date {
   my ($self, $registry) = @_;
-
+  
   my ($req, $result, $file);
   my $config = Heliotrope::Config::get_config();
-
+   
   $log->info("Read list of files");
   my $base_url = $self->base_url();
+  
   $req = HTTP::Request->new(GET => $base_url);
-  $req->header(Accept => "text/ftp-dir-listing, */*;q=0.1");
+  $req->header(Accept => "text/sftp-dir-listing, */*;q=0.1");
   ($result, $file) = $self->get_resource($registry, $req);
-
+   
   ## Cuts out the <pre> tag and naively processes it as a list of versions and dates
   my $tree = HTML::TreeBuilder->new();
   $tree->parse_file($file);
+   
   my ($element) = $tree->find_by_tag_name('pre');
+  
   if (! $element) {
     $log->error("Failed to get list of files, probably failed to login or something...");
     return;
