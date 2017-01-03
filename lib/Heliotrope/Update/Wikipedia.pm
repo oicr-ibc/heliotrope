@@ -64,7 +64,22 @@ sub update {
 
     my $url = $root->clone();
    # Added the continue parameter to the query
-    my $query = {action => 'query', format => 'json', list => 'categorymembers', cmtitle => 'Category:Human proteins', cmlimit => '500', cmcontinue => ''};
+    my $chrom = 21;
+    while (1) {    
+    if ( $chrom =~ /(\d+)/ ) {
+	$chrom++;
+    }
+    if ($chrom == 23) {
+        $chrom = 'M';
+    } elsif ($chrom eq 'M') {
+        $chrom = 'Y';
+    } elsif ($chrom eq 'Y') {
+        $chrom = 'X';
+    } elsif ($chrom eq 'X') {
+	last;
+    }
+    my $query = {action => 'query', format => 'json', list => 'categorymembers', cmtitle => "Category:Genes on human chromosome $chrom", cmlimit => 'max', cmcontinue => ''};
+
     $url->query_form($query);
     
     my @gene_pages = ();
@@ -97,6 +112,7 @@ sub update {
 	}
     }
     $self->close_database($database);
+  }
 }
 
 sub _build_article {
