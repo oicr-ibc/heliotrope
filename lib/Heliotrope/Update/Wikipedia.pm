@@ -64,7 +64,8 @@ sub update {
 
     my $url = $root->clone();
    # Added the continue parameter to the query
-    my $chrom = 21;
+   # Using Category: Genes by Human Chromsome now with ~12500 pages
+    my $chrom = 0;
     while (1) {    
     if ( $chrom =~ /(\d+)/ ) {
 	$chrom++;
