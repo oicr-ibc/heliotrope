@@ -105,19 +105,87 @@ sub maybe_update {
     $log->infof("Downloading CosmicCompleteTargetedScreensMutantExport.tsv.gz");
     my $remote = "/files/grch38/cosmic/v79/CosmicCompleteTargetedScreensMutantExport.tsv.gz";
     my $locale = "../../../../.heliotrope/cosmic/CosmicCompleteTargetedScreensMutantExport.tsv.gz";
-    #$sftp->get($remote, $locale) or die "No TargetedScreens\n";
+    $sftp->get($remote, $locale) or die "No TargetedScreens\n";
 
     $log->infof("Downloading CosmicCompleteGenomeScreensMutantExport.tsv.gz");
     $remote = "/files/grch38/cosmic/v79/CosmicGenomeScreensMutantExport.tsv.gz";
     $locale = "../../../../.heliotrope/cosmic/CosmicGenomeScreensMutantExport.tsv.gz";
-    #$sftp->get($remote, $locale) or die "No GenomeScreens\n";
+    $sftp->get($remote, $locale) or die "No GenomeScreens\n";
 
     $log->infof("Downloading CosmicCodingMuts.vcf.gz");
     $remote = "/files/grch38/cosmic/v79/VCF/CosmicCodingMuts.vcf.gz";
     $locale = "../../../../.heliotrope/cosmic/CosmicCodingMuts.vcf.gz";
-    #$sftp->get($remote, $locale) or die "No CodingMuts\n";
+    $sftp->get($remote, $locale) or die "No CodingMuts\n";
     
     
+
+  # To recreate CosmicCompleteExport.tsv.gz, we need to concatenate GenomeScreens and TargetedScreens. 
+  # The files are structured the same except for the addition of the Resistance column at Col 26,
+  # meaning we need to add this column into GenomeScreens and populate each line with 'null' before
+  # joining the files together.
+
+  my $file_genome = $self->get_target_file($registry, "CosmicGenomeScreensMutantExport.tsv.gz");
+  my $file_targeted = $self->get_target_file($registry, "CosmicCompleteTargetedScreensMutantExport.tsv.gz");
+  my $fh_genome = IO::Uncompress::Gunzip->new($file_genome) or croak("Can't open $file_genome: $!");
+  my $fh_targeted = IO::Uncompress::Gunzip->new($file_targeted) or croack ("Can't open $file_targeted: $!");
+
+  my $headers_genome = <$fh_genome>;
+  my $headers_targeted = <$fh_targeted>;
+
+  # Adding Resistance column to GenomeScreens.tsv file
+  # Splice seemed like the best function choice for the addition of a column. 
+  $log->infof("Adding 'null' Resistance column to CosmicGenomeScreensMutantExport.tsv.gz");
+  my @genome_screens;
+  my $count = 0;
+  while (<$fh_genome>) {
+        my @splitarray = split ("\t", $_);
+        splice @splitarray, 26, 0, 'null';
+        my $string = join("\t", @splitarray);
+        push @genome_screens, $string;
+        $count++;
+        if (($count % 1000000) == 0) { $log->infof("$count lines processed"); }
+ }
+  $log->infof("Completed");
+
+  # Replacing '-' with 'null' in TargetedScreens.tsv file
+  $log->infof("Replacing '-' with 'null' in CosmicCompleteTargetedScreensMutantExport.tsv.gz");
+  my @targeted_screens;
+  while (<$fh_targeted>){
+        my @splitarray = split ("\t", $_);
+        if ($splitarray[26] eq "-") {
+                splice @splitarray, 26, 1, 'null';
+        }
+        my $string = join("\t", @splitarray);
+        push @targeted_screens, $string;
+ }
+  $log->infof("Completed");
+
+  # Joining modified TargetedScreens and GenomeScreens to recreate CosmicCompleteExport.tsv.gz
+
+  unshift @genome_screens, $headers_targeted;
+  push(@genome_screens, @targeted_screens);
+
+  $log->infof("Creating CosmicCompleteExport.tsv.gz");
+  my $filename = "CosmicCompleteExport.tsv";
+
+  open (my $fh_body, '>', $filename) or die "Could not create $filename\n";
+  my $line_count = 0;
+  foreach my $element (@genome_screens) {
+        print $fh_body "$element";
+        $line_count++;
+        if (($line_count % 1000000) == 0) { $log->infof("$line_count lines processed"); }
+        }
+ close $fh_body;
+
+ # Compressing CompleteExport so that it fits nicely with previous code
+ $log->infof("Compressing and Moving CosmicCompleteExport.tsv");
+ my $file_complete = "CosmicCompleteExport.tsv";
+ gzip $file_complete => "$file_complete.gz" or die "gzip failed: $GzipError\n";
+ $self->relocate_file($registry, "CosmicCompleteExport.tsv.gz", "CosmicCompleteExport.tsv.gz");
+ unlink $file_complete;
+ $log->infof("Completed");
+
+
     #J variable graveyard
     my $export_url;
     my $export_file;
@@ -170,76 +238,10 @@ sub load_phase {
   # around this issue. Fortunately, at this stage, we can fairly quickly get this
   # information out of MongoDB.
 
-  # To recreate CosmicCompleteExport.tsv.gz, we need to concatenate GenomeScreens and TargetedScreens. 
-  # The files are structured the same except for the addition of the Resistance column at Col 26,
-  # meaning we need to add this column into GenomeScreens and populate each line with 'null' before
-  # joining the files together.
-
-  my $file_genome = $self->get_target_file($registry, "CosmicGenomeScreensMutantExport.tsv.gz");
-  my $file_targeted = $self->get_target_file($registry, "CosmicCompleteTargetedScreensMutantExport.tsv.gz");
-  my $fh_genome = IO::Uncompress::Gunzip->new($file_genome) or croak("Can't open $file_genome: $!");
-  my $fh_targeted = IO::Uncompress::Gunzip->new($file_targeted) or croack ("Can't open $file_targeted: $!");
-  
-  my $headers_genome = <$fh_genome>;
-  my $headers_targeted = <$fh_targeted>;
-    
-  # Adding Resistance column to GenomeScreens.tsv file
-  # Splice seemed like the best function choice for the addition of a column. 
-  $log->infof("Adding 'null' Resistance column to CosmicGenomeScreensMutantExport.tsv.gz");
-  my @genome_screens;
-  my $count = 0;
-  while (<$fh_genome>) {
-  	my @splitarray = split ("\t", $_);
-	splice @splitarray, 26, 0, 'null';
-        my $string = join("\t", @splitarray);
-        push @genome_screens, $string;
-        $count++;
-        if (($count % 1000000) == 0) { $log->infof("$count lines processed"); }	
- }
-  $log->infof("Completed");
-
-  # Replacing '-' with 'null' in TargetedScreens.tsv file
-  $log->infof("Replacing '-' with 'null' in CosmicCompleteTargetedScreensMutantExport.tsv.gz");
-  my @targeted_screens;
-  while (<$fh_targeted>){
-	my @splitarray = split ("\t", $_);
-	if ($splitarray[26] eq "-") {
-		splice @splitarray, 26, 1, 'null';
-	}
-	my $string = join("\t", @splitarray);
-	push @targeted_screens, $string;
- }
-  $log->infof("Completed");
- 
-  # Joining modified TargetedScreens and GenomeScreens to recreate CosmicCompleteExport.tsv.gz
-  
-  unshift @genome_screens, $headers_targeted;
-  push(@genome_screens, @targeted_screens);
-     
-  $log->infof("Creating CosmicCompleteExport.tsv.gz");
-  my $filename = "CosmicCompleteExport.tsv";
-  
-  open (my $fh_body, '>', $filename) or die "Could not create $filename\n";
-  my $line_count = 0;
-  foreach my $element (@genome_screens) {
-	print $fh_body "$element"; 
-        $line_count++;
-	if (($line_count % 1000000) == 0) { $log->infof("$line_count lines processed"); }
-	}
- close $fh_body;
- 
- # Compressing CompleteExport so that it fits nicely with previous code
- $log->infof("Compressing and Moving CosmicCompleteExport.tsv");
- my $file_complete = "CosmicCompleteExport.tsv";
- gzip $file_complete => "$file_complete.gz" or die "gzip failed: $GzipError\n";
- $self->relocate_file($registry, "CosmicCompleteExport.tsv.gz", "CosmicCompleteExport.tsv.gz");
- unlink $file_complete;
- $log->infof("Completed");
-
   # Back to normal
 
   my $file_completed = $self->get_target_file($registry, "CosmicCompleteExport.tsv.gz");
-  my $fh = IO::Uncompress::Gunzip->new($file_completed) or croak("Can't open $file_complete: $!");
+  my $fh = IO::Uncompress::Gunzip->new($file_completed) or croak("Can't open $file_completed: $!");
   
   my $headers = <$fh>;
   chomp($headers);
@@ -634,7 +636,7 @@ sub output {
     );
     $self->{_alert} = \@alert;
 
-    annotate_phase($self, $registry);
+#    annotate_phase($self, $registry);
     load_phase($self, $registry);
 }
 
