@@ -99,9 +99,16 @@ sub maybe_update {
 	"port"	   => "22" ) ;
 
     my $sftp = Net::SFTP::Foreign->new($host, %args);
-
+    
+    my $version_url = "http://cancer.sanger.ac.uk/cosmic";
+    my $HTML = HTML::TreeBuilder->new_from_url($version_url);
+    my $string_HTML = $HTML->as_HTML;
+    $string_HTML =~ m/COSMIC\s([a-zA-z0-9]{3})/;
+    my $version = $1;
+    
+    
     $log->infof("Downloading cancer_gene_census.csv");
-    my $remote = "/files/grch38/cosmic/v79/cancer_gene_census.csv";
+    my $remote = "/files/grch38/cosmic/$version/cancer_gene_census.csv";
     my $locale = "../../../../.heliotrope/cancer_gene_census/cancer_gene_census.csv";
     $sftp->get($remote, $locale) or die "Unable to download cancer_gene_census.csv\n";
 

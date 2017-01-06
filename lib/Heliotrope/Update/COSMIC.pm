@@ -90,8 +90,7 @@ sub maybe_update {
     #    return;
     #}
     
-    #J Finding ftp-dir on COSMIC was not working, seems they may have 
-    #J switched to sftp 
+    # COSMIC now stores their data on an SFTP server. Authentication can now happen through Net::SFTP::Foreign 
     $DB::single = 1;
     use Net::SFTP::Foreign;
     my $host = "sftp-cancer.sanger.ac.uk";
@@ -99,26 +98,31 @@ sub maybe_update {
     "user"     => "jcook04\@uoguelph.ca",
     "password" => "H34rth1ng",
     "port"     => "22" ) ;
-     
+
+    my $version_url = "http://cancer.sanger.ac.uk/cosmic";
+    my $HTML = HTML::TreeBuilder->new_from_url($version_url);
+    my $string_HTML = $HTML->as_HTML;
+    $string_HTML =~ m/COSMIC\s([a-zA-z0-9]{3})/;
+    my $version = $1;
+  
     my $sftp = Net::SFTP::Foreign->new($host, %args);
 
     $log->infof("Downloading CosmicCompleteTargetedScreensMutantExport.tsv.gz");
-    my $remote = "/files/grch38/cosmic/v79/CosmicCompleteTargetedScreensMutantExport.tsv.gz";
+    my $remote = "/files/grch38/cosmic/$version/CosmicCompleteTargetedScreensMutantExport.tsv.gz";
     my $locale = "../../../../.heliotrope/cosmic/CosmicCompleteTargetedScreensMutantExport.tsv.gz";
     $sftp->get($remote, $locale) or die "No TargetedScreens\n";
 
     $log->infof("Downloading CosmicCompleteGenomeScreensMutantExport.tsv.gz");
-    $remote = "/files/grch38/cosmic/v79/CosmicGenomeScreensMutantExport.tsv.gz";
+    $remote = "/files/grch38/cosmic/$version/CosmicGenomeScreensMutantExport.tsv.gz";
     $locale = "../../../../.heliotrope/cosmic/CosmicGenomeScreensMutantExport.tsv.gz";
     $sftp->get($remote, $locale) or die "No GenomeScreens\n";
 
     $log->infof("Downloading CosmicCodingMuts.vcf.gz");
-    $remote = "/files/grch38/cosmic/v79/VCF/CosmicCodingMuts.vcf.gz";
+    $remote = "/files/grch38/cosmic/$version/VCF/CosmicCodingMuts.vcf.gz";
     $locale = "../../../../.heliotrope/cosmic/CosmicCodingMuts.vcf.gz";
     $sftp->get($remote, $locale) or die "No CodingMuts\n";
     
-    
-
+   
   # To recreate CosmicCompleteExport.tsv.gz, we need to concatenate GenomeScreens and TargetedScreens. 
   # The files are structured the same except for the addition of the Resistance column at Col 26,
   # meaning we need to add this column into GenomeScreens and populate each line with 'null' before
