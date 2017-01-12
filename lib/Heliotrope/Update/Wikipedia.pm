@@ -70,6 +70,7 @@ sub update {
     if ( $chrom =~ /(\d+)/ ) {
 	$chrom++;
     }
+    # Switching from numbers to letters makes the comparator complain but for now it will do
     if ($chrom == 23) {
         $chrom = 'M';
     } elsif ($chrom eq 'M') {

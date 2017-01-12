@@ -41,7 +41,7 @@ use IO::CaptureOutput qw(capture);
 use Clone qw(clone);
 use Storable;
 use List::MoreUtils qw(all);
-use Net::SFTP;
+use Net::SFTP::Foreign;
 use IO::Compress::Gzip qw(gzip $GzipError);
 
 use Heliotrope::Logging qw(get_logger);
@@ -68,7 +68,7 @@ sub maybe_update {
 
     my $cached_data = $self->get_data($registry);
     
-    #J These lines seems a bit cryptic
+   
     my $existing = $self->get_target_file($registry, "CosmicCompleteExport.tsv.gz");
     
     if (! -e $existing) {
@@ -92,7 +92,7 @@ sub maybe_update {
     
     # COSMIC now stores their data on an SFTP server. Authentication can now happen through Net::SFTP::Foreign 
     $DB::single = 1;
-    use Net::SFTP::Foreign;
+    
     my $host = "sftp-cancer.sanger.ac.uk";
     my %args = (
     "user"     => "jcook04\@uoguelph.ca",
@@ -471,8 +471,8 @@ sub _handle_canonical_annotation {
 
   # Current source of bottleneck is the following index. Commented out to improve speed but not able to accept site duplicate entries
 
-  #my $existing = $self->find_one_record($database, $collection, {'sections.positions.data' => {'$elemMatch' => $position_query}});
-  my $existing;
+  my $existing = $self->find_one_record($database, $collection, {'sections.positions.data' => {'$elemMatch' => $position_query}});
+  
   ## This merely tells is whether there is an existing variant which is genomically identical. If there is, we should make sure
   ## the COSMIC identifier is present and then quit. if not, we need to add it to the existing variant by name. This leaves us
   ## with an interesting question: if we have multiple genomic variants which are the same at the variant name level but genomically
@@ -640,7 +640,7 @@ sub output {
     );
     $self->{_alert} = \@alert;
 
-#    annotate_phase($self, $registry);
+    annotate_phase($self, $registry);
     load_phase($self, $registry);
 }
 

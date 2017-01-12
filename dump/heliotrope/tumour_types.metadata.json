@@ -1,0 +1,1 @@
+{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "name" : "_id_", "ns" : "heliotrope_new.tumour_types" }, { "v" : 1, "unique" : true, "key" : { "name" : { "$numberLong" : "1" } }, "name" : "name_1", "ns" : "heliotrope_new.tumour_types" } ] }
