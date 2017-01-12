@@ -346,7 +346,7 @@ sub load_phase {
     $record_update->{histSubtype} = $data->{hist_subtype};
     $record_update->{mutationCodon} = $mutation_codon && int($mutation_codon);
     $record_update->{mutationName} = $mutation_name;
-    $bulk->find($record_query)->upsert()->update({'$set' => $record_update});
+    $bulk->find($record_query)->upsert()->update_many({'$set' => $record_update});
 
     $line_number++;
     if (($line_number % 10000) == 0) {

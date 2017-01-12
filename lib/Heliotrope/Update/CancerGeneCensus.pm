@@ -91,7 +91,7 @@ sub maybe_update {
     }
     # COSMIC now offers the Cancer Gene Census in .csv format so
     # that file will be downloaded from their SFTP server
-    use Net::SFTP::Foreign;
+    
     my $host = "sftp-cancer.sanger.ac.uk";
     my %args = (
 	"user"     => "jcook04\@uoguelph.ca",

@@ -19,6 +19,8 @@ use common::sense;
 
 use Moose::Role;
 
+with 'Heliotrope::Store';
+
 use Carp;
 use XML::LibXML;
 use XML::LibXML::Reader;
@@ -74,7 +76,7 @@ sub get_publication {
     my $updater = {};
     $updater->{expires} = $now->add(days => (50 + int(rand(20))));
     $updater->{data} = $data;
-    $collection->update($query, {'$set' => $updater}, {"upsert" => 1, "multiple" => 0});
+    $collection->update_record($query, {'$set' => $updater}, {"upsert" => 1, "multiple" => 0});
     return $data;
   } else {
     $found->{data};

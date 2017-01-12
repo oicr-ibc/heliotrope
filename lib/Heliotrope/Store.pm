@@ -77,7 +77,7 @@ sub close_database {
 sub save_record {
 	my ($self, $database, $collection, $data, @options) = @_;
   my $result = eval {
-    $database->get_collection($collection)->save($data, @options);
+    $database->get_collection($collection)->replace_one($data, @options, { upsert => 1} );
   };
   if ($@ && ! defined($result)) {
     carp($@);
@@ -120,7 +120,7 @@ sub maybe_write_record {
 sub update_record {
   my ($self, $database, $collection, $query, $changes, @options) = @_;
   my $result = eval {
-    $database->get_collection($collection)->update($query, $changes, @options);
+    $database->get_collection($collection)->update_one($query, $changes, @options);
   };
   if ($@ && ! defined($result)) {
     carp("$@: " . $database->last_error());
@@ -135,7 +135,7 @@ sub find_one_record {
 
 sub ensure_index {
   my ($self, $database, $collection, $index, @options) = @_;
-  return $database->get_collection($collection)->ensure_index($index, @options);
+  return $database->get_collection($collection)->indexes->create_one($index, @options);
 }
 
 1;
