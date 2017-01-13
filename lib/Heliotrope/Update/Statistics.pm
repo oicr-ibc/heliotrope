@@ -20,6 +20,7 @@ use common::sense;
 use boolean;
 use Tie::IxHash;
 use MooseX::Singleton;
+use Data::Dumper;
 
 with 'Heliotrope::Updater';
 with 'Heliotrope::Store';
@@ -52,16 +53,18 @@ sub output {
   $database->get_collection('statistics')->ensure_index({'tag' => 1});
 
   $log->info("Calculating gene mutation frequencies");
-  my $result = $database->get_collection('variantRecords')->aggregate([
+  my @pipeline = (
     { '$match' => { 'mutationId' => { '$ne' => undef } } },
     { '$group' => { '_id' => '$geneId', 'frequency' => { '$sum' => 1 }, 'geneSymbol' => { '$first' => '$geneSymbol' } } },
     { '$project' => { 'name' => '$geneSymbol', 'frequency' => 1 } },
     { '$sort' => { 'frequency' => -1 } },
     { '$limit' => 250 }
-  ]);
-
-  $database->get_collection('statistics')->update({'tag' => 'gene_frequencies'}, {'$set' => {'data' => $result}}, {'upsert' => 1, 'safe' => 1});
-
+  );
+  
+  my $result = $database->get_collection('variantRecords')->aggregate( \@pipeline, { batchSize => 250 } );
+# print Dumper $result;
+  $database->get_collection('statistics')->update_one({'tag' => 'gene_frequencies'}, {'$set' => {'data' => $result}}, {'upsert' => 1, 'safe' => 1});
+ 
   $self->close_database();
 }
 

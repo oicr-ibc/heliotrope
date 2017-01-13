@@ -437,7 +437,7 @@ sub write_annotation {
   $annotation_body->{citations} = \@citations;
   $annotation_body->{alert} = $alert;
   # This wasn't working until replaced identity with ref in annotation index in Boot.pm  
-  $annotation_collection->update($annotation_query, {'$set' => $annotation_body}, {"upsert" => 1, "multiple" => 0});
+  $annotation_collection->update_record($annotation_query, {'$set' => $annotation_body}, {"upsert" => 1, "multiple" => 0});
   
   $log->infof("Writing annotation: %s", $target->{name});
 }
