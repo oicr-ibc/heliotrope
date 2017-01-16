@@ -62,7 +62,7 @@
     "gulp-ngmin": "~0.3.0",
     "gulp-nodemon": "^1.0.4",
     "gulp-rename": "^1.2.0",
-    "gulp-sass": "^0.7.1",
+    "gulp-sass": "^3.1.0",
     "gulp-serve": "~0.2.0",
     "gulp-uglify": "~0.3.0",
     "gulp-util": "^2.2.14",
