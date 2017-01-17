@@ -27,7 +27,7 @@ connected into the express server with the right URL prefix.
 
     async =           require("async")
     mongo =           require("mongodb")
-    jade =            require("jade")
+    pug =             require("pug")
     fs =              require("fs")
     temp =            require("temp")
 
@@ -482,7 +482,7 @@ for rendering to a PDF file server-side.
 
 
 Generates the report for a variant. This involves building the model, translating it into
-HTML with jade, building any charts needed, and finally (if needed) translating it all into
+HTML with pug, building any charts needed, and finally (if needed) translating it all into
 a PDF for sending.
 
     module.exports.getVariantReport = (req, res) ->
@@ -500,7 +500,7 @@ a PDF for sending.
 
         html = undefined
         try
-          html = jade.renderFile 'etc/reporting/templates/report.jade', data
+          html = pug.renderFile 'etc/reporting/templates/report.jade', data
         catch error
           logger.error "Error", error
           return res.status(500).send(error)
@@ -516,7 +516,7 @@ a PDF for sending.
 
 
 Generates a PDF report for a variant. This involves building the model, translating it into
-HTML with jade, building any charts needed, and finally (if needed) translating it all into
+HTML with pug, building any charts needed, and finally (if needed) translating it all into
 a PDF for sending.
 
     module.exports.getPDFVariantReport = (req, res) ->
@@ -530,7 +530,7 @@ a PDF for sending.
 
           doc["data"]["serviceUrl"] = req.url
           doc["data"]["config"] = res.locals.config if res.locals.config?
-          view = "index.jade"
+          view = "index.pug"
           res.render view, doc, (err, html) ->
             if err
               db.close()
@@ -871,4 +871,3 @@ Other values might well be added over time.
               else
                 url = "/variants/" + encodeURIComponent(record["shortName"])
                 callback db, null, url, res
-
