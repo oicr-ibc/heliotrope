@@ -96,8 +96,8 @@ gulp.task('styles-dist', ['styles'], function () {
 gulp.task('csslint', ['styles'], function () {
   return cssFiles()
     .pipe(g.cached('csslint'))
-    .pipe(g.csslint('./.csslintrc'))
-    .pipe(g.csslint.reporter());
+    .pipe(g.csslint('./.csslintrc'));
+    //.pipe(g.csslint.reporter());  Appears to have been deprecated
 });
 
 /**
@@ -361,10 +361,10 @@ function dist (ext, name, opt) {
   return lazypipe()
     .pipe(g.concat, name + '.' + ext)
     .pipe(gulp.dest, './dist/statics')
-    .pipe(opt.ngmin ? g.ngmin : noop)
-    .pipe(opt.ngmin ? g.rename : noop, name + '.annotated.' + ext)
-    .pipe(opt.ngmin ? gulp.dest : noop, './dist/statics')
-    .pipe(ext === 'js' ? g.uglify : g.minifyCss)
+    .pipe(opt.ngAnnotate ? g.ngAnnotate : noop)
+    .pipe(opt.ngAnnotate ? g.rename : noop, name + '.annotated.' + ext)
+    .pipe(opt.ngAnnotate ? gulp.dest : noop, './dist/statics')
+    .pipe(ext === 'js' ? g.uglify : g.cleanCss)
     .pipe(g.rename, name + '.min.' + ext)
     .pipe(gulp.dest, './dist/statics')();
 }
