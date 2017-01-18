@@ -77,7 +77,7 @@ sub close_database {
 sub save_record {
 	my ($self, $database, $collection, $data, @options) = @_;
   my $result = eval {
-    $database->get_collection($collection)->save($data, @options);
+    $database->get_collection($collection)->replace_one($data, @options, { upsert => 1} );
   };
   if ($@ && ! defined($result)) {
     carp($@);
