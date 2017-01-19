@@ -30,7 +30,8 @@ var gulp = require('gulp'),
     url = require('url'),
     proxy = require('proxy-middleware'),
     gulpif = require('gulp-if'),
-    isWatching = false;
+    isWatching = false,
+    Server = require('karma').Server;
 
 // When we have a URL that matches ^/api/, wejust forward, otherwise we
 // do the pushstate thing. This allows the embedded service/nodemon to
@@ -260,12 +261,16 @@ gulp.task('lint', ['jshint', 'csslint']);
 /**
  * Test
  */
-gulp.task('test', ['templates', 'coffee'], function () {
+gulp.task('test', ['templates', 'coffee'], function (done) {/*
   return testFiles()
     .pipe(g.karma({
       configFile: 'karma.conf.js',
       action: 'run'
-    }));
+    }));*/
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    action: 'run'
+  }, done).start();
 });
 
 /**

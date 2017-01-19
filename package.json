@@ -34,6 +34,7 @@
     "temp": "^0.8.0"
   },
   "devDependencies": {
+    "chai": "~3.5.0",
     "connect-pushstate": "^1.1.0",
     "event-stream": "^3.1.5",
     "grunt": "^1.0.1",
@@ -54,7 +55,6 @@
     "gulp-ignore": "^2.0.2",
     "gulp-inject": "~4.2.0",
     "gulp-jshint": "^2.0.4",
-    "gulp-karma": "~0.0.4",
     "gulp-less": "^3.3.0",
     "gulp-livereload": "^3.8.1",
     "gulp-load-plugins": "~1.4.0",
@@ -77,6 +77,7 @@
     "karma-script-launcher": "~1.0.0",
     "lazypipe": "~1.0.1",
     "main-bower-files": "~2.13.1",
+    "mocha": "~3.2.0",
     "passport-debug": "^0.1.15",
     "proxy-middleware": "^0.15.0",
     "streamqueue": "~1.1.1"
