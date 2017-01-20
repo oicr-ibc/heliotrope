@@ -50,21 +50,26 @@ sub output {
   $log->info("Computing statistics");
   my $database = $self->open_database();
 
-  $database->get_collection('statistics')->ensure_index({'tag' => 1});
+  my $statistics = $database->get_collection('statistics');
+
+  $statistics->indexes->create_one({'tag' => 1});
 
   $log->info("Calculating gene mutation frequencies");
-  my @pipeline = (
+  my $pipeline = [
     { '$match' => { 'mutationId' => { '$ne' => undef } } },
     { '$group' => { '_id' => '$geneId', 'frequency' => { '$sum' => 1 }, 'geneSymbol' => { '$first' => '$geneSymbol' } } },
     { '$project' => { 'name' => '$geneSymbol', 'frequency' => 1 } },
     { '$sort' => { 'frequency' => -1 } },
     { '$limit' => 250 }
-  );
-  
-  my $result = $database->get_collection('variantRecords')->aggregate( \@pipeline, { batchSize => 250 } );
-# print Dumper $result;
-  $database->get_collection('statistics')->update_one({'tag' => 'gene_frequencies'}, {'$set' => {'data' => $result}}, {'upsert' => 1, 'safe' => 1});
- 
+  ];
+
+  my @result = $database->get_collection('variantRecords')->aggregate($pipeline)->all;
+
+  my $filter = {'tag' => 'gene_frequencies'};
+  my $update = {'$set' => {'data' => [@result]}};
+
+  $statistics->update_many($filter, $update, {'upsert' => 1, 'safe' => 1});
+
   $self->close_database();
 }
 
