@@ -50,7 +50,7 @@ Configure the page URLs using `$routeProvider`.
 
       .config Array '$routeProvider', ($routeProvider) ->
         $routeProvider.when "/search",                                     {templateUrl: '/heliotrope/partials/search.html',         controller: "SearchController"}
-        $routeProvider.when "/genes",                                      {templateUrl: '/heliotrope/partials/home.html',           controller: "HomeController"}
+        $routeProvider.when "/",                                      {templateUrl: '/heliotrope/partials/home.html',           controller: "HomeController"}
         $routeProvider.when "/genes",                                      {templateUrl: '/heliotrope/partials/home.html',           controller: "HomeController"}
         $routeProvider.when "/genes/:gene",                                {templateUrl: '/heliotrope/partials/gene.html',           controller: "GeneController"}
         $routeProvider.when "/variants/:name",                             {templateUrl: '/heliotrope/partials/variant.html',        controller: "VariantController"}
