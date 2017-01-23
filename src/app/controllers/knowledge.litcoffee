@@ -39,9 +39,9 @@ The controller for a gene page display.
 
         addData = (url, options, callback) ->
           $http {method: 'GET', url: url, params: options}
-            .success (data, status, headers, config) ->
+            .then (data, status, headers, config) ->  # Success callback
               callback null, data
-            .error (data, status, headers, config) ->
+            ,(data, status, headers, config) ->  # Error callback
               callback status, data
 
         $scope.entity = Gene.get($routeParams
@@ -74,9 +74,9 @@ actions needed to write these annotations back into the knowledge base.
 
         addData = (url, options, callback) ->
           $http {method: 'GET', url: url, params: options}
-            .success (data, status, headers, config) ->
+            .then (data, status, headers, config) ->  # Success callback
               callback null, data
-            .error (data, status, headers, config) ->
+            ,(data, status, headers, config) ->  # Error callback
               callback status, data
 
         # Store a copy of the original anotation data here
@@ -123,10 +123,10 @@ actions needed to write these annotations back into the knowledge base.
 
         $scope.saveChanges = () ->
           $http {method: 'PUT', url: $scope.entity.data.annotationUrl, data: $scope.annotation}
-            .success (annotationData, status, headers, config) ->
+            .then (annotationData, status, headers, config) ->  # Success callback
               $scope.annotation = annotationData
               $scope.originalAnnotations = angular.copy(annotationData) || {}
-            .error (data, status, headers, config) ->
+            ,(data, status, headers, config) ->  # Error callback
 
           $scope.editing = false
 
