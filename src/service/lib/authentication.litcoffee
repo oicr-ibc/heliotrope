@@ -217,9 +217,9 @@ used with a `POST` request.
           if db
             db.close()
           if err
-            res.send errorStatus, err
+            res.status(errorStatus).send err
           else
-            res.send 200, {data: data}
+            res.status(200).send {data: data} 
 
         connected (err, idb) ->
           db = idb
