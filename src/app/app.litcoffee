@@ -171,11 +171,11 @@ using them to trigger a login dialog.
           $http
             .post '/api/authentication/login', payload, config
 
-            .then((data, status) ->  # Success callback
-              scope.$broadcast 'event:loginApproved', data.data.user
-              scope.$emit 'event:loginConfirmed', data.data.user
-            ,(data, status) -> # Error callback
-              scope.$broadcast 'event:loginDenied', data)
+            .then((res) ->  # Success callback
+              scope.$broadcast 'event:loginApproved', res.data.data.user
+              scope.$emit 'event:loginConfirmed', res.data.data.user
+            ,(res) -> # Error callback
+              scope.$broadcast 'event:loginDenied', res.data)
 
         scope.$on 'event:logoutRequest', () ->
           # console.log 'Called rootScope event:logoutRequest'
