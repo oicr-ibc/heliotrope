@@ -140,7 +140,7 @@ svg enabled browser.
 
                 chartWidth = 840
                 chartHeight = 650
-                color = d3.scale.category20c()
+                color = d3.schemeCategory20c()
 
                 svg = d3.select(element)
                   .append("svg")
@@ -186,4 +186,3 @@ svg enabled browser.
                   .style("text-anchor", "middle")
                   .style("font-size", (d) -> (d.r / 2).toString() + "px")
                   .text((d) -> d.name)
-

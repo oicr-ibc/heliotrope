@@ -379,13 +379,13 @@ ProteinStructureChart.prototype.addChart = function () {
   var width = lm + vaw + dw + rm;
 
   // Now create a store the scales we need to transform data
-  this._proteinScale = d3.scale.linear()
+  this._proteinScale = d3.scaleLinear()
     .domain([this.data.start, this.data.stop])
     .range([lm + vaw, lm + vaw + dw]);
-  this._valueScale = d3.scale.linear()
+  this._valueScale = d3.scaleLinear()
     .domain([mv, 0])
     .range([tm, tm + vh]);
-  this._domainRowScale = d3.scale.linear()
+  this._domainRowScale = d3.scaleLinear()
     .domain([0, dr])
     .range([tm + vh + sah, tm + vh + sah + dr * (drh + drs)]);
   this._domainColourScale = d3.scale.category10();
@@ -446,7 +446,7 @@ ProteinStructureChart.prototype.setMutations = function (mutations) {
     return e.value;
   }));
 
-  this._valueScale = d3.scale.linear()
+  this._valueScale = d3.scaleLinear()
     .domain([this._maximumValue, 0])
     .range([this.config.topMargin, this.config.topMargin + this.config.valueHeight]);
 
