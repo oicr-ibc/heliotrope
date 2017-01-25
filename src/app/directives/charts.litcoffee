@@ -140,7 +140,7 @@ svg enabled browser.
 
                 chartWidth = 840
                 chartHeight = 650
-                color = d3.schemeCategory20c()
+                color = d3.scaleOrdinal(d3.schemeCategory20c)
 
                 svg = d3.select(element)
                   .append("svg")
@@ -157,32 +157,34 @@ svg enabled browser.
                   output =
                     children: result
 
-                bubble = d3.layout.pack()
-                  .sort(null)
+                pack = d3.pack()
                   .size([chartWidth, chartHeight])
                   .padding(1.5)
 
-                filtered = bubble.nodes(classes(genes)).filter((d) -> !d.children)
+                root = d3.hierarchy(classes(genes))
+                  .sum((d) -> d.value)
+
+                pack(root)
 
                 nodes = svg.selectAll(".bubble")
-                  .data(filtered)
+                  .data(root.children)
                   .enter()
                   .append("g")
                   .attr("class", "bubble")
                   .attr("transform", (d) -> "translate(#{d.x},#{d.y})")
 
                 nodes.append("title")
-                  .text((d) -> d.name)
+                  .text((d) -> d.data.name)
 
                 links = nodes.append("a")
-                  .attr("xlink:href", (d) -> "genes/" + d.name)
+                  .attr("xlink:href", (d) -> "genes/" + d.data.name)
 
                 links.append("circle")
                   .attr("r", (d) -> d.r)
-                  .style("fill", (d) -> color(d.name))
+                  .style("fill", (d) -> color(d.data.name))
 
                 links.append("text")
                   .attr("dy", ".3em")
                   .style("text-anchor", "middle")
                   .style("font-size", (d) -> (d.r / 2).toString() + "px")
-                  .text((d) -> d.name)
+                  .text((d) -> d.data.name)
