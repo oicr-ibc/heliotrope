@@ -140,7 +140,7 @@ specified. This is used to allow read and write permissions to be set on a per-f
               console.log "New value", users
               if users?
                 jQuery(iElement).dataTable(
-                  sPaginationType: "bootstrap"
+                  sPaginationType: "bs_normal"
                   bPaginate: true
                   aaData: angular.copy(users)
                   aoColumns: [ {
@@ -157,5 +157,3 @@ specified. This is used to allow read and write permissions to be set on a per-f
                   aaSorting: [[ 0, "asc" ]]
                 )
         result
-
-

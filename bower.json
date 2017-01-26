@@ -36,7 +36,7 @@
     "spinjs": "~2.0.1",
     "d3": "~4.4.4",
     "wysihtml5": "~0.3.0",
-    "datatables": "~1.10.0",
+    "datatables.net": "~2.1.1",
     "datatables-bootstrap3": "376895df7f",
     "select2-bootstrap3-css": "b6ce130a21",
     "jquery-file-upload": "~9.7.1"
@@ -68,6 +68,6 @@
     }
   },
   "resolutions": {
-    "datatables": "~1.10.0"
+    "datatables.net": "~2.1.1"
   }
 }
