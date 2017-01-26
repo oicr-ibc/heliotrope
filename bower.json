@@ -20,26 +20,26 @@
   ],
   "dependencies": {
     "string-format": "1.0.2",
-    "jquery": "~1.11.1",
-    "jquery-ui": "~1.11.0",
+    "jquery": "~3.1.1",
+    "jquery-ui": "~1.12.1",
     "jquery-form": "~3.46.0",
     "angular": "~1.6.1",
     "angular-route": "~1.6.1",
     "angular-resource": "~1.6.1",
     "angular-sanitize": "~1.6.1",
-    "bootstrap-datepicker": "~1.3.0",
+    "bootstrap-datepicker": "~1.6.4",
     "bootstrap": "~3.3.7",
     "bootstrap-wysihtml5": "e577d45e48",
     "jqBootstrapValidation": "~1.3.7",
     "xdate": "~0.8.1",
-    "spinjs": "~2.0.1",
+    "spinjs": "~2.3.2",
     "select2": "~4.0.3",
     "d3": "~4.4.4",
     "wysihtml5": "~0.3.0",
     "datatables.net": "~2.1.1",
     "datatables-bootstrap3": "376895df7f",
     "select2-bootstrap3-css": "b6ce130a21",
-    "jquery-file-upload": "~9.7.1"
+    "jquery-file-upload": "~9.14.2"
   },
   "devDependencies": {
     "angular-mocks": "~1.6.1"
