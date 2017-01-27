@@ -19,17 +19,17 @@ describe('GET request', function() {
   });
 
   // Used to get the data for a report. In practice, express will
-  // render this using jade. By far the most interesting bit is the
-  // chart data, which will be an SVG string by the time we get here. 
+  // render this using pug. By far the most interesting bit is the
+  // chart data, which will be an SVG string by the time we get here.
 
   describe('/variants/KRAS+p.G12D/report', function() {
     it('should get the report data', function(done){
-      
+
       var request = {params: {id: "KRAS p.G12D"}};
       var response = {locals: {passthrough: "value"}};
       knowledge.getVariantReport(null, db, request, response, function(db, err, result, res) {
         db.close();
-        
+
         should.not.exist(err);
         should.exist(result);
         should.exist(result.data);
@@ -44,12 +44,12 @@ describe('GET request', function() {
 
   describe('/variants/EGFR+c.2062-55_2062-34delTCCAGCATGGTGAGGGCTGAGG/report', function() {
     it('should get the report data', function(done){
-      
+
       var request = {params: {id: "EGFR c.2062-55_2062-34delTCCAGCATGGTGAGGGCTGAGG"}};
       var response = {locals: {passthrough: "value"}};
       knowledge.getVariantReport(null, db, request, response, function(db, err, result, res) {
         db.close();
-        
+
         should.not.exist(err);
         should.exist(result);
         should.exist(result.data);

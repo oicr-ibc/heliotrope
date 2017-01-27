@@ -379,16 +379,16 @@ ProteinStructureChart.prototype.addChart = function () {
   var width = lm + vaw + dw + rm;
 
   // Now create a store the scales we need to transform data
-  this._proteinScale = d3.scale.linear()
+  this._proteinScale = d3.scaleLinear()
     .domain([this.data.start, this.data.stop])
     .range([lm + vaw, lm + vaw + dw]);
-  this._valueScale = d3.scale.linear()
+  this._valueScale = d3.scaleLinear()
     .domain([mv, 0])
     .range([tm, tm + vh]);
-  this._domainRowScale = d3.scale.linear()
+  this._domainRowScale = d3.scaleLinear()
     .domain([0, dr])
     .range([tm + vh + sah, tm + vh + sah + dr * (drh + drs)]);
-  this._domainColourScale = d3.scale.category10();
+  this._domainColourScale = d3.scaleOrdinal(d3.schemeCategory10);
 
   // Now the chart
   d3.select(this.element).html('');
@@ -399,23 +399,20 @@ ProteinStructureChart.prototype.addChart = function () {
     .attr('height', height);
 
   // And the axes; first for the values
-  var xAxis = d3.svg.axis();
+  var xAxis = d3.axisBottom();
   xAxis.scale(this._proteinScale);
-  xAxis.orient('bottom');
   chart.append('g')
     .attr('class', 'axis')
     .attr('transform', 'translate(' + 0 + ',' + (tm + vh - 0.5) + ')')
     .call(xAxis);
 
   // The second axis is the one for the protein coding space
-  //var valueAxis = d3.svg.axis().ticks(6);
-  var valueAxis = d3.svg.axis().ticks(Math.min(6, mv));
+  var valueAxis = d3.axisLeft().ticks(Math.min(6, mv));  // .ticks(6);
 
   // Supress decmials
   valueAxis.tickFormat(d3.format('d'));
 
   valueAxis.scale(this._valueScale);
-  valueAxis.orient('left');
   chart.append('g')
     .attr('class', 'axis')
     .attr('transform', 'translate(' + (lm + vaw) + ',' + (-0.5) + ')')
@@ -446,19 +443,17 @@ ProteinStructureChart.prototype.setMutations = function (mutations) {
     return e.value;
   }));
 
-  this._valueScale = d3.scale.linear()
+  this._valueScale = d3.scaleLinear()
     .domain([this._maximumValue, 0])
     .range([this.config.topMargin, this.config.topMargin + this.config.valueHeight]);
 
   // The second axis is the one for the protein coding space
-  //var valueAxis = d3.svg.axis().ticks(6);
-  var valueAxis = d3.svg.axis().ticks(Math.min(6, this._maximumValue));
+  var valueAxis = d3.axisLeft().ticks(Math.min(6, this._maximumValue));  // .ticks(6);
 
   // Suppress decimals
   valueAxis.tickFormat(d3.format('d'));
 
   valueAxis.scale(this._valueScale);
-  valueAxis.orient('left');
 
   var chart = this._chart;
   chart.selectAll("g.y.axis")

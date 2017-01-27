@@ -71,24 +71,20 @@ Add the middlewares.
 Add session handling, and once it is set up, start passport and its session-handling
 dependencies.
 
-    # See: http://stackoverflow.com/questions/22698661/mongodb-error-setting-ttl-index-on-collection-sessions
-    sessionStore = new MongoStore config["data"]["session"]["store"], (err) ->
+    app.use session(
+      secret: config["data"]["session"]["secret"]
+      saveUninitialized: true
+      resave: true
+      store: new MongoStore config["data"]["session"]["store"]
+    )
 
-      app.use session(
-        secret: config["data"]["session"]["secret"]
-        saveUninitialized: true
-        resave: true
-        store: sessionStore
-      )
-
-      app.use passport.initialize()
-      app.use passport.session()
-
+    app.use passport.initialize()
+    app.use passport.session()
 
 Most of the application is managed through sub-parts of the URI space. Each of these
 modules exports an express router, that is added to manage that part of the application
 system.
 
-      app.use '/api/authentication', require("./authenticationService")
-      app.use '/api/knowledge', require("./knowledgeService")
-      app.use '/api/tracker', require("./trackerService")
+    app.use '/api/authentication', require("./authenticationService")
+    app.use '/api/knowledge', require("./knowledgeService")
+    app.use '/api/tracker', require("./trackerService")

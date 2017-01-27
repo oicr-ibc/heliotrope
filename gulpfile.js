@@ -30,7 +30,8 @@ var gulp = require('gulp'),
     url = require('url'),
     proxy = require('proxy-middleware'),
     gulpif = require('gulp-if'),
-    isWatching = false;
+    isWatching = false,
+    Server = require('karma').Server;
 
 // When we have a URL that matches ^/api/, wejust forward, otherwise we
 // do the pushstate thing. This allows the embedded service/nodemon to
@@ -96,8 +97,8 @@ gulp.task('styles-dist', ['styles'], function () {
 gulp.task('csslint', ['styles'], function () {
   return cssFiles()
     .pipe(g.cached('csslint'))
-    .pipe(g.csslint('./.csslintrc'))
-    .pipe(g.csslint.reporter());
+    .pipe(g.csslint('./.csslintrc'));
+    //.pipe(g.csslint.reporter());  Appears to have been deprecated
 });
 
 /**
@@ -260,12 +261,16 @@ gulp.task('lint', ['jshint', 'csslint']);
 /**
  * Test
  */
-gulp.task('test', ['templates', 'coffee'], function () {
+gulp.task('test', ['templates', 'coffee'], function (done) {/*
   return testFiles()
     .pipe(g.karma({
       configFile: 'karma.conf.js',
       action: 'run'
-    }));
+    }));*/
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    action: 'run'
+  }, done).start();
 });
 
 /**
@@ -361,10 +366,10 @@ function dist (ext, name, opt) {
   return lazypipe()
     .pipe(g.concat, name + '.' + ext)
     .pipe(gulp.dest, './dist/statics')
-    .pipe(opt.ngmin ? g.ngmin : noop)
-    .pipe(opt.ngmin ? g.rename : noop, name + '.annotated.' + ext)
-    .pipe(opt.ngmin ? gulp.dest : noop, './dist/statics')
-    .pipe(ext === 'js' ? g.uglify : g.minifyCss)
+    .pipe(opt.ngAnnotate ? g.ngAnnotate : noop)
+    .pipe(opt.ngAnnotate ? g.rename : noop, name + '.annotated.' + ext)
+    .pipe(opt.ngAnnotate ? gulp.dest : noop, './dist/statics')
+    .pipe(ext === 'js' ? g.uglify : g.cleanCss)
     .pipe(g.rename, name + '.min.' + ext)
     .pipe(gulp.dest, './dist/statics')();
 }

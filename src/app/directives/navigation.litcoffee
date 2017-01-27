@@ -76,11 +76,10 @@ for a corresponding entity and making a link to it, if possible.
                     $http(
                       method: 'GET'
                       url: serviceUrl
-                    ).success((data, status, headers, config) ->
+                    ).then (res) ->
                       jQuery(iElement).html("<a href='" + frontUrl + "'>" + frontUrl + "</a>")
-                    ).error((data, status, headers, config) ->
+                    ,(res) ->
                       jQuery(iElement).html("<span class='warn'>Not found in knowledge base</span>")
-                    )
 
 
 A section control, which determines when a section can be shown, and if it is, generates

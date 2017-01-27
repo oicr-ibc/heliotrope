@@ -171,16 +171,15 @@ using them to trigger a login dialog.
           $http
             .post '/api/authentication/login', payload, config
 
-            .success (data, status) ->
-              scope.$broadcast 'event:loginApproved', data.data.user
-              scope.$emit 'event:loginConfirmed', data.data.user
-
-            .error (data, status) ->
-              scope.$broadcast 'event:loginDenied', data
+            .then((res) ->  # Success callback
+              scope.$broadcast 'event:loginApproved', res.data.data.user
+              scope.$emit 'event:loginConfirmed', res.data.data.user
+            ,(res) -> # Error callback
+              scope.$broadcast 'event:loginDenied', res.data)
 
         scope.$on 'event:logoutRequest', () ->
           # console.log 'Called rootScope event:logoutRequest'
-          $http.post('/api/authentication/logout', {}, config).success (data) ->
+          $http.post('/api/authentication/logout', {}, config).then (data) ->
             scope.$broadcast 'event:logoutConfirmed'
 
         # When we start the app, we might be on an unauthenticated route but still have a session
@@ -188,7 +187,7 @@ using them to trigger a login dialog.
         # return a 200 status (i.e., not be restricted by authentication, and return the current user)
         # exactly like the login event system.
         ping = () ->
-          $http.get('/api/authentication/ping', {}, config).success (data) ->
+          $http.get('/api/authentication/ping', {}, config).then (data) ->
             if data.data.user
               scope.$broadcast 'event:loginConfirmed', data.data.user
 
