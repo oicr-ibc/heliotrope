@@ -62,6 +62,7 @@ sub output {
   $self->ensure_index($dbh, "variants", Tie::IxHash->new("gene" => 1, "shortMutation" => 1), { unique => true, safe => true });
   $self->ensure_index($dbh, "variants", Tie::IxHash->new("sections.identifiers.data.cosmic" => 1), { unique => true, safe => true });  
   $self->ensure_index($dbh, "variants", Tie::IxHash->new("sections.positions.data.position" => 1), {unique => false, safe =>true}); # Added this index in
+
   ## Indexes for the variantRecords collection
   $self->ensure_index($dbh, "variantRecords", Tie::IxHash->new("geneId" => 1, "sampleId" => 1, "mutationId" => 1), { unique => true, safe => true });
 

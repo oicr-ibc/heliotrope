@@ -123,7 +123,7 @@ sub maybe_update {
   $cached_data = {} if (ref($cached_data) ne 'HASH');
 
   my $any_change = 0;
-
+  my $count = 0;
   my @files = @{$self->files()};
   foreach my $file (@files) {
     my $url = "$base_url/$file";
@@ -132,6 +132,10 @@ sub maybe_update {
 
     if (exists($file_data->{checksum}) && $file_data->{checksum} eq $checksum) {
       $log->infof("Existing file is fine: %s. Skipping update", $file);
+      $count++;
+      if ($count == 17) {
+	$log->warnf("If program stopped, try \"perl ensembl.pl --force\"");
+	}
       next;
     }
 
