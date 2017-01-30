@@ -95,8 +95,8 @@ sub maybe_update {
     
     my $host = "sftp-cancer.sanger.ac.uk";
     my %args = (
-    "user"     => "jcook04\@uoguelph.ca",
-    "password" => "H34rth1ng",
+    "user"     => "",
+    "password" => "",
     "port"     => "22" ) ;
 
     my $version_url = "http://cancer.sanger.ac.uk/cosmic";

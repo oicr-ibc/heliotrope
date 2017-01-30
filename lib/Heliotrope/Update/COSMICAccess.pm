@@ -65,7 +65,7 @@ sub login {
 
   #$log->info("Logging in to COSMIC");
   #my $response = $ua->post('https://cancer.sanger.ac.uk/cosmic/login',
-  #  Content => {email => $config->{"jcook04\@uoguelph.ca"}, password => $config->{"H34rth1ng"}});
+  #  Content => {email => $config->{"user\@email.com"}, password => $config->{"Password"}});
      
 }
 sub get_cosmic_version_date {
