@@ -53,7 +53,7 @@ sub login {
   $log->info("Authenticating COSMIC credentials");
   my $request = GET 'https://cancer.sanger.ac.uk/cosmic/login';
   
-  $request->authorization_basic('jcook04\@uoguelph.ca', 'H34rth1ng');
+  $request->authorization_basic('', '');
 
 # Add a condition to kill program if authentication doesn't succeed
   my $response = $ua->request($request);
