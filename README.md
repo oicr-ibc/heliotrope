@@ -1,6 +1,8 @@
 Heliotrope
 ==========
 
+Note: This project has now been migrated to a private location. 
+
 Heliotrope is an integrated clinical genomics application, developed as the next generation of our
 system for managing clinical genomics trials, as described in
 [Clinical genomics information management software linking cancer genome sequence and clinical decisions](http://www.ncbi.nlm.nih.gov/pubmed/23603536).
